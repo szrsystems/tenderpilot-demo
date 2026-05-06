@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TenderPilot — Üdvözöljük</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --blue-50: #eff6ff; --blue-100: #dbeafe; --blue-200: #bfdbfe; --blue-500: #3b82f6; --blue-600: #2563eb; --blue-700: #1d4ed8; --blue-800: #1e40af;
+            --green-50: #f0fdf4; --green-100: #dcfce7; --green-500: #22c55e; --green-600: #16a34a; --green-800: #166534;
+            --amber-100: #fef3c7; --amber-600: #d97706; --amber-800: #92400e;
+            --red-100: #fee2e2; --red-600: #dc2626; --red-800: #991b1b;
+            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
+            --radius: 8px; --radius-lg: 12px;
+            --sidebar-w: 240px;
+        }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--gray-50); color: var(--gray-900); -webkit-font-smoothing: antialiased; }
+
+        .sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: var(--sidebar-w); background: white; border-right: 1px solid var(--gray-200); display: flex; flex-direction: column; z-index: 50; }
+        .sidebar-header { padding: 20px 20px 16px; border-bottom: 1px solid var(--gray-100); }
+        .sidebar-logo { font-size: 18px; font-weight: 800; }
+        .sidebar-logo span { color: var(--blue-600); }
+        .sidebar-nav { flex: 1; padding: 8px; }
+        .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: var(--radius); font-size: 14px; font-weight: 500; color: var(--gray-600); cursor: pointer; transition: all 0.1s; margin-bottom: 2px; }
+        .nav-item:hover { background: var(--gray-50); color: var(--gray-900); }
+        .nav-item.active { background: var(--blue-50); color: var(--blue-700); font-weight: 600; }
+        .nav-item svg { width: 20px; height: 20px; flex-shrink: 0; }
+        .sidebar-footer { padding: 16px 20px; border-top: 1px solid var(--gray-100); }
+        .sidebar-user { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+        .sidebar-plan { font-size: 12px; color: var(--gray-400); }
+
+        .main { margin-left: var(--sidebar-w); min-height: 100vh; }
+        .topbar { background: white; border-bottom: 1px solid var(--gray-200); padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+        .topbar h1 { font-size: 16px; font-weight: 700; }
+        .btn-sm { padding: 7px 14px; font-size: 13px; font-weight: 600; border-radius: 6px; border: 1px solid var(--gray-300); background: white; color: var(--gray-700); cursor: pointer; }
+        .btn-sm:hover { background: var(--gray-50); }
+        .btn-sm.primary { background: var(--blue-600); color: white; border-color: var(--blue-600); }
+        .btn-sm.primary:hover { background: var(--blue-700); }
+        .btn-sm:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .content { padding: 24px 32px; }
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+        .stat { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 18px; }
+        .stat-label { font-size: 11px; font-weight: 600; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .stat-value { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; color: var(--gray-300); }
+        .stat-sub { font-size: 12px; color: var(--gray-400); font-weight: 500; margin-top: 4px; }
+
+        .empty-hero { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 56px 32px; text-align: center; }
+        .empty-icon { width: 88px; height: 88px; background: var(--blue-50); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 22px; }
+        .empty-icon svg { width: 44px; height: 44px; color: var(--blue-600); }
+        .empty-title { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 10px; }
+        .empty-subtitle { font-size: 15px; color: var(--gray-500); line-height: 1.6; max-width: 520px; margin: 0 auto 28px; }
+        .btn-cta { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; background: var(--blue-600); color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+        .btn-cta:hover { background: var(--blue-700); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(37,99,235,0.25); }
+        .btn-cta svg { width: 18px; height: 18px; }
+        .empty-meta { font-size: 12px; color: var(--gray-400); margin-top: 16px; }
+
+        .empty-mini { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 48px 24px; text-align: center; }
+        .empty-mini-icon { width: 56px; height: 56px; background: var(--gray-100); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+        .empty-mini-icon svg { width: 28px; height: 28px; color: var(--gray-400); }
+        .empty-mini-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--gray-700); }
+        .empty-mini-text { font-size: 13px; color: var(--gray-500); line-height: 1.6; max-width: 420px; margin: 0 auto 18px; }
+
+        .scan-overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.65); z-index: 80; align-items: center; justify-content: center; }
+        .scan-overlay.open { display: flex; }
+        .scan-modal { background: white; border-radius: 14px; width: 92%; max-width: 480px; padding: 32px 32px 28px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+        .scan-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+        .scan-subtitle { font-size: 13px; color: var(--gray-500); margin-bottom: 24px; }
+        .scan-bar-bg { width: 100%; height: 6px; background: var(--gray-100); border-radius: 3px; overflow: hidden; margin-bottom: 22px; }
+        .scan-bar-fill { height: 100%; background: linear-gradient(to right, var(--blue-500), var(--blue-700)); transition: width 0.45s ease; width: 0%; }
+        .scan-steps { font-size: 13.5px; }
+        .scan-step { display: flex; align-items: center; gap: 10px; padding: 8px 0; color: var(--gray-400); }
+        .scan-step.active { color: var(--gray-900); font-weight: 600; }
+        .scan-step.done { color: var(--green-600); }
+        .scan-step .step-icon { width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .spinner { width: 14px; height: 14px; border: 2px solid var(--gray-200); border-top-color: var(--blue-600); border-radius: 50%; animation: spin 0.65s linear infinite; }
+
+        .card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); margin-bottom: 16px; overflow: hidden; }
+        .detail-section { margin-bottom: 24px; }
+        .detail-section h3 { font-size: 11px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .detail-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--gray-100); font-size: 13px; }
+        .detail-row:last-child { border-bottom: none; }
+        .detail-row .label { color: var(--gray-500); }
+        .detail-row .value { font-weight: 600; }
+
+        .hidden { display: none !important; }
+        @media (max-width: 1100px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main { margin-left: 0; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 16px; }
+            .empty-hero { padding: 36px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="sidebar-header"><div class="sidebar-logo">Tender<span>Pilot</span></div></div>
+    <div class="sidebar-nav">
+        <div class="nav-item active" onclick="showPage('dashboard')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
+            Áttekintés
+        </div>
+        <div class="nav-item" onclick="showPage('tenders')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+            Kiírások
+        </div>
+        <div class="nav-item" onclick="showPage('documents')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15" /></svg>
+            Dokumentumok
+        </div>
+        <div class="nav-item" onclick="showPage('alerts')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" /></svg>
+            Értesítések
+        </div>
+        <div class="nav-item" onclick="showPage('profile')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.431.992a6.759 6.759 0 0 1 0 .255c-.007.378.138.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>
+            Cégprofil
+        </div>
+    </div>
+    <div class="sidebar-footer">
+        <div class="sidebar-user">ThermoTech Kft.</div>
+        <div class="sidebar-plan">Professional csomag</div>
+    </div>
+</div>
+
+<div class="main">
+    <div id="page-dashboard" class="page">
+        <div class="topbar">
+            <h1>Áttekintés</h1>
+            <div><button class="btn-sm primary" onclick="startScan()">Keresés indítása</button></div>
+        </div>
+        <div class="content">
+            <div class="stats">
+                <div class="stat"><div class="stat-label">Összes kiírás</div><div class="stat-value">0</div><div class="stat-sub">Még nincs keresés</div></div>
+                <div class="stat"><div class="stat-label">Erős egyezés</div><div class="stat-value">0</div><div class="stat-sub">Várakozás keresésre</div></div>
+                <div class="stat"><div class="stat-label">Pipeline érték</div><div class="stat-value">€0</div><div class="stat-sub">Várakozás keresésre</div></div>
+                <div class="stat"><div class="stat-label">Kész dokumentumok</div><div class="stat-value">0</div><div class="stat-sub">Várakozás keresésre</div></div>
+            </div>
+
+            <div class="empty-hero">
+                <div class="empty-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>
+                </div>
+                <div class="empty-title">Üdvözöljük a TenderPilot-ban!</div>
+                <div class="empty-subtitle">Az Ön cégprofilja beállítva. Indítsa el az első keresést, hogy megtaláljuk az Önhöz illő közbeszerzéseket.</div>
+                <button class="btn-cta" onclick="startScan()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>
+                    Első keresés indítása
+                </button>
+                <div class="empty-meta">A keresés ~2 percet vesz igénybe. 20+ forrásból keresünk.</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-tenders" class="page hidden">
+        <div class="topbar"><h1>Kiírások</h1></div>
+        <div class="content">
+            <div class="empty-mini">
+                <div class="empty-mini-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+                </div>
+                <div class="empty-mini-title">Még nincs adat</div>
+                <div class="empty-mini-text">Indítsa el az első keresést az áttekintés oldalon.</div>
+                <button class="btn-sm primary" onclick="showPage('dashboard')">Áttekintésre ugrás</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-documents" class="page hidden">
+        <div class="topbar"><h1>Dokumentumok</h1></div>
+        <div class="content">
+            <div class="empty-mini">
+                <div class="empty-mini-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15" /></svg>
+                </div>
+                <div class="empty-mini-title">Még nincs adat</div>
+                <div class="empty-mini-text">Indítsa el az első keresést az áttekintés oldalon.</div>
+                <button class="btn-sm primary" onclick="showPage('dashboard')">Áttekintésre ugrás</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-alerts" class="page hidden">
+        <div class="topbar"><h1>Értesítések</h1></div>
+        <div class="content">
+            <div class="empty-mini">
+                <div class="empty-mini-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" /></svg>
+                </div>
+                <div class="empty-mini-title">Még nincs adat</div>
+                <div class="empty-mini-text">Indítsa el az első keresést az áttekintés oldalon.</div>
+                <button class="btn-sm primary" onclick="showPage('dashboard')">Áttekintésre ugrás</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-profile" class="page hidden">
+        <div class="topbar"><h1>Cégprofil</h1></div>
+        <div class="content">
+            <div class="card">
+                <div style="padding:20px;">
+                    <div style="display:flex;gap:16px;align-items:center;margin-bottom:24px;">
+                        <div style="width:56px;height:56px;background:var(--blue-100);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:var(--blue-700);">TT</div>
+                        <div><div style="font-size:18px;font-weight:700;">ThermoTech Kft.</div><div style="font-size:13px;color:var(--gray-500);">Budapest · Épületgépészet · 42 alkalmazott</div></div>
+                    </div>
+                    <div class="detail-section"><h3>Cégadatok</h3>
+                        <div class="detail-row"><span class="label">Cím</span><span class="value">1134 Budapest, Váci út 45.</span></div>
+                        <div class="detail-row"><span class="label">Iparág</span><span class="value">Épületgépészet / HVAC</span></div>
+                        <div class="detail-row"><span class="label">Alkalmazottak</span><span class="value">42</span></div>
+                        <div class="detail-row"><span class="label">Árbevétel</span><span class="value">€2 500 000</span></div>
+                        <div class="detail-row"><span class="label">Garanciaképesség</span><span class="value">€350 000</span></div>
+                        <div class="detail-row"><span class="label">Működés</span><span class="value">18 év</span></div>
+                        <div class="detail-row"><span class="label">Csomag</span><span class="value" style="color:var(--blue-600);font-weight:700;">Professional</span></div>
+                    </div>
+                    <div class="detail-section"><h3>Minősítések</h3>
+                        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                            <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-50);color:var(--green-800);border:1px solid var(--green-100);">ISO 9001</span>
+                            <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-50);color:var(--green-800);border:1px solid var(--green-100);">ISO 14001</span>
+                            <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-50);color:var(--green-800);border:1px solid var(--green-100);">F-gáz</span>
+                            <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-50);color:var(--green-800);border:1px solid var(--green-100);">MSZ EN 378</span>
+                            <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-50);color:var(--green-800);border:1px solid var(--green-100);">EKR</span>
+                        </div>
+                    </div>
+                    <div class="detail-section"><h3>Célországok</h3>
+                        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                            <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--blue-50);color:var(--blue-800);border:1px solid var(--blue-100);">🇦🇹 Ausztria</span>
+                            <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--blue-50);color:var(--blue-800);border:1px solid var(--blue-100);">🇭🇺 Magyarország</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="scan-overlay" id="scan-overlay">
+    <div class="scan-modal" id="scan-modal"></div>
+</div>
+
+<script>
+function showPage(p) {
+    document.querySelectorAll('.page').forEach(x => x.classList.add('hidden'));
+    document.getElementById('page-'+p).classList.remove('hidden');
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const order = ['dashboard','tenders','documents','alerts','profile'];
+    document.querySelectorAll('.nav-item')[order.indexOf(p)].classList.add('active');
+    window.scrollTo({ top: 0 });
+}
+
+const SCAN_STEPS = [
+    { label: "Források keresése...", duration: 1000 },
+    { label: "Austria USP — 8,979 kiírás átvizsgálva...", duration: 1500 },
+    { label: "kozbeszerzes.hu — magyar kiírások keresése...", duration: 1500 },
+    { label: "TED Europa — EU kiírások szűrése...", duration: 1000 },
+    { label: "AI minősítés futtatása...", duration: 1500 },
+    { label: "15 releváns kiírás találva!", duration: 1200 }
+];
+
+function startScan() {
+    const overlay = document.getElementById('scan-overlay');
+    const modal = document.getElementById('scan-modal');
+    overlay.classList.add('open');
+    modal.innerHTML = `
+        <div class="scan-title">Közbeszerzések keresése</div>
+        <div class="scan-subtitle">A TenderPilot AI átvizsgálja a 20+ forrást és kiértékeli az Önhöz illő kiírásokat.</div>
+        <div class="scan-bar-bg"><div class="scan-bar-fill" id="scan-bar-fill"></div></div>
+        <div class="scan-steps" id="scan-steps">
+            ${SCAN_STEPS.map((s,i) => `<div class="scan-step" data-i="${i}"><span class="step-icon">○</span><span>${s.label}</span></div>`).join('')}
+        </div>
+    `;
+
+    let i = 0;
+    const total = SCAN_STEPS.length;
+    const tick = () => {
+        const steps = document.querySelectorAll('#scan-steps .scan-step');
+        if (i > 0) {
+            const prev = steps[i-1];
+            prev.classList.remove('active');
+            prev.classList.add('done');
+            prev.querySelector('.step-icon').innerHTML = '✓';
+        }
+        if (i < total) {
+            const cur = steps[i];
+            cur.classList.add('active');
+            cur.querySelector('.step-icon').innerHTML = '<span class="spinner"></span>';
+            document.getElementById('scan-bar-fill').style.width = `${((i+1)/total)*100}%`;
+            const dur = SCAN_STEPS[i].duration;
+            i++;
+            setTimeout(tick, dur);
+        } else {
+            modal.innerHTML = `
+                <div style="text-align:center;padding:8px 0;">
+                    <div style="width:72px;height:72px;background:var(--green-100);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-bottom:18px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="var(--green-600)"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+                    </div>
+                    <div style="font-size:20px;font-weight:800;margin-bottom:6px;">15 kiírás találva!</div>
+                    <div style="font-size:13px;color:var(--gray-500);margin-bottom:22px;line-height:1.55;">10 osztrák és 5 magyar releváns közbeszerzés azonosítva. AI minősítés és dokumentumok generálása az áttekintőben elérhető.</div>
+                    <button class="btn-cta" onclick="goToPortal()">Áttekintő megnyitása →</button>
+                </div>
+            `;
+            setTimeout(goToPortal, 1800);
+        }
+    };
+    tick();
+}
+
+function goToPortal() {
+    window.location.href = 'portal.html';
+}
+</script>
+</body>
+</html>
