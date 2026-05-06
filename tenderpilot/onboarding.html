@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TenderPilot — Regisztráció</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --blue-50: #eff6ff; --blue-100: #dbeafe; --blue-200: #bfdbfe; --blue-500: #3b82f6; --blue-600: #2563eb; --blue-700: #1d4ed8; --blue-800: #1e40af; --blue-900: #1e3a5f;
+            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
+            --radius: 8px; --radius-lg: 12px;
+        }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--gray-50); color: var(--gray-900); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+
+        nav { background: white; border-bottom: 1px solid var(--gray-200); }
+        .nav-inner { max-width: 1120px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-size: 20px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.5px; text-decoration: none; }
+        .nav-logo span { color: var(--blue-600); }
+        .nav-back { font-size: 14px; color: var(--gray-500); text-decoration: none; }
+        .nav-back:hover { color: var(--gray-700); }
+
+        .container { max-width: 600px; margin: 40px auto; padding: 0 24px 60px; }
+
+        .progress { display: flex; gap: 8px; margin-bottom: 32px; }
+        .progress-step { flex: 1; height: 4px; background: var(--gray-200); border-radius: 2px; }
+        .progress-step.active { background: var(--blue-600); }
+
+        .form-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 36px; }
+        .form-card h2 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+        .form-card .subtitle { font-size: 14px; color: var(--gray-500); margin-bottom: 28px; }
+
+        .field { margin-bottom: 20px; }
+        .field label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--gray-700); }
+        .field label .req { color: #dc2626; font-size: 12px; }
+        .field input, .field select, .field textarea { width: 100%; padding: 10px 14px; border: 1px solid var(--gray-300); border-radius: var(--radius); font-size: 15px; font-family: inherit; background: white; color: var(--gray-900); transition: border-color 0.15s; }
+        .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--blue-600); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+        .field input::placeholder { color: var(--gray-400); }
+        .field .hint { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
+        .field textarea { resize: vertical; min-height: 80px; }
+        .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+        .checkbox-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+        .checkbox-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid var(--gray-200); border-radius: var(--radius); cursor: pointer; transition: all 0.15s; font-size: 14px; }
+        .checkbox-item:hover { border-color: var(--gray-300); }
+        .checkbox-item:has(input:checked) { background: var(--blue-50); border-color: var(--blue-200); }
+        .checkbox-item input { accent-color: var(--blue-600); width: 16px; height: 16px; }
+
+        .form-actions { display: flex; gap: 12px; margin-top: 28px; }
+        .btn { flex: 1; padding: 12px 24px; border-radius: var(--radius); font-size: 15px; font-weight: 600; border: none; cursor: pointer; transition: all 0.15s; text-align: center; }
+        .btn-primary { background: var(--blue-600); color: white; }
+        .btn-primary:hover { background: var(--blue-700); }
+        .btn-secondary { background: white; color: var(--gray-700); border: 1px solid var(--gray-300); }
+        .btn-secondary:hover { background: var(--gray-50); }
+
+        .step { display: none; }
+        .step.active { display: block; }
+
+        .success-card { text-align: center; padding: 48px 36px; }
+        .success-icon { width: 64px; height: 64px; background: var(--blue-100); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .success-icon svg { width: 32px; height: 32px; color: var(--blue-600); }
+        .success-card h2 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+        .success-card p { font-size: 15px; color: var(--gray-500); line-height: 1.6; margin-bottom: 24px; }
+
+        @media (max-width: 640px) {
+            .field-row { grid-template-columns: 1fr; }
+            .checkbox-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Tender<span>Pilot</span></a>
+        <a href="index.html" class="nav-back">← Vissza a főoldalra</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="progress">
+        <div class="progress-step active" id="prog-1"></div>
+        <div class="progress-step" id="prog-2"></div>
+        <div class="progress-step" id="prog-3"></div>
+    </div>
+
+    <div class="form-card">
+        <!-- STEP 1 -->
+        <div class="step active" id="step-1">
+            <h2>Cégadatok</h2>
+            <p class="subtitle">Alapvető információk az Ön vállalkozásáról</p>
+
+            <div class="field">
+                <label>Cégnév <span class="req">*</span></label>
+                <input type="text" id="f_company" placeholder="Pl. KlímaTech Épületgépészet Kft.">
+            </div>
+            <div class="field-row">
+                <div class="field">
+                    <label>Iparág <span class="req">*</span></label>
+                    <select id="f_industry">
+                        <option value="">Válasszon...</option>
+                        <option value="HVAC">Épületgépészet / HVAC</option>
+                        <option value="Construction">Építőipar</option>
+                        <option value="Electrical">Villanyszerelés</option>
+                        <option value="Mechanical">Gépészet</option>
+                        <option value="Other">Egyéb</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Alkalmazottak <span class="req">*</span></label>
+                    <select id="f_employees">
+                        <option value="">Válasszon...</option>
+                        <option value="1-5">1-5 fő</option>
+                        <option value="6-10">6-10 fő</option>
+                        <option value="11-25">11-25 fő</option>
+                        <option value="26-50">26-50 fő</option>
+                        <option value="51-100">51-100 fő</option>
+                        <option value="100+">100+ fő</option>
+                    </select>
+                </div>
+            </div>
+            <div class="field-row">
+                <div class="field">
+                    <label>Éves árbevétel</label>
+                    <select id="f_revenue">
+                        <option value="">Válasszon...</option>
+                        <option value="<100K">&lt; €100K</option>
+                        <option value="100K-500K">€100K - €500K</option>
+                        <option value="500K-1M">€500K - €1M</option>
+                        <option value="1M-5M">€1M - €5M</option>
+                        <option value="5M+">€5M+</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Székhely</label>
+                    <input type="text" id="f_location" placeholder="Pl. Budapest">
+                </div>
+            </div>
+            <div class="field">
+                <label>Működés éve</label>
+                <input type="number" id="f_years" min="0" max="200" placeholder="Pl. 12">
+                <div class="hint">Hány éve működik a vállalkozás?</div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-primary" onclick="nextStep(2)">Tovább</button>
+            </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step" id="step-2">
+            <h2>Közbeszerzési preferenciák</h2>
+            <p class="subtitle">Milyen közbeszerzéseket keres és milyen szolgáltatásokat nyújt?</p>
+
+            <div class="field">
+                <label>Célországok <span class="req">*</span></label>
+                <div class="checkbox-grid" id="grid_countries">
+                    <label class="checkbox-item"><input type="checkbox" value="Ausztria"> Ausztria</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Magyarország"> Magyarország</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Németország"> Németország</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Egyéb EU"> Egyéb EU</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Szolgáltatások <span class="req">*</span></label>
+                <div class="checkbox-grid" id="grid_services">
+                    <label class="checkbox-item"><input type="checkbox" value="Fűtés"> Fűtés</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Hűtés/Klíma"> Hűtés / Klíma</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Szellőzés"> Szellőzés</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Épületautomatika"> Épületautomatika</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Csővezeték"> Csővezeték</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Villamos"> Villamos</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Energetika"> Energetika</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Minősítések</label>
+                <div class="checkbox-grid" id="grid_certs">
+                    <label class="checkbox-item"><input type="checkbox" value="ISO 9001"> ISO 9001</label>
+                    <label class="checkbox-item"><input type="checkbox" value="ISO 14001"> ISO 14001</label>
+                    <label class="checkbox-item"><input type="checkbox" value="F-gáz"> F-gáz</label>
+                    <label class="checkbox-item"><input type="checkbox" value="MSZ EN 378"> MSZ EN 378</label>
+                    <label class="checkbox-item"><input type="checkbox" value="EKR"> EKR</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Egyéb"> Egyéb</label>
+                </div>
+            </div>
+
+            <div class="field-row">
+                <div class="field">
+                    <label>Garanciaképesség (EUR)</label>
+                    <input type="number" id="f_bond" min="0" step="1000" placeholder="Pl. 50000">
+                    <div class="hint">Maximális banki garancia összege</div>
+                </div>
+                <div class="field">
+                    <label>Korábban pályázott-e közbeszerzésen?</label>
+                    <select id="f_past">
+                        <option value="">Válasszon...</option>
+                        <option value="won">Igen, nyertem is</option>
+                        <option value="lost">Igen, de nem nyertem</option>
+                        <option value="no">Nem, ez az első</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-secondary" onclick="nextStep(1)">Vissza</button>
+                <button class="btn btn-primary" onclick="nextStep(3)">Tovább</button>
+            </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step" id="step-3">
+            <h2>Elérhetőség</h2>
+            <p class="subtitle">Hogyan értesítsük az új közbeszerzésekről?</p>
+
+            <div class="field-row">
+                <div class="field">
+                    <label>Kapcsolattartó neve <span class="req">*</span></label>
+                    <input type="text" id="f_name" placeholder="Vezetéknév Keresztnév">
+                </div>
+                <div class="field">
+                    <label>E-mail <span class="req">*</span></label>
+                    <input type="email" id="f_email" placeholder="nev@ceg.hu">
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Telefonszám</label>
+                <input type="tel" id="f_phone" placeholder="+36 20 123 4567">
+            </div>
+
+            <div class="field">
+                <label>Értesítési csatorna <span class="req">*</span></label>
+                <div class="checkbox-grid" id="grid_channels">
+                    <label class="checkbox-item"><input type="checkbox" value="telegram" checked> Telegram (ajánlott)</label>
+                    <label class="checkbox-item"><input type="checkbox" value="email" checked> E-mail</label>
+                </div>
+                <div class="hint">A Telegram-on azonnali értesítést kap a magas pontszámú kiírásokról. E-mailen heti összefoglalót.</div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-secondary" onclick="nextStep(2)">Vissza</button>
+                <button class="btn btn-primary" onclick="submitForm()">Regisztráció indítása</button>
+            </div>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="step" id="step-success">
+            <div class="success-card">
+                <div class="success-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg></div>
+                <h2>Regisztráció sikeres!</h2>
+                <p>24 órán belül elkészítjük az Ön személyre szabott közbeszerzési profilját. Az első értesítést Telegram-on vagy e-mailen kapja.</p>
+                <a href="portal.html" class="btn btn-primary" style="display: inline-block; text-decoration: none;">Demo áttekintő megtekintése</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function nextStep(n) {
+    if (n === 2 && document.getElementById('step-1').classList.contains('active')) {
+        const required = ['f_company', 'f_industry', 'f_employees'];
+        let invalid = false;
+        required.forEach(id => {
+            const el = document.getElementById(id);
+            if (!el.value) { el.style.borderColor = '#dc2626'; invalid = true; }
+            else { el.style.borderColor = ''; }
+        });
+        if (invalid) return;
+    }
+    if (n === 3 && document.getElementById('step-2').classList.contains('active')) {
+        const countries = document.querySelectorAll('#grid_countries input:checked').length;
+        const services = document.querySelectorAll('#grid_services input:checked').length;
+        if (countries === 0 || services === 0) {
+            if (countries === 0) document.getElementById('grid_countries').style.outline = '1px solid #dc2626';
+            else document.getElementById('grid_countries').style.outline = '';
+            if (services === 0) document.getElementById('grid_services').style.outline = '1px solid #dc2626';
+            else document.getElementById('grid_services').style.outline = '';
+            return;
+        }
+        document.getElementById('grid_countries').style.outline = '';
+        document.getElementById('grid_services').style.outline = '';
+    }
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step-' + n).classList.add('active');
+    document.querySelectorAll('.progress-step').forEach((p, i) => {
+        p.classList.toggle('active', i < n);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function submitForm() {
+    const name = document.getElementById('f_name');
+    const email = document.getElementById('f_email');
+    let invalid = false;
+    if (!name.value) { name.style.borderColor = '#dc2626'; invalid = true; } else { name.style.borderColor = ''; }
+    if (!email.value) { email.style.borderColor = '#dc2626'; invalid = true; } else { email.style.borderColor = ''; }
+    if (invalid) return;
+
+    const data = {
+        company: document.getElementById('f_company').value,
+        industry: document.getElementById('f_industry').value,
+        employees: document.getElementById('f_employees').value,
+        revenue: document.getElementById('f_revenue').value,
+        location: document.getElementById('f_location').value,
+        years_operating: document.getElementById('f_years').value,
+        target_countries: [...document.querySelectorAll('#grid_countries input:checked')].map(c => c.value),
+        services: [...document.querySelectorAll('#grid_services input:checked')].map(c => c.value),
+        certifications: [...document.querySelectorAll('#grid_certs input:checked')].map(c => c.value),
+        bond_capacity_eur: document.getElementById('f_bond').value,
+        past_tenders: document.getElementById('f_past').value,
+        contact_name: name.value,
+        email: email.value,
+        phone: document.getElementById('f_phone').value,
+        notification_channels: [...document.querySelectorAll('#grid_channels input:checked')].map(c => c.value),
+        submitted: new Date().toISOString()
+    };
+    console.log('TenderPilot registration:', JSON.stringify(data, null, 2));
+    // In production: POST to Airtable or Supabase
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step-success').classList.add('active');
+    document.querySelectorAll('.progress-step').forEach(p => p.classList.add('active'));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
