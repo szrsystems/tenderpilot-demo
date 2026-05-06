@@ -230,6 +230,299 @@ const DOCS = [
     {id:"d14",tender:"HU-002",type:"Compliance",title:"EKR megfelelőségi lista",lang:"HU",chars:2200},
 ];
 
+const DOC_TEMPLATES = {
+bid_letter: `<!DOCTYPE html><html lang="hu"><head><meta charset="UTF-8"><title>Ajánlati levél — Klinikum Graz (AT-008)</title>
+<style>
+body { font-family: Georgia, 'Times New Roman', serif; max-width: 800px; margin: 0 auto; padding: 40px 60px; color: #111; line-height: 1.55; background: white; }
+.letterhead { border-bottom: 2px solid #1a365d; padding-bottom: 16px; margin-bottom: 32px; }
+.cn { font-size: 22px; font-weight: bold; color: #1a365d; letter-spacing: 0.5px; }
+.cm { font-size: 11px; color: #555; margin-top: 4px; line-height: 1.5; }
+.block { margin-bottom: 24px; font-size: 13px; }
+.right { text-align: right; }
+h1 { font-size: 16px; margin: 28px 0 16px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.6px; color: #1a365d; }
+p { margin-bottom: 12px; text-align: justify; font-size: 13px; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0 18px; font-size: 12px; }
+th, td { border: 1px solid #999; padding: 6px 10px; text-align: left; }
+th { background: #eef2f7; color: #1a365d; }
+.sig-line { border-top: 1px solid #111; width: 280px; padding-top: 6px; font-size: 12px; margin-top: 56px; }
+@media print { body { margin: 0; padding: 20mm; } }
+</style></head><body>
+<div class="letterhead">
+<div class="cn">ThermoTech Kft.</div>
+<div class="cm">1134 Budapest, Váci út 45. · Cégjegyzékszám: 01-09-756432 · Adószám: 12345678-2-41 · ISO 9001:2015 · ISO 14001:2015 · F-gáz tanúsítvány: HU-FG-2891</div>
+</div>
+
+<div class="block">
+<div><strong>Címzett:</strong> Klinikum Graz – Beschaffungsabteilung</div>
+<div>Auenbruggerplatz 1, 8036 Graz, Ausztria</div>
+<div style="margin-top:14px;"><strong>Tárgy:</strong> Ajánlat benyújtása — Klinikum Graz fűtéskorszerűsítés</div>
+<div><strong>Hivatkozási szám:</strong> AT-008/2026 (offenes Verfahren)</div>
+<div class="right" style="margin-top:14px;">Budapest, 2026. május 6.</div>
+</div>
+
+<h1>Ajánlati levél</h1>
+
+<p>Tisztelt Beszerzési Bizottság!</p>
+
+<p>A ThermoTech Kft. — Magyarország piacán 18 éve aktív, kórházi és intézményi épületgépészetre szakosodott vállalkozás — ezúton hivatalosan benyújtja ajánlatát a Klinikum Graz központi fűtésrendszerének korszerűsítésére (3 × 800 kW kazánegység cseréje és teljes BMS-integráció) vonatkozó AT-008/2026 számú nyílt közbeszerzési eljárásra.</p>
+
+<p>Az ajánlatkérési dokumentációban (Ausschreibungsunterlagen, kiadás dátuma: 2026.04.11.) rögzített műszaki specifikációkat, határidőket, jótállási, garanciális és teljesítési feltételeket maradéktalanul áttanulmányoztuk, és magunkra nézve kötelezőnek ismerjük el. Cégünk rendelkezik a kórházi környezetben végzett, fázisokra bontott üzemi installáció minden szükséges kompetenciájával: az elmúlt 7 évben három teljes egészségügyi intézményi fűtésrendszer-cserét hajtottunk végre folyamatos betegellátás biztosítása mellett (Semmelweis Egyetem 2021, Debreceni Klinikai Központ 2023, Szent János Kórház 2024).</p>
+
+<p><strong>Ajánlatunk főbb pénzügyi és műszaki paraméterei:</strong></p>
+
+<table>
+<tr><th>Tétel</th><th>Érték</th></tr>
+<tr><td>Nettó ajánlati ár</td><td>238 400 EUR</td></tr>
+<tr><td>ÁFA (Ausztria, 20%)</td><td>47 680 EUR</td></tr>
+<tr><td>Bruttó ajánlati ár</td><td><strong>286 080 EUR</strong></td></tr>
+<tr><td>Teljesítési időszak</td><td>2026.06.15. – 2026.09.30. (15 hét, 5 fázis)</td></tr>
+<tr><td>Jótállás</td><td>60 hónap (Viessmann gyártói garancia: 120 hónap)</td></tr>
+<tr><td>Ajánlati biztosíték</td><td>3% (7 152 EUR), feltétel nélküli bankgarancia</td></tr>
+<tr><td>Teljesítési biztosíték</td><td>5% (11 920 EUR), szerződéskötéstől 5 munkanapon belül</td></tr>
+<tr><td>Ajánlati kötöttség</td><td>90 naptári nap a beadási határidőtől</td></tr>
+</table>
+
+<p>Cégünk kijelenti, hogy a 2014/24/EU közbeszerzési irányelv és az osztrák BVergG 2018 alapján meghatározott összes alkalmassági követelménynek megfelel: nincs adótartozása, nem áll felszámolás alatt, nincs jogerős büntetőjogi felelősség sem cégünkkel, sem ügyvezetőjével szemben. Pénzügyi mutatóink (utolsó 3 év átlagos árbevétele: 2,5 M EUR, saját tőke: 1,1 M EUR) meghaladják a kiírásban előírt minimumot.</p>
+
+<p>A teljes műszaki ajánlatot, a megfelelőségi nyilatkozatot, a vezetői összefoglalót, a referenciaigazolásokat, az ISO és F-gáz tanúsítványokat, valamint a pénzügyi mellékleteket (mérleg, eredménykimutatás, banki igazolás) elektronikus aláírással ellátva, a kiírásban megjelölt elektronikus benyújtási rendszeren keresztül határidőre csatoljuk.</p>
+
+<p>Megtiszteltetésnek vennénk, ha a Klinikum Graz műszaki partnerei lehetnénk. Helyszíni bejárásra, technikai egyeztetésre, a Viessmann gyártóval közös konzultációra készséggel állunk rendelkezésre az ajánlatkérési időszak teljes ideje alatt.</p>
+
+<p>Tisztelettel,</p>
+
+<div class="sig-line">
+Nagy Béla<br>
+<span style="font-size:11px; color:#555;">ügyvezető igazgató · ThermoTech Kft.</span><br>
+<span style="font-size:11px; color:#555;">Tel.: +36 1 234 5678 · ajanlat@thermotech.hu</span>
+</div>
+</body></html>`,
+
+technical: `<!DOCTYPE html><html lang="hu"><head><meta charset="UTF-8"><title>Műszaki ajánlat — Klinikum Graz (AT-008)</title>
+<style>
+body { font-family: Georgia, 'Times New Roman', serif; max-width: 820px; margin: 0 auto; padding: 40px 60px; color: #111; line-height: 1.55; background: white; }
+h1 { font-size: 20px; color: #1a365d; border-bottom: 2px solid #1a365d; padding-bottom: 8px; margin-bottom: 6px; }
+h2 { font-size: 15px; color: #1a365d; margin: 22px 0 10px; border-left: 4px solid #1a365d; padding-left: 10px; }
+h3 { font-size: 13px; margin: 14px 0 6px; color: #1a365d; }
+p { margin-bottom: 11px; text-align: justify; font-size: 13px; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 12px; }
+th, td { border: 1px solid #999; padding: 6px 9px; text-align: left; vertical-align: top; }
+th { background: #eef2f7; color: #1a365d; }
+.muted { color: #555; font-size: 11px; }
+.boxnote { background: #f6faff; border-left: 4px solid #1a365d; padding: 10px 14px; margin: 10px 0; font-size: 12px; }
+.phase-card { background: #fafbfd; border: 1px solid #ddd; border-radius: 6px; padding: 12px 16px; margin: 10px 0; font-size: 12.5px; }
+.phase-h { color: #1a365d; font-weight: bold; font-size: 13px; margin-bottom: 4px; }
+@media print { body { margin: 0; padding: 18mm; } }
+</style></head><body>
+<h1>Műszaki ajánlat — Klinikum Graz fűtéskorszerűsítés</h1>
+<div class="muted">Hivatkozási szám: AT-008/2026 · Ajánlattevő: ThermoTech Kft. · Készült: 2026. május 6.</div>
+
+<h2>1. Bevezetés és műszaki összefoglaló</h2>
+<p>A Klinikum Graz központi hőellátását jelenleg három, 1998-as gyártású Bosch Buderus Logano SE635 olajtüzelésű kazán biztosítja, melyek névleges teljesítménye 750 kW egységenként. A berendezések éves szezonális hatásfoka becslésünk szerint 78–82% között mozog, NOx-kibocsátásuk meghaladja az osztrák FAV (Feuerungsanlagen-Verordnung) 2025 januárjától hatályos határértékét. A kiírás célja: a teljes hőtermelő egység cseréje korszerű, kondenzációs gáztüzelésű technológiára (3 × 800 kW), a primer-szekunder hidraulika átépítése, valamint a kazánház integrálása a kórház meglévő Siemens Desigo CC alapú épületfelügyeleti rendszerébe.</p>
+
+<h2>2. Javasolt műszaki megoldás</h2>
+<h3>2.1 Hőtermelő egységek — Viessmann Vitocrossal 200 CIB</h3>
+<p>Cégünk a <strong>Viessmann Vitocrossal 200 CIB-800</strong> sorozatot ajánlja, mely a piac jelenleg legmagasabb hatásfokú, 800 kW egységteljesítményű kondenzációs ipari gázkazánja. A típus mellett szóló műszaki indokok az alábbi táblázatban szerepelnek:</p>
+<table>
+<tr><th>Paraméter</th><th>Vitocrossal 200 CIB-800</th><th>Kiírási követelmény</th></tr>
+<tr><td>Névleges teljesítmény</td><td>800 kW</td><td>≥ 750 kW</td></tr>
+<tr><td>Szezonális hatásfok (ηs)</td><td>110% (Hi alapon)</td><td>≥ 98%</td></tr>
+<tr><td>NOx-kibocsátás</td><td>≤ 30 mg/kWh (Klasse 6)</td><td>≤ 56 mg/kWh</td></tr>
+<tr><td>Modulációs tartomány</td><td>16–100% (1:6,3)</td><td>≥ 1:4</td></tr>
+<tr><td>Inox-Crossal hőcserélő</td><td>1.4404 rozsdamentes acél, 10 év garancia</td><td>—</td></tr>
+<tr><td>Maximális üzemnyomás</td><td>6 bar</td><td>≥ 4 bar</td></tr>
+</table>
+<p>A három egységet kaszkád üzemmódban, közös füstgázelvezetésen (DN 250 inox) keresztül kötjük be, hidraulikus váltóval szétválasztva a primer és szekunder kört. Az így kialakított rendszer 240–2400 kW között folyamatosan modulálható, ami a kórház változó hőigényét (műtőblokk, betegszobák, használati melegvíz, légkezelők) optimálisan követi anélkül, hogy a kazánok ki-be kapcsolásból eredő veszteségeket szenvednének.</p>
+
+<h3>2.2 BMS-integráció és felügyelet</h3>
+<p>A kazánegységek <strong>Viessmann Vitotronic 300-K</strong> szabályzókkal kerülnek beépítésre, amelyek BACnet/IP protokollon keresztül integrálódnak a kórház meglévő Siemens Desigo CC felügyeleti rendszerébe. A teljes adatpontlista (kb. 180 pont kazánegységenként: hőmérsékletek, nyomások, áramlások, modulációs szint, üzemórák, hibakódok) a kórház BMS-mérnökével közösen kerül paraméterezésre. A kötelező riasztási szintek: gáznyomás-csökkenés, vízhőmérséklet-túllépés, áramláshiány, kazántest-túlmelegedés, valamint kommunikációkiesés. SMS- és e-mail riasztás 24/7 üzemmódban a kórház karbantartó csapata és a ThermoTech ügyeletes mérnöke felé.</p>
+
+<h2>3. Ütemterv — 5 fázis (15 hét)</h2>
+<div class="boxnote"><strong>Megjegyzés:</strong> A kórházi üzemmenet megszakítása nem megengedett. A három meglévő kazánból egyszerre csak egy állítható le; a maradék két egység és egy ideiglenes mobil kazán (500 kW, ThermoTech által biztosított, az ajánlati ár tartalmazza) tartja fenn a hőellátást.</div>
+
+<div class="phase-card"><div class="phase-h">1. fázis — Előkészítés és helyszíni infrastruktúra (1. hét)</div>Mobil kazán telepítése a kazánház mellé, ideiglenes hidraulikai és gázbekötés, biztonságtechnikai oktatás, a kórház karbantartó csapatával közös kockázatértékelés (HAZOP). Mérföldkő: ideiglenes hőellátás élesítési próba, dokumentált teljesítménymérés.</div>
+<div class="phase-card"><div class="phase-h">2. fázis — Kazán #1 cseréje (2–4. hét)</div>Régi Buderus egység szakszerű bontása és elszállítása (veszélyes anyagként kezelt fáradt olaj és koromtartalom), hidraulika átépítése DN 200 acélcsővel, új Vitocrossal 200 beemelése daruzással (max. emelési tömeg: 4,2 t), gáz- és füstgázbekötés, üzembe helyezés Viessmann gyári üzembehelyezővel, 72 órás szakszerű próbaüzem.</div>
+<div class="phase-card"><div class="phase-h">3. fázis — Kazán #2 cseréje (5–7. hét)</div>Az 1. egységgel azonos protokoll szerint. Mérföldkő: a két új egység kaszkádüzemének első tesztelése, modulációs jellemzők ellenőrzése terhelt és csökkentett üzemmódban.</div>
+<div class="phase-card"><div class="phase-h">4. fázis — Kazán #3 cseréje és teljes hidraulika átépítése (8–11. hét)</div>Utolsó egység cseréje, a primer-szekunder hidraulikus váltó beépítése, a három körös szelepcsoport (fűtési, használati melegvizes, légkezelő) installálása, Wilo Stratos GIGA típusú frekvenciaváltós keringtetők elhelyezése. Mobil kazán üzemen kívül helyezése.</div>
+<div class="phase-card"><div class="phase-h">5. fázis — BMS-integráció, beszabályozás, átadás (12–15. hét)</div>Teljes BACnet/IP konfiguráció, adatpontok ellenőrzése a Siemens Desigo CC felületén, hidraulikai beszabályozás Oventrop műszerezett szelepekkel, 7 napos folyamatos üzemi mérés (hőmennyiség, gázfogyasztás, hatásfok), teljes műszaki dokumentáció átadása, 16 órás betanítás a karbantartó személyzetnek.</div>
+
+<h2>4. Minőségbiztosítás és kockázatkezelés</h2>
+<p>A kivitelezést projektmenedzserünk, Kovács Tamás okleveles gépészmérnök (14 év hivatalos kazángépészeti gyakorlat, kórházi referenciák) vezeti, helyszíni művezető és 4 fős állandó szerelőbrigád biztosításával. Heti írásos haladási jelentést készítünk, kétheti közös státuszmegbeszélést tartunk a Klinikum Graz műszaki vezetőjével. Minden hegesztett varratot EN ISO 9606-1 szerint minősített hegesztő készít, a primer kör nyomáspróbája 1,3 × üzemi nyomáson történik, a gáznyomás-próbát EN 1775 szerint dokumentáljuk. A teljes átadási dokumentáció (CE-megfelelőségi nyilatkozatok, anyagminőségi bizonylatok, hegesztési jegyzőkönyvek, beszabályozási mérési jegyzőkönyvek, BMS-adatpont táblázat) digitális és nyomtatott formában kerül átadásra a műszaki átadás-átvételkor.</p>
+
+</body></html>`,
+
+compliance: `<!DOCTYPE html><html lang="hu"><head><meta charset="UTF-8"><title>Megfelelőségi lista — Klinikum Graz (AT-008)</title>
+<style>
+body { font-family: Georgia, 'Times New Roman', serif; max-width: 820px; margin: 0 auto; padding: 40px 60px; color: #111; line-height: 1.55; background: white; }
+h1 { font-size: 20px; color: #1a365d; border-bottom: 2px solid #1a365d; padding-bottom: 8px; }
+h2 { font-size: 15px; color: #1a365d; margin: 22px 0 10px; border-left: 4px solid #1a365d; padding-left: 10px; }
+.muted { color: #555; font-size: 11px; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 12px; }
+th, td { border: 1px solid #999; padding: 6px 9px; text-align: left; vertical-align: top; }
+th { background: #eef2f7; color: #1a365d; }
+ul.cl { list-style: none; padding-left: 0; margin: 8px 0 16px; }
+ul.cl li { padding: 7px 0; border-bottom: 1px dotted #ccc; font-size: 13px; display: flex; gap: 10px; align-items: flex-start; }
+ul.cl li .mk { color: #16a34a; font-weight: bold; flex-shrink: 0; font-size: 14px; line-height: 1.3; }
+.declaration { background: #f6faff; border-left: 4px solid #1a365d; padding: 14px 18px; margin: 18px 0; font-size: 12px; }
+.sig-line { border-top: 1px solid #111; width: 280px; padding-top: 6px; font-size: 12px; margin-top: 40px; }
+@media print { body { margin: 0; padding: 18mm; } }
+</style></head><body>
+<h1>Megfelelőségi nyilatkozat és lista</h1>
+<div class="muted">Hivatkozási szám: AT-008/2026 — Klinikum Graz fűtéskorszerűsítés · Ajánlattevő: ThermoTech Kft. · Dátum: 2026. május 6.</div>
+
+<h2>1. Műszaki megfelelőség</h2>
+<ul class="cl">
+<li><span class="mk">☑</span> Kondenzációs gáztüzelésű kazánok, 3 × 800 kW (Viessmann Vitocrossal 200 CIB-800) — szezonális hatásfok 110%, meghaladja a kiírásban előírt 98%-os követelményt.</li>
+<li><span class="mk">☑</span> NOx-kibocsátás ≤ 30 mg/kWh (Klasse 6 besorolás) — megfelel az osztrák FAV 2025 januárjától hatályos előírásnak (≤ 56 mg/kWh).</li>
+<li><span class="mk">☑</span> Kaszkád üzemmód, modulációs tartomány 1:6,3 — meghaladja a kiírás minimum követelményét (1:4).</li>
+<li><span class="mk">☑</span> BACnet/IP protokoll Siemens Desigo CC integrációhoz — a Viessmann Vitotronic 300-K gyárilag támogatja.</li>
+<li><span class="mk">☑</span> Hidraulikus váltó, primer-szekunder szétválasztás — műszaki tervben részletesen kidolgozva.</li>
+<li><span class="mk">☑</span> Folyamatos kórházi üzemmenet biztosítása — 5 fázisú ütemterv 500 kW mobil kazánnal a teljes 15 hetes időszakra (az ajánlati ár tartalmazza).</li>
+<li><span class="mk">☑</span> Riasztási rendszer 24/7 (SMS + e-mail) — ThermoTech ügyeletes mérnök készenléti díja az ajánlati árban, 4 órán belüli helyszíni reagálási idő.</li>
+</ul>
+
+<h2>2. Tanúsítványok és minősítések</h2>
+<ul class="cl">
+<li><span class="mk">☑</span> ISO 9001:2015 minőségirányítási tanúsítvány — érvényes 2027.03.31-ig (kiadó: SGS Hungária Kft., tanúsítvány szám: HU-Q-2018-04412).</li>
+<li><span class="mk">☑</span> ISO 14001:2015 környezetirányítási tanúsítvány — érvényes 2027.03.31-ig (SGS Hungária Kft., HU-E-2018-04412).</li>
+<li><span class="mk">☑</span> F-gáz tanúsítvány (517/2014/EU rendelet) — kategória I., HU-FG-2891, 4 fő képesített technikus.</li>
+<li><span class="mk">☑</span> MSZ EN 378 hűtéstechnikai szakképesítés — 2 fő minősített szakember.</li>
+<li><span class="mk">☑</span> EN ISO 9606-1 hegesztői minősítés — 3 fő (acél TIG és MAG eljárások).</li>
+<li><span class="mk">☑</span> Magyar gázszerelői jogosultság (GMBSZ) — vezető szerelő, 12 év szakmai gyakorlat.</li>
+<li><span class="mk">☑</span> Viessmann hivatalos szervizpartner státusz — 2019 óta folyamatosan, gyári képzés évente.</li>
+</ul>
+
+<h2>3. Pénzügyi és jogi alkalmasság</h2>
+<ul class="cl">
+<li><span class="mk">☑</span> Utolsó 3 év átlagos nettó árbevétele: 2 500 000 EUR (követelmény: ≥ 1 000 000 EUR/év).</li>
+<li><span class="mk">☑</span> Saját tőke (2025.12.31.): 1 100 000 EUR (követelmény: ≥ 500 000 EUR).</li>
+<li><span class="mk">☑</span> Bankgarancia-keret: 350 000 EUR (Erste Bank Hungary Zrt.) — az ajánlati biztosíték (3%) és a teljesítési biztosíték (5%) együttesen fedezhető.</li>
+<li><span class="mk">☑</span> Felelősségbiztosítás: 2 000 000 EUR / káresemény (Generali Biztosító Zrt., kötvényszám: 4521-887-2024).</li>
+<li><span class="mk">☑</span> Adótartozás-mentes (NAV együttes adóigazolás csatolva, kelt: 2026.04.28.).</li>
+<li><span class="mk">☑</span> Nincs felszámolási, csőd- vagy végelszámolási eljárás folyamatban.</li>
+<li><span class="mk">☑</span> Sem a társaság, sem ügyvezetője ellen nincs jogerős büntetőjogi marasztalás (BVergG 2018 § 78 szerinti nyilatkozat csatolva).</li>
+</ul>
+
+<h2>4. Releváns kórházi referenciák (utolsó 5 év)</h2>
+<table>
+<tr><th>Projekt</th><th>Megrendelő</th><th>Év · Érték</th><th>Műszaki tartalom</th></tr>
+<tr><td>Központi kazánház korszerűsítése</td><td>Semmelweis Egyetem, Budapest</td><td>2021 · 320 000 EUR</td><td>2 × 600 kW kondenzációs kazáncsere, BMS-integráció (Honeywell), folyamatos klinikai üzem mellett, 14 hetes ütemterv</td></tr>
+<tr><td>Hőellátás teljes átépítése</td><td>Debreceni Klinikai Központ</td><td>2023 · 480 000 EUR</td><td>4 × 500 kW kazáncsere, hibrid hőszivattyús kiegészítés (200 kW), Siemens Desigo integráció, 18 hetes ütemterv</td></tr>
+<tr><td>Sürgősségi szárny gépészeti felújítása</td><td>Szent János Kórház, Budapest</td><td>2024 · 290 000 EUR</td><td>3 × 400 kW kazán, primer-szekunder hidraulika, fázisolt kivitelezés (műtőblokk üzemben tartása mellett), 12 hetes ütemterv</td></tr>
+</table>
+<div class="muted">Mindhárom referenciához a megrendelő által hivatalosan kiállított, cégszerűen aláírt teljesítési igazolás csatolva (3 db PDF melléklet az ajánlati csomagban).</div>
+
+<div class="declaration">
+<strong>Nyilatkozat:</strong> Alulírott Nagy Béla, a ThermoTech Kft. (cégjegyzékszám: 01-09-756432, székhely: 1134 Budapest, Váci út 45.) ügyvezető igazgatója kijelentem, hogy a fenti adatok és állítások a valóságnak megfelelnek, és minden hivatkozott dokumentumot az ajánlati csomag mellékleteként hiánytalanul benyújtottunk. Tudomásul veszem, hogy valótlan adat közlése esetén az Ajánlatkérő az ajánlatot érvénytelennek nyilváníthatja, és a BVergG 2018 előírásai szerinti jogkövetkezményeket alkalmazhatja, beleértve a közbeszerzési eljárásokból történő kizárást is.
+</div>
+
+<div class="sig-line">
+Nagy Béla<br>
+<span class="muted">ügyvezető igazgató · ThermoTech Kft. · Budapest, 2026. május 6.</span>
+</div>
+</body></html>`,
+
+summary: `<!DOCTYPE html><html lang="hu"><head><meta charset="UTF-8"><title>Vezetői összefoglaló — Klinikum Graz (AT-008)</title>
+<style>
+body { font-family: Georgia, 'Times New Roman', serif; max-width: 820px; margin: 0 auto; padding: 40px 60px; color: #111; line-height: 1.55; background: white; }
+h1 { font-size: 22px; color: #1a365d; border-bottom: 2px solid #1a365d; padding-bottom: 8px; }
+h2 { font-size: 15px; color: #1a365d; margin: 22px 0 10px; border-left: 4px solid #1a365d; padding-left: 10px; }
+p { margin-bottom: 11px; text-align: justify; font-size: 13px; }
+.muted { color: #555; font-size: 11px; }
+.kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 14px 0 18px; }
+.kpi { border: 1px solid #d1d5db; border-radius: 6px; padding: 14px 16px; background: #fafbfd; }
+.kpi-l { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi-v { font-size: 22px; font-weight: bold; color: #1a365d; margin-top: 4px; }
+.kpi-s { font-size: 11px; color: #16a34a; margin-top: 4px; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 12px; }
+th, td { border: 1px solid #999; padding: 6px 9px; text-align: left; }
+th { background: #eef2f7; color: #1a365d; }
+.highlight { background: #f0fdf4; border-left: 4px solid #16a34a; padding: 12px 16px; margin: 14px 0; font-size: 12.5px; line-height: 1.65; }
+@media print { body { margin: 0; padding: 18mm; } }
+</style></head><body>
+<h1>Vezetői összefoglaló</h1>
+<div class="muted">AT-008/2026 — Klinikum Graz fűtéskorszerűsítés · Készítette: ThermoTech Kft. · 2026. május 6.</div>
+
+<h2>Kulcsmutatók</h2>
+<div class="kpi-grid">
+<div class="kpi"><div class="kpi-l">Bruttó ajánlati ár</div><div class="kpi-v">286 080 €</div><div class="kpi-s">Nettó: 238 400 € + 20% ÁFA</div></div>
+<div class="kpi"><div class="kpi-l">Teljesítési idő</div><div class="kpi-v">15 hét</div><div class="kpi-s">5 fázis · 2026.06.15 – 09.30</div></div>
+<div class="kpi"><div class="kpi-l">Éves megtakarítás</div><div class="kpi-v">68 480 €</div><div class="kpi-s">28% gáz + karbantartás</div></div>
+</div>
+
+<h2>1. Üzleti indokolás</h2>
+<p>A jelenlegi 1998-as Bosch Buderus rendszer szezonális hatásfoka 78–82% között mozog, NOx-kibocsátása pedig 2025 januárjától nem felel meg az osztrák FAV előírásnak. A javasolt Viessmann Vitocrossal 200 (3 × 800 kW) rendszer 110%-os szezonális hatásfokot, 1:6,3 modulációs tartományt és Klasse 6 NOx-besorolást ér el. A beruházás kettős célt szolgál: (a) jogszabályi megfelelőség biztosítása 2025-től, (b) jelentős üzemeltetési költségcsökkentés a kórház 30 éves távú energiastratégiájában.</p>
+
+<h2>2. Pénzügyi modell és megtérülés</h2>
+<table>
+<tr><th>Tétel</th><th>Jelenlegi rendszer (évi)</th><th>Új rendszer (évi)</th><th>Megtakarítás</th></tr>
+<tr><td>Gázfogyasztás</td><td>1 850 000 kWh</td><td>1 332 000 kWh</td><td>518 000 kWh (28%)</td></tr>
+<tr><td>Gázköltség (0,11 €/kWh)</td><td>203 500 €</td><td>146 520 €</td><td><strong>56 980 €</strong></td></tr>
+<tr><td>Tervezett karbantartás</td><td>14 200 €</td><td>9 400 €</td><td>4 800 €</td></tr>
+<tr><td>Eseti meghibásodás (becslés)</td><td>8 500 €</td><td>1 800 €</td><td>6 700 €</td></tr>
+<tr><td>CO₂-kibocsátás csökkenés</td><td>—</td><td>—</td><td>105 t CO₂/év</td></tr>
+<tr><td><strong>Éves összesített megtakarítás</strong></td><td>—</td><td>—</td><td><strong>~ 68 480 €/év</strong></td></tr>
+</table>
+
+<div class="highlight">
+<strong>Megtérülési mutatók:</strong><br>
+· Egyszerű megtérülési idő: <strong>286 080 € / 68 480 € = 4,18 év</strong><br>
+· 10 éves nettó nyereség: 684 800 € − 286 080 € = <strong>398 720 €</strong><br>
+· Belső megtérülési ráta (IRR, 15 év): <strong>19,4%</strong><br>
+· Klimaaktív (osztrák zöld pénzügyi keret) támogatási jogosultság: igen, becsült támogatás 22 000–28 000 € — ezzel a megtérülés akár 3,4 évre csökkenthető
+</div>
+
+<h2>3. Miért a ThermoTech?</h2>
+<p>Az elmúlt 5 évben három, a Klinikum Graz mérettartományával egyező kórházi fűtésrendszer-cserét hajtottunk végre <em>folyamatos klinikai üzem mellett</em>: Semmelweis Egyetem (320 k€, 2021), Debreceni Klinikai Központ (480 k€, 2023), Szent János Kórház (290 k€, 2024). Egyik esetben sem volt műtőblokk-leállás vagy betegellátást érintő szolgáltatáskiesés. Hivatalos Viessmann szervizpartner státuszunk biztosítja a 120 hónapos gyártói garancia érvényesülését és a 4 órán belüli helyszíni reagálási időt sürgősségi esetekben.</p>
+
+<h2>4. Kockázati tényezők és kezelésük</h2>
+<table>
+<tr><th>Kockázat</th><th>Hatás</th><th>Kezelés</th></tr>
+<tr><td>Gázárfluktuáció</td><td>Megtérülési idő ±0,8 év</td><td>A megtakarítás akkor is releváns, ha az árszint 30%-kal csökken</td></tr>
+<tr><td>Üzemmenet-megszakítás</td><td>Klinikai kockázat</td><td>500 kW mobil kazán a teljes 15 hetes időszakra (ár tartalmazza)</td></tr>
+<tr><td>Szállítási késedelem</td><td>Határidő-csúszás</td><td>Viessmann gyártóval szerződött 12 hetes szállítási garancia, kötbéres feltételekkel</td></tr>
+<tr><td>BMS-integráció kompatibilitás</td><td>Üzemi rendelkezésre állás</td><td>Siemens Desigo CC szakértőnk előzetes 8 órás felmérést végez a 2. héten</td></tr>
+</table>
+
+<h2>5. Javasolt döntés</h2>
+<p>Javasoljuk a ThermoTech Kft. ajánlatának elfogadását. A 4,18 éves egyszerű megtérülési idő — különösen az osztrák Klimaaktív támogatás figyelembevételével akár 3,4 évre csökkenthető — kórházi infrastrukturális beruházások körében kiemelkedően kedvező. A választás a kórház számára egyidejűleg biztosítja a 2025-től hatályos jogszabályi megfelelőséget, jelentős energetikai és karbantartási költségmegtakarítást, valamint hosszú távú, megbízható szervizpartnerséget egy 18 éves intézményi referenciákkal rendelkező vállalkozással.</p>
+
+<div class="muted" style="margin-top: 32px;">Készítette: Nagy Béla, ügyvezető igazgató · ThermoTech Kft. · 1134 Budapest, Váci út 45. · ajanlat@thermotech.hu · +36 1 234 5678</div>
+</body></html>`
+};
+
+function viewDoc(type) {
+    const html = DOC_TEMPLATES[type];
+    if (!html) { alert('A dokumentum sablon nem található.'); return; }
+    const w = window.open();
+    if (!w) { alert('A böngésző blokkolta a felugró ablakot. Kérjük, engedélyezze és próbálja újra.'); return; }
+    w.document.write(html);
+    w.document.close();
+}
+
+function downloadDoc(type, filename) {
+    const html = DOC_TEMPLATES[type];
+    if (!html) { alert('A dokumentum sablon nem található.'); return; }
+    const blob = new Blob([html], {type:'text/html'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+function docTypeKey(t) {
+    return t === 'Bid Letter' ? 'bid_letter'
+         : t === 'Technical Proposal' ? 'technical'
+         : t === 'Compliance' ? 'compliance'
+         : t === 'Summary' ? 'summary'
+         : null;
+}
+
+function docFilename(d) {
+    const safe = (d.title || d.type).toString().replace(/[^a-zA-Z0-9]+/g, '_').replace(/^_|_$/g, '').toLowerCase();
+    return `${d.tender}_${safe || 'document'}.html`;
+}
+
 const ALERTS = [
     {color:"red",title:"Határidő: AT-008 Klinikum Graz — 21 nap",text:"Pontszám 94.8, ajánlati dokumentumok elkészültek. Azonnali benyújtás szükséges."},
     {color:"red",title:"Határidő: AT-005 Innsbruck — 26 nap",text:"Pontszám 93.5, egyetemi szellőzőrendszer. Dokumentumok generálva."},
@@ -315,7 +608,15 @@ function showDetail(id) {
         </div>
         ${docs.length > 0 ? `<div class="detail-section">
             <h3>Documents (${docs.length})</h3>
-            ${docs.map(d=>`<div style="padding:8px 0;border-bottom:1px solid var(--gray-100);font-size:13px;display:flex;justify-content:space-between;"><span><strong>${d.type}</strong> · ${d.title} · ${d.lang}</span><span style="color:var(--gray-400);">${d.chars.toLocaleString()} chars</span></div>`).join('')}
+            ${docs.map(d=>{
+                const key = docTypeKey(d.type);
+                const file = docFilename(d);
+                const actions = key
+                    ? `<button class="btn-sm primary" style="font-size:11px;padding:4px 10px;" onclick="viewDoc('${key}')">View</button>
+                       <button class="btn-sm" style="font-size:11px;padding:4px 10px;" onclick="downloadDoc('${key}','${file}')">Download</button>`
+                    : `<span style="color:var(--gray-400);font-size:11px;">${d.chars.toLocaleString()} chars</span>`;
+                return `<div style="padding:10px 0;border-bottom:1px solid var(--gray-100);font-size:13px;display:flex;justify-content:space-between;align-items:center;gap:10px;"><span style="flex:1;min-width:0;"><strong>${d.type}</strong> · ${d.title} · ${d.lang}</span><span style="display:flex;gap:6px;flex-shrink:0;">${actions}</span></div>`;
+            }).join('')}
         </div>` : '<div class="detail-section"><h3>Documents</h3><p style="font-size:13px;color:var(--gray-400);">Not yet generated. Click "Generate Documents" below.</p></div>'}
         <div class="detail-section">
             <h3>Telegram Alert Preview</h3>
@@ -340,7 +641,14 @@ function initDocuments() {
     document.getElementById('doc-count').textContent = `${DOCS.length} dokumentum · ${new Set(DOCS.map(d=>d.tender)).size} kiírás`;
     document.getElementById('doc-grid').innerHTML = DOCS.map(d => {
         const t = T.find(x=>x.id===d.tender);
-        return `<div class="doc-card"><div class="doc-title">${d.type}</div><div class="doc-meta">${d.title} · ${d.lang} · ${d.chars.toLocaleString()} karakter</div><div class="doc-meta" style="margin-top:4px;">Kiírás: ${t?t.title.slice(0,45)+'...':d.tender}</div></div>`;
+        const key = docTypeKey(d.type);
+        const file = docFilename(d);
+        const buttons = key ? `
+            <div style="display:flex;gap:6px;margin-top:12px;">
+                <button class="btn-sm primary" style="flex:1;font-size:12px;padding:6px 10px;" onclick="event.stopPropagation();viewDoc('${key}')">Megtekintés</button>
+                <button class="btn-sm" style="flex:1;font-size:12px;padding:6px 10px;" onclick="event.stopPropagation();downloadDoc('${key}','${file}')">Letöltés</button>
+            </div>` : '';
+        return `<div class="doc-card"><div class="doc-title">${d.type}</div><div class="doc-meta">${d.title} · ${d.lang} · ${d.chars.toLocaleString()} karakter</div><div class="doc-meta" style="margin-top:4px;">Kiírás: ${t?t.title.slice(0,45)+'...':d.tender}</div>${buttons}</div>`;
     }).join('');
 }
 
