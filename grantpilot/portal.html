@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrantPilot — Dashboard</title>
+    <title>GrantPilot — Áttekintés</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -294,7 +294,7 @@ function initDashboard() {
     document.getElementById('stats-grid').innerHTML = `
         <div class="stat"><div class="stat-label">Összes pályázat</div><div class="stat-value">${G.length}</div><div class="stat-sub">+5 az elmúlt héten</div></div>
         <div class="stat"><div class="stat-label">Ajánlott</div><div class="stat-value" style="color: var(--green-600);">${apply}</div><div class="stat-sub">Azonnali teendő</div></div>
-        <div class="stat"><div class="stat-label">Áttekintendő</div><div class="stat-value" style="color: var(--amber-600);">${review}</div><div class="stat-sub">Eligibility check</div></div>
+        <div class="stat"><div class="stat-label">Áttekintendő</div><div class="stat-value" style="color: var(--amber-600);">${review}</div><div class="stat-sub">Jogosultsági ellenőrzés</div></div>
         <div class="stat"><div class="stat-label">Kiszűrve</div><div class="stat-value" style="color: var(--gray-400);">${skip}</div><div class="stat-sub">Nem releváns</div></div>
     `;
     document.getElementById('hot-list').innerHTML = G.filter(g => g.score >= 85).sort((a,b) => a.days - b.days).slice(0, 5).map(renderRow).join('');
@@ -352,12 +352,12 @@ function showDetail(id) {
             <h3>Ajánlás</h3>
             <p style="font-size: 13px; color: var(--gray-600); line-height: 1.6;">
                 ${g.verdict === 'APPLY' ? `Erősen ajánlott pályázat. A(z) Demo Vállalkozás Kft. profilja jól illeszkedik a kiíráshoz. Javasolt lépés: azonnali pályázatkészítés megkezdése. Szükség esetén pályázatíró partnerünket ajánljuk.` :
-                  g.verdict === 'REVIEW' ? `Érdemes áttekinteni a részletes kiírást. Részleges illeszkedés — az eligibility feltételek alapos vizsgálata szükséges a döntés előtt.` :
+                  g.verdict === 'REVIEW' ? `Érdemes áttekinteni a részletes kiírást. Részleges illeszkedés — a jogosultsági feltételek alapos vizsgálata szükséges a döntés előtt.` :
                   `Nem ajánlott. Az Ön cégprofilja alapján ez a pályázat nem illeszkedik megfelelően. Nem érdemes rá időt fordítani.`}
             </p>
         </div>
         ${g.verdict === 'APPLY' ? `<div class="detail-section">
-            <h3>Eligibility checklist</h3>
+            <h3>Jogosultsági ellenőrzőlista</h3>
             <div style="font-size: 13px; line-height: 2;">
                 <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--green-600);">&#10003;</span> KKV besorolás (${g.cat.includes('KKV') || g.score > 80 ? 'megfelel' : 'ellenőrizendő'})</div>
                 <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--green-600);">&#10003;</span> Székhely Magyarországon (megfelel)</div>
@@ -439,8 +439,8 @@ function runScan() {
 }
 
 function exportCSV() {
-    let csv = 'ID,Cím,Forrás,Kategória,Összeg,Határidő,Napok,Pontszám,Verdikt\n';
-    G.forEach(g => csv += `"${g.id}","${g.title}","${g.source}","${g.cat}","${g.amount}","${g.deadline}",${g.days},${g.score},"${g.verdict}"\n`);
+    let csv = 'Azonosító,Cím,Forrás,Kategória,Összeg,Határidő,Hátralévő nap,Pontszám,Minősítés\n';
+    G.forEach(g => csv += `"${g.id}","${g.title}","${g.source}","${g.cat}","${g.amount}","${g.deadline}",${g.days},${g.score},"${vText(g.verdict)}"\n`);
     const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download = 'grantpilot-export.csv'; a.click();
 }
 

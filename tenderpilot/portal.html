@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TenderPilot — Ügyfél Dashboard</title>
+    <title>TenderPilot — Ügyfél Áttekintés</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -174,7 +174,7 @@
 
     <div id="page-documents" class="page hidden">
         <div class="topbar"><h1>Dokumentumok</h1></div>
-        <div class="content"><div class="card"><div class="card-header"><h2>Bid Packages</h2><span style="font-size:12px;color:var(--gray-400);" id="doc-count"></span></div><div class="doc-grid" id="doc-grid"></div></div></div>
+        <div class="content"><div class="card"><div class="card-header"><h2>Ajánlati csomagok</h2><span style="font-size:12px;color:var(--gray-400);" id="doc-count"></span></div><div class="doc-grid" id="doc-grid"></div></div></div>
     </div>
 
     <div id="page-alerts" class="page hidden">
@@ -190,44 +190,44 @@
 
 <div class="detail-overlay" id="detail-overlay" onclick="closeDetail()"></div>
 <div class="detail-panel" id="detail-panel">
-    <div class="detail-top"><div><div id="detail-verdict" class="verdict v-strong" style="display:inline-block;margin-bottom:8px;"></div><h2 id="detail-title" style="font-size:17px;font-weight:700;line-height:1.3;"></h2></div><button class="detail-close" onclick="closeDetail()">Close</button></div>
+    <div class="detail-top"><div><div id="detail-verdict" class="verdict v-strong" style="display:inline-block;margin-bottom:8px;"></div><h2 id="detail-title" style="font-size:17px;font-weight:700;line-height:1.3;"></h2></div><button class="detail-close" onclick="closeDetail()">Bezárás</button></div>
     <div class="detail-body" id="detail-body"></div>
 </div>
 
 <script>
 const T = [
-    {id:"AT-001",title:"Südautobahn TK Pack Mitterbergtunnel — Gebäudetechnik",buyer:"ASFINAG",country:"AT",city:"Steiermark",value:800000,deadline:"2026-06-15",days:42,score:96.2,verdict:"STRONG BID",scope:"HVAC cabling + tunnel ventilation. Min 5yr tunnel experience.",factors:{cat:98,val:82,deadline:78,certs:100,bond:68,lang:88,loc:72,exp:95,refs:90,size:85,fin:78,comp:72}},
-    {id:"AT-002",title:"Rahmenvertrag Straßen- und Leitungsbau Deutsch-Wagram",buyer:"Stadtgemeinde Deutsch-Wagram",country:"AT",city:"Deutsch-Wagram",value:500000,deadline:"2026-07-20",days:77,score:88.4,verdict:"STRONG BID",scope:"Framework: district heating connections. F-gas cert required.",factors:{cat:92,val:88,deadline:90,certs:95,bond:80,lang:85,loc:68,exp:88,refs:85,size:88,fin:85,comp:75}},
-    {id:"AT-003",title:"Baumeisterarbeiten Lakeside Science Park",buyer:"Lakeside Science & Technology Park",country:"AT",city:"Klagenfurt",value:500000,deadline:"2026-06-01",days:28,score:91.7,verdict:"STRONG BID",scope:"HVAC + BMS for new extension. ISO 9001+14001 required.",factors:{cat:95,val:88,deadline:65,certs:100,bond:80,lang:85,loc:65,exp:92,refs:90,size:88,fin:85,comp:78}},
-    {id:"AT-004",title:"LSTP HKLS und Gebäudetechnik Erweiterungsbau",buyer:"Lakeside Science & Technology Park",country:"AT",city:"Klagenfurt",value:300000,deadline:"2026-08-10",days:98,score:84.1,verdict:"BID",scope:"Heating/cooling/ventilation/sanitary for extension.",factors:{cat:88,val:82,deadline:95,certs:90,bond:88,lang:80,loc:62,exp:82,refs:80,size:85,fin:88,comp:72}},
-    {id:"AT-005",title:"STEIG Lüftungsanlage — Universität Innsbruck",buyer:"Universität Innsbruck",country:"AT",city:"Innsbruck",value:500000,deadline:"2026-05-30",days:26,score:93.5,verdict:"STRONG BID",scope:"Lab ventilation with fume hoods + heat recovery. University experience preferred.",factors:{cat:100,val:88,deadline:60,certs:95,bond:80,lang:85,loc:68,exp:92,refs:88,size:85,fin:85,comp:80}},
-    {id:"AT-006",title:"Neubau Energiezentrale DANI 3",buyer:"DANI 3 Bau GmbH",country:"AT",city:"Wien",value:500000,deadline:"2026-07-05",days:62,score:79.3,verdict:"BID",scope:"Heat pump + thermal storage + solar thermal. Innovative energy.",factors:{cat:82,val:88,deadline:85,certs:78,bond:80,lang:82,loc:72,exp:70,refs:72,size:80,fin:82,comp:68}},
-    {id:"AT-007",title:"Streckenelektrifizierung Innkreisbahn",buyer:"ÖBB-Infrastruktur AG",country:"AT",city:"Innkreis",value:500000,deadline:"2026-06-20",days:47,score:62.8,verdict:"WEAK BID",scope:"Railway electrification. Minor HVAC for stations. Railway cert needed.",factors:{cat:45,val:88,deadline:80,certs:40,bond:80,lang:82,loc:58,exp:42,refs:45,size:78,fin:82,comp:55}},
-    {id:"AT-008",title:"Sanierung Heizungsanlage Klinikum Graz",buyer:"Klinikum Graz",country:"AT",city:"Graz",value:250000,deadline:"2026-05-25",days:21,score:94.8,verdict:"STRONG BID",scope:"Boiler replacement 3×800kW + BMS. Hospital phased installation.",factors:{cat:100,val:92,deadline:55,certs:100,bond:92,lang:85,loc:70,exp:95,refs:92,size:90,fin:92,comp:82}},
-    {id:"AT-009",title:"Neubau Klimaanlage Bürokomplex Wien Mitte",buyer:"Wiener Stadtwerke",country:"AT",city:"Wien",value:400000,deadline:"2026-07-15",days:72,score:87.6,verdict:"STRONG BID",scope:"120 VRF indoor units + 8 outdoor. Daikin/Mitsubishi preferred.",factors:{cat:95,val:90,deadline:88,certs:92,bond:85,lang:82,loc:72,exp:85,refs:82,size:85,fin:88,comp:75}},
-    {id:"AT-010",title:"Erneuerung Lüftungssysteme Schulen Salzburg",buyer:"Land Salzburg",country:"AT",city:"Salzburg",value:350000,deadline:"2026-08-01",days:89,score:85.2,verdict:"STRONG BID",scope:"4 schools, CO2-demand ventilation, heat recovery >75%. Summer work.",factors:{cat:95,val:88,deadline:92,certs:88,bond:88,lang:82,loc:65,exp:82,refs:80,size:85,fin:88,comp:72}},
-    {id:"HU-001",title:"Fűtéskorszerűsítés — Debreceni Egyetem Főépület",buyer:"Debreceni Egyetem",country:"HU",city:"Debrecen",value:420000,deadline:"2026-06-30",days:57,score:91.0,verdict:"STRONG BID",scope:"Replace Soviet-era heating. Condensing gas boilers. EKR required.",factors:{cat:98,val:90,deadline:82,certs:92,bond:85,lang:100,loc:72,exp:90,refs:88,size:88,fin:88,comp:78}},
-    {id:"HU-002",title:"Klímaberendezés — Budapest Főváros Kormányhivatal",buyer:"Budapest Főváros Kormányhivatal",country:"HU",city:"Budapest",value:280000,deadline:"2026-07-10",days:67,score:89.3,verdict:"STRONG BID",scope:"85 split/VRF units, 6 floors. Maintain office operations.",factors:{cat:95,val:90,deadline:88,certs:90,bond:90,lang:100,loc:100,exp:85,refs:82,size:88,fin:90,comp:72}},
-    {id:"HU-003",title:"Szellőzőrendszer felújítás — Pécs MJV",buyer:"Pécs MJV Önkormányzat",country:"HU",city:"Pécs",value:180000,deadline:"2026-06-10",days:37,score:76.4,verdict:"BID",scope:"City Hall ventilation renovation. Travel from Budapest adds cost.",factors:{cat:90,val:78,deadline:72,certs:88,bond:92,lang:100,loc:52,exp:80,refs:75,size:85,fin:90,comp:65}},
-    {id:"HU-004",title:"Hőszivattyú rendszer — Székesfehérvár Sportcsarnok",buyer:"Székesfehérvár MJV",country:"HU",city:"Székesfehérvár",value:350000,deadline:"2026-08-15",days:103,score:82.7,verdict:"BID",scope:"200kW ground-source heat pump. Needs geothermal subcontractor.",factors:{cat:85,val:88,deadline:95,certs:82,bond:88,lang:100,loc:78,exp:72,refs:70,size:85,fin:88,comp:68}},
-    {id:"HU-005",title:"Ipari szellőzés — Audi Hungaria gyárbővítés",buyer:"Audi Hungaria Zrt.",country:"HU",city:"Győr",value:1200000,deadline:"2026-05-20",days:16,score:48.5,verdict:"NO BID",scope:"€1.2M — exceeds capacity. Automotive refs required. Negotiated.",factors:{cat:72,val:35,deadline:30,certs:55,bond:25,lang:100,loc:65,exp:35,refs:25,size:42,fin:35,comp:40}}
+    {id:"AT-001",title:"Südautobahn TK Pack Mitterbergtunnel — Gebäudetechnik",buyer:"ASFINAG",country:"AT",city:"Steiermark",value:800000,deadline:"2026-06-15",days:42,score:96.2,verdict:"STRONG BID",scope:"HVAC kábelezés + alagútszellőzés. Min. 5 év alagúttapasztalat.",factors:{cat:98,val:82,deadline:78,certs:100,bond:68,lang:88,loc:72,exp:95,refs:90,size:85,fin:78,comp:72}},
+    {id:"AT-002",title:"Rahmenvertrag Straßen- und Leitungsbau Deutsch-Wagram",buyer:"Stadtgemeinde Deutsch-Wagram",country:"AT",city:"Deutsch-Wagram",value:500000,deadline:"2026-07-20",days:77,score:88.4,verdict:"STRONG BID",scope:"Keretszerződés: távfűtési bekötések. F-gáz tanúsítvány szükséges.",factors:{cat:92,val:88,deadline:90,certs:95,bond:80,lang:85,loc:68,exp:88,refs:85,size:88,fin:85,comp:75}},
+    {id:"AT-003",title:"Baumeisterarbeiten Lakeside Science Park",buyer:"Lakeside Science & Technology Park",country:"AT",city:"Klagenfurt",value:500000,deadline:"2026-06-01",days:28,score:91.7,verdict:"STRONG BID",scope:"HVAC + BMS új bővítéshez. ISO 9001+14001 szükséges.",factors:{cat:95,val:88,deadline:65,certs:100,bond:80,lang:85,loc:65,exp:92,refs:90,size:88,fin:85,comp:78}},
+    {id:"AT-004",title:"LSTP HKLS und Gebäudetechnik Erweiterungsbau",buyer:"Lakeside Science & Technology Park",country:"AT",city:"Klagenfurt",value:300000,deadline:"2026-08-10",days:98,score:84.1,verdict:"BID",scope:"Fűtés / hűtés / szellőzés / szaniter bővítéshez.",factors:{cat:88,val:82,deadline:95,certs:90,bond:88,lang:80,loc:62,exp:82,refs:80,size:85,fin:88,comp:72}},
+    {id:"AT-005",title:"STEIG Lüftungsanlage — Universität Innsbruck",buyer:"Universität Innsbruck",country:"AT",city:"Innsbruck",value:500000,deadline:"2026-05-30",days:26,score:93.5,verdict:"STRONG BID",scope:"Laborszellőzés vegyifülkékkel + hővisszanyerés. Egyetemi tapasztalat előnyt jelent.",factors:{cat:100,val:88,deadline:60,certs:95,bond:80,lang:85,loc:68,exp:92,refs:88,size:85,fin:85,comp:80}},
+    {id:"AT-006",title:"Neubau Energiezentrale DANI 3",buyer:"DANI 3 Bau GmbH",country:"AT",city:"Wien",value:500000,deadline:"2026-07-05",days:62,score:79.3,verdict:"BID",scope:"Hőszivattyú + hőtárolás + napkollektor. Innovatív energiamegoldás.",factors:{cat:82,val:88,deadline:85,certs:78,bond:80,lang:82,loc:72,exp:70,refs:72,size:80,fin:82,comp:68}},
+    {id:"AT-007",title:"Streckenelektrifizierung Innkreisbahn",buyer:"ÖBB-Infrastruktur AG",country:"AT",city:"Innkreis",value:500000,deadline:"2026-06-20",days:47,score:62.8,verdict:"WEAK BID",scope:"Vasúti villamosítás. Kisebb HVAC az állomásokhoz. Vasúti tanúsítvány szükséges.",factors:{cat:45,val:88,deadline:80,certs:40,bond:80,lang:82,loc:58,exp:42,refs:45,size:78,fin:82,comp:55}},
+    {id:"AT-008",title:"Sanierung Heizungsanlage Klinikum Graz",buyer:"Klinikum Graz",country:"AT",city:"Graz",value:250000,deadline:"2026-05-25",days:21,score:94.8,verdict:"STRONG BID",scope:"Kazáncsere 3×800 kW + BMS. Kórházi fázisolt kivitelezés.",factors:{cat:100,val:92,deadline:55,certs:100,bond:92,lang:85,loc:70,exp:95,refs:92,size:90,fin:92,comp:82}},
+    {id:"AT-009",title:"Neubau Klimaanlage Bürokomplex Wien Mitte",buyer:"Wiener Stadtwerke",country:"AT",city:"Wien",value:400000,deadline:"2026-07-15",days:72,score:87.6,verdict:"STRONG BID",scope:"120 VRF beltéri egység + 8 kültéri. Daikin/Mitsubishi előnyt jelent.",factors:{cat:95,val:90,deadline:88,certs:92,bond:85,lang:82,loc:72,exp:85,refs:82,size:85,fin:88,comp:75}},
+    {id:"AT-010",title:"Erneuerung Lüftungssysteme Schulen Salzburg",buyer:"Land Salzburg",country:"AT",city:"Salzburg",value:350000,deadline:"2026-08-01",days:89,score:85.2,verdict:"STRONG BID",scope:"4 iskola, CO2-igény vezérelt szellőzés, hővisszanyerés >75%. Nyári kivitelezés.",factors:{cat:95,val:88,deadline:92,certs:88,bond:88,lang:82,loc:65,exp:82,refs:80,size:85,fin:88,comp:72}},
+    {id:"HU-001",title:"Fűtéskorszerűsítés — Debreceni Egyetem Főépület",buyer:"Debreceni Egyetem",country:"HU",city:"Debrecen",value:420000,deadline:"2026-06-30",days:57,score:91.0,verdict:"STRONG BID",scope:"Szovjet korszakú fűtés cseréje. Kondenzációs gázkazánok. EKR szükséges.",factors:{cat:98,val:90,deadline:82,certs:92,bond:85,lang:100,loc:72,exp:90,refs:88,size:88,fin:88,comp:78}},
+    {id:"HU-002",title:"Klímaberendezés — Budapest Főváros Kormányhivatal",buyer:"Budapest Főváros Kormányhivatal",country:"HU",city:"Budapest",value:280000,deadline:"2026-07-10",days:67,score:89.3,verdict:"STRONG BID",scope:"85 split/VRF egység, 6 emelet. Folyamatos irodai üzem mellett.",factors:{cat:95,val:90,deadline:88,certs:90,bond:90,lang:100,loc:100,exp:85,refs:82,size:88,fin:90,comp:72}},
+    {id:"HU-003",title:"Szellőzőrendszer felújítás — Pécs MJV",buyer:"Pécs MJV Önkormányzat",country:"HU",city:"Pécs",value:180000,deadline:"2026-06-10",days:37,score:76.4,verdict:"BID",scope:"Városháza szellőzésének felújítása. Budapestről utazás többletköltség.",factors:{cat:90,val:78,deadline:72,certs:88,bond:92,lang:100,loc:52,exp:80,refs:75,size:85,fin:90,comp:65}},
+    {id:"HU-004",title:"Hőszivattyú rendszer — Székesfehérvár Sportcsarnok",buyer:"Székesfehérvár MJV",country:"HU",city:"Székesfehérvár",value:350000,deadline:"2026-08-15",days:103,score:82.7,verdict:"BID",scope:"200 kW talajszondás hőszivattyú. Geotermikus alvállalkozó szükséges.",factors:{cat:85,val:88,deadline:95,certs:82,bond:88,lang:100,loc:78,exp:72,refs:70,size:85,fin:88,comp:68}},
+    {id:"HU-005",title:"Ipari szellőzés — Audi Hungaria gyárbővítés",buyer:"Audi Hungaria Zrt.",country:"HU",city:"Győr",value:1200000,deadline:"2026-05-20",days:16,score:48.5,verdict:"NO BID",scope:"€1,2M — meghaladja a kapacitást. Autóipari referenciák szükségesek. Tárgyalásos.",factors:{cat:72,val:35,deadline:30,certs:55,bond:25,lang:100,loc:65,exp:35,refs:25,size:42,fin:35,comp:40}}
 ];
 
 const DOCS = [
-    {id:"d1",tender:"AT-001",type:"Bid Letter",title:"Ajánlati levél — Südautobahn",lang:"DE",chars:3250},
-    {id:"d2",tender:"AT-001",type:"Technical Proposal",title:"Technisches Angebot",lang:"DE",chars:5100},
-    {id:"d3",tender:"AT-001",type:"Compliance",title:"Anforderungsliste",lang:"DE",chars:1800},
-    {id:"d4",tender:"AT-001",type:"Summary",title:"Vezetői összefoglaló",lang:"HU",chars:2100},
-    {id:"d5",tender:"AT-003",type:"Bid Letter",title:"Ajánlati levél — Lakeside",lang:"HU",chars:3100},
-    {id:"d6",tender:"AT-003",type:"Technical Proposal",title:"Műszaki ajánlat",lang:"DE",chars:4200},
-    {id:"d7",tender:"AT-005",type:"Bid Letter",title:"Ajánlati levél — Innsbruck",lang:"HU",chars:3400},
-    {id:"d8",tender:"AT-005",type:"Technical Proposal",title:"Technisches Angebot — Lüftung",lang:"DE",chars:4500},
-    {id:"d9",tender:"AT-008",type:"Bid Letter",title:"Ajánlati levél — Klinikum",lang:"DE",chars:3600},
-    {id:"d10",tender:"AT-008",type:"Technical Proposal",title:"Heizungssanierung",lang:"DE",chars:5800},
-    {id:"d11",tender:"HU-001",type:"Bid Letter",title:"Ajánlati levél — Debrecen",lang:"HU",chars:3200},
-    {id:"d12",tender:"HU-001",type:"Technical Proposal",title:"Műszaki ajánlat",lang:"HU",chars:4800},
-    {id:"d13",tender:"HU-002",type:"Bid Letter",title:"Ajánlati levél — Kormányhivatal",lang:"HU",chars:3000},
-    {id:"d14",tender:"HU-002",type:"Compliance",title:"EKR megfelelőségi lista",lang:"HU",chars:2200},
+    {id:"d1",tender:"AT-001",type:"Ajánlati levél",title:"Ajánlati levél — Südautobahn",lang:"DE",chars:3250},
+    {id:"d2",tender:"AT-001",type:"Műszaki ajánlat",title:"Technisches Angebot",lang:"DE",chars:5100},
+    {id:"d3",tender:"AT-001",type:"Megfelelőségi lista",title:"Anforderungsliste",lang:"DE",chars:1800},
+    {id:"d4",tender:"AT-001",type:"Vezetői összefoglaló",title:"Vezetői összefoglaló",lang:"HU",chars:2100},
+    {id:"d5",tender:"AT-003",type:"Ajánlati levél",title:"Ajánlati levél — Lakeside",lang:"HU",chars:3100},
+    {id:"d6",tender:"AT-003",type:"Műszaki ajánlat",title:"Műszaki ajánlat",lang:"DE",chars:4200},
+    {id:"d7",tender:"AT-005",type:"Ajánlati levél",title:"Ajánlati levél — Innsbruck",lang:"HU",chars:3400},
+    {id:"d8",tender:"AT-005",type:"Műszaki ajánlat",title:"Technisches Angebot — Lüftung",lang:"DE",chars:4500},
+    {id:"d9",tender:"AT-008",type:"Ajánlati levél",title:"Ajánlati levél — Klinikum",lang:"DE",chars:3600},
+    {id:"d10",tender:"AT-008",type:"Műszaki ajánlat",title:"Heizungssanierung",lang:"DE",chars:5800},
+    {id:"d11",tender:"HU-001",type:"Ajánlati levél",title:"Ajánlati levél — Debrecen",lang:"HU",chars:3200},
+    {id:"d12",tender:"HU-001",type:"Műszaki ajánlat",title:"Műszaki ajánlat",lang:"HU",chars:4800},
+    {id:"d13",tender:"HU-002",type:"Ajánlati levél",title:"Ajánlati levél — Kormányhivatal",lang:"HU",chars:3000},
+    {id:"d14",tender:"HU-002",type:"Megfelelőségi lista",title:"EKR megfelelőségi lista",lang:"HU",chars:2200},
 ];
 
 const DOC_TEMPLATES = {
@@ -511,10 +511,10 @@ function downloadDoc(type, filename) {
 }
 
 function docTypeKey(t) {
-    return t === 'Bid Letter' ? 'bid_letter'
-         : t === 'Technical Proposal' ? 'technical'
-         : t === 'Compliance' ? 'compliance'
-         : t === 'Summary' ? 'summary'
+    return t === 'Ajánlati levél' ? 'bid_letter'
+         : t === 'Műszaki ajánlat' ? 'technical'
+         : t === 'Megfelelőségi lista' ? 'compliance'
+         : t === 'Vezetői összefoglaló' ? 'summary'
          : null;
 }
 
@@ -536,7 +536,7 @@ function renderRow(t) {
     return `<div class="tender-row" onclick="showDetail('${t.id}')">
         <div><div class="tender-name">${t.title}</div><div class="tender-source">${t.buyer} · ${t.country==='AT'?'🇦🇹':'🇭🇺'} ${t.city}</div></div>
         <div class="tender-value">€${(t.value/1000).toFixed(0)}K</div>
-        <div class="tender-days ${t.days<30?'urgent':''}">${t.days}d</div>
+        <div class="tender-days ${t.days<30?'urgent':''}">${t.days} nap</div>
         <div style="font-size:12px;color:var(--gray-400);">${t.country}</div>
         <div><span class="verdict ${vClass(t.verdict)}">${t.score}</span></div>
     </div>`;
@@ -583,9 +583,13 @@ function filterTenders() {
 function showDetail(id) {
     const t = T.find(x=>x.id===id);
     if (!t) return;
+    const verdictLabel = t.verdict === 'STRONG BID' ? 'ERŐS AJÁNLÁS'
+                       : t.verdict === 'BID' ? 'AJÁNLOTT'
+                       : t.verdict === 'WEAK BID' ? 'GYENGE'
+                       : 'NEM AJÁNLOTT';
     const dv = document.getElementById('detail-verdict');
     dv.className = `verdict ${vClass(t.verdict)}`;
-    dv.textContent = `${t.score}/100 — ${t.verdict}`;
+    dv.textContent = `${t.score}/100 — ${verdictLabel}`;
     document.getElementById('detail-title').textContent = t.title;
 
     const barColor = s => s>=85?'var(--green-500)':s>=70?'var(--blue-500)':s>=55?'var(--amber-600)':'var(--red-600)';
@@ -593,38 +597,43 @@ function showDetail(id) {
     const f = t.factors;
     const docs = DOCS.filter(d=>d.tender===t.id);
 
+    const verdictHU = t.verdict === 'STRONG BID' ? 'ERŐS AJÁNLÁS'
+                    : t.verdict === 'BID' ? 'AJÁNLOTT'
+                    : t.verdict === 'WEAK BID' ? 'GYENGE'
+                    : 'NEM AJÁNLOTT';
+
     document.getElementById('detail-body').innerHTML = `
         <div class="detail-section">
-            <h3>Overview</h3>
+            <h3>Áttekintés</h3>
             <p style="font-size:13px;color:var(--gray-600);line-height:1.6;margin-bottom:12px;">${t.scope}</p>
-            <div class="detail-row"><span class="label">Buyer</span><span class="value">${t.buyer}</span></div>
-            <div class="detail-row"><span class="label">Location</span><span class="value">${t.city}, ${t.country}</span></div>
-            <div class="detail-row"><span class="label">Value</span><span class="value">€${t.value.toLocaleString()}</span></div>
-            <div class="detail-row"><span class="label">Deadline</span><span class="value" style="color:${t.days<30?'var(--red-600)':'inherit'};font-weight:700;">${t.deadline} (${t.days}d)</span></div>
+            <div class="detail-row"><span class="label">Ajánlatkérő</span><span class="value">${t.buyer}</span></div>
+            <div class="detail-row"><span class="label">Helyszín</span><span class="value">${t.city}, ${t.country}</span></div>
+            <div class="detail-row"><span class="label">Érték</span><span class="value">€${t.value.toLocaleString()}</span></div>
+            <div class="detail-row"><span class="label">Határidő</span><span class="value" style="color:${t.days<30?'var(--red-600)':'inherit'};font-weight:700;">${t.deadline} (${t.days} nap)</span></div>
         </div>
         <div class="detail-section">
-            <h3>12-Factor Qualification (${t.score}/100)</h3>
-            ${bar('Category Fit',f.cat)}${bar('Value Range',f.val)}${bar('Deadline',f.deadline)}${bar('Certifications',f.certs)}${bar('Bond Capacity',f.bond)}${bar('Language',f.lang)}${bar('Location',f.loc)}${bar('Experience',f.exp)}${bar('References',f.refs)}${bar('Company Size',f.size)}${bar('Financial',f.fin)}${bar('Competition',f.comp)}
+            <h3>12 tényezős minősítés (${t.score}/100)</h3>
+            ${bar('Kategória illeszkedés',f.cat)}${bar('Értéktartomány',f.val)}${bar('Határidő',f.deadline)}${bar('Minősítések',f.certs)}${bar('Garanciaképesség',f.bond)}${bar('Nyelv',f.lang)}${bar('Helyszín',f.loc)}${bar('Tapasztalat',f.exp)}${bar('Referenciák',f.refs)}${bar('Cégméret',f.size)}${bar('Pénzügyi',f.fin)}${bar('Versenyhelyzet',f.comp)}
         </div>
         ${docs.length > 0 ? `<div class="detail-section">
-            <h3>Documents (${docs.length})</h3>
+            <h3>Dokumentumok (${docs.length})</h3>
             ${docs.map(d=>{
                 const key = docTypeKey(d.type);
                 const file = docFilename(d);
                 const actions = key
-                    ? `<button class="btn-sm primary" style="font-size:11px;padding:4px 10px;" onclick="viewDoc('${key}')">View</button>
-                       <button class="btn-sm" style="font-size:11px;padding:4px 10px;" onclick="downloadDoc('${key}','${file}')">Download</button>`
-                    : `<span style="color:var(--gray-400);font-size:11px;">${d.chars.toLocaleString()} chars</span>`;
+                    ? `<button class="btn-sm primary" style="font-size:11px;padding:4px 10px;" onclick="viewDoc('${key}')">Megtekintés</button>
+                       <button class="btn-sm" style="font-size:11px;padding:4px 10px;" onclick="downloadDoc('${key}','${file}')">Letöltés</button>`
+                    : `<span style="color:var(--gray-400);font-size:11px;">${d.chars.toLocaleString()} karakter</span>`;
                 return `<div style="padding:10px 0;border-bottom:1px solid var(--gray-100);font-size:13px;display:flex;justify-content:space-between;align-items:center;gap:10px;"><span style="flex:1;min-width:0;"><strong>${d.type}</strong> · ${d.title} · ${d.lang}</span><span style="display:flex;gap:6px;flex-shrink:0;">${actions}</span></div>`;
             }).join('')}
-        </div>` : '<div class="detail-section"><h3>Documents</h3><p style="font-size:13px;color:var(--gray-400);">Not yet generated. Click "Generate Documents" below.</p></div>'}
+        </div>` : '<div class="detail-section"><h3>Dokumentumok</h3><p style="font-size:13px;color:var(--gray-400);">Még nem generált. Kattintson a „Dokumentumok generálása" gombra alább.</p></div>'}
         <div class="detail-section">
-            <h3>Telegram Alert Preview</h3>
+            <h3>Telegram értesítés előnézet</h3>
             <div style="background:#1a2332;color:#e8e8e8;border-radius:12px;padding:16px;font-size:12px;line-height:1.6;">
                 <div style="color:#5eabed;font-weight:600;margin-bottom:8px;">TenderPilot</div>
                 <div style="font-weight:600;margin-bottom:6px;">${t.country==='AT'?'🇦🇹':'🇭🇺'} ${t.title.slice(0,60)}</div>
-                <div style="color:#8e9ba8;">📊 ${t.score}/100 | ${t.verdict}</div>
-                <div style="color:#8e9ba8;">💰 €${(t.value/1000).toFixed(0)}K | ⏰ ${t.days}d left</div>
+                <div style="color:#8e9ba8;">📊 ${t.score}/100 | ${verdictHU}</div>
+                <div style="color:#8e9ba8;">💰 €${(t.value/1000).toFixed(0)}K | ⏰ ${t.days} nap hátra</div>
                 <div style="color:#8e9ba8;">🏢 ${t.buyer}</div>
             </div>
         </div>
@@ -670,22 +679,22 @@ function initProfile() {
         <div style="padding:20px;">
             <div style="display:flex;gap:16px;align-items:center;margin-bottom:24px;">
                 <div style="width:56px;height:56px;background:var(--blue-100);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:var(--blue-700);">TT</div>
-                <div><div style="font-size:18px;font-weight:700;">ThermoTech Kft.</div><div style="font-size:13px;color:var(--gray-500);">Budapest · HVAC · 42 employees</div></div>
+                <div><div style="font-size:18px;font-weight:700;">ThermoTech Kft.</div><div style="font-size:13px;color:var(--gray-500);">Budapest · Épületgépészet · 42 alkalmazott</div></div>
             </div>
-            <div class="detail-section"><h3>Company Details</h3>
-                <div class="detail-row"><span class="label">Address</span><span class="value">1134 Budapest, Váci út 45.</span></div>
-                <div class="detail-row"><span class="label">Industry</span><span class="value">HVAC / Building Technology</span></div>
-                <div class="detail-row"><span class="label">Employees</span><span class="value">42</span></div>
-                <div class="detail-row"><span class="label">Revenue</span><span class="value">€2,500,000</span></div>
-                <div class="detail-row"><span class="label">Bond Capacity</span><span class="value">€350,000</span></div>
-                <div class="detail-row"><span class="label">Years</span><span class="value">18</span></div>
-                <div class="detail-row"><span class="label">Plan</span><span class="value" style="color:var(--blue-600);font-weight:700;">Professional</span></div>
+            <div class="detail-section"><h3>Cégadatok</h3>
+                <div class="detail-row"><span class="label">Cím</span><span class="value">1134 Budapest, Váci út 45.</span></div>
+                <div class="detail-row"><span class="label">Iparág</span><span class="value">Épületgépészet / HVAC</span></div>
+                <div class="detail-row"><span class="label">Alkalmazottak</span><span class="value">42</span></div>
+                <div class="detail-row"><span class="label">Árbevétel</span><span class="value">€2 500 000</span></div>
+                <div class="detail-row"><span class="label">Garanciaképesség</span><span class="value">€350 000</span></div>
+                <div class="detail-row"><span class="label">Működés</span><span class="value">18 év</span></div>
+                <div class="detail-row"><span class="label">Csomag</span><span class="value" style="color:var(--blue-600);font-weight:700;">Professional</span></div>
             </div>
-            <div class="detail-section"><h3>Certifications</h3>
+            <div class="detail-section"><h3>Minősítések</h3>
                 <div style="display:flex;gap:6px;flex-wrap:wrap;">
                     <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-50);color:var(--green-800);border:1px solid var(--green-100);">ISO 9001</span>
                     <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-50);color:var(--green-800);border:1px solid var(--green-100);">ISO 14001</span>
-                    <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-50);color:var(--green-800);border:1px solid var(--green-100);">F-gas</span>
+                    <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-50);color:var(--green-800);border:1px solid var(--green-100);">F-gáz</span>
                     <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-50);color:var(--green-800);border:1px solid var(--green-100);">MSZ EN 378</span>
                     <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-50);color:var(--green-800);border:1px solid var(--green-100);">EKR</span>
                 </div>
@@ -695,8 +704,12 @@ function initProfile() {
 
 function runScan() { const b=document.getElementById('scan-btn');b.disabled=true;b.textContent='Keresés...';setTimeout(()=>{b.disabled=false;b.textContent='Új keresés';},3000); }
 function exportCSV() {
-    let csv='ID,Title,Buyer,Country,Value,Deadline,Days,Score,Verdict\n';
-    T.forEach(t=>csv+=`"${t.id}","${t.title}","${t.buyer}","${t.country}",${t.value},"${t.deadline}",${t.days},${t.score},"${t.verdict}"\n`);
+    const verdictHU = v => v === 'STRONG BID' ? 'Erős ajánlás'
+                          : v === 'BID' ? 'Ajánlott'
+                          : v === 'WEAK BID' ? 'Gyenge'
+                          : 'Nem ajánlott';
+    let csv='Azonosító,Cím,Ajánlatkérő,Ország,Érték,Határidő,Hátralévő nap,Pontszám,Minősítés\n';
+    T.forEach(t=>csv+=`"${t.id}","${t.title}","${t.buyer}","${t.country}",${t.value},"${t.deadline}",${t.days},${t.score},"${verdictHU(t.verdict)}"\n`);
     const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='tenderpilot-export.csv';a.click();
 }
 initDashboard();
