@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: growthcrow
+    name: tenderpilot
     runtime: static
     buildCommand: echo "Static site"
     staticPublishPath: .
