@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TenderPilot — Ügyfél Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --blue-50: #eff6ff; --blue-100: #dbeafe; --blue-200: #bfdbfe; --blue-500: #3b82f6; --blue-600: #2563eb; --blue-700: #1d4ed8; --blue-800: #1e40af;
+            --green-50: #f0fdf4; --green-100: #dcfce7; --green-500: #22c55e; --green-600: #16a34a; --green-800: #166534;
+            --amber-100: #fef3c7; --amber-600: #d97706; --amber-800: #92400e;
+            --red-100: #fee2e2; --red-600: #dc2626; --red-800: #991b1b;
+            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
+            --radius: 8px; --radius-lg: 12px;
+            --sidebar-w: 240px;
+        }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--gray-50); color: var(--gray-900); -webkit-font-smoothing: antialiased; }
+
+        .sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: var(--sidebar-w); background: white; border-right: 1px solid var(--gray-200); display: flex; flex-direction: column; z-index: 50; }
+        .sidebar-header { padding: 20px 20px 16px; border-bottom: 1px solid var(--gray-100); }
+        .sidebar-logo { font-size: 18px; font-weight: 800; }
+        .sidebar-logo span { color: var(--blue-600); }
+        .sidebar-nav { flex: 1; padding: 8px; }
+        .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: var(--radius); font-size: 14px; font-weight: 500; color: var(--gray-600); cursor: pointer; transition: all 0.1s; margin-bottom: 2px; }
+        .nav-item:hover { background: var(--gray-50); color: var(--gray-900); }
+        .nav-item.active { background: var(--blue-50); color: var(--blue-700); font-weight: 600; }
+        .nav-item svg { width: 20px; height: 20px; flex-shrink: 0; }
+        .nav-badge { margin-left: auto; background: var(--blue-600); color: white; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 10px; }
+        .sidebar-footer { padding: 16px 20px; border-top: 1px solid var(--gray-100); }
+        .sidebar-user { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+        .sidebar-plan { font-size: 12px; color: var(--gray-400); }
+
+        .main { margin-left: var(--sidebar-w); min-height: 100vh; }
+        .topbar { background: white; border-bottom: 1px solid var(--gray-200); padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+        .topbar h1 { font-size: 16px; font-weight: 700; }
+        .btn-sm { padding: 7px 14px; font-size: 13px; font-weight: 600; border-radius: 6px; border: 1px solid var(--gray-300); background: white; color: var(--gray-700); cursor: pointer; }
+        .btn-sm:hover { background: var(--gray-50); }
+        .btn-sm.primary { background: var(--blue-600); color: white; border-color: var(--blue-600); }
+        .btn-sm.primary:hover { background: var(--blue-700); }
+        .btn-sm:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .content { padding: 24px 32px; }
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+        .stat { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 20px; }
+        .stat-label { font-size: 12px; font-weight: 600; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .stat-value { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+        .stat-sub { font-size: 12px; color: var(--green-600); font-weight: 600; margin-top: 4px; }
+
+        .card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); margin-bottom: 16px; overflow: hidden; }
+        .card-header { padding: 16px 20px; border-bottom: 1px solid var(--gray-100); display: flex; justify-content: space-between; align-items: center; }
+        .card-header h2 { font-size: 15px; font-weight: 700; }
+
+        .tender-row { padding: 14px 20px; border-bottom: 1px solid var(--gray-100); display: grid; grid-template-columns: 1fr 100px 80px 80px 72px; gap: 12px; align-items: center; cursor: pointer; transition: background 0.1s; }
+        .tender-row:hover { background: var(--gray-50); }
+        .tender-row:last-child { border-bottom: none; }
+        .tender-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+        .tender-source { font-size: 12px; color: var(--gray-400); }
+        .tender-value { font-size: 13px; font-weight: 600; }
+        .tender-days { font-size: 13px; }
+        .tender-days.urgent { color: var(--red-600); font-weight: 600; }
+
+        .verdict { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 6px; text-align: center; }
+        .v-strong { background: var(--green-100); color: var(--green-800); }
+        .v-bid { background: var(--blue-100); color: var(--blue-800); }
+        .v-weak { background: var(--amber-100); color: var(--amber-800); }
+        .v-nobid { background: var(--red-100); color: var(--red-800); }
+
+        .detail-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 60; }
+        .detail-overlay.open { display: block; }
+        .detail-panel { position: fixed; right: 0; top: 0; bottom: 0; width: 520px; background: white; border-left: 1px solid var(--gray-200); z-index: 70; transform: translateX(100%); transition: transform 0.2s ease; overflow-y: auto; }
+        .detail-panel.open { transform: translateX(0); }
+        .detail-top { padding: 20px; border-bottom: 1px solid var(--gray-200); display: flex; justify-content: space-between; align-items: flex-start; }
+        .detail-close { background: none; border: 1px solid var(--gray-300); border-radius: 6px; padding: 6px 10px; cursor: pointer; font-size: 14px; color: var(--gray-500); }
+        .detail-body { padding: 20px; }
+        .detail-section { margin-bottom: 24px; }
+        .detail-section h3 { font-size: 11px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .detail-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--gray-100); font-size: 13px; }
+        .detail-row:last-child { border-bottom: none; }
+        .detail-row .label { color: var(--gray-500); }
+        .detail-row .value { font-weight: 600; }
+        .score-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 12px; }
+        .score-bar-row .bar-label { width: 100px; color: var(--gray-500); flex-shrink: 0; }
+        .score-bar-row .bar-bg { flex: 1; height: 6px; background: var(--gray-100); border-radius: 3px; overflow: hidden; }
+        .score-bar-row .bar-fill { height: 100%; border-radius: 3px; }
+        .score-bar-row .bar-num { width: 28px; text-align: right; font-weight: 600; }
+
+        .doc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 16px 20px; }
+        .doc-card { padding: 14px; border: 1px solid var(--gray-200); border-radius: var(--radius); cursor: pointer; transition: border-color 0.15s; }
+        .doc-card:hover { border-color: var(--blue-200); }
+        .doc-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+        .doc-meta { font-size: 11px; color: var(--gray-400); }
+
+        .alert-item { padding: 14px 20px; border-bottom: 1px solid var(--gray-100); display: flex; gap: 12px; }
+        .alert-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+        .alert-dot.green { background: var(--green-500); }
+        .alert-dot.amber { background: var(--amber-600); }
+        .alert-dot.red { background: var(--red-600); }
+
+        .hidden { display: none !important; }
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main { margin-left: 0; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .tender-row { grid-template-columns: 1fr 80px; }
+            .tender-row > *:nth-child(2), .tender-row > *:nth-child(3) { display: none; }
+            .detail-panel { width: 100%; }
+            .content { padding: 16px; }
+            .doc-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="sidebar-header"><div class="sidebar-logo">Tender<span>Pilot</span></div></div>
+    <div class="sidebar-nav">
+        <div class="nav-item active" onclick="showPage('dashboard')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
+            Áttekintés
+        </div>
+        <div class="nav-item" onclick="showPage('tenders')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+            Kiírások <span class="nav-badge">15</span>
+        </div>
+        <div class="nav-item" onclick="showPage('documents')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15" /></svg>
+            Dokumentumok <span class="nav-badge" style="background: var(--green-600);">14</span>
+        </div>
+        <div class="nav-item" onclick="showPage('alerts')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" /></svg>
+            Értesítések <span class="nav-badge" style="background: var(--red-600);">4</span>
+        </div>
+        <div class="nav-item" onclick="showPage('profile')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.431.992a6.759 6.759 0 0 1 0 .255c-.007.378.138.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>
+            Cégprofil
+        </div>
+    </div>
+    <div class="sidebar-footer">
+        <div class="sidebar-user">ThermoTech Kft.</div>
+        <div class="sidebar-plan">Professional csomag</div>
+    </div>
+</div>
+
+<div class="main">
+    <div id="page-dashboard" class="page">
+        <div class="topbar"><h1>Áttekintés</h1><div><button class="btn-sm primary" id="scan-btn" onclick="runScan()">Új keresés</button></div></div>
+        <div class="content">
+            <div class="stats" id="stats-grid"></div>
+            <div class="card">
+                <div class="card-header"><h2>Kiemelt kiírások</h2><span style="font-size:12px;color:var(--gray-400);">Legmagasabb pontszám, legközelebbi határidő</span></div>
+                <div id="hot-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-tenders" class="page hidden">
+        <div class="topbar">
+            <h1>Összes kiírás</h1>
+            <div style="display:flex;gap:8px;">
+                <input type="text" id="search" placeholder="Keresés..." onkeyup="filterTenders()" style="padding:7px 12px;border:1px solid var(--gray-300);border-radius:6px;font-size:13px;width:180px;font-family:inherit;">
+                <select id="filter-v" onchange="filterTenders()" style="padding:7px 12px;border:1px solid var(--gray-300);border-radius:6px;font-size:13px;font-family:inherit;">
+                    <option value="all">Minden</option><option value="STRONG BID">Erős ajánlás</option><option value="BID">Ajánlott</option><option value="WEAK BID">Gyenge</option><option value="NO BID">Nem ajánlott</option>
+                </select>
+                <select id="filter-c" onchange="filterTenders()" style="padding:7px 12px;border:1px solid var(--gray-300);border-radius:6px;font-size:13px;font-family:inherit;">
+                    <option value="all">Minden ország</option><option value="AT">Ausztria</option><option value="HU">Magyarország</option>
+                </select>
+                <button class="btn-sm" onclick="exportCSV()">Exportálás</button>
+            </div>
+        </div>
+        <div class="content"><div class="card"><div id="all-list"></div></div></div>
+    </div>
+
+    <div id="page-documents" class="page hidden">
+        <div class="topbar"><h1>Dokumentumok</h1></div>
+        <div class="content"><div class="card"><div class="card-header"><h2>Bid Packages</h2><span style="font-size:12px;color:var(--gray-400);" id="doc-count"></span></div><div class="doc-grid" id="doc-grid"></div></div></div>
+    </div>
+
+    <div id="page-alerts" class="page hidden">
+        <div class="topbar"><h1>Értesítések</h1></div>
+        <div class="content"><div class="card" id="alerts-card"></div></div>
+    </div>
+
+    <div id="page-profile" class="page hidden">
+        <div class="topbar"><h1>Cégprofil</h1></div>
+        <div class="content"><div class="card" id="profile-card"></div></div>
+    </div>
+</div>
+
+<div class="detail-overlay" id="detail-overlay" onclick="closeDetail()"></div>
+<div class="detail-panel" id="detail-panel">
+    <div class="detail-top"><div><div id="detail-verdict" class="verdict v-strong" style="display:inline-block;margin-bottom:8px;"></div><h2 id="detail-title" style="font-size:17px;font-weight:700;line-height:1.3;"></h2></div><button class="detail-close" onclick="closeDetail()">Close</button></div>
+    <div class="detail-body" id="detail-body"></div>
+</div>
+
+<script>
+const T = [
+    {id:"AT-001",title:"Südautobahn TK Pack Mitterbergtunnel — Gebäudetechnik",buyer:"ASFINAG",country:"AT",city:"Steiermark",value:800000,deadline:"2026-06-15",days:42,score:96.2,verdict:"STRONG BID",scope:"HVAC cabling + tunnel ventilation. Min 5yr tunnel experience.",factors:{cat:98,val:82,deadline:78,certs:100,bond:68,lang:88,loc:72,exp:95,refs:90,size:85,fin:78,comp:72}},
+    {id:"AT-002",title:"Rahmenvertrag Straßen- und Leitungsbau Deutsch-Wagram",buyer:"Stadtgemeinde Deutsch-Wagram",country:"AT",city:"Deutsch-Wagram",value:500000,deadline:"2026-07-20",days:77,score:88.4,verdict:"STRONG BID",scope:"Framework: district heating connections. F-gas cert required.",factors:{cat:92,val:88,deadline:90,certs:95,bond:80,lang:85,loc:68,exp:88,refs:85,size:88,fin:85,comp:75}},
+    {id:"AT-003",title:"Baumeisterarbeiten Lakeside Science Park",buyer:"Lakeside Science & Technology Park",country:"AT",city:"Klagenfurt",value:500000,deadline:"2026-06-01",days:28,score:91.7,verdict:"STRONG BID",scope:"HVAC + BMS for new extension. ISO 9001+14001 required.",factors:{cat:95,val:88,deadline:65,certs:100,bond:80,lang:85,loc:65,exp:92,refs:90,size:88,fin:85,comp:78}},
+    {id:"AT-004",title:"LSTP HKLS und Gebäudetechnik Erweiterungsbau",buyer:"Lakeside Science & Technology Park",country:"AT",city:"Klagenfurt",value:300000,deadline:"2026-08-10",days:98,score:84.1,verdict:"BID",scope:"Heating/cooling/ventilation/sanitary for extension.",factors:{cat:88,val:82,deadline:95,certs:90,bond:88,lang:80,loc:62,exp:82,refs:80,size:85,fin:88,comp:72}},
+    {id:"AT-005",title:"STEIG Lüftungsanlage — Universität Innsbruck",buyer:"Universität Innsbruck",country:"AT",city:"Innsbruck",value:500000,deadline:"2026-05-30",days:26,score:93.5,verdict:"STRONG BID",scope:"Lab ventilation with fume hoods + heat recovery. University experience preferred.",factors:{cat:100,val:88,deadline:60,certs:95,bond:80,lang:85,loc:68,exp:92,refs:88,size:85,fin:85,comp:80}},
+    {id:"AT-006",title:"Neubau Energiezentrale DANI 3",buyer:"DANI 3 Bau GmbH",country:"AT",city:"Wien",value:500000,deadline:"2026-07-05",days:62,score:79.3,verdict:"BID",scope:"Heat pump + thermal storage + solar thermal. Innovative energy.",factors:{cat:82,val:88,deadline:85,certs:78,bond:80,lang:82,loc:72,exp:70,refs:72,size:80,fin:82,comp:68}},
+    {id:"AT-007",title:"Streckenelektrifizierung Innkreisbahn",buyer:"ÖBB-Infrastruktur AG",country:"AT",city:"Innkreis",value:500000,deadline:"2026-06-20",days:47,score:62.8,verdict:"WEAK BID",scope:"Railway electrification. Minor HVAC for stations. Railway cert needed.",factors:{cat:45,val:88,deadline:80,certs:40,bond:80,lang:82,loc:58,exp:42,refs:45,size:78,fin:82,comp:55}},
+    {id:"AT-008",title:"Sanierung Heizungsanlage Klinikum Graz",buyer:"Klinikum Graz",country:"AT",city:"Graz",value:250000,deadline:"2026-05-25",days:21,score:94.8,verdict:"STRONG BID",scope:"Boiler replacement 3×800kW + BMS. Hospital phased installation.",factors:{cat:100,val:92,deadline:55,certs:100,bond:92,lang:85,loc:70,exp:95,refs:92,size:90,fin:92,comp:82}},
+    {id:"AT-009",title:"Neubau Klimaanlage Bürokomplex Wien Mitte",buyer:"Wiener Stadtwerke",country:"AT",city:"Wien",value:400000,deadline:"2026-07-15",days:72,score:87.6,verdict:"STRONG BID",scope:"120 VRF indoor units + 8 outdoor. Daikin/Mitsubishi preferred.",factors:{cat:95,val:90,deadline:88,certs:92,bond:85,lang:82,loc:72,exp:85,refs:82,size:85,fin:88,comp:75}},
+    {id:"AT-010",title:"Erneuerung Lüftungssysteme Schulen Salzburg",buyer:"Land Salzburg",country:"AT",city:"Salzburg",value:350000,deadline:"2026-08-01",days:89,score:85.2,verdict:"STRONG BID",scope:"4 schools, CO2-demand ventilation, heat recovery >75%. Summer work.",factors:{cat:95,val:88,deadline:92,certs:88,bond:88,lang:82,loc:65,exp:82,refs:80,size:85,fin:88,comp:72}},
+    {id:"HU-001",title:"Fűtéskorszerűsítés — Debreceni Egyetem Főépület",buyer:"Debreceni Egyetem",country:"HU",city:"Debrecen",value:420000,deadline:"2026-06-30",days:57,score:91.0,verdict:"STRONG BID",scope:"Replace Soviet-era heating. Condensing gas boilers. EKR required.",factors:{cat:98,val:90,deadline:82,certs:92,bond:85,lang:100,loc:72,exp:90,refs:88,size:88,fin:88,comp:78}},
+    {id:"HU-002",title:"Klímaberendezés — Budapest Főváros Kormányhivatal",buyer:"Budapest Főváros Kormányhivatal",country:"HU",city:"Budapest",value:280000,deadline:"2026-07-10",days:67,score:89.3,verdict:"STRONG BID",scope:"85 split/VRF units, 6 floors. Maintain office operations.",factors:{cat:95,val:90,deadline:88,certs:90,bond:90,lang:100,loc:100,exp:85,refs:82,size:88,fin:90,comp:72}},
+    {id:"HU-003",title:"Szellőzőrendszer felújítás — Pécs MJV",buyer:"Pécs MJV Önkormányzat",country:"HU",city:"Pécs",value:180000,deadline:"2026-06-10",days:37,score:76.4,verdict:"BID",scope:"City Hall ventilation renovation. Travel from Budapest adds cost.",factors:{cat:90,val:78,deadline:72,certs:88,bond:92,lang:100,loc:52,exp:80,refs:75,size:85,fin:90,comp:65}},
+    {id:"HU-004",title:"Hőszivattyú rendszer — Székesfehérvár Sportcsarnok",buyer:"Székesfehérvár MJV",country:"HU",city:"Székesfehérvár",value:350000,deadline:"2026-08-15",days:103,score:82.7,verdict:"BID",scope:"200kW ground-source heat pump. Needs geothermal subcontractor.",factors:{cat:85,val:88,deadline:95,certs:82,bond:88,lang:100,loc:78,exp:72,refs:70,size:85,fin:88,comp:68}},
+    {id:"HU-005",title:"Ipari szellőzés — Audi Hungaria gyárbővítés",buyer:"Audi Hungaria Zrt.",country:"HU",city:"Győr",value:1200000,deadline:"2026-05-20",days:16,score:48.5,verdict:"NO BID",scope:"€1.2M — exceeds capacity. Automotive refs required. Negotiated.",factors:{cat:72,val:35,deadline:30,certs:55,bond:25,lang:100,loc:65,exp:35,refs:25,size:42,fin:35,comp:40}}
+];
+
+const DOCS = [
+    {id:"d1",tender:"AT-001",type:"Bid Letter",title:"Ajánlati levél — Südautobahn",lang:"DE",chars:3250},
+    {id:"d2",tender:"AT-001",type:"Technical Proposal",title:"Technisches Angebot",lang:"DE",chars:5100},
+    {id:"d3",tender:"AT-001",type:"Compliance",title:"Anforderungsliste",lang:"DE",chars:1800},
+    {id:"d4",tender:"AT-001",type:"Summary",title:"Vezetői összefoglaló",lang:"HU",chars:2100},
+    {id:"d5",tender:"AT-003",type:"Bid Letter",title:"Ajánlati levél — Lakeside",lang:"HU",chars:3100},
+    {id:"d6",tender:"AT-003",type:"Technical Proposal",title:"Műszaki ajánlat",lang:"DE",chars:4200},
+    {id:"d7",tender:"AT-005",type:"Bid Letter",title:"Ajánlati levél — Innsbruck",lang:"HU",chars:3400},
+    {id:"d8",tender:"AT-005",type:"Technical Proposal",title:"Technisches Angebot — Lüftung",lang:"DE",chars:4500},
+    {id:"d9",tender:"AT-008",type:"Bid Letter",title:"Ajánlati levél — Klinikum",lang:"DE",chars:3600},
+    {id:"d10",tender:"AT-008",type:"Technical Proposal",title:"Heizungssanierung",lang:"DE",chars:5800},
+    {id:"d11",tender:"HU-001",type:"Bid Letter",title:"Ajánlati levél — Debrecen",lang:"HU",chars:3200},
+    {id:"d12",tender:"HU-001",type:"Technical Proposal",title:"Műszaki ajánlat",lang:"HU",chars:4800},
+    {id:"d13",tender:"HU-002",type:"Bid Letter",title:"Ajánlati levél — Kormányhivatal",lang:"HU",chars:3000},
+    {id:"d14",tender:"HU-002",type:"Compliance",title:"EKR megfelelőségi lista",lang:"HU",chars:2200},
+];
+
+const ALERTS = [
+    {color:"red",title:"Határidő: AT-008 Klinikum Graz — 21 nap",text:"Pontszám 94.8, ajánlati dokumentumok elkészültek. Azonnali benyújtás szükséges."},
+    {color:"red",title:"Határidő: AT-005 Innsbruck — 26 nap",text:"Pontszám 93.5, egyetemi szellőzőrendszer. Dokumentumok generálva."},
+    {color:"green",title:"Új egyezés: AT-001 Südautobahn (96.2)",text:"A hét legmagasabb pontszámú kiírása. €800K alagút épületgépészet. Dokumentumok elkészültek."},
+    {color:"amber",title:"Nem ajánlott: HU-005 Audi Hungaria",text:"€1.2M meghaladja a garanciaképességet. Pontszám: 48.5. Automatikusan kiszűrve."},
+];
+
+function vClass(v) { return v==='STRONG BID'?'v-strong':v==='BID'?'v-bid':v==='WEAK BID'?'v-weak':'v-nobid'; }
+
+function renderRow(t) {
+    return `<div class="tender-row" onclick="showDetail('${t.id}')">
+        <div><div class="tender-name">${t.title}</div><div class="tender-source">${t.buyer} · ${t.country==='AT'?'🇦🇹':'🇭🇺'} ${t.city}</div></div>
+        <div class="tender-value">€${(t.value/1000).toFixed(0)}K</div>
+        <div class="tender-days ${t.days<30?'urgent':''}">${t.days}d</div>
+        <div style="font-size:12px;color:var(--gray-400);">${t.country}</div>
+        <div><span class="verdict ${vClass(t.verdict)}">${t.score}</span></div>
+    </div>`;
+}
+
+function showPage(p) {
+    document.querySelectorAll('.page').forEach(x => x.classList.add('hidden'));
+    document.getElementById('page-'+p).classList.remove('hidden');
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.querySelectorAll('.nav-item')[['dashboard','tenders','documents','alerts','profile'].indexOf(p)].classList.add('active');
+    if (p==='dashboard') initDashboard();
+    if (p==='tenders') initTenders();
+    if (p==='documents') initDocuments();
+    if (p==='alerts') initAlerts();
+    if (p==='profile') initProfile();
+}
+
+function initDashboard() {
+    const strong = T.filter(t=>t.verdict==='STRONG BID').length;
+    const totalVal = T.filter(t=>t.score>=70).reduce((s,t)=>s+t.value,0);
+    document.getElementById('stats-grid').innerHTML = `
+        <div class="stat"><div class="stat-label">Összes kiírás</div><div class="stat-value">${T.length}</div><div class="stat-sub">${T.filter(t=>t.country==='AT').length} AT + ${T.filter(t=>t.country==='HU').length} HU</div></div>
+        <div class="stat"><div class="stat-label">Erős egyezés</div><div class="stat-value" style="color:var(--green-600);">${strong}</div><div class="stat-sub">Azonnali teendő</div></div>
+        <div class="stat"><div class="stat-label">Pipeline érték</div><div class="stat-value">€${(totalVal/1e6).toFixed(1)}M</div><div class="stat-sub">Pontszám ≥70</div></div>
+        <div class="stat"><div class="stat-label">Kész dokumentumok</div><div class="stat-value">${DOCS.length}</div><div class="stat-sub">${new Set(DOCS.map(d=>d.tender)).size} kiírás lefedve</div></div>`;
+    document.getElementById('hot-list').innerHTML = T.filter(t=>t.score>=85).sort((a,b)=>a.days-b.days).slice(0,5).map(renderRow).join('');
+}
+
+function initTenders() { document.getElementById('all-list').innerHTML = T.map(renderRow).join(''); }
+
+function filterTenders() {
+    const s = document.getElementById('search').value.toLowerCase();
+    const v = document.getElementById('filter-v').value;
+    const c = document.getElementById('filter-c').value;
+    const f = T.filter(t => {
+        if (s && !t.title.toLowerCase().includes(s) && !t.buyer.toLowerCase().includes(s)) return false;
+        if (v !== 'all' && t.verdict !== v) return false;
+        if (c !== 'all' && t.country !== c) return false;
+        return true;
+    });
+    document.getElementById('all-list').innerHTML = f.map(renderRow).join('');
+}
+
+function showDetail(id) {
+    const t = T.find(x=>x.id===id);
+    if (!t) return;
+    const dv = document.getElementById('detail-verdict');
+    dv.className = `verdict ${vClass(t.verdict)}`;
+    dv.textContent = `${t.score}/100 — ${t.verdict}`;
+    document.getElementById('detail-title').textContent = t.title;
+
+    const barColor = s => s>=85?'var(--green-500)':s>=70?'var(--blue-500)':s>=55?'var(--amber-600)':'var(--red-600)';
+    const bar = (l,s) => `<div class="score-bar-row"><span class="bar-label">${l}</span><div class="bar-bg"><div class="bar-fill" style="width:${s}%;background:${barColor(s)};"></div></div><span class="bar-num">${s}</span></div>`;
+    const f = t.factors;
+    const docs = DOCS.filter(d=>d.tender===t.id);
+
+    document.getElementById('detail-body').innerHTML = `
+        <div class="detail-section">
+            <h3>Overview</h3>
+            <p style="font-size:13px;color:var(--gray-600);line-height:1.6;margin-bottom:12px;">${t.scope}</p>
+            <div class="detail-row"><span class="label">Buyer</span><span class="value">${t.buyer}</span></div>
+            <div class="detail-row"><span class="label">Location</span><span class="value">${t.city}, ${t.country}</span></div>
+            <div class="detail-row"><span class="label">Value</span><span class="value">€${t.value.toLocaleString()}</span></div>
+            <div class="detail-row"><span class="label">Deadline</span><span class="value" style="color:${t.days<30?'var(--red-600)':'inherit'};font-weight:700;">${t.deadline} (${t.days}d)</span></div>
+        </div>
+        <div class="detail-section">
+            <h3>12-Factor Qualification (${t.score}/100)</h3>
+            ${bar('Category Fit',f.cat)}${bar('Value Range',f.val)}${bar('Deadline',f.deadline)}${bar('Certifications',f.certs)}${bar('Bond Capacity',f.bond)}${bar('Language',f.lang)}${bar('Location',f.loc)}${bar('Experience',f.exp)}${bar('References',f.refs)}${bar('Company Size',f.size)}${bar('Financial',f.fin)}${bar('Competition',f.comp)}
+        </div>
+        ${docs.length > 0 ? `<div class="detail-section">
+            <h3>Documents (${docs.length})</h3>
+            ${docs.map(d=>`<div style="padding:8px 0;border-bottom:1px solid var(--gray-100);font-size:13px;display:flex;justify-content:space-between;"><span><strong>${d.type}</strong> · ${d.title} · ${d.lang}</span><span style="color:var(--gray-400);">${d.chars.toLocaleString()} chars</span></div>`).join('')}
+        </div>` : '<div class="detail-section"><h3>Documents</h3><p style="font-size:13px;color:var(--gray-400);">Not yet generated. Click "Generate Documents" below.</p></div>'}
+        <div class="detail-section">
+            <h3>Telegram Alert Preview</h3>
+            <div style="background:#1a2332;color:#e8e8e8;border-radius:12px;padding:16px;font-size:12px;line-height:1.6;">
+                <div style="color:#5eabed;font-weight:600;margin-bottom:8px;">TenderPilot</div>
+                <div style="font-weight:600;margin-bottom:6px;">${t.country==='AT'?'🇦🇹':'🇭🇺'} ${t.title.slice(0,60)}</div>
+                <div style="color:#8e9ba8;">📊 ${t.score}/100 | ${t.verdict}</div>
+                <div style="color:#8e9ba8;">💰 €${(t.value/1000).toFixed(0)}K | ⏰ ${t.days}d left</div>
+                <div style="color:#8e9ba8;">🏢 ${t.buyer}</div>
+            </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:20px;">
+            <button class="btn-sm primary" style="flex:1;" onclick="closeDetail()">Dokumentumok generálása</button>
+            <button class="btn-sm" onclick="closeDetail()">Bezárás</button>
+        </div>`;
+
+    document.getElementById('detail-overlay').classList.add('open');
+    document.getElementById('detail-panel').classList.add('open');
+}
+
+function initDocuments() {
+    document.getElementById('doc-count').textContent = `${DOCS.length} dokumentum · ${new Set(DOCS.map(d=>d.tender)).size} kiírás`;
+    document.getElementById('doc-grid').innerHTML = DOCS.map(d => {
+        const t = T.find(x=>x.id===d.tender);
+        return `<div class="doc-card"><div class="doc-title">${d.type}</div><div class="doc-meta">${d.title} · ${d.lang} · ${d.chars.toLocaleString()} karakter</div><div class="doc-meta" style="margin-top:4px;">Kiírás: ${t?t.title.slice(0,45)+'...':d.tender}</div></div>`;
+    }).join('');
+}
+
+function closeDetail() {
+    document.getElementById('detail-overlay').classList.remove('open');
+    document.getElementById('detail-panel').classList.remove('open');
+}
+
+// initDocuments defined above with Hungarian text
+
+function initAlerts() {
+    document.getElementById('alerts-card').innerHTML = ALERTS.map(a => `
+        <div class="alert-item"><div class="alert-dot ${a.color}"></div><div><div style="font-size:13px;font-weight:600;margin-bottom:2px;">${a.title}</div><div style="font-size:12px;color:var(--gray-500);line-height:1.4;">${a.text}</div></div></div>
+    `).join('');
+}
+
+function initProfile() {
+    document.getElementById('profile-card').innerHTML = `
+        <div style="padding:20px;">
+            <div style="display:flex;gap:16px;align-items:center;margin-bottom:24px;">
+                <div style="width:56px;height:56px;background:var(--blue-100);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:var(--blue-700);">TT</div>
+                <div><div style="font-size:18px;font-weight:700;">ThermoTech Kft.</div><div style="font-size:13px;color:var(--gray-500);">Budapest · HVAC · 42 employees</div></div>
+            </div>
+            <div class="detail-section"><h3>Company Details</h3>
+                <div class="detail-row"><span class="label">Address</span><span class="value">1134 Budapest, Váci út 45.</span></div>
+                <div class="detail-row"><span class="label">Industry</span><span class="value">HVAC / Building Technology</span></div>
+                <div class="detail-row"><span class="label">Employees</span><span class="value">42</span></div>
+                <div class="detail-row"><span class="label">Revenue</span><span class="value">€2,500,000</span></div>
+                <div class="detail-row"><span class="label">Bond Capacity</span><span class="value">€350,000</span></div>
+                <div class="detail-row"><span class="label">Years</span><span class="value">18</span></div>
+                <div class="detail-row"><span class="label">Plan</span><span class="value" style="color:var(--blue-600);font-weight:700;">Professional</span></div>
+            </div>
+            <div class="detail-section"><h3>Certifications</h3>
+                <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-50);color:var(--green-800);border:1px solid var(--green-100);">ISO 9001</span>
+                    <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-50);color:var(--green-800);border:1px solid var(--green-100);">ISO 14001</span>
+                    <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-50);color:var(--green-800);border:1px solid var(--green-100);">F-gas</span>
+                    <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-50);color:var(--green-800);border:1px solid var(--green-100);">MSZ EN 378</span>
+                    <span style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-50);color:var(--green-800);border:1px solid var(--green-100);">EKR</span>
+                </div>
+            </div>
+        </div>`;
+}
+
+function runScan() { const b=document.getElementById('scan-btn');b.disabled=true;b.textContent='Keresés...';setTimeout(()=>{b.disabled=false;b.textContent='Új keresés';},3000); }
+function exportCSV() {
+    let csv='ID,Title,Buyer,Country,Value,Deadline,Days,Score,Verdict\n';
+    T.forEach(t=>csv+=`"${t.id}","${t.title}","${t.buyer}","${t.country}",${t.value},"${t.deadline}",${t.days},${t.score},"${t.verdict}"\n`);
+    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='tenderpilot-export.csv';a.click();
+}
+initDashboard();
+</script>
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrantPilot — Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --green-50: #f0fdf4; --green-100: #dcfce7; --green-200: #bbf7d0; --green-500: #22c55e; --green-600: #16a34a; --green-700: #15803d; --green-800: #166534;
+            --blue-50: #eff6ff; --blue-100: #dbeafe; --blue-600: #2563eb;
+            --amber-50: #fffbeb; --amber-100: #fef3c7; --amber-600: #d97706;
+            --red-50: #fef2f2; --red-100: #fee2e2; --red-600: #dc2626;
+            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
+            --radius: 8px; --radius-lg: 12px;
+            --sidebar-w: 240px;
+        }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--gray-50); color: var(--gray-900); -webkit-font-smoothing: antialiased; }
+
+        /* SIDEBAR */
+        .sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: var(--sidebar-w); background: white; border-right: 1px solid var(--gray-200); display: flex; flex-direction: column; z-index: 50; }
+        .sidebar-header { padding: 20px 20px 16px; border-bottom: 1px solid var(--gray-100); }
+        .sidebar-logo { font-size: 18px; font-weight: 800; color: var(--gray-900); }
+        .sidebar-logo span { color: var(--green-600); }
+        .sidebar-nav { flex: 1; padding: 8px; }
+        .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: var(--radius); font-size: 14px; font-weight: 500; color: var(--gray-600); cursor: pointer; transition: all 0.1s; margin-bottom: 2px; }
+        .nav-item:hover { background: var(--gray-50); color: var(--gray-900); }
+        .nav-item.active { background: var(--green-50); color: var(--green-700); font-weight: 600; }
+        .nav-item svg { width: 20px; height: 20px; flex-shrink: 0; }
+        .nav-badge { margin-left: auto; background: var(--green-600); color: white; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 10px; }
+        .sidebar-footer { padding: 16px 20px; border-top: 1px solid var(--gray-100); }
+        .sidebar-user { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+        .sidebar-plan { font-size: 12px; color: var(--gray-400); }
+
+        /* MAIN */
+        .main { margin-left: var(--sidebar-w); min-height: 100vh; }
+        .topbar { background: white; border-bottom: 1px solid var(--gray-200); padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+        .topbar h1 { font-size: 16px; font-weight: 700; }
+        .topbar-actions { display: flex; gap: 8px; }
+        .btn-sm { padding: 7px 14px; font-size: 13px; font-weight: 600; border-radius: 6px; border: 1px solid var(--gray-300); background: white; color: var(--gray-700); cursor: pointer; transition: all 0.1s; }
+        .btn-sm:hover { background: var(--gray-50); }
+        .btn-sm.primary { background: var(--green-600); color: white; border-color: var(--green-600); }
+        .btn-sm.primary:hover { background: var(--green-700); }
+        .btn-sm:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .content { padding: 24px 32px; }
+
+        /* STATS */
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+        .stat { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 20px; }
+        .stat-label { font-size: 12px; font-weight: 600; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .stat-value { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+        .stat-sub { font-size: 12px; color: var(--green-600); font-weight: 600; margin-top: 4px; }
+
+        /* CARD */
+        .card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); margin-bottom: 16px; overflow: hidden; }
+        .card-header { padding: 16px 20px; border-bottom: 1px solid var(--gray-100); display: flex; justify-content: space-between; align-items: center; }
+        .card-header h2 { font-size: 15px; font-weight: 700; }
+        .card-header span { font-size: 12px; color: var(--gray-400); }
+
+        /* GRANT LIST */
+        .grant-row { padding: 14px 20px; border-bottom: 1px solid var(--gray-100); display: grid; grid-template-columns: 1fr 120px 80px 80px 72px; gap: 12px; align-items: center; cursor: pointer; transition: background 0.1s; }
+        .grant-row:hover { background: var(--gray-50); }
+        .grant-row:last-child { border-bottom: none; }
+        .grant-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+        .grant-source { font-size: 12px; color: var(--gray-400); }
+        .grant-amount { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+        .grant-days { font-size: 13px; color: var(--gray-500); }
+        .grant-days.urgent { color: var(--red-600); font-weight: 600; }
+        .grant-cat { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; background: var(--gray-100); color: var(--gray-600); white-space: nowrap; }
+
+        .verdict { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 6px; text-align: center; }
+        .verdict-apply { background: var(--green-100); color: var(--green-800); }
+        .verdict-review { background: var(--blue-100); color: var(--blue-600); }
+        .verdict-skip { background: var(--gray-100); color: var(--gray-500); }
+
+        /* DETAIL PANEL */
+        .detail-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 60; }
+        .detail-overlay.open { display: block; }
+        .detail-panel { position: fixed; right: 0; top: 0; bottom: 0; width: 480px; background: white; border-left: 1px solid var(--gray-200); z-index: 70; transform: translateX(100%); transition: transform 0.2s ease; overflow-y: auto; }
+        .detail-panel.open { transform: translateX(0); }
+        .detail-top { padding: 20px; border-bottom: 1px solid var(--gray-200); display: flex; justify-content: space-between; align-items: flex-start; }
+        .detail-close { background: none; border: 1px solid var(--gray-300); border-radius: 6px; padding: 6px 10px; cursor: pointer; font-size: 14px; color: var(--gray-500); }
+        .detail-body { padding: 20px; }
+        .detail-section { margin-bottom: 24px; }
+        .detail-section h3 { font-size: 11px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .detail-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--gray-100); font-size: 13px; }
+        .detail-row:last-child { border-bottom: none; }
+        .detail-row .label { color: var(--gray-500); }
+        .detail-row .value { font-weight: 600; }
+        .score-bars { margin-top: 8px; }
+        .score-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 12px; }
+        .score-bar-row .bar-label { width: 100px; color: var(--gray-500); flex-shrink: 0; }
+        .score-bar-row .bar-bg { flex: 1; height: 6px; background: var(--gray-100); border-radius: 3px; overflow: hidden; }
+        .score-bar-row .bar-fill { height: 100%; border-radius: 3px; }
+        .score-bar-row .bar-num { width: 28px; text-align: right; font-weight: 600; color: var(--gray-700); }
+
+        /* ALERTS */
+        .alert-item { padding: 14px 20px; border-bottom: 1px solid var(--gray-100); display: flex; gap: 12px; }
+        .alert-item:last-child { border-bottom: none; }
+        .alert-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+        .alert-dot.green { background: var(--green-500); }
+        .alert-dot.amber { background: var(--amber-600); }
+        .alert-dot.red { background: var(--red-600); }
+        .alert-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+        .alert-text { font-size: 12px; color: var(--gray-500); line-height: 1.4; }
+        .alert-time { font-size: 11px; color: var(--gray-400); margin-top: 4px; }
+
+        /* PROFILE */
+        .profile-section { padding: 20px; }
+        .profile-header { display: flex; gap: 16px; align-items: center; margin-bottom: 24px; }
+        .profile-avatar { width: 56px; height: 56px; background: var(--green-100); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 800; color: var(--green-700); }
+        .profile-name { font-size: 18px; font-weight: 700; }
+        .profile-meta { font-size: 13px; color: var(--gray-500); }
+        .tag-list { display: flex; gap: 6px; flex-wrap: wrap; padding: 12px 0; }
+        .tag { padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; background: var(--green-50); color: var(--green-700); border: 1px solid var(--green-200); }
+
+        .hidden { display: none !important; }
+
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main { margin-left: 0; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .grant-row { grid-template-columns: 1fr 80px; }
+            .grant-row > *:nth-child(2), .grant-row > *:nth-child(4) { display: none; }
+            .detail-panel { width: 100%; }
+            .content { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-logo">Grant<span>Pilot</span></div>
+    </div>
+    <div class="sidebar-nav">
+        <div class="nav-item active" onclick="showPage('dashboard')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955a1.126 1.126 0 0 1 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
+            Áttekintés
+        </div>
+        <div class="nav-item" onclick="showPage('grants')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+            Pályázatok <span class="nav-badge" id="nav-count">18</span>
+        </div>
+        <div class="nav-item" onclick="showPage('alerts')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" /></svg>
+            Értesítések <span class="nav-badge" style="background: var(--red-600);">5</span>
+        </div>
+        <div class="nav-item" onclick="showPage('profile')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.431.992a6.759 6.759 0 0 1 0 .255c-.007.378.138.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>
+            Beállítások
+        </div>
+    </div>
+    <div class="sidebar-footer">
+        <div class="sidebar-user">Demo Vállalkozás Kft.</div>
+        <div class="sidebar-plan">Professional csomag</div>
+    </div>
+</div>
+
+<div class="main">
+    <!-- DASHBOARD PAGE -->
+    <div id="page-dashboard" class="page">
+        <div class="topbar">
+            <h1>Áttekintés</h1>
+            <div class="topbar-actions">
+                <button class="btn-sm" onclick="exportCSV()">Exportálás</button>
+                <button class="btn-sm primary" id="scan-btn" onclick="runScan()">Keresés indítása</button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="stats" id="stats-grid"></div>
+            <div class="card">
+                <div class="card-header"><h2>Kiemelt pályázatok</h2><span>Legmagasabb pontszám, legközelebbi határidő</span></div>
+                <div id="hot-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRANTS PAGE -->
+    <div id="page-grants" class="page hidden">
+        <div class="topbar">
+            <h1>Pályázatok</h1>
+            <div class="topbar-actions">
+                <input type="text" id="search" placeholder="Keresés..." onkeyup="filterGrants()" style="padding: 7px 12px; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 13px; width: 200px; font-family: inherit;">
+                <select id="filter-verdict" onchange="filterGrants()" style="padding: 7px 12px; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 13px; font-family: inherit;">
+                    <option value="all">Minden</option>
+                    <option value="APPLY">Ajánlott</option>
+                    <option value="REVIEW">Áttekintendő</option>
+                    <option value="SKIP">Nem ajánlott</option>
+                </select>
+            </div>
+        </div>
+        <div class="content">
+            <div class="card">
+                <div class="card-header"><h2>Összes pályázat</h2><span id="grant-count"></span></div>
+                <div id="all-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ALERTS PAGE -->
+    <div id="page-alerts" class="page hidden">
+        <div class="topbar"><h1>Értesítések</h1></div>
+        <div class="content">
+            <div class="card" id="alerts-card"></div>
+        </div>
+    </div>
+
+    <!-- PROFILE PAGE -->
+    <div id="page-profile" class="page hidden">
+        <div class="topbar"><h1>Beállítások</h1></div>
+        <div class="content">
+            <div class="card" id="profile-card"></div>
+        </div>
+    </div>
+</div>
+
+<!-- DETAIL PANEL -->
+<div class="detail-overlay" id="detail-overlay" onclick="closeDetail()"></div>
+<div class="detail-panel" id="detail-panel">
+    <div class="detail-top">
+        <div>
+            <div id="detail-verdict" class="verdict verdict-apply" style="display: inline-block; margin-bottom: 8px;"></div>
+            <h2 id="detail-title" style="font-size: 17px; font-weight: 700; line-height: 1.3;"></h2>
+        </div>
+        <button class="detail-close" onclick="closeDetail()">Bezárás</button>
+    </div>
+    <div class="detail-body" id="detail-body"></div>
+</div>
+
+<script>
+const G = [
+    {id:"G-001",title:"GINOP Plusz 1.2.3-26 — KKV technológiai korszerűsítés",source:"palyazat.gov.hu",cat:"KKV fejlesztés",amount:"5-50M Ft",deadline:"2026-08-15",days:103,score:94.2,verdict:"APPLY",factors:{size:95,industry:90,location:90,amount:80,deadline:95}},
+    {id:"G-002",title:"Széchenyi Plusz — Digitalizációs program KKV-k számára",source:"palyazat.gov.hu",cat:"Digitális",amount:"3-30M Ft",deadline:"2026-07-30",days:87,score:91.8,verdict:"APPLY",factors:{size:95,industry:95,location:90,amount:75,deadline:95}},
+    {id:"G-003",title:"RRF 2.1.1 — Energiahatékonysági fejlesztés",source:"palyazat.gov.hu",cat:"Energia",amount:"10-100M Ft",deadline:"2026-09-30",days:149,score:78.5,verdict:"REVIEW",factors:{size:75,industry:70,location:90,amount:65,deadline:95}},
+    {id:"G-004",title:"DIMOP 3.4 — Munkahelyteremtő beruházások",source:"palyazat.gov.hu",cat:"Munka",amount:"5-80M Ft",deadline:"2026-06-30",days:57,score:85.3,verdict:"APPLY",factors:{size:90,industry:75,location:90,amount:80,deadline:80}},
+    {id:"G-005",title:"Horizon Europe — SME Instrument Phase 2",source:"ec.europa.eu",cat:"K+F",amount:"€500K-2.5M",deadline:"2026-10-15",days:164,score:72.1,verdict:"REVIEW",factors:{size:60,industry:95,location:70,amount:50,deadline:95}},
+    {id:"G-006",title:"GINOP Plusz 3.2.1 — Felnőttképzési program",source:"palyazat.gov.hu",cat:"Oktatás",amount:"2-20M Ft",deadline:"2026-07-15",days:72,score:62.4,verdict:"REVIEW",factors:{size:90,industry:45,location:90,amount:65,deadline:80}},
+    {id:"G-007",title:"Széchenyi Plusz — Export-orientált fejlesztések",source:"palyazat.gov.hu",cat:"Export",amount:"10-50M Ft",deadline:"2026-08-30",days:118,score:88.7,verdict:"APPLY",factors:{size:90,industry:85,location:85,amount:80,deadline:95}},
+    {id:"G-008",title:"KEHOP Plusz — Körforgásos gazdaság",source:"palyazat.gov.hu",cat:"Környezet",amount:"5-200M Ft",deadline:"2026-11-30",days:210,score:45.2,verdict:"SKIP",factors:{size:75,industry:30,location:90,amount:40,deadline:95}},
+    {id:"G-009",title:"NKFI Alap — Alkalmazott kutatási pályázat",source:"nkfi.hu",cat:"K+F",amount:"20-100M Ft",deadline:"2026-06-15",days:42,score:82.6,verdict:"APPLY",factors:{size:80,industry:95,location:90,amount:55,deadline:60}},
+    {id:"G-010",title:"Széchenyi — Mikrovállalkozások kapacitásbővítése",source:"palyazat.gov.hu",cat:"KKV fejlesztés",amount:"1-10M Ft",deadline:"2026-09-15",days:134,score:96.1,verdict:"APPLY",factors:{size:95,industry:90,location:95,amount:85,deadline:95}},
+    {id:"G-011",title:"GINOP Plusz 2.1.2 — E-kereskedelem fejlesztése",source:"ginop.hu",cat:"Digitális",amount:"2-15M Ft",deadline:"2026-08-01",days:89,score:89.4,verdict:"APPLY",factors:{size:90,industry:95,location:90,amount:75,deadline:95}},
+    {id:"G-012",title:"RRF — Zöld átállás vállalkozásoknak",source:"palyazat.gov.hu",cat:"Környezet",amount:"20-500M Ft",deadline:"2026-12-31",days:241,score:55.8,verdict:"SKIP",factors:{size:40,industry:35,location:90,amount:30,deadline:95}},
+    {id:"G-013",title:"VEKOP Plusz — Budapesti KKV versenyképesség",source:"palyazat.gov.hu",cat:"KKV fejlesztés",amount:"3-25M Ft",deadline:"2026-07-20",days:77,score:93.5,verdict:"APPLY",factors:{size:95,industry:90,location:95,amount:80,deadline:85}},
+    {id:"G-014",title:"Erasmus+ KA2 — Digitális készségek partnerség",source:"erasmus-plus.hu",cat:"Oktatás",amount:"€100K-400K",deadline:"2026-09-01",days:120,score:58.3,verdict:"SKIP",factors:{size:55,industry:60,location:70,amount:40,deadline:95}},
+    {id:"G-015",title:"GINOP Plusz 1.3.1 — Fiatal vállalkozók",source:"palyazat.gov.hu",cat:"KKV fejlesztés",amount:"3-10M Ft",deadline:"2026-06-20",days:47,score:42.1,verdict:"SKIP",factors:{size:30,industry:45,location:90,amount:60,deadline:60}},
+    {id:"G-016",title:"DIMOP — Turisztikai fejlesztések Budapesten",source:"palyazat.gov.hu",cat:"Turizmus",amount:"5-50M Ft",deadline:"2026-10-01",days:150,score:38.7,verdict:"SKIP",factors:{size:75,industry:20,location:90,amount:40,deadline:95}},
+    {id:"G-017",title:"Széchenyi Plusz — AI és automatizáció KKV",source:"palyazat.gov.hu",cat:"Digitális",amount:"5-40M Ft",deadline:"2026-08-20",days:108,score:97.3,verdict:"APPLY",factors:{size:95,industry:100,location:95,amount:85,deadline:95}},
+    {id:"G-018",title:"NKFI — Innovációs voucher (MVP fejlesztés)",source:"nkfi.hu",cat:"K+F",amount:"1-5M Ft",deadline:"2026-07-01",days:58,score:86.9,verdict:"APPLY",factors:{size:90,industry:95,location:90,amount:70,deadline:75}},
+];
+
+const ALERTS = [
+    {color:"green",title:"Kiemelt: AI és automatizáció pályázat (97.3 pont)",text:"G-017 tökéletesen illeszkedik profiljához. Határidő: 2026-08-20. Javasolt: azonnali pályázatkészítés.",time:"Ma, 08:15"},
+    {color:"green",title:"Új pályázat: Mikrovállalkozások kapacitásbővítés (96.1)",text:"G-010: 1-10M Ft összeghatár, KKV fejlesztés kategória. Ideális méret az Ön cégéhez.",time:"Ma, 08:12"},
+    {color:"red",title:"Határidő: NKFI kutatási pályázat — 42 nap",text:"G-009: Alkalmazott kutatási pályázat, 82.6 pont. Amennyiben érdekli, azonnali lépés szükséges.",time:"Tegnap"},
+    {color:"amber",title:"Heti összefoglaló",text:"18 pályázat elemezve: 9 ajánlott, 4 áttekintendő, 5 nem releváns. Becsült összérték: ~1.2 milliárd Ft.",time:"Hétfő, 08:00"},
+    {color:"green",title:"Profil frissítve",text:"Új preferált kategória: Export / Nemzetközi. A rendszer mostantól ezeket is figyeli.",time:"Múlt hét"},
+];
+
+let currentPage = 'dashboard';
+
+function showPage(p) {
+    currentPage = p;
+    document.querySelectorAll('.page').forEach(x => x.classList.add('hidden'));
+    document.getElementById('page-'+p).classList.remove('hidden');
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.querySelectorAll('.nav-item')[['dashboard','grants','alerts','profile'].indexOf(p)].classList.add('active');
+    if (p === 'dashboard') initDashboard();
+    if (p === 'grants') initGrants();
+    if (p === 'alerts') initAlerts();
+    if (p === 'profile') initProfile();
+}
+
+function vClass(v) { return v === 'APPLY' ? 'verdict-apply' : v === 'REVIEW' ? 'verdict-review' : 'verdict-skip'; }
+function vText(v) { return v === 'APPLY' ? 'Ajánlott' : v === 'REVIEW' ? 'Áttekintendő' : 'Nem ajánlott'; }
+
+function renderRow(g) {
+    return `<div class="grant-row" onclick="showDetail('${g.id}')">
+        <div><div class="grant-name">${g.title}</div><div class="grant-source">${g.source}</div></div>
+        <div class="grant-amount">${g.amount}</div>
+        <div class="grant-days ${g.days < 30 ? 'urgent' : ''}">${g.days} nap</div>
+        <div><span class="grant-cat">${g.cat}</span></div>
+        <div><span class="verdict ${vClass(g.verdict)}">${g.score}</span></div>
+    </div>`;
+}
+
+function initDashboard() {
+    const apply = G.filter(g => g.verdict === 'APPLY').length;
+    const review = G.filter(g => g.verdict === 'REVIEW').length;
+    const skip = G.filter(g => g.verdict === 'SKIP').length;
+    document.getElementById('stats-grid').innerHTML = `
+        <div class="stat"><div class="stat-label">Összes pályázat</div><div class="stat-value">${G.length}</div><div class="stat-sub">+5 az elmúlt héten</div></div>
+        <div class="stat"><div class="stat-label">Ajánlott</div><div class="stat-value" style="color: var(--green-600);">${apply}</div><div class="stat-sub">Azonnali teendő</div></div>
+        <div class="stat"><div class="stat-label">Áttekintendő</div><div class="stat-value" style="color: var(--amber-600);">${review}</div><div class="stat-sub">Eligibility check</div></div>
+        <div class="stat"><div class="stat-label">Kiszűrve</div><div class="stat-value" style="color: var(--gray-400);">${skip}</div><div class="stat-sub">Nem releváns</div></div>
+    `;
+    document.getElementById('hot-list').innerHTML = G.filter(g => g.score >= 85).sort((a,b) => a.days - b.days).slice(0, 5).map(renderRow).join('');
+}
+
+function initGrants() {
+    document.getElementById('all-list').innerHTML = G.map(renderRow).join('');
+    document.getElementById('grant-count').textContent = `${G.length} pályázat`;
+}
+
+function filterGrants() {
+    const s = document.getElementById('search').value.toLowerCase();
+    const v = document.getElementById('filter-verdict').value;
+    const f = G.filter(g => {
+        if (s && !g.title.toLowerCase().includes(s)) return false;
+        if (v !== 'all' && g.verdict !== v) return false;
+        return true;
+    });
+    document.getElementById('all-list').innerHTML = f.map(renderRow).join('');
+    document.getElementById('grant-count').textContent = `${f.length} pályázat`;
+    document.getElementById('nav-count').textContent = f.length;
+}
+
+function showDetail(id) {
+    const g = G.find(x => x.id === id);
+    if (!g) return;
+    document.getElementById('detail-title').textContent = g.title;
+    const dv = document.getElementById('detail-verdict');
+    dv.className = `verdict ${vClass(g.verdict)}`;
+    dv.textContent = `${g.score}/100 — ${vText(g.verdict)}`;
+
+    const f = g.factors;
+    const barColor = s => s >= 80 ? 'var(--green-500)' : s >= 60 ? 'var(--amber-600)' : 'var(--red-600)';
+    const bar = (label, score) => `<div class="score-bar-row"><span class="bar-label">${label}</span><div class="bar-bg"><div class="bar-fill" style="width:${score}%;background:${barColor(score)};"></div></div><span class="bar-num">${score}</span></div>`;
+
+    document.getElementById('detail-body').innerHTML = `
+        <div class="detail-section">
+            <h3>Alapadatok</h3>
+            <div class="detail-row"><span class="label">Forrás</span><span class="value">${g.source}</span></div>
+            <div class="detail-row"><span class="label">Kategória</span><span class="value">${g.cat}</span></div>
+            <div class="detail-row"><span class="label">Összeg</span><span class="value">${g.amount}</span></div>
+            <div class="detail-row"><span class="label">Határidő</span><span class="value" style="color: ${g.days < 30 ? 'var(--red-600)' : 'inherit'};">${g.deadline} (${g.days} nap)</span></div>
+        </div>
+        <div class="detail-section">
+            <h3>AI Pontozás (${g.score}/100)</h3>
+            <div class="score-bars">
+                ${bar('Cégméret', f.size)}
+                ${bar('Iparág', f.industry)}
+                ${bar('Lokáció', f.location)}
+                ${bar('Összeg', f.amount)}
+                ${bar('Határidő', f.deadline)}
+            </div>
+        </div>
+        <div class="detail-section">
+            <h3>Ajánlás</h3>
+            <p style="font-size: 13px; color: var(--gray-600); line-height: 1.6;">
+                ${g.verdict === 'APPLY' ? `Erősen ajánlott pályázat. A(z) Demo Vállalkozás Kft. profilja jól illeszkedik a kiíráshoz. Javasolt lépés: azonnali pályázatkészítés megkezdése. Szükség esetén pályázatíró partnerünket ajánljuk.` :
+                  g.verdict === 'REVIEW' ? `Érdemes áttekinteni a részletes kiírást. Részleges illeszkedés — az eligibility feltételek alapos vizsgálata szükséges a döntés előtt.` :
+                  `Nem ajánlott. Az Ön cégprofilja alapján ez a pályázat nem illeszkedik megfelelően. Nem érdemes rá időt fordítani.`}
+            </p>
+        </div>
+        ${g.verdict === 'APPLY' ? `<div class="detail-section">
+            <h3>Eligibility checklist</h3>
+            <div style="font-size: 13px; line-height: 2;">
+                <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--green-600);">&#10003;</span> KKV besorolás (${g.cat.includes('KKV') || g.score > 80 ? 'megfelel' : 'ellenőrizendő'})</div>
+                <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--green-600);">&#10003;</span> Székhely Magyarországon (megfelel)</div>
+                <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--green-600);">&#10003;</span> Köztartozásmentes adózó (szükséges)</div>
+                <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--amber-600);">&#9744;</span> Saját erő biztosítása (10-30% szükséges)</div>
+                <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--amber-600);">&#9744;</span> Projekt terv elkészítése</div>
+                <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--amber-600);">&#9744;</span> Árajánlatok beszerzése (min. 3 db)</div>
+            </div>
+        </div>` : ''}
+        <div class="detail-section">
+            <h3>Telegram értesítés előnézet</h3>
+            <div style="background: #1a2332; color: #e8e8e8; border-radius: 12px; padding: 16px; font-size: 12px; line-height: 1.6; font-family: -apple-system, sans-serif;">
+                <div style="color: #5eabed; font-weight: 600; margin-bottom: 8px;">🎯 GrantPilot</div>
+                <div style="font-weight: 600; margin-bottom: 6px;">${g.title.slice(0, 60)}</div>
+                <div style="color: #8e9ba8;">📊 Pontszám: ${g.score}/100 | ${vText(g.verdict)}</div>
+                <div style="color: #8e9ba8;">💰 ${g.amount} | 📅 ${g.deadline}</div>
+                <div style="color: #8e9ba8;">📂 ${g.cat}</div>
+                <div style="margin-top: 8px; color: #8e9ba8; font-style: italic; font-size: 11px;">${g.verdict === 'APPLY' ? 'Javasolt: azonnali pályázatkészítés.' : g.verdict === 'REVIEW' ? 'Érdemes áttekinteni.' : 'Nem ajánlott.'}</div>
+            </div>
+            <div style="font-size: 11px; color: var(--gray-400); margin-top: 6px;">Így néz ki az értesítés a Telegram-on</div>
+        </div>
+        <div style="margin-top: 20px; display: flex; gap: 8px;">
+            <button class="btn-sm primary" style="flex: 1;" onclick="closeDetail()">Pályázatíró ajánlás kérése</button>
+            <button class="btn-sm" onclick="closeDetail()">Bezárás</button>
+        </div>
+    `;
+
+    document.getElementById('detail-overlay').classList.add('open');
+    document.getElementById('detail-panel').classList.add('open');
+}
+
+function closeDetail() {
+    document.getElementById('detail-overlay').classList.remove('open');
+    document.getElementById('detail-panel').classList.remove('open');
+}
+
+function initAlerts() {
+    document.getElementById('alerts-card').innerHTML = ALERTS.map(a => `
+        <div class="alert-item">
+            <div class="alert-dot ${a.color}"></div>
+            <div><div class="alert-title">${a.title}</div><div class="alert-text">${a.text}</div><div class="alert-time">${a.time}</div></div>
+        </div>
+    `).join('');
+}
+
+function initProfile() {
+    document.getElementById('profile-card').innerHTML = `
+        <div class="profile-section">
+            <div class="profile-header">
+                <div class="profile-avatar">DV</div>
+                <div><div class="profile-name">Demo Vállalkozás Kft.</div><div class="profile-meta">Budapest · IT / Szoftverfejlesztés · 25 fő</div></div>
+            </div>
+            <div class="detail-section">
+                <h3>Cégadatok</h3>
+                <div class="detail-row"><span class="label">Székhely</span><span class="value">1052 Budapest, Váci utca 10.</span></div>
+                <div class="detail-row"><span class="label">Iparág</span><span class="value">IT / Szoftverfejlesztés</span></div>
+                <div class="detail-row"><span class="label">Létszám</span><span class="value">25 fő</span></div>
+                <div class="detail-row"><span class="label">Árbevétel</span><span class="value">€800,000</span></div>
+                <div class="detail-row"><span class="label">Működés</span><span class="value">4 éve</span></div>
+                <div class="detail-row"><span class="label">Csomag</span><span class="value" style="color: var(--green-600); font-weight: 700;">Professional</span></div>
+            </div>
+            <div class="detail-section">
+                <h3>Preferált kategóriák</h3>
+                <div class="tag-list">
+                    <span class="tag">KKV fejlesztés</span>
+                    <span class="tag">Digitális átalakulás</span>
+                    <span class="tag">Kutatás-fejlesztés</span>
+                    <span class="tag">Export</span>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function runScan() {
+    const btn = document.getElementById('scan-btn');
+    btn.disabled = true; btn.textContent = 'Keresés...';
+    setTimeout(() => { btn.disabled = false; btn.textContent = 'Keresés indítása'; }, 3000);
+}
+
+function exportCSV() {
+    let csv = 'ID,Cím,Forrás,Kategória,Összeg,Határidő,Napok,Pontszám,Verdikt\n';
+    G.forEach(g => csv += `"${g.id}","${g.title}","${g.source}","${g.cat}","${g.amount}","${g.deadline}",${g.days},${g.score},"${g.verdict}"\n`);
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download = 'grantpilot-export.csv'; a.click();
+}
+
+// Init
+initDashboard();
+</script>
+</body>
+</html>

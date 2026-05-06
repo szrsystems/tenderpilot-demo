@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: growthcrow
+    runtime: static
+    buildCommand: echo "Static site"
+    staticPublishPath: .
+    routes:
+      - type: rewrite
+        source: /tenderpilot
+        destination: /tenderpilot/index.html
+      - type: rewrite
+        source: /grantpilot
+        destination: /grantpilot/index.html
+      - type: rewrite
+        source: /tenderpilot/demo
+        destination: /tenderpilot/portal.html
+      - type: rewrite
+        source: /grantpilot/demo
+        destination: /grantpilot/portal.html
+      - type: rewrite
+        source: /grantpilot/register
+        destination: /grantpilot/onboarding.html
