@@ -232,24 +232,20 @@
 
 <script>
 const G = [
-    {id:"G-001",title:"GINOP Plusz 1.2.3-26 — KKV technológiai korszerűsítés",source:"palyazat.gov.hu",cat:"KKV fejlesztés",amount:"5-50M Ft",deadline:"2026-08-15",days:103,score:94.2,verdict:"APPLY",factors:{size:95,industry:90,location:90,amount:80,deadline:95}},
-    {id:"G-002",title:"Széchenyi Plusz — Digitalizációs program KKV-k számára",source:"palyazat.gov.hu",cat:"Digitális",amount:"3-30M Ft",deadline:"2026-07-30",days:87,score:91.8,verdict:"APPLY",factors:{size:95,industry:95,location:90,amount:75,deadline:95}},
-    {id:"G-003",title:"RRF 2.1.1 — Energiahatékonysági fejlesztés",source:"palyazat.gov.hu",cat:"Energia",amount:"10-100M Ft",deadline:"2026-09-30",days:149,score:78.5,verdict:"REVIEW",factors:{size:75,industry:70,location:90,amount:65,deadline:95}},
-    {id:"G-004",title:"DIMOP 3.4 — Munkahelyteremtő beruházások",source:"palyazat.gov.hu",cat:"Munka",amount:"5-80M Ft",deadline:"2026-06-30",days:57,score:85.3,verdict:"APPLY",factors:{size:90,industry:75,location:90,amount:80,deadline:80}},
-    {id:"G-005",title:"Horizon Europe — SME Instrument Phase 2",source:"ec.europa.eu",cat:"K+F",amount:"€500K-2.5M",deadline:"2026-10-15",days:164,score:72.1,verdict:"REVIEW",factors:{size:60,industry:95,location:70,amount:50,deadline:95}},
-    {id:"G-006",title:"GINOP Plusz 3.2.1 — Felnőttképzési program",source:"palyazat.gov.hu",cat:"Oktatás",amount:"2-20M Ft",deadline:"2026-07-15",days:72,score:62.4,verdict:"REVIEW",factors:{size:90,industry:45,location:90,amount:65,deadline:80}},
-    {id:"G-007",title:"Széchenyi Plusz — Export-orientált fejlesztések",source:"palyazat.gov.hu",cat:"Export",amount:"10-50M Ft",deadline:"2026-08-30",days:118,score:88.7,verdict:"APPLY",factors:{size:90,industry:85,location:85,amount:80,deadline:95}},
-    {id:"G-008",title:"KEHOP Plusz — Körforgásos gazdaság",source:"palyazat.gov.hu",cat:"Környezet",amount:"5-200M Ft",deadline:"2026-11-30",days:210,score:45.2,verdict:"SKIP",factors:{size:75,industry:30,location:90,amount:40,deadline:95}},
-    {id:"G-009",title:"NKFI Alap — Alkalmazott kutatási pályázat",source:"nkfi.hu",cat:"K+F",amount:"20-100M Ft",deadline:"2026-06-15",days:42,score:82.6,verdict:"APPLY",factors:{size:80,industry:95,location:90,amount:55,deadline:60}},
-    {id:"G-010",title:"Széchenyi — Mikrovállalkozások kapacitásbővítése",source:"palyazat.gov.hu",cat:"KKV fejlesztés",amount:"1-10M Ft",deadline:"2026-09-15",days:134,score:96.1,verdict:"APPLY",factors:{size:95,industry:90,location:95,amount:85,deadline:95}},
-    {id:"G-011",title:"GINOP Plusz 2.1.2 — E-kereskedelem fejlesztése",source:"ginop.hu",cat:"Digitális",amount:"2-15M Ft",deadline:"2026-08-01",days:89,score:89.4,verdict:"APPLY",factors:{size:90,industry:95,location:90,amount:75,deadline:95}},
-    {id:"G-012",title:"RRF — Zöld átállás vállalkozásoknak",source:"palyazat.gov.hu",cat:"Környezet",amount:"20-500M Ft",deadline:"2026-12-31",days:241,score:55.8,verdict:"SKIP",factors:{size:40,industry:35,location:90,amount:30,deadline:95}},
-    {id:"G-013",title:"VEKOP Plusz — Budapesti KKV versenyképesség",source:"palyazat.gov.hu",cat:"KKV fejlesztés",amount:"3-25M Ft",deadline:"2026-07-20",days:77,score:93.5,verdict:"APPLY",factors:{size:95,industry:90,location:95,amount:80,deadline:85}},
-    {id:"G-014",title:"Erasmus+ KA2 — Digitális készségek partnerség",source:"erasmus-plus.hu",cat:"Oktatás",amount:"€100K-400K",deadline:"2026-09-01",days:120,score:58.3,verdict:"SKIP",factors:{size:55,industry:60,location:70,amount:40,deadline:95}},
-    {id:"G-015",title:"GINOP Plusz 1.3.1 — Fiatal vállalkozók",source:"palyazat.gov.hu",cat:"KKV fejlesztés",amount:"3-10M Ft",deadline:"2026-06-20",days:47,score:42.1,verdict:"SKIP",factors:{size:30,industry:45,location:90,amount:60,deadline:60}},
-    {id:"G-016",title:"DIMOP — Turisztikai fejlesztések Budapesten",source:"palyazat.gov.hu",cat:"Turizmus",amount:"5-50M Ft",deadline:"2026-10-01",days:150,score:38.7,verdict:"SKIP",factors:{size:75,industry:20,location:90,amount:40,deadline:95}},
-    {id:"G-017",title:"Széchenyi Plusz — AI és automatizáció KKV",source:"palyazat.gov.hu",cat:"Digitális",amount:"5-40M Ft",deadline:"2026-08-20",days:108,score:97.3,verdict:"APPLY",factors:{size:95,industry:100,location:95,amount:85,deadline:95}},
-    {id:"G-018",title:"NKFI — Innovációs voucher (MVP fejlesztés)",source:"nkfi.hu",cat:"K+F",amount:"1-5M Ft",deadline:"2026-07-01",days:58,score:86.9,verdict:"APPLY",factors:{size:90,industry:95,location:90,amount:70,deadline:75}},
+    {id:"G-001",title:"Széchenyi Plusz — Digitalizációs program KKV-knak",source:"palyazat.gov.hu",url:"https://www.palyazat.gov.hu/",cat:"Digitális",amount:"3-30M Ft",deadline:"2026-07-30",days:81,score:92.5,verdict:"APPLY",factors:{size:95,industry:95,location:90,amount:85,deadline:95}},
+    {id:"G-002",title:"NKFI — Innovációs voucher (MVP fejlesztés)",source:"nkfih.gov.hu",url:"https://nkfih.gov.hu/",cat:"K+F",amount:"1-5M Ft",deadline:"2026-07-01",days:52,score:91.3,verdict:"APPLY",factors:{size:88,industry:95,location:90,amount:85,deadline:95}},
+    {id:"G-003",title:"GINOP Plusz 1.2.3-26 — KKV technológiai korszerűsítés",source:"palyazat.gov.hu",url:"https://www.palyazat.gov.hu/",cat:"KKV fejlesztés",amount:"5-50M Ft",deadline:"2026-08-15",days:97,score:90.5,verdict:"APPLY",factors:{size:95,industry:95,location:90,amount:85,deadline:85}},
+    {id:"G-004",title:"Széchenyi Plusz — AI és automatizáció KKV",source:"palyazat.gov.hu",url:"https://www.palyazat.gov.hu/",cat:"Digitális",amount:"5-40M Ft",deadline:"2026-08-20",days:102,score:90.5,verdict:"APPLY",factors:{size:95,industry:95,location:90,amount:85,deadline:85}},
+    {id:"G-005",title:"GINOP Plusz 2.1.2 — E-kereskedelem fejlesztése",source:"ginop.hu",url:"https://www.palyazat.gov.hu/",cat:"Digitális",amount:"2-15M Ft",deadline:"2026-08-01",days:83,score:86.2,verdict:"APPLY",factors:{size:60,industry:95,location:90,amount:85,deadline:95}},
+    {id:"G-006",title:"NKFI Alap — Alkalmazott kutatási pályázat",source:"nkfih.gov.hu",url:"https://nkfih.gov.hu/",cat:"K+F",amount:"20-100M Ft",deadline:"2026-06-15",days:36,score:83.7,verdict:"APPLY",factors:{size:60,industry:95,location:90,amount:70,deadline:95}},
+    {id:"G-007",title:"Horizon Europe — EIC Accelerator (SME)",source:"ec.europa.eu",url:"https://eic.ec.europa.eu/eic-funding-opportunities/eic-accelerator_en",cat:"K+F",amount:"€500K-2.5M",deadline:"2026-10-15",days:158,score:81.5,verdict:"APPLY",factors:{size:95,industry:92,location:70,amount:55,deadline:85}},
+    {id:"G-008",title:"VEKOP Plusz — Budapesti KKV versenyképesség",source:"palyazat.gov.hu",url:"https://www.palyazat.gov.hu/",cat:"KKV fejlesztés",amount:"3-25M Ft",deadline:"2026-07-20",days:71,score:79.8,verdict:"REVIEW",factors:{size:95,industry:50,location:95,amount:85,deadline:95}},
+    {id:"G-009",title:"Széchenyi — Mikrovállalkozások kapacitásbővítése",source:"szechenyi2020.hu",url:"https://www.szechenyi2020.hu/",cat:"KKV fejlesztés",amount:"1-10M Ft",deadline:"2026-09-15",days:128,score:77.0,verdict:"REVIEW",factors:{size:95,industry:50,location:90,amount:85,deadline:85}},
+    {id:"G-010",title:"Horizon Europe — Digital, Industry & Space cluster call",source:"ec.europa.eu",url:"https://ec.europa.eu/info/funding-tenders/opportunities/portal/",cat:"Digitális",amount:"€1-5M",deadline:"2026-09-30",days:143,score:76.2,verdict:"REVIEW",factors:{size:60,industry:95,location:70,amount:55,deadline:85}},
+    {id:"G-011",title:"Széchenyi Plusz — Export-orientált fejlesztések",source:"szechenyi2020.hu",url:"https://www.szechenyi2020.hu/",cat:"Export",amount:"10-50M Ft",deadline:"2026-08-30",days:112,score:70.8,verdict:"REVIEW",factors:{size:60,industry:50,location:90,amount:85,deadline:85}},
+    {id:"G-012",title:"GINOP Plusz 3.2.1 — Felnőttképzési program",source:"palyazat.gov.hu",url:"https://www.palyazat.gov.hu/",cat:"Oktatás",amount:"2-20M Ft",deadline:"2026-07-15",days:66,score:68.2,verdict:"REVIEW",factors:{size:60,industry:35,location:90,amount:85,deadline:95}},
+    {id:"G-013",title:"DIMOP 3.4 — Munkahelyteremtő beruházások",source:"palyazat.gov.hu",url:"https://www.palyazat.gov.hu/",cat:"Munka",amount:"5-80M Ft",deadline:"2026-06-30",days:51,score:65.7,verdict:"REVIEW",factors:{size:60,industry:35,location:90,amount:70,deadline:95}},
+    {id:"G-014",title:"RRF 2.1.1 — Energiahatékonysági fejlesztés",source:"palyazat.gov.hu",url:"https://www.palyazat.gov.hu/",cat:"Energia",amount:"10-100M Ft",deadline:"2026-09-30",days:143,score:63.7,verdict:"REVIEW",factors:{size:60,industry:35,location:90,amount:70,deadline:85}},
 ];
 
 const ALERTS = [
@@ -444,6 +440,7 @@ function exportCSV() {
     const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download = 'grantpilot-export.csv'; a.click();
 }
 
+// build_live_portal.py — 2026-05-10T12:28:20 (14 grants)
 // Init
 initDashboard();
 </script>
