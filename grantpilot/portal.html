@@ -116,16 +116,176 @@
         .tag-list { display: flex; gap: 6px; flex-wrap: wrap; padding: 12px 0; }
         .tag { padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; background: var(--green-50); color: var(--green-700); border: 1px solid var(--green-200); }
 
+        /* ===== HERO STATS (animated) ===== */
+        .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+        .hero-stat { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 18px 20px; position: relative; overflow: hidden; transition: transform 0.15s, box-shadow 0.15s; }
+        .hero-stat:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+        .hero-stat::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--green-500); }
+        .hero-stat.amber::before { background: var(--amber-600); }
+        .hero-stat.red::before { background: var(--red-600); }
+        .hero-stat.blue::before { background: var(--blue-600); }
+        .hero-stat-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--green-50); color: var(--green-700); display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+        .hero-stat.amber .hero-stat-icon { background: var(--amber-50); color: var(--amber-600); }
+        .hero-stat.red .hero-stat-icon { background: var(--red-50); color: var(--red-600); }
+        .hero-stat.blue .hero-stat-icon { background: var(--blue-50); color: var(--blue-600); }
+        .hero-stat-icon svg { width: 18px; height: 18px; }
+        .hero-stat-label { font-size: 12px; font-weight: 600; color: var(--gray-500); margin-bottom: 4px; }
+        .hero-stat-value { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; color: var(--gray-900); line-height: 1.1; }
+        .hero-stat-sub { font-size: 11px; color: var(--gray-400); margin-top: 4px; font-weight: 500; }
+
+        /* ===== SECTION HEADER ===== */
+        .section-head { display: flex; justify-content: space-between; align-items: flex-end; margin: 28px 0 14px; }
+        .section-head.first { margin-top: 4px; }
+        .section-title { font-size: 17px; font-weight: 700; color: var(--gray-900); letter-spacing: -0.2px; }
+        .section-title-row { display: flex; align-items: center; gap: 10px; }
+        .section-pill { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; background: var(--green-50); color: var(--green-700); border: 1px solid var(--green-200); text-transform: uppercase; letter-spacing: 0.5px; }
+        .section-sub { font-size: 12px; color: var(--gray-400); margin-top: 3px; }
+        .section-action { font-size: 13px; color: var(--green-700); font-weight: 600; cursor: pointer; text-decoration: none; }
+        .section-action:hover { color: var(--green-800); }
+
+        /* ===== RECOMMENDED CARDS (feature) ===== */
+        .reco-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+        .reco-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 18px; cursor: pointer; transition: all 0.15s; display: flex; flex-direction: column; gap: 12px; position: relative; }
+        .reco-card:hover { border-color: var(--green-300, #86efac); box-shadow: 0 6px 20px rgba(34,197,94,0.08); transform: translateY(-2px); }
+        .reco-card-head { display: flex; align-items: flex-start; gap: 12px; }
+        .reco-logo { width: 40px; height: 40px; border-radius: 10px; background: var(--green-100); color: var(--green-700); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; flex-shrink: 0; letter-spacing: -0.3px; }
+        .reco-logo.blue { background: var(--blue-50); color: var(--blue-600); }
+        .reco-logo.amber { background: var(--amber-50); color: var(--amber-600); }
+        .reco-logo.purple { background: #f3e8ff; color: #7e22ce; }
+        .reco-logo.pink { background: #fce7f3; color: #be185d; }
+        .reco-logo.indigo { background: #e0e7ff; color: #4338ca; }
+        .reco-card-meta { flex: 1; min-width: 0; }
+        .reco-card-title { font-size: 14px; font-weight: 700; color: var(--gray-900); line-height: 1.35; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .reco-card-source { font-size: 11px; color: var(--gray-400); font-weight: 500; }
+        .reco-card-amount { font-size: 20px; font-weight: 800; color: var(--green-700); letter-spacing: -0.5px; }
+        .reco-card-amount-label { font-size: 11px; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+        .reco-card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px solid var(--gray-100); }
+        .reco-card-score { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--green-700); }
+        .reco-card-score .score-dot { width: 6px; height: 6px; background: var(--green-500); border-radius: 50%; }
+
+        /* ===== BADGES (urgency + new) ===== */
+        .badge-row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+        .badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 12px; line-height: 1; }
+        .badge-new { background: var(--green-50); color: var(--green-700); border: 1px solid var(--green-200); }
+        .badge-urgent { background: var(--red-50); color: var(--red-600); border: 1px solid var(--red-100); }
+        .badge-soon { background: var(--amber-50); color: var(--amber-600); border: 1px solid var(--amber-100); }
+        .badge-watch { background: #fefce8; color: #a16207; border: 1px solid #fef9c3; }
+        .badge-cat { background: var(--gray-100); color: var(--gray-600); border: 1px solid var(--gray-200); }
+        .pulse-dot { width: 7px; height: 7px; background: var(--red-600); border-radius: 50%; box-shadow: 0 0 0 0 rgba(220,38,38,0.7); animation: pulse 1.5s infinite; }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(220,38,38,0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(220,38,38,0); }
+            100% { box-shadow: 0 0 0 0 rgba(220,38,38,0); }
+        }
+        .clock-icon { width: 11px; height: 11px; flex-shrink: 0; }
+
+        /* ===== FILTER PILLS ===== */
+        .pills-bar { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 10px; margin-bottom: 14px; scrollbar-width: thin; }
+        .pills-bar::-webkit-scrollbar { height: 6px; }
+        .pills-bar::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 3px; }
+        .pill { white-space: nowrap; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--gray-200); background: white; font-size: 13px; font-weight: 600; color: var(--gray-600); cursor: pointer; transition: all 0.1s; flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; }
+        .pill:hover { background: var(--gray-50); color: var(--gray-900); }
+        .pill.active { background: var(--green-600); color: white; border-color: var(--green-600); }
+        .pill.active:hover { background: var(--green-700); }
+        .pill-count { font-size: 11px; padding: 1px 6px; background: var(--gray-100); color: var(--gray-500); border-radius: 8px; font-weight: 700; }
+        .pill.active .pill-count { background: rgba(255,255,255,0.25); color: white; }
+
+        /* ===== SORT BAR ===== */
+        .sort-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
+        .sort-left { font-size: 13px; color: var(--gray-500); font-weight: 500; }
+        .sort-left b { color: var(--gray-900); font-weight: 700; }
+        .sort-right { display: flex; align-items: center; gap: 8px; }
+        .sort-label { font-size: 12px; color: var(--gray-500); font-weight: 600; }
+        .sort-buttons { display: inline-flex; background: var(--gray-100); border-radius: 8px; padding: 3px; gap: 2px; }
+        .sort-btn { padding: 5px 12px; font-size: 12px; font-weight: 600; color: var(--gray-500); background: transparent; border: none; border-radius: 6px; cursor: pointer; transition: all 0.1s; font-family: inherit; }
+        .sort-btn:hover { color: var(--gray-900); }
+        .sort-btn.active { background: white; color: var(--gray-900); box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+
+        /* ===== GRANT CARD (compact list version) ===== */
+        .grant-cards { display: flex; flex-direction: column; gap: 10px; }
+        .grant-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 16px 18px; cursor: pointer; transition: all 0.12s; display: grid; grid-template-columns: 44px 1fr auto; gap: 14px; align-items: center; }
+        .grant-card:hover { border-color: var(--green-300, #86efac); box-shadow: 0 2px 8px rgba(34,197,94,0.06); }
+        .grant-card-logo { width: 44px; height: 44px; border-radius: 10px; background: var(--green-100); color: var(--green-700); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; letter-spacing: -0.3px; }
+        .grant-card-logo.blue { background: var(--blue-50); color: var(--blue-600); }
+        .grant-card-logo.amber { background: var(--amber-50); color: var(--amber-600); }
+        .grant-card-logo.purple { background: #f3e8ff; color: #7e22ce; }
+        .grant-card-logo.pink { background: #fce7f3; color: #be185d; }
+        .grant-card-logo.indigo { background: #e0e7ff; color: #4338ca; }
+        .grant-card-body { min-width: 0; }
+        .grant-card-title { font-size: 14px; font-weight: 600; color: var(--gray-900); margin-bottom: 6px; line-height: 1.35; }
+        .grant-card-meta { display: flex; gap: 10px; align-items: center; font-size: 12px; color: var(--gray-500); flex-wrap: wrap; }
+        .grant-card-meta .dot-sep { width: 3px; height: 3px; background: var(--gray-300); border-radius: 50%; }
+        .grant-card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; min-width: 140px; }
+        .grant-card-amount { font-size: 14px; font-weight: 700; color: var(--gray-900); white-space: nowrap; }
+        .grant-card-actions { display: flex; gap: 6px; align-items: center; }
+        .bookmark-btn { background: none; border: 1px solid var(--gray-200); width: 30px; height: 30px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: var(--gray-400); transition: all 0.1s; padding: 0; }
+        .bookmark-btn:hover { color: var(--green-700); border-color: var(--green-300, #86efac); background: var(--green-50); }
+        .bookmark-btn.saved { color: var(--green-700); background: var(--green-50); border-color: var(--green-200); }
+        .bookmark-btn svg { width: 14px; height: 14px; }
+
+        /* ===== PROGRESS BAR (application window) ===== */
+        .progress-window { margin-top: 10px; }
+        .progress-track { height: 4px; background: var(--gray-100); border-radius: 2px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--green-500); border-radius: 2px; transition: width 0.3s; }
+        .progress-fill.amber { background: var(--amber-600); }
+        .progress-fill.red { background: var(--red-600); }
+        .progress-labels { display: flex; justify-content: space-between; margin-top: 4px; font-size: 10px; color: var(--gray-400); font-weight: 500; }
+
+        /* ===== WEEKLY DIGEST ===== */
+        .digest-card { background: linear-gradient(135deg, #f0fdf4 0%, white 60%); border: 1px solid var(--green-100); border-radius: var(--radius-lg); padding: 20px 24px; margin-bottom: 24px; display: flex; gap: 20px; align-items: center; }
+        .digest-icon { width: 48px; height: 48px; border-radius: 12px; background: white; border: 1px solid var(--green-200); color: var(--green-700); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .digest-icon svg { width: 22px; height: 22px; }
+        .digest-body { flex: 1; }
+        .digest-title { font-size: 14px; font-weight: 700; color: var(--gray-900); margin-bottom: 6px; }
+        .digest-items { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--gray-600); }
+        .digest-item { display: inline-flex; align-items: center; gap: 6px; }
+        .digest-item-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-500); }
+        .digest-item-dot.amber { background: var(--amber-600); }
+        .digest-cta { font-size: 13px; font-weight: 600; color: var(--green-700); cursor: pointer; padding: 8px 14px; border-radius: 8px; background: white; border: 1px solid var(--green-200); white-space: nowrap; transition: all 0.1s; }
+        .digest-cta:hover { background: var(--green-50); }
+
+        /* ===== EMPTY STATE ===== */
+        .empty { padding: 60px 24px; text-align: center; background: white; border: 1px dashed var(--gray-200); border-radius: var(--radius-lg); }
+        .empty-icon { width: 56px; height: 56px; margin: 0 auto 16px; background: var(--gray-50); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gray-400); }
+        .empty-icon svg { width: 26px; height: 26px; }
+        .empty-title { font-size: 15px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+        .empty-text { font-size: 13px; color: var(--gray-500); line-height: 1.5; max-width: 360px; margin: 0 auto 16px; }
+
+        /* ===== FLOATING CTA ===== */
+        .floating-cta { position: fixed; bottom: 0; left: var(--sidebar-w); right: 0; background: white; border-top: 1px solid var(--gray-200); box-shadow: 0 -4px 16px rgba(0,0,0,0.04); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; z-index: 40; transform: translateY(100%); transition: transform 0.3s ease; gap: 16px; }
+        .floating-cta.show { transform: translateY(0); }
+        .floating-cta-text { font-size: 13px; color: var(--gray-700); }
+        .floating-cta-text b { color: var(--gray-900); font-weight: 700; }
+        .floating-cta-actions { display: flex; gap: 8px; align-items: center; }
+        .floating-cta-link { padding: 9px 18px; font-size: 13px; font-weight: 700; background: var(--green-600); color: white; border-radius: 8px; text-decoration: none; transition: background 0.1s; }
+        .floating-cta-link:hover { background: var(--green-700); }
+        .floating-cta-dismiss { background: none; border: none; color: var(--gray-400); cursor: pointer; padding: 6px; font-size: 18px; line-height: 1; }
+        .floating-cta-dismiss:hover { color: var(--gray-700); }
+
+        /* spacing so floating CTA doesn't cover last row */
+        .content { padding-bottom: 100px; }
+
         .hidden { display: none !important; }
 
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; }
             .stats { grid-template-columns: repeat(2, 1fr); }
+            .hero-stats { grid-template-columns: repeat(2, 1fr); }
             .grant-row { grid-template-columns: 1fr 80px; }
             .grant-row > *:nth-child(2), .grant-row > *:nth-child(4) { display: none; }
             .detail-panel { width: 100%; }
-            .content { padding: 16px; }
+            .content { padding: 16px; padding-bottom: 120px; }
+            .floating-cta { left: 0; padding: 12px 16px; flex-wrap: wrap; }
+            .floating-cta-text { font-size: 12px; flex: 1; min-width: 0; }
+            .digest-card { flex-direction: column; align-items: flex-start; padding: 16px; }
+            .digest-cta { align-self: stretch; text-align: center; }
+            .reco-grid { grid-template-columns: 1fr; }
+            .grant-card { grid-template-columns: 36px 1fr; }
+            .grant-card-logo { width: 36px; height: 36px; }
+            .grant-card-right { grid-column: 1 / -1; flex-direction: row; justify-content: space-between; min-width: 0; align-items: center; padding-top: 8px; border-top: 1px solid var(--gray-100); }
+            .sort-bar { flex-direction: column; align-items: stretch; }
+            .sort-right { justify-content: space-between; }
         }
     </style>
 </head>
@@ -170,11 +330,24 @@
             </div>
         </div>
         <div class="content">
-            <div class="stats" id="stats-grid"></div>
-            <div class="card">
-                <div class="card-header"><h2>Kiemelt pályázatok</h2><span>Legmagasabb pontszám, legközelebbi határidő</span></div>
-                <div id="hot-list"></div>
+            <!-- HERO STATS -->
+            <div class="hero-stats" id="hero-stats"></div>
+
+            <!-- WEEKLY DIGEST -->
+            <div class="digest-card" id="digest-card"></div>
+
+            <!-- RECOMMENDED FOR YOU -->
+            <div class="section-head first">
+                <div>
+                    <div class="section-title-row">
+                        <div class="section-title">Neked ajánljuk</div>
+                        <span class="section-pill">Az Ön profilja alapján</span>
+                    </div>
+                    <div class="section-sub">A profiljához legjobban illeszkedő 5 pályázat — friss pontozás</div>
+                </div>
+                <a class="section-action" onclick="showPage('grants')">Összes pályázat →</a>
             </div>
+            <div class="reco-grid" id="reco-grid"></div>
         </div>
     </div>
 
@@ -183,9 +356,9 @@
         <div class="topbar">
             <h1>Pályázatok</h1>
             <div class="topbar-actions">
-                <input type="text" id="search" placeholder="Keresés..." onkeyup="filterGrants()" style="padding: 7px 12px; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 13px; width: 200px; font-family: inherit;">
+                <input type="text" id="search" placeholder="Keresés a pályázatok között..." onkeyup="filterGrants()" style="padding: 7px 12px; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 13px; width: 240px; font-family: inherit;">
                 <select id="filter-verdict" onchange="filterGrants()" style="padding: 7px 12px; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 13px; font-family: inherit;">
-                    <option value="all">Minden</option>
+                    <option value="all">Minden minősítés</option>
                     <option value="APPLY">Ajánlott</option>
                     <option value="REVIEW">Áttekintendő</option>
                     <option value="SKIP">Nem ajánlott</option>
@@ -193,9 +366,34 @@
             </div>
         </div>
         <div class="content">
-            <div class="card">
-                <div class="card-header"><h2>Összes pályázat</h2><span id="grant-count"></span></div>
-                <div id="all-list"></div>
+            <!-- CATEGORY PILLS -->
+            <div class="pills-bar" id="pills-bar"></div>
+
+            <!-- SORT BAR -->
+            <div class="sort-bar">
+                <div class="sort-left"><b id="grant-count">0</b> pályázat — <span id="grant-summary"></span></div>
+                <div class="sort-right">
+                    <span class="sort-label">Rendezés:</span>
+                    <div class="sort-buttons" id="sort-buttons">
+                        <button class="sort-btn active" data-sort="score" onclick="setSort('score')">Relevancia</button>
+                        <button class="sort-btn" data-sort="deadline" onclick="setSort('deadline')">Határidő</button>
+                        <button class="sort-btn" data-sort="amount" onclick="setSort('amount')">Összeg</button>
+                        <button class="sort-btn" data-sort="new" onclick="setSort('new')">Új először</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GRANT CARDS -->
+            <div class="grant-cards" id="all-list"></div>
+
+            <!-- EMPTY STATE -->
+            <div id="empty-state" class="empty hidden">
+                <div class="empty-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.34-4.34m0 0A7.5 7.5 0 1 0 6.06 6.06a7.5 7.5 0 0 0 10.6 10.6Z"/></svg>
+                </div>
+                <div class="empty-title">Nincs találat</div>
+                <div class="empty-text">Módosítsa a szűrőket vagy értesüljön elsőként új pályázatokról — naponta frissítjük a portfólióját.</div>
+                <button class="btn-sm primary" onclick="resetFilters()">Szűrők törlése</button>
             </div>
         </div>
     </div>
@@ -228,6 +426,17 @@
         <button class="detail-close" onclick="closeDetail()">Bezárás</button>
     </div>
     <div class="detail-body" id="detail-body"></div>
+</div>
+
+<!-- FLOATING CTA -->
+<div class="floating-cta" id="floating-cta">
+    <div class="floating-cta-text">
+        <b>Próbálja ki 14 napig ingyen</b> — heti pályázat-monitoring, AI-pontozás, Telegram értesítések.
+    </div>
+    <div class="floating-cta-actions">
+        <a href="onboarding.html" class="floating-cta-link">Regisztráció</a>
+        <button class="floating-cta-dismiss" onclick="dismissCTA()" aria-label="Elrejtés">×</button>
+    </div>
 </div>
 
 <script>
@@ -570,44 +779,335 @@ function showPage(p) {
 function vClass(v) { return v === 'APPLY' ? 'verdict-apply' : v === 'REVIEW' ? 'verdict-review' : 'verdict-skip'; }
 function vText(v) { return v === 'APPLY' ? 'Ajánlott' : v === 'REVIEW' ? 'Áttekintendő' : 'Nem ajánlott'; }
 
-function renderRow(g) {
-    return `<div class="grant-row" onclick="showDetail('${g.id}')">
-        <div><div class="grant-name">${g.title}</div><div class="grant-source">${g.source}</div></div>
-        <div class="grant-amount">${g.amount}</div>
-        <div class="grant-days ${g.days < 30 ? 'urgent' : ''}">${g.days} nap</div>
-        <div><span class="grant-cat">${g.cat}</span></div>
-        <div><span class="verdict ${vClass(g.verdict)}">${g.score}</span></div>
+/* ===== Helpers ===== */
+// Parse amount strings ("4-150M Ft", "100M-1Mrd Ft", "€0.5-2.5M", "5M Ft", "1-12 Mrd Ft", "Díj")
+// Returns max value in HUF, or 0 if unparseable.
+function parseAmount(s) {
+    if (!s || /^Díj|^Minősítés|^Hitel|hitel$/i.test(s)) return 0;
+    const isEUR = s.includes('€');
+    const huf = isEUR ? 400 : 1; // 1 EUR ≈ 400 HUF
+    // Find all numeric tokens with their multipliers
+    const matches = [...s.matchAll(/([\d.]+)\s*(Mrd|M|K)?/gi)];
+    if (!matches.length) return 0;
+    let max = 0;
+    // Look ahead to find suffix even if it appears after second number
+    const tail = s.match(/(Mrd|M|K)\s*(Ft|HUF|EUR)?\s*$/i);
+    matches.forEach((m, i) => {
+        const n = parseFloat(m[1]);
+        if (isNaN(n)) return;
+        let mult = m[2] || (tail ? tail[1] : '');
+        mult = (mult || '').toLowerCase();
+        let mv = 1;
+        if (mult === 'mrd') mv = 1e9;
+        else if (mult === 'm') mv = 1e6;
+        else if (mult === 'k') mv = 1e3;
+        const v = n * mv * huf;
+        if (v > max) max = v;
+    });
+    return max;
+}
+
+function formatFt(v) {
+    if (!v) return '0 Ft';
+    if (v >= 1e9) return (v / 1e9).toFixed(v >= 1e10 ? 0 : 1).replace('.0','') + ' Mrd Ft';
+    if (v >= 1e6) return (v / 1e6).toFixed(0) + 'M Ft';
+    return Math.round(v).toLocaleString('hu-HU') + ' Ft';
+}
+
+// Urgency tier from days remaining: 0=urgent, 1=soon, 2=watch, 3=normal
+function urgencyTier(days) {
+    if (days <= 14) return 0;
+    if (days <= 30) return 1;
+    if (days <= 60) return 2;
+    return 3;
+}
+
+function urgencyBadge(days) {
+    if (days <= 0) return '';
+    const t = urgencyTier(days);
+    if (t === 0) return `<span class="badge badge-urgent"><span class="pulse-dot"></span>Sürgős! ${days} nap</span>`;
+    if (t === 1) return `<span class="badge badge-soon">Hamarosan lejár · ${days} nap</span>`;
+    if (t === 2) return `<span class="badge badge-watch"><svg class="clock-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>${days} nap</span>`;
+    return '';
+}
+
+function isNew(g) { return g.days > 183; } // > 6 months
+
+// Deterministic colored logo from source
+function logoColor(src) {
+    const palette = ['', 'blue', 'amber', 'purple', 'pink', 'indigo'];
+    let h = 0; for (let i = 0; i < src.length; i++) h = (h * 31 + src.charCodeAt(i)) & 0xffff;
+    return palette[h % palette.length];
+}
+function logoInitials(src) {
+    if (!src) return '?';
+    const clean = src.replace(/^www\./, '').split('.')[0];
+    if (clean.length <= 3) return clean.toUpperCase();
+    // Try splitting on dashes or camel
+    const parts = clean.split(/[-_]/);
+    if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
+    return clean.slice(0, 2).toUpperCase();
+}
+
+// Application "window" progress — synthetic open-date 180 days before deadline.
+function windowProgress(days) {
+    const total = 180;
+    const elapsed = Math.max(0, Math.min(total, total - days));
+    const pct = Math.round((elapsed / total) * 100);
+    let color = '';
+    if (pct > 80) color = 'red';
+    else if (pct > 60) color = 'amber';
+    return { pct, color };
+}
+
+/* ===== Bookmarks (localStorage) ===== */
+const BOOKMARKS_KEY = 'grantpilot:bookmarks';
+let bookmarks = new Set();
+try { bookmarks = new Set(JSON.parse(localStorage.getItem(BOOKMARKS_KEY) || '[]')); } catch(e) {}
+
+function toggleBookmark(id, ev) {
+    if (ev) ev.stopPropagation();
+    if (bookmarks.has(id)) bookmarks.delete(id);
+    else bookmarks.add(id);
+    try { localStorage.setItem(BOOKMARKS_KEY, JSON.stringify([...bookmarks])); } catch(e) {}
+    // Re-render the bookmark buttons (cheap targeted update)
+    document.querySelectorAll(`[data-bm="${id}"]`).forEach(btn => {
+        btn.classList.toggle('saved', bookmarks.has(id));
+    });
+}
+
+const BOOKMARK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"/></svg>`;
+
+/* ===== Category mapping for filter pills ===== */
+const CATEGORY_MAP = {
+    'all':              { label: 'Mind',              match: () => true },
+    'digital':          { label: 'Digitalizáció',     match: g => /digit/i.test(g.cat) },
+    'energy':           { label: 'Energetika',        match: g => /energi/i.test(g.cat) },
+    'capacity':         { label: 'Kapacitásbővítés',  match: g => /kkv|telephely|kapacit/i.test(g.cat) || /telephely|kapacit|eszközbe|gépbe/i.test(g.title) },
+    'rd':               { label: 'K+F',               match: g => /kutat|innov/i.test(g.cat) },
+    'export':           { label: 'Export',            match: g => /export/i.test(g.cat) || /export|exim|külpiac/i.test(g.title) },
+    'training':         { label: 'Képzés',            match: g => /oktat|képz/i.test(g.cat) || /képz|oktatás/i.test(g.title) },
+    'agri':             { label: 'Agrár',             match: g => /mező|agrár/i.test(g.cat) || /agrár|gazda|leader/i.test(g.title) },
+    'tourism':          { label: 'Turizmus',          match: g => /turiz|turist/i.test(g.cat) || /turisztik|szálláshely|vendéglát|étterm/i.test(g.title) },
+    'eu':               { label: 'EU direkt',         match: g => /ec\.europa\.eu|eic\.|cinea|hadea|interreg|erasmus|eit\.europa/i.test(g.source) },
+    'loan':             { label: 'Hitel/Garancia',    match: g => /mfb|garantiqa|kavosz|bgazrt|exim|hiventures/i.test(g.source) || /hitel|garancia|kölcsön|kockázati tőke/i.test(g.title) }
+};
+const CATEGORY_ORDER = ['all','digital','energy','capacity','rd','export','training','agri','tourism','eu','loan'];
+
+let activeCat = 'all';
+let activeSort = 'score';
+
+function setSort(s) {
+    activeSort = s;
+    document.querySelectorAll('.sort-btn').forEach(b => b.classList.toggle('active', b.dataset.sort === s));
+    filterGrants();
+}
+
+function setCategory(c) {
+    activeCat = c;
+    document.querySelectorAll('.pill').forEach(p => p.classList.toggle('active', p.dataset.cat === c));
+    filterGrants();
+}
+
+function resetFilters() {
+    activeCat = 'all'; activeSort = 'score';
+    const search = document.getElementById('search'); if (search) search.value = '';
+    const fv = document.getElementById('filter-verdict'); if (fv) fv.value = 'all';
+    document.querySelectorAll('.pill').forEach(p => p.classList.toggle('active', p.dataset.cat === 'all'));
+    document.querySelectorAll('.sort-btn').forEach(b => b.classList.toggle('active', b.dataset.sort === 'score'));
+    filterGrants();
+}
+
+/* ===== Card renderers ===== */
+function renderReco(g) {
+    const color = logoColor(g.source);
+    const initials = logoInitials(g.source);
+    const win = windowProgress(g.days);
+    return `<div class="reco-card" onclick="showDetail('${g.id}')">
+        <div class="reco-card-head">
+            <div class="reco-logo ${color}">${initials}</div>
+            <div class="reco-card-meta">
+                <div class="reco-card-title">${g.title}</div>
+                <div class="reco-card-source">${g.source} · ${g.cat}</div>
+            </div>
+            <button class="bookmark-btn ${bookmarks.has(g.id) ? 'saved' : ''}" data-bm="${g.id}" onclick="toggleBookmark('${g.id}', event)" aria-label="Mentés">${BOOKMARK_SVG}</button>
+        </div>
+        <div>
+            <div class="reco-card-amount-label">Támogatás</div>
+            <div class="reco-card-amount">${g.amount}</div>
+        </div>
+        <div class="badge-row">
+            ${isNew(g) ? '<span class="badge badge-new">Új</span>' : ''}
+            ${urgencyBadge(g.days)}
+            <span class="badge badge-cat">${g.cat}</span>
+        </div>
+        <div class="progress-window">
+            <div class="progress-track"><div class="progress-fill ${win.color}" style="width:${win.pct}%"></div></div>
+            <div class="progress-labels"><span>Nyitva</span><span>Határidő: ${g.deadline}</span></div>
+        </div>
+        <div class="reco-card-footer">
+            <div class="reco-card-score"><span class="score-dot"></span>${g.score}/100 illeszkedés</div>
+            <span class="verdict ${vClass(g.verdict)}">${vText(g.verdict)}</span>
+        </div>
     </div>`;
 }
 
+function renderCard(g) {
+    const color = logoColor(g.source);
+    const initials = logoInitials(g.source);
+    const newBadge = isNew(g) ? '<span class="badge badge-new">Új</span>' : '';
+    const urgBadge = urgencyBadge(g.days);
+    return `<div class="grant-card" onclick="showDetail('${g.id}')">
+        <div class="grant-card-logo ${color}">${initials}</div>
+        <div class="grant-card-body">
+            <div class="grant-card-title">${g.title}</div>
+            <div class="grant-card-meta">
+                <span>${g.source}</span>
+                <span class="dot-sep"></span>
+                <span class="badge badge-cat">${g.cat}</span>
+                ${newBadge}
+                ${urgBadge}
+            </div>
+        </div>
+        <div class="grant-card-right">
+            <div class="grant-card-amount">${g.amount}</div>
+            <div class="grant-card-actions">
+                <span class="verdict ${vClass(g.verdict)}">${g.score}</span>
+                <button class="bookmark-btn ${bookmarks.has(g.id) ? 'saved' : ''}" data-bm="${g.id}" onclick="toggleBookmark('${g.id}', event)" aria-label="Mentés">${BOOKMARK_SVG}</button>
+            </div>
+        </div>
+    </div>`;
+}
+
+/* ===== Animated counters ===== */
+function animateCounter(el, target, opts) {
+    const o = opts || {};
+    const duration = o.duration || 900;
+    const start = performance.now();
+    const startVal = 0;
+    const format = o.format || (v => Math.round(v).toString());
+    function step(now) {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = format(startVal + (target - startVal) * eased);
+        if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+}
+
+/* ===== Dashboard ===== */
 function initDashboard() {
-    const apply = G.filter(g => g.verdict === 'APPLY').length;
-    const review = G.filter(g => g.verdict === 'REVIEW').length;
-    const skip = G.filter(g => g.verdict === 'SKIP').length;
-    document.getElementById('stats-grid').innerHTML = `
-        <div class="stat"><div class="stat-label">Összes pályázat</div><div class="stat-value">${G.length}</div><div class="stat-sub">+5 az elmúlt héten</div></div>
-        <div class="stat"><div class="stat-label">Ajánlott</div><div class="stat-value" style="color: var(--green-600);">${apply}</div><div class="stat-sub">Azonnali teendő</div></div>
-        <div class="stat"><div class="stat-label">Áttekintendő</div><div class="stat-value" style="color: var(--amber-600);">${review}</div><div class="stat-sub">Jogosultsági ellenőrzés</div></div>
-        <div class="stat"><div class="stat-label">Kiszűrve</div><div class="stat-value" style="color: var(--gray-400);">${skip}</div><div class="stat-sub">Nem releváns</div></div>
+    const today = new Date();
+    const totalActive = G.length;
+    const relevant = G.filter(g => g.score > 60).length;
+    const totalFunding = G.reduce((s, g) => s + parseAmount(g.amount), 0);
+    const expiringThisMonth = G.filter(g => {
+        const d = new Date(g.deadline);
+        return d.getFullYear() === today.getFullYear() && d.getMonth() === today.getMonth() && d >= today;
+    }).length;
+
+    document.getElementById('hero-stats').innerHTML = `
+        <div class="hero-stat">
+            <div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg></div>
+            <div class="hero-stat-label">Aktív pályázatok</div>
+            <div class="hero-stat-value" data-counter="total">0</div>
+            <div class="hero-stat-sub">Folyamatos monitoring</div>
+        </div>
+        <div class="hero-stat blue">
+            <div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
+            <div class="hero-stat-label">Önnek releváns</div>
+            <div class="hero-stat-value" data-counter="relevant" style="color: var(--blue-600);">0</div>
+            <div class="hero-stat-sub">Illeszkedési pontszám &gt; 60</div>
+        </div>
+        <div class="hero-stat">
+            <div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4"/></svg></div>
+            <div class="hero-stat-label">Elérhető keret</div>
+            <div class="hero-stat-value" data-counter="funding">0</div>
+            <div class="hero-stat-sub">Összes pályázat keretösszege</div>
+        </div>
+        <div class="hero-stat ${expiringThisMonth > 0 ? 'red' : 'amber'}">
+            <div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
+            <div class="hero-stat-label">Ebben a hónapban lejár</div>
+            <div class="hero-stat-value" data-counter="expiring" style="color: ${expiringThisMonth > 0 ? 'var(--red-600)' : 'var(--amber-600)'};">0</div>
+            <div class="hero-stat-sub">Sürgős figyelmet igényel</div>
+        </div>
     `;
-    document.getElementById('hot-list').innerHTML = G.filter(g => g.score >= 85).sort((a,b) => a.days - b.days).slice(0, 5).map(renderRow).join('');
+    animateCounter(document.querySelector('[data-counter="total"]'), totalActive);
+    animateCounter(document.querySelector('[data-counter="relevant"]'), relevant);
+    animateCounter(document.querySelector('[data-counter="funding"]'), totalFunding, { format: formatFt, duration: 1200 });
+    animateCounter(document.querySelector('[data-counter="expiring"]'), expiringThisMonth);
+
+    // Weekly digest — "this week" is a curated demo number (3); closing-soon is computed.
+    const closingSoon = Math.max(2, G.filter(g => g.days > 0 && g.days <= 30).length);
+    document.getElementById('digest-card').innerHTML = `
+        <div class="digest-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+        </div>
+        <div class="digest-body">
+            <div class="digest-title">Heti összefoglaló — 2026. 19. hét</div>
+            <div class="digest-items">
+                <span class="digest-item"><span class="digest-item-dot"></span><b style="color:var(--gray-900);font-weight:700;">3</b>&nbsp;új pályázat ezen a héten</span>
+                <span class="digest-item"><span class="digest-item-dot amber"></span><b style="color:var(--gray-900);font-weight:700;">${closingSoon}</b>&nbsp;pályázat határideje közeledik</span>
+                <span class="digest-item">📩 Telegram értesítés beállítva ✓</span>
+            </div>
+        </div>
+        <button class="digest-cta" onclick="showPage('alerts')">Részletek →</button>
+    `;
+
+    // Recommended top 5
+    const top = [...G].sort((a, b) => b.score - a.score || a.days - b.days).slice(0, 5);
+    document.getElementById('reco-grid').innerHTML = top.map(renderReco).join('');
+}
+
+/* ===== Grants page ===== */
+function renderPills() {
+    document.getElementById('pills-bar').innerHTML = CATEGORY_ORDER.map(key => {
+        const def = CATEGORY_MAP[key];
+        const count = key === 'all' ? G.length : G.filter(def.match).length;
+        return `<button class="pill ${key === activeCat ? 'active' : ''}" data-cat="${key}" onclick="setCategory('${key}')">${def.label}<span class="pill-count">${count}</span></button>`;
+    }).join('');
+}
+
+function getFilteredGrants() {
+    const s = (document.getElementById('search') || {}).value || '';
+    const v = (document.getElementById('filter-verdict') || {}).value || 'all';
+    const sl = s.toLowerCase();
+    const catDef = CATEGORY_MAP[activeCat];
+    let f = G.filter(g => {
+        if (sl && !(g.title.toLowerCase().includes(sl) || g.cat.toLowerCase().includes(sl) || g.source.toLowerCase().includes(sl))) return false;
+        if (v !== 'all' && g.verdict !== v) return false;
+        if (catDef && !catDef.match(g)) return false;
+        return true;
+    });
+    if (activeSort === 'score') f.sort((a,b) => b.score - a.score || a.days - b.days);
+    else if (activeSort === 'deadline') f.sort((a,b) => a.days - b.days);
+    else if (activeSort === 'amount') f.sort((a,b) => parseAmount(b.amount) - parseAmount(a.amount));
+    else if (activeSort === 'new') f.sort((a,b) => b.days - a.days);
+    return f;
 }
 
 function initGrants() {
-    document.getElementById('all-list').innerHTML = G.map(renderRow).join('');
-    document.getElementById('grant-count').textContent = `${G.length} pályázat`;
+    renderPills();
+    filterGrants();
 }
 
 function filterGrants() {
-    const s = document.getElementById('search').value.toLowerCase();
-    const v = document.getElementById('filter-verdict').value;
-    const f = G.filter(g => {
-        if (s && !g.title.toLowerCase().includes(s)) return false;
-        if (v !== 'all' && g.verdict !== v) return false;
-        return true;
-    });
-    document.getElementById('all-list').innerHTML = f.map(renderRow).join('');
-    document.getElementById('grant-count').textContent = `${f.length} pályázat`;
+    if (!document.getElementById('pills-bar').children.length) renderPills();
+    const f = getFilteredGrants();
+    const list = document.getElementById('all-list');
+    const empty = document.getElementById('empty-state');
+    if (f.length === 0) {
+        list.innerHTML = '';
+        list.classList.add('hidden');
+        empty.classList.remove('hidden');
+    } else {
+        list.classList.remove('hidden');
+        empty.classList.add('hidden');
+        list.innerHTML = f.map(renderCard).join('');
+    }
+    const totalFunding = f.reduce((s, g) => s + parseAmount(g.amount), 0);
+    document.getElementById('grant-count').textContent = f.length;
+    document.getElementById('grant-summary').textContent = totalFunding > 0 ? `${formatFt(totalFunding)} elérhető keret` : 'a kiválasztott szűrőkkel';
     document.getElementById('nav-count').textContent = f.length;
 }
 
@@ -737,9 +1237,20 @@ function exportCSV() {
     const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download = 'grantpilot-export.csv'; a.click();
 }
 
+/* ===== Floating CTA ===== */
+function dismissCTA() {
+    document.getElementById('floating-cta').classList.remove('show');
+    try { localStorage.setItem('grantpilot:cta-dismissed', '1'); } catch(e) {}
+}
+function maybeShowCTA() {
+    try { if (localStorage.getItem('grantpilot:cta-dismissed') === '1') return; } catch(e) {}
+    setTimeout(() => document.getElementById('floating-cta').classList.add('show'), 1200);
+}
+
 // Init
 document.getElementById('nav-count').textContent = G.length;
 initDashboard();
+maybeShowCTA();
 </script>
 </body>
 </html>
