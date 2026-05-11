@@ -213,10 +213,10 @@
             <div class="field">
                 <label>Értesítési csatorna <span class="req">*</span></label>
                 <div class="checkbox-grid">
-                    <label class="checkbox-item"><input type="checkbox" value="telegram" checked> Telegram (ajánlott)</label>
-                    <label class="checkbox-item"><input type="checkbox" value="email" checked> E-mail</label>
+                    <label class="checkbox-item"><input type="checkbox" value="email" checked> E-mail (azonnali)</label>
+                    <label class="checkbox-item"><input type="checkbox" value="weekly" checked> Heti összefoglaló</label>
                 </div>
-                <div class="hint">A Telegram-on azonnali értesítést kap. E-mailen heti összefoglalót.</div>
+                <div class="hint">E-mailen kap azonnali értesítést új releváns pályázatokról, és hetente egy összefoglaló e-mailt.</div>
             </div>
 
             <div class="form-actions">
@@ -230,7 +230,7 @@
             <div class="success-card">
                 <div class="success-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg></div>
                 <h2>Regisztráció sikeres!</h2>
-                <p>24 órán belül elkészítjük az Ön személyre szabott pályázatfigyelő profilját. Az első értesítést Telegram-on vagy e-mailen kapja.</p>
+                <p>24 órán belül elkészítjük az Ön személyre szabott pályázatfigyelő profilját. Az első értesítést e-mailen kapja.</p>
                 <a href="portal.html" class="btn btn-primary" style="display: inline-block; text-decoration: none;">Demo áttekintő megtekintése</a>
             </div>
         </div>
@@ -261,13 +261,17 @@ function submitForm() {
         if (!document.getElementById('f_email').value) document.getElementById('f_email').style.borderColor = '#dc2626';
         return;
     }
+    // Separate interest categories (step 2) from notification channels (step 3)
+    const interestCategories = [...document.querySelectorAll('#step-2 .checkbox-grid input:checked')].map(c => c.value);
+    const channels = [...document.querySelectorAll('#step-3 .checkbox-grid input:checked')].map(c => c.value);
     const data = {
         company: document.getElementById('f_company').value,
         industry: document.getElementById('f_industry').value,
         employees: document.getElementById('f_employees').value,
         revenue: document.getElementById('f_revenue').value,
         location: document.getElementById('f_location').value,
-        categories: [...document.querySelectorAll('.checkbox-grid input:checked')].map(c => c.value),
+        categories: interestCategories,
+        channels: channels,
         past_grants: document.getElementById('f_past').value,
         notes: document.getElementById('f_notes').value,
         contact_name: document.getElementById('f_name').value,
@@ -275,6 +279,7 @@ function submitForm() {
         phone: document.getElementById('f_phone').value,
         submitted: new Date().toISOString()
     };
+    try { localStorage.setItem('grantpilot:profile', JSON.stringify(data)); } catch(e) {}
     console.log('Registration:', JSON.stringify(data, null, 2));
     // In production: POST to Airtable or Supabase
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));

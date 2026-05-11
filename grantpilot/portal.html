@@ -233,6 +233,13 @@
 
         /* ===== WEEKLY DIGEST ===== */
         .digest-card { background: linear-gradient(135deg, #f0fdf4 0%, white 60%); border: 1px solid var(--green-100); border-radius: var(--radius-lg); padding: 20px 24px; margin-bottom: 24px; display: flex; gap: 20px; align-items: center; }
+        .profile-banner { display: flex; align-items: center; gap: 14px; background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius-lg); padding: 14px 18px; margin-bottom: 20px; text-decoration: none; color: var(--gray-800); transition: all 0.15s; }
+        .profile-banner:hover { background: #fef3c7; border-color: #fcd34d; }
+        .profile-banner-icon { font-size: 20px; flex-shrink: 0; }
+        .profile-banner-text { flex: 1; display: flex; flex-direction: column; gap: 2px; font-size: 13px; }
+        .profile-banner-text b { color: var(--gray-900); font-weight: 700; }
+        .profile-banner-sub { color: var(--gray-500); font-size: 12px; }
+        .profile-banner-cta { font-size: 13px; font-weight: 600; color: #92400e; white-space: nowrap; }
         .digest-icon { width: 48px; height: 48px; border-radius: 12px; background: white; border: 1px solid var(--green-200); color: var(--green-700); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .digest-icon svg { width: 22px; height: 22px; }
         .digest-body { flex: 1; }
@@ -333,6 +340,16 @@
             <!-- HERO STATS -->
             <div class="hero-stats" id="hero-stats"></div>
 
+            <!-- PROFILE BANNER (shown when no onboarding profile is in localStorage) -->
+            <a href="onboarding.html" id="profile-banner" class="profile-banner" style="display:none;">
+                <span class="profile-banner-icon">✨</span>
+                <span class="profile-banner-text">
+                    <b>Töltse ki a profilját a személyre szabott ajánlatokért</b>
+                    <span class="profile-banner-sub">Iparág, cégméret és lokáció alapján rangsoroljuk a pályázatokat</span>
+                </span>
+                <span class="profile-banner-cta">Profil kitöltése →</span>
+            </a>
+
             <!-- WEEKLY DIGEST -->
             <div class="digest-card" id="digest-card"></div>
 
@@ -341,9 +358,10 @@
                 <div>
                     <div class="section-title-row">
                         <div class="section-title">Neked ajánljuk</div>
-                        <span class="section-pill">Az Ön profilja alapján</span>
+                        <span class="section-pill" id="reco-section-pill">Az Ön profilja alapján</span>
+                        <span id="expired-dashboard-note" style="display:none; margin-left:8px; font-size:11px; color:var(--gray-400); align-items:center; gap:4px;"></span>
                     </div>
-                    <div class="section-sub">A profiljához legjobban illeszkedő 5 pályázat — friss pontozás</div>
+                    <div class="section-sub" id="reco-section-sub">A profiljához legjobban illeszkedő 5 pályázat — friss pontozás</div>
                 </div>
                 <a class="section-action" onclick="showPage('grants')">Összes pályázat →</a>
             </div>
@@ -371,7 +389,7 @@
 
             <!-- SORT BAR -->
             <div class="sort-bar">
-                <div class="sort-left"><b id="grant-count">0</b> pályázat — <span id="grant-summary"></span></div>
+                <div class="sort-left"><b id="grant-count">0</b> pályázat — <span id="grant-summary"></span><span id="expired-note" style="display:none; margin-left:8px; font-size:12px; color:var(--gray-400);"></span></div>
                 <div class="sort-right">
                     <span class="sort-label">Rendezés:</span>
                     <div class="sort-buttons" id="sort-buttons">
@@ -431,7 +449,7 @@
 <!-- FLOATING CTA -->
 <div class="floating-cta" id="floating-cta">
     <div class="floating-cta-text">
-        <b>Próbálja ki 14 napig ingyen</b> — heti pályázat-monitoring, AI-pontozás, Telegram értesítések.
+        <b>Próbálja ki 14 napig ingyen</b> — heti pályázat-monitoring, AI-pontozás, e-mail értesítések.
     </div>
     <div class="floating-cta-actions">
         <a href="onboarding.html" class="floating-cta-link">Regisztráció</a>
@@ -745,14 +763,23 @@ const G = [
 
 G.forEach(g => {
     try {
-        const dl = new Date(g.deadline);
-        const now = new Date();
-        g.days = Math.max(0, Math.ceil((dl - now) / (1000*60*60*24)));
-    } catch(e) { g.days = 90; }
+        const dl = new Date(g.deadline); dl.setHours(0,0,0,0);
+        const now = new Date(); now.setHours(0,0,0,0);
+        const delta = Math.ceil((dl - now) / (1000*60*60*24));
+        g.expired = delta < 0;
+        g.days = Math.max(0, delta);
+    } catch(e) { g.days = 90; g.expired = false; }
     const f = g.factors;
     g.score = Math.round((f.size*25 + f.industry*25 + f.location*20 + f.deadline*15 + f.preference*15) / 100 * 10) / 10;
     g.verdict = g.score >= 80 ? 'APPLY' : g.score >= 60 ? 'REVIEW' : 'SKIP';
 });
+
+// Auto-hide expired grants: keep them out of G so all stats, filters and
+// pagination reflect only active opportunities. The count is surfaced in the UI.
+let EXPIRED_COUNT = 0;
+for (let i = G.length - 1; i >= 0; i--) {
+    if (G[i].expired) { EXPIRED_COUNT++; G.splice(i, 1); }
+}
 
 const ALERTS = [
     {color:"green",title:"Kiemelt: AI és automatizáció pályázat (97.3 pont)",text:"G-017 tökéletesen illeszkedik profiljához. Határidő: 2026-08-20. Javasolt: azonnali pályázatkészítés.",time:"Ma, 08:15"},
@@ -763,6 +790,62 @@ const ALERTS = [
 ];
 
 let currentPage = 'dashboard';
+
+/* ===== User profile (from onboarding) ===== */
+function getUserProfile() {
+    try {
+        const raw = localStorage.getItem('grantpilot:profile');
+        return raw ? JSON.parse(raw) : null;
+    } catch(e) { return null; }
+}
+
+// Map onboarding industry codes to keyword regex on grant cat + title.
+const INDUSTRY_KEYWORDS = {
+    'IT':           /digit|innov|kutat|szoftver|informatik|adat/i,
+    'HVAC':         /energi|épít|hvac|gépész|fűt/i,
+    'Construction': /épít|kapacit|telephely|infrastruktúr/i,
+    'Manufacturing':/gyárt|kapacit|innov|ipar|eszközbe|gépbe/i,
+    'Healthcare':   /egészség|innov|orvos/i,
+    'Restaurant':   /vendég|turiz|étterm|gasztron/i,
+    'Tourism':      /turiz|szálláshely|vendég/i,
+    'Agriculture':  /mező|agrár|gazda|leader|élelmiszer/i,
+    'Retail':       /kkv|kapacit|kereskede/i,
+    'Education':    /oktat|képz/i,
+    'General':      /kkv/i
+};
+
+// Map onboarding employee buckets to a "company size" preference window.
+// Returns a boost based on how well the grant's size factor matches the user.
+function sizeBoost(g, employees) {
+    if (!employees) return 0;
+    const f = (g.factors && g.factors.size) || 0;
+    // Smaller companies → grants tailored to micro/small (high size factor) help most.
+    const small = ['1-5','6-10','11-25'].includes(employees);
+    const large = ['51-100','100+'].includes(employees);
+    if (small && f >= 80) return 4;
+    if (large && f <= 60) return 4;
+    return 0;
+}
+
+function profileBoost(g, profile) {
+    if (!profile) return 0;
+    let boost = 0;
+    if (Array.isArray(profile.categories) && profile.categories.length) {
+        if (profile.categories.includes(g.cat)) boost += 12;
+    }
+    if (profile.industry && INDUSTRY_KEYWORDS[profile.industry]) {
+        if (INDUSTRY_KEYWORDS[profile.industry].test((g.cat || '') + ' ' + (g.title || ''))) boost += 8;
+    }
+    if (profile.location) {
+        try {
+            const loc = profile.location.trim();
+            if (loc && new RegExp(loc.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i').test((g.title || '') + ' ' + (g.cat || ''))) {
+                boost += 5;
+            }
+        } catch(e) {}
+    }
+    return boost + sizeBoost(g, profile.employees);
+}
 
 function showPage(p) {
     currentPage = p;
@@ -1048,15 +1131,45 @@ function initDashboard() {
             <div class="digest-items">
                 <span class="digest-item"><span class="digest-item-dot"></span><b style="color:var(--gray-900);font-weight:700;">3</b>&nbsp;új pályázat ezen a héten</span>
                 <span class="digest-item"><span class="digest-item-dot amber"></span><b style="color:var(--gray-900);font-weight:700;">${closingSoon}</b>&nbsp;pályázat határideje közeledik</span>
-                <span class="digest-item">📩 Telegram értesítés beállítva ✓</span>
+                <span class="digest-item">📩 E-mail értesítés beállítva ✓</span>
             </div>
         </div>
         <button class="digest-cta" onclick="showPage('alerts')">Részletek →</button>
     `;
 
-    // Recommended top 5
-    const top = [...G].sort((a, b) => b.score - a.score || a.days - b.days).slice(0, 5);
+    // Recommended top 5 — personalized when onboarding profile is present.
+    const profile = getUserProfile();
+    const top = [...G].sort((a, b) => {
+        const sa = a.score + profileBoost(a, profile);
+        const sb = b.score + profileBoost(b, profile);
+        return sb - sa || a.days - b.days;
+    }).slice(0, 5);
     document.getElementById('reco-grid').innerHTML = top.map(renderReco).join('');
+
+    // Personalization status: subtitle + banner when no profile is found.
+    const recoPill = document.getElementById('reco-section-pill');
+    const recoSub = document.getElementById('reco-section-sub');
+    if (recoPill && recoSub) {
+        if (profile) {
+            const who = profile.company ? profile.company : 'az Ön profilja';
+            recoPill.textContent = `Személyre szabva: ${who}`;
+            recoSub.textContent = 'Iparág, méret és lokáció alapján rangsorolt 5 pályázat';
+        } else {
+            recoPill.textContent = 'Demo profil alapján';
+            recoSub.textContent = 'A profiljához legjobban illeszkedő 5 pályázat — friss pontozás';
+        }
+    }
+    const banner = document.getElementById('profile-banner');
+    if (banner) banner.style.display = profile ? 'none' : 'flex';
+    const expBanner = document.getElementById('expired-dashboard-note');
+    if (expBanner) {
+        if (EXPIRED_COUNT > 0) {
+            expBanner.textContent = `${EXPIRED_COUNT} lejárt pályázat elrejtve`;
+            expBanner.style.display = 'inline-flex';
+        } else {
+            expBanner.style.display = 'none';
+        }
+    }
 }
 
 /* ===== Grants page ===== */
@@ -1109,6 +1222,15 @@ function filterGrants() {
     document.getElementById('grant-count').textContent = f.length;
     document.getElementById('grant-summary').textContent = totalFunding > 0 ? `${formatFt(totalFunding)} elérhető keret` : 'a kiválasztott szűrőkkel';
     document.getElementById('nav-count').textContent = f.length;
+    const en = document.getElementById('expired-note');
+    if (en) {
+        if (EXPIRED_COUNT > 0) {
+            en.textContent = `· ${EXPIRED_COUNT} lejárt pályázat elrejtve`;
+            en.style.display = 'inline';
+        } else {
+            en.style.display = 'none';
+        }
+    }
 }
 
 function showDetail(id) {
@@ -1161,16 +1283,16 @@ function showDetail(id) {
             </div>
         </div>` : ''}
         <div class="detail-section">
-            <h3>Telegram értesítés előnézet</h3>
-            <div style="background: #1a2332; color: #e8e8e8; border-radius: 12px; padding: 16px; font-size: 12px; line-height: 1.6; font-family: -apple-system, sans-serif;">
-                <div style="color: #5eabed; font-weight: 600; margin-bottom: 8px;">🎯 GrantPilot</div>
-                <div style="font-weight: 600; margin-bottom: 6px;">${g.title.slice(0, 60)}</div>
-                <div style="color: #8e9ba8;">📊 Pontszám: ${g.score}/100 | ${vText(g.verdict)}</div>
-                <div style="color: #8e9ba8;">💰 ${g.amount} | 📅 ${g.deadline}</div>
-                <div style="color: #8e9ba8;">📂 ${g.cat}</div>
-                <div style="margin-top: 8px; color: #8e9ba8; font-style: italic; font-size: 11px;">${g.verdict === 'APPLY' ? 'Javasolt: azonnali pályázatkészítés.' : g.verdict === 'REVIEW' ? 'Érdemes áttekinteni.' : 'Nem ajánlott.'}</div>
+            <h3>E-mail értesítés előnézet</h3>
+            <div style="background: #ffffff; color: var(--gray-800); border: 1px solid var(--gray-200); border-radius: 12px; padding: 16px; font-size: 12px; line-height: 1.6; font-family: -apple-system, sans-serif;">
+                <div style="font-size: 11px; color: var(--gray-400); margin-bottom: 8px;">Feladó: GrantPilot &lt;ertesites@grantpilot.hu&gt;</div>
+                <div style="font-weight: 700; color: var(--green-700); margin-bottom: 8px;">🎯 Új releváns pályázat — ${g.score}/100</div>
+                <div style="font-weight: 600; margin-bottom: 6px;">${g.title.slice(0, 80)}</div>
+                <div style="color: var(--gray-600);">📊 ${vText(g.verdict)} · 💰 ${g.amount} · 📅 ${g.deadline}</div>
+                <div style="color: var(--gray-600);">📂 ${g.cat}</div>
+                <div style="margin-top: 8px; color: var(--gray-500); font-style: italic; font-size: 11px;">${g.verdict === 'APPLY' ? 'Javasolt: azonnali pályázatkészítés.' : g.verdict === 'REVIEW' ? 'Érdemes áttekinteni.' : 'Nem ajánlott.'}</div>
             </div>
-            <div style="font-size: 11px; color: var(--gray-400); margin-top: 6px;">Így néz ki az értesítés a Telegram-on</div>
+            <div style="font-size: 11px; color: var(--gray-400); margin-top: 6px;">Így néz ki az értesítő e-mail</div>
         </div>
         <div style="margin-top: 20px; display: flex; gap: 8px;">
             <button class="btn-sm primary" style="flex: 1;" onclick="closeDetail()">Pályázatíró ajánlás kérése</button>
