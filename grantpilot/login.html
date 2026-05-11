@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrantPilot — Bejelentkezés</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --green-50: #f0fdf4; --green-100: #dcfce7; --green-200: #bbf7d0; --green-500: #22c55e; --green-600: #16a34a; --green-700: #15803d; --green-800: #166534;
+            --red-50: #fef2f2; --red-100: #fee2e2; --red-600: #dc2626; --red-700: #b91c1c;
+            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
+            --radius: 8px; --radius-lg: 12px;
+        }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-900);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .bg-decor {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(34, 197, 94, 0.08), transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(34, 197, 94, 0.06), transparent 45%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 40px 36px 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
+        }
+        .logo-area {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .logo-mark {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--green-500), var(--green-700));
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            box-shadow: 0 6px 14px rgba(22, 163, 74, 0.25);
+        }
+        .logo-mark svg { width: 28px; height: 28px; color: white; }
+        .logo-text { font-size: 22px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.5px; }
+        .logo-text span { color: var(--green-600); }
+        .logo-sub { font-size: 13px; color: var(--gray-500); margin-top: 6px; }
+
+        h1 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+        .subtitle {
+            font-size: 13px;
+            color: var(--gray-500);
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .form-group { margin-bottom: 16px; }
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 6px;
+        }
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--gray-900);
+            background: white;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+        input[type="email"]:focus, input[type="password"]:focus {
+            outline: none;
+            border-color: var(--green-500);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
+        }
+
+        .row-helper {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: -8px;
+            margin-bottom: 20px;
+        }
+        .forgot-link {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--green-700);
+            text-decoration: none;
+        }
+        .forgot-link:hover { text-decoration: underline; }
+
+        button.btn-login {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--green-600);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.15s;
+        }
+        button.btn-login:hover { background: var(--green-700); }
+        button.btn-login:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .error-msg {
+            display: none;
+            margin-bottom: 16px;
+            padding: 10px 14px;
+            background: var(--red-50);
+            border: 1px solid var(--red-100);
+            border-radius: var(--radius);
+            color: var(--red-700);
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .error-msg.show { display: block; }
+
+        .demo-hint {
+            margin-top: 20px;
+            padding: 12px 14px;
+            background: var(--green-50);
+            border: 1px solid var(--green-100);
+            border-radius: var(--radius);
+            font-size: 12px;
+            color: var(--green-800);
+            line-height: 1.5;
+        }
+        .demo-hint b { font-weight: 700; }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: var(--gray-400);
+            position: relative;
+            z-index: 1;
+        }
+        footer a { color: var(--gray-500); text-decoration: none; }
+        footer a:hover { color: var(--gray-700); }
+
+        @media (max-width: 480px) {
+            .login-card { padding: 32px 24px 24px; }
+        }
+    </style>
+</head>
+<body>
+<div class="bg-decor"></div>
+
+<div class="container">
+    <div class="login-card">
+        <div class="logo-area">
+            <div class="logo-mark">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                </svg>
+            </div>
+            <div class="logo-text">Grant<span>Pilot</span></div>
+            <div class="logo-sub">Pályázati ügyfélportál</div>
+        </div>
+
+        <h1>Bejelentkezés</h1>
+        <div class="subtitle">Adja meg az ügyfélfiókja adatait a folytatáshoz</div>
+
+        <div class="error-msg" id="error-msg">Hibás e-mail cím vagy jelszó.</div>
+
+        <form id="login-form" autocomplete="on">
+            <div class="form-group">
+                <label for="email">E-mail cím</label>
+                <input type="email" id="email" name="email" required autocomplete="email" placeholder="on@vallalkozas.hu">
+            </div>
+            <div class="form-group">
+                <label for="password">Jelszó</label>
+                <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="••••••••">
+            </div>
+            <div class="row-helper">
+                <a href="mailto:info@grantpilot.hu?subject=Elfelejtett%20jelsz%C3%B3" class="forgot-link">Elfelejtette jelszavát?</a>
+            </div>
+            <button type="submit" class="btn-login" id="login-btn">Bejelentkezés</button>
+        </form>
+
+        <div class="demo-hint">
+            <b>Demo hozzáférés:</b> demo@grantpilot.hu / grantpilot2026
+        </div>
+    </div>
+</div>
+
+<footer>
+    © 2026 GrantPilot · <a href="mailto:info@grantpilot.hu">info@grantpilot.hu</a>
+</footer>
+
+<script>
+const VALID_HASHES = {
+    "f3f55fa2faf350d21e349bba3b95f98dc8c1618d049ea017847d3349f23fe4e1": "demo@grantpilot.hu",
+    "22f50201b31123f95632f69e9418f6c32c94064f8fa8805631626645a656db00": "pilot@grantpilot.hu"
+};
+
+async function sha256Hex(text) {
+    const buf = new TextEncoder().encode(text);
+    const hash = await crypto.subtle.digest("SHA-256", buf);
+    return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+function genToken() {
+    const arr = new Uint8Array(24);
+    crypto.getRandomValues(arr);
+    return Array.from(arr).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+if (sessionStorage.getItem("gp_auth_token")) {
+    window.location.replace("portal.html");
+}
+
+const form = document.getElementById("login-form");
+const errorEl = document.getElementById("error-msg");
+const btn = document.getElementById("login-btn");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errorEl.classList.remove("show");
+    btn.disabled = true;
+    btn.textContent = "Bejelentkezés...";
+
+    const email = document.getElementById("email").value.trim().toLowerCase();
+    const password = document.getElementById("password").value;
+    const hash = await sha256Hex(email + ":" + password);
+
+    if (VALID_HASHES[hash] === email) {
+        sessionStorage.setItem("gp_auth_token", genToken());
+        sessionStorage.setItem("gp_user_email", email);
+        sessionStorage.setItem("gp_auth_time", Date.now().toString());
+        window.location.replace("portal.html");
+    } else {
+        errorEl.classList.add("show");
+        btn.disabled = false;
+        btn.textContent = "Bejelentkezés";
+        document.getElementById("password").value = "";
+        document.getElementById("password").focus();
+    }
+});
+</script>
+</body>
+</html>

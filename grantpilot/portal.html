@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GrantPilot — Áttekintés</title>
+    <script>
+        if (!sessionStorage.getItem("gp_auth_token")) {
+            window.location.replace("login.html");
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -43,6 +48,17 @@
         .btn-sm.primary { background: var(--green-600); color: white; border-color: var(--green-600); }
         .btn-sm.primary:hover { background: var(--green-700); }
         .btn-sm:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* AUTH / USER WIDGET */
+        .topbar-user { display: flex; align-items: center; gap: 10px; padding-left: 12px; margin-left: 4px; border-left: 1px solid var(--gray-200); }
+        .topbar-user-email { font-size: 12px; color: var(--gray-500); white-space: nowrap; }
+        .topbar-user-email b { font-weight: 600; color: var(--gray-800); }
+        .btn-logout { padding: 6px 12px; font-size: 12px; font-weight: 600; border-radius: 6px; border: 1px solid var(--gray-300); background: white; color: var(--gray-600); cursor: pointer; font-family: inherit; transition: all 0.1s; }
+        .btn-logout:hover { background: var(--red-50); border-color: var(--red-100); color: var(--red-600); }
+        @media (max-width: 720px) {
+            .topbar-user-email { display: none; }
+            .topbar-user { padding-left: 8px; border-left: none; }
+        }
 
         .content { padding: 24px 32px; }
 
@@ -1369,8 +1385,33 @@ function maybeShowCTA() {
     setTimeout(() => document.getElementById('floating-cta').classList.add('show'), 1200);
 }
 
+// Auth: user widget + logout
+function logout() {
+    sessionStorage.removeItem('gp_auth_token');
+    sessionStorage.removeItem('gp_user_email');
+    sessionStorage.removeItem('gp_auth_time');
+    window.location.replace('login.html');
+}
+
+function mountUserWidget() {
+    const email = sessionStorage.getItem('gp_user_email') || '';
+    document.querySelectorAll('.topbar').forEach(tb => {
+        let actions = tb.querySelector('.topbar-actions');
+        if (!actions) {
+            actions = document.createElement('div');
+            actions.className = 'topbar-actions';
+            tb.appendChild(actions);
+        }
+        const widget = document.createElement('div');
+        widget.className = 'topbar-user';
+        widget.innerHTML = `<span class="topbar-user-email">Bejelentkezve: <b>${email}</b></span><button class="btn-logout" onclick="logout()">Kijelentkezés</button>`;
+        actions.appendChild(widget);
+    });
+}
+
 // Init
 document.getElementById('nav-count').textContent = G.length;
+mountUserWidget();
 initDashboard();
 maybeShowCTA();
 </script>
