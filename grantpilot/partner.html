@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrantPilot — Pályázatíró Partner Program</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --green-50: #f0fdf4; --green-100: #dcfce7; --green-200: #bbf7d0; --green-500: #22c55e; --green-600: #16a34a; --green-700: #15803d; --green-800: #166534;
+            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
+            --radius: 8px; --radius-lg: 12px; --radius-xl: 16px;
+        }
+        body { font-family: 'Inter', -apple-system, sans-serif; color: var(--gray-900); background: white; -webkit-font-smoothing: antialiased; line-height: 1.5; }
+        a { color: var(--green-600); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--gray-200); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-size: 20px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.5px; }
+        .nav-logo span { color: var(--green-600); }
+        .nav-links { display: flex; gap: 28px; align-items: center; }
+        .nav-links a { color: var(--gray-600); font-size: 14px; font-weight: 500; }
+        .nav-links a:hover { color: var(--gray-900); text-decoration: none; }
+        .nav-cta { background: var(--green-600); color: white !important; padding: 8px 18px; border-radius: var(--radius); font-weight: 600; font-size: 14px; }
+        .nav-cta:hover { background: var(--green-700); text-decoration: none !important; }
+
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: var(--radius); font-size: 15px; font-weight: 600; border: none; cursor: pointer; transition: all 0.15s; text-decoration: none; }
+        .btn-primary { background: var(--green-600); color: white; }
+        .btn-primary:hover { background: var(--green-700); text-decoration: none; }
+        .btn-secondary { background: white; color: var(--gray-700); border: 1px solid var(--gray-300); }
+        .btn-secondary:hover { background: var(--gray-50); text-decoration: none; }
+
+        /* HERO */
+        .hero { padding: 140px 24px 80px; text-align: center; background: linear-gradient(180deg, white 0%, var(--green-50) 100%); }
+        .hero-badge { display: inline-block; background: var(--green-100); color: var(--green-800); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 24px; }
+        .hero h1 { font-size: 48px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.1; max-width: 800px; margin: 0 auto 20px; }
+        .hero h1 em { font-style: normal; color: var(--green-600); }
+        .hero p { font-size: 19px; color: var(--gray-500); max-width: 620px; margin: 0 auto 36px; }
+        .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+        section { padding: 80px 24px; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .section-label { font-size: 13px; font-weight: 700; color: var(--green-600); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+        h2 { font-size: 36px; font-weight: 800; letter-spacing: -0.8px; line-height: 1.15; margin-bottom: 16px; }
+        .section-desc { font-size: 17px; color: var(--gray-500); max-width: 640px; line-height: 1.6; }
+        .section-head { margin-bottom: 56px; }
+
+        /* MATH TABLE */
+        .math { background: var(--gray-50); border-radius: var(--radius-xl); padding: 40px; border: 1px solid var(--gray-200); }
+        .math h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+        .math-sub { font-size: 14px; color: var(--gray-500); margin-bottom: 28px; }
+        .math-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+        .math-col h4 { font-size: 12px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+        .math-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--gray-200); font-size: 14px; }
+        .math-row:last-child { border-bottom: none; padding-top: 14px; font-weight: 700; font-size: 16px; color: var(--gray-900); }
+        .math-row .v { font-weight: 600; }
+        .math-col.win .math-row:last-child { color: var(--green-700); font-size: 18px; }
+        .math-callout { background: var(--green-600); color: white; padding: 20px 24px; border-radius: var(--radius-lg); font-size: 17px; font-weight: 600; text-align: center; }
+        .math-callout b { font-size: 24px; }
+
+        /* FEATURES */
+        .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .feature { padding: 32px; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); }
+        .feature-icon { width: 44px; height: 44px; background: var(--green-50); color: var(--green-700); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .feature-icon svg { width: 22px; height: 22px; }
+        .feature h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+        .feature p { font-size: 14px; color: var(--gray-600); line-height: 1.6; }
+
+        /* OFFER */
+        .offer { background: linear-gradient(180deg, var(--green-50) 0%, white 100%); }
+        .offer-card { background: white; border: 2px solid var(--green-200); border-radius: var(--radius-xl); padding: 48px; box-shadow: 0 8px 28px rgba(34,197,94,0.08); }
+        .offer-tag { display: inline-block; background: var(--green-600); color: white; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+        .offer h3 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; }
+        .offer-desc { font-size: 16px; color: var(--gray-500); margin-bottom: 32px; }
+        .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+        .offer-col h4 { font-size: 13px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+        .offer-list { list-style: none; }
+        .offer-list li { padding: 8px 0; padding-left: 28px; position: relative; font-size: 15px; color: var(--gray-700); }
+        .offer-list li::before { content: '✓'; position: absolute; left: 0; top: 8px; color: var(--green-600); font-weight: 700; }
+        .offer-list li b { color: var(--gray-900); }
+
+        /* TIMELINE */
+        .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .step { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 24px; position: relative; }
+        .step-num { width: 32px; height: 32px; background: var(--green-100); color: var(--green-700); border-radius: 50%; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+        .step h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+        .step p { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
+
+        /* CTA */
+        .cta-section { background: var(--gray-900); color: white; text-align: center; padding: 80px 24px; }
+        .cta-section h2 { color: white; margin-bottom: 16px; }
+        .cta-section p { font-size: 17px; color: var(--gray-300); max-width: 560px; margin: 0 auto 32px; }
+        .cta-section .btn-primary { font-size: 16px; padding: 16px 32px; }
+
+        footer { background: var(--gray-900); color: var(--gray-400); padding: 24px; text-align: center; font-size: 13px; border-top: 1px solid var(--gray-800); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links .nav-cta { display: inline-block; }
+            .hero { padding: 120px 20px 56px; }
+            .hero h1 { font-size: 34px; }
+            section { padding: 56px 20px; }
+            h2 { font-size: 28px; }
+            .math-grid, .offer-grid { grid-template-columns: 1fr; }
+            .features { grid-template-columns: 1fr; }
+            .timeline { grid-template-columns: 1fr 1fr; }
+            .offer-card { padding: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Grant<span>Pilot</span></a>
+        <div class="nav-links">
+            <a href="#math">A számítás</a>
+            <a href="#offer">Az ajánlat</a>
+            <a href="#timeline">Hogyan indul</a>
+            <a href="mailto:partner@grantpilot.hu" class="nav-cta">Találkozó kérése</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-badge">Pályázatíró Partner Program · 2026</div>
+    <h1>Írj <em>3× több</em> pályázatot,<br>ugyanannyi idő alatt.</h1>
+    <p>A GrantPilot AI ügynöke 80%-ban előírja a pályázatot, te véglegesítesz és benyújtasz. A díjad nem változik — az óránkénti bevételed igen.</p>
+    <div class="hero-actions">
+        <a href="#offer" class="btn btn-primary">A 3 éves partner ajánlat</a>
+        <a href="portal.html" class="btn btn-secondary">Demo portál megnyitása</a>
+    </div>
+</section>
+
+<!-- THE MATH -->
+<section id="math">
+    <div class="container">
+        <div class="section-head" style="text-align: center;">
+            <div class="section-label">A SZÁMÍTÁS</div>
+            <h2>Mennyit ér a pályázatírói időd?</h2>
+            <p class="section-desc" style="margin: 0 auto;">Egy átlagos magyar KKV pályázatírónál — 60% nyerési arány, 10M Ft átlagos elnyert támogatás, 8% sikerdíj + fix díj.</p>
+        </div>
+
+        <div class="math">
+            <h3>Egy év, 25 pályázat helyett 125 pályázat</h3>
+            <p class="math-sub">Ugyanazok az ügyfelek, ugyanaz a díjszerkezet — csak az AI ügynök 80%-ot előmegír.</p>
+
+            <div class="math-grid">
+                <div class="math-col">
+                    <h4>Ma — kézi munka</h4>
+                    <div class="math-row"><span>Óra / pályázat</span><span class="v">~50 óra</span></div>
+                    <div class="math-row"><span>Éves kapacitás</span><span class="v">~25 pályázat</span></div>
+                    <div class="math-row"><span>Fix díj / pályázat</span><span class="v">800 000 Ft</span></div>
+                    <div class="math-row"><span>Sikerdíj (8%, 60% nyerés)</span><span class="v">~12 M Ft</span></div>
+                    <div class="math-row"><span>Éves bevétel</span><span class="v">~32 M Ft</span></div>
+                </div>
+                <div class="math-col win">
+                    <h4>AI ügynökkel</h4>
+                    <div class="math-row"><span>Óra / pályázat (review)</span><span class="v">~10 óra</span></div>
+                    <div class="math-row"><span>Éves kapacitás</span><span class="v">~125 pályázat</span></div>
+                    <div class="math-row"><span>Fix díj / pályázat</span><span class="v">800 000 Ft</span></div>
+                    <div class="math-row"><span>Sikerdíj (8%, 60% nyerés)</span><span class="v">~60 M Ft</span></div>
+                    <div class="math-row"><span>Éves bevétel</span><span class="v">~160 M Ft</span></div>
+                </div>
+            </div>
+
+            <div class="math-callout">
+                A te idődben mérve: <b>~5×</b> óránkénti bevétel — szakértőként pozícionálva, nem írnokként.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section style="background: var(--gray-50);">
+    <div class="container">
+        <div class="section-head" style="text-align: center;">
+            <div class="section-label">A RENDSZER</div>
+            <h2>Mit kapsz a partner programmal</h2>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg>
+                </div>
+                <h3>AI Pályázati Ügynök</h3>
+                <p>Cégadatokból + támogatási kategóriából 80%-ban előkészített pályázat. A te eddigi sikerpályázataidra van betanítva — a te stílusodban és struktúrádban ír.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5 10.5 6m0 0v6.75m0-6.75h6.75M17.25 10.5V21m0-10.5h-6.75"/></svg>
+                </div>
+                <h3>Fehér címkés GrantPilot</h3>
+                <p>Saját márkanév alatt futó pályázat-portál a meglévő 50+ ügyfelednek. Te vagy a "pályázati központ" — az ügyfél naponta benne van, te vagy a szakértő.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+                </div>
+                <h3>Új ügyfelek a publikus tölcsérből</h3>
+                <p>A GrantPilot nyilvános, ingyenes verzió havonta több száz KKV-t hoz be. A magas illeszkedési pontszámú leadeket automatikusan hozzád továbbítjuk. 15% ajánlási jutalék.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- OFFER -->
+<section id="offer" class="offer">
+    <div class="container">
+        <div class="offer-card">
+            <div class="offer-tag">Az ajánlat</div>
+            <h3>Indító partner csomag · 12 hónap</h3>
+            <p class="offer-desc">Csak az első 2 partnerünk kapja ezeket a feltételeket. Te lehetsz az egyik.</p>
+
+            <div class="offer-grid">
+                <div class="offer-col">
+                    <h4>Amit te kapsz</h4>
+                    <ul class="offer-list">
+                        <li><b>AI Pályázati Ügynök</b> — €499/hó, korlátlan vázlat</li>
+                        <li><b>Fehér címkés GrantPilot</b> — saját brand, 50 ügyfél, beleértve</li>
+                        <li><b>Új ügyfél leadek</b> — publikus GrantPilot tölcsérből</li>
+                        <li><b>1 órás onboarding + dedikált support</b></li>
+                        <li><b>Co-branded pitch deck</b> ügyfeleidhez</li>
+                    </ul>
+                </div>
+                <div class="offer-col">
+                    <h4>Amit te adsz</h4>
+                    <ul class="offer-list">
+                        <li><b>50+ múltbeli nyertes pályázat</b> — AI tréning adatként, NDA alatt</li>
+                        <li><b>12 hónap exkluzivitás</b> — Budapest régió, AI-asszisztált pályázatírás</li>
+                        <li><b>20% jutalék</b> — AI-asszisztált pályázatok díjából</li>
+                        <li><b>15% ajánlás visszafelé</b> — AI/automatizációs projekteken</li>
+                        <li><b>Havi 1 közös pipeline review</b></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="background: var(--green-50); border: 1px solid var(--green-200); border-radius: var(--radius-lg); padding: 20px 24px; font-size: 15px; color: var(--gray-700); line-height: 1.6;">
+                <b style="color: var(--green-800);">Megtérülés:</b> a tervezett éves többletbevételed ~120 M Ft (32 M-ról ~160 M Ft-ra). A program teljes 12 hónapos költsége ~2.4 M Ft fix díj + jutalékok. <b>Megtérülési idő: ~3 hét.</b>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+    <div class="container">
+        <div class="section-head" style="text-align: center;">
+            <div class="section-label">A FOLYAMAT</div>
+            <h2>Hogyan indul a partnerség</h2>
+            <p class="section-desc" style="margin: 0 auto;">30 nap — szándéknyilatkozattól az első AI-asszisztált pályázatig.</p>
+        </div>
+
+        <div class="timeline">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h4>1. hét — LOI</h4>
+                <p>Szándéknyilatkozat aláírása, NDA, és hozzáférés 50+ nyertes pályázathoz tréning adatként.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h4>2. hét — Fehér címke</h4>
+                <p>A te brandedre testreszabott GrantPilot élesben az ügyfeleid számára. Bevezető e-mail kampány.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h4>3-4. hét — AI v1</h4>
+                <p>AI ügynök prototípus a leggyakoribb pályázatra (DIMOP Plusz 1.2.6/B). 3 minta vázlat te általad reviewra.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <h4>30. nap — Élesben</h4>
+                <p>Első valódi pályázat AI-asszisztált draftolása. Te véglegesíted, benyújtod, sikerdíjat felezed.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Készen állsz hármat látni egy óra alatt?</h2>
+    <p>30 perces hívás, mutatok egy működő AI vázlatot, megbeszéljük a számokat, és ha jónak látod, aláírjuk az LOI-t a héten.</p>
+    <a href="mailto:partner@grantpilot.hu?subject=GrantPilot%20Partner%20Program%20-%20Időpontfoglalás" class="btn btn-primary">Időpont egyeztetése</a>
+</section>
+
+<footer>
+    GrantPilot · Pályázatíró Partner Program · 2026
+</footer>
+
+</body>
+</html>

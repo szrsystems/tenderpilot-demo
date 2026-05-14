@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Találkozó felkészülés — Pályázatíró partner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --green-50: #f0fdf4; --green-100: #dcfce7; --green-200: #bbf7d0; --green-500: #22c55e; --green-600: #16a34a; --green-700: #15803d; --green-800: #166534;
+            --amber-50: #fffbeb; --amber-100: #fef3c7; --amber-600: #d97706; --amber-800: #92400e;
+            --red-50: #fef2f2; --red-100: #fee2e2; --red-600: #dc2626; --red-700: #b91c1c;
+            --blue-50: #eff6ff; --blue-100: #dbeafe; --blue-600: #2563eb;
+            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
+            --radius: 8px; --radius-lg: 12px;
+        }
+        body { font-family: 'Inter', -apple-system, sans-serif; color: var(--gray-900); background: var(--gray-50); -webkit-font-smoothing: antialiased; line-height: 1.55; }
+        .wrap { max-width: 820px; margin: 0 auto; padding: 32px 24px 80px; }
+
+        .header { background: var(--gray-900); color: white; padding: 32px; border-radius: var(--radius-lg); margin-bottom: 32px; }
+        .header-tag { display: inline-block; background: var(--red-600); color: white; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .header h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 8px; }
+        .header p { font-size: 15px; color: var(--gray-300); }
+        .header .meta { display: flex; gap: 24px; margin-top: 20px; font-size: 13px; color: var(--gray-400); flex-wrap: wrap; }
+        .header .meta b { color: white; font-weight: 600; }
+
+        .nav-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--gray-500); margin-bottom: 24px; text-decoration: none; }
+        .nav-back:hover { color: var(--gray-900); }
+
+        .card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 20px; }
+        .card-tag { display: inline-block; font-size: 11px; font-weight: 700; color: var(--green-700); background: var(--green-50); padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .card-tag.amber { color: var(--amber-800); background: var(--amber-50); }
+        .card-tag.red { color: var(--red-700); background: var(--red-50); }
+        .card-tag.blue { color: var(--blue-600); background: var(--blue-50); }
+        .card h2 { font-size: 20px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 12px; }
+        .card h3 { font-size: 15px; font-weight: 700; margin: 20px 0 8px; }
+        .card p { font-size: 14px; color: var(--gray-700); margin-bottom: 8px; }
+        .card ul, .card ol { margin-left: 20px; font-size: 14px; color: var(--gray-700); }
+        .card li { margin-bottom: 6px; line-height: 1.6; }
+        .card li b { color: var(--gray-900); }
+
+        .checklist { list-style: none; margin-left: 0; }
+        .checklist li { padding-left: 28px; position: relative; padding-top: 4px; padding-bottom: 4px; }
+        .checklist li::before { content: '☐'; position: absolute; left: 0; top: 4px; font-size: 16px; color: var(--gray-400); }
+
+        .q-box { background: var(--gray-50); border-left: 3px solid var(--green-600); padding: 16px 18px; border-radius: 4px; margin: 12px 0; }
+        .q-box .q { font-weight: 700; color: var(--gray-900); font-size: 14px; margin-bottom: 6px; }
+        .q-box .why { font-size: 13px; color: var(--gray-600); font-style: italic; }
+        .q-box .listen { font-size: 13px; color: var(--green-700); margin-top: 6px; }
+
+        .objection { border: 1px solid var(--gray-200); border-radius: 8px; padding: 16px 18px; margin: 12px 0; }
+        .objection-q { font-size: 14px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+        .objection-q::before { content: '"'; color: var(--gray-400); }
+        .objection-q::after { content: '"'; color: var(--gray-400); }
+        .objection-a { font-size: 13px; color: var(--gray-700); line-height: 1.6; }
+        .objection-a b { color: var(--green-700); }
+
+        .green-row { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px dashed var(--gray-200); font-size: 14px; }
+        .green-row:last-child { border-bottom: none; }
+        .green-row .dot { width: 8px; height: 8px; background: var(--green-500); border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+
+        .red-row { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px dashed var(--gray-200); font-size: 14px; }
+        .red-row:last-child { border-bottom: none; }
+        .red-row .dot { width: 8px; height: 8px; background: var(--red-600); border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+
+        .terms-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+        .terms-table th, .terms-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+        .terms-table th { background: var(--gray-50); color: var(--gray-500); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .terms-table td b { color: var(--green-700); }
+
+        .quote { background: var(--green-50); border-left: 3px solid var(--green-600); padding: 14px 18px; margin: 12px 0; font-size: 14px; color: var(--gray-800); line-height: 1.6; font-style: italic; border-radius: 4px; }
+
+        .print-btn { position: fixed; bottom: 24px; right: 24px; background: var(--gray-900); color: white; padding: 12px 20px; border-radius: 24px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .print-btn:hover { background: var(--gray-700); }
+
+        @media print {
+            body { background: white; }
+            .header { background: white; color: var(--gray-900); border: 1px solid var(--gray-300); }
+            .header h1, .header .meta b { color: var(--gray-900); }
+            .header p, .header .meta { color: var(--gray-600); }
+            .card { box-shadow: none; break-inside: avoid; }
+            .print-btn, .nav-back { display: none; }
+        }
+        @media (max-width: 640px) {
+            .wrap { padding: 16px 16px 80px; }
+            .header { padding: 20px; }
+            .header h1 { font-size: 22px; }
+            .card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+
+    <a href="partner.html" class="nav-back">← Partner program oldal</a>
+
+    <div class="header">
+        <span class="header-tag">Bizalmas · csak neked</span>
+        <h1>Találkozó felkészülés — Pályázatíró partner</h1>
+        <p>Az eager budapesti partnerrel. Ne pitchelj. Diagnosztizálj. A pitch a 2. felében jön — ha megérdemli.</p>
+        <div class="meta">
+            <span><b>Időtartam:</b> 45–60 perc</span>
+            <span><b>Helyszín:</b> az ő irodája</span>
+            <span><b>Cél:</b> LOI aláírás vagy follow-up időpont</span>
+        </div>
+    </div>
+
+    <!-- PRE-MEETING -->
+    <div class="card">
+        <span class="card-tag">Előtte 24 órával</span>
+        <h2>Felkészülés</h2>
+        <ul class="checklist">
+            <li>Nézd át az ő cége nyilvános anyagát (weboldal, LinkedIn) — milyen pályázatokat említ, milyen referencia ügyfelek</li>
+            <li>Készíts 2 telefonra: <b>partner.html</b> (publikus pitch) és <b>portal.html</b> (a működő demo)</li>
+            <li>Mentsd le offline-ra is, ha az ő irodájában rossz a WiFi</li>
+            <li>Vidd magaddal a kinyomtatott "Indító partner csomag" oldalt — fizikai papír zár</li>
+            <li>Ne küldj előzetes anyagot — a meglepetésfaktor a tied</li>
+            <li>Indulj el 30 perccel hamarabb. Késni = ő dominál a tárgyaláson</li>
+        </ul>
+    </div>
+
+    <!-- OPENING -->
+    <div class="card">
+        <span class="card-tag blue">0–5. perc</span>
+        <h2>Nyitás — ne pitch-elj</h2>
+        <p>Nem te jöttél eladni. Ti ketten azt nézitek meg, van-e értelme. Ez a keret.</p>
+        <div class="quote">
+            "Köszönöm, hogy időt szakítasz. Mielőtt bármit mutatok, szeretnék pár dolgot megérteni a te oldaladról — onnan derül ki, van-e értelme ennek a beszélgetésnek mindkettőnknek. Lehet 4–5 kérdést kérdeznem?"
+        </div>
+        <p style="margin-top: 12px;"><b>Miért működik:</b> ezzel azonnal te vezeted a beszélgetést, de ő a tárgya. Eladók pitch-elnek, partnerek kérdeznek.</p>
+    </div>
+
+    <!-- DIAGNOSTIC QUESTIONS -->
+    <div class="card">
+        <span class="card-tag">5–25. perc — A LEGFONTOSABB RÉSZ</span>
+        <h2>5 diagnosztikus kérdés</h2>
+        <p>Sorrendben kérdezd. Ne kommentálj, ne ítélj. Jegyzeteljen a telefonod hangrögzítője (kérj engedélyt: "nyugodtan, csak hogy később ne felejtsek el semmit").</p>
+
+        <div class="q-box">
+            <div class="q">1. "Egy átlagos pályázatnál mennyi a saját ügyfélre szabott rész, és mennyi a visszatérő, sablon jellegű boilerplate?"</div>
+            <div class="why">Miért: ha 60–70% boilerplate-t mond, az AI ügynök sweet-spotja. Ha azt mondja "minden egyedi" — vagy nem érti, vagy hazudik. Lépj vissza.</div>
+            <div class="listen">Jó válasz: "70%-a sablon, 30% az ügyfélre szabott projektterv és költségvetés."</div>
+        </div>
+
+        <div class="q-box">
+            <div class="q">2. "Hány korábbi nyertes pályázatod van rendezetten, ahova vissza tudsz lapozni?"</div>
+            <div class="why">Miért: 50+ nyertes pályázat kell az AI ügynök betanításához. Ez a kritikus szám. Ha <30, az AI generikus lesz. Ha 50+, üzlet van.</div>
+            <div class="listen">Jó válasz: "Talán 80–120, mindegyik PDF-ben + EPTK formátumban."</div>
+        </div>
+
+        <div class="q-box">
+            <div class="q">3. "Mi a legrosszabb rész egy pályázatírásnál — amitől belül felnyögsz, amikor látod a kiírást?"</div>
+            <div class="why">Miért: ez a fájdalompont — itt épít először az AI ügynököd. Konkrét válasz kell. "Költségvetési tábla", "indikátorok", "horizontális szempontok" — bármi konkrét.</div>
+            <div class="listen">Jó válasz: bármi konkrét és érzelmes. Általánosság rossz jel.</div>
+        </div>
+
+        <div class="q-box">
+            <div class="q">4. "Ha lenne egy eszköz, ami 80%-ban előre megírná a pályázatot — kevesebb pénzért dolgoznál, vagy több ügyfelet vinnél?"</div>
+            <div class="why">Miért: ez a partneri smell-test. Ha "kevesebb pénzért" → nem érti az üzletet. Ha "több ügyfelet vinnék" → ő a te emberd.</div>
+            <div class="listen">Jó válasz: "Több ügyfelet vennék be. Most is van bejövő, csak nem tudok mindenkit elvállalni."</div>
+        </div>
+
+        <div class="q-box">
+            <div class="q">5. "Volt valamelyik ügyfeledet auditálni a támogatás után? Mi történt?"</div>
+            <div class="why">Miért: kockázatérzék-teszt. Ha nem volt audit-tapasztalata → óvatlan partner lesz. Ha volt és túlélte → tudja, mi a 3 árajánlat és kapcsolt vállalkozás.</div>
+            <div class="listen">Jó válasz: "Volt 2–3, mindet túléltük, mert mindent dokumentáltunk."</div>
+        </div>
+    </div>
+
+    <!-- THE PITCH -->
+    <div class="card">
+        <span class="card-tag">25–40. perc</span>
+        <h2>A pitch — csak ha az 5 kérdésre jó válaszok jönnek</h2>
+        <p>Ha bármelyik kérdésre rossz a válasz, mondd hogy "köszönöm, gondolkodom rajta", menj el, és válassz másik partnert. <b>Ne erőltesd.</b></p>
+        <p>Ha jók a válaszok, akkor:</p>
+
+        <h3>1. A számítás (mutasd a telefonon a partner.html oldalt)</h3>
+        <p>"Megnéztem, és nálad ez a szám így néz ki: 25 pályázat / év jelenleg, AI ügynökkel 125. Ez ~5× több bevétel, ugyanannyi munkaidővel. Itt a részletes számítás — nézd át 1 percig."</p>
+        <p><b>Csendben hagyd, hogy nézze. Ne magyarázz, amíg ő nem kérdez.</b></p>
+
+        <h3>2. A demo (mutasd a portal.html-t)</h3>
+        <p>"Ez a portál — 300 magyar pályázat, AI illeszkedési pontszám, sürgősségi jelzés. A te brand-eddel ez lenne az ügyfeleid mindennapi grant-központja."</p>
+
+        <h3>3. Az ajánlat (vedd elő a kinyomtatott papírt)</h3>
+        <p>"3 részből áll: AI ügynök €499/hó, fehér címkés portál benne, és az ajánlott új ügyfél leadek. Cserébe: 12 hónap budapesti exkluzivitás, hozzáférés a múltbeli pályázataidhoz tréning adatként NDA alatt, és 20% jutalék az AI-asszisztált pályázatok díjából."</p>
+    </div>
+
+    <!-- DEAL TERMS -->
+    <div class="card">
+        <span class="card-tag">A papír, amit elővettél</span>
+        <h2>Az ajánlat — egyoldalas összefoglaló</h2>
+        <table class="terms-table">
+            <tr><th>Mit kap a partner</th><th>Mit ad a partner</th></tr>
+            <tr>
+                <td><b>AI Pályázati Ügynök</b> · €499/hó · korlátlan vázlat</td>
+                <td><b>50+ múltbeli nyertes pályázat</b> · NDA alatt, AI tréning adat</td>
+            </tr>
+            <tr>
+                <td><b>Fehér címkés GrantPilot</b> · saját brand · 50 ügyfél · benne</td>
+                <td><b>12 hónap exkluzivitás</b> · Budapest · AI-asszisztált pályázatírás</td>
+            </tr>
+            <tr>
+                <td><b>Új ügyfél leadek</b> · publikus tölcsérből · automatikus</td>
+                <td><b>20% jutalék</b> · AI-asszisztált pályázatok díjából</td>
+            </tr>
+            <tr>
+                <td><b>1 órás onboarding + dedikált support</b></td>
+                <td><b>15% ajánlási jutalék vissza</b> · AI/automatizációs projektekből</td>
+            </tr>
+            <tr>
+                <td><b>Co-branded pitch deck</b> az ügyfeleidhez</td>
+                <td><b>Havi 1 közös pipeline review</b> · 30 perc</td>
+            </tr>
+        </table>
+        <p style="margin-top: 16px; font-size: 13px; color: var(--gray-500);"><b>Megtérülés:</b> ~3 hét. Teljes éves költség: ~2.4 M Ft fix. Várható éves többletbevétel: ~120 M Ft.</p>
+    </div>
+
+    <!-- OBJECTIONS -->
+    <div class="card">
+        <span class="card-tag amber">Várhatóan ezeket fogja mondani</span>
+        <h2>Ellenérv-kezelés</h2>
+
+        <div class="objection">
+            <div class="objection-q">Az AI nem tud pályázatot írni. Túl komplex.</div>
+            <div class="objection-a">"Igen — ezért nem 100%, hanem 80%. A te szakértelmed a végső 20%-on. Mutathatok egy működő példát a DIMOP-ra, te döntöd el, használhatónak találod-e. <b>3 hét építés és lesz vázlat a kezedben.</b>"</div>
+        </div>
+
+        <div class="objection">
+            <div class="objection-q">A múltbeli pályázataimat nem adom oda. Az az én vagyonom.</div>
+            <div class="objection-a">"Teljesen jogos. Ezért van NDA, és az AI modell a te tulajdonod marad — nem használjuk fel más partnerhez. A te adataidból csak a te AI ügynököd tanul. Ha 12 hónap után kiszállsz, a modellt is viszed."</div>
+        </div>
+
+        <div class="objection">
+            <div class="objection-q">€499/hó túl drága.</div>
+            <div class="objection-a">"Egy pályázat sikerdíja 800K Ft + 8%. <b>Egy elnyert plusz pályázat = 12× a havi díj.</b> Ha 12 hónap alatt nem nyersz 1 extra pályázatot, visszafizetem. Írásban."</div>
+        </div>
+
+        <div class="objection">
+            <div class="objection-q">Mi van, ha lemásolják?</div>
+            <div class="objection-a">"Megtörténhet 18–24 hónap múlva. Ezért most kell beszállni — addigra Budapesten kiépítettünk akkora előnyt, hogy senki nem ér utol. Az első 2 partner kapja ezeket a feltételeket — utána már drágább lesz."</div>
+        </div>
+
+        <div class="objection">
+            <div class="objection-q">Adjatok 50/50-et a közös cégben.</div>
+            <div class="objection-a">"Nem közös cégről van szó — ez licenc + jutalék modell. Mindkettőnk saját cége megmarad, mindenki saját ügyfélnek számláz. Tisztább audit szempontjából is. <b>Ha 6 hónap múlva tényleg JV-t akarunk csinálni, akkor azt külön tárgyaljuk a teljesítmény alapján.</b>"</div>
+        </div>
+
+        <div class="objection">
+            <div class="objection-q">Gondolkodom rajta, küldj anyagot, jövő héten visszahívlak.</div>
+            <div class="objection-a">"Persze — milyen konkrét kérdést válaszolnak meg az anyagok? Ha tudom, célzottan küldöm. <b>De az ajánlat csak az első 2 partnernek szól, és van még 1 beszélgetés a héten.</b> Ha tetszik az irány, írjunk alá egy 1 oldalas szándéknyilatkozatot most — az nem kötelez semmire, csak fenntartja a helyed."</div>
+        </div>
+    </div>
+
+    <!-- CLOSE -->
+    <div class="card">
+        <span class="card-tag">40–55. perc</span>
+        <h2>Zárás</h2>
+        <p>Háromféle kimenetel — előre tudd, melyik mit jelent.</p>
+
+        <div class="green-row">
+            <span class="dot"></span>
+            <div><b>Zöld — "Igen, csináljuk":</b> Vedd elő a Szándéknyilatkozatot (1 oldal, a következő szekcióban). Írjátok alá. Ha nem akar most aláírni, kérd, hogy <b>holnapra</b> küldje aláírva e-mailben. Add meg a hozzáférést a fehér címkés admin-felülethez azonnal — a kötelezettség akkor van, amikor használja.</div>
+        </div>
+
+        <div class="green-row" style="background: var(--amber-50); border-bottom: none; border-radius: 6px; padding: 12px; margin-top: 8px;">
+            <span class="dot" style="background: var(--amber-600);"></span>
+            <div><b>Sárga — "Érdekel, de gondolkodom":</b> Egyezz meg egy <b>konkrét follow-up időpontban</b> még a szobában. "Csütörtök 14:00, te visszahívsz, addigra végiggondolod." Email-en küldd át a partner.html linket + Szándéknyilatkozat PDF-t. Ne küldj több emailt.</div>
+        </div>
+
+        <div class="red-row" style="margin-top: 8px;">
+            <span class="dot"></span>
+            <div><b>Piros — Habozik, kerüli a számokat, "később még gondolkodom":</b> Köszönd meg, búcsúzz tisztességesen. Ne hívd vissza. Menj a 2. partnerhez. <b>Időt veszítesz egy lukewarm partneren, és elveszted a momentumot az AI ügynök építésén.</b></div>
+        </div>
+    </div>
+
+    <!-- FOLLOW UP -->
+    <div class="card">
+        <span class="card-tag green">Még aznap este</span>
+        <h2>Follow-up</h2>
+        <p><b>Aznap este 21:00 előtt</b> küldj egyetlen, rövid emailt:</p>
+        <div class="quote">
+            Szia [Név],<br><br>
+            Köszi a mai beszélgetést. Az ajánlat összefoglalva: <a href="#" style="color: var(--green-600);">partner.html</a><br>
+            Aláírható szándéknyilatkozat csatolva.<br><br>
+            Ahogy beszéltük, <b>[konkrét időpont]</b> jelentkezem.<br><br>
+            Üdv,<br>
+            [Te]
+        </div>
+        <p>Egy email. Egy link. Egy PDF. Egy konkrét időpont. <b>Ennyi.</b> Ne küldj 3 bekezdéses ajánlót. Ne magyarázz. Az anyag eladja magát, vagy nem.</p>
+    </div>
+
+    <!-- POST-MEETING -->
+    <div class="card">
+        <span class="card-tag">Másnap reggel</span>
+        <h2>Másnap — bármi is történt</h2>
+        <ul class="checklist">
+            <li>Írd le 5 mondatban: <b>mi volt a 3 legfontosabb dolog, amit megtudtál</b> a beszélgetésen (nem amit ő mondott — amit a viselkedéséből megtudtál)</li>
+            <li>Ha LOI aláírva → kezdd építeni az AI ügynök prototípust még aznap. <b>Momentum csak az első 7 napban van.</b></li>
+            <li>Ha follow-up időpont → <b>nem írsz semmit közben</b>. Ha ír, válaszolsz. Ha nem, hagyod élni.</li>
+            <li>Ha piros → hívd fel a 2. partnert <b>ugyanazon a héten</b>. Az időablak szűk.</li>
+            <li>Frissítsd a számokat a partner.html-en, ha valami kiderült, ami nem stimmel (pl. fix díj nem 800K hanem 600K Ft a budapesti piacon)</li>
+        </ul>
+    </div>
+
+    <!-- WHAT NOT TO DO -->
+    <div class="card">
+        <span class="card-tag red">Soha</span>
+        <h2>Amit ne csinálj</h2>
+        <ul>
+            <li><b>Ne ígérd, hogy garantáltan nyer pályázatot.</b> Az AI vázlatot ír, az ügyfél nyer.</li>
+            <li><b>Ne csökkentsd az árat a tárgyaláson.</b> Ha többet kérel az AI ügynökért, ő alkudozni fog. Tartsd a €499-et. Ha leszállsz erről, mindent leszállítasz utána.</li>
+            <li><b>Ne add ingyen a fehér címkés portált.</b> Csomagold be az ajánlatba, mint értéket. "Benne van" ≠ ingyenes.</li>
+            <li><b>Ne adj exkluzivitást Magyarország egészére.</b> Csak Budapestre. A vidéki piac másik 2 partner.</li>
+            <li><b>Ne aláírj 12 hónapnál hosszabb szerződést az első körben.</b> 12 hónap után vagy felülírjátok, vagy elválnak az útjaitok — mindkettőnek így a legjobb.</li>
+            <li><b>Ne menj el ebéd után.</b> Reggeli vagy délelőtti meeting. Estefelé alacsony az energiaszint, az ő figyelme is kevesebb.</li>
+        </ul>
+    </div>
+
+    <!-- WHAT YOU LEARN EVEN IF NO -->
+    <div class="card" style="border: 2px solid var(--green-200); background: var(--green-50);">
+        <span class="card-tag">A keret</span>
+        <h2>Ez a találkozó akkor is győzelem, ha nemet mond</h2>
+        <p>Bármi is történik — <b>te megtudtad, mi a magyar pályázatírói piac fájdalompontja</b>. Az 5 kérdés válaszai értékesebbek, mint maga a deal. Akkor is építed az AI ügynököt, akkor is dolgozol a 2. partnerrel, akkor is publikálod GrantPilot-ot ingyen.</p>
+        <p><b>Tehát: lazán. Nyertes pozícióból. Ő nem tudja, te nem vagy elkeseredett. Mert nem vagy.</b></p>
+    </div>
+
+</div>
+
+<button class="print-btn" onclick="window.print()">🖨️ Nyomtatás</button>
+
+</body>
+</html>

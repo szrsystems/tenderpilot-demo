@@ -20,3 +20,12 @@ services:
       - type: rewrite
         source: /grantpilot/register
         destination: /grantpilot/onboarding.html
+      - type: rewrite
+        source: /grantpilot/partner
+        destination: /grantpilot/partner.html
+      - type: rewrite
+        source: /grantpilot/meeting
+        destination: /grantpilot/meeting-brief.html
+      - type: rewrite
+        source: /grantpilot/agreements
+        destination: /grantpilot/agreements.html

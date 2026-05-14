@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner megállapodások — Szándéknyilatkozat, Ajánlás, Fehér címkés licenc</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --green-50: #f0fdf4; --green-100: #dcfce7; --green-200: #bbf7d0; --green-500: #22c55e; --green-600: #16a34a; --green-700: #15803d;
+            --amber-50: #fffbeb; --amber-600: #d97706;
+            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
+            --radius: 8px; --radius-lg: 12px;
+        }
+        body { font-family: 'Inter', -apple-system, sans-serif; color: var(--gray-900); background: var(--gray-100); -webkit-font-smoothing: antialiased; line-height: 1.6; font-size: 14px; }
+        .wrap { max-width: 820px; margin: 0 auto; padding: 32px 24px 80px; }
+        .nav-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--gray-500); margin-bottom: 16px; text-decoration: none; }
+        .nav-back:hover { color: var(--gray-900); }
+
+        .lead-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 24px; }
+        .lead-card h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 8px; }
+        .lead-card p { color: var(--gray-600); }
+
+        .doc-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .doc-tab { padding: 10px 18px; background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); font-size: 13px; font-weight: 600; color: var(--gray-600); cursor: pointer; transition: all 0.1s; font-family: inherit; }
+        .doc-tab:hover { background: var(--gray-50); }
+        .doc-tab.active { background: var(--green-600); color: white; border-color: var(--green-600); }
+
+        .doc { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 48px 56px; margin-bottom: 24px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+        .doc.hidden { display: none; }
+        .doc-head { margin-bottom: 28px; padding-bottom: 20px; border-bottom: 2px solid var(--gray-900); }
+        .doc-kind { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+        .doc-title { font-size: 24px; font-weight: 800; letter-spacing: -0.4px; line-height: 1.2; }
+        .doc-sub { font-size: 13px; color: var(--gray-500); margin-top: 6px; }
+
+        .doc h2 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin: 28px 0 12px; color: var(--gray-900); }
+        .doc h3 { font-size: 14px; font-weight: 700; margin: 16px 0 8px; color: var(--gray-800); }
+        .doc p { margin-bottom: 10px; color: var(--gray-800); }
+        .doc ul, .doc ol { margin-left: 24px; margin-bottom: 10px; color: var(--gray-800); }
+        .doc li { margin-bottom: 6px; }
+        .doc li b { color: var(--gray-900); }
+
+        .parties { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 20px; }
+        .party { background: var(--gray-50); padding: 16px; border-radius: 6px; font-size: 13px; }
+        .party b { display: block; color: var(--gray-500); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: 700; }
+        .blank { display: inline-block; min-width: 200px; border-bottom: 1px solid var(--gray-400); padding: 2px 6px; color: var(--gray-400); font-style: italic; font-size: 13px; }
+        .blank.short { min-width: 100px; }
+        .blank.long { min-width: 320px; }
+
+        .signatures { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--gray-200); }
+        .sig { border-top: 1px solid var(--gray-900); padding-top: 8px; font-size: 12px; }
+        .sig b { display: block; color: var(--gray-900); font-weight: 700; margin-bottom: 4px; font-size: 13px; }
+        .sig .role { color: var(--gray-500); }
+
+        .note { background: var(--amber-50); border-left: 3px solid var(--amber-600); padding: 14px 18px; margin: 16px 0; border-radius: 4px; font-size: 13px; color: var(--gray-700); }
+        .note b { color: var(--gray-900); }
+
+        .actions-bar { position: sticky; top: 16px; background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; z-index: 10; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .actions-bar .label { font-size: 13px; color: var(--gray-500); font-weight: 600; }
+        .btn-sm { padding: 8px 14px; font-size: 13px; font-weight: 600; border-radius: 6px; border: 1px solid var(--gray-300); background: white; color: var(--gray-700); cursor: pointer; font-family: inherit; }
+        .btn-sm:hover { background: var(--gray-50); }
+        .btn-sm.primary { background: var(--gray-900); color: white; border-color: var(--gray-900); }
+        .btn-sm.primary:hover { background: var(--gray-800); }
+
+        @media print {
+            body { background: white; font-size: 11pt; }
+            .nav-back, .doc-tabs, .actions-bar, .lead-card { display: none !important; }
+            .doc { box-shadow: none; border: none; padding: 0; margin: 0; page-break-after: always; }
+            .doc.hidden { display: block !important; }
+            .doc:last-child { page-break-after: auto; }
+        }
+
+        @media (max-width: 640px) {
+            .wrap { padding: 16px 12px 80px; }
+            .doc { padding: 24px 20px; }
+            .parties, .signatures { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+
+    <a href="meeting-brief.html" class="nav-back">← Találkozó felkészülés</a>
+
+    <div class="lead-card">
+        <h1>Partner megállapodások</h1>
+        <p>Három aláírható dokumentum — válts közöttük, töltsd ki a sárga mezőket, nyomtasd ki vagy küldd PDF-ben. <b>Jogi felülvizsgálatra ajánlott aláírás előtt</b> — ezek üzleti vázlatok, nem ügyvéd által véglegesített szerződések.</p>
+    </div>
+
+    <div class="actions-bar">
+        <div class="label">Aktív dokumentum: <b id="active-label">Szándéknyilatkozat</b></div>
+        <div>
+            <button class="btn-sm" onclick="window.print()">🖨️ Mind a 3 nyomtatása</button>
+            <button class="btn-sm primary" onclick="printOne()">📄 Csak az aktív</button>
+        </div>
+    </div>
+
+    <div class="doc-tabs">
+        <button class="doc-tab active" data-doc="loi" onclick="show('loi')">1 — Szándéknyilatkozat (LOI)</button>
+        <button class="doc-tab" data-doc="ref" onclick="show('ref')">2 — Ajánlási megállapodás</button>
+        <button class="doc-tab" data-doc="wl" onclick="show('wl')">3 — Fehér címkés licenc</button>
+    </div>
+
+    <!-- DOC 1: LOI -->
+    <div class="doc" id="doc-loi">
+        <div class="doc-head">
+            <div class="doc-kind">1. Dokumentum</div>
+            <div class="doc-title">Szándéknyilatkozat (Letter of Intent)</div>
+            <div class="doc-sub">GrantPilot Pályázatíró Partner Program · 2026</div>
+        </div>
+
+        <div class="parties">
+            <div class="party">
+                <b>Szolgáltató</b>
+                <span class="blank long">[Cégnév]</span><br>
+                Székhely: <span class="blank long">[cím]</span><br>
+                Adószám: <span class="blank">[adószám]</span><br>
+                Képviseli: <span class="blank long">[név]</span>
+            </div>
+            <div class="party">
+                <b>Partner (Pályázatíró)</b>
+                <span class="blank long">[Cégnév]</span><br>
+                Székhely: <span class="blank long">[cím]</span><br>
+                Adószám: <span class="blank">[adószám]</span><br>
+                Képviseli: <span class="blank long">[név]</span>
+            </div>
+        </div>
+
+        <p>A felek szándékot fejeznek ki, hogy az alábbi főbb feltételek mentén 12 hónapos együttműködést kötnek a GrantPilot Pályázatíró Partner Program keretében.</p>
+
+        <h2>1. Az együttműködés tárgya</h2>
+        <p>A Szolgáltató biztosítja a Partner részére:</p>
+        <ul>
+            <li><b>AI Pályázati Ügynök hozzáférés</b> — pályázat-vázlat generálás a Partner történeti adataira betanítva</li>
+            <li><b>Fehér címkés GrantPilot portál</b> — a Partner saját brand-jén futtatva, beleértve max. 50 ügyfél hozzáférést</li>
+            <li><b>Új ügyfél lead-ek</b> — a publikus GrantPilot tölcsérből, illeszkedési pontszám alapján szűrve</li>
+            <li><b>Onboarding és technikai support</b></li>
+        </ul>
+
+        <p>A Partner biztosítja a Szolgáltató részére:</p>
+        <ul>
+            <li><b>Hozzáférést min. 50 múltbeli nyertes pályázathoz</b> — NDA alatt, AI modell betanítási célra</li>
+            <li><b>12 hónap exkluzivitást</b> Budapest régióban — AI-asszisztált pályázatírás kategóriában</li>
+            <li><b>Havi pipeline review</b> — 30 perces telekonferencia</li>
+            <li><b>Visszacsatolás</b> az AI ügynök fejlesztéséhez</li>
+        </ul>
+
+        <h2>2. Pénzügyi feltételek (vázlat)</h2>
+        <ul>
+            <li><b>AI Pályázati Ügynök licenc:</b> €<span class="blank short">499</span> + ÁFA / hó, számlázás havonta előre</li>
+            <li><b>Fehér címkés portál:</b> a licencdíj részeként, külön díj nélkül</li>
+            <li><b>Jutalék — Partner felé:</b> a publikus tölcsérből érkező lead-ből nyert pályázat sikerdíjának <span class="blank short">85</span>%-a a Partneré</li>
+            <li><b>Jutalék — Szolgáltató felé:</b> az AI-asszisztált pályázatok Partner díjából (fix + sikerdíj) <span class="blank short">20</span>% a Szolgáltatóé</li>
+            <li><b>Ajánlási visszáru:</b> AI/automatizációs projekt vásárlás esetén az ügyfél által a Szolgáltatónak fizetett összeg <span class="blank short">15</span>%-a a Partneré</li>
+        </ul>
+
+        <h2>3. Adat- és IP-védelem</h2>
+        <ul>
+            <li>A Partner által biztosított múltbeli pályázatok kizárólag az AI modell betanítására kerülnek felhasználásra, a Partner saját modelljéhez.</li>
+            <li>A modell <b>nem kerül</b> használatra más partnerek pályázataihoz.</li>
+            <li>A felmondás esetén a Partner saját modellje exportálható és átadásra kerül.</li>
+            <li>NDA aláírása az LOI-val egyidejűleg, vagy 7 napon belül.</li>
+        </ul>
+
+        <h2>4. Időtartam és felmondás</h2>
+        <ul>
+            <li>12 hónap kötelező időszak az aláírástól számítva.</li>
+            <li>A 12 hónap leteltével a megállapodás további 12 hónapra automatikusan megújul, kivéve ha bármelyik fél 60 nappal a lejárat előtt írásban felmondja.</li>
+            <li>Súlyos szerződésszegés esetén azonnali felmondás lehetséges, 30 napos jóvátételi időszakkal.</li>
+        </ul>
+
+        <h2>5. A jelen LOI jogi jellege</h2>
+        <p>A jelen Szándéknyilatkozat a felek <b>jóhiszemű</b> tárgyalási kötelezettségét rögzíti, és a végleges szerződés alapját képezi. A felek vállalják, hogy <b>30 napon belül</b> aláírják a részletes szolgáltatási szerződést és NDA-t a jelen feltételek mentén.</p>
+
+        <p>A pénzügyi mennyiségek (különösen díj, jutalék %) a végleges szerződésben kötelező erejűek; az 1-4. pont elvi rögzítései a végleges szerződésben pontosíthatók.</p>
+
+        <p>A jelen LOI az aláírástól számított 30 napig <b>exkluzív tárgyalási jogot</b> biztosít — egyik fél sem indít párhuzamos tárgyalást azonos tárgykörben harmadik féllel.</p>
+
+        <h2>6. Aláírás</h2>
+        <p>Kelt: <span class="blank">[település]</span>, <span class="blank short">[dátum]</span></p>
+
+        <div class="signatures">
+            <div class="sig">
+                <b>Szolgáltató</b>
+                <span class="role">Cégszerű aláírás</span>
+            </div>
+            <div class="sig">
+                <b>Partner</b>
+                <span class="role">Cégszerű aláírás</span>
+            </div>
+        </div>
+
+        <div class="note">
+            <b>Jegyzet a tárgyalásra:</b> ha aláírás közben kéri a "kibúvó klauzulát", javasolhatod a 30 napos próbaidőt — első 30 napban bármelyik fél 7 napos felmondással kiléphet. Ez gyakran zárja a deal-t. A 30 nap leteltével a 12 hónapos időszak indul.
+        </div>
+    </div>
+
+    <!-- DOC 2: REFERRAL -->
+    <div class="doc hidden" id="doc-ref">
+        <div class="doc-head">
+            <div class="doc-kind">2. Dokumentum</div>
+            <div class="doc-title">Ajánlási megállapodás</div>
+            <div class="doc-sub">Kölcsönös ügyfélajánlás · GrantPilot ↔ Partner</div>
+        </div>
+
+        <div class="parties">
+            <div class="party">
+                <b>Szolgáltató</b>
+                <span class="blank long">[Cégnév]</span><br>
+                Adószám: <span class="blank">[adószám]</span><br>
+                Képviseli: <span class="blank long">[név]</span>
+            </div>
+            <div class="party">
+                <b>Partner</b>
+                <span class="blank long">[Cégnév]</span><br>
+                Adószám: <span class="blank">[adószám]</span><br>
+                Képviseli: <span class="blank long">[név]</span>
+            </div>
+        </div>
+
+        <p>A felek kölcsönös ügyfélajánlási együttműködést kötnek az alábbi feltételek mentén.</p>
+
+        <h2>1. Ajánlások a Szolgáltatótól a Partner felé</h2>
+        <ul>
+            <li>A Szolgáltató a GrantPilot publikus rendszerébe regisztrált KKV-k közül, az illeszkedési pontszám alapján <b>≥60 pontot elérő</b> lead-eket továbbít a Partner részére.</li>
+            <li>A továbbítás módja: heti összesítő e-mail, vagy szükség esetén azonnali Telegram/e-mail értesítés.</li>
+            <li>A lead-ek tartalma: cégadatok, kapcsolattartó, GrantPilot által javasolt 1–3 pályázati lehetőség.</li>
+            <li>A Partner a lead-et <b>5 munkanapon belül</b> megkeresi, és visszaigazolja, hogy felvállalja-e az ügyfél képviseletét.</li>
+            <li>Nem felvállalt lead esetén a Szolgáltató egyéb partnernek továbbíthatja.</li>
+        </ul>
+
+        <h3>Jutalék a Szolgáltató részére</h3>
+        <ul>
+            <li>A Szolgáltató részére a Partner az ügyféltől <b>ténylegesen beérkezett</b> pályázatírói díj <b><span class="blank short">15</span>%-át</b> fizeti, jutalék jogcímen.</li>
+            <li>Számlázás: a Partner havonta összesítve számláz a Szolgáltatónak, a tárgyhónapban beérkezett ügyfél-befizetések alapján.</li>
+            <li>A jutalék kötelezettség <b>12 hónapig él</b> az adott ügyfél első szerződéskötésétől.</li>
+        </ul>
+
+        <h2>2. Ajánlások a Partnertől a Szolgáltató felé</h2>
+        <ul>
+            <li>A Partner azon ügyfeleit, akiknek AI/automatizációs/digitális fejlesztési igénye van, és a vonatkozó pályázat ezt finanszírozza, a Szolgáltatóhoz továbbítja.</li>
+            <li>A Szolgáltató a továbbított ügyfelet a beérkezéstől számított <b>5 munkanapon belül</b> megkeresi és visszaigazolja a befogadást.</li>
+        </ul>
+
+        <h3>Jutalék a Partner részére</h3>
+        <ul>
+            <li>A Partner részére a Szolgáltató az ügyféltől beérkezett szolgáltatási díj <b><span class="blank short">15</span>%-át</b> fizeti, jutalék jogcímen.</li>
+            <li>Számlázás: havonta összesítve, a tárgyhónapban beérkezett ügyfél-befizetések alapján.</li>
+            <li>A jutalék kötelezettség az ügyfél első projektjének teljes futamidejére, illetve <b>24 hónapig</b> él az első szerződéskötéstől, amelyik korábbi.</li>
+        </ul>
+
+        <h2>3. Versenykorlátozás (non-circumvention)</h2>
+        <ul>
+            <li>A felek <b>nem keresik meg közvetlenül</b> az ajánlott ügyfeleket a másik fél megkerülésével, a megállapodás teljes időtartama alatt és további 12 hónapig.</li>
+            <li>A megsértés esetén az érintett ügyfél utáni teljes éves bevétel <b>1,5-szerese</b> kötbér jogcímen fizetendő.</li>
+        </ul>
+
+        <h2>4. Adatvédelem</h2>
+        <ul>
+            <li>A lead-adatok továbbítása csak az ügyfél előzetes hozzájárulásával történik (GDPR-megfelelő opt-in).</li>
+            <li>Mindkét fél vállalja, hogy a kapott adatokat kizárólag az ajánlás tárgyához használja.</li>
+        </ul>
+
+        <h2>5. Időtartam, felmondás</h2>
+        <ul>
+            <li>A megállapodás határozatlan időre szól.</li>
+            <li>Bármelyik fél írásban, <b>30 napos felmondási idővel</b> felmondhatja.</li>
+            <li>A felmondás <b>nem érinti</b> a felmondás időpontjáig keletkezett jutalék-kötelezettségeket.</li>
+        </ul>
+
+        <h2>6. Aláírás</h2>
+        <p>Kelt: <span class="blank">[település]</span>, <span class="blank short">[dátum]</span></p>
+
+        <div class="signatures">
+            <div class="sig">
+                <b>Szolgáltató</b>
+                <span class="role">Cégszerű aláírás</span>
+            </div>
+            <div class="sig">
+                <b>Partner</b>
+                <span class="role">Cégszerű aláírás</span>
+            </div>
+        </div>
+
+        <div class="note">
+            <b>Audit megjegyzés:</b> a jutalék mindig <b>tényleges bevétel</b> alapján (cash-in), nem kiszámlázás alapján. Ez kétféle célt szolgál: (1) ha az ügyfél nem fizet, te se fizetsz, (2) a magyar adózási nyilvántartás cash-flow alapon tisztább.
+        </div>
+    </div>
+
+    <!-- DOC 3: WHITE-LABEL -->
+    <div class="doc hidden" id="doc-wl">
+        <div class="doc-head">
+            <div class="doc-kind">3. Dokumentum</div>
+            <div class="doc-title">Fehér címkés licencszerződés</div>
+            <div class="doc-sub">GrantPilot platform · Partner brand</div>
+        </div>
+
+        <div class="parties">
+            <div class="party">
+                <b>Licencadó</b>
+                <span class="blank long">[Cégnév]</span><br>
+                Adószám: <span class="blank">[adószám]</span><br>
+                Képviseli: <span class="blank long">[név]</span>
+            </div>
+            <div class="party">
+                <b>Licencvevő (Partner)</b>
+                <span class="blank long">[Cégnév]</span><br>
+                Adószám: <span class="blank">[adószám]</span><br>
+                Képviseli: <span class="blank long">[név]</span>
+            </div>
+        </div>
+
+        <p>A Licencadó nem-kizárólagos, át nem ruházható, korlátozott felhasználási jogot biztosít a Licencvevő részére a GrantPilot platform fehér címkés (saját márkanév alatti) használatára az alábbi feltételek szerint.</p>
+
+        <h2>1. A licenc tárgya</h2>
+        <ul>
+            <li><b>Fehér címkés GrantPilot példány</b> — a Licencvevő brand-jén (logó, márkanév, színek, domain), a Licencadó által biztosított és karbantartott platformon hostolva.</li>
+            <li><b>Tartalomszolgáltatás:</b> ~300 magyar pályázat, hetente frissítve.</li>
+            <li><b>AI illeszkedési pontszámozás</b> — a Licencvevő ügyfeleinek profiljához.</li>
+            <li><b>Telegram értesítés rendszer</b>, e-mail digest, határidő-figyelés.</li>
+            <li><b>Maximum <span class="blank short">50</span> aktív ügyfél hozzáférés</b> — ezt meghaladva a licenc bővíthető további díjazás ellenében.</li>
+        </ul>
+
+        <h2>2. Licencdíj</h2>
+        <ul>
+            <li><b>Havi díj:</b> €<span class="blank short">999</span> + ÁFA</li>
+            <li>Számlázás havonta előre, fizetési határidő: 15 nap</li>
+            <li><b>Belépési díj:</b> nincs (egyszeri onboarding ingyenes)</li>
+            <li>A díj az AI Pályázati Ügynök licenccel csomagolva, vagy önálló szerződésként is elérhető</li>
+        </ul>
+
+        <p style="font-size: 13px; color: var(--gray-600);"><i>Megjegyzés: ha a Partner Program keretében az AI Ügynökkel együtt kerül megkötésre, a fehér címkés licenc külön díj nélkül, az AI licenc részeként biztosított.</i></p>
+
+        <h2>3. Brand és testreszabás</h2>
+        <ul>
+            <li>A Licencvevő által megadott logó, márkanév, és színpaletta a felület minden látható részén megjelenítésre kerül.</li>
+            <li>A Licencvevő saját domain név alatt érheti el a platformot (pl. <i>palyazat.partnerce.hu</i>) — a domain delegálás a Licencvevő feladata.</li>
+            <li>A "Powered by GrantPilot" jelzés a publikus oldalakon nem jelenik meg.</li>
+            <li>Adminisztrátori felületen <b>diszkrét</b> GrantPilot logó jelenhet meg (Licencadó márka védelem).</li>
+        </ul>
+
+        <h2>4. Ügyfél-kapcsolat</h2>
+        <ul>
+            <li>A platformon regisztrált ügyfelek <b>a Licencvevő ügyfelei</b>, jogilag és üzletileg.</li>
+            <li>A Licencadó <b>nem keresi meg közvetlenül</b> a Licencvevő ügyfeleit kereskedelmi céllal.</li>
+            <li>Az ügyféladatok tulajdonjoga a Licencvevőé; a Licencadó adatkezelő (data processor) szerepben van — GDPR-megfelelően.</li>
+            <li>A szerződés megszűnésekor az ügyfél-adatbázis exportálható (CSV formátum), a platformon történő szolgáltatás 30 napon belül megszűnik.</li>
+        </ul>
+
+        <h2>5. SLA — szolgáltatási szint</h2>
+        <ul>
+            <li><b>Rendelkezésre állás:</b> 99,5%/hó (havi tervezett karbantartás 4 órán belül).</li>
+            <li><b>Tartalom frissítés:</b> heti minimum 1 alkalom, új pályázatok bekerülésével együtt.</li>
+            <li><b>Support:</b> munkanapokon 9–17 között, 24 órán belüli válaszidővel.</li>
+            <li><b>Kritikus hiba:</b> 4 órán belüli reakció, 24 órán belüli javítás.</li>
+        </ul>
+
+        <h2>6. Adatkezelés</h2>
+        <ul>
+            <li>GDPR-megfelelő adatfeldolgozási megállapodás (DPA) a jelen szerződés melléklete.</li>
+            <li>Az adatok az EU területén tárolódnak.</li>
+            <li>A Licencadó a Licencvevő ügyféladatait <b>kizárólag a szolgáltatás nyújtására</b> használja.</li>
+        </ul>
+
+        <h2>7. Felelősség korlátozása</h2>
+        <ul>
+            <li>A Licencadó nem felelős a pályázati információ pontosságáért — az ügyfél felelőssége a hivatalos kiírás ellenőrzése.</li>
+            <li>A Licencadó kártérítési felelőssége a tárgyévi licencdíjra korlátozott.</li>
+            <li>Kizárt: közvetett kárfelelősség, elmaradt haszon, üzleti hírnév sérelme.</li>
+        </ul>
+
+        <h2>8. Időtartam, felmondás</h2>
+        <ul>
+            <li>Kezdeti időszak: <b>12 hónap</b> az aláírástól.</li>
+            <li>A 12 hónap leteltével a szerződés automatikusan 12 hónappal meghosszabbodik, kivéve ha bármelyik fél 60 nappal a lejárat előtt írásban felmondja.</li>
+            <li>Súlyos szerződésszegés esetén azonnali felmondás, 30 napos jóvátételi időszakkal.</li>
+        </ul>
+
+        <h2>9. Egyéb rendelkezések</h2>
+        <ul>
+            <li>Irányadó jog: magyar jog.</li>
+            <li>Jogvita esetén a Budapesti II. és III. Kerületi Bíróság kizárólagos illetékessége.</li>
+            <li>A szerződés módosítása csak írásban érvényes.</li>
+        </ul>
+
+        <h2>10. Aláírás</h2>
+        <p>Kelt: <span class="blank">[település]</span>, <span class="blank short">[dátum]</span></p>
+
+        <div class="signatures">
+            <div class="sig">
+                <b>Licencadó</b>
+                <span class="role">Cégszerű aláírás</span>
+            </div>
+            <div class="sig">
+                <b>Licencvevő</b>
+                <span class="role">Cégszerű aláírás</span>
+            </div>
+        </div>
+
+        <div class="note">
+            <b>Tárgyalási tipp:</b> ha a Partner alkudni próbál a havi díjon, ne csökkentsd — adj hozzá értéket. "€999 marad, de hozzáteszek egy negyedéves közös webinart az ügyfeleidnek, és prioritás support-ot." Az árcsökkentés irreverzibilis, az érték-hozzáadás visszavonható.
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function show(id) {
+        document.querySelectorAll('.doc').forEach(d => d.classList.add('hidden'));
+        document.getElementById('doc-' + id).classList.remove('hidden');
+        document.querySelectorAll('.doc-tab').forEach(t => t.classList.toggle('active', t.dataset.doc === id));
+        const labels = { loi: 'Szándéknyilatkozat', ref: 'Ajánlási megállapodás', wl: 'Fehér címkés licenc' };
+        document.getElementById('active-label').textContent = labels[id];
+    }
+    function printOne() {
+        // temporarily hide the other docs, print, then restore
+        const docs = document.querySelectorAll('.doc');
+        const active = document.querySelector('.doc:not(.hidden)');
+        const wasHidden = [];
+        docs.forEach((d, i) => { if (d !== active) { wasHidden[i] = d.classList.contains('hidden'); d.style.display = 'none'; } });
+        window.print();
+        docs.forEach((d, i) => { if (d !== active) d.style.display = ''; });
+    }
+</script>
+
+</body>
+</html>
