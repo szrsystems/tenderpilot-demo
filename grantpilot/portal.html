@@ -291,6 +291,15 @@
         .empty-icon svg { width: 26px; height: 26px; }
         .empty-title { font-size: 15px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
         .empty-text { font-size: 13px; color: var(--gray-500); line-height: 1.5; max-width: 360px; margin: 0 auto 16px; }
+        /* Lead rows */
+        .lead-row { display: grid; grid-template-columns: 40px 1fr auto; gap: 14px; align-items: center; background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 16px 18px; margin-bottom: 10px; }
+        .lead-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--green-100); color: var(--green-700); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; }
+        .lead-main .lead-name { font-size: 14px; font-weight: 700; color: var(--gray-900); }
+        .lead-main .lead-contact { font-size: 12px; color: var(--gray-500); margin-top: 2px; }
+        .lead-main .lead-grant { font-size: 12px; color: var(--gray-600); margin-top: 6px; }
+        .lead-main .lead-grant b { color: var(--green-700); font-weight: 600; }
+        .lead-time { font-size: 12px; color: var(--gray-400); white-space: nowrap; text-align: right; }
+        .lead-time .lead-new { display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 700; color: var(--green-700); background: var(--green-50); border: 1px solid var(--green-200); padding: 2px 7px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
 
         /* ===== FLOATING CTA ===== */
         .floating-cta { position: fixed; bottom: 0; left: var(--sidebar-w); right: 0; background: white; border-top: 1px solid var(--gray-200); box-shadow: 0 -4px 16px rgba(0,0,0,0.04); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; z-index: 40; transform: translateY(100%); transition: transform 0.3s ease; gap: 16px; }
@@ -348,6 +357,10 @@
         <div class="nav-item" onclick="showPage('saved')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" /></svg>
             Mentett <span class="nav-badge" id="nav-saved-count" style="background: var(--gray-400);">0</span>
+        </div>
+        <div class="nav-item" onclick="showPage('leads')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" /></svg>
+            Leadek <span class="nav-badge" id="nav-leads-count" style="background: var(--gray-400);">0</span>
         </div>
         <div class="nav-item" onclick="showPage('alerts')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" /></svg>
@@ -474,6 +487,34 @@
                 <div class="empty-title">Még nincs mentett pályázat</div>
                 <div class="empty-text">A pályázatok melletti könyvjelző ikonra kattintva mentheti azokat, amiket később át szeretne nézni vagy meg szeretne pályázni.</div>
                 <button class="btn-sm primary" onclick="showPage('grants')">Pályázatok böngészése</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEADS PAGE (partner / writer view) -->
+    <div id="page-leads" class="page hidden">
+        <div class="topbar">
+            <h1>Leadek <span style="font-size:11px;font-weight:700;color:var(--green-700);background:var(--green-50);border:1px solid var(--green-200);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px;margin-left:8px;">Partner nézet</span></h1>
+            <div class="topbar-actions">
+                <button class="btn-sm" onclick="exportLeadsCSV()">Exportálás</button>
+                <button class="btn-sm" onclick="clearLeads()">Lista ürítése</button>
+            </div>
+        </div>
+        <div class="content">
+            <div style="background:var(--green-50);border:1px solid var(--green-200);border-radius:var(--radius-lg);padding:14px 18px;margin-bottom:18px;font-size:13px;color:var(--gray-700);line-height:1.5;">
+                <b style="color:var(--green-800);">Így működik:</b> amikor egy ügyfél egy pályázatnál a „Pályázatíró konzultáció" gombra kattint, az igénylése — a pályázat kontextusával együtt — itt jelenik meg. Fehér címkés változatban ez az Ön saját lead-csatornája.
+            </div>
+            <div class="sort-bar">
+                <div class="sort-left"><b id="leads-count">0</b> beérkezett konzultációs igény</div>
+            </div>
+            <div id="leads-list"></div>
+            <div id="leads-empty" class="empty hidden">
+                <div class="empty-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg>
+                </div>
+                <div class="empty-title">Még nincs beérkezett lead</div>
+                <div class="empty-text">Nyisson meg egy pályázatot, és kérjen „Pályázatíró konzultációt" — az igénylés azonnal itt jelenik meg, a pályázat adataival együtt.</div>
+                <button class="btn-sm primary" onclick="showPage('grants')">Pályázatok megnyitása</button>
             </div>
         </div>
     </div>
@@ -914,10 +955,11 @@ function showPage(p) {
     document.querySelectorAll('.page').forEach(x => x.classList.add('hidden'));
     document.getElementById('page-'+p).classList.remove('hidden');
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    document.querySelectorAll('.nav-item')[['dashboard','grants','saved','alerts','profile'].indexOf(p)].classList.add('active');
+    document.querySelectorAll('.nav-item')[['dashboard','grants','saved','leads','alerts','profile'].indexOf(p)].classList.add('active');
     if (p === 'dashboard') initDashboard();
     if (p === 'grants') initGrants();
     if (p === 'saved') initSaved();
+    if (p === 'leads') initLeads();
     if (p === 'alerts') initAlerts();
     if (p === 'profile') initProfile();
 }
@@ -1021,6 +1063,7 @@ function toggleBookmark(id, ev) {
         btn.classList.toggle('saved', bookmarks.has(id));
     });
     updateSavedBadge();
+updateLeadsBadge();
     // If the user is on the Saved page, reflect the change live
     if (currentPage === 'saved') initSaved();
 }
@@ -1388,6 +1431,7 @@ function submitWriterLead(ev, id) {
         leads.push({ grantId: id, grantTitle: g ? g.title : id, name, email, phone, ts: Date.now() });
         localStorage.setItem('grantpilot:leads', JSON.stringify(leads));
     } catch(e) {}
+    updateLeadsBadge();
     wrap.innerHTML = `<div class="lead-success">
         <div class="ls-check">&#10003;</div>
         <h4>Köszönjük! Igényét rögzítettük.</h4>
@@ -1534,6 +1578,69 @@ function exportSavedCSV() {
     a.click();
 }
 
+/* ===== Leads (partner / writer view) ===== */
+function getLeads() {
+    try { return JSON.parse(localStorage.getItem('grantpilot:leads') || '[]'); } catch(e) { return []; }
+}
+
+function updateLeadsBadge() {
+    const el = document.getElementById('nav-leads-count');
+    if (!el) return;
+    const n = getLeads().length;
+    el.textContent = n;
+    el.style.background = n > 0 ? 'var(--green-600)' : 'var(--gray-400)';
+}
+
+function initLeads() {
+    const leads = getLeads().slice().reverse(); // newest first
+    const list = document.getElementById('leads-list');
+    const empty = document.getElementById('leads-empty');
+    document.getElementById('leads-count').textContent = leads.length;
+    if (leads.length === 0) {
+        list.innerHTML = '';
+        list.classList.add('hidden');
+        empty.classList.remove('hidden');
+        return;
+    }
+    empty.classList.add('hidden');
+    list.classList.remove('hidden');
+    const now = Date.now();
+    list.innerHTML = leads.map(ld => {
+        const initials = (ld.name || '?').trim().slice(0, 2).toUpperCase();
+        const ageH = (now - (ld.ts || now)) / 3600000;
+        const when = new Date(ld.ts || now).toLocaleString('hu-HU', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        const fresh = ageH < 24 ? '<div class="lead-new">Új</div>' : '';
+        const contact = [ld.email, ld.phone].filter(Boolean).join(' · ');
+        return `<div class="lead-row">
+            <div class="lead-avatar">${initials}</div>
+            <div class="lead-main">
+                <div class="lead-name">${ld.name || '(név nélkül)'}</div>
+                <div class="lead-contact">${contact || '—'}</div>
+                <div class="lead-grant">Pályázat: <b>${(ld.grantTitle || ld.grantId || '').slice(0, 80)}</b></div>
+            </div>
+            <div class="lead-time">${when}${fresh}</div>
+        </div>`;
+    }).join('');
+}
+
+function exportLeadsCSV() {
+    const leads = getLeads();
+    if (leads.length === 0) { alert('Nincs exportálható lead.'); return; }
+    let csv = 'Időpont,Név,E-mail,Telefon,Pályázat azonosító,Pályázat\n';
+    leads.forEach(l => csv += `"${new Date(l.ts||Date.now()).toLocaleString('hu-HU')}","${(l.name||'').replace(/"/g,'""')}","${l.email||''}","${l.phone||''}","${l.grantId||''}","${(l.grantTitle||'').replace(/"/g,'""')}"\n`);
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob(['﻿' + csv], {type:'text/csv;charset=utf-8'}));
+    a.download = 'grantpilot-leadek.csv';
+    a.click();
+}
+
+function clearLeads() {
+    if (!confirm('Biztosan törli az összes beérkezett leadet? Ez nem visszavonható.')) return;
+    try { localStorage.removeItem('grantpilot:leads'); } catch(e) {}
+    updateLeadsBadge();
+    initLeads();
+}
+
 function initProfile() {
     document.getElementById('profile-card').innerHTML = `
         <div class="profile-section">
@@ -1612,6 +1719,7 @@ function mountUserWidget() {
 // Init
 document.getElementById('nav-count').textContent = G.length;
 updateSavedBadge();
+updateLeadsBadge();
 mountUserWidget();
 initDashboard();
 maybeShowCTA();
