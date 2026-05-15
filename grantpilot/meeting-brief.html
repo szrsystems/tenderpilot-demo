@@ -75,6 +75,10 @@
         .print-btn { position: fixed; bottom: 24px; right: 24px; background: var(--gray-900); color: white; padding: 12px 20px; border-radius: 24px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
         .print-btn:hover { background: var(--gray-700); }
 
+        .copy-btn { background: white; border: 1px solid var(--gray-300); color: var(--gray-700); font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-family: inherit; margin-top: -4px; margin-bottom: 8px; transition: all 0.1s; }
+        .copy-btn:hover { background: var(--gray-50); border-color: var(--gray-400); }
+        .copy-btn.done { background: var(--green-600); color: white; border-color: var(--green-600); }
+
         @media print {
             body { background: white; }
             .header { background: white; color: var(--gray-900); border: 1px solid var(--gray-300); }
@@ -105,6 +109,52 @@
             <span><b>Időtartam:</b> 45–60 perc</span>
             <span><b>Helyszín:</b> az ő irodája</span>
             <span><b>Cél:</b> LOI aláírás vagy follow-up időpont</span>
+        </div>
+    </div>
+
+    <!-- STEP 0: FIRST CONTACT -->
+    <div class="card" style="border: 2px solid var(--green-200);">
+        <span class="card-tag">0. lépés — Első kapcsolatfelvétel</span>
+        <h2>Mit küldj most — és mit NE</h2>
+        <p><b>Az első üzenet egyetlen célja:</b> egy 30 perces, személyes találkozó a jövő héten. Semmi más. Ne küldd el a partner oldalt, a demót, a szerződéseket — azok a találkozó lőszerei. Ha most kiszórod, "újabb vendor" leszel, akit elarchivál.</p>
+        <div class="red-row" style="border-bottom: none; padding-top: 14px;">
+            <span class="dot"></span>
+            <div><b>NE küldd:</b> partner.html link · demo link · árazás · szerződés · hosszú bemutatkozó · prezentáció · "megnézhetnéd a platformomat" típusú üzenet.</div>
+        </div>
+        <div class="green-row" style="border-bottom: none;">
+            <span class="dot"></span>
+            <div><b>Küldd:</b> 6 mondat, konkrét számszerű horog, alacsony nyomás, 1 időpont-választás. Lentebb a kész szövegek — másold, töltsd ki a [szögletes] részeket, küldd.</div>
+        </div>
+
+        <h3>A — E-mail (ha e-mail címet kaptál)</h3>
+        <p style="font-size: 12px; color: var(--gray-500);">Tárgy: <b style="color: var(--gray-800);">3× több pályázat, ugyanannyi munkaidő — 30 perc?</b></p>
+        <div class="quote" style="font-style: normal;" id="msg-email">Szia [Név],<br><br>
+        [Te neved] vagyok, AI-megoldásokat fejlesztek vállalkozásoknak. Az elmúlt hónapokban építettem egy rendszert, ami egy pályázatírónak a pályázat ~80%-át előre megírja a saját korábbi nyertes anyagai alapján — a maradék 20%, a szakmai véglegesítés és benyújtás, marad nálad.<br><br>
+        A gyakorlatban: ~3× annyi pályázatot tudsz kezelni ugyanannyi idő alatt, változatlan díjszabás mellett.<br><br>
+        Nem eladni szeretnék — megmutatni. 30 perc nálad, hozok egy működő példát. Budapesten 1–2 pályázatíró partnerrel dolgozom együtt, ezért kereslek konkrétan téged.<br><br>
+        Jövő héten kedd vagy csütörtök délelőtt megfelel?<br><br>
+        Üdv,<br>[Te neved] · [telefonszám]</div>
+        <button class="copy-btn" onclick="copyMsg('msg-email', this)">Másolás</button>
+
+        <h3>B — LinkedIn / Messenger (rövid)</h3>
+        <div class="quote" style="font-style: normal;" id="msg-dm">Szia [Név], [Te neved] vagyok, AI-fejlesztő. Építettem egy rendszert, ami egy pályázatírónak a pályázat ~80%-át előre megírja a saját korábbi nyertes anyagaiból — ~3× kapacitás, változatlan díj. Nem eladni akarom, megmutatni. 30 perc nálad jövő héten? Budapesten csak 1–2 partnerrel dolgozom, ezért írok konkrétan neked.</div>
+        <button class="copy-btn" onclick="copyMsg('msg-dm', this)">Másolás</button>
+
+        <h3>C — Telefon (ha számot kaptál — a legerősebb)</h3>
+        <p style="font-size: 13px;">Hívd fel. 15 másodperces nyitó, aztán <b>elhallgatsz és hagyod válaszolni</b>:</p>
+        <div class="quote" id="msg-call">"Szia [Név], [Te neved] vagyok — nem zavarlak sokáig. AI-megoldásokat fejlesztek; csináltam egy rendszert, ami pályázatíróknak a pályázat 80%-át előre megírja a saját korábbi anyagaikból — nagyjából 3× kapacitás ugyanannyi idő alatt. Nem telefonon akarom elmondani — 30 perc nálad jövő héten, hozok egy működő példát. Csütörtök délelőtt jó lenne?"</div>
+        <button class="copy-btn" onclick="copyMsg('msg-call', this)">Másolás</button>
+        <div class="objection" style="margin-top: 14px;">
+            <div class="objection-q">Küldj inkább egy emailt.</div>
+            <div class="objection-a">"Persze, küldök ma egy 3 sorosat. De a lényeg a működő demo, amit élőben érdemes látni. Ha az email alapján van benned kíváncsiság — csütörtök, vagy a rá következő kedd?" <b>Mindig visszahorgonyzol egy konkrét időpontra. Soha nem hagyod nyitva.</b></div>
+        </div>
+
+        <h3>Ha visszaír: "Küldj előbb anyagot"</h3>
+        <p>Akkor — és csak akkor — küldd EGYETLEN linket, egy mondattal, semmi mással:</p>
+        <div class="quote" style="font-style: normal;" id="msg-followlink">Itt egy 1 perces összefoglaló, a lényeg viszont a működő demo, amit a találkozón mutatok: grantpilot.hu/partner — mikor jó neked?</div>
+        <button class="copy-btn" onclick="copyMsg('msg-followlink', this)">Másolás</button>
+        <div class="note" style="margin-top: 14px;">
+            <b>A horog miért működik:</b> (1) számszerű és konkrét — "3× kapacitás, változatlan díj" a pályázatíró nyelvén beszél; (2) "nem eladni, megmutatni" — leveszi a nyomást; (3) "1–2 partner Budapesten" — enyhe szűkösség, te választod őt, nem könyörögsz; (4) 2 időpont opció = könnyebb igen, mint nyitott kérdés. <b>Státusz-egyenrangú, nem alárendelt.</b>
         </div>
     </div>
 
@@ -330,6 +380,25 @@
 </div>
 
 <button class="print-btn" onclick="window.print()">🖨️ Nyomtatás</button>
+
+<script>
+function copyMsg(id, btn) {
+    const el = document.getElementById(id);
+    const text = el.innerText.replace(/\n{3,}/g, '\n\n').trim();
+    navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = '✓ Kimásolva';
+        btn.classList.add('done');
+        setTimeout(() => { btn.textContent = orig; btn.classList.remove('done'); }, 2000);
+    }).catch(() => {
+        const r = document.createRange(); r.selectNode(el);
+        getSelection().removeAllRanges(); getSelection().addRange(r);
+        try { document.execCommand('copy'); btn.textContent = '✓ Kimásolva'; } catch(e) { btn.textContent = 'Jelöld ki kézzel'; }
+        getSelection().removeAllRanges();
+        setTimeout(() => { btn.textContent = 'Másolás'; }, 2000);
+    });
+}
+</script>
 
 </body>
 </html>
