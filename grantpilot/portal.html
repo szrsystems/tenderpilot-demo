@@ -105,6 +105,24 @@
         .detail-row:last-child { border-bottom: none; }
         .detail-row .label { color: var(--gray-500); }
         .detail-row .value { font-weight: 600; }
+        /* Funding ideas */
+        .fund-idea { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; background: var(--green-50); border: 1px solid var(--green-100); border-radius: 8px; margin-bottom: 8px; font-size: 13px; color: var(--gray-800); line-height: 1.45; }
+        .fund-idea .fi-ico { font-size: 15px; flex-shrink: 0; line-height: 1.4; }
+        .fund-note { font-size: 11px; color: var(--gray-400); margin-top: 8px; line-height: 1.5; }
+        /* Lead capture */
+        .lead-card { background: var(--gray-900); border-radius: 12px; padding: 18px; margin-top: 20px; }
+        .lead-card h4 { color: white; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+        .lead-card p { color: var(--gray-300); font-size: 12px; line-height: 1.5; margin-bottom: 14px; }
+        .lead-field { margin-bottom: 10px; }
+        .lead-field input { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--gray-700); background: var(--gray-800); color: white; font-size: 13px; font-family: inherit; }
+        .lead-field input::placeholder { color: var(--gray-500); }
+        .lead-field input:focus { outline: none; border-color: var(--green-500); }
+        .lead-submit { width: 100%; padding: 11px; background: var(--green-600); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; transition: background 0.1s; }
+        .lead-submit:hover { background: var(--green-700); }
+        .lead-success { text-align: center; padding: 8px 0; }
+        .lead-success .ls-check { width: 44px; height: 44px; background: var(--green-600); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 0 auto 12px; }
+        .lead-success h4 { color: white; font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+        .lead-success p { color: var(--gray-300); font-size: 12px; line-height: 1.5; }
         .score-bars { margin-top: 8px; }
         .score-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 12px; }
         .score-bar-row .bar-label { width: 100px; color: var(--gray-500); flex-shrink: 0; }
@@ -1288,6 +1306,95 @@ function filterGrants() {
     }
 }
 
+// Concrete, fundable project ideas per grant — what the money actually buys.
+// Deliberately weighted toward digital/automation/AI where the category allows,
+// because that is the work most likely to be delivered by a vendor partner.
+function fundingIdeas(g) {
+    const t = ((g.cat || '') + ' ' + (g.title || '')).toLowerCase();
+    const has = (...ks) => ks.some(k => t.includes(k));
+    if (has('digit', 'informatik', 'szoftver', 'adatvagyon', 'mesterséges', 'ai', 'automat'))
+        return [
+            ['🤖', 'Folyamatautomatizálás — számlafeldolgozás, dokumentumkezelés, adatrögzítés kiváltása'],
+            ['💬', 'Ügyfélszolgálati automatizáció — AI chatbot, e-mail- és ajánlatkezelés'],
+            ['📊', 'Adatelemző és vezetői riporting rendszer bevezetése'],
+            ['🛒', 'Webáruház vagy integrált ERP/CRM rendszer fejlesztése']
+        ];
+    if (has('kutat', 'innov', 'k+f', 'kf '))
+        return [
+            ['🧪', 'Prototípus- és termékfejlesztés, kísérleti gyártás'],
+            ['🤖', 'AI/ML modell fejlesztése és integrációja a termékbe'],
+            ['👩‍🔬', 'K+F mérnök / fejlesztő munkatársak bérköltsége'],
+            ['📐', 'Tesztkörnyezet, mérőeszközök, szabadalmaztatás']
+        ];
+    if (has('energi', 'megújul', 'napelem', 'energetik'))
+        return [
+            ['☀️', 'Napelemes rendszer, hőszivattyú, energiatárolás telepítése'],
+            ['🏭', 'Gépek, világítás, fűtés energiahatékony cseréje'],
+            ['📉', 'Energiamenedzsment- és monitoring rendszer kiépítése'],
+            ['🏢', 'Épület hőszigetelése, nyílászárócsere']
+        ];
+    if (has('turiz', 'szállás', 'vendéglát', 'étterm'))
+        return [
+            ['🏨', 'Szálláshely- vagy vendéglátóegység felújítása, bővítése'],
+            ['🍽️', 'Konyhatechnológiai és kiszolgáló eszközök beszerzése'],
+            ['📱', 'Online foglalási és vendégélmény-rendszer bevezetése'],
+            ['🌳', 'Attrakció- és élményfejlesztés, kültéri beruházás']
+        ];
+    if (has('mező', 'agrár', 'gazda', 'leader'))
+        return [
+            ['🚜', 'Gép-, erőgép- és eszközbeszerzés'],
+            ['🏗️', 'Telephely-, tároló- és feldolgozókapacitás építése'],
+            ['📡', 'Precíziós gazdálkodás — szenzorok, monitoring, automatizálás'],
+            ['❄️', 'Hűtés-, tárolás- és logisztikai fejlesztés']
+        ];
+    if (has('export', 'külpiac', 'nemzetközi'))
+        return [
+            ['🌍', 'Külpiaci megjelenés — kiállítás, vásár, piackutatás'],
+            ['🌐', 'Idegen nyelvű webshop és marketing kampány'],
+            ['📜', 'Nemzetközi tanúsítványok, engedélyek megszerzése'],
+            ['🤝', 'Külföldi disztribútori és partnerhálózat kiépítése']
+        ];
+    if (has('képz', 'oktat'))
+        return [
+            ['🎓', 'Munkatársak szakmai és digitális képzése'],
+            ['🧑‍🏫', 'Belső tréningrendszer és tananyag kidolgozása'],
+            ['💻', 'E-learning platform bevezetése'],
+            ['📈', 'Vezető- és kompetenciafejlesztés']
+        ];
+    // Default — general KKV development / capacity
+    return [
+        ['🏗️', 'Telephelyfejlesztés, ingatlan- és infrastruktúra-beruházás'],
+        ['⚙️', 'Gép-, eszköz- és technológiabeszerzés'],
+        ['🤖', 'Működés digitalizálása és folyamatautomatizálás'],
+        ['👥', 'Új munkatársak felvétele, kapacitásbővítés']
+    ];
+}
+
+function requestWriterQuote(id) {
+    document.getElementById('lead-trigger-' + id).style.display = 'none';
+    const form = document.getElementById('lead-form-' + id);
+    if (form) { form.style.display = 'block'; form.scrollIntoView({behavior:'smooth', block:'center'}); }
+}
+
+function submitWriterLead(ev, id) {
+    ev.preventDefault();
+    const g = G.find(x => x.id === id);
+    const wrap = document.getElementById('lead-wrap-' + id);
+    const name = (document.getElementById('ld-name-' + id) || {}).value || '';
+    const email = (document.getElementById('ld-email-' + id) || {}).value || '';
+    const phone = (document.getElementById('ld-phone-' + id) || {}).value || '';
+    try {
+        const leads = JSON.parse(localStorage.getItem('grantpilot:leads') || '[]');
+        leads.push({ grantId: id, grantTitle: g ? g.title : id, name, email, phone, ts: Date.now() });
+        localStorage.setItem('grantpilot:leads', JSON.stringify(leads));
+    } catch(e) {}
+    wrap.innerHTML = `<div class="lead-success">
+        <div class="ls-check">&#10003;</div>
+        <h4>Köszönjük! Igényét rögzítettük.</h4>
+        <p>Pályázatíró partnerünk <b>2 munkanapon belül</b> felveszi Önnel a kapcsolatot a(z) „${g ? g.title.slice(0,60) : ''}…" pályázattal kapcsolatban, és díjmentes előzetes jogosultsági konzultációt ad.</p>
+    </div>`;
+}
+
 function showDetail(id) {
     const g = G.find(x => x.id === id);
     if (!g) return;
@@ -1326,6 +1433,11 @@ function showDetail(id) {
                   `Nem ajánlott. Az Ön cégprofilja alapján ez a pályázat nem illeszkedik megfelelően. Nem érdemes rá időt fordítani.`}
             </p>
         </div>
+        <div class="detail-section">
+            <h3>Mire fordíthatja ezt a támogatást?</h3>
+            ${fundingIdeas(g).map(([ic, txt]) => `<div class="fund-idea"><span class="fi-ico">${ic}</span><span>${txt}</span></div>`).join('')}
+            <div class="fund-note">Tájékoztató példák a kategória alapján — a pontos elszámolható költségeket a hivatalos kiírás határozza meg. Konkrét projekttervhez kérjen pályázatírói konzultációt lentebb.</div>
+        </div>
         ${g.verdict === 'APPLY' ? `<div class="detail-section">
             <h3>Jogosultsági ellenőrzőlista</h3>
             <div style="font-size: 13px; line-height: 2;">
@@ -1349,9 +1461,23 @@ function showDetail(id) {
             </div>
             <div style="font-size: 11px; color: var(--gray-400); margin-top: 6px;">Így néz ki az értesítő e-mail</div>
         </div>
-        <div style="margin-top: 20px; display: flex; gap: 8px;">
-            <button class="btn-sm primary" style="flex: 1;" onclick="closeDetail()">Pályázatíró ajánlás kérése</button>
-            <button class="btn-sm" onclick="closeDetail()">Bezárás</button>
+        <div id="lead-wrap-${g.id}">
+            <div class="lead-card" id="lead-trigger-${g.id}">
+                <h4>Pályázzon szakértői segítséggel</h4>
+                <p>Kérjen díjmentes előzetes konzultációt pályázatíró partnerünktől erre a pályázatra. Megnézzük a jogosultságát, és megmondjuk, megéri-e elindulni — kötelezettség nélkül.</p>
+                <button class="lead-submit" onclick="requestWriterQuote('${g.id}')">Ingyenes konzultáció kérése</button>
+            </div>
+            <form class="lead-card" id="lead-form-${g.id}" style="display:none;" onsubmit="submitWriterLead(event, '${g.id}')">
+                <h4>Pályázatíró konzultáció — ${g.title.slice(0, 48)}…</h4>
+                <p>Hagyja meg elérhetőségét, partnerünk 2 munkanapon belül jelentkezik.</p>
+                <div class="lead-field"><input type="text" id="ld-name-${g.id}" placeholder="Név / cégnév" required></div>
+                <div class="lead-field"><input type="email" id="ld-email-${g.id}" placeholder="E-mail cím" required></div>
+                <div class="lead-field"><input type="tel" id="ld-phone-${g.id}" placeholder="Telefonszám (opcionális)"></div>
+                <button type="submit" class="lead-submit">Igénylés elküldése</button>
+            </form>
+        </div>
+        <div style="margin-top: 12px; display: flex; gap: 8px;">
+            <button class="btn-sm" style="flex: 1;" onclick="closeDetail()">Bezárás</button>
         </div>
     `;
 
