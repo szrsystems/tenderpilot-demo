@@ -149,6 +149,30 @@
         .profile-meta { font-size: 13px; color: var(--gray-500); }
         .tag-list { display: flex; gap: 6px; flex-wrap: wrap; padding: 12px 0; }
         .tag { padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; background: var(--green-50); color: var(--green-700); border: 1px solid var(--green-200); }
+        /* Settings form */
+        .set-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .set-field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 4px; }
+        .set-field.full { grid-column: 1 / -1; }
+        .set-field label { font-size: 12px; font-weight: 600; color: var(--gray-500); }
+        .set-field input, .set-field select { padding: 9px 11px; border: 1px solid var(--gray-300); border-radius: 7px; font-size: 13px; font-family: inherit; color: var(--gray-900); background: white; }
+        .set-field input:focus, .set-field select:focus { outline: none; border-color: var(--green-500); box-shadow: 0 0 0 3px rgba(34,197,94,0.1); }
+        .chip-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .chip-opt { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid var(--gray-300); border-radius: 999px; font-size: 12px; font-weight: 600; color: var(--gray-600); cursor: pointer; user-select: none; transition: all 0.1s; }
+        .chip-opt input { display: none; }
+        .chip-opt.on { background: var(--green-50); border-color: var(--green-300, #86efac); color: var(--green-700); }
+        .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--gray-100); }
+        .toggle-row:last-of-type { border-bottom: none; }
+        .toggle-row .tr-label { font-size: 13px; font-weight: 600; color: var(--gray-800); }
+        .toggle-row .tr-sub { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
+        .switch { position: relative; width: 40px; height: 22px; flex-shrink: 0; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .switch .sl { position: absolute; inset: 0; background: var(--gray-300); border-radius: 999px; transition: 0.15s; cursor: pointer; }
+        .switch .sl::before { content: ''; position: absolute; width: 16px; height: 16px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: 0.15s; }
+        .switch input:checked + .sl { background: var(--green-600); }
+        .switch input:checked + .sl::before { transform: translateX(18px); }
+        .save-bar { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+        .save-ok { font-size: 13px; font-weight: 600; color: var(--green-700); opacity: 0; transition: opacity 0.2s; }
+        .save-ok.show { opacity: 1; }
 
         /* ===== HERO STATS (animated) ===== */
         .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
@@ -989,14 +1013,6 @@ for (let i = G.length - 1; i >= 0; i--) {
     if (G[i].expired) { EXPIRED_COUNT++; G.splice(i, 1); }
 }
 
-const ALERTS = [
-    {color:"green",title:"Kiemelt: AI és automatizáció pályázat (97.3 pont)",text:"G-017 tökéletesen illeszkedik profiljához. Határidő: 2026-08-20. Javasolt: azonnali pályázatkészítés.",time:"Ma, 08:15"},
-    {color:"green",title:"Új pályázat: Mikrovállalkozások kapacitásbővítés (96.1)",text:"G-010: 1-10M Ft összeghatár, KKV fejlesztés kategória. Ideális méret az Ön cégéhez.",time:"Ma, 08:12"},
-    {color:"red",title:"Határidő: NKFI kutatási pályázat — 42 nap",text:"G-009: Alkalmazott kutatási pályázat, 82.6 pont. Amennyiben érdekli, azonnali lépés szükséges.",time:"Tegnap"},
-    {color:"amber",title:"Heti összefoglaló",text:"18 pályázat elemezve: 9 ajánlott, 4 áttekintendő, 5 nem releváns. Becsült összérték: ~1.2 milliárd Ft.",time:"Hétfő, 08:00"},
-    {color:"green",title:"Profil frissítve",text:"Új preferált kategória: Export / Nemzetközi. A rendszer mostantól ezeket is figyeli.",time:"Múlt hét"},
-];
-
 let currentPage = 'dashboard';
 
 /* ===== User profile (from onboarding) ===== */
@@ -1641,8 +1657,52 @@ function closeDetail() {
 }
 
 function initAlerts() {
-    document.getElementById('alerts-card').innerHTML = ALERTS.map(a => `
-        <div class="alert-item">
+    const profile = getUserProfile();
+    const ranked = [...G].sort((a,b) => (b.score + profileBoost(b, profile)) - (a.score + profileBoost(a, profile)) || a.days - b.days);
+    const alerts = [];
+
+    // 1. Urgent deadlines on relevant grants (<=14 days)
+    ranked.filter(g => g.days > 0 && g.days <= 14 && (g.score + profileBoost(g, profile)) > 55)
+          .slice(0, 4).forEach(g => alerts.push({
+        color: 'red',
+        title: `Sürgős határidő: ${g.days} nap — ${g.title.slice(0, 60)}`,
+        text: `${g.amount} · ${g.cat} · ${g.score}/100 illeszkedés. A pályázatírás és a 3 árajánlatos beszerzés átfutási ideje miatt a döntést nem érdemes halogatni.`,
+        time: `Határidő: ${g.deadline}`, id: g.id
+    }));
+
+    // 2. New high-fit grants
+    ranked.filter(isNew).slice(0, 3).forEach(g => alerts.push({
+        color: 'green',
+        title: `Új releváns pályázat (${g.score}/100): ${g.title.slice(0, 55)}`,
+        text: `${g.amount} · ${g.cat}. Az Ön cégprofilja alapján kiemelten ajánlott — érdemes előzetes jogosultsági konzultációt kérni.`,
+        time: 'Ezen a héten', id: g.id
+    }));
+
+    // 3. Captured consultation leads (partner-relevant)
+    getLeads().slice().reverse().slice(0, 3).forEach(ld => alerts.push({
+        color: 'amber',
+        title: `Konzultációs igény rögzítve: ${ld.name || '(név nélkül)'}`,
+        text: `${[ld.email, ld.phone].filter(Boolean).join(' · ') || '—'} — pályázat: ${(ld.grantTitle || ld.grantId || '').slice(0, 60)}. Pályázatíró partner 2 munkanapon belül jelentkezik.`,
+        time: new Date(ld.ts || Date.now()).toLocaleString('hu-HU', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' })
+    }));
+
+    // 4. Weekly summary line
+    const relevant = ranked.filter(g => (g.score + profileBoost(g, profile)) > 60).length;
+    const funding = ranked.filter(g => (g.score + profileBoost(g, profile)) > 60).reduce((s,g)=>s+parseAmount(g.amount),0);
+    alerts.push({
+        color: 'green',
+        title: 'Heti összefoglaló',
+        text: `${G.length} aktív pályázat figyelve · ${relevant} Önnek releváns · ~${formatFt(funding)} elérhető keret. Teljes jelentés a Jelentések menüben.`,
+        time: 'Hétfő, 08:00'
+    });
+
+    const card = document.getElementById('alerts-card');
+    if (!alerts.length) {
+        card.innerHTML = `<div style="padding:40px 24px;text-align:center;color:var(--gray-500);font-size:13px;">Jelenleg nincs új értesítés.</div>`;
+        return;
+    }
+    card.innerHTML = alerts.map(a => `
+        <div class="alert-item" ${a.id ? `onclick="showDetail('${a.id}')" style="cursor:pointer;"` : ''}>
             <div class="alert-dot ${a.color}"></div>
             <div><div class="alert-title">${a.title}</div><div class="alert-text">${a.text}</div><div class="alert-time">${a.time}</div></div>
         </div>
@@ -1844,33 +1904,139 @@ function openReport(type) {
 function closeReport() { document.getElementById('report-modal').classList.remove('open'); }
 function printReport() { window.print(); }
 
+const INDUSTRY_OPTS = [['IT','IT / Szoftverfejlesztés'],['HVAC','Épületgépészet / HVAC'],['Construction','Építőipar'],['Manufacturing','Gyártás'],['Healthcare','Egészségügy'],['Restaurant','Vendéglátás'],['Tourism','Turizmus'],['Agriculture','Mezőgazdaság'],['Retail','Kereskedelem'],['Education','Oktatás'],['General','Egyéb']];
+const EMP_OPTS = ['1-5','6-10','11-25','26-50','51-100','100+'];
+const REV_OPTS = [['<100K','< €100K'],['100K-500K','€100K - €500K'],['500K-1M','€500K - €1M'],['1M-5M','€1M - €5M'],['5M+','€5M+']];
+const PREF_CATS = ['KKV fejlesztés','Digitális átalakulás','Kutatás-fejlesztés','Energiahatékonyság','Munkahelyteremtés','Export','Turizmus','Mezőgazdaság','Környezetvédelem','Oktatás'];
+const NOTIF_KEY = 'grantpilot:notif';
+
+function getNotif() {
+    try {
+        const r = JSON.parse(localStorage.getItem(NOTIF_KEY) || 'null');
+        if (r) return r;
+    } catch(e) {}
+    const p = getUserProfile();
+    return { weekly: true, freq: 'heti', email: (p && p.email) || '', secNew: true, secDeadline: true, secReco: true, secSaved: false, urgent: true };
+}
+
 function initProfile() {
+    const p = getUserProfile() || {};
+    const company = p.company || 'Demo Vállalkozás Kft.';
+    const initials = company.trim().split(/\s+/).slice(0,2).map(w => w[0]).join('').toUpperCase() || 'GP';
+    const indLabel = (INDUSTRY_OPTS.find(o => o[0] === p.industry) || [null,'IT / Szoftverfejlesztés'])[1];
+    const meta = [p.location || 'Budapest', indLabel, (p.employees || '11-25') + ' fő'].join(' · ');
+    const n = getNotif();
+    const opt = (arr, sel) => arr.map(o => { const v = Array.isArray(o)?o[0]:o, l = Array.isArray(o)?o[1]:o+' fő'; return `<option value="${v}" ${v===sel?'selected':''}>${l}</option>`; }).join('');
+    const cats = Array.isArray(p.categories) ? p.categories : ['KKV fejlesztés','Digitális átalakulás','Kutatás-fejlesztés'];
+
     document.getElementById('profile-card').innerHTML = `
         <div class="profile-section">
             <div class="profile-header">
-                <div class="profile-avatar">DV</div>
-                <div><div class="profile-name">Demo Vállalkozás Kft.</div><div class="profile-meta">Budapest · IT / Szoftverfejlesztés · 25 fő</div></div>
+                <div class="profile-avatar">${initials}</div>
+                <div><div class="profile-name">${company}</div><div class="profile-meta">${meta}</div></div>
             </div>
+
             <div class="detail-section">
-                <h3>Cégadatok</h3>
-                <div class="detail-row"><span class="label">Székhely</span><span class="value">1052 Budapest, Váci utca 10.</span></div>
-                <div class="detail-row"><span class="label">Iparág</span><span class="value">IT / Szoftverfejlesztés</span></div>
-                <div class="detail-row"><span class="label">Létszám</span><span class="value">25 fő</span></div>
-                <div class="detail-row"><span class="label">Árbevétel</span><span class="value">€800,000</span></div>
-                <div class="detail-row"><span class="label">Működés</span><span class="value">4 éve</span></div>
-                <div class="detail-row"><span class="label">Csomag</span><span class="value" style="color: var(--green-600); font-weight: 700;">Professional</span></div>
-            </div>
-            <div class="detail-section">
-                <h3>Preferált kategóriák</h3>
-                <div class="tag-list">
-                    <span class="tag">KKV fejlesztés</span>
-                    <span class="tag">Digitális átalakulás</span>
-                    <span class="tag">Kutatás-fejlesztés</span>
-                    <span class="tag">Export</span>
+                <h3>Cégprofil — ez vezérli a személyre szabott ajánlásokat</h3>
+                <div class="set-grid">
+                    <div class="set-field full"><label>Cégnév</label><input id="s_company" type="text" value="${(p.company||'').replace(/"/g,'&quot;')}" placeholder="Pl. InnoTech Kft."></div>
+                    <div class="set-field"><label>Iparág</label><select id="s_industry">${opt(INDUSTRY_OPTS, p.industry||'IT')}</select></div>
+                    <div class="set-field"><label>Létszám</label><select id="s_employees">${opt(EMP_OPTS, p.employees||'11-25')}</select></div>
+                    <div class="set-field"><label>Árbevétel</label><select id="s_revenue">${opt(REV_OPTS, p.revenue||'500K-1M')}</select></div>
+                    <div class="set-field"><label>Székhely / régió</label><input id="s_location" type="text" value="${(p.location||'').replace(/"/g,'&quot;')}" placeholder="Pl. Budapest"></div>
+                    <div class="set-field full"><label>Preferált kategóriák</label>
+                        <div class="chip-grid" id="s_cats">
+                            ${PREF_CATS.map(c => `<label class="chip-opt ${cats.includes(c)?'on':''}"><input type="checkbox" value="${c}" ${cats.includes(c)?'checked':''} onchange="this.closest('.chip-opt').classList.toggle('on',this.checked)">${c}</label>`).join('')}
+                        </div>
+                    </div>
+                    <div class="set-field"><label>Kapcsolattartó</label><input id="s_contact" type="text" value="${(p.contact_name||'').replace(/"/g,'&quot;')}" placeholder="Név"></div>
+                    <div class="set-field"><label>E-mail</label><input id="s_email" type="email" value="${(p.email||'').replace(/"/g,'&quot;')}" placeholder="on@vallalkozas.hu"></div>
                 </div>
+                <div class="save-bar">
+                    <button class="btn-sm primary" onclick="saveProfile()">Profil mentése</button>
+                    <span class="save-ok" id="prof-ok">Mentve ✓ — az ajánlások frissültek</span>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h3>Értesítési beállítások</h3>
+                <div class="toggle-row">
+                    <div><div class="tr-label">Heti e-mail jelentés</div><div class="tr-sub">Személyre szabott összefoglaló a legrelevánsabb pályázatokról</div></div>
+                    <label class="switch"><input type="checkbox" id="n_weekly" ${n.weekly?'checked':''}><span class="sl"></span></label>
+                </div>
+                <div class="toggle-row">
+                    <div><div class="tr-label">Sürgős határidő riasztás</div><div class="tr-sub">Külön értesítés, ha releváns pályázat 14 napon belül lejár</div></div>
+                    <label class="switch"><input type="checkbox" id="n_urgent" ${n.urgent?'checked':''}><span class="sl"></span></label>
+                </div>
+                <div class="set-grid" style="margin-top:14px;">
+                    <div class="set-field"><label>Gyakoriság</label><select id="n_freq">${['heti','kéthetente','havi'].map(f=>`<option ${f===n.freq?'selected':''}>${f}</option>`).join('')}</select></div>
+                    <div class="set-field"><label>Értesítési e-mail cím</label><input id="n_email" type="email" value="${(n.email||'').replace(/"/g,'&quot;')}" placeholder="on@vallalkozas.hu"></div>
+                    <div class="set-field full"><label>A jelentés tartalmazza</label>
+                        <div class="chip-grid">
+                            <label class="chip-opt ${n.secNew?'on':''}"><input type="checkbox" id="n_new" ${n.secNew?'checked':''} onchange="this.closest('.chip-opt').classList.toggle('on',this.checked)">Új pályázatok</label>
+                            <label class="chip-opt ${n.secDeadline?'on':''}"><input type="checkbox" id="n_deadline" ${n.secDeadline?'checked':''} onchange="this.closest('.chip-opt').classList.toggle('on',this.checked)">Közelgő határidők</label>
+                            <label class="chip-opt ${n.secReco?'on':''}"><input type="checkbox" id="n_reco" ${n.secReco?'checked':''} onchange="this.closest('.chip-opt').classList.toggle('on',this.checked)">Top ajánlások</label>
+                            <label class="chip-opt ${n.secSaved?'on':''}"><input type="checkbox" id="n_saved" ${n.secSaved?'checked':''} onchange="this.closest('.chip-opt').classList.toggle('on',this.checked)">Mentett frissítések</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="save-bar">
+                    <button class="btn-sm primary" onclick="saveNotif()">Beállítások mentése</button>
+                    <span class="save-ok" id="notif-ok">Mentve ✓</span>
+                    <button class="btn-sm" onclick="openReport('weekly')">Heti jelentés előnézet</button>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h3>Csomag</h3>
+                <div class="detail-row"><span class="label">Aktuális csomag</span><span class="value" style="color: var(--green-600); font-weight: 700;">Professional · 14 napos próba</span></div>
+                <div class="detail-row"><span class="label">Profil státusz</span><span class="value">${getUserProfile() ? 'Kitöltve ✓' : 'Hiányos — töltse ki a cégprofilt'}</span></div>
             </div>
         </div>
     `;
+}
+
+function flashOk(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 2600);
+}
+
+function saveProfile() {
+    const prev = getUserProfile() || {};
+    const cats = [...document.querySelectorAll('#s_cats input:checked')].map(c => c.value);
+    const data = Object.assign({}, prev, {
+        company: document.getElementById('s_company').value.trim(),
+        industry: document.getElementById('s_industry').value,
+        employees: document.getElementById('s_employees').value,
+        revenue: document.getElementById('s_revenue').value,
+        location: document.getElementById('s_location').value.trim(),
+        categories: cats,
+        contact_name: document.getElementById('s_contact').value.trim(),
+        email: document.getElementById('s_email').value.trim(),
+        updated: new Date().toISOString()
+    });
+    try { localStorage.setItem('grantpilot:profile', JSON.stringify(data)); } catch(e) {}
+    const banner = document.getElementById('profile-banner');
+    if (banner && data.company) banner.style.display = 'none';
+    flashOk('prof-ok');
+    initProfile(); // re-render with new values + status
+}
+
+function saveNotif() {
+    const data = {
+        weekly: document.getElementById('n_weekly').checked,
+        urgent: document.getElementById('n_urgent').checked,
+        freq: document.getElementById('n_freq').value,
+        email: document.getElementById('n_email').value.trim(),
+        secNew: document.getElementById('n_new').checked,
+        secDeadline: document.getElementById('n_deadline').checked,
+        secReco: document.getElementById('n_reco').checked,
+        secSaved: document.getElementById('n_saved').checked
+    };
+    try { localStorage.setItem(NOTIF_KEY, JSON.stringify(data)); } catch(e) {}
+    flashOk('notif-ok');
 }
 
 function runScan() {
