@@ -291,6 +291,57 @@
         .empty-icon svg { width: 26px; height: 26px; }
         .empty-title { font-size: 15px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
         .empty-text { font-size: 13px; color: var(--gray-500); line-height: 1.5; max-width: 360px; margin: 0 auto 16px; }
+        /* Reports */
+        .report-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+        .report-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 22px; cursor: pointer; transition: all 0.15s; display: flex; flex-direction: column; gap: 12px; }
+        .report-card:hover { border-color: var(--green-300, #86efac); box-shadow: 0 6px 18px rgba(34,197,94,0.08); transform: translateY(-2px); }
+        .report-ico { font-size: 28px; }
+        .report-meta h3 { font-size: 16px; font-weight: 700; color: var(--gray-900); margin-bottom: 6px; }
+        .report-meta p { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
+        .report-go { font-size: 13px; font-weight: 700; color: var(--green-700); margin-top: auto; }
+        /* Report modal */
+        .report-modal { display: none; position: fixed; inset: 0; background: var(--gray-100); z-index: 80; flex-direction: column; }
+        .report-modal.open { display: flex; }
+        .report-toolbar { background: white; border-bottom: 1px solid var(--gray-200); padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+        .report-toolbar-title { font-size: 14px; font-weight: 700; color: var(--gray-900); }
+        .report-toolbar-actions { display: flex; gap: 8px; }
+        .report-scroll { flex: 1; overflow-y: auto; padding: 32px 16px; }
+        .report-doc { max-width: 720px; margin: 0 auto; background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; }
+        /* Document internals */
+        .rd-head { padding: 28px 36px; border-bottom: 1px solid var(--gray-200); }
+        .rd-brand { font-size: 18px; font-weight: 800; color: var(--gray-900); }
+        .rd-brand span { color: var(--green-600); }
+        .rd-meta { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
+        .rd-body { padding: 28px 36px; }
+        .rd-greeting { font-size: 15px; color: var(--gray-800); margin-bottom: 20px; line-height: 1.6; }
+        .rd-sec { margin-bottom: 26px; }
+        .rd-sec-title { font-size: 12px; font-weight: 800; color: var(--green-700); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 2px solid var(--green-100); }
+        .rd-stat-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 8px; }
+        .rd-stat { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 14px 16px; }
+        .rd-stat .v { font-size: 22px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.5px; }
+        .rd-stat .l { font-size: 12px; color: var(--gray-500); margin-top: 2px; }
+        .rd-item { display: flex; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--gray-100); }
+        .rd-item:last-child { border-bottom: none; }
+        .rd-item-rank { width: 24px; height: 24px; border-radius: 6px; background: var(--green-100); color: var(--green-700); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .rd-item-main { flex: 1; min-width: 0; }
+        .rd-item-title { font-size: 13px; font-weight: 600; color: var(--gray-900); line-height: 1.4; }
+        .rd-item-sub { font-size: 12px; color: var(--gray-500); margin-top: 3px; }
+        .rd-item-score { font-size: 13px; font-weight: 800; color: var(--green-700); white-space: nowrap; }
+        .rd-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        .rd-table th, .rd-table td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+        .rd-table th { background: var(--gray-50); color: var(--gray-500); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; }
+        .rd-table td b { color: var(--gray-900); }
+        .rd-foot { padding: 18px 36px; border-top: 1px solid var(--gray-200); font-size: 11px; color: var(--gray-400); line-height: 1.5; }
+        .rd-action { background: var(--green-50); border: 1px solid var(--green-200); border-radius: 8px; padding: 14px 16px; font-size: 13px; color: var(--gray-700); line-height: 1.55; }
+        .rd-action b { color: var(--green-800); }
+        @media print {
+            body * { visibility: hidden; }
+            #report-modal, #report-modal * { visibility: visible; }
+            #report-modal { position: absolute; inset: 0; background: white; display: block; }
+            .report-toolbar { display: none; }
+            .report-scroll { overflow: visible; padding: 0; }
+            .report-doc { max-width: 100%; border: none; border-radius: 0; }
+        }
         /* Lead rows */
         .lead-row { display: grid; grid-template-columns: 40px 1fr auto; gap: 14px; align-items: center; background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 16px 18px; margin-bottom: 10px; }
         .lead-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--green-100); color: var(--green-700); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; }
@@ -361,6 +412,10 @@
         <div class="nav-item" onclick="showPage('leads')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" /></svg>
             Leadek <span class="nav-badge" id="nav-leads-count" style="background: var(--gray-400);">0</span>
+        </div>
+        <div class="nav-item" onclick="showPage('reports')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+            Jelentések
         </div>
         <div class="nav-item" onclick="showPage('alerts')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" /></svg>
@@ -519,6 +574,42 @@
         </div>
     </div>
 
+    <!-- REPORTS PAGE -->
+    <div id="page-reports" class="page hidden">
+        <div class="topbar"><h1>Jelentések &amp; dokumentumok</h1></div>
+        <div class="content">
+            <div style="font-size:13px;color:var(--gray-500);margin-bottom:20px;max-width:640px;line-height:1.55;">
+                Generáljon professzionális, az Ön cégprofiljára szabott dokumentumokat egy kattintással — nyomtatható és PDF-be menthető. Ideális könyvelőnek, vezetőségnek vagy pályázatírónak átadni.
+            </div>
+            <div class="report-grid">
+                <div class="report-card" onclick="openReport('weekly')">
+                    <div class="report-ico">📩</div>
+                    <div class="report-meta">
+                        <h3>Heti e-mail jelentés</h3>
+                        <p>A heti összefoglaló e-mail előnézete: új pályázatok, közelgő határidők, top ajánlások — az Ön profiljára szabva.</p>
+                    </div>
+                    <span class="report-go">Megnyitás →</span>
+                </div>
+                <div class="report-card" onclick="openReport('summary')">
+                    <div class="report-ico">📊</div>
+                    <div class="report-meta">
+                        <h3>Gyors vezetői összefoglaló</h3>
+                        <p>Egyoldalas helyzetkép: hány releváns pályázat, mennyi elérhető keret, mit kell most lépni.</p>
+                    </div>
+                    <span class="report-go">Megnyitás →</span>
+                </div>
+                <div class="report-card" onclick="openReport('portfolio')">
+                    <div class="report-ico">📁</div>
+                    <div class="report-meta">
+                        <h3>Pályázati portfólió</h3>
+                        <p>A mentett és ajánlott pályázatok részletes listája — összeg, határidő, pontszám, forrás.</p>
+                    </div>
+                    <span class="report-go">Megnyitás →</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ALERTS PAGE -->
     <div id="page-alerts" class="page hidden">
         <div class="topbar"><h1>Értesítések</h1></div>
@@ -547,6 +638,20 @@
         <button class="detail-close" onclick="closeDetail()">Bezárás</button>
     </div>
     <div class="detail-body" id="detail-body"></div>
+</div>
+
+<!-- REPORT MODAL -->
+<div class="report-modal" id="report-modal">
+    <div class="report-toolbar">
+        <div class="report-toolbar-title" id="report-toolbar-title">Jelentés</div>
+        <div class="report-toolbar-actions">
+            <button class="btn-sm primary" onclick="printReport()">🖨️ Nyomtatás / PDF</button>
+            <button class="btn-sm" onclick="closeReport()">Bezárás</button>
+        </div>
+    </div>
+    <div class="report-scroll">
+        <div class="report-doc" id="report-doc"></div>
+    </div>
 </div>
 
 <!-- FLOATING CTA -->
@@ -955,11 +1060,12 @@ function showPage(p) {
     document.querySelectorAll('.page').forEach(x => x.classList.add('hidden'));
     document.getElementById('page-'+p).classList.remove('hidden');
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    document.querySelectorAll('.nav-item')[['dashboard','grants','saved','leads','alerts','profile'].indexOf(p)].classList.add('active');
+    document.querySelectorAll('.nav-item')[['dashboard','grants','saved','leads','reports','alerts','profile'].indexOf(p)].classList.add('active');
     if (p === 'dashboard') initDashboard();
     if (p === 'grants') initGrants();
     if (p === 'saved') initSaved();
     if (p === 'leads') initLeads();
+    if (p === 'reports') initReports();
     if (p === 'alerts') initAlerts();
     if (p === 'profile') initProfile();
 }
@@ -1250,7 +1356,7 @@ function initDashboard() {
                 <span class="digest-item">📩 E-mail értesítés beállítva ✓</span>
             </div>
         </div>
-        <button class="digest-cta" onclick="showPage('alerts')">Részletek →</button>
+        <button class="digest-cta" onclick="openReport('weekly')">Heti jelentés →</button>
     `;
 
     // Recommended top 5 — personalized when onboarding profile is present.
@@ -1640,6 +1746,103 @@ function clearLeads() {
     updateLeadsBadge();
     initLeads();
 }
+
+/* ===== Reports / generatable documents ===== */
+function initReports() { /* static cards — nothing to hydrate */ }
+
+function reportContext() {
+    const profile = getUserProfile();
+    const company = (profile && profile.company) || 'Demo Vállalkozás Kft.';
+    const ranked = [...G].sort((a, b) => {
+        const sa = a.score + profileBoost(a, profile);
+        const sb = b.score + profileBoost(b, profile);
+        return sb - sa || a.days - b.days;
+    });
+    const today = new Date();
+    const relevant = ranked.filter(g => (g.score + profileBoost(g, profile)) > 60);
+    const closingSoon = ranked.filter(g => g.days > 0 && g.days <= 30).sort((a,b) => a.days - b.days);
+    const expiringThisMonth = ranked.filter(g => {
+        const d = new Date(g.deadline);
+        return d.getFullYear() === today.getFullYear() && d.getMonth() === today.getMonth() && d >= today;
+    });
+    const fresh = ranked.filter(isNew).slice(0, 3);
+    const funding = relevant.reduce((s, g) => s + parseAmount(g.amount), 0);
+    const dateStr = today.toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' });
+    return { profile, company, ranked, relevant, closingSoon, expiringThisMonth, fresh, funding, dateStr,
+             top5: ranked.slice(0, 5), savedGrants: G.filter(g => bookmarks.has(g.id)).sort((a,b)=>b.score-a.score) };
+}
+
+function rdHead(subtitle) {
+    return `<div class="rd-head"><div class="rd-brand">Grant<span>Pilot</span></div><div class="rd-meta">${subtitle}</div></div>`;
+}
+function rdFoot() {
+    return `<div class="rd-foot">A jelentés a GrantPilot rendszer által, az Ön cégprofilja alapján automatikusan generált tájékoztató. A pontos jogosultsági és elszámolhatósági feltételeket minden esetben a hivatalos pályázati felhívás határozza meg. GrantPilot · grantpilot.hu</div>`;
+}
+
+function genWeekly(c) {
+    const item = (g, i) => `<div class="rd-item"><div class="rd-item-rank">${i+1}</div><div class="rd-item-main"><div class="rd-item-title">${g.title}</div><div class="rd-item-sub">${g.source} · ${g.amount} · határidő: ${g.deadline}</div></div><div class="rd-item-score">${g.score}</div></div>`;
+    const soon = c.closingSoon.slice(0, 4).map(g => `<div class="rd-item"><div class="rd-item-rank" style="background:var(--amber-50);color:var(--amber-600);">!</div><div class="rd-item-main"><div class="rd-item-title">${g.title}</div><div class="rd-item-sub">${g.amount} · <b style="color:var(--red-600);">${g.days} nap</b> van hátra</div></div></div>`).join('') || '<div class="rd-item-sub">Nincs 30 napon belül lejáró pályázat.</div>';
+    return rdHead(`Heti pályázati összefoglaló · ${c.dateStr}`) + `<div class="rd-body">
+        <div class="rd-greeting">Tisztelt <b>${c.company}</b>!<br>Az alábbi pályázatok a legrelevánsabbak az Ön cégprofilja alapján ezen a héten.</div>
+        <div class="rd-sec"><div class="rd-sec-title">Heti pillanatkép</div>
+            <div class="rd-stat-row">
+                <div class="rd-stat"><div class="v">${c.relevant.length}</div><div class="l">releváns pályázat</div></div>
+                <div class="rd-stat"><div class="v">${formatFt(c.funding)}</div><div class="l">elérhető keret (releváns)</div></div>
+                <div class="rd-stat"><div class="v">3</div><div class="l">új pályázat a héten</div></div>
+                <div class="rd-stat"><div class="v">${c.closingSoon.length}</div><div class="l">30 napon belül lejár</div></div>
+            </div>
+        </div>
+        <div class="rd-sec"><div class="rd-sec-title">Az Ön top 5 ajánlása</div>${c.top5.map(item).join('')}</div>
+        <div class="rd-sec"><div class="rd-sec-title">Hamarosan lejár — lépjen időben</div>${soon}</div>
+        <div class="rd-sec"><div class="rd-action"><b>Javasolt lépés:</b> a top 1–2 pályázatnál kérjen díjmentes előzetes jogosultsági konzultációt pályázatíró partnerünktől még a határidő előtt.</div></div>
+    </div>` + rdFoot();
+}
+
+function genSummary(c) {
+    const rows = c.top5.map((g, i) => `<tr><td><b>${i+1}.</b></td><td><b>${g.title}</b><br><span style="color:var(--gray-500);">${g.cat}</span></td><td>${g.amount}</td><td>${g.deadline}<br><span style="color:${g.days<30?'var(--red-600)':'var(--gray-500)'};">${g.days} nap</span></td><td><b style="color:var(--green-700);">${g.score}</b></td></tr>`).join('');
+    return rdHead(`Vezetői összefoglaló · ${c.dateStr}`) + `<div class="rd-body">
+        <div class="rd-greeting"><b>${c.company}</b> — pályázati helyzetkép</div>
+        <div class="rd-sec"><div class="rd-sec-title">Kulcsszámok</div>
+            <div class="rd-stat-row">
+                <div class="rd-stat"><div class="v">${c.ranked.length}</div><div class="l">aktív pályázat a rendszerben</div></div>
+                <div class="rd-stat"><div class="v">${c.relevant.length}</div><div class="l">Önnek releváns (>60 pont)</div></div>
+                <div class="rd-stat"><div class="v">${formatFt(c.funding)}</div><div class="l">elérhető keret (releváns)</div></div>
+                <div class="rd-stat"><div class="v">${c.expiringThisMonth.length}</div><div class="l">ebben a hónapban lejár</div></div>
+            </div>
+        </div>
+        <div class="rd-sec"><div class="rd-sec-title">Top 5 pályázat — most érdemes lépni</div>
+            <table class="rd-table"><thead><tr><th></th><th>Pályázat</th><th>Összeg</th><th>Határidő</th><th>Pont</th></tr></thead><tbody>${rows}</tbody></table>
+        </div>
+        <div class="rd-sec"><div class="rd-action"><b>Vezetői döntési javaslat:</b> a top 5-ből a 80 pont feletti pályázatoknál indokolt az azonnali pályázatkészítés megkezdése. A 30 napon belül lejáró tételeknél a döntést nem érdemes halogatni — a pályázatírás és a 3 árajánlatos beszerzés átfutási ideje jelentős.</div></div>
+    </div>` + rdFoot();
+}
+
+function genPortfolio(c) {
+    const sec = (title, list) => {
+        if (!list.length) return `<div class="rd-sec"><div class="rd-sec-title">${title}</div><div class="rd-item-sub">Nincs tétel ebben a szekcióban.</div></div>`;
+        const rows = list.map(g => `<tr><td><b>${g.title}</b><br><span style="color:var(--gray-500);">${g.source}</span></td><td>${g.cat}</td><td>${g.amount}</td><td>${g.deadline}<br><span style="color:${g.days<30?'var(--red-600)':'var(--gray-500)'};">${g.days} nap</span></td><td><b style="color:var(--green-700);">${g.score}</b></td></tr>`).join('');
+        return `<div class="rd-sec"><div class="rd-sec-title">${title} (${list.length})</div><table class="rd-table"><thead><tr><th>Pályázat</th><th>Kategória</th><th>Összeg</th><th>Határidő</th><th>Pont</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+    };
+    return rdHead(`Pályázati portfólió · ${c.dateStr}`) + `<div class="rd-body">
+        <div class="rd-greeting"><b>${c.company}</b> — kiválasztott és ajánlott pályázatok</div>
+        ${sec('Mentett pályázatok', c.savedGrants)}
+        ${sec('Rendszer által ajánlott (top 8)', c.ranked.slice(0, 8))}
+        <div class="rd-sec"><div class="rd-action"><b>Tipp:</b> adja át ezt a portfóliót könyvelőjének vagy pályázatíró partnerének — egy dokumentumban látható minden lehetőség, határidővel és prioritással.</div></div>
+    </div>` + rdFoot();
+}
+
+function openReport(type) {
+    const c = reportContext();
+    const titles = { weekly: 'Heti e-mail jelentés', summary: 'Gyors vezetői összefoglaló', portfolio: 'Pályázati portfólió' };
+    const gen = { weekly: genWeekly, summary: genSummary, portfolio: genPortfolio }[type];
+    if (!gen) return;
+    document.getElementById('report-toolbar-title').textContent = titles[type] || 'Jelentés';
+    document.getElementById('report-doc').innerHTML = gen(c);
+    document.getElementById('report-modal').classList.add('open');
+    document.querySelector('.report-scroll').scrollTop = 0;
+}
+function closeReport() { document.getElementById('report-modal').classList.remove('open'); }
+function printReport() { window.print(); }
 
 function initProfile() {
     document.getElementById('profile-card').innerHTML = `
