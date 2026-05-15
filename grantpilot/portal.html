@@ -327,6 +327,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
             Pályázatok <span class="nav-badge" id="nav-count">18</span>
         </div>
+        <div class="nav-item" onclick="showPage('saved')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" /></svg>
+            Mentett <span class="nav-badge" id="nav-saved-count" style="background: var(--gray-400);">0</span>
+        </div>
         <div class="nav-item" onclick="showPage('alerts')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" /></svg>
             Értesítések <span class="nav-badge" style="background: var(--red-600);">5</span>
@@ -428,6 +432,30 @@
                 <div class="empty-title">Nincs találat</div>
                 <div class="empty-text">Módosítsa a szűrőket vagy értesüljön elsőként új pályázatokról — naponta frissítjük a portfólióját.</div>
                 <button class="btn-sm primary" onclick="resetFilters()">Szűrők törlése</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SAVED PAGE -->
+    <div id="page-saved" class="page hidden">
+        <div class="topbar">
+            <h1>Mentett pályázatok</h1>
+            <div class="topbar-actions">
+                <button class="btn-sm" onclick="exportSavedCSV()">Exportálás</button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="sort-bar">
+                <div class="sort-left"><b id="saved-count">0</b> mentett pályázat — <span id="saved-summary"></span></div>
+            </div>
+            <div class="grant-cards" id="saved-list"></div>
+            <div id="saved-empty" class="empty hidden">
+                <div class="empty-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"/></svg>
+                </div>
+                <div class="empty-title">Még nincs mentett pályázat</div>
+                <div class="empty-text">A pályázatok melletti könyvjelző ikonra kattintva mentheti azokat, amiket később át szeretne nézni vagy meg szeretne pályázni.</div>
+                <button class="btn-sm primary" onclick="showPage('grants')">Pályázatok böngészése</button>
             </div>
         </div>
     </div>
@@ -868,9 +896,10 @@ function showPage(p) {
     document.querySelectorAll('.page').forEach(x => x.classList.add('hidden'));
     document.getElementById('page-'+p).classList.remove('hidden');
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    document.querySelectorAll('.nav-item')[['dashboard','grants','alerts','profile'].indexOf(p)].classList.add('active');
+    document.querySelectorAll('.nav-item')[['dashboard','grants','saved','alerts','profile'].indexOf(p)].classList.add('active');
     if (p === 'dashboard') initDashboard();
     if (p === 'grants') initGrants();
+    if (p === 'saved') initSaved();
     if (p === 'alerts') initAlerts();
     if (p === 'profile') initProfile();
 }
@@ -973,6 +1002,16 @@ function toggleBookmark(id, ev) {
     document.querySelectorAll(`[data-bm="${id}"]`).forEach(btn => {
         btn.classList.toggle('saved', bookmarks.has(id));
     });
+    updateSavedBadge();
+    // If the user is on the Saved page, reflect the change live
+    if (currentPage === 'saved') initSaved();
+}
+
+function updateSavedBadge() {
+    const el = document.getElementById('nav-saved-count');
+    if (!el) return;
+    el.textContent = bookmarks.size;
+    el.style.background = bookmarks.size > 0 ? 'var(--green-600)' : 'var(--gray-400)';
 }
 
 const BOOKMARK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"/></svg>`;
@@ -1334,6 +1373,41 @@ function initAlerts() {
     `).join('');
 }
 
+function initSaved() {
+    const ids = [...bookmarks];
+    const saved = G.filter(g => bookmarks.has(g.id)).sort((a,b) => b.score - a.score || a.days - b.days);
+    const expiredSaved = ids.length - saved.length; // bookmarked but no longer active
+    const list = document.getElementById('saved-list');
+    const empty = document.getElementById('saved-empty');
+    document.getElementById('saved-count').textContent = saved.length;
+
+    if (saved.length === 0) {
+        list.innerHTML = '';
+        list.classList.add('hidden');
+        empty.classList.remove('hidden');
+        document.getElementById('saved-summary').textContent = '';
+    } else {
+        empty.classList.add('hidden');
+        list.classList.remove('hidden');
+        list.innerHTML = saved.map(renderCard).join('');
+        const totalFunding = saved.reduce((s, g) => s + parseAmount(g.amount), 0);
+        let summary = totalFunding > 0 ? `${formatFt(totalFunding)} elérhető keret` : 'mentett pályázatok';
+        if (expiredSaved > 0) summary += ` · ${expiredSaved} mentett időközben lejárt`;
+        document.getElementById('saved-summary').textContent = summary;
+    }
+}
+
+function exportSavedCSV() {
+    const saved = G.filter(g => bookmarks.has(g.id)).sort((a,b) => b.score - a.score);
+    if (saved.length === 0) { alert('Nincs mentett pályázat az exporthoz.'); return; }
+    let csv = 'Azonosító,Cím,Forrás,Kategória,Összeg,Határidő,Hátralévő nap,Pontszám,Minősítés\n';
+    saved.forEach(g => csv += `"${g.id}","${g.title}","${g.source}","${g.cat}","${g.amount}","${g.deadline}",${g.days},${g.score},"${vText(g.verdict)}"\n`);
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob(['﻿' + csv], {type:'text/csv;charset=utf-8'}));
+    a.download = 'grantpilot-mentett.csv';
+    a.click();
+}
+
 function initProfile() {
     document.getElementById('profile-card').innerHTML = `
         <div class="profile-section">
@@ -1411,6 +1485,7 @@ function mountUserWidget() {
 
 // Init
 document.getElementById('nav-count').textContent = G.length;
+updateSavedBadge();
 mountUserWidget();
 initDashboard();
 maybeShowCTA();
