@@ -1086,6 +1086,30 @@ function sizeFit(g, profile) {
     return s;
 }
 
+// Geographic-fit signal. Hungarian grants are frequently region-locked:
+// "Budapesti ..." grants are Budapest-only, while "kevésbé fejlett régió" /
+// "vidéki" / "vidékfejlesztési" grants explicitly EXCLUDE Budapest/Pest.
+// Positive when the company's location is named in the title; negative on a
+// clear region conflict so an ineligible-by-geography grant drops out.
+function geoFit(g, profile) {
+    const loc = ((profile && profile.location) || '').trim().toLowerCase();
+    if (!loc) return 0;
+    const title = (g.title || '').toLowerCase();
+    const isBudapestCo = /budapest|bp\.?|pest megye/.test(loc);
+    const grantBudapestOnly = /budapesti|csak budapest|kizárólag budapest/.test(title);
+    const grantExclBudapest = /kevésbé fejlett|vidékfejleszt|vidéki|budapesten kívül|nem budapesti/.test(title);
+    let s = 0;
+    if (grantBudapestOnly && !isBudapestCo) s -= 14;   // Budapest-only grant, company elsewhere
+    else if (grantExclBudapest && isBudapestCo) s -= 12; // non-Budapest grant, Budapest company
+    // Positive: the company's town/region is explicitly named in the title
+    if (loc.length >= 4) {
+        try {
+            if (new RegExp('\\b' + loc.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i').test(title)) s += 6;
+        } catch(e) {}
+    }
+    return s;
+}
+
 function profileBoost(g, profile) {
     if (!profile) return 0;
     let boost = 0;
@@ -1095,15 +1119,7 @@ function profileBoost(g, profile) {
     if (profile.industry && INDUSTRY_KEYWORDS[profile.industry]) {
         if (INDUSTRY_KEYWORDS[profile.industry].test((g.cat || '') + ' ' + (g.title || ''))) boost += 8;
     }
-    if (profile.location) {
-        try {
-            const loc = profile.location.trim();
-            if (loc && new RegExp(loc.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i').test((g.title || '') + ' ' + (g.cat || ''))) {
-                boost += 5;
-            }
-        } catch(e) {}
-    }
-    return boost + sizeFit(g, profile);
+    return boost + sizeFit(g, profile) + geoFit(g, profile);
 }
 
 function showPage(p) {
