@@ -1038,17 +1038,52 @@ const INDUSTRY_KEYWORDS = {
     'General':      /kkv/i
 };
 
-// Map onboarding employee buckets to a "company size" preference window.
-// Returns a boost based on how well the grant's size factor matches the user.
-function sizeBoost(g, employees) {
-    if (!employees) return 0;
+// Company size tier from the onboarding employee bucket (EU-style).
+//   micro: 1-10 · small: 11-50 · mid: 51+
+function sizeTier(employees) {
+    if (['1-5','6-10'].includes(employees)) return 'micro';
+    if (['11-25','26-50'].includes(employees)) return 'small';
+    if (['51-100','100+'].includes(employees)) return 'mid';
+    return null;
+}
+
+// Net size-fit signal: positive when the grant suits the company's size,
+// strongly negative on obvious mismatches. Penalties are sized to be able
+// to overcome a strong category+industry match (+20) so a clearly
+// ineligible grant (micro-only for a 40-person firm, pre-seed for an
+// established company) actually drops out of the top recommendations.
+function sizeFit(g, profile) {
+    const tier = sizeTier(profile && profile.employees);
+    if (!tier) return 0;
+    // Eligibility nuance is judged on the TITLE only — the category is a coarse
+    // bucket label (e.g. "KKV fejlesztés") and must not override an explicit
+    // "Mikrovállalkozások" in the grant's own title.
+    const title = (g.title || '').toLowerCase();
     const f = (g.factors && g.factors.size) || 0;
-    // Smaller companies → grants tailored to micro/small (high size factor) help most.
-    const small = ['1-5','6-10','11-25'].includes(employees);
-    const large = ['51-100','100+'].includes(employees);
-    if (small && f >= 80) return 4;
-    if (large && f <= 60) return 4;
-    return 0;
+    const established = (profile && profile.past_grants === 'won') ||
+        ['11-25','26-50','51-100','100+'].includes(profile && profile.employees) ||
+        ['1M-5M','5M+'].includes(profile && profile.revenue);
+
+    // Does the title explicitly include small/medium firms? Then a "mikro"
+    // mention does NOT exclude a small company (e.g. "mikro- és kisvállalkozások").
+    const includesBigger = /mikro-?\s*és\s*kis|kis-?\s*és\s*közép|kis és közép|\bkkv\b|kkv-?k|közép(vállalkoz|vállalat)/.test(title);
+    const mentionsMicro = /mikrovállalkoz|mikrohitel|\(mikro\)|\bmikro\b/.test(title);
+    const microExclusive = mentionsMicro && !includesBigger;
+    const earlyStage = /induló|pre-?seed|magvető|kezdő vállalkoz|start-?up|inkubác|spin-?off/.test(title);
+    const bigCorp = /nagyvállalat|nagyvállalati|konszern/.test(title);
+
+    let s = 0;
+    // Hard demotions on clear ineligibility — large enough to beat boosts
+    if (microExclusive && tier !== 'micro') s -= 22;
+    if (earlyStage && established) s -= 22;
+    if (bigCorp && (tier === 'micro' || tier === 'small')) s -= 14;
+
+    // Mild positive fit only when no mismatch fired
+    if (s === 0) {
+        if ((tier === 'micro' || tier === 'small') && f >= 80) s += 4;
+        if (tier === 'mid' && f <= 60) s += 4;
+    }
+    return s;
 }
 
 function profileBoost(g, profile) {
@@ -1068,7 +1103,7 @@ function profileBoost(g, profile) {
             }
         } catch(e) {}
     }
-    return boost + sizeBoost(g, profile.employees);
+    return boost + sizeFit(g, profile);
 }
 
 function showPage(p) {
