@@ -1592,18 +1592,35 @@ function requestWriterQuote(id) {
     if (form) { form.style.display = 'block'; form.scrollIntoView({behavior:'smooth', block:'center'}); }
 }
 
+// ===== Backend endpoint (production) =====
+// Set this to your Formspree / Airtable / Supabase / custom endpoint to
+// forward consultation leads in real time. Empty string = demo mode
+// (localStorage only, visible in the Leadek panel).
+//   Formspree example: 'https://formspree.io/f/abcd1234'
+const LEAD_BACKEND_URL = '';
+
 function submitWriterLead(ev, id) {
     ev.preventDefault();
     const g = G.find(x => x.id === id);
     const wrap = document.getElementById('lead-wrap-' + id);
+    const gdpr = document.getElementById('ld-gdpr-' + id);
+    if (gdpr && !gdpr.checked) { gdpr.focus(); return; }
     const name = (document.getElementById('ld-name-' + id) || {}).value || '';
     const email = (document.getElementById('ld-email-' + id) || {}).value || '';
     const phone = (document.getElementById('ld-phone-' + id) || {}).value || '';
+    const payload = { grantId: id, grantTitle: g ? g.title : id, name, email, phone, gdpr_consent: true, gdpr_consent_ts: new Date().toISOString(), ts: Date.now() };
     try {
         const leads = JSON.parse(localStorage.getItem('grantpilot:leads') || '[]');
-        leads.push({ grantId: id, grantTitle: g ? g.title : id, name, email, phone, ts: Date.now() });
+        leads.push(payload);
         localStorage.setItem('grantpilot:leads', JSON.stringify(leads));
     } catch(e) {}
+    if (LEAD_BACKEND_URL) {
+        fetch(LEAD_BACKEND_URL, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            body: JSON.stringify(payload)
+        }).catch(() => { /* swallow — local copy already saved, visible in Leadek */ });
+    }
     updateLeadsBadge();
     wrap.innerHTML = `<div class="lead-success">
         <div class="ls-check">&#10003;</div>
@@ -1690,6 +1707,10 @@ function showDetail(id) {
                 <div class="lead-field"><input type="text" id="ld-name-${g.id}" placeholder="Név / cégnév" required></div>
                 <div class="lead-field"><input type="email" id="ld-email-${g.id}" placeholder="E-mail cím" required></div>
                 <div class="lead-field"><input type="tel" id="ld-phone-${g.id}" placeholder="Telefonszám (opcionális)"></div>
+                <label style="display:flex;gap:8px;align-items:flex-start;font-size:11px;color:var(--gray-400);line-height:1.5;margin-bottom:10px;cursor:pointer;">
+                    <input type="checkbox" id="ld-gdpr-${g.id}" required style="margin-top:2px;flex-shrink:0;">
+                    <span>Hozzájárulok ahhoz, hogy adataimat a pályázatíró partnerhez továbbítsák. Részletek: <a href="adatvedelem.html" target="_blank" rel="noopener" style="color:#86efac;">Adatkezelési tájékoztató</a>.</span>
+                </label>
                 <button type="submit" class="lead-submit">Igénylés elküldése</button>
             </form>
         </div>

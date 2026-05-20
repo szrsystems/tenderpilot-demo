@@ -29,3 +29,12 @@ services:
       - type: rewrite
         source: /grantpilot/agreements
         destination: /grantpilot/agreements.html
+      - type: rewrite
+        source: /grantpilot/adatvedelem
+        destination: /grantpilot/adatvedelem.html
+      - type: rewrite
+        source: /grantpilot/impresszum
+        destination: /grantpilot/impresszum.html
+      - type: rewrite
+        source: /grantpilot/aszf
+        destination: /grantpilot/aszf.html

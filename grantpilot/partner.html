@@ -288,8 +288,30 @@
 </section>
 
 <footer>
-    GrantPilot · Pályázatíró Partner Program · 2026
+    GrantPilot · Pályázatíró Partner Program · 2026<br>
+    <a href="adatvedelem.html" style="color:#9ca3af;margin:0 6px;text-decoration:none;">Adatvédelem</a> ·
+    <a href="impresszum.html" style="color:#9ca3af;margin:0 6px;text-decoration:none;">Impresszum</a> ·
+    <a href="aszf.html" style="color:#9ca3af;margin:0 6px;text-decoration:none;">ÁSZF</a>
 </footer>
+
+<!-- COOKIE CONSENT -->
+<div id="gpcb" style="display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:2000;max-width:680px;margin:0 auto;background:#111827;color:#e5e7eb;border-radius:12px;padding:16px 20px;font-family:'Inter',-apple-system,sans-serif;font-size:13px;line-height:1.55;box-shadow:0 10px 30px rgba(0,0,0,0.25);">
+    <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;">
+        <div style="flex:1;min-width:240px;">
+            <b style="color:white;">Sütik használata</b><br>
+            A GrantPilot a működéshez szükséges sütiket használ. Részletek az
+            <a href="adatvedelem.html" style="color:#86efac;">Adatkezelési tájékoztatóban</a>.
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button onclick="gpcbAccept('necessary')" style="background:transparent;color:#e5e7eb;border:1px solid #374151;padding:8px 14px;border-radius:6px;font-weight:600;font-size:12px;cursor:pointer;font-family:inherit;">Csak szükségesek</button>
+            <button onclick="gpcbAccept('all')" style="background:#16a34a;color:white;border:none;padding:8px 14px;border-radius:6px;font-weight:700;font-size:12px;cursor:pointer;font-family:inherit;">Elfogadom mind</button>
+        </div>
+    </div>
+</div>
+<script>
+(function(){ try { if (!localStorage.getItem('gp_cookie_consent')) { document.getElementById('gpcb').style.display = 'block'; } } catch(e) {} })();
+function gpcbAccept(level){ try { localStorage.setItem('gp_cookie_consent', JSON.stringify({level:level,ts:Date.now()})); } catch(e) {} var el = document.getElementById('gpcb'); if (el) el.style.display = 'none'; }
+</script>
 
 </body>
 </html>
