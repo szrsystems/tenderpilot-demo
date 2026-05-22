@@ -323,6 +323,55 @@
         .report-meta h3 { font-size: 16px; font-weight: 700; color: var(--gray-900); margin-bottom: 6px; }
         .report-meta p { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
         .report-go { font-size: 13px; font-weight: 700; color: var(--green-700); margin-top: auto; }
+        /* Drafter */
+        .drafter-wrap { display: flex; flex-direction: column; gap: 16px; max-width: 880px; }
+        .dr-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 22px 24px; }
+        .dr-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: var(--gray-900); }
+        .dr-card p.muted { font-size: 13px; color: var(--gray-500); line-height: 1.55; margin-bottom: 12px; }
+        .dr-pick { display: flex; gap: 10px; align-items: stretch; flex-wrap: wrap; }
+        .dr-pick select { flex: 1; min-width: 240px; padding: 11px 14px; border: 1px solid var(--gray-300); border-radius: 8px; font-size: 14px; font-family: inherit; background: white; color: var(--gray-900); }
+        .dr-pick select:focus { outline: none; border-color: var(--green-500); box-shadow: 0 0 0 3px rgba(34,197,94,0.1); }
+        .dr-generate { padding: 11px 22px; background: var(--green-600); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; transition: background 0.1s; }
+        .dr-generate:hover { background: var(--green-700); }
+        .dr-empty { padding: 40px 24px; text-align: center; color: var(--gray-500); font-size: 13px; line-height: 1.6; }
+        .dr-doc { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; }
+        .dr-head { padding: 28px 40px 20px; border-bottom: 1px solid var(--gray-200); }
+        .dr-head .brand { font-size: 18px; font-weight: 800; color: var(--gray-900); margin-bottom: 4px; }
+        .dr-head .brand span { color: var(--green-600); }
+        .dr-head h2 { font-size: 22px; font-weight: 800; letter-spacing: -0.4px; line-height: 1.25; margin-bottom: 6px; color: var(--gray-900); }
+        .dr-head .meta { font-size: 12px; color: var(--gray-500); }
+        .dr-disc { background: var(--amber-50); border-left: 3px solid var(--amber-600); margin: 16px 40px 0; padding: 12px 16px; border-radius: 4px; font-size: 12px; color: var(--gray-700); line-height: 1.55; }
+        .dr-disc b { color: var(--gray-900); }
+        .dr-body { padding: 8px 40px 30px; }
+        .dr-sec { margin-top: 22px; }
+        .dr-sec-h { font-size: 11px; font-weight: 800; color: var(--green-700); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; padding-bottom: 5px; border-bottom: 2px solid var(--green-100); display: flex; justify-content: space-between; align-items: center; }
+        .dr-sec-h .edit-hint { color: var(--gray-400); font-weight: 600; letter-spacing: 0.3px; }
+        .dr-sec-body { font-size: 13.5px; line-height: 1.65; color: var(--gray-800); padding: 6px 10px; border-radius: 6px; border: 1px solid transparent; outline: none; }
+        .dr-sec-body:hover { background: var(--gray-50); }
+        .dr-sec-body:focus { background: white; border-color: var(--green-200); box-shadow: 0 0 0 3px rgba(34,197,94,0.06); }
+        .dr-sec-body p { margin-bottom: 8px; }
+        .dr-sec-body ul { margin-left: 22px; margin-bottom: 8px; }
+        .dr-sec-body li { margin-bottom: 4px; }
+        .dr-sec-body table { width: 100%; border-collapse: collapse; margin: 6px 0; font-size: 13px; }
+        .dr-sec-body th, .dr-sec-body td { padding: 8px 10px; border-bottom: 1px solid var(--gray-200); text-align: left; vertical-align: top; }
+        .dr-sec-body th { background: var(--gray-50); color: var(--gray-500); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; }
+        .dr-foot { padding: 16px 40px; border-top: 1px solid var(--gray-200); font-size: 11px; color: var(--gray-400); line-height: 1.5; }
+        .dr-actions { display: flex; gap: 10px; margin: 10px 0 0; flex-wrap: wrap; }
+        .dr-saved { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+        .dr-saved-row { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; font-size: 13px; }
+        .dr-saved-row .t { flex: 1; font-weight: 600; color: var(--gray-800); }
+        .dr-saved-row .when { font-size: 11px; color: var(--gray-400); }
+        .dr-saved-row button { background: white; border: 1px solid var(--gray-300); color: var(--gray-700); padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; }
+        .dr-saved-row button:hover { background: var(--gray-50); }
+        .dr-saved-row button.del { color: var(--red-600); border-color: var(--red-100); }
+        @media print {
+            body * { visibility: hidden; }
+            #page-drafter, #page-drafter * { visibility: visible; }
+            #page-drafter { position: absolute; inset: 0; background: white; }
+            .topbar, .sidebar, .floating-cta, .dr-pick, .dr-saved, .dr-actions, .dr-card:not(:has(.dr-doc)) { display: none !important; }
+            .dr-doc { border: none; box-shadow: none; max-width: 100%; }
+            .dr-sec-body { background: white !important; border: none !important; }
+        }
         /* Report modal */
         .report-modal { display: none; position: fixed; inset: 0; background: var(--gray-100); z-index: 80; flex-direction: column; }
         .report-modal.open { display: flex; }
@@ -436,6 +485,10 @@
         <div class="nav-item" onclick="showPage('leads')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" /></svg>
             Leadek <span class="nav-badge" id="nav-leads-count" style="background: var(--gray-400);">0</span>
+        </div>
+        <div class="nav-item" onclick="showPage('drafter')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" /></svg>
+            AI Vázlat <span class="nav-badge" style="background: var(--green-600);">Új</span>
         </div>
         <div class="nav-item" onclick="showPage('reports')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
@@ -595,6 +648,20 @@
                 <div class="empty-text">Nyisson meg egy pályázatot, és kérjen „Pályázatíró konzultációt" — az igénylés azonnal itt jelenik meg, a pályázat adataival együtt.</div>
                 <button class="btn-sm primary" onclick="showPage('grants')">Pályázatok megnyitása</button>
             </div>
+        </div>
+    </div>
+
+    <!-- DRAFTER PAGE — AI Pályázat-vázlat -->
+    <div id="page-drafter" class="page hidden">
+        <div class="topbar">
+            <h1>AI Pályázat-vázlat <span style="font-size:11px;font-weight:700;color:var(--green-700);background:var(--green-50);border:1px solid var(--green-200);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px;margin-left:8px;">Béta</span></h1>
+            <div class="topbar-actions">
+                <button class="btn-sm" onclick="dr_print()" id="dr-print-btn" style="display:none;">🖨️ Nyomtatás / PDF</button>
+                <button class="btn-sm primary" onclick="dr_save()" id="dr-save-btn" style="display:none;">Mentés</button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="drafter-wrap" id="drafter-wrap"></div>
         </div>
     </div>
 
@@ -1127,11 +1194,12 @@ function showPage(p) {
     document.querySelectorAll('.page').forEach(x => x.classList.add('hidden'));
     document.getElementById('page-'+p).classList.remove('hidden');
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    document.querySelectorAll('.nav-item')[['dashboard','grants','saved','leads','reports','alerts','profile'].indexOf(p)].classList.add('active');
+    document.querySelectorAll('.nav-item')[['dashboard','grants','saved','leads','drafter','reports','alerts','profile'].indexOf(p)].classList.add('active');
     if (p === 'dashboard') initDashboard();
     if (p === 'grants') initGrants();
     if (p === 'saved') initSaved();
     if (p === 'leads') initLeads();
+    if (p === 'drafter') initDrafter();
     if (p === 'reports') initReports();
     if (p === 'alerts') initAlerts();
     if (p === 'profile') initProfile();
@@ -1695,6 +1763,9 @@ function showDetail(id) {
             </div>
             <div style="font-size: 11px; color: var(--gray-400); margin-top: 6px;">Így néz ki az értesítő e-mail</div>
         </div>
+        <div style="display:flex;gap:8px;margin-top:18px;flex-wrap:wrap;">
+            <button class="btn-sm primary" style="flex:1;min-width:160px;" onclick="closeDetail();openDrafterForGrant('${g.id}')">✨ AI vázlat készítése</button>
+        </div>
         <div id="lead-wrap-${g.id}">
             <div class="lead-card" id="lead-trigger-${g.id}">
                 <h4>Pályázzon szakértői segítséggel</h4>
@@ -1975,6 +2046,316 @@ function openReport(type) {
 }
 function closeReport() { document.getElementById('report-modal').classList.remove('open'); }
 function printReport() { window.print(); }
+
+/* ===== AI Pályázat-vázlat (Drafter) =====
+   Generates a multi-section Hungarian grant-application draft using
+   smart, category-aware templates with substitution from the user's
+   profile and the chosen grant. Editable inline (contenteditable),
+   persisted to localStorage:grantpilot:drafts.
+*/
+const DRAFTS_KEY = 'grantpilot:drafts';
+let currentDraft = null; // {id, grantId, ts, sections:[{title, body}]}
+
+function dr_getDrafts() { try { return JSON.parse(localStorage.getItem(DRAFTS_KEY)||'[]'); } catch(e) { return []; } }
+function dr_setDrafts(arr) { try { localStorage.setItem(DRAFTS_KEY, JSON.stringify(arr)); } catch(e) {} }
+
+function dr_industryLabel(code) {
+    const o = INDUSTRY_OPTS && INDUSTRY_OPTS.find(x => x[0] === code);
+    return o ? o[1] : 'KKV';
+}
+
+// Plausible budget split + total derived from the grant amount range.
+// Picks the midpoint of the parsed amount (in HUF).
+function dr_budget(g) {
+    const max = parseAmount(g.amount) || 10000000;
+    // Use 70% of max as a realistic project size
+    const total = Math.round(max * 0.7);
+    const cats = (g.cat || '').toLowerCase();
+    let split;
+    if (/digit|kutat|innov/.test(cats)) {
+        split = [['Szoftver- és technológiabeszerzés', 0.35],['Fejlesztői és tanácsadói szolgáltatás', 0.30],['Eszköz- és hardverbeszerzés', 0.15],['Bér + járulékok', 0.12],['Általános és projekt-menedzsment', 0.08]];
+    } else if (/energi|környezet/.test(cats)) {
+        split = [['Eszköz- és technológiabeszerzés (megújuló/energetikai)', 0.55],['Építés és kivitelezés', 0.20],['Tervezés és műszaki szolgáltatás', 0.12],['Bér + járulékok', 0.08],['Általános költségek', 0.05]];
+    } else if (/turiz|mező|agrár/.test(cats)) {
+        split = [['Eszköz- és gépbeszerzés', 0.40],['Építés / felújítás', 0.30],['Marketing és kommunikáció', 0.10],['Bér + járulékok', 0.12],['Általános költségek', 0.08]];
+    } else {
+        split = [['Eszköz- és technológiabeszerzés', 0.45],['Immateriális javak (licenc, szabadalmi)', 0.15],['Tanácsadói és szakértői szolgáltatás', 0.18],['Bér + járulékok', 0.14],['Általános és projekt-menedzsment', 0.08]];
+    }
+    return { total, rows: split.map(([n,p]) => [n, Math.round(total*p), Math.round(p*100)]) };
+}
+
+function dr_indicators(g, profile) {
+    const cat = (g.cat || '').toLowerCase();
+    if (/digit/.test(cat)) return [
+        ['Bevezetett digitális megoldások száma', '4 db'],
+        ['Folyamatautomatizálás által megtakarított munkaóra / hó', '120 óra'],
+        ['Új vagy fejlesztett digitális szolgáltatások száma', '2 db'],
+        ['Felhasználói/ügyfél elégedettség (NPS) növekedése', '+15 pont']
+    ];
+    if (/kutat|innov/.test(cat)) return [
+        ['Új vagy lényegesen javított termék/szolgáltatás', '1 db'],
+        ['Bejelentett iparjogvédelmi oltalom', '1 db'],
+        ['K+F munkahelyek létrehozása', '2 fő'],
+        ['Piacra vitt prototípus / pilot', '1 db']
+    ];
+    if (/energi|környezet/.test(cat)) return [
+        ['Éves energiafogyasztás csökkenése', '−25%'],
+        ['CO₂-kibocsátás csökkenése (t/év)', '−12 t'],
+        ['Termelt megújuló energia (kWh/év)', '85 000 kWh'],
+        ['Megtérülési idő', '6 év']
+    ];
+    if (/turiz/.test(cat)) return [
+        ['Új vendégéjszakák száma / év', '1 800 db'],
+        ['Foglalási csatornák bővülése', '+3 csatorna'],
+        ['Vendég-elégedettség (online átlag)', '4.6+ / 5'],
+        ['Új munkahely', '2 fő']
+    ];
+    return [
+        ['Új munkahelyek létrehozása', '2 fő'],
+        ['Árbevétel-növekedés a projekt befejezésétől 3 éven belül', '+30%'],
+        ['Új termékek / szolgáltatások bevezetése', '1 db'],
+        ['Üzemi kapacitás növelése', '+20%']
+    ];
+}
+
+function dr_section_summary(g, p) {
+    const co = p.company || 'A Pályázó';
+    const ind = dr_industryLabel(p.industry).toLowerCase();
+    const loc = p.location || 'Magyarország';
+    return `<p>A <b>${co}</b> (${ind}, ${loc}) a jelen pályázat keretében a <b>${g.title}</b> felhívás támogatásával egy ${g.cat.toLowerCase()} kategóriájú beruházást kíván megvalósítani. A projekt célja a vállalkozás kapacitásainak, hatékonyságának és piaci pozíciójának fenntartható növelése a felhívás céljaihoz illeszkedő tevékenységeken keresztül. A tervezett projekt teljes költsége és a támogatás aránya a felhívás keretösszegéhez igazodik (max. ${g.amount}), a beruházás befejezésére a benyújtási határidőt (${g.deadline}) követő 12–18 hónapon belül kerül sor.</p>`;
+}
+
+function dr_section_applicant(g, p) {
+    const co = p.company || 'A Pályázó';
+    const ind = dr_industryLabel(p.industry).toLowerCase();
+    const emp = p.employees || '11-25';
+    const rev = p.revenue || '500K-1M';
+    const loc = p.location || 'Magyarország';
+    const yr = (p.past_grants === 'won') ? ' és korábban már sikeresen pályázott hazai támogatásra' : '';
+    return `<p>A(z) <b>${co}</b> magyarországi székhelyű, <b>${ind}</b> területén működő kis- és középvállalkozás (létszám: ${emp} fő, éves árbevétel: ${rev})${yr}. Székhelye: ${loc}. A vállalkozás stabil piaci jelenléttel, kiépített vevőkörrel és működő üzleti modellel rendelkezik, így a jelen pályázati projekt által célzott fejlesztések szilárd alapra építhetők.</p>
+<p>A Pályázó megfelel a KKV-kritériumoknak (2003/361/EK ajánlás szerint), nyilatkozat szerint köztartozásmentes, és vállalja a felhívásban meghatározott horizontális és fenntarthatósági követelmények teljesítését. A projekt megvalósításához szükséges saját erő, illetve áthidaló finanszírozási háttér biztosított.</p>
+<p>A Pályázó a projektet a saját szervezetén belül, kiegészítő külső szakértői támogatással valósítja meg; a beszerzések a felhívás szerinti — minimum három független árajánlat alapján — piaci áron történnek.</p>`;
+}
+
+function dr_section_goals(g, p) {
+    const cat = (g.cat || '').toLowerCase();
+    let body = '';
+    if (/digit/.test(cat)) {
+        body = `<p>A projekt elsődleges célja a Pályázó működésének <b>digitális transzformációja</b>: a manuális, papír- és e-mail alapú folyamatok automatizálása, integrált üzleti rendszer bevezetése, valamint adat-alapú vezetői döntéshozatal megalapozása. A digitális érettségi szint emelése közvetlen versenyelőnyt biztosít az iparágon belül.</p>
+<p>A projekt indokoltsága a Pályázó jelenlegi folyamatainak hatékonysági korlátaiban gyökerezik. Az adatok széttagoltsága, a párhuzamos manuális adatrögzítés és a riportálás lassúsága jelentős — közvetlenül mérhető — időveszteséget okoz. A pályázati projekt ezeknek a fájdalompontoknak a célzott megszüntetésére irányul.</p>`;
+    } else if (/kutat|innov/.test(cat)) {
+        body = `<p>A projekt célja egy <b>új vagy lényegesen javított termék/szolgáltatás</b> kifejlesztése és piaci bevezetésre való előkészítése. A fejlesztés a hazai és nemzetközi piaci igények dokumentált hiányosságaira válaszol, és piaci szempontból fenntartható megoldást kínál.</p>
+<p>Az innovációs projekt a Pályázó belső szakmai kompetenciáira és külső kutatási partnerre épül, biztosítva a tudományos megalapozottságot és a piaci relevanciát egyaránt. A projekt eredménye iparjogvédelmi oltalom megszerzésével védhető.</p>`;
+    } else if (/energi|környezet/.test(cat)) {
+        body = `<p>A projekt célja a Pályázó működésének <b>energiahatékonyabbá tétele</b> és a megújuló energiaforrások részarányának növelése. A beruházás eredményeként mérséklődik a fosszilis energiahordozóktól való függés, csökken az üzemeltetési költség, és javul a vállalkozás karbonlábnyoma.</p>
+<p>A projekt indokoltságát az utóbbi évek energiaár-volatilitása és a fenntarthatósági szabályozási környezet szigorodása adja. A beruházás 5–8 éves megtérülési idővel, mérhető környezeti hatással jár.</p>`;
+    } else if (/turiz/.test(cat)) {
+        body = `<p>A projekt célja a Pályázó turisztikai szolgáltatás-portfóliójának <b>minőségi és kapacitásbeli</b> fejlesztése. A fejlesztés egyszerre szolgálja a vendég-élmény javítását, a foglaltság növelését az alacsony szezonban, és a hosszabb tartózkodási idő ösztönzését.</p>
+<p>A magyar belföldi és nemzetközi turisztikai kereslet növekvő trendje, valamint a régió turisztikai stratégiájával való szinergia indokolja a beruházást.</p>`;
+    } else {
+        body = `<p>A projekt célja a Pályázó <b>termelői/szolgáltatási kapacitásainak és versenyképességének</b> mérhető növelése a felhívás keretrendszerén belül. A beruházás közvetlenül érinti a Pályázó működésének értékteremtő mag-folyamatait.</p>
+<p>A projekt indokoltságát a Pályázó kapacitás-korlátai, a növekvő piaci kereslet, valamint a jelenlegi eszközpark elavultsága adja. A beruházás megtérülése a felhívás által támogatott kedvező finanszírozási feltételek mellett a támogatás nélkül elérhetőnél jelentősen rövidebb.</p>`;
+    }
+    return body;
+}
+
+function dr_section_activities(g, p) {
+    const ideas = (typeof fundingIdeas === 'function') ? fundingIdeas(g) : [];
+    if (!ideas.length) return '<p>A projekt keretében a felhívás által támogatott elszámolható tevékenységek valósulnak meg.</p>';
+    return `<p>A projekt az alábbi fő tevékenységi csomagokon keresztül valósul meg:</p>
+<ul>${ideas.map(([ic, t]) => `<li><b>${t.split(' — ')[0]}</b> — ${(t.split(' — ')[1] || '')}</li>`).join('')}</ul>
+<p>A tevékenységek a felhívás elszámolható költség-kategóriáira illeszkednek, és a beszerzések a hatályos magyar pályázati eljárásrend szerint (minimum 3 árajánlat, piaci ár, dokumentált indokolás) történnek.</p>`;
+}
+
+function dr_section_indicators(g, p) {
+    const rows = dr_indicators(g, p);
+    return `<p>A projekt által vállalt indikátorok és számszerűsített eredmények:</p>
+<table><thead><tr><th>Indikátor</th><th>Vállalt érték (projekt végére)</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td><b>${r[1]}</b></td></tr>`).join('')}</tbody></table>`;
+}
+
+function dr_section_budget(g, p) {
+    const b = dr_budget(g);
+    const fmt = (n) => n.toLocaleString('hu-HU') + ' Ft';
+    return `<p>A projekt tervezett teljes költségvetése: <b>${fmt(b.total)}</b>. A költségek a felhívás elszámolható kategóriáira oszlanak az alábbiak szerint:</p>
+<table><thead><tr><th>Költségkategória</th><th>Összeg</th><th>%</th></tr></thead><tbody>${b.rows.map(r=>`<tr><td>${r[0]}</td><td>${fmt(r[1])}</td><td>${r[2]}%</td></tr>`).join('')}<tr><td><b>Összesen</b></td><td><b>${fmt(b.total)}</b></td><td><b>100%</b></td></tr></tbody></table>
+<p style="font-size:12px;color:var(--gray-500);">A költségvetés tervezet — a végleges összegek a felhívás elszámolhatósági szabályai, a 3 árajánlatos eljárás eredménye és a pályázatírói véglegesítés után konkretizálódnak.</p>`;
+}
+
+function dr_section_timeline(g, p) {
+    return `<p>A projekt 12 hónapos megvalósítási időszakra tervezett. Kezdés a támogatói okirat aláírását követő 30 napon belül.</p>
+<table><thead><tr><th>Negyedév</th><th>Mérföldkő</th></tr></thead><tbody>
+<tr><td>1. negyedév</td><td>Projekt indítása, beszerzési eljárások (3 árajánlat), szerződéskötések</td></tr>
+<tr><td>2. negyedév</td><td>Eszközök/szolgáltatások szállítása, telepítés, alaprendszerek bevezetése</td></tr>
+<tr><td>3. negyedév</td><td>Integráció, felhasználói képzés, tesztüzem</td></tr>
+<tr><td>4. negyedév</td><td>Éles üzem, indikátor-mérés, projekt-zárás, kifizetési kérelem benyújtása</td></tr>
+</tbody></table>`;
+}
+
+function dr_section_sustainability(g, p) {
+    return `<p>A Pályázó vállalja, hogy a projekt eredményeit a felhívásban előírt — jellemzően 3 éves — fenntartási időszakban folyamatosan üzemelteti, az indikátorokat fenntartja, és az ellenőrzéshez szükséges dokumentációt megőrzi. A beruházás eredményei beépülnek a vállalkozás működési modelljébe, így a fenntartás nem külön költség, hanem az új, hatékonyabb működés természetes része.</p>`;
+}
+
+function dr_section_risks(g, p) {
+    return `<p>A főbb azonosított kockázatok és a tervezett kezelésük:</p>
+<table><thead><tr><th>Kockázat</th><th>Valószínűség</th><th>Kezelés</th></tr></thead><tbody>
+<tr><td>Beszállítói késedelem</td><td>Közepes</td><td>3 független árajánlat, kötbéres szerződés, tartalék-szállító azonosítása</td></tr>
+<tr><td>Költségváltozás (infláció, devizaárfolyam)</td><td>Közepes</td><td>Időben rögzített árak, projekt-tartalék elkülönítése</td></tr>
+<tr><td>Felhasználói ellenállás (új folyamatok)</td><td>Alacsony</td><td>Korai bevonás, lépcsőzetes bevezetés, célzott képzés</td></tr>
+<tr><td>Indikátor-elmaradás</td><td>Alacsony</td><td>Negyedéves mérés, korai beavatkozás, mérési módszertan rögzítése</td></tr>
+</tbody></table>`;
+}
+
+function dr_generate(grantId) {
+    const g = G.find(x => x.id === grantId);
+    if (!g) return null;
+    const p = getUserProfile() || {};
+    const sections = [
+        { title: 'Projekt összefoglaló', body: dr_section_summary(g, p) },
+        { title: 'Pályázó bemutatása', body: dr_section_applicant(g, p) },
+        { title: 'Projekt célja és indokoltsága', body: dr_section_goals(g, p) },
+        { title: 'Tervezett tevékenységek', body: dr_section_activities(g, p) },
+        { title: 'Indikátorok és vállalások', body: dr_section_indicators(g, p) },
+        { title: 'Költségvetés-tervezet', body: dr_section_budget(g, p) },
+        { title: 'Megvalósítási ütemterv', body: dr_section_timeline(g, p) },
+        { title: 'Fenntarthatósági terv', body: dr_section_sustainability(g, p) },
+        { title: 'Kockázatok és kezelésük', body: dr_section_risks(g, p) }
+    ];
+    return { id: 'D-' + Date.now().toString(36), grantId, ts: Date.now(), sections };
+}
+
+function dr_renderDoc() {
+    const wrap = document.getElementById('drafter-wrap');
+    const printBtn = document.getElementById('dr-print-btn');
+    const saveBtn = document.getElementById('dr-save-btn');
+    if (!currentDraft) {
+        if (printBtn) printBtn.style.display = 'none';
+        if (saveBtn) saveBtn.style.display = 'none';
+        dr_renderHome();
+        return;
+    }
+    const g = G.find(x => x.id === currentDraft.grantId) || { title: '(ismeretlen pályázat)', source: '', cat: '', amount: '', deadline: '' };
+    const p = getUserProfile() || {};
+    if (printBtn) printBtn.style.display = '';
+    if (saveBtn) saveBtn.style.display = '';
+    wrap.innerHTML = `
+        <div class="dr-card" style="padding:0;">
+            <div class="dr-doc">
+                <div class="dr-head">
+                    <div class="brand">Grant<span>Pilot</span> · AI Pályázat-vázlat</div>
+                    <h2>${g.title}</h2>
+                    <div class="meta">${p.company || ''} · ${g.source || ''} · keret: ${g.amount || ''} · határidő: ${g.deadline || ''}</div>
+                </div>
+                <div class="dr-disc">
+                    <b>AI-generált vázlat.</b> A kimenet 80%-ban előkészített tervezet — a végleges pályázatot az Ön pályázatíró partnerével szakmailag és tartalmilag véglegesíteni kell. A pontos elszámolható költségeket, indikátorokat és a 3 árajánlatos eljárást a hivatalos felhívás határozza meg.
+                </div>
+                <div class="dr-body" id="dr-body">
+                    ${currentDraft.sections.map((s, i) => `
+                        <div class="dr-sec">
+                            <div class="dr-sec-h"><span>${i+1}. ${s.title}</span><span class="edit-hint">Szerkeszthető — kattints a szövegre</span></div>
+                            <div class="dr-sec-body" contenteditable="true" data-idx="${i}" oninput="dr_onEdit(this)">${s.body}</div>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="dr-foot">
+                    Generálva: ${new Date(currentDraft.ts).toLocaleString('hu-HU')} · GrantPilot AI Pályázati Ügynök (béta).
+                </div>
+            </div>
+            <div class="dr-actions" style="padding:14px 24px;">
+                <button class="btn-sm" onclick="dr_clear()">Új vázlat indítása</button>
+                <button class="btn-sm" onclick="dr_print()">🖨️ Nyomtatás / PDF</button>
+                <button class="btn-sm primary" onclick="dr_save()">Mentés</button>
+            </div>
+        </div>
+    `;
+}
+
+function dr_onEdit(el) {
+    const i = parseInt(el.getAttribute('data-idx'), 10);
+    if (!currentDraft || isNaN(i)) return;
+    currentDraft.sections[i].body = el.innerHTML;
+}
+
+function dr_renderHome() {
+    const wrap = document.getElementById('drafter-wrap');
+    const grants = [...G].sort((a, b) => a.title.localeCompare(b.title, 'hu'));
+    const drafts = dr_getDrafts().slice().reverse();
+    const grantOpts = grants.map(g => `<option value="${g.id}">${g.title.slice(0, 90)}</option>`).join('');
+    wrap.innerHTML = `
+        <div class="dr-card">
+            <h3>AI Pályázat-vázlat generálása</h3>
+            <p class="muted">Válasszon egy pályázatot, és pár másodperc alatt elkészítjük a magyar pályázati struktúrának megfelelő, az Ön cégprofiljára szabott első vázlatot — 9 szekcióval, költségvetéssel, indikátorokkal. A vázlat szerkeszthető, menthető, nyomtatható.</p>
+            <div class="dr-pick">
+                <select id="dr-grant-pick"><option value="">— Válasszon pályázatot —</option>${grantOpts}</select>
+                <button class="dr-generate" onclick="dr_doGenerate()">Vázlat generálása</button>
+            </div>
+        </div>
+        <div class="dr-card">
+            <h3>Mentett vázlatok ${drafts.length ? `<span style="font-weight:600;color:var(--gray-400);font-size:13px;">(${drafts.length})</span>` : ''}</h3>
+            ${drafts.length === 0 ? `<div class="dr-empty">Még nincs mentett vázlat. Generáljon egy újat a fenti választóval, vagy nyissa meg egy pályázat részleteit, és onnan kattintson az „AI vázlat" gombra.</div>` : `
+            <div class="dr-saved">
+                ${drafts.map(d => {
+                    const g = G.find(x => x.id === d.grantId) || {title:'(törölt/lejárt pályázat)'};
+                    return `<div class="dr-saved-row">
+                        <div class="t">${g.title.slice(0, 80)}</div>
+                        <div class="when">${new Date(d.ts).toLocaleString('hu-HU', {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'})}</div>
+                        <button onclick="dr_load('${d.id}')">Megnyitás</button>
+                        <button class="del" onclick="dr_delete('${d.id}')">Törlés</button>
+                    </div>`;
+                }).join('')}
+            </div>
+            `}
+        </div>
+    `;
+}
+
+function dr_doGenerate() {
+    const id = document.getElementById('dr-grant-pick').value;
+    if (!id) { alert('Válasszon pályázatot a generáláshoz.'); return; }
+    const d = dr_generate(id);
+    if (!d) { alert('Nem található a pályázat.'); return; }
+    currentDraft = d;
+    dr_renderDoc();
+}
+
+function openDrafterForGrant(grantId) {
+    const d = dr_generate(grantId);
+    if (!d) return;
+    currentDraft = d;
+    showPage('drafter'); // initDrafter will render currentDraft
+}
+
+function dr_save() {
+    if (!currentDraft) return;
+    const drafts = dr_getDrafts();
+    const idx = drafts.findIndex(x => x.id === currentDraft.id);
+    currentDraft.ts = Date.now();
+    if (idx >= 0) drafts[idx] = currentDraft;
+    else drafts.push(currentDraft);
+    dr_setDrafts(drafts);
+    // toast-ish feedback
+    const btn = document.getElementById('dr-save-btn');
+    if (btn) { const orig = btn.textContent; btn.textContent = 'Mentve ✓'; setTimeout(() => { btn.textContent = orig; }, 1800); }
+}
+
+function dr_load(id) {
+    const d = dr_getDrafts().find(x => x.id === id);
+    if (!d) return;
+    currentDraft = d;
+    dr_renderDoc();
+}
+
+function dr_delete(id) {
+    if (!confirm('Biztosan törli ezt a vázlatot?')) return;
+    dr_setDrafts(dr_getDrafts().filter(x => x.id !== id));
+    if (currentDraft && currentDraft.id === id) currentDraft = null;
+    dr_renderDoc();
+}
+
+function dr_clear() { currentDraft = null; dr_renderDoc(); }
+
+function dr_print() { window.print(); }
+
+function initDrafter() { dr_renderDoc(); }
 
 const INDUSTRY_OPTS = [['IT','IT / Szoftverfejlesztés'],['HVAC','Épületgépészet / HVAC'],['Construction','Építőipar'],['Manufacturing','Gyártás'],['Healthcare','Egészségügy'],['Restaurant','Vendéglátás'],['Tourism','Turizmus'],['Agriculture','Mezőgazdaság'],['Retail','Kereskedelem'],['Education','Oktatás'],['General','Egyéb']];
 const EMP_OPTS = ['1-5','6-10','11-25','26-50','51-100','100+'];
