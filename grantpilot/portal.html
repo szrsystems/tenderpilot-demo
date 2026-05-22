@@ -2076,7 +2076,9 @@ function dr_budget(g) {
         split = [['Szoftver- és technológiabeszerzés', 0.35],['Fejlesztői és tanácsadói szolgáltatás', 0.30],['Eszköz- és hardverbeszerzés', 0.15],['Bér + járulékok', 0.12],['Általános és projekt-menedzsment', 0.08]];
     } else if (/energi|környezet/.test(cats)) {
         split = [['Eszköz- és technológiabeszerzés (megújuló/energetikai)', 0.55],['Építés és kivitelezés', 0.20],['Tervezés és műszaki szolgáltatás', 0.12],['Bér + járulékok', 0.08],['Általános költségek', 0.05]];
-    } else if (/turiz|mező|agrár/.test(cats)) {
+    } else if (/mező|agrár/.test(cats)) {
+        split = [['Gép- és eszközbeszerzés', 0.45],['Tároló / üzemépület építése, felújítása', 0.30],['Telepítés és üzembe helyezés', 0.10],['Bér + járulékok', 0.10],['Általános költségek', 0.05]];
+    } else if (/turiz/.test(cats)) {
         split = [['Eszköz- és gépbeszerzés', 0.40],['Építés / felújítás', 0.30],['Marketing és kommunikáció', 0.10],['Bér + járulékok', 0.12],['Általános költségek', 0.08]];
     } else {
         split = [['Eszköz- és technológiabeszerzés', 0.45],['Immateriális javak (licenc, szabadalmi)', 0.15],['Tanácsadói és szakértői szolgáltatás', 0.18],['Bér + járulékok', 0.14],['Általános és projekt-menedzsment', 0.08]];
@@ -2109,6 +2111,12 @@ function dr_indicators(g, profile) {
         ['Foglalási csatornák bővülése', '+3 csatorna'],
         ['Vendég-elégedettség (online átlag)', '4.6+ / 5'],
         ['Új munkahely', '2 fő']
+    ];
+    if (/mező|agrár/.test(cat)) return [
+        ['Termelési kapacitás növekedése', '+25%'],
+        ['Betakarítási / tárolási veszteség csökkenése', '−15%'],
+        ['Új vagy korszerűsített gép/eszköz', '3 db'],
+        ['Új munkahely', '1 fő']
     ];
     return [
         ['Új munkahelyek létrehozása', '2 fő'],
@@ -2152,6 +2160,9 @@ function dr_section_goals(g, p) {
     } else if (/turiz/.test(cat)) {
         body = `<p>A projekt célja a Pályázó turisztikai szolgáltatás-portfóliójának <b>minőségi és kapacitásbeli</b> fejlesztése. A fejlesztés egyszerre szolgálja a vendég-élmény javítását, a foglaltság növelését az alacsony szezonban, és a hosszabb tartózkodási idő ösztönzését.</p>
 <p>A magyar belföldi és nemzetközi turisztikai kereslet növekvő trendje, valamint a régió turisztikai stratégiájával való szinergia indokolja a beruházást.</p>`;
+    } else if (/mező|agrár/.test(cat)) {
+        body = `<p>A projekt célja a Pályázó <b>mezőgazdasági termelési kapacitásának és hatékonyságának</b> fejlesztése korszerű gép- és eszközpark beszerzésével, valamint a tárolási/feldolgozási kapacitás bővítésével. A beruházás csökkenti a kézi munka arányát, mérsékli a betakarítási és tárolási veszteséget, és javítja a termékminőséget.</p>
+<p>A projekt indokoltságát az elavult eszközpark, a növekvő munkaerőköltség és a piac szigorodó minőségi elvárásai adják. A felhívás kedvező finanszírozási feltételei mellett a beruházás megtérülése jelentősen rövidebb a támogatás nélkül elérhetőnél.</p>`;
     } else {
         body = `<p>A projekt célja a Pályázó <b>termelői/szolgáltatási kapacitásainak és versenyképességének</b> mérhető növelése a felhívás keretrendszerén belül. A beruházás közvetlenül érinti a Pályázó működésének értékteremtő mag-folyamatait.</p>
 <p>A projekt indokoltságát a Pályázó kapacitás-korlátai, a növekvő piaci kereslet, valamint a jelenlegi eszközpark elavultsága adja. A beruházás megtérülése a felhívás által támogatott kedvező finanszírozási feltételek mellett a támogatás nélkül elérhetőnél jelentősen rövidebb.</p>`;
