@@ -175,6 +175,34 @@
         .save-ok.show { opacity: 1; }
 
         /* ===== HERO STATS (animated) ===== */
+        /* AI Needs finder */
+        .needs-finder { background: linear-gradient(135deg, #064e3b 0%, #16a34a 100%); border-radius: var(--radius-lg); padding: 22px 24px; margin-bottom: 20px; color: white; }
+        .nf-head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 16px; }
+        .nf-spark { font-size: 24px; line-height: 1; flex-shrink: 0; }
+        .nf-title { font-size: 18px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 4px; }
+        .nf-sub { font-size: 13px; color: rgba(255,255,255,0.82); line-height: 1.5; max-width: 620px; }
+        .nf-input-row { display: flex; gap: 10px; flex-wrap: wrap; }
+        .nf-input-row input { flex: 1; min-width: 240px; padding: 13px 16px; border-radius: 10px; border: none; font-size: 14px; font-family: inherit; color: var(--gray-900); }
+        .nf-input-row input:focus { outline: none; box-shadow: 0 0 0 3px rgba(255,255,255,0.3); }
+        .nf-btn { padding: 13px 26px; background: var(--gray-900); color: white; border: none; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; transition: background 0.1s; }
+        .nf-btn:hover { background: #000; }
+        .nf-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+        .nf-chip { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25); color: white; font-size: 12px; font-weight: 600; padding: 7px 13px; border-radius: 999px; cursor: pointer; transition: background 0.1s; }
+        .nf-chip:hover { background: rgba(255,255,255,0.26); }
+        .nf-results { margin-top: 16px; }
+        .nf-results:empty { margin-top: 0; }
+        .nf-res-head { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .nf-res-head a { color: white; font-weight: 700; text-decoration: underline; cursor: pointer; font-size: 12px; }
+        .nf-card { background: white; border-radius: 10px; padding: 14px 16px; margin-bottom: 8px; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; transition: transform 0.1s; }
+        .nf-card:hover { transform: translateY(-1px); }
+        .nf-card-title { font-size: 13.5px; font-weight: 700; color: var(--gray-900); line-height: 1.35; margin-bottom: 3px; }
+        .nf-card-meta { font-size: 12px; color: var(--gray-500); }
+        .nf-card-right { text-align: right; white-space: nowrap; }
+        .nf-card-amount { font-size: 13px; font-weight: 700; color: var(--gray-900); }
+        .nf-card-score { font-size: 11px; font-weight: 700; color: var(--green-700); margin-top: 2px; }
+        .nf-empty { background: rgba(255,255,255,0.12); border-radius: 10px; padding: 16px; font-size: 13px; color: white; line-height: 1.5; }
+        .nf-empty a { color: white; font-weight: 700; text-decoration: underline; cursor: pointer; }
+        @media (max-width: 768px) { .needs-finder { padding: 18px; } }
         .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
         .hero-stat { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 18px 20px; position: relative; overflow: hidden; transition: transform 0.15s, box-shadow 0.15s; }
         .hero-stat:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
@@ -520,6 +548,23 @@
             </div>
         </div>
         <div class="content">
+            <!-- AI NEEDS FINDER -->
+            <div class="needs-finder" id="needs-finder">
+                <div class="nf-head">
+                    <div class="nf-spark">✨</div>
+                    <div>
+                        <div class="nf-title">Mire van szüksége támogatásra?</div>
+                        <div class="nf-sub">Mondja el pár szóban, mit szeretne megvalósítani — és megkeresem az Önnek megfelelő pályázatokat. Nem kell ismernie a pályázati kategóriákat.</div>
+                    </div>
+                </div>
+                <div class="nf-input-row">
+                    <input type="text" id="nf-input" placeholder="Pl. „új csomagológépet vennék", „napelem a tetőre", „webáruházat indítanék"…" onkeydown="if(event.key==='Enter')nf_search()">
+                    <button class="nf-btn" onclick="nf_search()">Keresés</button>
+                </div>
+                <div class="nf-chips" id="nf-chips"></div>
+                <div class="nf-results" id="nf-results"></div>
+            </div>
+
             <!-- HERO STATS -->
             <div class="hero-stats" id="hero-stats"></div>
 
@@ -1436,7 +1481,105 @@ function animateCounter(el, target, opts) {
 }
 
 /* ===== Dashboard ===== */
+/* ===== AI Needs finder ("Mire van szüksége?") =====
+   Plain-language intent matching for non-technical SME owners who don't
+   think in grant categories. Maps everyday Hungarian phrases to grant
+   concepts, scores grants, and combines with the profile fit.
+*/
+const NEED_CONCEPTS = [
+    { q: /gép|eszköz|berendezés|csomagol|gyárt|technológ|beruház|vásárol|veszek|vennék|cnc|szerszám|jármű|targonca|sor\b/, g: /eszközbe|gépbe|gépbeszerz|beruház|kapacit|gyárt/i, w: 10 },
+    { q: /napelem|energia|áram|fűt|hőszivattyú|szigetel|korszerűsít|megújul|villany|gáz|rezsi/, g: /energ|napelem|megújul|hőszivat|szigetel|környezet/i, w: 10 },
+    { q: /web|honlap|online|webshop|webáruház|digital|szoftver|rendszer|automatizál|mesterséges|\bai\b|crm|erp|számláz|adat/, g: /digit|szoftver|informatik|adat|automat|innov/i, w: 10 },
+    { q: /telephely|csarnok|ingatlan|épít|üzem|raktár|bővít|felújít|iroda|műhely/, g: /telephely|ingatlan|csarnok|raktár|felújít/i, w: 9 },
+    { q: /képz|oktat|tanf|tréning|betanít|tudás|kompetencia/, g: /képz|oktat/i, w: 10 },
+    { q: /export|külföld|külpiac|nemzetközi|piacra lép|kivitel/, g: /export|külpiac|nemzetközi|piacra/i, w: 10 },
+    { q: /kutat|fejleszt|innovác|prototípus|új termék|szabadalom|k\+f|laborat/, g: /kutat|innov|k\+f|fejleszt/i, w: 9 },
+    { q: /munkaerő|alkalmazott|munkatárs|felvétel|\bbér|foglalkoztat|munkahely|dolgozó/, g: /foglalkoztat|munkahely|bér/i, w: 10 },
+    { q: /mezőgazda|gazda|traktor|állat|növény|föld|szántó|borász|élelmiszer|kertész|agrár/, g: /mező|agrár|gazda|élelmiszer|leader|borász/i, w: 10 },
+    { q: /szálloda|panzió|vendég|étterem|étterm|turisztik|szálláshely|kemping|attrakció|gasztro/, g: /turiz|szálláshely|vendég|étterm|attrakció/i, w: 10 },
+    { q: /hitel|kölcsön|forgóeszköz|likvidit|finanszíroz|tőke|garancia/, g: /hitel|kölcsön|tőke|garancia|forgóeszköz|kártya/i, w: 8 }
+];
+
+const NEED_CHIPS = [
+    ['🏭 Gépet vagy eszközt vennék', 'új gépet eszközt szeretnék vásárolni'],
+    ['☀️ Napelem / energetika', 'napelem és energetikai korszerűsítés'],
+    ['💻 Weboldal / webáruház', 'weboldal vagy webáruház fejlesztés digitalizáció'],
+    ['🏗️ Új telephely / csarnok', 'telephely csarnok ingatlan építés bővítés'],
+    ['🎓 Munkatársak képzése', 'munkatársak képzése oktatás'],
+    ['🌍 Külföldi piacra lépés', 'export külpiac nemzetközi terjeszkedés'],
+    ['🧪 Új termék fejlesztése', 'új termék kutatás fejlesztés innováció'],
+    ['👥 Munkaerő felvétele', 'munkaerő felvétel foglalkoztatás bértámogatás']
+];
+
+function nf_match(query, profile) {
+    const q = (query || '').toLowerCase().trim();
+    if (!q) return [];
+    // Which concepts does the query trigger?
+    const triggered = NEED_CONCEPTS.filter(c => c.q.test(q));
+    const words = q.split(/[^a-záéíóöőúüű0-9]+/i).filter(w => w.length >= 4);
+    const scored = G.map(g => {
+        const title = (g.title || '').toLowerCase();
+        const cat = (g.cat || '').toLowerCase();
+        let s = 0;
+        triggered.forEach(c => {
+            if (c.g.test(title)) s += c.w + 4;      // strong: concept appears in the title
+            else if (c.g.test(cat)) s += c.w;       // weaker: only in the category bucket
+        });
+        // generic word overlap
+        words.forEach(w => { if (title.includes(w)) s += 4; else if (cat.includes(w)) s += 2; });
+        if (s <= 0) return null;
+        s += profileBoost(g, profile) * 0.4; // light profile nudge
+        return { g, s };
+    }).filter(Boolean).sort((a, b) => b.s - a.s || b.g.score - a.g.score);
+    return scored.slice(0, 5).map(x => x.g);
+}
+
+let nf_lastQuery = '';
+
+function nf_renderChips() {
+    const el = document.getElementById('nf-chips');
+    if (!el) return;
+    el.innerHTML = NEED_CHIPS.map(([label, q]) => `<button class="nf-chip" onclick="nf_chip('${q.replace(/'/g, "\\'")}')">${label}</button>`).join('');
+}
+
+function nf_chip(q) {
+    const input = document.getElementById('nf-input');
+    if (input) input.value = q;
+    nf_search();
+}
+
+function nf_search() {
+    const input = document.getElementById('nf-input');
+    const res = document.getElementById('nf-results');
+    if (!input || !res) return;
+    const q = input.value.trim();
+    nf_lastQuery = q;
+    if (!q) { res.innerHTML = ''; return; }
+    const profile = getUserProfile();
+    const matches = nf_match(q, profile);
+    if (!matches.length) {
+        res.innerHTML = `<div class="nf-empty">Nem találtam pontos egyezést a(z) „${q}" igényre. Próbálja más szavakkal, vagy <a onclick="showPage('grants')">böngéssze az összes pályázatot</a>. Új igényekre is folyamatosan figyelünk.</div>`;
+        return;
+    }
+    res.innerHTML = `
+        <div class="nf-res-head"><span>${matches.length} illeszkedő pályázat a(z) „${q}" igényre:</span><a onclick="showPage('grants')">Összes pályázat →</a></div>
+        ${matches.map(g => `
+            <div class="nf-card" onclick="showDetail('${g.id}')">
+                <div>
+                    <div class="nf-card-title">${g.title}</div>
+                    <div class="nf-card-meta">${g.source} · ${g.cat} · határidő: ${g.deadline}</div>
+                </div>
+                <div class="nf-card-right">
+                    <div class="nf-card-amount">${g.amount}</div>
+                    <div class="nf-card-score">${g.score}/100 illeszkedés</div>
+                </div>
+            </div>
+        `).join('')}
+    `;
+}
+
 function initDashboard() {
+    nf_renderChips();
     const today = new Date();
     const totalActive = G.length;
     const relevant = G.filter(g => g.score > 60).length;
