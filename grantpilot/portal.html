@@ -549,10 +549,6 @@
     <div id="page-dashboard" class="page">
         <div class="topbar">
             <h1>Áttekintés <span class="freshness" id="freshness" title="" style="display:none;"><span class="fr-dot"></span><span id="fr-text">…</span></span></h1>
-            <div class="topbar-actions">
-                <button class="btn-sm" onclick="exportCSV()">Exportálás</button>
-                <button class="btn-sm primary" id="scan-btn" onclick="runScan()">Keresés indítása</button>
-            </div>
         </div>
         <div class="content">
             <!-- AI NEEDS FINDER -->
@@ -622,10 +618,14 @@
             <!-- CATEGORY PILLS -->
             <div class="pills-bar" id="pills-bar"></div>
 
-            <!-- SORT BAR -->
+            <!-- RELEVANCE TOGGLE + SORT BAR -->
             <div class="sort-bar">
                 <div class="sort-left"><b id="grant-count">0</b> pályázat — <span id="grant-summary"></span><span id="expired-note" style="display:none; margin-left:8px; font-size:12px; color:var(--gray-400);"></span></div>
                 <div class="sort-right">
+                    <div class="sort-buttons" id="relevance-toggle" style="margin-right:10px;">
+                        <button class="sort-btn active" data-relv="relevant" onclick="setRelevance('relevant')">Csak releváns</button>
+                        <button class="sort-btn" data-relv="all" onclick="setRelevance('all')">Mind</button>
+                    </div>
                     <span class="sort-label">Rendezés:</span>
                     <div class="sort-buttons" id="sort-buttons">
                         <button class="sort-btn active" data-sort="score" onclick="setSort('score')">Relevancia</button>
@@ -706,7 +706,10 @@
     <!-- DRAFTER PAGE — AI Pályázat-vázlat -->
     <div id="page-drafter" class="page hidden">
         <div class="topbar">
-            <h1>AI Pályázat-vázlat <span style="font-size:11px;font-weight:700;color:var(--green-700);background:var(--green-50);border:1px solid var(--green-200);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px;margin-left:8px;">Béta</span></h1>
+            <h1>
+                <button class="btn-sm" onclick="dr_clear()" id="dr-back-btn" style="display:none;margin-right:12px;">← Vissza</button>
+                AI Pályázat-vázlat <span style="font-size:11px;font-weight:700;color:var(--green-700);background:var(--green-50);border:1px solid var(--green-200);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px;margin-left:8px;">Béta</span>
+            </h1>
             <div class="topbar-actions">
                 <button class="btn-sm" onclick="dr_print()" id="dr-print-btn" style="display:none;">🖨️ Nyomtatás / PDF</button>
                 <button class="btn-sm primary" onclick="dr_save()" id="dr-save-btn" style="display:none;">Mentés</button>
@@ -1229,6 +1232,17 @@ function geoFit(g, profile) {
     return s;
 }
 
+// Closed-business-year fit. Most mainstream Hungarian SME grants require ≥1
+// lezárt üzleti év; if the user has 0, mainstream grants get a mild demote
+// and startup/induló-targeted ones are unaffected (their sizeFit already wins).
+function yearsFit(g, profile) {
+    if (!profile || profile.years_operating !== '0') return 0;
+    const title = (g.title || '').toLowerCase();
+    const isStartupOriented = /induló|pre-?seed|magvető|kezdő vállalk|fiatal vállalk|start-?up|inkubác|első pályázat/.test(title);
+    if (isStartupOriented) return 0; // good fit, no demote
+    return -6;
+}
+
 function profileBoost(g, profile) {
     if (!profile) return 0;
     let boost = 0;
@@ -1238,7 +1252,7 @@ function profileBoost(g, profile) {
     if (profile.industry && INDUSTRY_KEYWORDS[profile.industry]) {
         if (INDUSTRY_KEYWORDS[profile.industry].test((g.cat || '') + ' ' + (g.title || ''))) boost += 8;
     }
-    return boost + sizeFit(g, profile) + geoFit(g, profile);
+    return boost + sizeFit(g, profile) + geoFit(g, profile) + yearsFit(g, profile);
 }
 
 function showPage(p) {
@@ -1388,10 +1402,18 @@ const CATEGORY_ORDER = ['all','digital','energy','capacity','rd','export','train
 
 let activeCat = 'all';
 let activeSort = 'score';
+let activeRelv = 'relevant'; // 'relevant' (default — eligible-fit only) | 'all'
+const RELV_THRESHOLD = 55;    // score + profileBoost >= this counts as "relevant"
 
 function setSort(s) {
     activeSort = s;
-    document.querySelectorAll('.sort-btn').forEach(b => b.classList.toggle('active', b.dataset.sort === s));
+    document.querySelectorAll('#sort-buttons .sort-btn').forEach(b => b.classList.toggle('active', b.dataset.sort === s));
+    filterGrants();
+}
+
+function setRelevance(r) {
+    activeRelv = r;
+    document.querySelectorAll('#relevance-toggle .sort-btn').forEach(b => b.classList.toggle('active', b.dataset.relv === r));
     filterGrants();
 }
 
@@ -1402,7 +1424,8 @@ function setCategory(c) {
 }
 
 function resetFilters() {
-    activeCat = 'all'; activeSort = 'score';
+    activeCat = 'all'; activeSort = 'score'; activeRelv = 'all';
+    document.querySelectorAll('#relevance-toggle .sort-btn').forEach(b => b.classList.toggle('active', b.dataset.relv === 'all'));
     const search = document.getElementById('search'); if (search) search.value = '';
     const fv = document.getElementById('filter-verdict'); if (fv) fv.value = 'all';
     document.querySelectorAll('.pill').forEach(p => p.classList.toggle('active', p.dataset.cat === 'all'));
@@ -1725,13 +1748,15 @@ function getFilteredGrants() {
     const v = (document.getElementById('filter-verdict') || {}).value || 'all';
     const sl = s.toLowerCase();
     const catDef = CATEGORY_MAP[activeCat];
+    const profile = getUserProfile();
     let f = G.filter(g => {
         if (sl && !(g.title.toLowerCase().includes(sl) || g.cat.toLowerCase().includes(sl) || g.source.toLowerCase().includes(sl))) return false;
         if (v !== 'all' && g.verdict !== v) return false;
         if (catDef && !catDef.match(g)) return false;
+        if (activeRelv === 'relevant' && (g.score + profileBoost(g, profile)) < RELV_THRESHOLD) return false;
         return true;
     });
-    if (activeSort === 'score') f.sort((a,b) => b.score - a.score || a.days - b.days);
+    if (activeSort === 'score') f.sort((a,b) => (b.score + profileBoost(b, profile)) - (a.score + profileBoost(a, profile)) || a.days - b.days);
     else if (activeSort === 'deadline') f.sort((a,b) => a.days - b.days);
     else if (activeSort === 'amount') f.sort((a,b) => parseAmount(b.amount) - parseAmount(a.amount));
     else if (activeSort === 'new') f.sort((a,b) => b.days - a.days);
@@ -1759,7 +1784,12 @@ function filterGrants() {
     }
     const totalFunding = f.reduce((s, g) => s + parseAmount(g.amount), 0);
     document.getElementById('grant-count').textContent = f.length;
-    document.getElementById('grant-summary').textContent = totalFunding > 0 ? `${formatFt(totalFunding)} elérhető keret` : 'a kiválasztott szűrőkkel';
+    let summary = totalFunding > 0 ? `${formatFt(totalFunding)} elérhető keret` : 'a kiválasztott szűrőkkel';
+    if (activeRelv === 'relevant') {
+        const hidden = G.length - f.length;
+        if (hidden > 0) summary += ` · ${hidden} kevésbé illeszkedő elrejtve`;
+    }
+    document.getElementById('grant-summary').textContent = summary;
     document.getElementById('nav-count').textContent = f.length;
     const en = document.getElementById('expired-note');
     if (en) {
@@ -2420,9 +2450,11 @@ function dr_renderDoc() {
     const wrap = document.getElementById('drafter-wrap');
     const printBtn = document.getElementById('dr-print-btn');
     const saveBtn = document.getElementById('dr-save-btn');
+    const backBtn = document.getElementById('dr-back-btn');
     if (!currentDraft) {
         if (printBtn) printBtn.style.display = 'none';
         if (saveBtn) saveBtn.style.display = 'none';
+        if (backBtn) backBtn.style.display = 'none';
         dr_renderHome();
         return;
     }
@@ -2430,6 +2462,7 @@ function dr_renderDoc() {
     const p = getUserProfile() || {};
     if (printBtn) printBtn.style.display = '';
     if (saveBtn) saveBtn.style.display = '';
+    if (backBtn) backBtn.style.display = 'inline-flex';
     wrap.innerHTML = `
         <div class="dr-card" style="padding:0;">
             <div class="dr-doc">
@@ -2553,6 +2586,8 @@ function initDrafter() { dr_renderDoc(); }
 const INDUSTRY_OPTS = [['IT','IT / Szoftverfejlesztés'],['HVAC','Épületgépészet / HVAC'],['Construction','Építőipar'],['Manufacturing','Gyártás'],['Healthcare','Egészségügy'],['Restaurant','Vendéglátás'],['Tourism','Turizmus'],['Agriculture','Mezőgazdaság'],['Retail','Kereskedelem'],['Education','Oktatás'],['General','Egyéb']];
 const EMP_OPTS = ['1-5','6-10','11-25','26-50','51-100','100+'];
 const REV_OPTS = [['<100K','< €100K'],['100K-500K','€100K - €500K'],['500K-1M','€500K - €1M'],['1M-5M','€1M - €5M'],['5M+','€5M+']];
+const YEARS_OPTS = [['0','Még nincs lezárt évem'],['1','1 év'],['2','2 év'],['3-5','3–5 év'],['5+','5+ év']];
+const LEGAL_OPTS = [['Kft','Kft.'],['Bt','Bt.'],['EV','Egyéni vállalkozó'],['Zrt','Zrt.'],['Nyrt','Nyrt.'],['Szövetkezet','Szövetkezet'],['Egyéb','Egyéb']];
 const PREF_CATS = ['KKV fejlesztés','Digitális átalakulás','Kutatás-fejlesztés','Energiahatékonyság','Munkahelyteremtés','Export','Turizmus','Mezőgazdaság','Környezetvédelem','Oktatás'];
 const NOTIF_KEY = 'grantpilot:notif';
 
@@ -2590,6 +2625,8 @@ function initProfile() {
                     <div class="set-field"><label>Létszám</label><select id="s_employees">${opt(EMP_OPTS, p.employees||'11-25')}</select></div>
                     <div class="set-field"><label>Árbevétel</label><select id="s_revenue">${opt(REV_OPTS, p.revenue||'500K-1M')}</select></div>
                     <div class="set-field"><label>Székhely / régió</label><input id="s_location" type="text" value="${(p.location||'').replace(/"/g,'&quot;')}" placeholder="Pl. Budapest"></div>
+                    <div class="set-field"><label>Lezárt üzleti évek</label><select id="s_years">${opt(YEARS_OPTS, p.years_operating||'1')}</select></div>
+                    <div class="set-field"><label>Cégforma</label><select id="s_legal">${opt(LEGAL_OPTS, p.legal_form||'Kft')}</select></div>
                     <div class="set-field full"><label>Preferált kategóriák</label>
                         <div class="chip-grid" id="s_cats">
                             ${PREF_CATS.map(c => `<label class="chip-opt ${cats.includes(c)?'on':''}"><input type="checkbox" value="${c}" ${cats.includes(c)?'checked':''} onchange="this.closest('.chip-opt').classList.toggle('on',this.checked)">${c}</label>`).join('')}
@@ -2658,6 +2695,8 @@ function saveProfile() {
         employees: document.getElementById('s_employees').value,
         revenue: document.getElementById('s_revenue').value,
         location: document.getElementById('s_location').value.trim(),
+        years_operating: (document.getElementById('s_years') || {}).value || '',
+        legal_form: (document.getElementById('s_legal') || {}).value || '',
         categories: cats,
         contact_name: document.getElementById('s_contact').value.trim(),
         email: document.getElementById('s_email').value.trim(),

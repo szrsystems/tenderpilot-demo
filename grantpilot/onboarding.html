@@ -149,6 +149,30 @@
                     <label>Székhely</label>
                     <input type="text" id="f_location" placeholder="Pl. Budapest">
                 </div>
+                <div class="field">
+                    <label>Mióta működik a cég? <span class="hint" style="color:var(--gray-400);font-weight:400;">(lezárt üzleti évek)</span></label>
+                    <select id="f_years">
+                        <option value="">Válasszon...</option>
+                        <option value="0">Még nincs lezárt évem</option>
+                        <option value="1">1 év</option>
+                        <option value="2">2 év</option>
+                        <option value="3-5">3–5 év</option>
+                        <option value="5+">5+ év</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Cégforma</label>
+                    <select id="f_legal">
+                        <option value="">Válasszon...</option>
+                        <option value="Kft">Kft.</option>
+                        <option value="Bt">Bt.</option>
+                        <option value="EV">Egyéni vállalkozó</option>
+                        <option value="Zrt">Zrt.</option>
+                        <option value="Nyrt">Nyrt.</option>
+                        <option value="Szövetkezet">Szövetkezet</option>
+                        <option value="Egyéb">Egyéb</option>
+                    </select>
+                </div>
             </div>
 
             <div class="form-actions">
@@ -299,6 +323,8 @@ function submitForm() {
         employees: document.getElementById('f_employees').value,
         revenue: document.getElementById('f_revenue').value,
         location: document.getElementById('f_location').value,
+        years_operating: (document.getElementById('f_years') || {}).value || '',
+        legal_form: (document.getElementById('f_legal') || {}).value || '',
         categories: interestCategories,
         channels: channels,
         past_grants: document.getElementById('f_past').value,
