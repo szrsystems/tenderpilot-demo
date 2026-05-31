@@ -1,0 +1,40 @@
+name: Daily grants monitor
+
+# Runs every day at 06:00 UTC (08:00 Budapest in summer) — pings the known
+# Hungarian grant-source sites, writes grantpilot/grants-status.json with
+# reachability + timestamps, and commits if anything changed. GitHub Pages
+# auto-deploys the new JSON so the portal shows up-to-date freshness.
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch: {} # also runnable manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run grant monitor
+        run: node scripts/update-grants.mjs
+
+      - name: Commit changes (if any)
+        run: |
+          git config user.name "grantpilot-bot"
+          git config user.email "bot@grantpilot.hu"
+          git add grantpilot/grants-status.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "monitor: daily grant-source health check ($(date -u +%Y-%m-%d))"
+            git push
+          fi

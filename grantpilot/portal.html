@@ -175,6 +175,13 @@
         .save-ok.show { opacity: 1; }
 
         /* ===== HERO STATS (animated) ===== */
+        /* Data freshness indicator (top of dashboard) */
+        .freshness { display: inline-flex; align-items: center; gap: 6px; margin-left: 10px; padding: 3px 10px; background: var(--gray-100); border-radius: 999px; font-size: 11px; font-weight: 600; color: var(--gray-600); vertical-align: middle; cursor: help; }
+        .freshness .fr-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-500); }
+        .freshness.warn { background: #fef3c7; color: #92400e; }
+        .freshness.warn .fr-dot { background: #d97706; }
+        .freshness.bad { background: #fee2e2; color: #b91c1c; }
+        .freshness.bad .fr-dot { background: #dc2626; }
         /* AI Needs finder */
         .needs-finder { background: linear-gradient(135deg, #064e3b 0%, #16a34a 100%); border-radius: var(--radius-lg); padding: 22px 24px; margin-bottom: 20px; color: white; }
         .nf-head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 16px; }
@@ -541,7 +548,7 @@
     <!-- DASHBOARD PAGE -->
     <div id="page-dashboard" class="page">
         <div class="topbar">
-            <h1>Áttekintés</h1>
+            <h1>Áttekintés <span class="freshness" id="freshness" title="" style="display:none;"><span class="fr-dot"></span><span id="fr-text">…</span></span></h1>
             <div class="topbar-actions">
                 <button class="btn-sm" onclick="exportCSV()">Exportálás</button>
                 <button class="btn-sm primary" id="scan-btn" onclick="runScan()">Keresés indítása</button>
@@ -1578,7 +1585,39 @@ function nf_search() {
     `;
 }
 
+// Fetch the daily monitor output (written by the GitHub Actions cron job)
+// and show "Adatbázis frissítve: X" on the dashboard. Safe-no-op if the
+// file isn't there yet.
+let _freshLoaded = false;
+async function loadFreshness() {
+    if (_freshLoaded) return;
+    _freshLoaded = true;
+    const el = document.getElementById('freshness');
+    const txt = document.getElementById('fr-text');
+    if (!el || !txt) return;
+    try {
+        const res = await fetch('grants-status.json?_=' + Date.now());
+        if (!res.ok) return;
+        const s = await res.json();
+        const checked = new Date(s.lastChecked);
+        const hours = (Date.now() - checked.getTime()) / 3600000;
+        let when;
+        if (hours < 1) when = 'épp most';
+        else if (hours < 24) when = Math.round(hours) + ' órája';
+        else when = Math.round(hours / 24) + ' napja';
+        txt.textContent = 'Adatbázis frissítve: ' + when;
+        el.title = `${s.summary.ok}/${s.summary.totalSources} forrás elérhető · utolsó ellenőrzés: ${checked.toLocaleString('hu-HU')}`;
+        // Health-based color
+        const okRatio = s.summary.ok / s.summary.totalSources;
+        el.classList.remove('warn','bad');
+        if (okRatio < 0.6 || hours > 48) el.classList.add('bad');
+        else if (okRatio < 0.85 || hours > 30) el.classList.add('warn');
+        el.style.display = '';
+    } catch(e) { /* monitor file not present yet — leave hidden */ }
+}
+
 function initDashboard() {
+    loadFreshness();
     nf_renderChips();
     const today = new Date();
     const totalActive = G.length;
