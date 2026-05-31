@@ -2717,6 +2717,9 @@ function logout() {
 
 function mountUserWidget() {
     const email = sessionStorage.getItem('gp_user_email') || '';
+    const demoBadge = email === 'demo@grantpilot.hu'
+        ? `<span title="Demo verzió — minden adat kizárólag az Ön böngészőjében tárolódik" style="display:inline-flex;align-items:center;gap:5px;background:#fef3c7;color:#92400e;border:1px solid #fde68a;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;margin-right:10px;cursor:help;"><span style="width:6px;height:6px;background:#d97706;border-radius:50%;"></span>Demo nézet</span>`
+        : '';
     document.querySelectorAll('.topbar').forEach(tb => {
         let actions = tb.querySelector('.topbar-actions');
         if (!actions) {
@@ -2726,12 +2729,45 @@ function mountUserWidget() {
         }
         const widget = document.createElement('div');
         widget.className = 'topbar-user';
-        widget.innerHTML = `<span class="topbar-user-email">Bejelentkezve: <b>${email}</b></span><button class="btn-logout" onclick="logout()">Kijelentkezés</button>`;
+        widget.innerHTML = `${demoBadge}<span class="topbar-user-email">Bejelentkezve: <b>${email}</b></span><button class="btn-logout" onclick="logout()">Kijelentkezés</button>`;
         actions.appendChild(widget);
     });
 }
 
+// Auto-seed a basic profile from ?for=Név&firm=Cégnév if no profile exists.
+// Lets you send a personalized demo link without the writer needing to onboard.
+function seedFromInvite() {
+    try {
+        const existing = localStorage.getItem('grantpilot:profile');
+        if (existing) return; // never overwrite a real profile
+        const p = new URLSearchParams(location.search);
+        const forName = (p.get('for') || sessionStorage.getItem('gp_invite_for') || '').trim();
+        const firm = (p.get('firm') || sessionStorage.getItem('gp_invite_firm') || '').trim();
+        if (!forName && !firm) return;
+        const profile = {
+            company: firm || (forName ? forName + ' Pályázatíró Iroda' : 'Demo Vállalkozás Kft.'),
+            industry: 'General',
+            employees: '11-25',
+            revenue: '500K-1M',
+            location: 'Budapest',
+            categories: ['KKV fejlesztés','Digitális átalakulás','Kutatás-fejlesztés'],
+            channels: ['email','weekly'],
+            past_grants: 'no',
+            notes: '',
+            contact_name: forName,
+            email: sessionStorage.getItem('gp_user_email') || '',
+            phone: '',
+            gdpr_consent: true,
+            gdpr_consent_ts: new Date().toISOString(),
+            submitted: new Date().toISOString(),
+            __invite: true
+        };
+        localStorage.setItem('grantpilot:profile', JSON.stringify(profile));
+    } catch (e) {}
+}
+
 // Init
+seedFromInvite();
 document.getElementById('nav-count').textContent = G.length;
 updateSavedBadge();
 updateLeadsBadge();

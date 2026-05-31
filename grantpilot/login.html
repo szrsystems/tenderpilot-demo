@@ -195,8 +195,13 @@
             <div class="logo-sub">Pályázati ügyfélportál</div>
         </div>
 
-        <h1>Bejelentkezés</h1>
-        <div class="subtitle">Adja meg az ügyfélfiókja adatait a folytatáshoz</div>
+        <h1 id="login-h1">Bejelentkezés</h1>
+        <div class="subtitle" id="login-sub">Adja meg az ügyfélfiókja adatait a folytatáshoz</div>
+
+        <div id="invite-banner" style="display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:#166534;line-height:1.5;">
+            <b id="invite-name">Üdv!</b><br>
+            <span style="color:#374151;">Ez egy személyre szabott demo-hozzáférés. Nyugodtan próbáljon ki mindent — minden adat <b>kizárólag az Ön böngészőjében</b> tárolódik, más felhasználó nem látja.</span>
+        </div>
 
         <div class="error-msg" id="error-msg">Hibás e-mail cím vagy jelszó.</div>
 
@@ -243,8 +248,35 @@ function genToken() {
     return Array.from(arr).map(b => b.toString(16).padStart(2, "0")).join("");
 }
 
+// Personalized demo-share invite: ?for=Csaba&firm=Pankotai+Iroda
+// Pre-fills the email + shows a warm welcome. Forwards the params to the
+// portal after successful login so the profile auto-seeds there too.
+(function initInvite() {
+    try {
+        const p = new URLSearchParams(location.search);
+        const forName = (p.get('for') || '').trim();
+        const firm = (p.get('firm') || '').trim();
+        if (!forName && !firm) return;
+        sessionStorage.setItem('gp_invite_for', forName);
+        if (firm) sessionStorage.setItem('gp_invite_firm', firm);
+        const banner = document.getElementById('invite-banner');
+        const inviteName = document.getElementById('invite-name');
+        if (banner && inviteName) {
+            inviteName.textContent = forName ? `Üdv, ${forName}!` : 'Üdv!';
+            banner.style.display = 'block';
+        }
+        const h1 = document.getElementById('login-h1');
+        const sub = document.getElementById('login-sub');
+        if (h1) h1.textContent = 'GrantPilot demo';
+        if (sub) sub.textContent = 'Jelentkezzen be lent a demo-fiókkal, és nézze meg a rendszert testreszabva.';
+        // Pre-fill demo email so they don't have to type — password still required.
+        const emailEl = document.getElementById('email');
+        if (emailEl && !emailEl.value) emailEl.value = 'demo@grantpilot.hu';
+    } catch (e) {}
+})();
+
 if (sessionStorage.getItem("gp_auth_token")) {
-    window.location.replace("portal.html");
+    window.location.replace("portal.html" + location.search);
 }
 
 const form = document.getElementById("login-form");
@@ -265,7 +297,9 @@ form.addEventListener("submit", async (e) => {
         sessionStorage.setItem("gp_auth_token", genToken());
         sessionStorage.setItem("gp_user_email", email);
         sessionStorage.setItem("gp_auth_time", Date.now().toString());
-        window.location.replace("portal.html");
+        // Forward ?for=/?firm= params to the portal so it can auto-seed
+        // a personalized profile on first load.
+        window.location.replace("portal.html" + location.search);
     } else {
         errorEl.classList.add("show");
         btn.disabled = false;
