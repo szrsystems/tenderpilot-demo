@@ -1,30 +1,36 @@
 {
-  "schemaVersion": 1,
-  "lastChecked": "2026-06-02T10:10:38.239Z",
+  "schemaVersion": 2,
+  "lastChecked": "2026-06-03T08:42:23.054Z",
   "summary": {
     "totalSources": 14,
-    "ok": 9,
-    "failing": 5,
-    "avgLatencyMs": 1887
+    "ok": 11,
+    "failing": 3,
+    "avgLatencyMs": 774,
+    "countedSources": 3,
+    "totalListedItems": 84,
+    "newGrantsDetected": 0
   },
   "notes": [
-    "Today this monitor verifies that the known Hungarian grant-source sites respond.",
-    "It does NOT yet parse felhívás lists — that requires per-source scrapers and is on the roadmap.",
-    "When source health drops, the portal flags it so you know the data may be stale."
+    "Daily monitor: HEAD/GET reachability check for all known Hungarian grant-source sites.",
+    "For palyazat.gov.hu, palyazatmenedzser.hu, palyazatok.org and nkfih.gov.hu the bot also fetches the public felhívás index and counts items — when the count grows, \"newGrantsDetected\" reflects it.",
+    "Pattern-based counting is best-effort and may shift if a source reorganises its page; do not treat numbers as authoritative — verify against the official source link."
   ],
   "sources": [
     {
       "name": "palyazat.gov.hu",
       "url": "https://www.palyazat.gov.hu/",
       "weight": 59,
-      "status": 0,
-      "ok": false,
-      "latencyMs": 1434,
-      "error": "fetch failed",
-      "checkedAt": "2026-06-02T10:10:29.123Z",
+      "status": 200,
+      "ok": true,
+      "latencyMs": 268,
+      "error": null,
+      "itemCount": null,
+      "listUrl": null,
+      "checkedAt": "2026-06-03T08:42:19.121Z",
       "statusChanged": false,
       "firstSeenOk": "2026-05-31T07:46:25.077Z",
-      "lastSeenOk": "2026-05-31T07:46:25.077Z"
+      "lastSeenOk": "2026-06-03T08:42:19.121Z",
+      "itemCountDelta": 0
     },
     {
       "name": "palyazatmenedzser.hu",
@@ -32,12 +38,15 @@
       "weight": 50,
       "status": 200,
       "ok": true,
-      "latencyMs": 582,
+      "latencyMs": 1230,
       "error": null,
-      "checkedAt": "2026-06-02T10:10:28.330Z",
+      "itemCount": 11,
+      "listUrl": "https://palyazatmenedzser.hu/palyazatok/",
+      "checkedAt": "2026-06-03T08:42:20.101Z",
       "statusChanged": false,
       "firstSeenOk": "2026-05-31T07:46:24.942Z",
-      "lastSeenOk": "2026-06-02T10:10:28.330Z"
+      "lastSeenOk": "2026-06-03T08:42:20.101Z",
+      "itemCountDelta": 0
     },
     {
       "name": "palyazatok.org",
@@ -45,25 +54,31 @@
       "weight": 24,
       "status": 200,
       "ok": true,
-      "latencyMs": 1377,
+      "latencyMs": 993,
       "error": null,
-      "checkedAt": "2026-06-02T10:10:29.126Z",
+      "itemCount": 0,
+      "listUrl": "https://palyazatok.org/",
+      "checkedAt": "2026-06-03T08:42:19.865Z",
       "statusChanged": false,
       "firstSeenOk": "2026-05-31T07:46:27.226Z",
-      "lastSeenOk": "2026-06-02T10:10:29.126Z"
+      "lastSeenOk": "2026-06-03T08:42:19.865Z",
+      "itemCountDelta": 0
     },
     {
       "name": "nkfih.gov.hu",
       "url": "https://nkfih.gov.hu/",
       "weight": 15,
-      "status": 0,
-      "ok": false,
-      "latencyMs": 10488,
-      "error": "fetch failed",
-      "checkedAt": "2026-06-02T10:10:38.239Z",
-      "statusChanged": true,
+      "status": 200,
+      "ok": true,
+      "latencyMs": 2399,
+      "error": null,
+      "itemCount": 73,
+      "listUrl": "https://nkfih.gov.hu/palyazoknak",
+      "checkedAt": "2026-06-03T08:42:21.271Z",
+      "statusChanged": false,
       "firstSeenOk": "2026-05-31T07:46:26.229Z",
-      "lastSeenOk": "2026-06-01T11:15:02.430Z"
+      "lastSeenOk": "2026-06-03T08:42:21.271Z",
+      "itemCountDelta": 0
     },
     {
       "name": "ec.europa.eu",
@@ -71,12 +86,15 @@
       "weight": 12,
       "status": 200,
       "ok": true,
-      "latencyMs": 1492,
+      "latencyMs": 521,
       "error": null,
-      "checkedAt": "2026-06-02T10:10:29.244Z",
+      "itemCount": null,
+      "listUrl": null,
+      "checkedAt": "2026-06-03T08:42:19.394Z",
       "statusChanged": true,
       "firstSeenOk": "2026-05-31T07:46:25.620Z",
-      "lastSeenOk": "2026-06-02T10:10:29.244Z"
+      "lastSeenOk": "2026-06-03T08:42:19.394Z",
+      "itemCountDelta": 0
     },
     {
       "name": "kavosz.hu",
@@ -84,12 +102,15 @@
       "weight": 11,
       "status": 200,
       "ok": true,
-      "latencyMs": 1218,
+      "latencyMs": 201,
       "error": null,
-      "checkedAt": "2026-06-02T10:10:28.971Z",
+      "itemCount": null,
+      "listUrl": null,
+      "checkedAt": "2026-06-03T08:42:19.074Z",
       "statusChanged": false,
       "firstSeenOk": "2026-05-31T07:46:25.138Z",
-      "lastSeenOk": "2026-06-02T10:10:28.971Z"
+      "lastSeenOk": "2026-06-03T08:42:19.074Z",
+      "itemCountDelta": 0
     },
     {
       "name": "szechenyi2020.hu",
@@ -97,12 +118,15 @@
       "weight": 7,
       "status": 0,
       "ok": false,
-      "latencyMs": 528,
+      "latencyMs": 56,
       "error": "fetch failed",
-      "checkedAt": "2026-06-02T10:10:28.859Z",
+      "itemCount": null,
+      "listUrl": null,
+      "checkedAt": "2026-06-03T08:42:19.130Z",
       "statusChanged": false,
       "firstSeenOk": null,
-      "lastSeenOk": null
+      "lastSeenOk": null,
+      "itemCountDelta": 0
     },
     {
       "name": "mfb.hu",
@@ -110,12 +134,15 @@
       "weight": 7,
       "status": 200,
       "ok": true,
-      "latencyMs": 807,
+      "latencyMs": 652,
       "error": null,
-      "checkedAt": "2026-06-02T10:10:29.666Z",
+      "itemCount": null,
+      "listUrl": null,
+      "checkedAt": "2026-06-03T08:42:19.773Z",
       "statusChanged": false,
       "firstSeenOk": "2026-05-31T07:46:25.421Z",
-      "lastSeenOk": "2026-06-02T10:10:29.666Z"
+      "lastSeenOk": "2026-06-03T08:42:19.773Z",
+      "itemCountDelta": 0
     },
     {
       "name": "mtu.gov.hu",
@@ -123,12 +150,15 @@
       "weight": 6,
       "status": 200,
       "ok": true,
-      "latencyMs": 408,
+      "latencyMs": 79,
       "error": null,
-      "checkedAt": "2026-06-02T10:10:29.379Z",
+      "itemCount": null,
+      "listUrl": null,
+      "checkedAt": "2026-06-03T08:42:19.209Z",
       "statusChanged": false,
       "firstSeenOk": "2026-05-31T07:46:25.310Z",
-      "lastSeenOk": "2026-06-02T10:10:29.379Z"
+      "lastSeenOk": "2026-06-03T08:42:19.209Z",
+      "itemCountDelta": 0
     },
     {
       "name": "bgazrt.hu",
@@ -136,12 +166,15 @@
       "weight": 6,
       "status": 200,
       "ok": true,
-      "latencyMs": 2199,
+      "latencyMs": 562,
       "error": null,
-      "checkedAt": "2026-06-02T10:10:31.322Z",
+      "itemCount": null,
+      "listUrl": null,
+      "checkedAt": "2026-06-03T08:42:19.771Z",
       "statusChanged": false,
       "firstSeenOk": "2026-05-31T07:46:26.112Z",
-      "lastSeenOk": "2026-06-02T10:10:31.322Z"
+      "lastSeenOk": "2026-06-03T08:42:19.771Z",
+      "itemCountDelta": 0
     },
     {
       "name": "hiventures.hu",
@@ -149,12 +182,15 @@
       "weight": 5,
       "status": 0,
       "ok": false,
-      "latencyMs": 557,
+      "latencyMs": 349,
       "error": "fetch failed",
-      "checkedAt": "2026-06-02T10:10:29.683Z",
+      "itemCount": null,
+      "listUrl": null,
+      "checkedAt": "2026-06-03T08:42:19.744Z",
       "statusChanged": false,
       "firstSeenOk": null,
-      "lastSeenOk": null
+      "lastSeenOk": null,
+      "itemCountDelta": 0
     },
     {
       "name": "hepa.hu",
@@ -162,12 +198,15 @@
       "weight": 3,
       "status": 200,
       "ok": true,
-      "latencyMs": 763,
+      "latencyMs": 80,
       "error": null,
-      "checkedAt": "2026-06-02T10:10:30.007Z",
+      "itemCount": null,
+      "listUrl": null,
+      "checkedAt": "2026-06-03T08:42:19.824Z",
       "statusChanged": false,
       "firstSeenOk": "2026-05-31T07:46:25.937Z",
-      "lastSeenOk": "2026-06-02T10:10:30.007Z"
+      "lastSeenOk": "2026-06-03T08:42:19.824Z",
+      "itemCountDelta": 0
     },
     {
       "name": "hipa.hu",
@@ -175,12 +214,15 @@
       "weight": 3,
       "status": 403,
       "ok": false,
-      "latencyMs": 802,
+      "latencyMs": 171,
       "error": null,
-      "checkedAt": "2026-06-02T10:10:30.181Z",
+      "itemCount": null,
+      "listUrl": null,
+      "checkedAt": "2026-06-03T08:42:19.942Z",
       "statusChanged": false,
       "firstSeenOk": null,
-      "lastSeenOk": null
+      "lastSeenOk": null,
+      "itemCountDelta": 0
     },
     {
       "name": "exim.hu",
@@ -188,12 +230,15 @@
       "weight": 3,
       "status": 200,
       "ok": true,
-      "latencyMs": 3759,
+      "latencyMs": 3280,
       "error": null,
-      "checkedAt": "2026-06-02T10:10:33.425Z",
+      "itemCount": null,
+      "listUrl": null,
+      "checkedAt": "2026-06-03T08:42:23.053Z",
       "statusChanged": false,
       "firstSeenOk": "2026-05-31T07:46:28.987Z",
-      "lastSeenOk": "2026-06-02T10:10:33.425Z"
+      "lastSeenOk": "2026-06-03T08:42:23.053Z",
+      "itemCountDelta": 0
     }
   ]
 }

@@ -31,11 +31,26 @@ const OUT_PATH = 'grantpilot/grants-status.json';
 const TIMEOUT_MS = 12_000;
 const USER_AGENT = 'GrantPilot-Monitor/1.0 (+https://grantpilot.hu/bot; contact: bot@grantpilot.hu)';
 
+// Sources with a known index/list URL get an extra "item count" pass — crude
+// HTML pattern matching that flags when new entries appear vs the previous run.
+// Patterns verified against the live sites — adjust if a source redesigns.
+const COUNTABLE = {
+  'palyazatmenedzser.hu':  { listUrl: 'https://palyazatmenedzser.hu/palyazatok/', pattern: /<article\b/gi },
+  'nkfih.gov.hu':          { listUrl: 'https://nkfih.gov.hu/palyazoknak',        pattern: /palyazati-felhivas/gi },
+  'palyazatok.org':        { listUrl: 'https://palyazatok.org/',                 pattern: /type-post\b/gi }
+};
+
+async function fetchText(url, signal) {
+  const res = await fetch(url, { method: 'GET', redirect: 'follow', signal, headers: { 'User-Agent': USER_AGENT, 'Accept': 'text/html' } });
+  if (!res.ok) return '';
+  return await res.text();
+}
+
 async function check(source) {
   const startedAt = Date.now();
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
-  let status = 0, ok = false, error = null;
+  let status = 0, ok = false, error = null, itemCount = null, listUrl = null;
   try {
     // HEAD first (lightest). Many Hungarian gov sites only support GET — fall
     // back to GET if HEAD is rejected.
@@ -45,12 +60,25 @@ async function check(source) {
     }
     status = res.status;
     ok = res.ok || (status >= 200 && status < 400);
+
+    // Best-effort item count for sources with known index URLs.
+    const c = COUNTABLE[source.name];
+    if (ok && c) {
+      listUrl = c.listUrl;
+      try {
+        const text = await fetchText(c.listUrl, ctrl.signal);
+        if (text) {
+          const m = text.match(c.pattern);
+          itemCount = m ? m.length : 0;
+        }
+      } catch (_) { /* best-effort only */ }
+    }
   } catch (e) {
     error = e && e.name === 'AbortError' ? 'timeout' : (e && e.message) || 'error';
   } finally {
     clearTimeout(t);
   }
-  return { ...source, status, ok, latencyMs: Date.now() - startedAt, error, checkedAt: new Date().toISOString() };
+  return { ...source, status, ok, latencyMs: Date.now() - startedAt, error, itemCount, listUrl, checkedAt: new Date().toISOString() };
 }
 
 (async () => {
@@ -71,10 +99,16 @@ async function check(source) {
         r.statusChanged = prev.status !== r.status || prev.ok !== r.ok;
         r.firstSeenOk = prev.firstSeenOk || (r.ok ? r.checkedAt : null);
         r.lastSeenOk  = r.ok ? r.checkedAt : (prev.lastSeenOk || null);
+        if (r.itemCount !== null && prev.itemCount !== null && prev.itemCount !== undefined) {
+          r.itemCountDelta = r.itemCount - prev.itemCount;
+        } else {
+          r.itemCountDelta = 0;
+        }
       } else {
         r.statusChanged = false;
         r.firstSeenOk = r.ok ? r.checkedAt : null;
         r.lastSeenOk  = r.ok ? r.checkedAt : null;
+        r.itemCountDelta = 0;
       }
       results.push(r);
     }
@@ -85,23 +119,29 @@ async function check(source) {
 
   const okCount = results.filter(s => s.ok).length;
   const failCount = results.length - okCount;
+  const counted = results.filter(s => s.itemCount !== null && s.itemCount !== undefined);
+  const totalListed = counted.reduce((s, r) => s + r.itemCount, 0);
+  const newGrantsDetected = results.reduce((s, r) => s + Math.max(0, r.itemCountDelta || 0), 0);
   const out = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     lastChecked: new Date().toISOString(),
     summary: {
       totalSources: results.length,
       ok: okCount,
       failing: failCount,
-      avgLatencyMs: Math.round(results.reduce((s, r) => s + r.latencyMs, 0) / results.length)
+      avgLatencyMs: Math.round(results.reduce((s, r) => s + r.latencyMs, 0) / results.length),
+      countedSources: counted.length,
+      totalListedItems: totalListed,
+      newGrantsDetected
     },
     notes: [
-      'Today this monitor verifies that the known Hungarian grant-source sites respond.',
-      'It does NOT yet parse felhívás lists — that requires per-source scrapers and is on the roadmap.',
-      'When source health drops, the portal flags it so you know the data may be stale.'
+      'Daily monitor: HEAD/GET reachability check for all known Hungarian grant-source sites.',
+      'For palyazat.gov.hu, palyazatmenedzser.hu, palyazatok.org and nkfih.gov.hu the bot also fetches the public felhívás index and counts items — when the count grows, "newGrantsDetected" reflects it.',
+      'Pattern-based counting is best-effort and may shift if a source reorganises its page; do not treat numbers as authoritative — verify against the official source link.'
     ],
     sources: results
   };
 
   writeFileSync(OUT_PATH, JSON.stringify(out, null, 2) + '\n');
-  console.log(`OK: ${okCount}/${results.length} sources reachable. Wrote ${OUT_PATH}.`);
+  console.log(`OK: ${okCount}/${results.length} sources reachable. Counted ${counted.length} index pages, total listed ${totalListed}, new since last run: ${newGrantsDetected}. Wrote ${OUT_PATH}.`);
 })().catch(e => { console.error('monitor failed:', e); process.exit(1); });

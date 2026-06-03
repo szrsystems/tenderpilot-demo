@@ -706,11 +706,9 @@
     <!-- DRAFTER PAGE — AI Pályázat-vázlat -->
     <div id="page-drafter" class="page hidden">
         <div class="topbar">
-            <h1>
-                <button class="btn-sm" onclick="dr_clear()" id="dr-back-btn" style="display:none;margin-right:12px;">← Vissza</button>
-                AI Pályázat-vázlat <span style="font-size:11px;font-weight:700;color:var(--green-700);background:var(--green-50);border:1px solid var(--green-200);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px;margin-left:8px;">Béta</span>
-            </h1>
+            <h1>AI Pályázat-vázlat <span style="font-size:11px;font-weight:700;color:var(--green-700);background:var(--green-50);border:1px solid var(--green-200);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px;margin-left:8px;">Béta</span></h1>
             <div class="topbar-actions">
+                <button class="btn-sm" onclick="dr_clear()" id="dr-back-btn" style="display:none;">← Vissza a választóhoz</button>
                 <button class="btn-sm" onclick="dr_print()" id="dr-print-btn" style="display:none;">🖨️ Nyomtatás / PDF</button>
                 <button class="btn-sm primary" onclick="dr_save()" id="dr-save-btn" style="display:none;">Mentés</button>
             </div>
@@ -1629,7 +1627,13 @@ async function loadFreshness() {
         else if (hours < 24) when = Math.round(hours) + ' órája';
         else when = Math.round(hours / 24) + ' napja';
         txt.textContent = 'Adatbázis frissítve: ' + when;
-        el.title = `${s.summary.ok}/${s.summary.totalSources} forrás elérhető · utolsó ellenőrzés: ${checked.toLocaleString('hu-HU')}`;
+        const sm = s.summary || {};
+        let title = `${sm.ok || 0}/${sm.totalSources || 0} forrás elérhető · utolsó ellenőrzés: ${checked.toLocaleString('hu-HU')}`;
+        if (sm.countedSources && sm.totalListedItems) {
+            title += `\n${sm.totalListedItems} aktív felhívás figyelve ${sm.countedSources} forrás indexéből`;
+            if (sm.newGrantsDetected > 0) title += `\n+${sm.newGrantsDetected} új a múlt ellenőrzés óta`;
+        }
+        el.title = title;
         // Health-based color
         const okRatio = s.summary.ok / s.summary.totalSources;
         el.classList.remove('warn','bad');
@@ -1684,12 +1688,14 @@ function initDashboard() {
 
     // Weekly digest — "this week" is a curated demo number (3); closing-soon is computed.
     const closingSoon = Math.max(2, G.filter(g => g.days > 0 && g.days <= 30).length);
+    // ISO 8601 week number (Mon-start, week with first Thu = week 1) — matches HU usage.
+    const isoWeek = (d => { const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate())); t.setUTCDate(t.getUTCDate() + 4 - (t.getUTCDay()||7)); const y = new Date(Date.UTC(t.getUTCFullYear(),0,1)); return Math.ceil((((t - y) / 86400000) + 1)/7); })(new Date());
     document.getElementById('digest-card').innerHTML = `
         <div class="digest-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
         </div>
         <div class="digest-body">
-            <div class="digest-title">Heti összefoglaló — 2026. 19. hét</div>
+            <div class="digest-title">Heti összefoglaló — ${new Date().getFullYear()}. ${isoWeek}. hét</div>
             <div class="digest-items">
                 <span class="digest-item"><span class="digest-item-dot"></span><b style="color:var(--gray-900);font-weight:700;">3</b>&nbsp;új pályázat ezen a héten</span>
                 <span class="digest-item"><span class="digest-item-dot amber"></span><b style="color:var(--gray-900);font-weight:700;">${closingSoon}</b>&nbsp;pályázat határideje közeledik</span>
@@ -1904,10 +1910,12 @@ function submitWriterLead(ev, id) {
         }).catch(() => { /* swallow — local copy already saved, visible in Leadek */ });
     }
     updateLeadsBadge();
+    const demoNote = LEAD_BACKEND_URL ? '' : `<div style="margin-top:14px;padding:10px 14px;background:rgba(217,119,6,0.18);border:1px solid rgba(217,119,6,0.35);border-radius:8px;font-size:11px;color:#fde68a;line-height:1.5;"><b style="color:#fcd34d;">Demo mód.</b> A beküldés helyileg (a böngészőjében) rögzült. Élesben a Pályázatíró partner közvetlenül megkapja.</div>`;
     wrap.innerHTML = `<div class="lead-success">
         <div class="ls-check">&#10003;</div>
         <h4>Köszönjük! Igényét rögzítettük.</h4>
         <p>Pályázatíró partnerünk <b>2 munkanapon belül</b> felveszi Önnel a kapcsolatot a(z) „${g ? g.title.slice(0,60) : ''}…" pályázattal kapcsolatban, és díjmentes előzetes jogosultsági konzultációt ad.</p>
+        ${demoNote}
     </div>`;
 }
 
@@ -2677,8 +2685,66 @@ function initProfile() {
                 <div class="detail-row"><span class="label">Aktuális csomag</span><span class="value" style="color: var(--green-600); font-weight: 700;">Professional · 14 napos próba</span></div>
                 <div class="detail-row"><span class="label">Profil státusz</span><span class="value">${getUserProfile() ? 'Kitöltve ✓' : 'Hiányos — töltse ki a cégprofilt'}</span></div>
             </div>
+
+            <div class="detail-section">
+                <h3>Adatok hordozhatósága</h3>
+                <p style="font-size: 13px; color: var(--gray-600); line-height: 1.55; margin-bottom: 14px;">A profil, a mentett pályázatok, a beérkezett leadek, az AI-vázlatok és az értesítési beállítások exportálhatók egyetlen JSON fájlba, és bármikor visszaállíthatók — pl. másik böngészőben vagy gépen.</p>
+                <div class="save-bar">
+                    <button class="btn-sm" onclick="exportUserData()">📤 Adatok exportálása (JSON)</button>
+                    <label class="btn-sm" style="cursor:pointer;display:inline-flex;align-items:center;">📥 Importálás<input type="file" accept="application/json,.json" onchange="importUserData(event)" style="display:none;"></label>
+                    <button class="btn-sm" onclick="wipeUserData()" style="color:var(--red-600);border-color:var(--red-100);">Helyi adatok törlése</button>
+                </div>
+                <span class="save-ok" id="data-ok" style="margin-top:8px;display:block;">Kész ✓</span>
+            </div>
         </div>
     `;
+}
+
+/* ===== Profile / data portability ===== */
+const PORTABLE_KEYS = ['grantpilot:profile','grantpilot:bookmarks','grantpilot:leads','grantpilot:drafts','grantpilot:notif'];
+
+function exportUserData() {
+    const bundle = { schemaVersion: 1, exportedAt: new Date().toISOString(), data: {} };
+    PORTABLE_KEYS.forEach(k => {
+        try { const v = localStorage.getItem(k); if (v !== null) bundle.data[k] = JSON.parse(v); } catch(e) {}
+    });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(bundle, null, 2)], { type: 'application/json' }));
+    const stamp = new Date().toISOString().slice(0, 10);
+    a.download = `grantpilot-adatok-${stamp}.json`;
+    a.click();
+    flashOk('data-ok');
+}
+
+function importUserData(ev) {
+    const file = ev.target.files && ev.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+        try {
+            const bundle = JSON.parse(reader.result);
+            if (!bundle || !bundle.data) throw new Error('rossz formátum');
+            const restored = [];
+            for (const [k, v] of Object.entries(bundle.data)) {
+                if (!PORTABLE_KEYS.includes(k)) continue;
+                localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v));
+                restored.push(k.replace('grantpilot:', ''));
+            }
+            alert('Importálva ' + restored.length + ' adatcsomag: ' + restored.join(', ') + '\nÚjratöltés a változások megjelenítéséhez.');
+            location.reload();
+        } catch (e) {
+            alert('Az importálás sikertelen — a fájl nem GrantPilot-export?');
+        }
+    };
+    reader.readAsText(file);
+    ev.target.value = '';
+}
+
+function wipeUserData() {
+    if (!confirm('Biztosan törli az összes helyileg tárolt GrantPilot-adatát (profil, mentések, leadek, vázlatok)? Ez nem visszavonható, kivéve ha előtte exportált.')) return;
+    PORTABLE_KEYS.forEach(k => { try { localStorage.removeItem(k); } catch(e) {} });
+    alert('Helyi adatok törölve. Újratöltés…');
+    location.reload();
 }
 
 function flashOk(id) {
@@ -2726,17 +2792,6 @@ function saveNotif() {
     flashOk('notif-ok');
 }
 
-function runScan() {
-    const btn = document.getElementById('scan-btn');
-    btn.disabled = true; btn.textContent = 'Keresés...';
-    setTimeout(() => { btn.disabled = false; btn.textContent = 'Keresés indítása'; }, 3000);
-}
-
-function exportCSV() {
-    let csv = 'Azonosító,Cím,Forrás,Kategória,Összeg,Határidő,Hátralévő nap,Pontszám,Minősítés\n';
-    G.forEach(g => csv += `"${g.id}","${g.title}","${g.source}","${g.cat}","${g.amount}","${g.deadline}",${g.days},${g.score},"${vText(g.verdict)}"\n`);
-    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download = 'grantpilot-export.csv'; a.click();
-}
 
 /* ===== Floating CTA ===== */
 function dismissCTA() {

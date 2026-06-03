@@ -270,6 +270,9 @@
                 <h2>Regisztráció sikeres!</h2>
                 <p>Átirányítjuk a személyre szabott felületre…</p>
                 <a href="portal.html" class="btn btn-primary" style="display: inline-block; text-decoration: none;">Belépés a portálra →</a>
+                <div id="demo-mode-note" style="display:none;margin-top:24px;padding:12px 16px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;font-size:12px;color:#78350f;line-height:1.5;text-align:left;">
+                    <b style="color:#92400e;">Demo mód.</b> A regisztrációja helyileg (a böngészőjében) rögzült és a portál személyre szabva betölti — élesben az üzemeltetőhöz is megérkezik egy értesítés.
+                </div>
             </div>
         </div>
     </div>
@@ -353,6 +356,9 @@ function submitForm() {
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
     document.getElementById('step-success').classList.add('active');
     document.querySelectorAll('.progress-step').forEach(p => p.classList.add('active'));
+    // Honest demo-mode note: shown when no backend is configured.
+    const demoNote = document.getElementById('demo-mode-note');
+    if (demoNote) demoNote.style.display = ONBOARD_BACKEND_URL ? 'none' : 'block';
     // Auto-login: free tier doesn't need a separate password — set the session
     // token and forward into the portal. New users go straight to value.
     try {
