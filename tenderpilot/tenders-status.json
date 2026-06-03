@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "lastChecked": "2026-06-03T08:00:00Z",
+  "summary": {
+    "totalSources": 3,
+    "ok": 3,
+    "failing": 0,
+    "avgLatencyMs": 850,
+    "countedSources": 0,
+    "totalListedItems": 0,
+    "newGrantsDetected": 0
+  },
+  "notes": [
+    "Daily monitor stub. Reachability checks for EKR (ekr.gov.hu), TED (ted.europa.eu) and Austrian USP (ausschreibungen.usp.gv.at).",
+    "Real index-page scraping not yet wired — these portals are JS-rendered SPAs and need per-source per-vertical scrapers.",
+    "Status: infrastructure ready, scrapers on roadmap."
+  ],
+  "sources": [
+    { "name": "ekr.gov.hu",                     "url": "https://ekr.gov.hu/", "weight": 50, "status": 200, "ok": true, "checkedAt": "2026-06-03T08:00:00Z" },
+    { "name": "ted.europa.eu",                  "url": "https://ted.europa.eu/", "weight": 35, "status": 200, "ok": true, "checkedAt": "2026-06-03T08:00:00Z" },
+    { "name": "ausschreibungen.usp.gv.at",      "url": "https://ausschreibungen.usp.gv.at/", "weight": 30, "status": 200, "ok": true, "checkedAt": "2026-06-03T08:00:00Z" }
+  ]
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adatkezelési tájékoztató — TenderPilot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --blue-600: #2563eb; --blue-700: #1d4ed8; --blue-50: #eff6ff;
+            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
+            --amber-50: #fffbeb; --amber-600: #d97706;
+            --radius: 8px; --radius-lg: 12px;
+        }
+        body { font-family: 'Inter', -apple-system, sans-serif; color: var(--gray-900); background: white; -webkit-font-smoothing: antialiased; line-height: 1.65; }
+        nav { background: white; border-bottom: 1px solid var(--gray-200); padding: 16px 24px; }
+        .nav-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-size: 18px; font-weight: 800; color: var(--gray-900); text-decoration: none; }
+        .nav-logo span { color: var(--blue-600); }
+        .back { font-size: 13px; color: var(--gray-500); text-decoration: none; }
+        .back:hover { color: var(--gray-900); }
+        .wrap { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+        h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.6px; margin-bottom: 8px; }
+        .meta { font-size: 13px; color: var(--gray-500); margin-bottom: 32px; }
+        h2 { font-size: 18px; font-weight: 700; color: var(--gray-900); margin-top: 36px; margin-bottom: 12px; }
+        h3 { font-size: 14px; font-weight: 700; color: var(--gray-800); margin-top: 18px; margin-bottom: 6px; }
+        p { font-size: 14px; color: var(--gray-700); margin-bottom: 12px; }
+        ul { margin: 8px 0 16px 24px; }
+        li { font-size: 14px; color: var(--gray-700); margin-bottom: 6px; }
+        .note { background: var(--amber-50); border-left: 3px solid var(--amber-600); padding: 14px 18px; border-radius: 4px; font-size: 13px; color: var(--gray-700); margin: 24px 0; line-height: 1.55; }
+        .note b { color: var(--gray-900); }
+        table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+        th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+        th { background: var(--gray-50); font-weight: 700; font-size: 12px; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.4px; }
+        footer { border-top: 1px solid var(--gray-200); padding: 24px; text-align: center; font-size: 12px; color: var(--gray-400); }
+        footer a { color: var(--gray-500); margin: 0 8px; text-decoration: none; }
+        footer a:hover { color: var(--gray-900); }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Tender<span>Pilot/span></a>
+        <a href="index.html" class="back">← Vissza a főoldalra</a>
+    </div>
+</nav>
+
+<div class="wrap">
+    <h1>Adatkezelési tájékoztató</h1>
+    <div class="meta">Hatályos: 2026. május 16. · Verzió 1.0</div>
+
+    <div class="note">
+        <b>Jogi felülvizsgálatra ajánlott.</b> Ez a tájékoztató a GDPR (EU 2016/679) és a magyar Infotv. (2011. CXII.) szerinti általános vázlatként készült. A végleges, jogilag kötelező változatot ügyvédi felülvizsgálattal javasolt elkészíteni a tényleges üzemeltetési modell és integrációk pontos ismeretében.
+    </div>
+
+    <h2>1. Adatkezelő</h2>
+    <table>
+        <tr><th>Megnevezés</th><td>[Cégnév]</td></tr>
+        <tr><th>Székhely</th><td>[Székhely cím]</td></tr>
+        <tr><th>Adószám</th><td>[Adószám]</td></tr>
+        <tr><th>Cégjegyzékszám</th><td>[Cégjegyzékszám]</td></tr>
+        <tr><th>Kapcsolat</th><td>privacy@tenderpilot.hu (placeholder — pótlandó)</td></tr>
+    </table>
+
+    <h2>2. Kezelt személyes adatok köre és célja</h2>
+    <table>
+        <tr><th>Adatkör</th><th>Cél</th><th>Jogalap</th><th>Megőrzés</th></tr>
+        <tr>
+            <td>Regisztrációs adatok — cégnév, iparág, létszám, árbevétel, székhely, kapcsolattartó név, e-mail, telefon</td>
+            <td>Személyre szabott pályázat-ajánlások, fiókkezelés, ügyfélkapcsolat</td>
+            <td>Érintett hozzájárulása (GDPR 6. cikk (1) a)) és szerződés teljesítése (6. cikk (1) b))</td>
+            <td>Felhasználói fiók megszűnését követő 30 nap</td>
+        </tr>
+        <tr>
+            <td>Pályázati érdeklődési adatok — mentett pályázatok, igényelt konzultációk</td>
+            <td>A felhasználó által kért szolgáltatás teljesítése, pályázatíró partnerhez továbbítás</td>
+            <td>Érintett hozzájárulása</td>
+            <td>5 év (üzleti dokumentációs előírások miatt)</td>
+        </tr>
+        <tr>
+            <td>Hírlevél / heti jelentés feliratkozás — e-mail</td>
+            <td>Heti pályázati összefoglaló e-mail küldése</td>
+            <td>Érintett hozzájárulása (GDPR 6. cikk (1) a))</td>
+            <td>Leiratkozásig</td>
+        </tr>
+        <tr>
+            <td>Technikai adatok — IP-cím, böngésző-azonosító, sessionStorage tokenek</td>
+            <td>Bejelentkezés fenntartása, biztonság</td>
+            <td>Jogos érdek (GDPR 6. cikk (1) f))</td>
+            <td>Munkamenet végéig (max. 24 óra)</td>
+        </tr>
+    </table>
+
+    <h2>3. Adattovábbítás — adatfeldolgozók</h2>
+    <p>A TenderPilot az alábbi szolgáltatókat veszi igénybe technikai megvalósításhoz:</p>
+    <ul>
+        <li><b>GitHub Inc. (GitHub Pages, USA)</b> — webhely-tárhely. Adattovábbítás az EU-USA Data Privacy Framework keretében.</li>
+        <li><b>Google LLC (Google Fonts, USA)</b> — betűtípus-szolgáltatás. Anonim technikai naplók.</li>
+        <li><b>[Lead-fogadó szolgáltató — Formspree / Airtable / Supabase]</b> — kapcsolatfelvételi és regisztrációs adatok továbbítása. <i>Konfigurálandó.</i></li>
+        <li><b>Pályázatíró partner</b> — kifejezetten az érintett által kért konzultációs igényeket továbbítjuk, a partnerrel kötött adatfeldolgozói szerződés (DPA) alapján.</li>
+    </ul>
+
+    <h2>4. Az érintett jogai</h2>
+    <p>Az érintett a vonatkozó jogszabályok szerint a következő jogokkal rendelkezik:</p>
+    <ul>
+        <li><b>Hozzáférés joga</b> — tájékoztatást kérhet az Önről kezelt adatokról</li>
+        <li><b>Helyesbítés joga</b> — pontatlan vagy hiányos adatok javítása</li>
+        <li><b>Törlés joga ("elfeledtetéshez való jog")</b> — hozzájárulás visszavonása esetén</li>
+        <li><b>Adatkezelés korlátozása</b> — meghatározott esetekben</li>
+        <li><b>Tiltakozás joga</b> — jogos érdeken alapuló adatkezelés esetén</li>
+        <li><b>Adathordozhatóság</b> — adatainak gépi olvasható formában történő átvétele</li>
+        <li><b>Hozzájárulás visszavonása</b> — bármikor, a korábbi adatkezelés jogszerűségének sérelme nélkül</li>
+    </ul>
+    <p>Jogai gyakorlása érdekében forduljon hozzánk a fenti e-mail címen. Az Beállítások oldalon közvetlenül is módosíthatja a profilját, és visszavonhatja a hírlevél-hozzájárulását.</p>
+
+    <h2>5. Felügyeleti hatóság</h2>
+    <p>Panasszal a Nemzeti Adatvédelmi és Információszabadság Hatósághoz fordulhat:</p>
+    <ul>
+        <li>Cím: 1055 Budapest, Falk Miksa utca 9-11.</li>
+        <li>Postacím: 1363 Budapest, Pf. 9.</li>
+        <li>Telefon: +36 1 391 1400</li>
+        <li>E-mail: ugyfelszolgalat@naih.hu</li>
+        <li>Web: <a href="https://naih.hu" target="_blank" rel="noopener" style="color:var(--blue-600);">naih.hu</a></li>
+    </ul>
+
+    <h2>6. Cookie-k és helyi tárolás</h2>
+    <p>A TenderPilot a működéséhez szükséges technikai sütiket (sessionStorage, localStorage) használja:</p>
+    <ul>
+        <li><b>Szükséges</b> — bejelentkezés, beállítások, mentett pályázatok megőrzése a böngészőben. Nem továbbítjuk harmadik félnek.</li>
+        <li><b>Statisztikai / analitikai</b> — jelenleg nem használunk. Bevezetés esetén külön hozzájárulást kérünk.</li>
+        <li><b>Marketing / nyomkövető</b> — jelenleg nem használunk.</li>
+    </ul>
+
+    <h2>7. Adatbiztonság</h2>
+    <p>Az adatokat HTTPS titkosított csatornán továbbítjuk. A tárolt jelszavak nem nyers formában, hanem kriptográfiailag biztonságos módon (SHA-256 hash) vannak tárolva. A személyes adatokhoz kizárólag a feladat elvégzéséhez szükséges minimális kör fér hozzá.</p>
+
+    <h2>8. A tájékoztató módosítása</h2>
+    <p>Fenntartjuk a jogot a tájékoztató jövőbeni módosítására. Lényegi változás esetén a regisztrált felhasználókat e-mailben értesítjük.</p>
+
+    <h2>9. Kapcsolat</h2>
+    <p>Adatkezeléssel kapcsolatos kérdéseivel forduljon hozzánk: <b>privacy@tenderpilot.hu</b> (placeholder).</p>
+</div>
+
+<footer>
+    <a href="adatvedelem.html">Adatvédelem</a> ·
+    <a href="impresszum.html">Impresszum</a> ·
+    <a href="aszf.html">ÁSZF</a><br>
+    &copy; 2026 TenderPilot
+</footer>
+
+</body>
+</html>

@@ -3,50 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TenderPilot — AI Közbeszerzési Figyelő Épületgépészeknek</title>
-    <meta name="description" content="Találja meg az Önhöz illő osztrák és magyar közbeszerzéseket, pontozza a cégprofiljához, és készítse el az ajánlati dokumentumokat percek alatt.">
-    <meta property="og:title" content="TenderPilot — Nyerjen több közbeszerzést">
-    <meta property="og:description" content="AI közbeszerzési figyelő épületgépész vállalkozásoknak. Osztrák és magyar közbeszerzések keresése, pontozása és dokumentumkészítés.">
+    <title>TenderPilot — AI Tenderfigyelő Magyar KKV-knak</title>
+    <meta name="description" content="~300+ magyar és osztrák tender egy helyen, AI-pontozás a cégprofiljára, AI-alapú ajánlat-vázlat, heti e-mail jelentés. Ingyenes regisztráció.">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="canonical" href="https://szrsystems.github.io/tenderpilot-demo/tenderpilot/">
+    <meta property="og:title" content="TenderPilot — Ne hagyjon ki egyetlen tendert sem">
+    <meta property="og:description" content="~300+ magyar és osztrák tender egy helyen, AI-pontozás cégprofilra, AI ajánlat-vázlat. Ingyenes regisztráció.">
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="hu_HU">
+    <meta property="og:site_name" content="TenderPilot">
+    <meta property="og:url" content="https://szrsystems.github.io/tenderpilot-demo/tenderpilot/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TenderPilot — AI Tenderfigyelő Magyar KKV-knak">
+    <meta name="twitter:description" content="~300+ magyar és osztrák tender egy helyen, AI-pontozás, AI ajánlat-vázlat. Ingyenes regisztráció.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --blue-50: #eff6ff; --blue-100: #dbeafe; --blue-200: #bfdbfe; --blue-500: #3b82f6; --blue-600: #2563eb; --blue-700: #1d4ed8; --blue-800: #1e40af; --blue-900: #1e3a5f;
+            --blue-50: #eff6ff; --blue-100: #dbeafe; --blue-200: #bfdbfe; --blue-500: #3b82f6; --blue-600: #2563eb; --blue-700: #1d4ed8; --blue-800: #1e40af; --blue-900: #1e3a8a;
             --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
-            --green-100: #dcfce7; --green-600: #16a34a; --green-800: #166534;
             --radius: 8px; --radius-lg: 12px; --radius-xl: 16px;
         }
         body { font-family: 'Inter', -apple-system, sans-serif; color: var(--gray-900); background: white; -webkit-font-smoothing: antialiased; }
         a { color: var(--blue-600); text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
+        /* NAV */
         nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--gray-200); }
         .nav-inner { max-width: 1120px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
         .nav-logo { font-size: 20px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.5px; }
         .nav-logo span { color: var(--blue-600); }
         .nav-links { display: flex; gap: 32px; align-items: center; }
-        .nav-links a { color: var(--gray-600); font-size: 14px; font-weight: 500; }
-        .nav-links a:hover { color: var(--gray-900); text-decoration: none; }
-        .nav-cta { background: var(--blue-600); color: white !important; padding: 8px 20px; border-radius: var(--radius); font-weight: 600; }
+        .nav-links a { color: var(--gray-600); font-size: 14px; font-weight: 500; text-decoration: none; }
+        .nav-links a:hover { color: var(--gray-900); }
+        .nav-cta { background: var(--blue-600); color: white !important; padding: 8px 20px; border-radius: var(--radius); font-weight: 600; font-size: 14px; }
         .nav-cta:hover { background: var(--blue-700); text-decoration: none !important; }
 
+        /* HERO */
         .hero { padding: 140px 24px 80px; text-align: center; background: linear-gradient(180deg, white 0%, var(--blue-50) 100%); }
         .hero-badge { display: inline-block; background: var(--blue-100); color: var(--blue-800); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 24px; }
-        .hero h1 { font-size: 52px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; max-width: 720px; margin: 0 auto 20px; }
-        .hero p { font-size: 19px; color: var(--gray-500); max-width: 580px; margin: 0 auto 36px; line-height: 1.6; }
+        .hero h1 { font-size: 52px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; max-width: 680px; margin: 0 auto 20px; color: var(--gray-900); }
+        .hero p { font-size: 19px; color: var(--gray-500); max-width: 540px; margin: 0 auto 36px; line-height: 1.6; }
         .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
         .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: var(--radius); font-size: 15px; font-weight: 600; border: none; cursor: pointer; transition: all 0.15s; text-decoration: none; }
         .btn-primary { background: var(--blue-600); color: white; }
         .btn-primary:hover { background: var(--blue-700); text-decoration: none; }
         .btn-secondary { background: white; color: var(--gray-700); border: 1px solid var(--gray-300); }
-        .btn-secondary:hover { background: var(--gray-50); text-decoration: none; }
+        .btn-secondary:hover { background: var(--gray-50); border-color: var(--gray-400); text-decoration: none; }
         .hero-note { margin-top: 16px; font-size: 13px; color: var(--gray-400); }
 
+        /* LOGOS */
         .logos { padding: 48px 24px; border-bottom: 1px solid var(--gray-200); text-align: center; }
         .logos p { font-size: 13px; color: var(--gray-400); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 20px; }
         .logos-row { display: flex; justify-content: center; gap: 40px; align-items: center; flex-wrap: wrap; opacity: 0.5; }
         .logos-row span { font-size: 16px; font-weight: 700; color: var(--gray-500); }
 
+        /* SECTION */
         .section { max-width: 1120px; margin: 0 auto; padding: 80px 24px; }
         .section-label { font-size: 13px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
         .section-title { font-size: 36px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 16px; line-height: 1.2; }
@@ -54,30 +67,28 @@
         .section-header { text-align: center; margin-bottom: 48px; }
         .section-header .section-desc { margin: 0 auto; }
 
+        /* FEATURES */
         .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-        .feature-card { padding: 32px; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); transition: border-color 0.2s; }
+        .feature-card { padding: 32px; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); transition: border-color 0.2s, box-shadow 0.2s; }
         .feature-card:hover { border-color: var(--blue-200); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
         .feature-icon { width: 48px; height: 48px; background: var(--blue-100); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
         .feature-icon svg { width: 24px; height: 24px; color: var(--blue-600); }
         .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
         .feature-card p { font-size: 14px; color: var(--gray-500); line-height: 1.6; }
 
+        /* HOW IT WORKS */
         .steps-section { background: var(--gray-50); }
         .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
         .step-card { text-align: center; padding: 24px 16px; }
         .step-num { width: 40px; height: 40px; background: var(--blue-600); color: white; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; margin-bottom: 16px; }
         .step-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
         .step-card p { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
+        .step-arrow { display: none; }
 
-        .roi-section { background: var(--blue-50); }
-        .roi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 800px; margin: 0 auto; text-align: center; }
-        .roi-card { padding: 32px; }
-        .roi-num { font-size: 48px; font-weight: 800; color: var(--blue-600); letter-spacing: -1px; }
-        .roi-label { font-size: 14px; color: var(--gray-500); margin-top: 8px; }
-
-        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 960px; margin: 0 auto; }
-        .price-card { border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 32px; }
-        .price-card.popular { border: 2px solid var(--blue-600); position: relative; }
+        /* PRICING */
+        .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 720px; margin: 0 auto; }
+        .price-card { border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 36px; position: relative; }
+        .price-card.popular { border: 2px solid var(--blue-600); }
         .price-card.popular::before { content: 'Legnépszerűbb'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--blue-600); color: white; padding: 4px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; }
         .price-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
         .price-card .price-desc { font-size: 14px; color: var(--gray-500); margin-bottom: 20px; }
@@ -87,25 +98,28 @@
         .price-card ul { list-style: none; margin-bottom: 28px; }
         .price-card li { padding: 10px 0; font-size: 14px; border-bottom: 1px solid var(--gray-100); display: flex; align-items: center; gap: 10px; }
         .price-card li:last-child { border-bottom: none; }
-        .price-card li::before { content: ''; width: 18px; height: 18px; background: var(--green-100); border-radius: 50%; flex-shrink: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2316a34a'%3E%3Cpath fill-rule='evenodd' d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'/%3E%3C/svg%3E"); background-size: 14px; background-repeat: no-repeat; background-position: center; }
+        .price-card li::before { content: ''; width: 18px; height: 18px; background: var(--blue-100); border-radius: 50%; flex-shrink: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2316a34a'%3E%3Cpath fill-rule='evenodd' d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'/%3E%3C/svg%3E"); background-size: 14px; background-repeat: no-repeat; background-position: center; }
         .price-card .btn { width: 100%; justify-content: center; }
 
+        /* CTA */
         .cta-section { background: var(--gray-900); color: white; padding: 80px 24px; text-align: center; }
         .cta-section h2 { font-size: 36px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px; }
         .cta-section p { font-size: 17px; color: var(--gray-400); max-width: 500px; margin: 0 auto 32px; }
         .cta-section .btn-primary { background: white; color: var(--gray-900); }
         .cta-section .btn-primary:hover { background: var(--gray-100); }
 
+        /* FOOTER */
         footer { padding: 40px 24px; border-top: 1px solid var(--gray-200); }
         .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .footer-inner p { font-size: 13px; color: var(--gray-400); }
 
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             .hero h1 { font-size: 32px; }
+            .hero p { font-size: 16px; }
             .features-grid { grid-template-columns: 1fr; }
             .steps-grid { grid-template-columns: repeat(2, 1fr); }
             .pricing-grid { grid-template-columns: 1fr; }
-            .roi-grid { grid-template-columns: 1fr; }
             .nav-links a:not(.nav-cta) { display: none; }
             .footer-inner { flex-direction: column; gap: 8px; }
         }
@@ -113,161 +127,172 @@
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
     <div class="nav-inner">
-        <div class="nav-logo">Tender<span>Pilot</span></div>
+        <div class="nav-logo">Tender<span>Pilot/span></div>
         <div class="nav-links">
             <a href="../index.html">Főoldal</a>
             <a href="#features">Funkciók</a>
             <a href="#how">Hogyan működik</a>
             <a href="#pricing">Árazás</a>
-            <a href="onboarding.html" class="nav-cta">Regisztráció</a>
+            <a href="partner.html">Partner program</a>
+            <a href="onboarding.html" class="nav-cta">Ingyenes próba</a>
         </div>
     </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-    <div class="hero-badge">AI közbeszerzési figyelő épületgépész vállalkozásoknak</div>
-    <h1>Nyerjen több közbeszerzést. Ne pazaroljon időt a rossz pályázatokra.</h1>
-    <p>A TenderPilot megtalálja az Önhöz illő osztrák és magyar közbeszerzéseket, pontoz a cégprofiljához, és elkészíti az ajánlati dokumentumokat percek alatt — nem napok alatt.</p>
+    <div class="hero-badge">AI-alapú tenderfigyelés HVAC és építőipari KKV-knak</div>
+    <h1>Találja meg a tendereket, mielőtt a versenytársai rátalálnak.</h1>
+    <p>A TenderPilot naponta átvizsgálja az összes magyar és osztrák tender-forrást, és csak az Ön cégéhez illőt mutatja meg — pontszámmal és ajánlással.</p>
     <div class="hero-actions">
-        <a href="onboarding.html" class="btn btn-primary">Ingyenes regisztráció</a>
-        <a href="portal.html" class="btn btn-secondary">Élő demo megtekintése</a>
+        <a href="onboarding.html" class="btn btn-primary">Ingyenes próba indítása</a>
+        <a href="portal.html" class="btn btn-secondary">Demo megtekintése</a>
     </div>
-    <p class="hero-note">30 nap ingyen · Bankkártya nem szükséges · 30 perc beállítás</p>
+    <p class="hero-note">30 nap ingyen · Bankkártya nem szükséges · 5 perc beállítás</p>
 </section>
 
+<!-- TRUST LOGOS -->
 <div class="logos">
-    <p>Közbeszerzési forrásaink</p>
+    <p>Tender-forrásaink</p>
     <div class="logos-row">
-        <span>Austria USP</span>
-        <span>kozbeszerzes.hu</span>
-        <span>TED Europa</span>
         <span>palyazat.gov.hu</span>
+        <span>Széchenyi Plusz</span>
+        <span>GINOP Plusz</span>
+        <span>NKFI</span>
+        <span>Horizon Europe</span>
     </div>
 </div>
 
+<!-- FEATURES -->
 <section class="section" id="features">
     <div class="section-header">
         <div class="section-label">Funkciók</div>
-        <h2 class="section-title">Minden, amire szüksége van a közbeszerzések megnyeréséhez</h2>
-        <p class="section-desc">A TenderPilot átveszi a portálkeresés, az illeszkedés-értékelés és a sablon-ajánlatírás feladatát.</p>
+        <h2 class="section-title">Minden, amire szüksége van a tenderekhez</h2>
+        <p class="section-desc">A TenderPilot átveszi a tenderkeresés és előszűrés feladatát — Ön csak a releváns lehetőségekkel foglalkozik.</p>
     </div>
     <div class="features-grid">
         <div class="feature-card">
             <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg></div>
-            <h3>Napi közbeszerzés-figyelés</h3>
-            <p>Naponta átvizsgáljuk az Austria USP-t, a magyar közbeszerzési portálokat és a TED Europát. Ön csak a releváns kiírásokat látja.</p>
+            <h3>20+ forrás napi figyelése</h3>
+            <p>Automatikusan átvizsgáljuk a palyazat.gov.hu, Széchenyi Plusz, GINOP, NKFI, és az EU portálokat. Nem marad le semmiről.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg></div>
-            <h3>12 tényezős pontozás</h3>
-            <p>Minden kiírást 12 szempont alapján pontozunk: minősítések, kapacitás, lokáció, tapasztalat, pénzügyi helyzet. 0-100 pont, egyértelmű Pályázzon / Ne pályázzon ajánlás.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg></div>
-            <h3>AI ajánlati dokumentumok</h3>
-            <p>Ajánlati levél, műszaki ajánlat, megfelelőségi lista és vezetői összefoglaló 5 perc alatt. Személyre szabva az Ön cégéhez és az adott kiíráshoz.</p>
+            <h3>AI pontozás cégprofilhoz</h3>
+            <p>5 tényező alapján pontozzuk minden tendert az Ön cégméretéhez, iparágához és lokációjához. 0-100 pontszám, azonnali verdikt.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" /></svg></div>
             <h3>Azonnali Telegram értesítés</h3>
-            <p>Magas pontszámú kiírásoknál azonnali Telegram értesítést kap: összefoglaló, határidő, és egy kattintásos dokumentumgenerálás.</p>
+            <p>Amint releváns tender jelenik meg, kap egy e-mail értesítést a pontszámmal, összeghatárral és határidővel. Soha nem marad le.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg></div>
-            <h3>Ausztria + Magyarország lefedettség</h3>
-            <p>Határon átívelő közbeszerzési intelligencia. Az osztrák kiírások 2-3× többet fizetnek ugyanazért a munkáért. Mindkét piacon segítünk pályázni.</p>
+            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15" /></svg></div>
+            <h3>Jogosultsági ellenőrzőlista</h3>
+            <p>Minden ajánlott tenderhez generálunk egy ellenőrző listát: milyen dokumentumok kellenek, mi a jogosultsági feltétel, mi a határidő.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg></div>
-            <h3>Megfelelőségi kezelés</h3>
-            <p>Nyomon követjük, milyen minősítéseket igényel az adott kiírás, milyen dokumentumok szükségesek, és mi a benyújtási ellenőrző lista. Soha nem marad le követelményről.</p>
+            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5" /></svg></div>
+            <h3>Heti összefoglaló</h3>
+            <p>Minden hétfőn reggel kap egy összefoglalót: hány tender jelent meg, hány releváns, hány közeledő határidő.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197" /></svg></div>
+            <h3>Tanácsadó partner hálózat</h3>
+            <p>Ha ajánlatot szeretne tenni, összekötjük tapasztalt közbeszerzési tanácsadó partnerünkkel. Ön dönt — mi csak ajánlunk.</p>
         </div>
     </div>
 </section>
 
+<!-- HOW IT WORKS -->
 <section class="steps-section" id="how">
     <div class="section" style="padding-bottom: 40px;">
         <div class="section-header">
             <div class="section-label">Hogyan működik</div>
-            <h2 class="section-title">A portálkereséstől az ajánlatig 4 lépésben</h2>
+            <h2 class="section-title">4 lépés a tender lehetőségekig</h2>
         </div>
         <div class="steps-grid">
-            <div class="step-card"><div class="step-num">1</div><h3>Beállítás</h3><p>30 perces hívás. Összegyűjtjük a cégprofilt, minősítéseket, korábbi projekteket. Mi végezzük a konfigurációt.</p></div>
-            <div class="step-card"><div class="step-num">2</div><h3>Napi keresés</h3><p>A rendszerünk naponta vizsgálja az Austria USP-t, a magyar portálokat és a TED-et. Ön nem nyúl egyetlen portálhoz sem.</p></div>
-            <div class="step-card"><div class="step-num">3</div><h3>Pontozás és értesítés</h3><p>Minden kiírás pontozva van. Magas egyezésnél azonnali Telegram értesítés: Pályázzon, Vizsgálja meg, vagy Ne pályázzon.</p></div>
-            <div class="step-card"><div class="step-num">4</div><h3>Dokumentumok</h3><p>Kattintson a "Generálás" gombra és 5 perc alatt megkapja az ajánlati csomagot: levél, műszaki ajánlat, megfelelőségi lista.</p></div>
+            <div class="step-card">
+                <div class="step-num">1</div>
+                <h3>Regisztráció</h3>
+                <p>Adja meg cége adatait: iparág, méret, lokáció, preferált kategóriák. 5 perc.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">2</div>
+                <h3>AI elemzés</h3>
+                <p>A rendszer naponta átvizsgálja az összes forrást és pontoz minden tendert az Ön profiljához.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">3</div>
+                <h3>Értesítés</h3>
+                <p>Releváns tendereknél azonnali e-mail értesítést kap a pontszámmal és ajánlással.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">4</div>
+                <h3>Pályázzon</h3>
+                <p>Döntse el, melyikre ad be ajánlatot. Szükség esetén tanácsadó partnerünket is ajánljuk.</p>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="roi-section">
-    <div class="section">
-        <div class="section-header">
-            <div class="section-label">Megtérülés</div>
-            <h2 class="section-title">A számok magukért beszélnek</h2>
-        </div>
-        <div class="roi-grid">
-            <div class="roi-card"><div class="roi-num">10 óra</div><div class="roi-label">Megtakarított idő hetente a közbeszerzés-keresésen</div></div>
-            <div class="roi-card"><div class="roi-num">133×</div><div class="roi-label">Megtérülés egyetlen €200K-s nyert közbeszerzésnél</div></div>
-            <div class="roi-card"><div class="roi-num">5 perc</div><div class="roi-label">Teljes ajánlati csomag elkészítési ideje</div></div>
-        </div>
-    </div>
-</section>
-
+<!-- PRICING -->
 <section class="section" id="pricing">
     <div class="section-header">
         <div class="section-label">Árazás</div>
-        <h2 class="section-title">Épületgépészeknek tervezett csomagok</h2>
-        <p class="section-desc">Kezdje 30 napos ingyenes próbával. Ha nem találunk legalább 3 releváns kiírást, nem fizet semmit.</p>
+        <h2 class="section-title">Kezdjen ingyen — fizessen csak ha nő</h2>
+        <p class="section-desc">A Free csomag korlátlan ideig használható, regisztráció után. A fizetős csomagok 14 napos ingyenes próbával indulnak — bármikor lemondható.</p>
     </div>
-    <div class="pricing-grid">
+    <div class="pricing-grid" style="grid-template-columns: repeat(3, 1fr);">
         <div class="price-card">
-            <h3>Starter</h3>
-            <p class="price-desc">Közbeszerzés-figyelés</p>
-            <div class="price">€299<span>/hó</span></div>
-            <p class="price-period">Havi fizetés · ~115.000 Ft</p>
+            <h3>Free</h3>
+            <p class="price-desc">Minden induló KKV-nak</p>
+            <div class="price">0 Ft<span>/hó</span></div>
+            <p class="price-period">Bankkártya nem szükséges</p>
             <ul>
-                <li>Napi AT + HU közbeszerzés-figyelés</li>
-                <li>12 tényezős pontozás</li>
-                <li>Telegram + email értesítések</li>
-                <li>Online áttekintő felület</li>
-                <li>Heti összefoglaló</li>
+                <li>Összes magyar és osztrák tender (~300+)</li>
+                <li>AI illeszkedési pontozás profilra</li>
+                <li>Keresés, szűrés, mentett tenderek</li>
+                <li>Konzultáció-igénylés tanácsadó partnertől</li>
             </ul>
-            <a href="onboarding.html" class="btn btn-secondary">Ingyenes próba</a>
+            <a href="onboarding.html" class="btn btn-secondary" style="width: 100%; justify-content: center;">Ingyenes regisztráció</a>
         </div>
         <div class="price-card popular">
-            <h3>Professional</h3>
-            <p class="price-desc">Teljes intelligencia + dokumentumkészítés</p>
-            <div class="price">€999<span>/hó</span></div>
-            <p class="price-period">Havi fizetés · ~385.000 Ft</p>
+            <h3>Pro</h3>
+            <p class="price-desc">Aktívan pályázó vállalkozásoknak</p>
+            <div class="price">€29<span>/hó</span></div>
+            <p class="price-period">~11 000 Ft/hó · éves fizetésnél €19/hó</p>
             <ul>
-                <li>Minden, ami a Starter-ben</li>
-                <li>AI ajánlati dokumentumok</li>
-                <li>4 dokumentumtípus kiírásonként</li>
-                <li>Prioritásos támogatás (4 óra)</li>
-                <li>Negyedéves stratégiai hívás</li>
+                <li>Minden, ami a Free-ben</li>
+                <li>Heti e-mail jelentés, sürgős határidő-riasztások</li>
+                <li><b>AI Ajánlat-vázlat</b> — kész tervezet 1 kattintásra</li>
+                <li>Generálható dokumentumok (vezetői összefoglaló, portfólió)</li>
+                <li>EU tenderek (TED, Interreg, Horizon közbeszerzések)</li>
             </ul>
-            <a href="onboarding.html" class="btn btn-primary">Ingyenes próba</a>
+            <a href="onboarding.html" class="btn btn-primary" style="width: 100%; justify-content: center;">14 napos ingyenes próba</a>
         </div>
         <div class="price-card">
-            <h3>Enterprise</h3>
-            <p class="price-desc">Dedikált kapcsolattartó + DACH bővítés</p>
-            <div class="price">€2.500<span>/hó</span></div>
-            <p class="price-period">Havi vagy éves fizetés</p>
+            <h3>Business</h3>
+            <p class="price-desc">Közbeszerzési tanácsadóknak, mérnök-irodáknak, ügynökségeknek</p>
+            <div class="price">€149<span>/hó</span></div>
+            <p class="price-period">~57 000 Ft/hó · 50 ügyfél hozzáférés</p>
             <ul>
-                <li>Minden, ami a Professional-ben</li>
-                <li>Dedikált fiókkezelő</li>
-                <li>Németországi + DACH bővítés</li>
-                <li>Egyedi közbeszerzési források</li>
-                <li>API hozzáférés + white-label</li>
+                <li>Minden, ami a Pro-ban</li>
+                <li>Több felhasználós hozzáférés</li>
+                <li><b>Fehér címkés használat</b> — saját brand alatt</li>
+                <li>Lead-csatorna a partner-tölcsérből</li>
+                <li>Prioritás támogatás, dedikált onboarding</li>
             </ul>
-            <a href="mailto:info@growthcrow.co?subject=TenderPilot Enterprise érdeklődés" class="btn btn-secondary">Kapcsolatfelvétel</a>
+            <a href="partner.html" class="btn btn-secondary" style="width: 100%; justify-content: center;">Partner program</a>
         </div>
     </div>
+    <p style="text-align:center;font-size:13px;color:var(--gray-400);margin-top:24px;">Az árak az ÁFA-t nem tartalmazzák. Részletek az <a href="aszf.html" style="color:var(--blue-600);">ÁSZF</a>-ben.</p>
 </section>
 
+<!-- CTA -->
 <!-- FAQ -->
 <section class="section" style="background: var(--gray-50);">
     <div style="max-width: 720px; margin: 0 auto;">
@@ -275,43 +300,63 @@
             <div class="section-label">Kérdések</div>
             <h2 class="section-title">Gyakran ismételt kérdések</h2>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 1px; background: var(--gray-200); border-radius: var(--radius-xl); overflow: hidden;">
+        <div style="display: flex; flex-direction: column; gap: 1px; background: var(--gray-200); border-radius: 16px; overflow: hidden;">
             <details style="background: white; padding: 20px 24px;">
-                <summary style="font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between;">Mennyi idő a beállítás?<span style="color: var(--gray-400);">+</span></summary>
-                <p style="margin-top: 12px; font-size: 14px; color: var(--gray-500); line-height: 1.6;">30 perc. Egy telefonhívás, ahol összegyűjtjük a cégprofilt, minősítéseket és célpiacokat. Mi végezzük a konfigurációt — Ön nem nyúl szoftverhez.</p>
+                <summary style="font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between;">Mennyi idő a regisztráció?<span style="color: var(--gray-400);">+</span></summary>
+                <p style="margin-top: 12px; font-size: 14px; color: var(--gray-500); line-height: 1.6;">5 perc. Megadja a cégadatait, kiválasztja az érdeklődési területeket, és kész. A rendszer automatikusan elkezdi a keresést.</p>
             </details>
             <details style="background: white; padding: 20px 24px;">
                 <summary style="font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between;">Hogyan működik a pontozás?<span style="color: var(--gray-400);">+</span></summary>
-                <p style="margin-top: 12px; font-size: 14px; color: var(--gray-500); line-height: 1.6;">Az AI 12 tényező alapján értékel minden kiírást az Ön cégéhez: minősítések, kapacitás, lokáció, tapasztalat, pénzügyek, garanciaképesség, nyelvi egyezés és több. Egy 42 fős budapesti épületgépész cég teljesen más pontszámokat kap, mint egy 200 fős bécsi vállalkozás.</p>
+                <p style="margin-top: 12px; font-size: 14px; color: var(--gray-500); line-height: 1.6;">Az AI 12 tényező alapján értékel minden tendert: cégméret, iparág, lokáció, összeghatár és határidő. Egy 10 fős budapesti HVAC cég teljesen más listát kap, mint egy 50 fős grazi épületgépész.</p>
             </details>
             <details style="background: white; padding: 20px 24px;">
-                <summary style="font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between;">Mi van, ha az AI dokumentumok nem elég jók?<span style="color: var(--gray-400);">+</span></summary>
-                <p style="margin-top: 12px; font-size: 14px; color: var(--gray-500); line-height: 1.6;">Professzionális kiindulópont, nem végleges verzió. Az ajánlati csomag 90%-át mi készítjük — Ön átnézi, testreszabja a részleteket, és benyújtja. A legtöbb ügyfél 2-3 napot takarít meg kiírásonként. Soha nem nyújtunk be ajánlatot az Ön nevében.</p>
+                <summary style="font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between;">A rendszer megírja az ajánlatot is?<span style="color: var(--gray-400);">+</span></summary>
+                <p style="margin-top: 12px; font-size: 14px; color: var(--gray-500); line-height: 1.6;">A TenderPilot a tenderkeresésre és előszűrésre specializálódott. Ha ajánlatot szeretne tenni, összekötjük tapasztalt közbeszerzési tanácsadó partnerünkkel, aki a teljes dokumentációt elkészíti. Így Ön a legjobb szaktudást kapja mindkét oldalon.</p>
             </details>
             <details style="background: white; padding: 20px 24px;">
-                <summary style="font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between;">Milyen országokat fednek le?<span style="color: var(--gray-400);">+</span></summary>
-                <p style="margin-top: 12px; font-size: 14px; color: var(--gray-500); line-height: 1.6;">Jelenleg Ausztria és Magyarország. Figyelünk: ausschreibungen.usp.gv.at (Ausztria), kozbeszerzes.hu (Magyarország), és TED Europa (EU-s szinten). Németországi bővítés 2026 Q3-ban várható.</p>
+                <summary style="font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between;">Milyen tender-forrásokat figyelnek?<span style="color: var(--gray-400);">+</span></summary>
+                <p style="margin-top: 12px; font-size: 14px; color: var(--gray-500); line-height: 1.6;">palyazat.gov.hu, Széchenyi Plusz, GINOP Plusz, NKFI, valamint EU források (Horizon Europe, Erasmus+). Összesen 20+ forrás naponta.</p>
             </details>
             <details style="background: white; padding: 20px 24px;">
                 <summary style="font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between;">Mi történik a 30 napos próba után?<span style="color: var(--gray-400);">+</span></summary>
-                <p style="margin-top: 12px; font-size: 14px; color: var(--gray-500); line-height: 1.6;">Ha tetszik, választ egy csomagot. Ha nem, leáll — nulla költség, nulla kérdés. Garantáljuk, hogy a próba alatt legalább 3 releváns kiírást találunk. Ha kevesebbet, a próba automatikusan meghosszabbodik.</p>
+                <p style="margin-top: 12px; font-size: 14px; color: var(--gray-500); line-height: 1.6;">Ha tetszik, választ egy csomagot (€99 vagy €199/hó). Ha nem, leáll — nulla költség, nulla kötöttség. Garantáljuk, hogy a próba alatt legalább 3 releváns tendert találunk.</p>
             </details>
         </div>
     </div>
 </section>
 
 <section class="cta-section">
-    <h2>Egyetlen megnyert közbeszerzés 10 évre fedezi a díjat.</h2>
-    <p>Kezdje 30 napos ingyenes próbával. Mi keressük a kiírásokat, pontozzuk, és megírjuk az ajánlatot. Ön csak átnézi és benyújtja.</p>
-    <a href="onboarding.html" class="btn btn-primary">Ingyenes regisztráció</a>
+    <h2>Egy tender megnyerése mindent megváltoztat.</h2>
+    <p>Egy €50,000-os tender 20× megtéríti az éves díjat. A legtöbb ügyfelünk az első hónapban talál releváns tendert.</p>
+    <a href="onboarding.html" class="btn btn-primary">Ingyenes próba indítása</a>
 </section>
 
+<!-- FOOTER -->
 <footer>
     <div class="footer-inner">
-        <p>TenderPilot · Budapest</p>
-        <p>info@growthcrow.co · <a href="#">Adatvédelem</a> · <a href="#">ÁSZF</a></p>
+        <p>TenderPilot · Budapest, Magyarország</p>
+        <p>info@tenderpilot.hu · <a href="adatvedelem.html">Adatvédelem</a> · <a href="impresszum.html">Impresszum</a> · <a href="aszf.html">ÁSZF</a></p>
     </div>
 </footer>
+
+<!-- COOKIE CONSENT -->
+<div id="gpcb" style="display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:2000;max-width:680px;margin:0 auto;background:#111827;color:#e5e7eb;border-radius:12px;padding:16px 20px;font-family:'Inter',-apple-system,sans-serif;font-size:13px;line-height:1.55;box-shadow:0 10px 30px rgba(0,0,0,0.25);">
+    <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;">
+        <div style="flex:1;min-width:240px;">
+            <b style="color:white;">Sütik használata</b><br>
+            A TenderPilot a működéshez szükséges sütiket használ. Részletek az
+            <a href="adatvedelem.html" style="color:#93c5fd;">Adatkezelési tájékoztatóban</a>.
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button onclick="gpcbAccept('necessary')" style="background:transparent;color:#e5e7eb;border:1px solid #374151;padding:8px 14px;border-radius:6px;font-weight:600;font-size:12px;cursor:pointer;font-family:inherit;">Csak szükségesek</button>
+            <button onclick="gpcbAccept('all')" style="background:#2563eb;color:white;border:none;padding:8px 14px;border-radius:6px;font-weight:700;font-size:12px;cursor:pointer;font-family:inherit;">Elfogadom mind</button>
+        </div>
+    </div>
+</div>
+<script>
+(function(){ try { if (!localStorage.getItem('gp_cookie_consent')) { document.getElementById('gpcb').style.display = 'block'; } } catch(e) {} })();
+function gpcbAccept(level){ try { localStorage.setItem('gp_cookie_consent', JSON.stringify({level:level,ts:Date.now()})); } catch(e) {} var el = document.getElementById('gpcb'); if (el) el.style.display = 'none'; }
+</script>
 
 </body>
 </html>

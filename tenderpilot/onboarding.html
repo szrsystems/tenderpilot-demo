@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TenderPilot — Regisztráció</title>
+    <meta name="description" content="Ingyenes regisztráció. 3 lépés, kb. 2 perc. Cégprofilra szabott tender-ajánlások egy helyen.">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="robots" content="noindex,follow">
+    <meta property="og:title" content="TenderPilot — Ingyenes regisztráció">
+    <meta property="og:description" content="3 lépés, ~2 perc. Cégprofilra szabott tender-ajánlások.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="hu_HU">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --blue-50: #eff6ff; --blue-100: #dbeafe; --blue-200: #bfdbfe; --blue-500: #3b82f6; --blue-600: #2563eb; --blue-700: #1d4ed8; --blue-800: #1e40af; --blue-900: #1e3a5f;
+            --blue-50: #eff6ff; --blue-100: #dbeafe; --blue-200: #bfdbfe; --blue-600: #2563eb; --blue-700: #1d4ed8; --blue-800: #1e40af;
             --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
             --radius: 8px; --radius-lg: 12px;
         }
@@ -35,7 +42,7 @@
         .field label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--gray-700); }
         .field label .req { color: #dc2626; font-size: 12px; }
         .field input, .field select, .field textarea { width: 100%; padding: 10px 14px; border: 1px solid var(--gray-300); border-radius: var(--radius); font-size: 15px; font-family: inherit; background: white; color: var(--gray-900); transition: border-color 0.15s; }
-        .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--blue-600); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+        .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--blue-600); box-shadow: 0 0 0 3px rgba(22,163,74,0.1); }
         .field input::placeholder { color: var(--gray-400); }
         .field .hint { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
         .field textarea { resize: vertical; min-height: 80px; }
@@ -73,7 +80,7 @@
 
 <nav>
     <div class="nav-inner">
-        <a href="index.html" class="nav-logo">Tender<span>Pilot</span></a>
+        <a href="index.html" class="nav-logo">Tender<span>Pilot/span></a>
         <a href="index.html" class="nav-back">← Vissza a főoldalra</a>
     </div>
 </nav>
@@ -93,18 +100,24 @@
 
             <div class="field">
                 <label>Cégnév <span class="req">*</span></label>
-                <input type="text" id="f_company" placeholder="Pl. KlímaTech Épületgépészet Kft.">
+                <input type="text" id="f_company" placeholder="Pl. InnoTech Solutions Kft.">
             </div>
             <div class="field-row">
                 <div class="field">
                     <label>Iparág <span class="req">*</span></label>
                     <select id="f_industry">
                         <option value="">Válasszon...</option>
+                        <option value="IT">IT / Szoftverfejlesztés</option>
                         <option value="HVAC">Épületgépészet / HVAC</option>
                         <option value="Construction">Építőipar</option>
-                        <option value="Electrical">Villanyszerelés</option>
-                        <option value="Mechanical">Gépészet</option>
-                        <option value="Other">Egyéb</option>
+                        <option value="Manufacturing">Gyártás</option>
+                        <option value="Healthcare">Egészségügy</option>
+                        <option value="Restaurant">Vendéglátás</option>
+                        <option value="Tourism">Turizmus</option>
+                        <option value="Agriculture">Mezőgazdaság</option>
+                        <option value="Retail">Kereskedelem</option>
+                        <option value="Education">Oktatás</option>
+                        <option value="General">Egyéb</option>
                     </select>
                 </div>
                 <div class="field">
@@ -136,11 +149,30 @@
                     <label>Székhely</label>
                     <input type="text" id="f_location" placeholder="Pl. Budapest">
                 </div>
-            </div>
-            <div class="field">
-                <label>Működés éve</label>
-                <input type="number" id="f_years" min="0" max="200" placeholder="Pl. 12">
-                <div class="hint">Hány éve működik a vállalkozás?</div>
+                <div class="field">
+                    <label>Mióta működik a cég? <span class="hint" style="color:var(--gray-400);font-weight:400;">(lezárt üzleti évek)</span></label>
+                    <select id="f_years">
+                        <option value="">Válasszon...</option>
+                        <option value="0">Még nincs lezárt évem</option>
+                        <option value="1">1 év</option>
+                        <option value="2">2 év</option>
+                        <option value="3-5">3–5 év</option>
+                        <option value="5+">5+ év</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Cégforma</label>
+                    <select id="f_legal">
+                        <option value="">Válasszon...</option>
+                        <option value="Kft">Kft.</option>
+                        <option value="Bt">Bt.</option>
+                        <option value="EV">Egyéni vállalkozó</option>
+                        <option value="Zrt">Zrt.</option>
+                        <option value="Nyrt">Nyrt.</option>
+                        <option value="Szövetkezet">Szövetkezet</option>
+                        <option value="Egyéb">Egyéb</option>
+                    </select>
+                </div>
             </div>
 
             <div class="form-actions">
@@ -150,59 +182,36 @@
 
         <!-- STEP 2 -->
         <div class="step" id="step-2">
-            <h2>Közbeszerzési preferenciák</h2>
-            <p class="subtitle">Milyen közbeszerzéseket keres és milyen szolgáltatásokat nyújt?</p>
+            <h2>Tender-preferenciák</h2>
+            <p class="subtitle">Milyen típusú tendereket keres?</p>
 
             <div class="field">
-                <label>Célországok <span class="req">*</span></label>
-                <div class="checkbox-grid" id="grid_countries">
-                    <label class="checkbox-item"><input type="checkbox" value="Ausztria"> Ausztria</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Magyarország"> Magyarország</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Németország"> Németország</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Egyéb EU"> Egyéb EU</label>
+                <label>Érdeklődési területek <span class="req">*</span></label>
+                <div class="checkbox-grid">
+                    <label class="checkbox-item"><input type="checkbox" value="KKV fejlesztés"> KKV fejlesztés</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Digitális átalakulás"> Digitalizáció</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Energiahatékonyság"> Energiahatékonyság</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Kutatás-fejlesztés"> K+F / Innováció</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Munkahelyteremtés"> Munkahelyteremtés</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Export"> Export / Nemzetközi</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Oktatás"> Oktatás / Képzés</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Környezetvédelem"> Környezetvédelem</label>
                 </div>
             </div>
 
             <div class="field">
-                <label>Szolgáltatások <span class="req">*</span></label>
-                <div class="checkbox-grid" id="grid_services">
-                    <label class="checkbox-item"><input type="checkbox" value="Fűtés"> Fűtés</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Hűtés/Klíma"> Hűtés / Klíma</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Szellőzés"> Szellőzés</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Épületautomatika"> Épületautomatika</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Csővezeték"> Csővezeték</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Villamos"> Villamos</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Energetika"> Energetika</label>
-                </div>
+                <label>Pályázott korábban?</label>
+                <select id="f_past">
+                    <option value="">Válasszon...</option>
+                    <option value="won">Igen, nyertem is</option>
+                    <option value="lost">Igen, de nem nyertem</option>
+                    <option value="no">Nem, ez az első</option>
+                </select>
             </div>
 
             <div class="field">
-                <label>Minősítések</label>
-                <div class="checkbox-grid" id="grid_certs">
-                    <label class="checkbox-item"><input type="checkbox" value="ISO 9001"> ISO 9001</label>
-                    <label class="checkbox-item"><input type="checkbox" value="ISO 14001"> ISO 14001</label>
-                    <label class="checkbox-item"><input type="checkbox" value="F-gáz"> F-gáz</label>
-                    <label class="checkbox-item"><input type="checkbox" value="MSZ EN 378"> MSZ EN 378</label>
-                    <label class="checkbox-item"><input type="checkbox" value="EKR"> EKR</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Egyéb"> Egyéb</label>
-                </div>
-            </div>
-
-            <div class="field-row">
-                <div class="field">
-                    <label>Garanciaképesség (EUR)</label>
-                    <input type="number" id="f_bond" min="0" step="1000" placeholder="Pl. 50000">
-                    <div class="hint">Maximális banki garancia összege</div>
-                </div>
-                <div class="field">
-                    <label>Korábban pályázott-e közbeszerzésen?</label>
-                    <select id="f_past">
-                        <option value="">Válasszon...</option>
-                        <option value="won">Igen, nyertem is</option>
-                        <option value="lost">Igen, de nem nyertem</option>
-                        <option value="no">Nem, ez az első</option>
-                    </select>
-                </div>
+                <label>Volt-e már közbeszerzési ajánlattételi tapasztalata?</label>
+                <textarea id="f_notes" placeholder="Pl. Új CNC gép beszerzése, digitális raktárkezelő rendszer, napelem telepítés..."></textarea>
             </div>
 
             <div class="form-actions">
@@ -214,7 +223,7 @@
         <!-- STEP 3 -->
         <div class="step" id="step-3">
             <h2>Elérhetőség</h2>
-            <p class="subtitle">Hogyan értesítsük az új közbeszerzésekről?</p>
+            <p class="subtitle">Hogyan értesítsük az új tenderekről?</p>
 
             <div class="field-row">
                 <div class="field">
@@ -234,11 +243,18 @@
 
             <div class="field">
                 <label>Értesítési csatorna <span class="req">*</span></label>
-                <div class="checkbox-grid" id="grid_channels">
-                    <label class="checkbox-item"><input type="checkbox" value="telegram" checked> Telegram (ajánlott)</label>
-                    <label class="checkbox-item"><input type="checkbox" value="email" checked> E-mail</label>
+                <div class="checkbox-grid">
+                    <label class="checkbox-item"><input type="checkbox" value="email" checked> E-mail (azonnali)</label>
+                    <label class="checkbox-item"><input type="checkbox" value="weekly" checked> Heti összefoglaló</label>
                 </div>
-                <div class="hint">A Telegram-on azonnali értesítést kap a magas pontszámú kiírásokról. E-mailen heti összefoglalót.</div>
+                <div class="hint">E-mailen kap azonnali értesítést új releváns tenderekről, és hetente egy összefoglaló e-mailt.</div>
+            </div>
+
+            <div class="field" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:14px 16px;">
+                <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:13px;color:#374151;">
+                    <input type="checkbox" id="f_gdpr" style="margin-top:3px;flex-shrink:0;">
+                    <span>Elolvastam és elfogadom az <a href="adatvedelem.html" target="_blank" rel="noopener" style="color:#2563eb;">Adatkezelési tájékoztatót</a> és az <a href="aszf.html" target="_blank" rel="noopener" style="color:#2563eb;">ÁSZF-et</a>. Hozzájárulok ahhoz, hogy a megadott adataimat a TenderPilot a leírtak szerint kezelje. <span style="color:#dc2626;">*</span></span>
+                </label>
             </div>
 
             <div class="form-actions">
@@ -252,8 +268,11 @@
             <div class="success-card">
                 <div class="success-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg></div>
                 <h2>Regisztráció sikeres!</h2>
-                <p>Az Ön cégprofilja beállítva. Indítsa el az első keresést, hogy azonnal megtaláljuk az Önhöz illő közbeszerzéseket.</p>
-                <a href="new-client.html" class="btn btn-primary" style="display: inline-block; text-decoration: none;">Tovább a vezérlőpultra</a>
+                <p>Átirányítjuk a személyre szabott felületre…</p>
+                <a href="portal.html" class="btn btn-primary" style="display: inline-block; text-decoration: none;">Belépés a portálra →</a>
+                <div id="demo-mode-note" style="display:none;margin-top:24px;padding:12px 16px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;font-size:12px;color:#78350f;line-height:1.5;text-align:left;">
+                    <b style="color:#92400e;">Demo mód.</b> A regisztrációja helyileg (a böngészőjében) rögzült és a portál személyre szabva betölti — élesben az üzemeltetőhöz is megérkezik egy értesítés.
+                </div>
             </div>
         </div>
     </div>
@@ -261,70 +280,115 @@
 
 <script>
 function nextStep(n) {
+    // Validate current step
     if (n === 2 && document.getElementById('step-1').classList.contains('active')) {
-        const required = ['f_company', 'f_industry', 'f_employees'];
-        let invalid = false;
-        required.forEach(id => {
-            const el = document.getElementById(id);
-            if (!el.value) { el.style.borderColor = '#dc2626'; invalid = true; }
-            else { el.style.borderColor = ''; }
-        });
-        if (invalid) return;
-    }
-    if (n === 3 && document.getElementById('step-2').classList.contains('active')) {
-        const countries = document.querySelectorAll('#grid_countries input:checked').length;
-        const services = document.querySelectorAll('#grid_services input:checked').length;
-        if (countries === 0 || services === 0) {
-            if (countries === 0) document.getElementById('grid_countries').style.outline = '1px solid #dc2626';
-            else document.getElementById('grid_countries').style.outline = '';
-            if (services === 0) document.getElementById('grid_services').style.outline = '1px solid #dc2626';
-            else document.getElementById('grid_services').style.outline = '';
+        if (!document.getElementById('f_company').value || !document.getElementById('f_industry').value || !document.getElementById('f_employees').value) {
+            [...document.querySelectorAll('#step-1 [required], #step-1 select')].forEach(el => {
+                if (!el.value) el.style.borderColor = '#dc2626';
+            });
             return;
         }
-        document.getElementById('grid_countries').style.outline = '';
-        document.getElementById('grid_services').style.outline = '';
     }
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
     document.getElementById('step-' + n).classList.add('active');
     document.querySelectorAll('.progress-step').forEach((p, i) => {
         p.classList.toggle('active', i < n);
     });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function submitForm() {
-    const name = document.getElementById('f_name');
-    const email = document.getElementById('f_email');
-    let invalid = false;
-    if (!name.value) { name.style.borderColor = '#dc2626'; invalid = true; } else { name.style.borderColor = ''; }
-    if (!email.value) { email.style.borderColor = '#dc2626'; invalid = true; } else { email.style.borderColor = ''; }
-    if (invalid) return;
+// ===== Backend endpoint (REQUIRED for real public launch) =====
+// Set this to your Formspree / Airtable / Supabase / custom endpoint so real
+// signups reach you. Empty string = localStorage only (demo mode — fine for
+// 1:1 demo shares, NOT suitable for public broadcast launch).
+//   Formspree (recommended, free up to 50/mo, ~5 min signup):
+//     1) Go to https://formspree.io → free account → New Form
+//     2) Set the endpoint as the form's action URL
+//     3) Paste it here, e.g. 'https://formspree.io/f/abcd1234'
+//   Custom backend: 'https://api.tenderpilot.hu/onboard'
+const ONBOARD_BACKEND_URL = '';
 
+function submitForm() {
+    if (!document.getElementById('f_name').value || !document.getElementById('f_email').value) {
+        if (!document.getElementById('f_name').value) document.getElementById('f_name').style.borderColor = '#dc2626';
+        if (!document.getElementById('f_email').value) document.getElementById('f_email').style.borderColor = '#dc2626';
+        return;
+    }
+    // GDPR consent — required before submission
+    const consent = document.getElementById('f_gdpr');
+    if (consent && !consent.checked) {
+        consent.parentElement.parentElement.style.borderColor = '#dc2626';
+        consent.parentElement.parentElement.style.background = '#fef2f2';
+        consent.scrollIntoView({behavior:'smooth', block:'center'});
+        return;
+    }
+    // Separate interest categories (step 2) from notification channels (step 3)
+    const interestCategories = [...document.querySelectorAll('#step-2 .checkbox-grid input:checked')].map(c => c.value);
+    const channels = [...document.querySelectorAll('#step-3 .checkbox-grid input:checked')].map(c => c.value);
     const data = {
         company: document.getElementById('f_company').value,
         industry: document.getElementById('f_industry').value,
         employees: document.getElementById('f_employees').value,
         revenue: document.getElementById('f_revenue').value,
         location: document.getElementById('f_location').value,
-        years_operating: document.getElementById('f_years').value,
-        target_countries: [...document.querySelectorAll('#grid_countries input:checked')].map(c => c.value),
-        services: [...document.querySelectorAll('#grid_services input:checked')].map(c => c.value),
-        certifications: [...document.querySelectorAll('#grid_certs input:checked')].map(c => c.value),
-        bond_capacity_eur: document.getElementById('f_bond').value,
-        past_tenders: document.getElementById('f_past').value,
-        contact_name: name.value,
-        email: email.value,
+        years_operating: (document.getElementById('f_years') || {}).value || '',
+        legal_form: (document.getElementById('f_legal') || {}).value || '',
+        categories: interestCategories,
+        channels: channels,
+        past_grants: document.getElementById('f_past').value,
+        notes: document.getElementById('f_notes').value,
+        contact_name: document.getElementById('f_name').value,
+        email: document.getElementById('f_email').value,
         phone: document.getElementById('f_phone').value,
-        notification_channels: [...document.querySelectorAll('#grid_channels input:checked')].map(c => c.value),
+        gdpr_consent: true,
+        gdpr_consent_ts: new Date().toISOString(),
         submitted: new Date().toISOString()
     };
-    console.log('TenderPilot registration:', JSON.stringify(data, null, 2));
-    // In production: POST to Airtable or Supabase
+    // Always persist locally for the in-app personalization
+    try { localStorage.setItem('tenderpilot:profile', JSON.stringify(data)); } catch(e) {}
+    // Optionally forward to a configured backend
+    if (ONBOARD_BACKEND_URL) {
+        fetch(ONBOARD_BACKEND_URL, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            body: JSON.stringify(data)
+        }).catch(() => { /* swallow — local copy already saved */ });
+    }
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
     document.getElementById('step-success').classList.add('active');
     document.querySelectorAll('.progress-step').forEach(p => p.classList.add('active'));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Honest demo-mode note: shown when no backend is configured.
+    const demoNote = document.getElementById('demo-mode-note');
+    if (demoNote) demoNote.style.display = ONBOARD_BACKEND_URL ? 'none' : 'block';
+    // Auto-login: free tier doesn't need a separate password — set the session
+    // token and forward into the portal. New users go straight to value.
+    try {
+        const tok = Array.from(crypto.getRandomValues(new Uint8Array(24))).map(b => b.toString(16).padStart(2,'0')).join('');
+        sessionStorage.setItem('gp_auth_token', tok);
+        sessionStorage.setItem('gp_user_email', data.email || '');
+        sessionStorage.setItem('gp_auth_time', Date.now().toString());
+    } catch(e) {}
+    setTimeout(() => { window.location.replace('portal.html'); }, 1500);
 }
 </script>
+
+<!-- COOKIE CONSENT -->
+<div id="gpcb" style="display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:2000;max-width:680px;margin:0 auto;background:#111827;color:#e5e7eb;border-radius:12px;padding:16px 20px;font-family:'Inter',-apple-system,sans-serif;font-size:13px;line-height:1.55;box-shadow:0 10px 30px rgba(0,0,0,0.25);">
+    <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;">
+        <div style="flex:1;min-width:240px;">
+            <b style="color:white;">Sütik használata</b><br>
+            A TenderPilot a működéshez szükséges sütiket használ. Részletek az
+            <a href="adatvedelem.html" style="color:#93c5fd;">Adatkezelési tájékoztatóban</a>.
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button onclick="gpcbAccept('necessary')" style="background:transparent;color:#e5e7eb;border:1px solid #374151;padding:8px 14px;border-radius:6px;font-weight:600;font-size:12px;cursor:pointer;font-family:inherit;">Csak szükségesek</button>
+            <button onclick="gpcbAccept('all')" style="background:#2563eb;color:white;border:none;padding:8px 14px;border-radius:6px;font-weight:700;font-size:12px;cursor:pointer;font-family:inherit;">Elfogadom mind</button>
+        </div>
+    </div>
+</div>
+<script>
+(function(){ try { if (!localStorage.getItem('gp_cookie_consent')) { document.getElementById('gpcb').style.display = 'block'; } } catch(e) {} })();
+function gpcbAccept(level){ try { localStorage.setItem('gp_cookie_consent', JSON.stringify({level:level,ts:Date.now()})); } catch(e) {} var el = document.getElementById('gpcb'); if (el) el.style.display = 'none'; }
+</script>
+
 </body>
 </html>
