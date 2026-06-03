@@ -1872,11 +1872,13 @@ function requestWriterQuote(id) {
     if (form) { form.style.display = 'block'; form.scrollIntoView({behavior:'smooth', block:'center'}); }
 }
 
-// ===== Backend endpoint (production) =====
+// ===== Backend endpoint (REQUIRED for real public launch) =====
 // Set this to your Formspree / Airtable / Supabase / custom endpoint to
-// forward consultation leads in real time. Empty string = demo mode
-// (localStorage only, visible in the Leadek panel).
-//   Formspree example: 'https://formspree.io/f/abcd1234'
+// forward consultation leads in real time. Empty string = localStorage
+// only (visible in the Leadek panel — fine for demo, NOT for public).
+//   Formspree (recommended, free up to 50/mo, ~5 min signup):
+//     https://formspree.io → free account → paste form URL here.
+//   Example: 'https://formspree.io/f/abcd1234'
 const LEAD_BACKEND_URL = '';
 
 function submitWriterLead(ev, id) {

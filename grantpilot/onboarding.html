@@ -268,8 +268,8 @@
             <div class="success-card">
                 <div class="success-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg></div>
                 <h2>Regisztráció sikeres!</h2>
-                <p>24 órán belül elkészítjük az Ön személyre szabott pályázatfigyelő profilját. Az első értesítést e-mailen kapja.</p>
-                <a href="portal.html" class="btn btn-primary" style="display: inline-block; text-decoration: none;">Demo áttekintő megtekintése</a>
+                <p>Átirányítjuk a személyre szabott felületre…</p>
+                <a href="portal.html" class="btn btn-primary" style="display: inline-block; text-decoration: none;">Belépés a portálra →</a>
             </div>
         </div>
     </div>
@@ -293,11 +293,15 @@ function nextStep(n) {
     });
 }
 
-// ===== Backend endpoint (production) =====
-// Set this to your Formspree / Airtable / Supabase / custom endpoint to
-// receive real submissions. Empty string = demo mode (localStorage only).
-//   Formspree example: 'https://formspree.io/f/abcd1234'
-//   Custom example:    'https://api.grantpilot.hu/onboard'
+// ===== Backend endpoint (REQUIRED for real public launch) =====
+// Set this to your Formspree / Airtable / Supabase / custom endpoint so real
+// signups reach you. Empty string = localStorage only (demo mode — fine for
+// 1:1 demo shares, NOT suitable for public broadcast launch).
+//   Formspree (recommended, free up to 50/mo, ~5 min signup):
+//     1) Go to https://formspree.io → free account → New Form
+//     2) Set the endpoint as the form's action URL
+//     3) Paste it here, e.g. 'https://formspree.io/f/abcd1234'
+//   Custom backend: 'https://api.grantpilot.hu/onboard'
 const ONBOARD_BACKEND_URL = '';
 
 function submitForm() {
@@ -349,6 +353,15 @@ function submitForm() {
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
     document.getElementById('step-success').classList.add('active');
     document.querySelectorAll('.progress-step').forEach(p => p.classList.add('active'));
+    // Auto-login: free tier doesn't need a separate password — set the session
+    // token and forward into the portal. New users go straight to value.
+    try {
+        const tok = Array.from(crypto.getRandomValues(new Uint8Array(24))).map(b => b.toString(16).padStart(2,'0')).join('');
+        sessionStorage.setItem('gp_auth_token', tok);
+        sessionStorage.setItem('gp_user_email', data.email || '');
+        sessionStorage.setItem('gp_auth_time', Date.now().toString());
+    } catch(e) {}
+    setTimeout(() => { window.location.replace('portal.html'); }, 1500);
 }
 </script>
 

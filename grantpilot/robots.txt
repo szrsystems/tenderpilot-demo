@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /grantpilot/$
+Allow: /grantpilot/index.html
+Allow: /grantpilot/partner.html
+Allow: /grantpilot/onboarding.html
+Allow: /grantpilot/aszf.html
+Allow: /grantpilot/adatvedelem.html
+Allow: /grantpilot/impresszum.html
+
+# Internal app surfaces — don't index
+Disallow: /grantpilot/portal.html
+Disallow: /grantpilot/login.html
+Disallow: /grantpilot/meeting-brief.html
+Disallow: /grantpilot/agreements.html
+Disallow: /grantpilot/LAUNCH-CHECKLIST.html
+
+# Bot directives
+Crawl-delay: 1
+
+Sitemap: https://szrsystems.github.io/tenderpilot-demo/grantpilot/sitemap.xml

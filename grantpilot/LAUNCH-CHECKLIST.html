@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Launch checklist — GrantPilot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --green-600: #16a34a; --green-700: #15803d; --green-50: #f0fdf4; --green-100: #dcfce7;
+            --amber-50: #fffbeb; --amber-600: #d97706; --amber-800: #92400e;
+            --red-600: #dc2626; --red-50: #fef2f2;
+            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
+        }
+        body { font-family: 'Inter', -apple-system, sans-serif; color: var(--gray-900); background: var(--gray-50); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        .wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+        .header { background: var(--gray-900); color: white; padding: 28px 32px; border-radius: 12px; margin-bottom: 28px; }
+        .header-tag { display: inline-block; background: var(--red-600); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+        .header h1 { font-size: 26px; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.4px; }
+        .header p { color: #d1d5db; font-size: 14px; }
+        .card { background: white; border: 1px solid var(--gray-200); border-radius: 12px; padding: 24px 28px; margin-bottom: 16px; }
+        .card .num { display: inline-block; background: var(--green-100); color: var(--green-700); font-size: 13px; font-weight: 800; padding: 4px 12px; border-radius: 999px; margin-bottom: 10px; }
+        .card h2 { font-size: 18px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.2px; }
+        .card p { font-size: 14px; color: var(--gray-700); margin-bottom: 10px; }
+        .card ol, .card ul { font-size: 14px; color: var(--gray-700); margin-left: 22px; margin-bottom: 10px; }
+        .card li { margin-bottom: 4px; }
+        .card .why { background: var(--gray-50); border-left: 3px solid var(--green-600); padding: 10px 14px; font-size: 13px; color: var(--gray-700); border-radius: 4px; margin: 12px 0; }
+        .card .where { background: var(--amber-50); border-left: 3px solid var(--amber-600); padding: 10px 14px; font-size: 13px; color: #78350f; border-radius: 4px; margin: 12px 0; }
+        .card .where b { color: var(--amber-800); }
+        .check { padding-left: 28px; position: relative; padding-top: 6px; padding-bottom: 6px; font-size: 14px; }
+        .check::before { content: '☐'; position: absolute; left: 0; top: 5px; font-size: 17px; color: var(--gray-400); }
+        code, .codeblock { font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 12.5px; background: var(--gray-100); padding: 2px 7px; border-radius: 4px; color: #1f2937; }
+        .codeblock { display: block; padding: 12px 14px; margin: 10px 0; white-space: pre-wrap; word-break: break-all; }
+        .small { font-size: 12px; color: var(--gray-500); }
+        .blocker { background: var(--red-50); border: 1px solid #fecaca; border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #7f1d1d; margin: 12px 0; }
+        .blocker b { color: var(--red-600); }
+        .ready { background: var(--green-50); border: 1px solid var(--green-100); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #14532d; margin: 12px 0; }
+        .ready b { color: var(--green-700); }
+        a { color: var(--green-700); }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+
+    <div class="header">
+        <span class="header-tag">Bizalmas · csak neked</span>
+        <h1>Launch checklist — GrantPilot publikus indítása</h1>
+        <p>A termék kódja kész. Ez a 6 lépés van hátra, amit csak te tudsz megcsinálni — 1–2 nap koncentrált munkával élesíthető.</p>
+    </div>
+
+    <div class="ready"><b>Ami már él:</b> bejelentkezés-gate, onboarding (most már auto-belépéssel), GDPR + impresszum + ÁSZF váz, cookie consent, OG meta tagek, sitemap, robots.txt, napi forrás-monitorozás. A demo bárkinek megmutatható már most.</div>
+
+    <div class="blocker"><b>Ami publikus indítás nélkül NEM működik:</b> a regisztrációk és konzultáció-kérések jelenleg csak a böngészőben (localStorage) tárolódnak. Senkinek nem jönnek hozzád e-mailben. <b>Ezt a 2. lépés oldja meg</b> — 5 perc.</div>
+
+    <!-- 1 -->
+    <div class="card">
+        <span class="num">1</span>
+        <h2>Töltsd ki a valós cégadatokat a jogi oldalakon</h2>
+        <p>Most placeholderek vannak az impresszumban és az adatvédelmi tájékoztatóban (<code>[Cégnév]</code>, <code>[Adószám]</code>, stb.). Cseréld le a valós adatokra.</p>
+        <ul>
+            <li class="check">Impresszum: cégnév, székhely, cégjegyzékszám, adószám, képviselő, kapcsolati e-mail, bankszámla → <code>grantpilot/impresszum.html</code></li>
+            <li class="check">Adatkezelési tájékoztató: adatkezelő adatai (1. pont) + <code>privacy@grantpilot.hu</code> helyett valós e-mail → <code>grantpilot/adatvedelem.html</code></li>
+            <li class="check">ÁSZF: cégadatok (1. pont) + <code>info@grantpilot.hu</code> → <code>grantpilot/aszf.html</code></li>
+        </ul>
+        <div class="where"><b>Hol szerkeszd:</b> a fájlokat közvetlenül, vagy szólj és én átírom, ha megadod az adatokat.</div>
+    </div>
+
+    <!-- 2 -->
+    <div class="card">
+        <span class="num">2</span>
+        <h2>Állítsd be a Formspree-t a regisztrációkhoz (~5 perc)</h2>
+        <p>Ez az egyetlen valódi blokkoló a publikus indítás előtt. A Formspree ingyenes 50 submission/hó-ig — pont elég kezdéshez.</p>
+        <ol>
+            <li>Menj a <a href="https://formspree.io" target="_blank" rel="noopener">formspree.io</a>-ra → <b>Sign up free</b> az e-mail címeddel</li>
+            <li><b>New Form</b> → adj neki nevet (pl. „GrantPilot Onboarding") → kapsz egy URL-t a formátumban: <code>https://formspree.io/f/abcd1234</code></li>
+            <li>Nyisd meg: <code>grantpilot/onboarding.html</code> → keresd: <code>const ONBOARD_BACKEND_URL = '';</code> → cseréld a kapott URL-re</li>
+            <li>Csinálj még egy formot „GrantPilot Lead" néven, és ugyanígy: <code>grantpilot/portal.html</code> → <code>const LEAD_BACKEND_URL = '';</code></li>
+            <li>Push, vagy szólj és kommitolom</li>
+        </ol>
+        <div class="why"><b>Mit csinál ez:</b> minden regisztráció és konzultáció-kérés ezután valódi e-mailként megérkezik hozzád a Formspree dashboardon (ÉS a megadott inbox-ra). A meglévő localStorage-mentés is megmarad, mint backup.</div>
+    </div>
+
+    <!-- 3 -->
+    <div class="card">
+        <span class="num">3</span>
+        <h2>(Opcionális, de erősen ajánlott) — saját domain</h2>
+        <p>A <code>szrsystems.github.io/tenderpilot-demo/grantpilot/</code> URL működik, de cold-marketing-re hiteltelennek tűnik. A <code>grantpilot.hu</code> ~5 000 Ft/év.</p>
+        <ol>
+            <li>Vásárolj domaint (Domain.hu, dotroll.com, vagy bármelyik magyar regisztrátor)</li>
+            <li>DNS: állíts be 4 db <code>A</code> rekordot a GitHub Pages IP-jeire:
+                <div class="codeblock">185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153</div>
+            </li>
+            <li>GitHub repo → Settings → Pages → Custom domain mező: <code>grantpilot.hu</code> → Save</li>
+            <li>Várj 10–30 percet, amíg a DNS terjed, és pipáld a <b>Enforce HTTPS</b>-t</li>
+            <li>Frissítsd a sitemap.xml-ben és OG metákban szereplő URL-eket az új domainre</li>
+        </ol>
+        <div class="why"><b>Miért:</b> a profi domain a hitelesség 50%-a egy SaaS-nál. Cold acquisition-nel ezzel egészen más a click-through.</div>
+    </div>
+
+    <!-- 4 -->
+    <div class="card">
+        <span class="num">4</span>
+        <h2>Ügyvédi átnézés a jogi oldalakon</h2>
+        <p>A GDPR / ÁSZF / Impresszum vázak jó kiindulópont, de NEM jogi vélemény. <b>Mielőtt publikusan hirdeted</b>, fizess egy ügyvédet (kb. 30–60 perc, 30–80 000 Ft) az átnézésre.</p>
+        <ul>
+            <li class="check">Adatvédelmi tájékoztató felülvizsgálva</li>
+            <li class="check">ÁSZF felülvizsgálva (különösen: díjak, lemondás, felelősség)</li>
+            <li class="check">Impresszum a hatályos Eker.tv. szerint</li>
+        </ul>
+        <div class="why"><b>Miért:</b> ha valami nem felel meg a NAIH elvárásoknak és bejelentés érkezik, a bírság alapja 20 000 000 Ft. Egy ügyvédi átnézés ennek a kockázatát töredékre csökkenti.</div>
+    </div>
+
+    <!-- 5 -->
+    <div class="card">
+        <span class="num">5</span>
+        <h2>Heti e-mail-küldés (későbbi fázis)</h2>
+        <p>A „Heti e-mail jelentés" funkció jelenleg <b>előnézet</b> — a felhasználó látja, de valódi e-mail nem megy ki. Ez a publikus indításhoz nem blokkoló, de az első hónap után már igen.</p>
+        <ol>
+            <li>Első 1–2 hónap: kézzel küldd ki a heti jelentést a feliratkozóknak (a Beállítások menüből látod a feliratkozott e-mailek listáját ha bevezetjük a Pro tier-t)</li>
+            <li>Skálázás: Postmark / SendGrid / Resend (mind ingyenes 100 e-mail/nap-ig)</li>
+            <li>Másik út: GitHub Actions cron → Postmark API → jelentés-küldés (be tudom építeni amikor kész vagy rá)</li>
+        </ol>
+    </div>
+
+    <!-- 6 -->
+    <div class="card">
+        <span class="num">6</span>
+        <h2>Bejelentés / első felhasználók</h2>
+        <p>Amikor minden fent kipipálva, jön a marketing. Pár opció prioritás szerint:</p>
+        <ol>
+            <li><b>LinkedIn poszt</b> — magyarul, te a Pankotai Csabától / Tóth Ádámtól kapott történettel, link a <code>grantpilot.hu</code>-ra. Ingyenes, célzott.</li>
+            <li><b>2–3 magyar KKV Facebook-csoport</b> (pl. „Vállalkozó Vagyok") — érdemes hozzászólni egy-két konkrét pályázati posztra, és csak utána szpemmolni a sajátot. Soha ne ess be linkkel az első hozzászólásban.</li>
+            <li><b>iparági szövetség / kamara hírlevél</b> — ha van bárki ismerős MKIK-ban / SEED Föld Magyarországon, kérd meg, hogy említse</li>
+            <li><b>Tóth Ádám + 1–2 további pályázatíró</b> — nekik már fehér címkés / partneri ajánlattal, nem cold marketinggel</li>
+        </ol>
+        <div class="why"><b>Mit ne tegyél:</b> ne költs Google/Facebook ads-re, amíg nincs legalább 50 valós feliratkozó organikusan. Addig nem tudod, mire optimalizálj.</div>
+    </div>
+
+    <div class="ready">
+        <b>Becsült teljes idő tőled:</b><br>
+        1. cégadatok: 20 perc · 2. Formspree: 5 perc · 3. domain: 1 óra (DNS-várakozással) · 4. ügyvéd: 1 hét átfutás, 30–80K Ft · 5. e-mail: opcionális kezdetben · 6. első poszt: 30 perc.<br><br>
+        <b>Kritikus út a publikus indításhoz:</b> 1 + 2. Ennyi kell, hogy valódi felhasználókat fogadj.
+    </div>
+
+</div>
+
+</body>
+</html>
