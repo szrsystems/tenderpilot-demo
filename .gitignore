@@ -1,0 +1,17 @@
+# Secrets — NEVER commit
+.secrets/
+*.env
+*.env.local
+.env.*
+!.env.example
+
+# Local tooling
+.claude/
+.DS_Store
+node_modules/
+*.log
+
+# Build artifacts
+dist/
+.turbo/
+.next/

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,follow">
+    <title>GrantPilot — Ingyenes regisztráció</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --green-50: #f0fdf4; --green-100: #dcfce7; --green-200: #bbf7d0; --green-600: #16a34a; --green-700: #15803d; --green-800: #166534;
+            --red-50: #fef2f2; --red-100: #fee2e2; --red-600: #dc2626; --red-700: #b91c1c;
+            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-900: #111827;
+        }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: linear-gradient(180deg, white 0%, var(--green-50) 100%); color: var(--gray-900); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+        .wrap { max-width: 440px; margin: 0 auto; padding: 60px 24px 40px; }
+        .logo { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 8px; }
+        .logo span { color: var(--green-600); }
+        .logo-sub { font-size: 13px; color: var(--gray-500); text-align: center; margin-bottom: 32px; }
+        .card { background: white; border: 1px solid var(--gray-200); border-radius: 16px; padding: 32px 28px; box-shadow: 0 8px 28px rgba(34,197,94,0.06); }
+        h1 { font-size: 22px; font-weight: 800; margin-bottom: 6px; text-align: center; letter-spacing: -0.4px; }
+        .subtitle { font-size: 14px; color: var(--gray-500); text-align: center; margin-bottom: 24px; line-height: 1.5; }
+        .btn-google { width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 16px; background: white; border: 1px solid var(--gray-300); border-radius: 10px; font-size: 14px; font-weight: 600; color: var(--gray-700); cursor: pointer; font-family: inherit; transition: all 0.1s; margin-bottom: 16px; }
+        .btn-google:hover { background: var(--gray-50); border-color: var(--gray-400); }
+        .btn-google svg { width: 18px; height: 18px; }
+        .divider { display: flex; align-items: center; gap: 12px; margin: 18px 0; font-size: 11px; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--gray-200); }
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--gray-600); margin-bottom: 6px; }
+        .form-group input { width: 100%; padding: 11px 14px; border: 1px solid var(--gray-300); border-radius: 8px; font-size: 14px; font-family: inherit; color: var(--gray-900); }
+        .form-group input:focus { outline: none; border-color: var(--green-600); box-shadow: 0 0 0 3px rgba(34,197,94,0.1); }
+        .gdpr-box { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 12px 14px; margin: 16px 0; font-size: 12px; color: var(--gray-700); line-height: 1.5; }
+        .gdpr-box label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+        .gdpr-box input { margin-top: 2px; flex-shrink: 0; }
+        .gdpr-box a { color: var(--green-700); }
+        .btn-primary { width: 100%; padding: 12px 16px; background: var(--green-600); color: white; border: none; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; transition: background 0.1s; }
+        .btn-primary:hover { background: var(--green-700); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+        .err { display: none; background: var(--red-50); border: 1px solid var(--red-100); color: var(--red-700); padding: 10px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+        .err.show { display: block; }
+        .ok { display: none; background: var(--green-50); border: 1px solid var(--green-100); color: var(--green-800); padding: 14px 16px; border-radius: 8px; font-size: 13px; line-height: 1.55; margin-bottom: 12px; }
+        .ok.show { display: block; }
+        .alt-link { font-size: 13px; color: var(--gray-500); text-align: center; margin-top: 18px; }
+        .alt-link a { color: var(--green-700); font-weight: 600; text-decoration: none; }
+        .alt-link a:hover { text-decoration: underline; }
+        .perks { background: var(--green-50); border-radius: 10px; padding: 16px 18px; margin-top: 20px; font-size: 12.5px; color: var(--gray-700); line-height: 1.6; }
+        .perks b { color: var(--green-800); display: block; margin-bottom: 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        footer { text-align: center; padding: 24px; font-size: 12px; color: var(--gray-400); }
+        footer a { color: var(--gray-500); margin: 0 8px; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="logo">Grant<span>Pilot</span></div>
+    <div class="logo-sub">Pályázati ügyfélportál</div>
+
+    <div class="card">
+        <h1>Ingyenes regisztráció</h1>
+        <div class="subtitle">Mentsd a kedvenc pályázataid és kapj heti összefoglalót. Bármikor lemondható.</div>
+
+        <div class="err" id="error-msg"></div>
+        <div class="ok" id="success-msg"></div>
+
+        <button class="btn-google" onclick="signUpGoogle()" id="google-btn">
+            <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            Folytatás Google-fiókkal
+        </button>
+
+        <div class="divider">vagy</div>
+
+        <form id="signup-form" autocomplete="on" onsubmit="signUpEmail(event)">
+            <div class="form-group">
+                <label for="email">E-mail cím</label>
+                <input type="email" id="email" name="email" required autocomplete="email" placeholder="on@vallalkozas.hu">
+            </div>
+            <div class="form-group">
+                <label for="password">Jelszó (min. 8 karakter)</label>
+                <input type="password" id="password" name="password" required autocomplete="new-password" minlength="8" placeholder="••••••••">
+            </div>
+
+            <div class="gdpr-box">
+                <label>
+                    <input type="checkbox" id="gdpr" required>
+                    <span>Elolvastam és elfogadom az <a href="adatvedelem.html" target="_blank" rel="noopener">Adatkezelési tájékoztatót</a> és az <a href="aszf.html" target="_blank" rel="noopener">ÁSZF</a>-et. Hozzájárulok, hogy az e-mailemet a GrantPilot a leírtak szerint kezelje.</span>
+                </label>
+            </div>
+
+            <button type="submit" class="btn-primary" id="submit-btn">Ingyenes fiók létrehozása</button>
+        </form>
+
+        <div class="alt-link">Már van fiókod? <a href="login.html">Belépés</a></div>
+
+        <div class="perks">
+            <b>Az ingyenes Basic fiókkal</b>
+            ✓ Pályázatok mentése<br>
+            ✓ Heti összefoglaló e-mail<br>
+            ✓ Konzultáció kérése tanácsadó partnertől<br>
+            <span style="display:inline-block;margin-top:8px;font-size:11px;color:var(--gray-500);">A személyre szabott illeszkedési pontozás, AI vázlat és heti személyre szabott jelentés a Pro csomag része (5 067 Ft/hó bruttó, bármikor lemondható).</span>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <a href="adatvedelem.html">Adatvédelem</a> ·
+    <a href="impresszum.html">Impresszum</a> ·
+    <a href="aszf.html">ÁSZF</a>
+    <br>&copy; 2026 GrantPilot
+</footer>
+
+<script src="lib/supabase.js"></script>
+<script>
+function showError(msg) {
+    const el = document.getElementById('error-msg');
+    el.textContent = msg;
+    el.classList.add('show');
+    document.getElementById('success-msg').classList.remove('show');
+}
+function showSuccess(msg) {
+    const el = document.getElementById('success-msg');
+    el.innerHTML = msg;
+    el.classList.add('show');
+    document.getElementById('error-msg').classList.remove('show');
+}
+
+async function withClient(fn) {
+    if (!window.gp) await new Promise(r => window.addEventListener('gp-ready', r, { once: true }));
+    return fn(window.gp.client);
+}
+
+async function signUpEmail(ev) {
+    ev.preventDefault();
+    const email = document.getElementById('email').value.trim().toLowerCase();
+    const password = document.getElementById('password').value;
+    const gdpr = document.getElementById('gdpr').checked;
+    if (!gdpr) { showError('Az adatkezelési tájékoztató elfogadása szükséges.'); return; }
+    if (password.length < 8) { showError('A jelszó legalább 8 karakter legyen.'); return; }
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true; btn.textContent = 'Regisztráció…';
+
+    try {
+        const { data, error } = await withClient(c => c.auth.signUp({
+            email, password,
+            options: { emailRedirectTo: location.origin + location.pathname.replace(/signup\.html$/, 'portal.html') }
+        }));
+        if (error) throw error;
+        if (data.user && !data.session) {
+            // Email confirmation required (default Supabase behaviour)
+            showSuccess('✉️ <b>Megerősítő e-mail elküldve</b> a(z) <b>' + email + '</b> címre. Nyisd meg, és kattints a megerősítő linkre — utána automatikusan bejelentkezel.');
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('google-btn').style.display = 'none';
+        } else if (data.session) {
+            // Auto-confirmed; go straight to portal
+            location.replace('portal.html');
+        }
+    } catch (e) {
+        const msg = (e && e.message) || 'Ismeretlen hiba történt.';
+        if (/already registered|already exists/i.test(msg)) {
+            showError('Ezzel az e-maillel már létezik fiók — próbálj belépni.');
+        } else if (/email/i.test(msg)) {
+            showError('Hibás e-mail cím vagy a Supabase még nem küld megerősítő e-mailt: ' + msg);
+        } else {
+            showError('Regisztráció sikertelen: ' + msg);
+        }
+        btn.disabled = false; btn.textContent = 'Ingyenes fiók létrehozása';
+    }
+}
+
+async function signUpGoogle() {
+    try {
+        const { error } = await withClient(c => c.auth.signInWithOAuth({
+            provider: 'google',
+            options: { redirectTo: location.origin + location.pathname.replace(/signup\.html$/, 'portal.html') }
+        }));
+        if (error) throw error;
+    } catch (e) {
+        showError('Google bejelentkezés sikertelen: ' + ((e && e.message) || 'ismeretlen hiba'));
+    }
+}
+
+// Already signed in? Bounce to portal.
+window.addEventListener('gp-ready', async () => {
+    const { data: { user } } = await window.gp.client.auth.getUser();
+    if (user) location.replace('portal.html');
+});
+</script>
+
+</body>
+</html>
