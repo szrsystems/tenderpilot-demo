@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GrantPilot — Áttekintés</title>
-    <script>
-        if (!sessionStorage.getItem("gp_auth_token")) {
-            window.location.replace("login.html");
-        }
-    </script>
+    <script src="lib/supabase.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -496,6 +492,34 @@
             .sort-bar { flex-direction: column; align-items: stretch; }
             .sort-right { justify-content: space-between; }
         }
+
+        /* TIER-GATING — controlled by body class .tier-anonymous|.tier-basic|.tier-pro */
+        /* Default state: hide everything tier-restricted; reveal per body class. */
+        .pro-only        { display: none !important; }
+        .signed-in-only  { display: none !important; }
+        .anonymous-only  { display: none !important; }
+        .basic-only      { display: none !important; }
+        body.tier-pro       .pro-only        { display: revert !important; }
+        body.tier-pro       .signed-in-only  { display: revert !important; }
+        body.tier-basic     .signed-in-only  { display: revert !important; }
+        body.tier-basic     .basic-only      { display: revert !important; }
+        body.tier-anonymous .anonymous-only  { display: revert !important; }
+
+        /* Pro feature lock-card (inline upgrade prompt) */
+        .pro-lock { display: none; border: 1px dashed var(--green-600); background: linear-gradient(135deg, #f0fdf4 0%, white 100%); border-radius: var(--radius-lg); padding: 24px; text-align: center; margin: 20px 0; }
+        body.tier-anonymous .pro-lock, body.tier-basic .pro-lock { display: block; }
+        .pro-lock h3 { font-size: 16px; font-weight: 700; color: var(--green-800); margin-bottom: 6px; }
+        .pro-lock p  { font-size: 13px; color: var(--gray-600); margin-bottom: 14px; }
+        .pro-lock .lock-icon { width: 32px; height: 32px; background: var(--green-600); color: white; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; font-size: 16px; }
+        .pro-lock .btn-upgrade { display: inline-block; background: var(--green-600); color: white; padding: 8px 18px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; }
+        .pro-lock .btn-upgrade:hover { background: var(--green-700); }
+
+        /* Sidebar Pro badge */
+        .nav-pro-badge { margin-left: auto; background: var(--gray-200); color: var(--gray-600); font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.4px; }
+        body.tier-pro .nav-pro-badge { display: none; }
+
+        /* Anonymous: hide save buttons */
+        body.tier-anonymous .save-btn, body.tier-anonymous .bookmark-btn { display: none !important; }
     </style>
 </head>
 <body>
@@ -521,17 +545,17 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" /></svg>
             Leadek <span class="nav-badge" id="nav-leads-count" style="background: var(--gray-400);">0</span>
         </div>
-        <div class="nav-item" onclick="showPage('drafter')">
+        <div class="nav-item" onclick="goToProFeature(event, 'drafter')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" /></svg>
-            AI Vázlat <span class="nav-badge" style="background: var(--green-600);">Új</span>
+            AI Vázlat <span class="nav-pro-badge">Pro</span>
         </div>
-        <div class="nav-item" onclick="showPage('reports')">
+        <div class="nav-item" onclick="goToProFeature(event, 'reports')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
-            Jelentések
+            Jelentések <span class="nav-pro-badge">Pro</span>
         </div>
-        <div class="nav-item" onclick="showPage('alerts')">
+        <div class="nav-item" onclick="goToProFeature(event, 'alerts')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" /></svg>
-            Értesítések <span class="nav-badge" style="background: var(--red-600);">5</span>
+            Értesítések <span class="nav-pro-badge">Pro</span>
         </div>
         <div class="nav-item" onclick="showPage('profile')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.431.992a6.759 6.759 0 0 1 0 .255c-.007.378.138.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>
@@ -539,8 +563,10 @@
         </div>
     </div>
     <div class="sidebar-footer">
-        <div class="sidebar-user">Demo Vállalkozás Kft.</div>
-        <div class="sidebar-plan">Professional csomag</div>
+        <div class="sidebar-user" id="sidebar-user-name">Vendég</div>
+        <div class="sidebar-plan" id="sidebar-tier-label">Anonim böngészés</div>
+        <a href="#" id="sidebar-upgrade" class="anonymous-only basic-only" onclick="event.preventDefault(); window.location.href='signup.html?upgrade=pro'" style="display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:var(--green-700);text-decoration:none;text-transform:uppercase;letter-spacing:0.4px;">Upgrade Pro →</a>
+        <a href="#" id="sidebar-signout" class="signed-in-only" onclick="event.preventDefault(); if(window.gp){window.gp.signOut('index.html')}else{sessionStorage.clear();location.replace('index.html')}" style="display:inline-block;margin-top:8px;font-size:11px;color:var(--gray-500);text-decoration:none;">Kijelentkezés</a>
     </div>
 </div>
 
@@ -551,8 +577,24 @@
             <h1>Áttekintés <span class="freshness" id="freshness" title="" style="display:none;"><span class="fr-dot"></span><span id="fr-text">…</span></span></h1>
         </div>
         <div class="content">
-            <!-- AI NEEDS FINDER -->
-            <div class="needs-finder" id="needs-finder">
+            <!-- ANONYMOUS-ONLY signup nudge -->
+            <div class="anonymous-only" style="background:linear-gradient(135deg, #f0fdf4 0%, white 100%); border:1px solid var(--green-200); border-radius:var(--radius-lg); padding:20px 24px; margin-bottom:20px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:240px;">
+                    <div style="font-weight:700; font-size:15px; color:var(--green-800); margin-bottom:4px;">Regisztráljon ingyen — mentse el a kedvenc pályázatait</div>
+                    <div style="font-size:13px; color:var(--gray-600);">Korlátlan ideig ingyenes. Bankkártya nem szükséges. 30 másodperc.</div>
+                </div>
+                <a href="signup.html" style="background:var(--green-600); color:white; padding:10px 20px; border-radius:6px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap;">Ingyenes regisztráció</a>
+                <a href="login.html" style="color:var(--green-700); font-size:13px; font-weight:600; text-decoration:none;">Belépés →</a>
+            </div>
+
+            <!-- PRO-ONLY: AI NEEDS FINDER. Anonymous/Basic see a lock card instead. -->
+            <div class="pro-lock">
+                <div class="lock-icon">🔒</div>
+                <h3>AI igény-felmérő — Pro funkció</h3>
+                <p>Írja le pár szóban, mire kéne támogatás — és az AI megkeresi az Önnek megfelelő pályázatokat. Elérhető Pro előfizetéssel (5 067 Ft/hó).</p>
+                <a href="signup.html?upgrade=pro" class="btn-upgrade">Upgrade Pro-ra</a>
+            </div>
+            <div class="needs-finder pro-only" id="needs-finder">
                 <div class="nf-head">
                     <div class="nf-spark">✨</div>
                     <div>
@@ -581,22 +623,44 @@
                 <span class="profile-banner-cta">Profil kitöltése →</span>
             </a>
 
-            <!-- WEEKLY DIGEST -->
-            <div class="digest-card" id="digest-card"></div>
+            <!-- WEEKLY DIGEST (Pro only) -->
+            <div class="digest-card pro-only" id="digest-card"></div>
 
-            <!-- RECOMMENDED FOR YOU -->
-            <div class="section-head first">
-                <div>
-                    <div class="section-title-row">
-                        <div class="section-title">Neked ajánljuk</div>
-                        <span class="section-pill" id="reco-section-pill">Az Ön profilja alapján</span>
-                        <span id="expired-dashboard-note" style="display:none; margin-left:8px; font-size:11px; color:var(--gray-400); align-items:center; gap:4px;"></span>
+            <!-- RECOMMENDED FOR YOU (Pro only) -->
+            <div class="pro-only">
+                <div class="section-head first">
+                    <div>
+                        <div class="section-title-row">
+                            <div class="section-title">Neked ajánljuk</div>
+                            <span class="section-pill" id="reco-section-pill">Az Ön profilja alapján</span>
+                            <span id="expired-dashboard-note" style="display:none; margin-left:8px; font-size:11px; color:var(--gray-400); align-items:center; gap:4px;"></span>
+                        </div>
+                        <div class="section-sub" id="reco-section-sub">A profiljához legjobban illeszkedő 5 pályázat — friss pontozás</div>
                     </div>
-                    <div class="section-sub" id="reco-section-sub">A profiljához legjobban illeszkedő 5 pályázat — friss pontozás</div>
+                    <a class="section-action" onclick="showPage('grants')">Összes pályázat →</a>
                 </div>
-                <a class="section-action" onclick="showPage('grants')">Összes pályázat →</a>
+                <div class="reco-grid" id="reco-grid"></div>
             </div>
-            <div class="reco-grid" id="reco-grid"></div>
+
+            <!-- BASIC/ANONYMOUS browse-all CTA -->
+            <div class="anonymous-only basic-only">
+                <div class="section-head first">
+                    <div>
+                        <div class="section-title-row">
+                            <div class="section-title">Összes magyar pályázat (~300)</div>
+                            <span class="section-pill">Ingyenes böngészés</span>
+                        </div>
+                        <div class="section-sub">Pro upgrade-del személyre szabott AI-pontozást és heti riportot kap</div>
+                    </div>
+                    <a class="section-action" onclick="showPage('grants')">Pályázatok →</a>
+                </div>
+                <div class="pro-lock">
+                    <div class="lock-icon">✨</div>
+                    <h3>Személyre szabott ajánlások — Pro funkció</h3>
+                    <p>A Pro AI-pontozással egy 10 fős budapesti IT cég teljesen más pályázati listát kap, mint egy 50 fős debreceni gyártó. 5 067 Ft/hó, bármikor lemondható.</p>
+                    <a href="signup.html?upgrade=pro" class="btn-upgrade">Upgrade Pro-ra</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -714,7 +778,13 @@
             </div>
         </div>
         <div class="content">
-            <div class="drafter-wrap" id="drafter-wrap"></div>
+            <div class="pro-lock">
+                <div class="lock-icon">🔒</div>
+                <h3>AI Pályázat-vázlat — Pro funkció</h3>
+                <p>Egy kattintásra generál cégprofilra szabott pályázat-vázlatot, vezetői összefoglalót, kötelező részekkel és ellenőrző-listával. Pro előfizetéssel elérhető (5 067 Ft/hó).</p>
+                <a href="signup.html?upgrade=pro" class="btn-upgrade">Upgrade Pro-ra</a>
+            </div>
+            <div class="drafter-wrap pro-only" id="drafter-wrap"></div>
         </div>
     </div>
 
@@ -722,10 +792,16 @@
     <div id="page-reports" class="page hidden">
         <div class="topbar"><h1>Jelentések &amp; dokumentumok</h1></div>
         <div class="content">
-            <div style="font-size:13px;color:var(--gray-500);margin-bottom:20px;max-width:640px;line-height:1.55;">
+            <div class="pro-lock">
+                <div class="lock-icon">🔒</div>
+                <h3>Jelentések — Pro funkció</h3>
+                <p>Cégprofilra szabott vezetői összefoglaló, portfólió és heti riport — egy kattintásra, PDF-re nyomtatható. Pro előfizetéssel elérhető (5 067 Ft/hó).</p>
+                <a href="signup.html?upgrade=pro" class="btn-upgrade">Upgrade Pro-ra</a>
+            </div>
+            <div class="pro-only" style="font-size:13px;color:var(--gray-500);margin-bottom:20px;max-width:640px;line-height:1.55;">
                 Generáljon professzionális, az Ön cégprofiljára szabott dokumentumokat egy kattintással — nyomtatható és PDF-be menthető. Ideális könyvelőnek, vezetőségnek vagy pályázatírónak átadni.
             </div>
-            <div class="report-grid">
+            <div class="report-grid pro-only">
                 <div class="report-card" onclick="openReport('weekly')">
                     <div class="report-ico">📩</div>
                     <div class="report-meta">
@@ -758,7 +834,13 @@
     <div id="page-alerts" class="page hidden">
         <div class="topbar"><h1>Értesítések</h1></div>
         <div class="content">
-            <div class="card" id="alerts-card"></div>
+            <div class="pro-lock">
+                <div class="lock-icon">🔒</div>
+                <h3>Értesítések — Pro funkció</h3>
+                <p>Sürgős határidő-riasztások, új releváns pályázatok és személyre szabott e-mail értesítések. Pro előfizetéssel elérhető (5 067 Ft/hó).</p>
+                <a href="signup.html?upgrade=pro" class="btn-upgrade">Upgrade Pro-ra</a>
+            </div>
+            <div class="card pro-only" id="alerts-card"></div>
         </div>
     </div>
 
@@ -2870,6 +2952,114 @@ updateLeadsBadge();
 mountUserWidget();
 initDashboard();
 maybeShowCTA();
+
+// =========================================================================
+// Tier resolution + Supabase auth integration
+// =========================================================================
+// Resolves: 'anonymous' | 'basic' | 'pro' and applies body.tier-<x> class.
+// Sources in priority order:
+//   1) Supabase session → user_with_tier view
+//   2) Legacy demo session (sessionStorage.gp_auth_token) → 'pro' (demo flow)
+//   3) Nothing → 'anonymous'
+// =========================================================================
+window.currentTier = 'anonymous';
+
+function applyTier(tier, displayName) {
+    window.currentTier = tier;
+    document.body.classList.remove('tier-anonymous','tier-basic','tier-pro');
+    document.body.classList.add('tier-' + tier);
+    const u = document.getElementById('sidebar-user-name');
+    const t = document.getElementById('sidebar-tier-label');
+    if (u) u.textContent = displayName || (tier === 'anonymous' ? 'Vendég' : 'Felhasználó');
+    if (t) {
+        if (tier === 'anonymous') t.textContent = 'Anonim böngészés';
+        else if (tier === 'basic') t.textContent = 'Free csomag';
+        else if (tier === 'pro')   t.textContent = 'Pro csomag ✓';
+    }
+}
+
+// Pro-only nav clicks: if not Pro, deflect to upgrade
+function goToProFeature(ev, page) {
+    if (window.currentTier === 'pro') {
+        showPage(page);
+    } else {
+        // Still navigate so the user sees the lock card (it's already rendered)
+        showPage(page);
+    }
+}
+
+// Migrate localStorage bookmarks/profile to Supabase on first sign-in
+async function migrateLocalToSupabase(client, userId) {
+    try {
+        const marker = 'gp_migrated_' + userId;
+        if (localStorage.getItem(marker)) return;
+        // Bookmarks
+        const saved = JSON.parse(localStorage.getItem('grantpilot:saved') || '[]');
+        if (Array.isArray(saved) && saved.length) {
+            const rows = saved.map(id => ({ user_id: userId, grant_id: String(id) }));
+            await client.from('bookmarks').upsert(rows, { onConflict: 'user_id,grant_id', ignoreDuplicates: true });
+            console.log('[gp] migrated', rows.length, 'bookmarks');
+        }
+        // Profile fields → only the non-tier columns the user can write
+        const prof = JSON.parse(localStorage.getItem('grantpilot:profile') || 'null');
+        if (prof && typeof prof === 'object') {
+            const patch = {
+                display_name: prof.contact_name || undefined,
+                company: prof.company || undefined,
+                industry: prof.industry || undefined,
+                employees: prof.employees || undefined,
+                revenue: prof.revenue || undefined,
+                location: prof.location || undefined,
+                years_operating: prof.years_operating || undefined,
+                legal_form: prof.legal_form || undefined,
+                categories: Array.isArray(prof.categories) ? prof.categories : undefined,
+            };
+            Object.keys(patch).forEach(k => patch[k] === undefined && delete patch[k]);
+            if (Object.keys(patch).length) {
+                await client.from('profiles').update(patch).eq('id', userId);
+                console.log('[gp] migrated profile fields:', Object.keys(patch));
+            }
+        }
+        localStorage.setItem(marker, new Date().toISOString());
+    } catch (e) { console.warn('[gp] migration failed', e); }
+}
+
+async function resolveTier() {
+    // 1) Supabase
+    if (window.gp && window.gp.client) {
+        try {
+            const profile = await window.gp.getUserProfile();
+            if (profile) {
+                const isPro = profile.tier === 'pro' && ['trialing','active'].includes(profile.subscription_status);
+                applyTier(isPro ? 'pro' : 'basic', profile.display_name || profile.email || 'Felhasználó');
+                migrateLocalToSupabase(window.gp.client, profile.id);
+                return;
+            }
+        } catch (e) { console.warn('[gp] tier resolve error', e); }
+    }
+    // 2) Legacy demo session — treat as Pro so the writer demo links still work
+    if (sessionStorage.getItem('gp_auth_token')) {
+        const email = sessionStorage.getItem('gp_user_email') || 'Demo';
+        applyTier('pro', email);
+        return;
+    }
+    // 3) Anonymous
+    applyTier('anonymous');
+}
+
+// Apply anonymous immediately to avoid flash-of-nothing. If a legacy demo
+// session token exists, jump straight to 'pro' (writer demo flow). Otherwise
+// wait for Supabase to resolve and upgrade if signed in.
+if (sessionStorage.getItem('gp_auth_token')) {
+    applyTier('pro', sessionStorage.getItem('gp_user_email') || 'Demo');
+} else {
+    applyTier('anonymous');
+}
+if (window.gp) {
+    resolveTier();
+} else {
+    window.addEventListener('gp-ready', resolveTier, { once: true });
+}
 </script>
 </body>
 </html>
