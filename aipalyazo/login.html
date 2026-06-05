@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrantPilot — Bejelentkezés</title>
+    <title>AIpályázó — Bejelentkezés</title>
     <meta name="robots" content="noindex,nofollow">
     <meta name="theme-color" content="#16a34a">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -192,7 +192,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                 </svg>
             </div>
-            <div class="logo-text">Grant<span>Pilot</span></div>
+            <div class="logo-text"><span>AI</span>pályázó</div>
             <div class="logo-sub">Pályázati ügyfélportál</div>
         </div>
 
@@ -232,19 +232,21 @@
         </div>
 
         <div class="demo-hint" style="margin-top:18px;">
-            <b>Demo (legacy):</b> demo@grantpilot.hu / grantpilot2026 — <i>író-kapcsolatokkal való demókhoz</i>
+            <b>Demo (legacy):</b> demo@aipalyazo.hu / grantpilot2026 — <i>író-kapcsolatokkal való demókhoz</i>
         </div>
     </div>
 </div>
 
 <footer>
-    © 2026 GrantPilot · <a href="mailto:info@grantpilot.hu">info@grantpilot.hu</a>
+    © 2026 AIpályázó · <a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a>
 </footer>
 
 <script>
+// Demo creds: hash of `demo@aipalyazo.hu:grantpilot2026`. Legacy SHA-256 gate;
+// used only for the writer demo flow (?for=&firm= invite links). Real users
+// go through Supabase Auth (see lib/supabase.js).
 const VALID_HASHES = {
-    "f3f55fa2faf350d21e349bba3b95f98dc8c1618d049ea017847d3349f23fe4e1": "demo@grantpilot.hu",
-    "22f50201b31123f95632f69e9418f6c32c94064f8fa8805631626645a656db00": "pilot@grantpilot.hu"
+    "361b040bca673f9f3edccfec9240ec01cae01181356bde47b39ee592ff2bc1db": "demo@aipalyazo.hu"
 };
 
 async function sha256Hex(text) {
@@ -278,11 +280,11 @@ function genToken() {
         }
         const h1 = document.getElementById('login-h1');
         const sub = document.getElementById('login-sub');
-        if (h1) h1.textContent = 'GrantPilot demo';
+        if (h1) h1.textContent = 'AIpályázó demo';
         if (sub) sub.textContent = 'Jelentkezzen be lent a demo-fiókkal, és nézze meg a rendszert testreszabva.';
         // Pre-fill demo email so they don't have to type — password still required.
         const emailEl = document.getElementById('email');
-        if (emailEl && !emailEl.value) emailEl.value = 'demo@grantpilot.hu';
+        if (emailEl && !emailEl.value) emailEl.value = 'demo@aipalyazo.hu';
     } catch (e) {}
 })();
 
@@ -389,7 +391,7 @@ form.addEventListener("submit", async (e) => {
     <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;">
         <div style="flex:1;min-width:240px;">
             <b style="color:white;">Sütik használata</b><br>
-            A GrantPilot a működéshez szükséges sütiket használ. Részletek az
+            A AIpályázó a működéshez szükséges sütiket használ. Részletek az
             <a href="adatvedelem.html" style="color:#86efac;">Adatkezelési tájékoztatóban</a>.
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;">

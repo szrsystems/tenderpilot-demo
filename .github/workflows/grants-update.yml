@@ -1,7 +1,7 @@
 name: Daily grants monitor
 
 # Runs every day at 06:00 UTC (08:00 Budapest in summer) — pings the known
-# Hungarian grant-source sites, writes grantpilot/grants-status.json with
+# Hungarian grant-source sites, writes aipalyazo/grants-status.json with
 # reachability + timestamps, and commits if anything changed. GitHub Pages
 # auto-deploys the new JSON so the portal shows up-to-date freshness.
 on:
@@ -29,9 +29,9 @@ jobs:
 
       - name: Commit changes (if any)
         run: |
-          git config user.name "grantpilot-bot"
-          git config user.email "bot@grantpilot.hu"
-          git add grantpilot/grants-status.json
+          git config user.name "aipalyazo-bot"
+          git config user.email "bot@aipalyazo.hu"
+          git add aipalyazo/grants-status.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else

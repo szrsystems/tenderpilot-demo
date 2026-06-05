@@ -1,7 +1,7 @@
-// GrantPilot — daily monitor.
+// AIpályázó — daily monitor.
 //
 // Today this verifies reachability of every known grant-source domain,
-// records timestamps + HTTP status, and emits grantpilot/grants-status.json.
+// records timestamps + HTTP status, and emits aipalyazo/grants-status.json.
 // The portal reads that file on load and displays "Adatbázis frissítve: X".
 //
 // This is the framework — real per-source scrapers (parsing felhívás lists
@@ -27,9 +27,9 @@ const SOURCES = [
   { name: 'exim.hu',                  url: 'https://www.exim.hu/',                           weight: 3 },
 ];
 
-const OUT_PATH = 'grantpilot/grants-status.json';
+const OUT_PATH = 'aipalyazo/grants-status.json';
 const TIMEOUT_MS = 12_000;
-const USER_AGENT = 'GrantPilot-Monitor/1.0 (+https://grantpilot.hu/bot; contact: bot@grantpilot.hu)';
+const USER_AGENT = 'AIpalyazo-Monitor/1.0 (+https://aipalyazo.hu/bot; contact: bot@aipalyazo.hu)';
 
 // Sources with a known index/list URL get an extra "item count" pass — crude
 // HTML pattern matching that flags when new entries appear vs the previous run.

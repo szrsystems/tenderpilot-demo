@@ -1,5 +1,5 @@
 // =========================================================================
-// GrantPilot — Paddle webhook handler (Supabase Edge Function)
+// AIpályázó — Paddle webhook handler (Supabase Edge Function)
 // =========================================================================
 // Receives subscription lifecycle events from Paddle and updates the
 // public.subscriptions + public.profiles.tier rows. This is the ONLY

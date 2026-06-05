@@ -46,5 +46,5 @@ When creating the Paddle checkout from the frontend, always pass:
 ```js
 custom_data: { user_id: '<the supabase auth.users.id>' }
 ```
-This is how the webhook resolves the buyer back to the GrantPilot user.
+This is how the webhook resolves the buyer back to the AIpályázó user.
 Email fallback exists but is fragile (people pay with a different email).

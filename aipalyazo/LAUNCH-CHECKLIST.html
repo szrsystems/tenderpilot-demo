@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow">
-    <title>Launch checklist — GrantPilot</title>
+    <title>Launch checklist — AIpályázó</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -48,7 +48,7 @@
 
     <div class="header">
         <span class="header-tag">Bizalmas · csak neked</span>
-        <h1>Launch checklist — GrantPilot publikus indítása</h1>
+        <h1>Launch checklist — AIpályázó publikus indítása</h1>
         <p>A termék kódja kész. Ez a 6 lépés van hátra, amit csak te tudsz megcsinálni — 1–2 nap koncentrált munkával élesíthető.</p>
     </div>
 
@@ -62,9 +62,9 @@
         <h2>Töltsd ki a valós cégadatokat a jogi oldalakon</h2>
         <p>Most placeholderek vannak az impresszumban és az adatvédelmi tájékoztatóban (<code>[Cégnév]</code>, <code>[Adószám]</code>, stb.). Cseréld le a valós adatokra.</p>
         <ul>
-            <li class="check">Impresszum: cégnév, székhely, cégjegyzékszám, adószám, képviselő, kapcsolati e-mail, bankszámla → <code>grantpilot/impresszum.html</code></li>
-            <li class="check">Adatkezelési tájékoztató: adatkezelő adatai (1. pont) + <code>privacy@grantpilot.hu</code> helyett valós e-mail → <code>grantpilot/adatvedelem.html</code></li>
-            <li class="check">ÁSZF: cégadatok (1. pont) + <code>info@grantpilot.hu</code> → <code>grantpilot/aszf.html</code></li>
+            <li class="check">Impresszum: cégnév, székhely, cégjegyzékszám, adószám, képviselő, kapcsolati e-mail, bankszámla → <code>aipalyazo/impresszum.html</code></li>
+            <li class="check">Adatkezelési tájékoztató: adatkezelő adatai (1. pont) + <code>privacy@aipalyazo.hu</code> helyett valós e-mail → <code>aipalyazo/adatvedelem.html</code></li>
+            <li class="check">ÁSZF: cégadatok (1. pont) + <code>info@aipalyazo.hu</code> → <code>aipalyazo/aszf.html</code></li>
         </ul>
         <div class="where"><b>Hol szerkeszd:</b> a fájlokat közvetlenül, vagy szólj és én átírom, ha megadod az adatokat.</div>
     </div>
@@ -76,9 +76,9 @@
         <p>Ez az egyetlen valódi blokkoló a publikus indítás előtt. A Formspree ingyenes 50 submission/hó-ig — pont elég kezdéshez.</p>
         <ol>
             <li>Menj a <a href="https://formspree.io" target="_blank" rel="noopener">formspree.io</a>-ra → <b>Sign up free</b> az e-mail címeddel</li>
-            <li><b>New Form</b> → adj neki nevet (pl. „GrantPilot Onboarding") → kapsz egy URL-t a formátumban: <code>https://formspree.io/f/abcd1234</code></li>
-            <li>Nyisd meg: <code>grantpilot/onboarding.html</code> → keresd: <code>const ONBOARD_BACKEND_URL = '';</code> → cseréld a kapott URL-re</li>
-            <li>Csinálj még egy formot „GrantPilot Lead" néven, és ugyanígy: <code>grantpilot/portal.html</code> → <code>const LEAD_BACKEND_URL = '';</code></li>
+            <li><b>New Form</b> → adj neki nevet (pl. „AIpályázó Onboarding") → kapsz egy URL-t a formátumban: <code>https://formspree.io/f/abcd1234</code></li>
+            <li>Nyisd meg: <code>aipalyazo/onboarding.html</code> → keresd: <code>const ONBOARD_BACKEND_URL = '';</code> → cseréld a kapott URL-re</li>
+            <li>Csinálj még egy formot „AIpályázó Lead" néven, és ugyanígy: <code>aipalyazo/portal.html</code> → <code>const LEAD_BACKEND_URL = '';</code></li>
             <li>Push, vagy szólj és kommitolom</li>
         </ol>
         <div class="why"><b>Mit csinál ez:</b> minden regisztráció és konzultáció-kérés ezután valódi e-mailként megérkezik hozzád a Formspree dashboardon (ÉS a megadott inbox-ra). A meglévő localStorage-mentés is megmarad, mint backup.</div>
@@ -88,7 +88,7 @@
     <div class="card">
         <span class="num">3</span>
         <h2>(Opcionális, de erősen ajánlott) — saját domain</h2>
-        <p>A <code>szrsystems.github.io/tenderpilot-demo/grantpilot/</code> URL működik, de cold-marketing-re hiteltelennek tűnik. A <code>grantpilot.hu</code> ~5 000 Ft/év.</p>
+        <p>A <code>szrsystems.github.io/tenderpilot-demo/aipalyazo/</code> URL működik, de cold-marketing-re hiteltelennek tűnik. A <code>aipalyazo.hu</code> ~5 000 Ft/év.</p>
         <ol>
             <li>Vásárolj domaint (Domain.hu, dotroll.com, vagy bármelyik magyar regisztrátor)</li>
             <li>DNS: állíts be 4 db <code>A</code> rekordot a GitHub Pages IP-jeire:
@@ -97,7 +97,7 @@
 185.199.110.153
 185.199.111.153</div>
             </li>
-            <li>GitHub repo → Settings → Pages → Custom domain mező: <code>grantpilot.hu</code> → Save</li>
+            <li>GitHub repo → Settings → Pages → Custom domain mező: <code>aipalyazo.hu</code> → Save</li>
             <li>Várj 10–30 percet, amíg a DNS terjed, és pipáld a <b>Enforce HTTPS</b>-t</li>
             <li>Frissítsd a sitemap.xml-ben és OG metákban szereplő URL-eket az új domainre</li>
         </ol>
@@ -135,7 +135,7 @@
         <h2>Bejelentés / első felhasználók</h2>
         <p>Amikor minden fent kipipálva, jön a marketing. Pár opció prioritás szerint:</p>
         <ol>
-            <li><b>LinkedIn poszt</b> — magyarul, te a Pankotai Csabától / Tóth Ádámtól kapott történettel, link a <code>grantpilot.hu</code>-ra. Ingyenes, célzott.</li>
+            <li><b>LinkedIn poszt</b> — magyarul, te a Pankotai Csabától / Tóth Ádámtól kapott történettel, link a <code>aipalyazo.hu</code>-ra. Ingyenes, célzott.</li>
             <li><b>2–3 magyar KKV Facebook-csoport</b> (pl. „Vállalkozó Vagyok") — érdemes hozzászólni egy-két konkrét pályázati posztra, és csak utána szpemmolni a sajátot. Soha ne ess be linkkel az első hozzászólásban.</li>
             <li><b>iparági szövetség / kamara hírlevél</b> — ha van bárki ismerős MKIK-ban / SEED Föld Magyarországon, kérd meg, hogy említse</li>
             <li><b>Tóth Ádám + 1–2 további pályázatíró</b> — nekik már fehér címkés / partneri ajánlattal, nem cold marketinggel</li>

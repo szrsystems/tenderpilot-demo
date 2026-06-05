@@ -1,5 +1,5 @@
 -- =========================================================================
--- GrantPilot — initial schema
+-- AIpályázó — initial schema
 -- =========================================================================
 -- Tier model:
 --   anonymous → not logged in (no row anywhere)

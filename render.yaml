@@ -9,32 +9,32 @@ services:
         source: /tenderpilot
         destination: /tenderpilot/index.html
       - type: rewrite
-        source: /grantpilot
-        destination: /grantpilot/index.html
+        source: /aipalyazo
+        destination: /aipalyazo/index.html
       - type: rewrite
         source: /tenderpilot/demo
         destination: /tenderpilot/portal.html
       - type: rewrite
-        source: /grantpilot/demo
-        destination: /grantpilot/portal.html
+        source: /aipalyazo/demo
+        destination: /aipalyazo/portal.html
       - type: rewrite
-        source: /grantpilot/register
-        destination: /grantpilot/onboarding.html
+        source: /aipalyazo/register
+        destination: /aipalyazo/onboarding.html
       - type: rewrite
-        source: /grantpilot/partner
-        destination: /grantpilot/partner.html
+        source: /aipalyazo/partner
+        destination: /aipalyazo/partner.html
       - type: rewrite
-        source: /grantpilot/meeting
-        destination: /grantpilot/meeting-brief.html
+        source: /aipalyazo/meeting
+        destination: /aipalyazo/meeting-brief.html
       - type: rewrite
-        source: /grantpilot/agreements
-        destination: /grantpilot/agreements.html
+        source: /aipalyazo/agreements
+        destination: /aipalyazo/agreements.html
       - type: rewrite
-        source: /grantpilot/adatvedelem
-        destination: /grantpilot/adatvedelem.html
+        source: /aipalyazo/adatvedelem
+        destination: /aipalyazo/adatvedelem.html
       - type: rewrite
-        source: /grantpilot/impresszum
-        destination: /grantpilot/impresszum.html
+        source: /aipalyazo/impresszum
+        destination: /aipalyazo/impresszum.html
       - type: rewrite
-        source: /grantpilot/aszf
-        destination: /grantpilot/aszf.html
+        source: /aipalyazo/aszf
+        destination: /aipalyazo/aszf.html

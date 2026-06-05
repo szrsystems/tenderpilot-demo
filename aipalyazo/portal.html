@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrantPilot — Áttekintés</title>
+    <title>AIpályázó — Áttekintés</title>
     <script src="lib/supabase.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -526,7 +526,7 @@
 
 <div class="sidebar">
     <div class="sidebar-header">
-        <div class="sidebar-logo">Grant<span>Pilot</span></div>
+        <div class="sidebar-logo"><span>AI</span>pályázó</div>
     </div>
     <div class="sidebar-nav">
         <div class="nav-item active" onclick="showPage('dashboard')">
@@ -2058,7 +2058,7 @@ function showDetail(id) {
         <div class="detail-section">
             <h3>E-mail értesítés előnézet</h3>
             <div style="background: #ffffff; color: var(--gray-800); border: 1px solid var(--gray-200); border-radius: 12px; padding: 16px; font-size: 12px; line-height: 1.6; font-family: -apple-system, sans-serif;">
-                <div style="font-size: 11px; color: var(--gray-400); margin-bottom: 8px;">Feladó: GrantPilot &lt;ertesites@grantpilot.hu&gt;</div>
+                <div style="font-size: 11px; color: var(--gray-400); margin-bottom: 8px;">Feladó: AIpályázó &lt;ertesites@aipalyazo.hu&gt;</div>
                 <div style="font-weight: 700; color: var(--green-700); margin-bottom: 8px;">🎯 Új releváns pályázat — ${g.score}/100</div>
                 <div style="font-weight: 600; margin-bottom: 6px;">${g.title.slice(0, 80)}</div>
                 <div style="color: var(--gray-600);">📊 ${vText(g.verdict)} · 💰 ${g.amount} · 📅 ${g.deadline}</div>
@@ -2187,7 +2187,7 @@ function exportSavedCSV() {
     saved.forEach(g => csv += `"${g.id}","${g.title}","${g.source}","${g.cat}","${g.amount}","${g.deadline}",${g.days},${g.score},"${vText(g.verdict)}"\n`);
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob(['﻿' + csv], {type:'text/csv;charset=utf-8'}));
-    a.download = 'grantpilot-mentett.csv';
+    a.download = 'aipalyazo-mentett.csv';
     a.click();
 }
 
@@ -2243,7 +2243,7 @@ function exportLeadsCSV() {
     leads.forEach(l => csv += `"${new Date(l.ts||Date.now()).toLocaleString('hu-HU')}","${(l.name||'').replace(/"/g,'""')}","${l.email||''}","${l.phone||''}","${l.grantId||''}","${(l.grantTitle||'').replace(/"/g,'""')}"\n`);
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob(['﻿' + csv], {type:'text/csv;charset=utf-8'}));
-    a.download = 'grantpilot-leadek.csv';
+    a.download = 'aipalyazo-leadek.csv';
     a.click();
 }
 
@@ -2280,10 +2280,10 @@ function reportContext() {
 }
 
 function rdHead(subtitle) {
-    return `<div class="rd-head"><div class="rd-brand">Grant<span>Pilot</span></div><div class="rd-meta">${subtitle}</div></div>`;
+    return `<div class="rd-head"><div class="rd-brand"><span>AI</span>pályázó</div><div class="rd-meta">${subtitle}</div></div>`;
 }
 function rdFoot() {
-    return `<div class="rd-foot">A jelentés a GrantPilot rendszer által, az Ön cégprofilja alapján automatikusan generált tájékoztató. A pontos jogosultsági és elszámolhatósági feltételeket minden esetben a hivatalos pályázati felhívás határozza meg. GrantPilot · grantpilot.hu</div>`;
+    return `<div class="rd-foot">A jelentés a AIpályázó rendszer által, az Ön cégprofilja alapján automatikusan generált tájékoztató. A pontos jogosultsági és elszámolhatósági feltételeket minden esetben a hivatalos pályázati felhívás határozza meg. AIpályázó · aipalyazo.hu</div>`;
 }
 
 function genWeekly(c) {
@@ -2559,7 +2559,7 @@ function dr_renderDoc() {
         <div class="dr-card" style="padding:0;">
             <div class="dr-doc">
                 <div class="dr-head">
-                    <div class="brand">Grant<span>Pilot</span> · AI Pályázat-vázlat</div>
+                    <div class="brand"><span>AI</span>pályázó · AI Pályázat-vázlat</div>
                     <h2>${g.title}</h2>
                     <div class="meta">${p.company || ''} · ${g.source || ''} · keret: ${g.amount || ''} · határidő: ${g.deadline || ''}</div>
                 </div>
@@ -2575,7 +2575,7 @@ function dr_renderDoc() {
                     `).join('')}
                 </div>
                 <div class="dr-foot">
-                    Generálva: ${new Date(currentDraft.ts).toLocaleString('hu-HU')} · GrantPilot AI Pályázati Ügynök (béta).
+                    Generálva: ${new Date(currentDraft.ts).toLocaleString('hu-HU')} · AIpályázó AI Pályázati Ügynök (béta).
                 </div>
             </div>
             <div class="dr-actions" style="padding:14px 24px;">
@@ -2793,7 +2793,7 @@ function exportUserData() {
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([JSON.stringify(bundle, null, 2)], { type: 'application/json' }));
     const stamp = new Date().toISOString().slice(0, 10);
-    a.download = `grantpilot-adatok-${stamp}.json`;
+    a.download = `aipalyazo-adatok-${stamp}.json`;
     a.click();
     flashOk('data-ok');
 }
@@ -2815,7 +2815,7 @@ function importUserData(ev) {
             alert('Importálva ' + restored.length + ' adatcsomag: ' + restored.join(', ') + '\nÚjratöltés a változások megjelenítéséhez.');
             location.reload();
         } catch (e) {
-            alert('Az importálás sikertelen — a fájl nem GrantPilot-export?');
+            alert('Az importálás sikertelen — a fájl nem AIpályázó-export?');
         }
     };
     reader.readAsText(file);
@@ -2823,7 +2823,7 @@ function importUserData(ev) {
 }
 
 function wipeUserData() {
-    if (!confirm('Biztosan törli az összes helyileg tárolt GrantPilot-adatát (profil, mentések, leadek, vázlatok)? Ez nem visszavonható, kivéve ha előtte exportált.')) return;
+    if (!confirm('Biztosan törli az összes helyileg tárolt AIpályázó-adatát (profil, mentések, leadek, vázlatok)? Ez nem visszavonható, kivéve ha előtte exportált.')) return;
     PORTABLE_KEYS.forEach(k => { try { localStorage.removeItem(k); } catch(e) {} });
     alert('Helyi adatok törölve. Újratöltés…');
     location.reload();
@@ -2895,7 +2895,7 @@ function logout() {
 
 function mountUserWidget() {
     const email = sessionStorage.getItem('gp_user_email') || '';
-    const demoBadge = email === 'demo@grantpilot.hu'
+    const demoBadge = email === 'demo@aipalyazo.hu'
         ? `<span title="Demo verzió — minden adat kizárólag az Ön böngészőjében tárolódik" style="display:inline-flex;align-items:center;gap:5px;background:#fef3c7;color:#92400e;border:1px solid #fde68a;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;margin-right:10px;cursor:help;"><span style="width:6px;height:6px;background:#d97706;border-radius:50%;"></span>Demo nézet</span>`
         : '';
     document.querySelectorAll('.topbar').forEach(tb => {

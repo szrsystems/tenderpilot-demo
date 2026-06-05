@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /$
+Allow: /index.html
+Allow: /partner.html
+Allow: /onboarding.html
+Allow: /signup.html
+Allow: /aszf.html
+Allow: /adatvedelem.html
+Allow: /impresszum.html
+
+# Internal app surfaces — don't index
+Disallow: /portal.html
+Disallow: /login.html
+Disallow: /meeting-brief.html
+Disallow: /agreements.html
+Disallow: /LAUNCH-CHECKLIST.html
+
+# Bot directives
+Crawl-delay: 1
+
+Sitemap: https://aipalyazo.hu/sitemap.xml
