@@ -4,6 +4,7 @@ Allow: /index.html
 Allow: /partner.html
 Allow: /onboarding.html
 Allow: /signup.html
+Allow: /pricing.html
 Allow: /aszf.html
 Allow: /adatvedelem.html
 Allow: /impresszum.html

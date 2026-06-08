@@ -611,7 +611,7 @@
     <div class="sidebar-footer">
         <div class="sidebar-user" id="sidebar-user-name">Vendég</div>
         <div class="sidebar-plan" id="sidebar-tier-label">Anonim böngészés</div>
-        <a href="#" id="sidebar-upgrade" class="anonymous-only basic-only" onclick="event.preventDefault(); window.location.href='signup.html?upgrade=pro'" style="display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:var(--green-700);text-decoration:none;text-transform:uppercase;letter-spacing:0.4px;">Upgrade Pro →</a>
+        <a href="#" id="sidebar-upgrade" class="anonymous-only basic-only" onclick="event.preventDefault(); window.location.href='pricing.html'" style="display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:var(--green-700);text-decoration:none;text-transform:uppercase;letter-spacing:0.4px;">Upgrade Pro →</a>
         <a href="#" id="sidebar-signout" class="signed-in-only" onclick="event.preventDefault(); doSignOut();" style="display:inline-block;margin-top:8px;font-size:11px;color:var(--gray-500);text-decoration:none;">Kijelentkezés</a>
     </div>
 </div>
@@ -638,7 +638,7 @@
                 <div class="lock-icon">🔒</div>
                 <h3>AI igény-felmérő — Pro funkció</h3>
                 <p>Írja le pár szóban, mire kéne támogatás — és az AI megkeresi az Önnek megfelelő pályázatokat. Elérhető Pro előfizetéssel (5 067 Ft/hó).</p>
-                <a href="signup.html?upgrade=pro" class="btn-upgrade">Upgrade Pro-ra</a>
+                <a href="pricing.html" class="btn-upgrade">Upgrade Pro-ra</a>
             </div>
             <div class="needs-finder pro-only" id="needs-finder">
                 <div class="nf-head">
@@ -704,7 +704,7 @@
                     <div class="lock-icon">✨</div>
                     <h3>Személyre szabott ajánlások — Pro funkció</h3>
                     <p>A Pro AI-pontozással egy 10 fős budapesti IT cég teljesen más pályázati listát kap, mint egy 50 fős debreceni gyártó. 5 067 Ft/hó, bármikor lemondható.</p>
-                    <a href="signup.html?upgrade=pro" class="btn-upgrade">Upgrade Pro-ra</a>
+                    <a href="pricing.html" class="btn-upgrade">Upgrade Pro-ra</a>
                 </div>
                 <!-- Stacked single-column list of ALL grants for Free users -->
                 <div class="grants-list" id="dashboard-all-grants"></div>
@@ -829,7 +829,7 @@
                 <div class="lock-icon">🔒</div>
                 <h3>AI Pályázat-vázlat — Pro funkció</h3>
                 <p>Egy kattintásra generál cégprofilra szabott pályázat-vázlatot, vezetői összefoglalót, kötelező részekkel és ellenőrző-listával. Pro előfizetéssel elérhető (5 067 Ft/hó).</p>
-                <a href="signup.html?upgrade=pro" class="btn-upgrade">Upgrade Pro-ra</a>
+                <a href="pricing.html" class="btn-upgrade">Upgrade Pro-ra</a>
             </div>
             <div class="drafter-wrap pro-only" id="drafter-wrap"></div>
         </div>
@@ -843,7 +843,7 @@
                 <div class="lock-icon">🔒</div>
                 <h3>Jelentések — Pro funkció</h3>
                 <p>Cégprofilra szabott vezetői összefoglaló, portfólió és heti riport — egy kattintásra, PDF-re nyomtatható. Pro előfizetéssel elérhető (5 067 Ft/hó).</p>
-                <a href="signup.html?upgrade=pro" class="btn-upgrade">Upgrade Pro-ra</a>
+                <a href="pricing.html" class="btn-upgrade">Upgrade Pro-ra</a>
             </div>
             <div class="pro-only" style="font-size:13px;color:var(--gray-500);margin-bottom:20px;max-width:640px;line-height:1.55;">
                 Generáljon professzionális, az Ön cégprofiljára szabott dokumentumokat egy kattintással — nyomtatható és PDF-be menthető. Ideális könyvelőnek, vezetőségnek vagy pályázatírónak átadni.
@@ -885,7 +885,7 @@
                 <div class="lock-icon">🔒</div>
                 <h3>Értesítések — Pro funkció</h3>
                 <p>Sürgős határidő-riasztások, új releváns pályázatok és személyre szabott e-mail értesítések. Pro előfizetéssel elérhető (5 067 Ft/hó).</p>
-                <a href="signup.html?upgrade=pro" class="btn-upgrade">Upgrade Pro-ra</a>
+                <a href="pricing.html" class="btn-upgrade">Upgrade Pro-ra</a>
             </div>
             <div class="card pro-only" id="alerts-card"></div>
         </div>
@@ -1611,7 +1611,7 @@ function goGrantsRelevant() {
     if (window.currentTier === 'pro') {
         goGrants('relevant');
     } else {
-        window.location.href = 'signup.html?upgrade=pro&from=relevant';
+        window.location.href = 'pricing.html&from=relevant';
     }
 }
 
@@ -2176,7 +2176,7 @@ function showDetail(id) {
                     <div style="flex:1;">
                         <div style="font-weight:700; font-size:14px; color:var(--green-800); margin-bottom:4px;">AI Pontozás + Ajánlás — Pro funkció</div>
                         <div style="font-size:13px; color:var(--gray-600); line-height:1.5; margin-bottom:12px;">A Pro AI a cégprofiljához méri ezt a pályázatot 5 tényező alapján, és konkrét ajánlást ad: pályázzon, gondolja végig vagy hagyja ki. 5 067 Ft/hó.</div>
-                        <a href="signup.html?upgrade=pro" class="tier-cta-btn">Upgrade Pro-ra</a>
+                        <a href="pricing.html" class="tier-cta-btn">Upgrade Pro-ra</a>
                     </div>
                 </div>
             </div>
@@ -2212,7 +2212,7 @@ function showDetail(id) {
     // AI vázlat is Pro-only — for non-Pro, replace with locked button.
     const drafterButton = isPro ?
         `<button class="btn-sm primary" style="flex:1;min-width:160px;" onclick="closeDetail();openDrafterForGrant('${g.id}')">✨ AI vázlat készítése</button>` :
-        `<a class="tier-cta-btn" style="flex:1;min-width:160px;" href="signup.html?upgrade=pro">🔒 AI vázlat — Pro</a>`;
+        `<a class="tier-cta-btn" style="flex:1;min-width:160px;" href="pricing.html">🔒 AI vázlat — Pro</a>`;
 
     document.getElementById('detail-body').innerHTML = `
         <div class="detail-section">
@@ -2886,7 +2886,7 @@ function initProfile() {
                     <div style="font-weight:700; font-size:16px; color:var(--green-800); margin-bottom:4px;">Pro upgrade — 5 067 Ft/hó</div>
                     <div style="font-size:13px; color:var(--gray-600); line-height:1.5;">AI illeszkedési pontozás, AI Pályázat-vázlat, személyre szabott heti riport, sürgős határidő-riasztás. Bármikor lemondható, 14 napos elállási jog.</div>
                 </div>
-                <a href="signup.html?upgrade=pro" class="tier-cta-btn">Upgrade Pro-ra</a>
+                <a href="pricing.html" class="tier-cta-btn">Upgrade Pro-ra</a>
             </div>
 
             <!-- Cégprofil — Pro only. Free users see the Upgrade CTA above instead. -->
@@ -2973,7 +2973,7 @@ function initProfile() {
                 <div style="margin-top:24px; background:linear-gradient(135deg, var(--green-50) 0%, white 100%); border:1px solid var(--green-200); border-radius:var(--radius-lg); padding:18px 22px;">
                     <div style="font-weight:700; font-size:14px; color:var(--green-800); margin-bottom:4px;">Személyre szabott e-mail — Pro funkció</div>
                     <div style="font-size:13px; color:var(--gray-600); line-height:1.5; margin-bottom:12px;">Pro-ban a heti email csak az Ön cégprofiljához illő pályázatokat tartalmazza, sürgős határidő-riasztásokkal és személyes ajánlásokkal. 5 067 Ft/hó.</div>
-                    <a href="signup.html?upgrade=pro" class="tier-cta-btn">Upgrade Pro-ra</a>
+                    <a href="pricing.html" class="tier-cta-btn">Upgrade Pro-ra</a>
                 </div>
             </div>
 

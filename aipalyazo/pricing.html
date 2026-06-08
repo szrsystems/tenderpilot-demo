@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Árazás — AIpályázó</title>
+    <meta name="description" content="Free vs Pro AIpályázó csomagok. Pro havi 5 067 Ft vagy éves 20% kedvezménnyel. Bármikor lemondható, 14 napos elállási jog.">
+    <meta name="theme-color" content="#16a34a">
+    <link rel="canonical" href="https://aipalyazo.hu/pricing.html">
+    <meta property="og:title" content="AIpályázó — Árazás">
+    <meta property="og:description" content="Free vs Pro csomagok. 5 067 Ft/hó, vagy éves 20% kedvezménnyel.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="hu_HU">
+    <meta property="og:site_name" content="AIpályázó">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --green-50: #f0fdf4; --green-100: #dcfce7; --green-200: #bbf7d0; --green-500: #22c55e; --green-600: #16a34a; --green-700: #15803d; --green-800: #166534; --green-900: #14532d;
+            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
+            --amber-50: #fffbeb; --amber-100: #fef3c7; --amber-600: #d97706;
+            --radius: 8px; --radius-lg: 12px; --radius-xl: 16px;
+        }
+        body { font-family: 'Inter', -apple-system, sans-serif; color: var(--gray-900); background: white; -webkit-font-smoothing: antialiased; line-height: 1.55; }
+        a { color: var(--green-600); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* NAV */
+        nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--gray-200); }
+        .nav-inner { max-width: 1120px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-size: 20px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.5px; text-decoration: none; }
+        .nav-logo span { color: var(--green-600); }
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-links a { color: var(--gray-600); font-size: 14px; font-weight: 500; }
+        .nav-links a:hover { color: var(--gray-900); text-decoration: none; }
+        .nav-cta { background: var(--green-600); color: white !important; padding: 8px 20px; border-radius: var(--radius); font-weight: 600; font-size: 14px; }
+        .nav-cta:hover { background: var(--green-700); text-decoration: none !important; }
+
+        /* PAGE */
+        .wrap { max-width: 1120px; margin: 0 auto; padding: 60px 24px 80px; }
+        .page-head { text-align: center; margin-bottom: 48px; }
+        .page-head h1 { font-size: 40px; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
+        .page-head p { font-size: 17px; color: var(--gray-500); max-width: 560px; margin: 0 auto; }
+
+        /* INTERVAL TOGGLE (monthly vs annual) */
+        .interval-toggle { display: inline-flex; background: var(--gray-100); border-radius: 999px; padding: 4px; margin: 0 auto 36px; }
+        .interval-toggle button {
+            border: none; background: transparent; padding: 8px 20px; border-radius: 999px;
+            font-size: 14px; font-weight: 600; color: var(--gray-500); cursor: pointer;
+            font-family: inherit; transition: all 0.15s; display: inline-flex; align-items: center; gap: 6px;
+        }
+        .interval-toggle button.active { background: white; color: var(--gray-900); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+        .interval-toggle .badge-save { background: var(--green-100); color: var(--green-800); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.4px; }
+        .toggle-wrap { text-align: center; }
+
+        /* PRICING GRID */
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto; }
+        @media (max-width: 920px) { .pricing-grid { grid-template-columns: 1fr; max-width: 480px; } }
+
+        .price-card {
+            background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-xl);
+            padding: 32px 28px; display: flex; flex-direction: column; transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+        }
+        .price-card:hover { border-color: var(--green-200); }
+        .price-card.popular { border-color: var(--green-600); border-width: 2px; box-shadow: 0 8px 24px rgba(22,163,74,0.08); position: relative; }
+        .price-card.popular::before {
+            content: "Legnépszerűbb"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--green-600); color: white; font-size: 11px; font-weight: 700;
+            padding: 4px 14px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+
+        .price-name { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+        .price-tagline { font-size: 13px; color: var(--gray-500); margin-bottom: 22px; min-height: 18px; }
+        .price-amount { font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; margin-bottom: 6px; }
+        .price-amount .unit { font-size: 15px; font-weight: 600; color: var(--gray-500); margin-left: 2px; }
+        .price-billing { font-size: 12px; color: var(--gray-500); margin-bottom: 4px; min-height: 16px; }
+        .price-strikethrough { font-size: 12px; color: var(--gray-400); text-decoration: line-through; margin-bottom: 4px; min-height: 16px; }
+        .price-vat { font-size: 11px; color: var(--gray-400); margin-bottom: 22px; min-height: 14px; }
+
+        .price-cta {
+            display: block; width: 100%; text-align: center;
+            padding: 12px 20px; border-radius: var(--radius); font-size: 14px; font-weight: 600;
+            text-decoration: none; border: 1px solid var(--gray-300); background: white; color: var(--gray-800);
+            cursor: pointer; font-family: inherit; transition: all 0.15s;
+        }
+        .price-cta:hover { background: var(--gray-50); text-decoration: none; }
+        .price-cta.primary { background: var(--green-600); color: white; border-color: var(--green-600); }
+        .price-cta.primary:hover { background: var(--green-700); border-color: var(--green-700); }
+        .price-cta:disabled { opacity: 0.65; cursor: not-allowed; }
+
+        .price-features { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+        .price-feature { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--gray-700); line-height: 1.5; }
+        .price-feature .check { color: var(--green-600); font-weight: 800; flex-shrink: 0; margin-top: 2px; }
+        .price-feature .cross { color: var(--gray-300); font-weight: 800; flex-shrink: 0; margin-top: 2px; }
+        .price-feature.muted { color: var(--gray-400); }
+
+        /* "Coming soon" banner for Pro CTAs */
+        .coming-soon-banner {
+            max-width: 1000px; margin: 36px auto 0;
+            background: var(--amber-50); border: 1px solid var(--amber-100);
+            border-radius: var(--radius-lg); padding: 14px 20px;
+            font-size: 13px; color: var(--gray-700); text-align: center;
+        }
+        .coming-soon-banner b { color: var(--amber-600); }
+
+        /* FAQ */
+        .faq { max-width: 720px; margin: 64px auto 0; }
+        .faq h2 { text-align: center; font-size: 24px; font-weight: 800; margin-bottom: 24px; }
+        .faq details {
+            background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-lg);
+            padding: 16px 22px; margin-bottom: 8px;
+        }
+        .faq summary { font-weight: 600; font-size: 14px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; }
+        .faq summary::after { content: "+"; color: var(--gray-400); font-weight: 400; }
+        .faq details[open] summary::after { content: "−"; }
+        .faq details p { margin-top: 12px; font-size: 13px; color: var(--gray-600); }
+
+        footer { border-top: 1px solid var(--gray-200); padding: 32px 24px; text-align: center; font-size: 12px; color: var(--gray-500); margin-top: 80px; }
+        footer a { color: var(--gray-500); margin: 0 8px; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo"><span>AI</span>pályázó</a>
+        <div class="nav-links">
+            <a href="index.html">Főoldal</a>
+            <a href="portal.html">Pályázatok</a>
+            <a href="login.html" class="nav-cta">Belépés</a>
+        </div>
+    </div>
+</nav>
+
+<div class="wrap">
+    <div class="page-head">
+        <h1>Egyszerű árazás</h1>
+        <p>A Free tier korlátlan ideig használható, regisztráció nélkül is. A Pro funkciók — AI pontozás, AI vázlat, személyre szabott riport — havi 5 067 Ft-ért érhetőek el. Bármikor lemondható.</p>
+    </div>
+
+    <div class="toggle-wrap">
+        <div class="interval-toggle">
+            <button id="ti-monthly" class="active" onclick="setInterval('monthly')">Havi</button>
+            <button id="ti-annual" onclick="setInterval('annual')">Éves <span class="badge-save">Spórolj 20%</span></button>
+        </div>
+    </div>
+
+    <div class="pricing-grid">
+
+        <!-- FREE -->
+        <div class="price-card">
+            <div class="price-name">Free</div>
+            <div class="price-tagline">Mindenkinek aki pályázatot keres</div>
+            <div class="price-amount">0 Ft<span class="unit">/hó</span></div>
+            <div class="price-billing">Bankkártya nem szükséges</div>
+            <div class="price-strikethrough">&nbsp;</div>
+            <div class="price-vat">Korlátlan ideig ingyenes</div>
+            <a href="signup.html" class="price-cta">Ingyenes regisztráció</a>
+            <div class="price-features">
+                <div class="price-feature"><span class="check">✓</span> Összes magyar pályázat (~300) böngészés</div>
+                <div class="price-feature"><span class="check">✓</span> Keresés, szűrés, részletes nézet</div>
+                <div class="price-feature"><span class="check">✓</span> Pályázat mentése (regisztráció után)</div>
+                <div class="price-feature"><span class="check">✓</span> Konzultáció-igénylés pályázatíró partnertől</div>
+                <div class="price-feature"><span class="check">✓</span> Általános heti hírlevél (opt-in)</div>
+                <div class="price-feature"><span class="cross">×</span> <span class="muted">AI cégprofil-pontozás</span></div>
+                <div class="price-feature"><span class="cross">×</span> <span class="muted">AI Pályázat-vázlat</span></div>
+                <div class="price-feature"><span class="cross">×</span> <span class="muted">Személyre szabott riport</span></div>
+            </div>
+        </div>
+
+        <!-- PRO -->
+        <div class="price-card popular">
+            <div class="price-name">Pro</div>
+            <div class="price-tagline">Aktívan pályázó vállalkozásoknak</div>
+            <div class="price-amount" id="pro-amount">5 067 Ft<span class="unit">/hó</span></div>
+            <div class="price-billing" id="pro-billing">Havi számlázás, bármikor lemondható</div>
+            <div class="price-strikethrough" id="pro-strike">&nbsp;</div>
+            <div class="price-vat">Bruttó ár (ÁFA-val) · 14 napos elállási jog</div>
+            <button class="price-cta primary" id="pro-cta" onclick="startCheckout('pro')">Pro előfizetés indítása</button>
+            <div class="price-features">
+                <div class="price-feature"><span class="check">✓</span> <b>Minden, ami a Free-ben</b></div>
+                <div class="price-feature"><span class="check">✓</span> AI illeszkedési pontozás a cégprofilra (0-100)</div>
+                <div class="price-feature"><span class="check">✓</span> AI Pályázat-vázlat (1 kattintásra)</div>
+                <div class="price-feature"><span class="check">✓</span> AI igény-felmérő („Mire van szüksége?")</div>
+                <div class="price-feature"><span class="check">✓</span> Személyre szabott heti email riport</div>
+                <div class="price-feature"><span class="check">✓</span> Sürgős határidő-riasztások</div>
+                <div class="price-feature"><span class="check">✓</span> Exportálható dokumentumok</div>
+                <div class="price-feature"><span class="check">✓</span> Jogosultsági checklist a cégprofilra szabva</div>
+            </div>
+        </div>
+
+        <!-- BUSINESS / PARTNER -->
+        <div class="price-card">
+            <div class="price-name">Partner</div>
+            <div class="price-tagline">Pályázatíróknak, könyvelőknek</div>
+            <div class="price-amount">Egyedi</div>
+            <div class="price-billing">&nbsp;</div>
+            <div class="price-strikethrough">&nbsp;</div>
+            <div class="price-vat">Több ügyfél · fehér címke · lead-csatorna</div>
+            <a href="partner.html" class="price-cta">Partner program →</a>
+            <div class="price-features">
+                <div class="price-feature"><span class="check">✓</span> <b>Minden, ami a Pro-ban</b></div>
+                <div class="price-feature"><span class="check">✓</span> Több ügyfélhez hozzáférés egy fiókból</div>
+                <div class="price-feature"><span class="check">✓</span> Fehér címkés használat saját brand alatt</div>
+                <div class="price-feature"><span class="check">✓</span> Lead-csatorna a partner-tölcsérből</div>
+                <div class="price-feature"><span class="check">✓</span> Dedikált onboarding + prioritás támogatás</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="coming-soon-banner">
+        <b>Pro előfizetés — hamarosan élesedik.</b> A Paddle (EU Merchant of Record) integráció utolsó fázisában van.
+        Addig is: <a href="signup.html" style="color: var(--green-700); font-weight: 600;">regisztráljon ingyen</a>,
+        kapja meg a Free funkciókat, és értesítjük amikor a Pro elérhető. Vagy írjon: <a href="mailto:info@aipalyazo.hu" style="color: var(--green-700); font-weight: 600;">info@aipalyazo.hu</a>.
+    </div>
+
+    <div class="faq">
+        <h2>Gyakori kérdések</h2>
+        <details>
+            <summary>Mennyibe kerül a Pro?</summary>
+            <p>Havi 5 067 Ft (bruttó, ÁFA-val) vagy éves 48 643 Ft (~20% kedvezmény). Magánszemély és cég ügyfeleknek egyaránt ugyanaz az ár. A számlázást a Paddle (EU Merchant of Record) végzi, NAV-kompatibilis számlával.</p>
+        </details>
+        <details>
+            <summary>Bármikor lemondható?</summary>
+            <p>Igen — egy kattintással a Beállítások menüpontban, vagy info@aipalyazo.hu címen. A futó hónap végéig használhatja a Pro funkciókat, utána a fiók visszaesik Free-re. Visszatérítés (a 14 napos elállási jogon kívül) a futó hónapra nem jár.</p>
+        </details>
+        <details>
+            <summary>14 napos elállási jog?</summary>
+            <p>Magánszemély fogyasztóként 14 napon belül indoklás nélkül elállhat az előfizetéstől [45/2014. (II. 26.) Korm. rend.]. Az elállást követően a teljes díjat 14 napon belül visszatérítjük. Részletek az <a href="aszf.html">ÁSZF</a>-ben.</p>
+        </details>
+        <details>
+            <summary>Mit jelent az éves 20% kedvezmény?</summary>
+            <p>Az éves előfizetés egyszeri 48 643 Ft befizetést jelent (5 067 × 12 = 60 804 Ft helyett). Effektív havi 4 054 Ft. Bármikor lemondható, de a már kifizetett összeg az időszak végéig jár.</p>
+        </details>
+        <details>
+            <summary>Számlát kapok?</summary>
+            <p>Igen — a Paddle minden tranzakció után elektronikus PDF számlát küld a megadott email címre. A számlán szerepel az ÁFA, és NAV-kompatibilis formátumban van.</p>
+        </details>
+    </div>
+</div>
+
+<footer>
+    © 2026 AIpályázó · Szephelyi Olivér EV ·
+    <a href="adatvedelem.html">Adatvédelem</a> ·
+    <a href="impresszum.html">Impresszum</a> ·
+    <a href="aszf.html">ÁSZF</a>
+</footer>
+
+<script>
+// Pricing intervals — visually toggle between monthly and annual.
+// Pro Annual: 5067 × 12 = 60 804 Ft × 0.8 (20% off) = 48 643 Ft/year (~4 054 Ft/hó effective)
+const PRICING = {
+    monthly: {
+        amount: '5 067 Ft',
+        unit: '/hó',
+        billing: 'Havi számlázás, bármikor lemondható',
+        strike: ''
+    },
+    annual: {
+        amount: '4 054 Ft',
+        unit: '/hó',
+        billing: 'Éves 48 643 Ft egyösszegű (20% kedvezménnyel)',
+        strike: '60 804 Ft helyett'
+    }
+};
+
+let currentInterval = 'monthly';
+
+function setInterval(intv) {
+    currentInterval = intv;
+    document.getElementById('ti-monthly').classList.toggle('active', intv === 'monthly');
+    document.getElementById('ti-annual').classList.toggle('active', intv === 'annual');
+    const p = PRICING[intv];
+    document.getElementById('pro-amount').innerHTML = `${p.amount}<span class="unit">${p.unit}</span>`;
+    document.getElementById('pro-billing').textContent = p.billing;
+    document.getElementById('pro-strike').textContent = p.strike || ' ';
+}
+
+// Checkout placeholder — wired to Paddle later. For now, redirects unauthenticated
+// users to signup, and shows a "hamarosan" alert for authenticated ones.
+function startCheckout(plan) {
+    // TODO: wire Paddle.Checkout.open({ items: [{ priceId: '<paddle-price-id>', quantity: 1 }], customData: { user_id, plan, interval: currentInterval } })
+    // For now: encode the chosen plan + interval in the URL so we can pick it up later.
+    const params = new URLSearchParams({ plan, interval: currentInterval });
+
+    // Check if user is signed in (legacy demo session OR future Supabase check)
+    const hasLegacy = sessionStorage.getItem('gp_auth_token');
+    if (hasLegacy) {
+        alert('A Pro előfizetés Paddle-en keresztül hamarosan elérhető. Addig is jelezze szándékát: info@aipalyazo.hu — és az élesedéskor első körben szólunk Önnek.');
+        return;
+    }
+    // Anonymous: ask to register first
+    window.location.href = 'signup.html?upgrade=pro&' + params.toString();
+}
+</script>
+
+</body>
+</html>
