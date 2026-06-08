@@ -475,8 +475,40 @@
 
         .hidden { display: none !important; }
 
+        /* Hamburger button — desktop hidden, mobile visible in topbar */
+        .hamburger {
+            display: none;
+            background: none; border: none;
+            width: 38px; height: 38px;
+            border-radius: 8px;
+            align-items: center; justify-content: center;
+            cursor: pointer;
+            padding: 0; margin-right: 8px;
+            color: var(--gray-700);
+        }
+        .hamburger:hover { background: var(--gray-50); }
+        .hamburger svg { width: 22px; height: 22px; }
+
+        /* Mobile sidebar backdrop overlay */
+        .sidebar-backdrop {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 49;
+            opacity: 0; transition: opacity 0.2s;
+        }
+        .sidebar-backdrop.open { display: block; opacity: 1; }
+
         @media (max-width: 768px) {
-            .sidebar { display: none; }
+            .hamburger { display: inline-flex; }
+            /* Sidebar becomes a slide-in panel */
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.25s ease;
+                width: min(280px, 80vw);
+                box-shadow: 4px 0 24px rgba(0,0,0,0.12);
+            }
+            .sidebar.open { transform: translateX(0); }
             .main { margin-left: 0; }
             .stats { grid-template-columns: repeat(2, 1fr); }
             .hero-stats { grid-template-columns: repeat(2, 1fr); }
@@ -615,6 +647,7 @@
         <a href="#" id="sidebar-signout" class="signed-in-only" onclick="event.preventDefault(); doSignOut();" style="display:inline-block;margin-top:8px;font-size:11px;color:var(--gray-500);text-decoration:none;">Kijelentkezés</a>
     </div>
 </div>
+<div class="sidebar-backdrop" id="sidebar-backdrop" onclick="toggleSidebar(false)"></div>
 
 <div class="main">
     <!-- DASHBOARD PAGE -->
@@ -637,7 +670,7 @@
             <div class="pro-lock">
                 <div class="lock-icon">🔒</div>
                 <h3>AI igény-felmérő — Pro funkció</h3>
-                <p>Írja le pár szóban, mire kéne támogatás — és az AI megkeresi az Önnek megfelelő pályázatokat. Elérhető Pro előfizetéssel (5 067 Ft/hó).</p>
+                <p>Írja le pár szóban, mire kéne támogatás — és az AI megkeresi az Önnek megfelelő pályázatokat. Elérhető Pro előfizetéssel (3 990 Ft/hó).</p>
                 <a href="pricing.html" class="btn-upgrade">Upgrade Pro-ra</a>
             </div>
             <div class="needs-finder pro-only" id="needs-finder">
@@ -660,7 +693,7 @@
             <div class="hero-stats" id="hero-stats"></div>
 
             <!-- PROFILE BANNER (shown when no onboarding profile is in localStorage) -->
-            <a href="onboarding.html" id="profile-banner" class="profile-banner" style="display:none;">
+            <a href="onboarding.html" id="profile-banner" class="profile-banner pro-only" style="display:none;">
                 <span class="profile-banner-icon">✨</span>
                 <span class="profile-banner-text">
                     <b>Töltse ki a profilját a személyre szabott ajánlatokért</b>
@@ -703,7 +736,7 @@
                 <div class="pro-lock">
                     <div class="lock-icon">✨</div>
                     <h3>Személyre szabott ajánlások — Pro funkció</h3>
-                    <p>A Pro AI-pontozással egy 10 fős budapesti IT cég teljesen más pályázati listát kap, mint egy 50 fős debreceni gyártó. 5 067 Ft/hó, bármikor lemondható.</p>
+                    <p>A Pro AI-pontozással egy 10 fős budapesti IT cég teljesen más pályázati listát kap, mint egy 50 fős debreceni gyártó. 3 990 Ft/hó, bármikor lemondható.</p>
                     <a href="pricing.html" class="btn-upgrade">Upgrade Pro-ra</a>
                 </div>
                 <!-- Stacked single-column list of ALL grants for Free users -->
@@ -828,7 +861,7 @@
             <div class="pro-lock">
                 <div class="lock-icon">🔒</div>
                 <h3>AI Pályázat-vázlat — Pro funkció</h3>
-                <p>Egy kattintásra generál cégprofilra szabott pályázat-vázlatot, vezetői összefoglalót, kötelező részekkel és ellenőrző-listával. Pro előfizetéssel elérhető (5 067 Ft/hó).</p>
+                <p>Egy kattintásra generál cégprofilra szabott pályázat-vázlatot, vezetői összefoglalót, kötelező részekkel és ellenőrző-listával. Pro előfizetéssel elérhető (3 990 Ft/hó).</p>
                 <a href="pricing.html" class="btn-upgrade">Upgrade Pro-ra</a>
             </div>
             <div class="drafter-wrap pro-only" id="drafter-wrap"></div>
@@ -842,7 +875,7 @@
             <div class="pro-lock">
                 <div class="lock-icon">🔒</div>
                 <h3>Jelentések — Pro funkció</h3>
-                <p>Cégprofilra szabott vezetői összefoglaló, portfólió és heti riport — egy kattintásra, PDF-re nyomtatható. Pro előfizetéssel elérhető (5 067 Ft/hó).</p>
+                <p>Cégprofilra szabott vezetői összefoglaló, portfólió és heti riport — egy kattintásra, PDF-re nyomtatható. Pro előfizetéssel elérhető (3 990 Ft/hó).</p>
                 <a href="pricing.html" class="btn-upgrade">Upgrade Pro-ra</a>
             </div>
             <div class="pro-only" style="font-size:13px;color:var(--gray-500);margin-bottom:20px;max-width:640px;line-height:1.55;">
@@ -884,7 +917,7 @@
             <div class="pro-lock">
                 <div class="lock-icon">🔒</div>
                 <h3>Értesítések — Pro funkció</h3>
-                <p>Sürgős határidő-riasztások, új releváns pályázatok és személyre szabott e-mail értesítések. Pro előfizetéssel elérhető (5 067 Ft/hó).</p>
+                <p>Sürgős határidő-riasztások, új releváns pályázatok és személyre szabott e-mail értesítések. Pro előfizetéssel elérhető (3 990 Ft/hó).</p>
                 <a href="pricing.html" class="btn-upgrade">Upgrade Pro-ra</a>
             </div>
             <div class="card pro-only" id="alerts-card"></div>
@@ -944,6 +977,37 @@
 // a defined value during first paint. Updated later by applyTier() when
 // the actual tier is resolved from Supabase or legacy session.
 window.currentTier = 'anonymous';
+
+// Mobile sidebar toggle — hamburger opens, backdrop closes.
+function toggleSidebar(force) {
+    const sb = document.querySelector('.sidebar');
+    const bd = document.getElementById('sidebar-backdrop');
+    if (!sb || !bd) return;
+    const isOpen = sb.classList.contains('open');
+    const want = (typeof force === 'boolean') ? force : !isOpen;
+    sb.classList.toggle('open', want);
+    bd.classList.toggle('open', want);
+    document.body.style.overflow = want ? 'hidden' : '';
+}
+// Inject a hamburger button into every topbar after DOM is ready.
+function injectHamburgers() {
+    document.querySelectorAll('.topbar').forEach(tb => {
+        if (tb.querySelector('.hamburger')) return;
+        const btn = document.createElement('button');
+        btn.className = 'hamburger';
+        btn.setAttribute('aria-label', 'Menü');
+        btn.onclick = () => toggleSidebar();
+        btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>';
+        tb.insertBefore(btn, tb.firstChild);
+    });
+}
+// Close sidebar after any nav item click (mobile UX).
+document.addEventListener('click', (e) => {
+    const item = e.target.closest('.nav-item');
+    if (item && window.innerWidth <= 768) {
+        setTimeout(() => toggleSidebar(false), 100);
+    }
+});
 
 const G = [
     {id:"G-001",title:"GINOP Plusz 1.2.4-25 — Mikro- és kisvállalkozások támogatása hátrányos régiókban",source:"palyazat.gov.hu",cat:"KKV fejlesztés",amount:"4-150M Ft",deadline:"2026-04-30",days:0,score:0,verdict:"APPLY",url:"https://www.palyazat.gov.hu/programok/szechenyi-terv-plusz/ginop-plusz/ginop_plusz-1.2.4-25/alapadatok",factors:{size:95,industry:80,location:90,deadline:70,preference:90}},
@@ -1890,11 +1954,13 @@ function initDashboard() {
             <div class="hero-stat-value" data-counter="total">0</div>
             <div class="hero-stat-sub">Folyamatos monitoring</div>
         </div>
-        <div class="hero-stat blue clickable" onclick="goGrantsRelevant()" title="Önnek releváns pályázatok">
+        <div class="hero-stat blue clickable" onclick="goGrantsRelevant()" title="${window.currentTier === 'pro' ? 'Önnek releváns pályázatok' : 'Pro upgrade-re kattintáshoz'}">
             <div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
-            <div class="hero-stat-label">Önnek releváns <span class="nav-pro-badge" style="margin-left:6px;">Pro</span></div>
-            <div class="hero-stat-value" data-counter="relevant" style="color: var(--blue-600);">0</div>
-            <div class="hero-stat-sub">Illeszkedési pontszám &gt; 60</div>
+            <div class="hero-stat-label">Önnek releváns ${window.currentTier === 'pro' ? '' : '<span class="nav-pro-badge" style="margin-left:6px;">Pro</span>'}</div>
+            ${window.currentTier === 'pro'
+                ? `<div class="hero-stat-value" data-counter="relevant" style="color: var(--blue-600);">0</div><div class="hero-stat-sub">Illeszkedési pontszám &gt; 60</div>`
+                : `<div class="hero-stat-value" style="color: var(--gray-400); font-size: 32px;">—</div><div class="hero-stat-sub" style="color: var(--green-700); font-weight: 600;">Csak Pro előfizetéssel</div>`
+            }
         </div>
         <div class="hero-stat ${expiringThisMonth > 0 ? 'red' : 'amber'} clickable" onclick="goGrants('expiring')" title="Hamarosan lejáró pályázatok">
             <div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
@@ -1910,7 +1976,8 @@ function initDashboard() {
         </div>
     `;
     animateCounter(document.querySelector('[data-counter="total"]'), totalActive);
-    animateCounter(document.querySelector('[data-counter="relevant"]'), relevant);
+    const relEl = document.querySelector('[data-counter="relevant"]');
+    if (relEl) animateCounter(relEl, relevant);
     animateCounter(document.querySelector('[data-counter="funding"]'), totalFunding, { format: formatFt, duration: 1200 });
     animateCounter(document.querySelector('[data-counter="expiring"]'), expiringThisMonth);
 
@@ -2231,7 +2298,7 @@ function showDetail(id) {
                     <div style="width:32px; height:32px; background:var(--green-600); color:white; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;">🔒</div>
                     <div style="flex:1;">
                         <div style="font-weight:700; font-size:14px; color:var(--green-800); margin-bottom:4px;">AI Pontozás + Ajánlás — Pro funkció</div>
-                        <div style="font-size:13px; color:var(--gray-600); line-height:1.5; margin-bottom:12px;">A Pro AI a cégprofiljához méri ezt a pályázatot 5 tényező alapján, és konkrét ajánlást ad: pályázzon, gondolja végig vagy hagyja ki. 5 067 Ft/hó.</div>
+                        <div style="font-size:13px; color:var(--gray-600); line-height:1.5; margin-bottom:12px;">A Pro AI a cégprofiljához méri ezt a pályázatot 5 tényező alapján, és konkrét ajánlást ad: pályázzon, gondolja végig vagy hagyja ki. 3 990 Ft/hó.</div>
                         <a href="pricing.html" class="tier-cta-btn">Upgrade Pro-ra</a>
                     </div>
                 </div>
@@ -2939,7 +3006,7 @@ function initProfile() {
             <!-- Free / anonymous users: prominent Upgrade-to-Pro CTA at top -->
             <div class="anonymous-only basic-only" style="background:linear-gradient(135deg, var(--green-50) 0%, white 100%); border:1px solid var(--green-200); border-radius:var(--radius-lg); padding:22px 26px; margin-bottom:20px; display:flex; align-items:center; gap:18px; flex-wrap:wrap;">
                 <div style="flex:1; min-width:240px;">
-                    <div style="font-weight:700; font-size:16px; color:var(--green-800); margin-bottom:4px;">Pro upgrade — 5 067 Ft/hó</div>
+                    <div style="font-weight:700; font-size:16px; color:var(--green-800); margin-bottom:4px;">Pro upgrade — 3 990 Ft/hó</div>
                     <div style="font-size:13px; color:var(--gray-600); line-height:1.5;">AI illeszkedési pontozás, AI Pályázat-vázlat, személyre szabott heti riport, sürgős határidő-riasztás. Bármikor lemondható, 14 napos elállási jog.</div>
                 </div>
                 <a href="pricing.html" class="tier-cta-btn">Upgrade Pro-ra</a>
@@ -2970,18 +3037,15 @@ function initProfile() {
                 </div>
             </div>
 
-            <!-- Free / Basic: minimal account info -->
-            <div class="detail-section anonymous-only basic-only">
-                <h3>Felhasználói adatok</h3>
-                <div class="set-grid">
-                    <div class="set-field"><label>Név</label><input id="s_contact" type="text" value="${(p.contact_name||'').replace(/"/g,'&quot;')}" placeholder="Név"></div>
-                    <div class="set-field"><label>E-mail</label><input id="s_email" type="email" value="${(p.email||'').replace(/"/g,'&quot;')}" placeholder="on@vallalkozas.hu" disabled style="background:var(--gray-50); cursor:not-allowed;"></div>
-                </div>
-                <div class="save-bar">
-                    <button class="btn-sm primary" onclick="saveProfile()">Mentés</button>
-                    <span class="save-ok" id="prof-ok">Mentve ✓</span>
-                </div>
-                <p style="font-size:12px; color:var(--gray-500); margin-top:10px;">Az e-mail címet a regisztrációkor adta meg — módosítása ügyfélszolgálaton keresztül lehetséges (info@aipalyazo.hu).</p>
+            <!-- Free / Basic: NO profile fields. Just a strong Pro upgrade message. -->
+            <div class="detail-section anonymous-only basic-only" style="text-align:center; padding:32px 24px; background:linear-gradient(135deg, var(--green-50) 0%, white 100%); border:1px solid var(--green-200); border-radius:var(--radius-lg);">
+                <div style="font-size:48px; line-height:1; margin-bottom:14px;">🔒</div>
+                <h3 style="font-size:18px; color:var(--green-800); margin-bottom:8px;">Személyre szabás csak Pro előfizetéssel</h3>
+                <p style="font-size:14px; color:var(--gray-600); line-height:1.6; max-width:480px; margin:0 auto 18px;">
+                    A cégprofil-mezők, az AI illeszkedési pontozás, a személyre szabott heti riport és a sürgős határidő-riasztások mind a Pro előfizetés részei.
+                    Free felhasználóként az összes pályázatot böngészheti és mentheti.
+                </p>
+                <a href="pricing.html" class="tier-cta-btn">Pro-ra váltás · 3 990 Ft/hó</a>
             </div>
 
             <!-- Pro tier: full personalized notification settings -->
@@ -3028,7 +3092,7 @@ function initProfile() {
 
                 <div style="margin-top:24px; background:linear-gradient(135deg, var(--green-50) 0%, white 100%); border:1px solid var(--green-200); border-radius:var(--radius-lg); padding:18px 22px;">
                     <div style="font-weight:700; font-size:14px; color:var(--green-800); margin-bottom:4px;">Személyre szabott e-mail — Pro funkció</div>
-                    <div style="font-size:13px; color:var(--gray-600); line-height:1.5; margin-bottom:12px;">Pro-ban a heti email csak az Ön cégprofiljához illő pályázatokat tartalmazza, sürgős határidő-riasztásokkal és személyes ajánlásokkal. 5 067 Ft/hó.</div>
+                    <div style="font-size:13px; color:var(--gray-600); line-height:1.5; margin-bottom:12px;">Pro-ban a heti email csak az Ön cégprofiljához illő pályázatokat tartalmazza, sürgős határidő-riasztásokkal és személyes ajánlásokkal. 3 990 Ft/hó.</div>
                     <a href="pricing.html" class="tier-cta-btn">Upgrade Pro-ra</a>
                 </div>
             </div>
@@ -3036,7 +3100,7 @@ function initProfile() {
             <div class="detail-section">
                 <h3>Csomag</h3>
                 <div class="detail-row"><span class="label">Aktuális csomag</span><span class="value" style="font-weight: 700;" id="settings-tier-label">${
-                    window.currentTier === 'pro' ? '<span style="color: var(--green-600);">Pro · 5 067 Ft/hó</span>' :
+                    window.currentTier === 'pro' ? '<span style="color: var(--green-600);">Pro · 3 990 Ft/hó</span>' :
                     window.currentTier === 'basic' ? '<span style="color: var(--gray-700);">Free (regisztrált)</span>' :
                     '<span style="color: var(--gray-500);">Anonim böngészés</span>'
                 }</span></div>
@@ -3367,6 +3431,7 @@ updateLeadsBadge();
 mountUserWidget();
 initDashboard();
 maybeShowCTA();
+injectHamburgers();
 
 // =========================================================================
 // Tier resolution + Supabase auth integration

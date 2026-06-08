@@ -13,6 +13,7 @@ Allow: /impresszum.html
 Disallow: /portal.html
 Disallow: /login.html
 Disallow: /reset-password.html
+Disallow: /confirm-email.html
 Disallow: /meeting-brief.html
 Disallow: /agreements.html
 Disallow: /LAUNCH-CHECKLIST.html

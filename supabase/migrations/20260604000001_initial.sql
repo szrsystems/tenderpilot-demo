@@ -4,7 +4,7 @@
 -- Tier model:
 --   anonymous → not logged in (no row anywhere)
 --   basic     → registered, free; can save grants + opt into generic digest
---   pro       → paid 5067 Ft/hó (gross) via Paddle; full personalisation
+--   pro       → paid 3990 Ft/hó (gross) via Paddle; full personalisation
 -- =========================================================================
 
 -- profiles: 1:1 with auth.users, holds business identity + tier flag.

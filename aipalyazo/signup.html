@@ -28,9 +28,13 @@
         .divider { display: flex; align-items: center; gap: 12px; margin: 18px 0; font-size: 11px; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
         .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--gray-200); }
         .form-group { margin-bottom: 14px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--gray-600); margin-bottom: 6px; }
-        .form-group input { width: 100%; padding: 11px 14px; border: 1px solid var(--gray-300); border-radius: 8px; font-size: 14px; font-family: inherit; color: var(--gray-900); }
+        .form-group input { width: 100%; padding: 11px 14px; border: 1px solid var(--gray-300); border-radius: 8px; font-size: 14px; font-family: inherit; color: var(--gray-900); transition: border-color 0.15s, box-shadow 0.15s; }
         .form-group input:focus { outline: none; border-color: var(--green-600); box-shadow: 0 0 0 3px rgba(34,197,94,0.1); }
+        .form-group input.mismatch { border-color: var(--red-600); }
+        .field-hint { font-size: 11px; color: var(--gray-500); margin-top: 4px; }
+        .field-hint.error { color: var(--red-600); }
         .gdpr-box { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 12px 14px; margin: 16px 0; font-size: 12px; color: var(--gray-700); line-height: 1.5; }
         .gdpr-box label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
         .gdpr-box input { margin-top: 2px; flex-shrink: 0; }
@@ -49,12 +53,13 @@
         .perks b { color: var(--green-800); display: block; margin-bottom: 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
         footer { text-align: center; padding: 24px; font-size: 12px; color: var(--gray-400); }
         footer a { color: var(--gray-500); margin: 0 8px; text-decoration: none; }
+        @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <div class="wrap">
-    <div class="logo"><span>AI</span>pályázó</div>
+    <a href="index.html" class="logo" style="text-decoration:none; color:inherit; display:block;"><span>AI</span>pályázó</a>
     <div class="logo-sub">Pályázati ügyfélportál</div>
 
     <div class="card">
@@ -72,19 +77,36 @@
         <div class="divider">vagy</div>
 
         <form id="signup-form" autocomplete="on" onsubmit="signUpEmail(event)">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Név</label>
+                    <input type="text" id="name" name="name" required autocomplete="name" placeholder="Pl. Kovács János">
+                </div>
+                <div class="form-group">
+                    <label for="company">Cégnév</label>
+                    <input type="text" id="company" name="company" required autocomplete="organization" placeholder="Pl. InnoTech Kft.">
+                </div>
+            </div>
             <div class="form-group">
                 <label for="email">E-mail cím</label>
                 <input type="email" id="email" name="email" required autocomplete="email" placeholder="on@vallalkozas.hu">
             </div>
-            <div class="form-group">
-                <label for="password">Jelszó (min. 8 karakter)</label>
-                <input type="password" id="password" name="password" required autocomplete="new-password" minlength="8" placeholder="••••••••">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="password">Jelszó (min. 8)</label>
+                    <input type="password" id="password" name="password" required autocomplete="new-password" minlength="8" placeholder="••••••••" oninput="checkMatch()">
+                </div>
+                <div class="form-group">
+                    <label for="password2">Jelszó újra</label>
+                    <input type="password" id="password2" name="password2" required autocomplete="new-password" minlength="8" placeholder="••••••••" oninput="checkMatch()">
+                </div>
             </div>
+            <div class="field-hint" id="pw-hint">A két jelszónak egyeznie kell.</div>
 
             <div class="gdpr-box">
                 <label>
                     <input type="checkbox" id="gdpr" required>
-                    <span>Elolvastam és elfogadom az <a href="adatvedelem.html" target="_blank" rel="noopener">Adatkezelési tájékoztatót</a> és az <a href="aszf.html" target="_blank" rel="noopener">ÁSZF</a>-et. Hozzájárulok, hogy az e-mailemet az AIpályázó a leírtak szerint kezelje.</span>
+                    <span>Elolvastam és elfogadom az <a href="adatvedelem.html" target="_blank" rel="noopener">Adatkezelési tájékoztatót</a> és az <a href="aszf.html" target="_blank" rel="noopener">ÁSZF</a>-et. Hozzájárulok az e-mailem kezeléséhez.</span>
                 </label>
             </div>
 
@@ -96,9 +118,9 @@
         <div class="perks">
             <b>Az ingyenes Basic fiókkal</b>
             ✓ Pályázatok mentése<br>
-            ✓ Heti összefoglaló e-mail<br>
-            ✓ Konzultáció kérése tanácsadó partnertől<br>
-            <span style="display:inline-block;margin-top:8px;font-size:11px;color:var(--gray-500);">A személyre szabott illeszkedési pontozás, AI vázlat és heti személyre szabott jelentés a Pro csomag része (5 067 Ft/hó bruttó, bármikor lemondható).</span>
+            ✓ Heti általános hírlevél<br>
+            ✓ Konzultáció kérése pályázatíró partnertől<br>
+            <span style="display:inline-block;margin-top:8px;font-size:11px;color:var(--gray-500);">AI illeszkedési pontozás, AI vázlat, személyre szabott riport: Pro csomag (3 990 Ft/hó bruttó, bármikor lemondható).</span>
         </div>
     </div>
 </div>
@@ -125,6 +147,24 @@ function showSuccess(msg) {
     document.getElementById('error-msg').classList.remove('show');
 }
 
+function checkMatch() {
+    const p1 = document.getElementById('password').value;
+    const p2 = document.getElementById('password2').value;
+    const hint = document.getElementById('pw-hint');
+    const inp2 = document.getElementById('password2');
+    if (!p2) { hint.textContent = 'A két jelszónak egyeznie kell.'; hint.className = 'field-hint'; inp2.classList.remove('mismatch'); return; }
+    if (p1 !== p2) {
+        hint.textContent = 'A jelszavak nem egyeznek.';
+        hint.className = 'field-hint error';
+        inp2.classList.add('mismatch');
+    } else {
+        hint.textContent = 'Jelszavak egyeznek ✓';
+        hint.className = 'field-hint';
+        hint.style.color = 'var(--green-700)';
+        inp2.classList.remove('mismatch');
+    }
+}
+
 async function withClient(fn) {
     if (!window.gp) await new Promise(r => window.addEventListener('gp-ready', r, { once: true }));
     return fn(window.gp.client);
@@ -132,36 +172,53 @@ async function withClient(fn) {
 
 async function signUpEmail(ev) {
     ev.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const company = document.getElementById('company').value.trim();
     const email = document.getElementById('email').value.trim().toLowerCase();
     const password = document.getElementById('password').value;
+    const password2 = document.getElementById('password2').value;
     const gdpr = document.getElementById('gdpr').checked;
+
+    if (!name) { showError('Kérlek add meg a neved.'); return; }
+    if (!company) { showError('Kérlek add meg a cégnevet.'); return; }
     if (!gdpr) { showError('Az adatkezelési tájékoztató elfogadása szükséges.'); return; }
     if (password.length < 8) { showError('A jelszó legalább 8 karakter legyen.'); return; }
+    if (password !== password2) { showError('A két jelszó nem egyezik.'); return; }
 
     const btn = document.getElementById('submit-btn');
     btn.disabled = true; btn.textContent = 'Regisztráció…';
 
     try {
+        // Pass name + company in raw_user_meta_data so the handle_new_user
+        // trigger picks them up into public.profiles automatically.
         const { data, error } = await withClient(c => c.auth.signUp({
             email, password,
-            options: { emailRedirectTo: location.origin + location.pathname.replace(/signup\.html$/, 'portal.html') }
+            options: {
+                data: { full_name: name, company: company },
+                emailRedirectTo: location.origin + location.pathname.replace(/signup\.html$/, 'confirm-email.html')
+            }
         }));
         if (error) throw error;
+        // Save name+company to localStorage in case the trigger doesn't pick it up
+        // (the next portal load + migrateLocalToSupabase will sync).
+        try {
+            localStorage.setItem('grantpilot:profile', JSON.stringify({
+                contact_name: name, company: company, email: email,
+                submitted: new Date().toISOString()
+            }));
+        } catch (e) {}
+
         if (data.user && !data.session) {
-            // Email confirmation required (default Supabase behaviour)
-            showSuccess('✉️ <b>Megerősítő e-mail elküldve</b> a(z) <b>' + email + '</b> címre. Nyisd meg, és kattints a megerősítő linkre — utána automatikusan bejelentkezel.');
-            document.getElementById('signup-form').style.display = 'none';
-            document.getElementById('google-btn').style.display = 'none';
+            // Email confirmation required — redirect to confirm page with email
+            location.replace('confirm-email.html?email=' + encodeURIComponent(email));
         } else if (data.session) {
-            // Auto-confirmed; go straight to portal
+            // Auto-confirmed (confirm-email setting off in Supabase) — straight to portal
             location.replace('portal.html');
         }
     } catch (e) {
         const msg = (e && e.message) || 'Ismeretlen hiba történt.';
-        if (/already registered|already exists/i.test(msg)) {
+        if (/already registered|already exists|User already/i.test(msg)) {
             showError('Ezzel az e-maillel már létezik fiók — próbálj belépni.');
-        } else if (/email/i.test(msg)) {
-            showError('Hibás e-mail cím vagy a Supabase még nem küld megerősítő e-mailt: ' + msg);
         } else {
             showError('Regisztráció sikertelen: ' + msg);
         }
