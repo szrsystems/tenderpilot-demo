@@ -296,6 +296,15 @@ const form = document.getElementById("login-form");
 const errorEl = document.getElementById("error-msg");
 const btn = document.getElementById("login-btn");
 
+// Show success message if redirected here after password reset.
+if ((new URLSearchParams(location.search)).get('password_reset') === '1') {
+    errorEl.style.background = '#f0fdf4';
+    errorEl.style.borderColor = '#bbf7d0';
+    errorEl.style.color = '#166534';
+    errorEl.textContent = 'Új jelszó beállítva ✓ — most belépve az új jelszóval folytathatja.';
+    errorEl.classList.add('show');
+}
+
 async function withClient(fn) {
     if (!window.gp) await new Promise(r => window.addEventListener('gp-ready', r, { once: true }));
     return fn(window.gp.client);
@@ -339,7 +348,7 @@ async function resetPassword(ev) {
     }
     try {
         const { error } = await withClient(c => c.auth.resetPasswordForEmail(email, {
-            redirectTo: location.origin + location.pathname.replace(/login\.html$/, 'login.html')
+            redirectTo: location.origin + location.pathname.replace(/login\.html$/, 'reset-password.html')
         }));
         if (error) throw error;
         errorEl.style.background = '#f0fdf4';

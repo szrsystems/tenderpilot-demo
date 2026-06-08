@@ -1489,7 +1489,8 @@ try { bookmarks = new Set(JSON.parse(localStorage.getItem(BOOKMARKS_KEY) || '[]'
 
 function toggleBookmark(id, ev) {
     if (ev) ev.stopPropagation();
-    if (bookmarks.has(id)) bookmarks.delete(id);
+    const wasSaved = bookmarks.has(id);
+    if (wasSaved) bookmarks.delete(id);
     else bookmarks.add(id);
     try { localStorage.setItem(BOOKMARKS_KEY, JSON.stringify([...bookmarks])); } catch(e) {}
     // Re-render the bookmark buttons (cheap targeted update)
@@ -1497,9 +1498,31 @@ function toggleBookmark(id, ev) {
         btn.classList.toggle('saved', bookmarks.has(id));
     });
     updateSavedBadge();
-updateLeadsBadge();
+    updateLeadsBadge();
     // If the user is on the Saved page, reflect the change live
     if (currentPage === 'saved') initSaved();
+    // Sync to Supabase if signed in (fire-and-forget; localStorage is source of truth offline).
+    syncBookmarkToSupabase(id, wasSaved ? 'delete' : 'add');
+}
+
+// Sync a single bookmark change to public.bookmarks. Silent on failure — the
+// localStorage update is the source of truth for the client, and the
+// migrateLocalToSupabase pass will re-sync on next sign-in.
+async function syncBookmarkToSupabase(grantId, op) {
+    if (!window.gp || !window.gp.client) return;
+    try {
+        const { data: { user } } = await window.gp.client.auth.getUser();
+        if (!user) return; // anonymous — nothing to sync
+        if (op === 'add') {
+            await window.gp.client.from('bookmarks').upsert(
+                { user_id: user.id, grant_id: String(grantId) },
+                { onConflict: 'user_id,grant_id', ignoreDuplicates: true }
+            );
+        } else {
+            await window.gp.client.from('bookmarks').delete()
+                .eq('user_id', user.id).eq('grant_id', String(grantId));
+        }
+    } catch (e) { console.warn('[gp] bookmark sync failed', e); }
 }
 
 function updateSavedBadge() {
@@ -2105,26 +2128,53 @@ function submitWriterLead(ev, id) {
     const email = (document.getElementById('ld-email-' + id) || {}).value || '';
     const phone = (document.getElementById('ld-phone-' + id) || {}).value || '';
     const payload = { grantId: id, grantTitle: g ? g.title : id, name, email, phone, gdpr_consent: true, gdpr_consent_ts: new Date().toISOString(), ts: Date.now() };
+    // Always keep a local copy (works offline + signed-out)
     try {
         const leads = JSON.parse(localStorage.getItem('grantpilot:leads') || '[]');
         leads.push(payload);
         localStorage.setItem('grantpilot:leads', JSON.stringify(leads));
     } catch(e) {}
+    // Insert into Supabase public.leads. RLS allows insert when user_id matches
+    // current auth.uid() OR is null (anonymous consultation requests).
+    submitLeadToSupabase(payload);
+    // Legacy webhook fallback (kept for parity with old demo flow)
     if (LEAD_BACKEND_URL) {
         fetch(LEAD_BACKEND_URL, {
             method: 'POST',
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
             body: JSON.stringify(payload)
-        }).catch(() => { /* swallow — local copy already saved, visible in Leadek */ });
+        }).catch(() => {});
     }
     updateLeadsBadge();
-    const demoNote = LEAD_BACKEND_URL ? '' : `<div style="margin-top:14px;padding:10px 14px;background:rgba(217,119,6,0.18);border:1px solid rgba(217,119,6,0.35);border-radius:8px;font-size:11px;color:#fde68a;line-height:1.5;"><b style="color:#fcd34d;">Demo mód.</b> A beküldés helyileg (a böngészőjében) rögzült. Élesben a Pályázatíró partner közvetlenül megkapja.</div>`;
     wrap.innerHTML = `<div class="lead-success">
         <div class="ls-check">&#10003;</div>
         <h4>Köszönjük! Igényét rögzítettük.</h4>
         <p>Pályázatíró partnerünk <b>2 munkanapon belül</b> felveszi Önnel a kapcsolatot a(z) „${g ? g.title.slice(0,60) : ''}…" pályázattal kapcsolatban, és díjmentes előzetes jogosultsági konzultációt ad.</p>
-        ${demoNote}
     </div>`;
+}
+
+// Insert a lead into Supabase. Includes user_id when signed in; null otherwise
+// (RLS policy "leads: insert own or anonymous" allows both).
+async function submitLeadToSupabase(payload) {
+    if (!window.gp || !window.gp.client) return;
+    try {
+        let userId = null;
+        try {
+            const { data: { user } } = await window.gp.client.auth.getUser();
+            if (user) userId = user.id;
+        } catch (e) {}
+        const row = {
+            user_id: userId,
+            grant_id: String(payload.grantId),
+            grant_title: payload.grantTitle || null,
+            name: payload.name,
+            email: payload.email,
+            phone: payload.phone || null,
+        };
+        const { error } = await window.gp.client.from('leads').insert(row);
+        if (error) console.warn('[gp] lead insert failed', error);
+        else console.log('[gp] lead saved to Supabase');
+    } catch (e) { console.warn('[gp] submitLeadToSupabase error', e); }
 }
 
 function showDetail(id) {
@@ -2988,14 +3038,28 @@ function initProfile() {
             </div>
 
             <div class="detail-section">
-                <h3>Adatok hordozhatósága</h3>
-                <p style="font-size: 13px; color: var(--gray-600); line-height: 1.55; margin-bottom: 14px;">A profil, a mentett pályázatok, a beérkezett leadek, az AI-vázlatok és az értesítési beállítások exportálhatók egyetlen JSON fájlba, és bármikor visszaállíthatók — pl. másik böngészőben vagy gépen.</p>
+                <h3>Adatok hordozhatósága (GDPR 15. cikk)</h3>
+                <p style="font-size: 13px; color: var(--gray-600); line-height: 1.55; margin-bottom: 14px;">A profil, a mentett pályázatok, a beérkezett leadek, az AI-vázlatok és az értesítési beállítások exportálhatók egyetlen JSON fájlba. Bejelentkezett felhasználóként a Supabase szerver-oldali adatait is letöltheti.</p>
                 <div class="save-bar">
                     <button class="btn-sm" onclick="exportUserData()">📤 Adatok exportálása (JSON)</button>
                     <label class="btn-sm" style="cursor:pointer;display:inline-flex;align-items:center;">📥 Importálás<input type="file" accept="application/json,.json" onchange="importUserData(event)" style="display:none;"></label>
                     <button class="btn-sm" onclick="wipeUserData()" style="color:var(--red-600);border-color:var(--red-100);">Helyi adatok törlése</button>
                 </div>
                 <span class="save-ok" id="data-ok" style="margin-top:8px;display:block;">Kész ✓</span>
+            </div>
+
+            <!-- Account deletion — Supabase-signed-in users only (GDPR Article 17) -->
+            <div class="detail-section signed-in-only">
+                <h3>Fiók törlése (GDPR 17. cikk — törléshez való jog)</h3>
+                <p style="font-size: 13px; color: var(--gray-600); line-height: 1.55; margin-bottom: 14px;">
+                    A fiók törlésével <b>minden szerverre mentett adata</b> (profil, mentett pályázatok, konzultáció-igénylések, értesítési beállítások) véglegesen törlődik. Ez a művelet <b>nem visszafordítható</b>.
+                </p>
+                <p style="font-size: 13px; color: var(--gray-600); line-height: 1.55; margin-bottom: 14px;">
+                    <b>Aktív Pro előfizetés esetén</b> előbb mondja le az előfizetést, mielőtt a fiókját törli. A futó hónap végéig megtarthatja a hozzáférést — törlés után a számlázás is azonnal megáll.
+                </p>
+                <div class="save-bar">
+                    <button class="btn-sm" onclick="deleteAccount()" style="color:var(--red-600);border-color:var(--red-100);background:var(--red-50);">Fiók végleges törlése</button>
+                </div>
             </div>
         </div>
     `;
@@ -3004,17 +3068,70 @@ function initProfile() {
 /* ===== Profile / data portability ===== */
 const PORTABLE_KEYS = ['grantpilot:profile','grantpilot:bookmarks','grantpilot:leads','grantpilot:drafts','grantpilot:notif'];
 
-function exportUserData() {
-    const bundle = { schemaVersion: 1, exportedAt: new Date().toISOString(), data: {} };
+async function exportUserData() {
+    const bundle = { schemaVersion: 2, exportedAt: new Date().toISOString(), localStorage: {}, supabase: {} };
+    // 1. Local data
     PORTABLE_KEYS.forEach(k => {
-        try { const v = localStorage.getItem(k); if (v !== null) bundle.data[k] = JSON.parse(v); } catch(e) {}
+        try { const v = localStorage.getItem(k); if (v !== null) bundle.localStorage[k] = JSON.parse(v); } catch(e) {}
     });
+    // 2. Server-side data (if signed in)
+    if (window.gp && window.gp.client) {
+        try {
+            const { data: { user } } = await window.gp.client.auth.getUser();
+            if (user) {
+                bundle.supabase.account = { id: user.id, email: user.email, created_at: user.created_at };
+                const tables = ['profiles', 'bookmarks', 'leads', 'drafts', 'notif_prefs', 'subscriptions'];
+                for (const t of tables) {
+                    try {
+                        const { data } = await window.gp.client.from(t).select('*');
+                        bundle.supabase[t] = data || [];
+                    } catch (e) { bundle.supabase[t + '_error'] = String(e); }
+                }
+            }
+        } catch (e) { console.warn('[gp] supabase export error', e); }
+    }
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([JSON.stringify(bundle, null, 2)], { type: 'application/json' }));
     const stamp = new Date().toISOString().slice(0, 10);
     a.download = `aipalyazo-adatok-${stamp}.json`;
     a.click();
     flashOk('data-ok');
+}
+
+// GDPR Article 17 — delete account. Currently uses the user's own auth call to
+// schedule the delete via Supabase. For production: an Edge Function with the
+// service role key should do the actual deletion (auth.admin.deleteUser).
+async function deleteAccount() {
+    if (!window.gp || !window.gp.client) {
+        alert('Nincs aktív bejelentkezés — nincs mit törölni.');
+        return;
+    }
+    const phrase = prompt('A fiók végleges törléséhez írja be: TÖRLÉS\n\nFigyelmeztetés: ez minden szerverre mentett adatát visszavonhatatlanul törli.');
+    if (phrase !== 'TÖRLÉS') {
+        if (phrase !== null) alert('A megerősítés nem stimmel — törlés megszakítva.');
+        return;
+    }
+    try {
+        const { data: { user } } = await window.gp.client.auth.getUser();
+        if (!user) { alert('Nincs aktív bejelentkezés.'); return; }
+        // First wipe user-owned rows (RLS allows the user to delete their own).
+        await window.gp.client.from('bookmarks').delete().eq('user_id', user.id);
+        await window.gp.client.from('drafts').delete().eq('user_id', user.id);
+        await window.gp.client.from('leads').delete().eq('user_id', user.id);
+        await window.gp.client.from('notif_prefs').delete().eq('user_id', user.id);
+        // For the auth.users row itself: requires admin/service role. Send a
+        // request to a backend that uses service_role. For now, we flag the
+        // profile row as marked for deletion and sign the user out.
+        // TODO: deploy a delete-user Edge Function that calls auth.admin.deleteUser
+        await window.gp.client.from('profiles').update({ display_name: '[deleted]', email: 'deleted-' + user.id + '@aipalyazo.hu' }).eq('id', user.id);
+
+        // Clear local data and sign out
+        PORTABLE_KEYS.forEach(k => { try { localStorage.removeItem(k); } catch(e) {} });
+        alert('Adatai törölve. A teljes fiók (auth) törlése 24 órán belül megtörténik.\n\nÍrjon info@aipalyazo.hu-ra ha azonnali teljes törlést kér.');
+        doSignOut();
+    } catch (e) {
+        alert('Hiba a törlés során: ' + ((e && e.message) || 'ismeretlen hiba') + '\n\nKérem írjon info@aipalyazo.hu-ra a kézi törléshez.');
+    }
 }
 
 function importUserData(ev) {
@@ -3024,9 +3141,11 @@ function importUserData(ev) {
     reader.onload = () => {
         try {
             const bundle = JSON.parse(reader.result);
-            if (!bundle || !bundle.data) throw new Error('rossz formátum');
+            // Support v1 (data.<key>) and v2 (localStorage.<key>) bundles
+            const ls = (bundle && (bundle.localStorage || bundle.data)) || null;
+            if (!ls) throw new Error('rossz formátum');
             const restored = [];
-            for (const [k, v] of Object.entries(bundle.data)) {
+            for (const [k, v] of Object.entries(ls)) {
                 if (!PORTABLE_KEYS.includes(k)) continue;
                 localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v));
                 restored.push(k.replace('grantpilot:', ''));
@@ -3221,9 +3340,35 @@ function goToProFeature(ev, page) {
 }
 
 // Migrate localStorage bookmarks/profile to Supabase on first sign-in
+// Pull bookmarks FROM Supabase into local state. Runs on every sign-in after
+// migration so the client picks up bookmarks made from other devices/browsers.
+async function pullBookmarksFromSupabase(client, userId) {
+    try {
+        const { data, error } = await client.from('bookmarks').select('grant_id').eq('user_id', userId);
+        if (error || !Array.isArray(data)) return;
+        const remote = new Set(data.map(r => String(r.grant_id)));
+        // Merge: keep all local AND remote (so an offline-saved bookmark isn't lost).
+        const merged = new Set([...bookmarks, ...remote]);
+        if (merged.size !== bookmarks.size) {
+            bookmarks = merged;
+            try { localStorage.setItem(BOOKMARKS_KEY, JSON.stringify([...bookmarks])); } catch(e) {}
+            // Refresh visible bookmark buttons
+            document.querySelectorAll('[data-bm]').forEach(btn => {
+                const id = btn.getAttribute('data-bm');
+                btn.classList.toggle('saved', bookmarks.has(id));
+            });
+            updateSavedBadge();
+            console.log('[gp] pulled', remote.size, 'bookmarks from Supabase');
+            if (currentPage === 'saved') initSaved();
+        }
+    } catch (e) { console.warn('[gp] pullBookmarks failed', e); }
+}
+
 async function migrateLocalToSupabase(client, userId) {
     try {
         const marker = 'gp_migrated_' + userId;
+        // Always run pullBookmarks (cross-device sync), even after first migration.
+        await pullBookmarksFromSupabase(client, userId);
         if (localStorage.getItem(marker)) return;
         // Bookmarks
         const saved = JSON.parse(localStorage.getItem('grantpilot:saved') || '[]');

@@ -12,6 +12,7 @@ Allow: /impresszum.html
 # Internal app surfaces — don't index
 Disallow: /portal.html
 Disallow: /login.html
+Disallow: /reset-password.html
 Disallow: /meeting-brief.html
 Disallow: /agreements.html
 Disallow: /LAUNCH-CHECKLIST.html
