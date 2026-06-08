@@ -2983,15 +2983,26 @@ function maybeShowCTA() {
 }
 
 // Auth: user widget + logout
-function logout() {
-    sessionStorage.removeItem('gp_auth_token');
-    sessionStorage.removeItem('gp_user_email');
-    sessionStorage.removeItem('gp_auth_time');
-    window.location.replace('login.html');
-}
+// Legacy `logout()` kept as an alias for safety, but now delegates to the
+// robust doSignOut() defined above. The old version only cleared sessionStorage
+// and redirected to login.html — which left the Supabase localStorage session
+// intact, so login.html's bounce-out fired and re-logged the user in.
+function logout() { doSignOut(); }
 
 function mountUserWidget() {
-    const email = sessionStorage.getItem('gp_user_email') || '';
+    // Resolve the display email from Supabase session (preferred) or legacy demo.
+    let email = '';
+    try {
+        const stored = localStorage.getItem('grantpilot-auth');
+        if (stored) {
+            const parsed = JSON.parse(stored);
+            email = parsed?.user?.email || parsed?.currentSession?.user?.email || '';
+        }
+    } catch (e) {}
+    if (!email) email = sessionStorage.getItem('gp_user_email') || '';
+    // Don't render the widget at all if the user is anonymous.
+    if (!email) return;
+
     const demoBadge = email === 'demo@aipalyazo.hu'
         ? `<span title="Demo verzió — minden adat kizárólag az Ön böngészőjében tárolódik" style="display:inline-flex;align-items:center;gap:5px;background:#fef3c7;color:#92400e;border:1px solid #fde68a;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;margin-right:10px;cursor:help;"><span style="width:6px;height:6px;background:#d97706;border-radius:50%;"></span>Demo nézet</span>`
         : '';
@@ -3002,9 +3013,11 @@ function mountUserWidget() {
             actions.className = 'topbar-actions';
             tb.appendChild(actions);
         }
+        // Skip if widget already mounted (avoid duplicates from tier re-resolve)
+        if (actions.querySelector('.topbar-user')) return;
         const widget = document.createElement('div');
         widget.className = 'topbar-user';
-        widget.innerHTML = `${demoBadge}<span class="topbar-user-email">Bejelentkezve: <b>${email}</b></span><button class="btn-logout" onclick="logout()">Kijelentkezés</button>`;
+        widget.innerHTML = `${demoBadge}<span class="topbar-user-email">Bejelentkezve: <b>${email}</b></span><button class="btn-logout" onclick="doSignOut()">Kijelentkezés</button>`;
         actions.appendChild(widget);
     });
 }
