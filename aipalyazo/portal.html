@@ -1518,14 +1518,12 @@ function resetFilters() {
 }
 
 // Robust sign-out — sync-nuke ALL auth state BEFORE the SDK can auto-refresh, then redirect.
+// The redirect uses ?signed_out=1 which is intercepted by lib/supabase.js (which
+// re-nukes storage before init) and by login.html/signup.html bounce-out guards.
 function doSignOut() {
     console.log('[gp] doSignOut: clearing all auth state');
     try {
         // 1) Aggressively wipe any key that could hold a Supabase session.
-        //    - 'grantpilot-auth' (our configured storageKey)
-        //    - any 'sb-*' key (Supabase JS v2 default pattern, used as fallback)
-        //    - any key containing '-auth-token' (older SDK versions)
-        //    - migration markers so re-login re-syncs from cleared state
         const toRemove = [];
         for (let i = 0; i < localStorage.length; i++) {
             const k = localStorage.key(i);
@@ -1545,11 +1543,13 @@ function doSignOut() {
         sessionStorage.removeItem('gp_auth_token');
         sessionStorage.removeItem('gp_user_email');
         sessionStorage.removeItem('gp_auth_time');
+
+        // 3) Cross-tab safety: a flag that survives until the next page reads it
+        sessionStorage.setItem('gp_just_signed_out', '1');
     } catch (e) { console.warn('[gp] storage clear failed', e); }
 
-    // 3) Fire-and-forget Supabase signOut with LOCAL scope — no network roundtrip,
-    //    no race condition. Local state is already gone above; this is a courtesy
-    //    so onAuthStateChange listeners fire SIGNED_OUT properly.
+    // 4) Fire-and-forget Supabase signOut with LOCAL scope — no network roundtrip,
+    //    no race condition. Local state is already gone above.
     try {
         if (window.gp && window.gp.client) {
             const p = window.gp.client.auth.signOut({ scope: 'local' });
@@ -1557,8 +1557,8 @@ function doSignOut() {
         }
     } catch (e) {}
 
-    // 4) Hard navigation with query bust → fresh page, clean state.
-    //    Using href (not replace) so refresh-after-back doesn't re-trigger signout.
+    // 5) Hard navigation with ?signed_out=1. lib/supabase.js intercepts this on
+    //    init and force-clears storage BEFORE the SDK reads it.
     window.location.href = 'index.html?signed_out=1';
 }
 

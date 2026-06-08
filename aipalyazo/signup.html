@@ -181,8 +181,13 @@ async function signUpGoogle() {
     }
 }
 
-// Already signed in? Bounce to portal.
+// Already signed in? Bounce to portal — but NOT if we just signed out.
 window.addEventListener('gp-ready', async () => {
+    if ((new URLSearchParams(location.search)).get('signed_out') === '1' ||
+        sessionStorage.getItem('gp_just_signed_out') === '1') {
+        sessionStorage.removeItem('gp_just_signed_out');
+        return;
+    }
     const { data: { user } } = await window.gp.client.auth.getUser();
     if (user) location.replace('portal.html');
 });

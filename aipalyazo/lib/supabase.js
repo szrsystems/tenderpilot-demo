@@ -21,6 +21,39 @@ async function ensureSupabase() {
     });
 }
 
+// Sign-out guard — if the URL has ?signed_out=1, NUKE every possible auth
+// storage key BEFORE the Supabase SDK initialises. Without this, an in-flight
+// auto-refresh on another tab can write the session back into localStorage and
+// the bounce-out logic on login.html/signup.html would re-log the user in.
+function gpForceClearAuthStorage() {
+    try {
+        const keys = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            const k = localStorage.key(i);
+            if (!k) continue;
+            if (k === 'grantpilot-auth' ||
+                k.startsWith('grantpilot-auth.') ||
+                k.startsWith('sb-') ||
+                k.includes('-auth-token') ||
+                k.startsWith('gp_migrated_')) {
+                keys.push(k);
+            }
+        }
+        keys.forEach(k => { try { localStorage.removeItem(k); } catch (e) {} });
+        sessionStorage.removeItem('gp_auth_token');
+        sessionStorage.removeItem('gp_user_email');
+        sessionStorage.removeItem('gp_auth_time');
+        console.log('[gp] forced clear, removed', keys.length, 'localStorage keys:', keys);
+    } catch (e) { console.warn('[gp] force clear failed', e); }
+}
+
+const _signedOutFlag = (new URLSearchParams(location.search)).get('signed_out') === '1';
+if (_signedOutFlag) {
+    gpForceClearAuthStorage();
+    // Strip the query param so a refresh doesn't keep triggering this guard.
+    try { if (history && history.replaceState) history.replaceState(null, '', location.pathname); } catch (e) {}
+}
+
 // Initialise the client and expose helpers on window.gp.
 (async function init() {
     const supa = await ensureSupabase();
@@ -28,11 +61,19 @@ async function ensureSupabase() {
         auth: {
             persistSession: true,
             autoRefreshToken: true,
-            detectSessionInUrl: true, // for OAuth callback
+            // If we just signed out, DON'T let the SDK read an OAuth fragment
+            // (#access_token=...) and re-create a session.
+            detectSessionInUrl: !_signedOutFlag,
             storage: window.localStorage,
             storageKey: 'grantpilot-auth'
         }
     });
+
+    // Belt-and-suspenders: if signed_out, also call SDK signOut after init so
+    // any in-memory state is cleared and onAuthStateChange fires.
+    if (_signedOutFlag) {
+        try { await client.auth.signOut({ scope: 'local' }); } catch (e) {}
+    }
 
     // Helper: get tier of current user. Returns 'anonymous' | 'basic' | 'pro'.
     async function getTier() {

@@ -302,7 +302,15 @@ async function withClient(fn) {
 }
 
 // Bounce out if already signed in via Supabase.
+// Skip the bounce when we just signed out (the lib/supabase.js guard already
+// nuked storage; if anything stale survives, getUser() would otherwise pull
+// the user back to portal.html and undo the signout).
 window.addEventListener('gp-ready', async () => {
+    if ((new URLSearchParams(location.search)).get('signed_out') === '1' ||
+        sessionStorage.getItem('gp_just_signed_out') === '1') {
+        sessionStorage.removeItem('gp_just_signed_out');
+        return;
+    }
     const { data: { user } } = await window.gp.client.auth.getUser();
     if (user) window.location.replace('portal.html' + location.search);
 });
