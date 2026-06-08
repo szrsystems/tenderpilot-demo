@@ -523,6 +523,49 @@
 
         /* Anonymous: hide save buttons */
         body.tier-anonymous .save-btn, body.tier-anonymous .bookmark-btn { display: none !important; }
+
+        /* Tier CTA buttons (signup nudge, upgrade-to-pro, etc.) — consistent height + alignment.
+           Inline-flex centers vertically, line-height fixes font-rendering baseline issues. */
+        .tier-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--green-600);
+            color: white !important;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+            line-height: 1.2;
+            border: none;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .tier-cta-btn:hover { background: var(--green-700); }
+        .tier-cta-btn.secondary {
+            background: white;
+            color: var(--green-700) !important;
+            border: 1px solid var(--green-200);
+        }
+        .tier-cta-btn.secondary:hover { background: var(--green-50); }
+
+        /* Anonymous signup nudge banner — flex layout normalized */
+        .signup-nudge {
+            background: linear-gradient(135deg, #f0fdf4 0%, white 100%);
+            border: 1px solid var(--green-200);
+            border-radius: var(--radius-lg);
+            padding: 20px 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .signup-nudge-text { flex: 1; min-width: 240px; }
+        .signup-nudge-title { font-weight: 700; font-size: 15px; color: var(--green-800); margin-bottom: 4px; }
+        .signup-nudge-sub { font-size: 13px; color: var(--gray-600); }
     </style>
 </head>
 <body>
@@ -581,13 +624,13 @@
         </div>
         <div class="content">
             <!-- ANONYMOUS-ONLY signup nudge -->
-            <div class="anonymous-only" style="background:linear-gradient(135deg, #f0fdf4 0%, white 100%); border:1px solid var(--green-200); border-radius:var(--radius-lg); padding:20px 24px; margin-bottom:20px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-                <div style="flex:1; min-width:240px;">
-                    <div style="font-weight:700; font-size:15px; color:var(--green-800); margin-bottom:4px;">Regisztráljon ingyen — mentse el a kedvenc pályázatait</div>
-                    <div style="font-size:13px; color:var(--gray-600);">Korlátlan ideig ingyenes. Bankkártya nem szükséges. 30 másodperc.</div>
+            <div class="signup-nudge anonymous-only">
+                <div class="signup-nudge-text">
+                    <div class="signup-nudge-title">Regisztráljon ingyen — mentse el a kedvenc pályázatait</div>
+                    <div class="signup-nudge-sub">Korlátlan ideig ingyenes. Bankkártya nem szükséges. 30 másodperc.</div>
                 </div>
-                <a href="signup.html" style="background:var(--green-600); color:white; padding:10px 20px; border-radius:6px; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap;">Ingyenes regisztráció</a>
-                <a href="login.html" style="color:var(--green-700); font-size:13px; font-weight:600; text-decoration:none;">Belépés →</a>
+                <a href="signup.html" class="tier-cta-btn">Ingyenes regisztráció</a>
+                <a href="login.html" class="tier-cta-btn secondary">Belépés</a>
             </div>
 
             <!-- PRO-ONLY: AI NEEDS FINDER. Anonymous/Basic see a lock card instead. -->
@@ -1562,6 +1605,16 @@ function doSignOut() {
     window.location.href = 'index.html?signed_out=1';
 }
 
+// "Önnek releváns" KPI click — Pro users get the filtered grant list; non-Pro
+// goes to the upgrade signup page (the metric only makes sense with a profile).
+function goGrantsRelevant() {
+    if (window.currentTier === 'pro') {
+        goGrants('relevant');
+    } else {
+        window.location.href = 'signup.html?upgrade=pro&from=relevant';
+    }
+}
+
 // Navigate to the Pályázatok page with a preset filter intent from a hero-stat click.
 // 'all' = no filter, 'relevant' = Pro relevance filter, 'expiring' = sort by deadline ascending.
 function goGrants(intent) {
@@ -1808,9 +1861,9 @@ function initDashboard() {
             <div class="hero-stat-value" data-counter="total">0</div>
             <div class="hero-stat-sub">Folyamatos monitoring</div>
         </div>
-        <div class="hero-stat blue clickable pro-only" onclick="goGrants('relevant')" title="Releváns pályázatok megnyitása">
+        <div class="hero-stat blue clickable" onclick="goGrantsRelevant()" title="Önnek releváns pályázatok">
             <div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
-            <div class="hero-stat-label">Önnek releváns</div>
+            <div class="hero-stat-label">Önnek releváns <span class="nav-pro-badge" style="margin-left:6px;">Pro</span></div>
             <div class="hero-stat-value" data-counter="relevant" style="color: var(--blue-600);">0</div>
             <div class="hero-stat-sub">Illeszkedési pontszám &gt; 60</div>
         </div>
@@ -2079,21 +2132,25 @@ function showDetail(id) {
     if (!g) return;
     document.getElementById('detail-title').textContent = g.title;
     const dv = document.getElementById('detail-verdict');
-    dv.className = `verdict ${vClass(g.verdict)}`;
-    dv.textContent = `${g.score}/100 — ${vText(g.verdict)}`;
+    const isPro = window.currentTier === 'pro';
+    // For non-Pro: hide the score/verdict header pill entirely (just show category).
+    if (isPro) {
+        dv.className = `verdict ${vClass(g.verdict)}`;
+        dv.textContent = `${g.score}/100 — ${vText(g.verdict)}`;
+        dv.style.display = '';
+    } else {
+        dv.textContent = g.cat;
+        dv.className = 'verdict';
+        dv.style.cssText = 'background:var(--gray-100); color:var(--gray-600); border:1px solid var(--gray-200);';
+    }
 
     const f = g.factors;
     const barColor = s => s >= 80 ? 'var(--green-500)' : s >= 60 ? 'var(--amber-600)' : 'var(--red-600)';
     const bar = (label, score) => `<div class="score-bar-row"><span class="bar-label">${label}</span><div class="bar-bg"><div class="bar-fill" style="width:${score}%;background:${barColor(score)};"></div></div><span class="bar-num">${score}</span></div>`;
 
-    document.getElementById('detail-body').innerHTML = `
-        <div class="detail-section">
-            <h3>Alapadatok</h3>
-            <div class="detail-row"><span class="label">Forrás</span><span class="value">${g.url ? `<a href="${g.url}" target="_blank" rel="noopener" style="color: var(--green-600); text-decoration: none;">${g.source} ↗</a>` : g.source}</span></div>
-            <div class="detail-row"><span class="label">Kategória</span><span class="value">${g.cat}</span></div>
-            <div class="detail-row"><span class="label">Összeg</span><span class="value">${g.amount}</span></div>
-            <div class="detail-row"><span class="label">Határidő</span><span class="value" style="color: ${g.days < 30 ? 'var(--red-600)' : 'inherit'};">${g.deadline} (${g.days} nap)</span></div>
-        </div>
+    // AI Pontozás + recommendation + eligibility checklist are Pro-only.
+    // For non-Pro: replace with a single "Pro funkció" lock card.
+    const proSections = isPro ? `
         <div class="detail-section">
             <h3>AI Pontozás (${g.score}/100)</h3>
             <div class="score-bars">
@@ -2111,13 +2168,22 @@ function showDetail(id) {
                   g.verdict === 'REVIEW' ? `Érdemes áttekinteni a részletes kiírást. Részleges illeszkedés — a jogosultsági feltételek alapos vizsgálata szükséges a döntés előtt.` :
                   `Nem ajánlott. Az Ön cégprofilja alapján ez a pályázat nem illeszkedik megfelelően. Nem érdemes rá időt fordítani.`}
             </p>
-        </div>
+        </div>` : `
         <div class="detail-section">
-            <h3>Mire fordíthatja ezt a támogatást?</h3>
-            ${fundingIdeas(g).map(([ic, txt]) => `<div class="fund-idea"><span class="fi-ico">${ic}</span><span>${txt}</span></div>`).join('')}
-            <div class="fund-note">Tájékoztató példák a kategória alapján — a pontos elszámolható költségeket a hivatalos kiírás határozza meg. Konkrét projekttervhez kérjen pályázatírói konzultációt lentebb.</div>
-        </div>
-        ${g.verdict === 'APPLY' ? `<div class="detail-section">
+            <div style="background:linear-gradient(135deg, #f0fdf4 0%, white 100%); border:1px solid var(--green-200); border-radius:var(--radius-lg); padding:18px 20px;">
+                <div style="display:flex; align-items:flex-start; gap:12px;">
+                    <div style="width:32px; height:32px; background:var(--green-600); color:white; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;">🔒</div>
+                    <div style="flex:1;">
+                        <div style="font-weight:700; font-size:14px; color:var(--green-800); margin-bottom:4px;">AI Pontozás + Ajánlás — Pro funkció</div>
+                        <div style="font-size:13px; color:var(--gray-600); line-height:1.5; margin-bottom:12px;">A Pro AI a cégprofiljához méri ezt a pályázatot 5 tényező alapján, és konkrét ajánlást ad: pályázzon, gondolja végig vagy hagyja ki. 5 067 Ft/hó.</div>
+                        <a href="signup.html?upgrade=pro" class="tier-cta-btn">Upgrade Pro-ra</a>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+    // Eligibility checklist is Pro-only too (Pro user has a profile to match against).
+    const eligibilityBlock = (isPro && g.verdict === 'APPLY') ? `<div class="detail-section">
             <h3>Jogosultsági ellenőrzőlista</h3>
             <div style="font-size: 13px; line-height: 2;">
                 <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--green-600);">&#10003;</span> KKV besorolás (${g.cat.includes('KKV') || g.score > 80 ? 'megfelel' : 'ellenőrizendő'})</div>
@@ -2127,8 +2193,10 @@ function showDetail(id) {
                 <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--amber-600);">&#9744;</span> Projekt terv elkészítése</div>
                 <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--amber-600);">&#9744;</span> Árajánlatok beszerzése (min. 3 db)</div>
             </div>
-        </div>` : ''}
-        <div class="detail-section">
+        </div>` : '';
+
+    // E-mail értesítés előnézet is Pro-only.
+    const emailPreview = isPro ? `<div class="detail-section">
             <h3>E-mail értesítés előnézet</h3>
             <div style="background: #ffffff; color: var(--gray-800); border: 1px solid var(--gray-200); border-radius: 12px; padding: 16px; font-size: 12px; line-height: 1.6; font-family: -apple-system, sans-serif;">
                 <div style="font-size: 11px; color: var(--gray-400); margin-bottom: 8px;">Feladó: AIpályázó &lt;ertesites@aipalyazo.hu&gt;</div>
@@ -2139,9 +2207,31 @@ function showDetail(id) {
                 <div style="margin-top: 8px; color: var(--gray-500); font-style: italic; font-size: 11px;">${g.verdict === 'APPLY' ? 'Javasolt: azonnali pályázatkészítés.' : g.verdict === 'REVIEW' ? 'Érdemes áttekinteni.' : 'Nem ajánlott.'}</div>
             </div>
             <div style="font-size: 11px; color: var(--gray-400); margin-top: 6px;">Így néz ki az értesítő e-mail</div>
+        </div>` : '';
+
+    // AI vázlat is Pro-only — for non-Pro, replace with locked button.
+    const drafterButton = isPro ?
+        `<button class="btn-sm primary" style="flex:1;min-width:160px;" onclick="closeDetail();openDrafterForGrant('${g.id}')">✨ AI vázlat készítése</button>` :
+        `<a class="tier-cta-btn" style="flex:1;min-width:160px;" href="signup.html?upgrade=pro">🔒 AI vázlat — Pro</a>`;
+
+    document.getElementById('detail-body').innerHTML = `
+        <div class="detail-section">
+            <h3>Alapadatok</h3>
+            <div class="detail-row"><span class="label">Forrás</span><span class="value">${g.url ? `<a href="${g.url}" target="_blank" rel="noopener" style="color: var(--green-600); text-decoration: none;">${g.source} ↗</a>` : g.source}</span></div>
+            <div class="detail-row"><span class="label">Kategória</span><span class="value">${g.cat}</span></div>
+            <div class="detail-row"><span class="label">Összeg</span><span class="value">${g.amount}</span></div>
+            <div class="detail-row"><span class="label">Határidő</span><span class="value" style="color: ${g.days < 30 ? 'var(--red-600)' : 'inherit'};">${g.deadline} (${g.days} nap)</span></div>
         </div>
+        ${proSections}
+        <div class="detail-section">
+            <h3>Mire fordíthatja ezt a támogatást?</h3>
+            ${fundingIdeas(g).map(([ic, txt]) => `<div class="fund-idea"><span class="fi-ico">${ic}</span><span>${txt}</span></div>`).join('')}
+            <div class="fund-note">Tájékoztató példák a kategória alapján — a pontos elszámolható költségeket a hivatalos kiírás határozza meg. Konkrét projekttervhez kérjen pályázatírói konzultációt lentebb.</div>
+        </div>
+        ${eligibilityBlock}
+        ${emailPreview}
         <div style="display:flex;gap:8px;margin-top:18px;flex-wrap:wrap;">
-            <button class="btn-sm primary" style="flex:1;min-width:160px;" onclick="closeDetail();openDrafterForGrant('${g.id}')">✨ AI vázlat készítése</button>
+            ${drafterButton}
         </div>
         <div id="lead-wrap-${g.id}">
             <div class="lead-card" id="lead-trigger-${g.id}">
@@ -2256,8 +2346,16 @@ function initSaved() {
 function exportSavedCSV() {
     const saved = G.filter(g => bookmarks.has(g.id)).sort((a,b) => b.score - a.score);
     if (saved.length === 0) { alert('Nincs mentett pályázat az exporthoz.'); return; }
-    let csv = 'Azonosító,Cím,Forrás,Kategória,Összeg,Határidő,Hátralévő nap,Pontszám,Minősítés\n';
-    saved.forEach(g => csv += `"${g.id}","${g.title}","${g.source}","${g.cat}","${g.amount}","${g.deadline}",${g.days},${g.score},"${vText(g.verdict)}"\n`);
+    const isPro = window.currentTier === 'pro';
+    // Score + verdict are Pro-only fields. Free / anonymous users get a clean CSV
+    // without them — basic info only (no ranking they can't see in the UI either).
+    let csv = isPro
+        ? 'Azonosító,Cím,Forrás,Kategória,Összeg,Határidő,Hátralévő nap,Pontszám,Minősítés\n'
+        : 'Azonosító,Cím,Forrás,Kategória,Összeg,Határidő,Hátralévő nap\n';
+    saved.forEach(g => {
+        const base = `"${g.id}","${g.title}","${g.source}","${g.cat}","${g.amount}","${g.deadline}",${g.days}`;
+        csv += isPro ? `${base},${g.score},"${vText(g.verdict)}"\n` : `${base}\n`;
+    });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob(['﻿' + csv], {type:'text/csv;charset=utf-8'}));
     a.download = 'aipalyazo-mentett.csv';
@@ -2788,7 +2886,7 @@ function initProfile() {
                     <div style="font-weight:700; font-size:16px; color:var(--green-800); margin-bottom:4px;">Pro upgrade — 5 067 Ft/hó</div>
                     <div style="font-size:13px; color:var(--gray-600); line-height:1.5;">AI illeszkedési pontozás, AI Pályázat-vázlat, személyre szabott heti riport, sürgős határidő-riasztás. Bármikor lemondható, 14 napos elállási jog.</div>
                 </div>
-                <a href="signup.html?upgrade=pro" style="background:var(--green-600); color:white; padding:11px 22px; border-radius:6px; font-size:14px; font-weight:600; text-decoration:none; white-space:nowrap;">Upgrade Pro-ra</a>
+                <a href="signup.html?upgrade=pro" class="tier-cta-btn">Upgrade Pro-ra</a>
             </div>
 
             <!-- Cégprofil — Pro only. Free users see the Upgrade CTA above instead. -->
@@ -2830,7 +2928,8 @@ function initProfile() {
                 <p style="font-size:12px; color:var(--gray-500); margin-top:10px;">Az e-mail címet a regisztrációkor adta meg — módosítása ügyfélszolgálaton keresztül lehetséges (info@aipalyazo.hu).</p>
             </div>
 
-            <div class="detail-section">
+            <!-- Pro tier: full personalized notification settings -->
+            <div class="detail-section pro-only">
                 <h3>Értesítési beállítások</h3>
                 <div class="toggle-row">
                     <div><div class="tr-label">Heti e-mail jelentés</div><div class="tr-sub">Személyre szabott összefoglaló a legrelevánsabb pályázatokról</div></div>
@@ -2859,10 +2958,33 @@ function initProfile() {
                 </div>
             </div>
 
+            <!-- Basic tier: simple opt-in for general (non-personalized) digest + upgrade nudge -->
+            <div class="detail-section basic-only">
+                <h3>Heti hírlevél</h3>
+                <div class="toggle-row">
+                    <div><div class="tr-label">Általános hírlevél</div><div class="tr-sub">Heti összefoglaló az új pályázatokról és közelgő határidőkről — mindenkinek ugyanaz a tartalom.</div></div>
+                    <label class="switch"><input type="checkbox" id="n_weekly" ${n.weekly?'checked':''}><span class="sl"></span></label>
+                </div>
+                <div class="save-bar" style="margin-top:14px;">
+                    <button class="btn-sm primary" onclick="saveNotif()">Mentés</button>
+                    <span class="save-ok" id="notif-ok">Mentve ✓</span>
+                </div>
+
+                <div style="margin-top:24px; background:linear-gradient(135deg, var(--green-50) 0%, white 100%); border:1px solid var(--green-200); border-radius:var(--radius-lg); padding:18px 22px;">
+                    <div style="font-weight:700; font-size:14px; color:var(--green-800); margin-bottom:4px;">Személyre szabott e-mail — Pro funkció</div>
+                    <div style="font-size:13px; color:var(--gray-600); line-height:1.5; margin-bottom:12px;">Pro-ban a heti email csak az Ön cégprofiljához illő pályázatokat tartalmazza, sürgős határidő-riasztásokkal és személyes ajánlásokkal. 5 067 Ft/hó.</div>
+                    <a href="signup.html?upgrade=pro" class="tier-cta-btn">Upgrade Pro-ra</a>
+                </div>
+            </div>
+
             <div class="detail-section">
                 <h3>Csomag</h3>
-                <div class="detail-row"><span class="label">Aktuális csomag</span><span class="value" style="color: var(--green-600); font-weight: 700;">Professional · 14 napos próba</span></div>
-                <div class="detail-row"><span class="label">Profil státusz</span><span class="value">${getUserProfile() ? 'Kitöltve ✓' : 'Hiányos — töltse ki a cégprofilt'}</span></div>
+                <div class="detail-row"><span class="label">Aktuális csomag</span><span class="value" style="font-weight: 700;" id="settings-tier-label">${
+                    window.currentTier === 'pro' ? '<span style="color: var(--green-600);">Pro · 5 067 Ft/hó</span>' :
+                    window.currentTier === 'basic' ? '<span style="color: var(--gray-700);">Free (regisztrált)</span>' :
+                    '<span style="color: var(--gray-500);">Anonim böngészés</span>'
+                }</span></div>
+                <div class="detail-row pro-only"><span class="label">Profil státusz</span><span class="value">${getUserProfile() ? 'Kitöltve ✓' : 'Hiányos — töltse ki a cégprofilt'}</span></div>
             </div>
 
             <div class="detail-section">
