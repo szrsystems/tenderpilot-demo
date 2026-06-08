@@ -1517,22 +1517,49 @@ function resetFilters() {
     filterGrants();
 }
 
-// Robust sign-out — Supabase + legacy demo + always redirect, even if Supabase errors.
-async function doSignOut() {
+// Robust sign-out — sync-nuke ALL auth state BEFORE the SDK can auto-refresh, then redirect.
+function doSignOut() {
+    console.log('[gp] doSignOut: clearing all auth state');
     try {
-        if (window.gp && window.gp.client) {
-            await window.gp.client.auth.signOut();
+        // 1) Aggressively wipe any key that could hold a Supabase session.
+        //    - 'grantpilot-auth' (our configured storageKey)
+        //    - any 'sb-*' key (Supabase JS v2 default pattern, used as fallback)
+        //    - any key containing '-auth-token' (older SDK versions)
+        //    - migration markers so re-login re-syncs from cleared state
+        const toRemove = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            const k = localStorage.key(i);
+            if (!k) continue;
+            if (k === 'grantpilot-auth' ||
+                k.startsWith('sb-') ||
+                k.includes('-auth-token') ||
+                k.startsWith('grantpilot-auth.') ||
+                k.startsWith('gp_migrated_')) {
+                toRemove.push(k);
+            }
         }
-    } catch (e) { console.warn('[gp] supabase signOut error', e); }
-    try {
+        toRemove.forEach(k => { try { localStorage.removeItem(k); } catch (e) {} });
+        console.log('[gp] cleared localStorage keys:', toRemove);
+
+        // 2) Legacy demo session
         sessionStorage.removeItem('gp_auth_token');
         sessionStorage.removeItem('gp_user_email');
         sessionStorage.removeItem('gp_auth_time');
-        // Also clear the Supabase localStorage session key
-        localStorage.removeItem('grantpilot-auth');
+    } catch (e) { console.warn('[gp] storage clear failed', e); }
+
+    // 3) Fire-and-forget Supabase signOut with LOCAL scope — no network roundtrip,
+    //    no race condition. Local state is already gone above; this is a courtesy
+    //    so onAuthStateChange listeners fire SIGNED_OUT properly.
+    try {
+        if (window.gp && window.gp.client) {
+            const p = window.gp.client.auth.signOut({ scope: 'local' });
+            if (p && typeof p.catch === 'function') p.catch(() => {});
+        }
     } catch (e) {}
-    // Hard redirect (replace so user can't go back)
-    window.location.replace('index.html');
+
+    // 4) Hard navigation with query bust → fresh page, clean state.
+    //    Using href (not replace) so refresh-after-back doesn't re-trigger signout.
+    window.location.href = 'index.html?signed_out=1';
 }
 
 // Navigate to the Pályázatok page with a preset filter intent from a hero-stat click.
