@@ -2504,7 +2504,7 @@ function rdHead(subtitle) {
     return `<div class="rd-head"><div class="rd-brand"><span>AI</span>pályázó</div><div class="rd-meta">${subtitle}</div></div>`;
 }
 function rdFoot() {
-    return `<div class="rd-foot">A jelentés a AIpályázó rendszer által, az Ön cégprofilja alapján automatikusan generált tájékoztató. A pontos jogosultsági és elszámolhatósági feltételeket minden esetben a hivatalos pályázati felhívás határozza meg. AIpályázó · aipalyazo.hu</div>`;
+    return `<div class="rd-foot">A jelentés az AIpályázó rendszer által, az Ön cégprofilja alapján automatikusan generált tájékoztató. A pontos jogosultsági és elszámolhatósági feltételeket minden esetben a hivatalos pályázati felhívás határozza meg. AIpályázó · aipalyazo.hu</div>`;
 }
 
 function genWeekly(c) {
@@ -3112,22 +3112,52 @@ async function deleteAccount() {
         return;
     }
     try {
-        const { data: { user } } = await window.gp.client.auth.getUser();
-        if (!user) { alert('Nincs aktív bejelentkezés.'); return; }
-        // First wipe user-owned rows (RLS allows the user to delete their own).
-        await window.gp.client.from('bookmarks').delete().eq('user_id', user.id);
-        await window.gp.client.from('drafts').delete().eq('user_id', user.id);
-        await window.gp.client.from('leads').delete().eq('user_id', user.id);
-        await window.gp.client.from('notif_prefs').delete().eq('user_id', user.id);
-        // For the auth.users row itself: requires admin/service role. Send a
-        // request to a backend that uses service_role. For now, we flag the
-        // profile row as marked for deletion and sign the user out.
-        // TODO: deploy a delete-user Edge Function that calls auth.admin.deleteUser
-        await window.gp.client.from('profiles').update({ display_name: '[deleted]', email: 'deleted-' + user.id + '@aipalyazo.hu' }).eq('id', user.id);
+        const { data: { session } } = await window.gp.client.auth.getSession();
+        if (!session || !session.access_token) { alert('Nincs aktív session.'); return; }
+        // Call the delete-user Edge Function — it wipes user-owned rows AND
+        // the auth.users row using service_role. Falls back to client-side
+        // wipe (without auth.users delete) if the function isn't deployed yet.
+        const fnUrl = 'https://kacnvchwfwvpkkyhyupb.supabase.co/functions/v1/delete-user';
+        let edgeFnOk = false;
+        try {
+            const res = await fetch(fnUrl, {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + session.access_token,
+                    'Content-Type': 'application/json',
+                }
+            });
+            if (res.ok) {
+                edgeFnOk = true;
+            } else if (res.status === 409) {
+                // active subscription
+                const body = await res.json().catch(() => ({}));
+                alert(body.message || 'Aktív Pro előfizetés van — előbb mondja le.');
+                return;
+            }
+        } catch (e) { console.warn('[gp] edge fn unreachable, falling back', e); }
 
-        // Clear local data and sign out
+        // Fallback: wipe user-owned rows from the client (no auth.users delete)
+        if (!edgeFnOk) {
+            const { data: { user } } = await window.gp.client.auth.getUser();
+            if (user) {
+                await window.gp.client.from('bookmarks').delete().eq('user_id', user.id);
+                await window.gp.client.from('drafts').delete().eq('user_id', user.id);
+                await window.gp.client.from('leads').delete().eq('user_id', user.id);
+                await window.gp.client.from('notif_prefs').delete().eq('user_id', user.id);
+                await window.gp.client.from('profiles').update({
+                    display_name: '[deleted]',
+                    email: 'deleted-' + user.id + '@aipalyazo.hu'
+                }).eq('id', user.id);
+            }
+        }
+
+        // Clear local data
         PORTABLE_KEYS.forEach(k => { try { localStorage.removeItem(k); } catch(e) {} });
-        alert('Adatai törölve. A teljes fiók (auth) törlése 24 órán belül megtörténik.\n\nÍrjon info@aipalyazo.hu-ra ha azonnali teljes törlést kér.');
+        const msg = edgeFnOk
+            ? 'Fiók véglegesen törölve. ✓'
+            : 'Adatai törölve. A teljes fiók (auth) törlése 24 órán belül megtörténik.\n\nÍrjon info@aipalyazo.hu-ra ha azonnali teljes törlést kér.';
+        alert(msg);
         doSignOut();
     } catch (e) {
         alert('Hiba a törlés során: ' + ((e && e.message) || 'ismeretlen hiba') + '\n\nKérem írjon info@aipalyazo.hu-ra a kézi törléshez.');
@@ -3176,25 +3206,53 @@ function flashOk(id) {
 
 function saveProfile() {
     const prev = getUserProfile() || {};
+    const getVal = id => (document.getElementById(id) || {}).value || '';
     const cats = [...document.querySelectorAll('#s_cats input:checked')].map(c => c.value);
+    // Some fields only exist on Pro view (cégprofil block). Free shows just
+    // s_contact + s_email. Build the patch from whatever inputs are present.
     const data = Object.assign({}, prev, {
-        company: document.getElementById('s_company').value.trim(),
-        industry: document.getElementById('s_industry').value,
-        employees: document.getElementById('s_employees').value,
-        revenue: document.getElementById('s_revenue').value,
-        location: document.getElementById('s_location').value.trim(),
-        years_operating: (document.getElementById('s_years') || {}).value || '',
-        legal_form: (document.getElementById('s_legal') || {}).value || '',
-        categories: cats,
-        contact_name: document.getElementById('s_contact').value.trim(),
-        email: document.getElementById('s_email').value.trim(),
-        updated: new Date().toISOString()
+        company:        getVal('s_company').trim() || prev.company,
+        industry:       getVal('s_industry') || prev.industry,
+        employees:      getVal('s_employees') || prev.employees,
+        revenue:        getVal('s_revenue') || prev.revenue,
+        location:       getVal('s_location').trim() || prev.location,
+        years_operating: getVal('s_years') || prev.years_operating,
+        legal_form:    getVal('s_legal') || prev.legal_form,
+        categories:    cats.length ? cats : prev.categories,
+        contact_name:  getVal('s_contact').trim() || prev.contact_name,
+        email:         getVal('s_email').trim() || prev.email,
+        updated:       new Date().toISOString()
     });
     try { localStorage.setItem('grantpilot:profile', JSON.stringify(data)); } catch(e) {}
+    syncProfileSettingsToSupabase(data);
     const banner = document.getElementById('profile-banner');
     if (banner && data.company) banner.style.display = 'none';
     flashOk('prof-ok');
     initProfile(); // re-render with new values + status
+}
+
+// Sync profile changes to public.profiles for signed-in users.
+async function syncProfileSettingsToSupabase(data) {
+    if (!window.gp || !window.gp.client) return;
+    try {
+        const { data: { user } } = await window.gp.client.auth.getUser();
+        if (!user) return;
+        const patch = {
+            display_name: data.contact_name || undefined,
+            company: data.company || undefined,
+            industry: data.industry || undefined,
+            employees: data.employees || undefined,
+            revenue: data.revenue || undefined,
+            location: data.location || undefined,
+            years_operating: data.years_operating || undefined,
+            legal_form: data.legal_form || undefined,
+            categories: Array.isArray(data.categories) ? data.categories : undefined,
+        };
+        Object.keys(patch).forEach(k => patch[k] === undefined && delete patch[k]);
+        if (Object.keys(patch).length === 0) return;
+        const { error } = await window.gp.client.from('profiles').update(patch).eq('id', user.id);
+        if (error) console.warn('[gp] settings profile sync failed', error);
+    } catch (e) { console.warn('[gp] syncProfileSettingsToSupabase error', e); }
 }
 
 function saveNotif() {

@@ -12,6 +12,7 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="hu_HU">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="lib/supabase.js" defer></script>
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
@@ -253,7 +254,7 @@
             <div class="field" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:14px 16px;">
                 <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:13px;color:#374151;">
                     <input type="checkbox" id="f_gdpr" style="margin-top:3px;flex-shrink:0;">
-                    <span>Elolvastam és elfogadom az <a href="adatvedelem.html" target="_blank" rel="noopener" style="color:#16a34a;">Adatkezelési tájékoztatót</a> és az <a href="aszf.html" target="_blank" rel="noopener" style="color:#16a34a;">ÁSZF-et</a>. Hozzájárulok ahhoz, hogy a megadott adataimat a AIpályázó a leírtak szerint kezelje. <span style="color:#dc2626;">*</span></span>
+                    <span>Elolvastam és elfogadom az <a href="adatvedelem.html" target="_blank" rel="noopener" style="color:#16a34a;">Adatkezelési tájékoztatót</a> és az <a href="aszf.html" target="_blank" rel="noopener" style="color:#16a34a;">ÁSZF-et</a>. Hozzájárulok ahhoz, hogy a megadott adataimat az AIpályázó a leírtak szerint kezelje. <span style="color:#dc2626;">*</span></span>
                 </label>
             </div>
 
@@ -307,6 +308,43 @@ function nextStep(n) {
 //   Custom backend: 'https://api.aipalyazo.hu/onboard'
 const ONBOARD_BACKEND_URL = '';
 
+// Sync onboarding profile data to public.profiles when the user is signed in.
+// Silent on failure — localStorage is the source of truth offline and gets
+// migrated on the next sign-in by portal.html's migrateLocalToSupabase pass.
+async function syncProfileToSupabase(data) {
+    if (!window.gp) {
+        // Wait briefly for the SDK to load (defer-loaded), then try.
+        await new Promise(r => {
+            if (window.gp) return r();
+            const onReady = () => { window.removeEventListener('gp-ready', onReady); r(); };
+            window.addEventListener('gp-ready', onReady);
+            setTimeout(r, 1500); // bail-out timeout — anon users won't have window.gp
+        });
+    }
+    if (!window.gp || !window.gp.client) return;
+    try {
+        const { data: { user } } = await window.gp.client.auth.getUser();
+        if (!user) return; // anonymous — nothing to sync server-side
+        const patch = {
+            display_name: data.contact_name || null,
+            company: data.company || null,
+            industry: data.industry || null,
+            employees: data.employees || null,
+            revenue: data.revenue || null,
+            location: data.location || null,
+            years_operating: data.years_operating || null,
+            legal_form: data.legal_form || null,
+            categories: Array.isArray(data.categories) ? data.categories : null,
+        };
+        // Drop nulls so we don't blank out existing fields if a step was skipped
+        Object.keys(patch).forEach(k => patch[k] === null && delete patch[k]);
+        if (Object.keys(patch).length === 0) return;
+        const { error } = await window.gp.client.from('profiles').update(patch).eq('id', user.id);
+        if (error) console.warn('[gp] onboarding profile sync failed', error);
+        else console.log('[gp] profile synced to Supabase:', Object.keys(patch));
+    } catch (e) { console.warn('[gp] syncProfileToSupabase error', e); }
+}
+
 function submitForm() {
     if (!document.getElementById('f_name').value || !document.getElementById('f_email').value) {
         if (!document.getElementById('f_name').value) document.getElementById('f_name').style.borderColor = '#dc2626';
@@ -345,7 +383,9 @@ function submitForm() {
     };
     // Always persist locally for the in-app personalization
     try { localStorage.setItem('grantpilot:profile', JSON.stringify(data)); } catch(e) {}
-    // Optionally forward to a configured backend
+    // Sync to Supabase if signed in (fire-and-forget — local copy is source of truth offline).
+    syncProfileToSupabase(data);
+    // Optionally forward to a configured backend (legacy fallback)
     if (ONBOARD_BACKEND_URL) {
         fetch(ONBOARD_BACKEND_URL, {
             method: 'POST',
@@ -376,7 +416,7 @@ function submitForm() {
     <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;">
         <div style="flex:1;min-width:240px;">
             <b style="color:white;">Sütik használata</b><br>
-            A AIpályázó a működéshez szükséges sütiket használ. Részletek az
+            Az AIpályázó a működéshez szükséges sütiket használ. Részletek az
             <a href="adatvedelem.html" style="color:#86efac;">Adatkezelési tájékoztatóban</a>.
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;">
