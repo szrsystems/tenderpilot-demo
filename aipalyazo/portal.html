@@ -939,6 +939,12 @@
 </div>
 
 <script>
+// Default tier — set as early as possible so init code that checks
+// window.currentTier (renderReco, initDashboard, KPI handlers, etc.) sees
+// a defined value during first paint. Updated later by applyTier() when
+// the actual tier is resolved from Supabase or legacy session.
+window.currentTier = 'anonymous';
+
 const G = [
     {id:"G-001",title:"GINOP Plusz 1.2.4-25 — Mikro- és kisvállalkozások támogatása hátrányos régiókban",source:"palyazat.gov.hu",cat:"KKV fejlesztés",amount:"4-150M Ft",deadline:"2026-04-30",days:0,score:0,verdict:"APPLY",url:"https://www.palyazat.gov.hu/programok/szechenyi-terv-plusz/ginop-plusz/ginop_plusz-1.2.4-25/alapadatok",factors:{size:95,industry:80,location:90,deadline:70,preference:90}},
     {id:"G-002",title:"DIMOP Plusz 1.2.6/B-26 — KKV digitális infrastruktúra és transzformáció (90% támogatás)",source:"palyazat.gov.hu",cat:"Digitális átalakulás",amount:"3-12M Ft",deadline:"2026-06-30",days:0,score:0,verdict:"APPLY",url:"https://palyaz.hu/kkv-digitalis-tamogatas-dimop-plusz-1-2-6-24/",factors:{size:95,industry:90,location:90,deadline:80,preference:95}},
