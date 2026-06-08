@@ -208,6 +208,8 @@
         @media (max-width: 768px) { .needs-finder { padding: 18px; } }
         .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
         .hero-stat { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 18px 20px; position: relative; overflow: hidden; transition: transform 0.15s, box-shadow 0.15s; }
+        .hero-stat.clickable { cursor: pointer; }
+        .hero-stat.clickable:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.08); border-color: var(--green-200); }
         .hero-stat:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
         .hero-stat::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--green-500); }
         .hero-stat.amber::before { background: var(--amber-600); }
@@ -292,6 +294,7 @@
 
         /* ===== GRANT CARD (compact list version) ===== */
         .grant-cards { display: flex; flex-direction: column; gap: 10px; }
+        .grants-list { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
         .grant-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 16px 18px; cursor: pointer; transition: all 0.12s; display: grid; grid-template-columns: 44px 1fr auto; gap: 14px; align-items: center; }
         .grant-card:hover { border-color: var(--green-300, #86efac); box-shadow: 0 2px 8px rgba(34,197,94,0.06); }
         .grant-card-logo { width: 44px; height: 44px; border-radius: 10px; background: var(--green-100); color: var(--green-700); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; letter-spacing: -0.3px; }
@@ -543,7 +546,7 @@
         </div>
         <div class="nav-item" onclick="showPage('leads')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" /></svg>
-            Leadek <span class="nav-badge" id="nav-leads-count" style="background: var(--gray-400);">0</span>
+            Pályázataim <span class="nav-badge" id="nav-leads-count" style="background: var(--gray-400);">0</span>
         </div>
         <div class="nav-item" onclick="goToProFeature(event, 'drafter')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" /></svg>
@@ -566,7 +569,7 @@
         <div class="sidebar-user" id="sidebar-user-name">Vendég</div>
         <div class="sidebar-plan" id="sidebar-tier-label">Anonim böngészés</div>
         <a href="#" id="sidebar-upgrade" class="anonymous-only basic-only" onclick="event.preventDefault(); window.location.href='signup.html?upgrade=pro'" style="display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:var(--green-700);text-decoration:none;text-transform:uppercase;letter-spacing:0.4px;">Upgrade Pro →</a>
-        <a href="#" id="sidebar-signout" class="signed-in-only" onclick="event.preventDefault(); if(window.gp){window.gp.signOut('index.html')}else{sessionStorage.clear();location.replace('index.html')}" style="display:inline-block;margin-top:8px;font-size:11px;color:var(--gray-500);text-decoration:none;">Kijelentkezés</a>
+        <a href="#" id="sidebar-signout" class="signed-in-only" onclick="event.preventDefault(); doSignOut();" style="display:inline-block;margin-top:8px;font-size:11px;color:var(--gray-500);text-decoration:none;">Kijelentkezés</a>
     </div>
 </div>
 
@@ -642,7 +645,7 @@
                 <div class="reco-grid" id="reco-grid"></div>
             </div>
 
-            <!-- BASIC/ANONYMOUS browse-all CTA -->
+            <!-- BASIC/ANONYMOUS browse-all CTA + stacked grant list -->
             <div class="anonymous-only basic-only">
                 <div class="section-head first">
                     <div>
@@ -652,7 +655,7 @@
                         </div>
                         <div class="section-sub">Pro upgrade-del személyre szabott AI-pontozást és heti riportot kap</div>
                     </div>
-                    <a class="section-action" onclick="showPage('grants')">Pályázatok →</a>
+                    <a class="section-action" onclick="showPage('grants')">Teljes oldal →</a>
                 </div>
                 <div class="pro-lock">
                     <div class="lock-icon">✨</div>
@@ -660,6 +663,8 @@
                     <p>A Pro AI-pontozással egy 10 fős budapesti IT cég teljesen más pályázati listát kap, mint egy 50 fős debreceni gyártó. 5 067 Ft/hó, bármikor lemondható.</p>
                     <a href="signup.html?upgrade=pro" class="btn-upgrade">Upgrade Pro-ra</a>
                 </div>
+                <!-- Stacked single-column list of ALL grants for Free users -->
+                <div class="grants-list" id="dashboard-all-grants"></div>
             </div>
         </div>
     </div>
@@ -670,7 +675,7 @@
             <h1>Pályázatok</h1>
             <div class="topbar-actions">
                 <input type="text" id="search" placeholder="Keresés a pályázatok között..." onkeyup="filterGrants()" style="padding: 7px 12px; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 13px; width: 240px; font-family: inherit;">
-                <select id="filter-verdict" onchange="filterGrants()" style="padding: 7px 12px; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 13px; font-family: inherit;">
+                <select id="filter-verdict" onchange="filterGrants()" class="pro-only" style="padding: 7px 12px; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 13px; font-family: inherit;">
                     <option value="all">Minden minősítés</option>
                     <option value="APPLY">Ajánlott</option>
                     <option value="REVIEW">Áttekintendő</option>
@@ -686,13 +691,13 @@
             <div class="sort-bar">
                 <div class="sort-left"><b id="grant-count">0</b> pályázat — <span id="grant-summary"></span><span id="expired-note" style="display:none; margin-left:8px; font-size:12px; color:var(--gray-400);"></span></div>
                 <div class="sort-right">
-                    <div class="sort-buttons" id="relevance-toggle" style="margin-right:10px;">
+                    <div class="sort-buttons pro-only" id="relevance-toggle" style="margin-right:10px;">
                         <button class="sort-btn active" data-relv="relevant" onclick="setRelevance('relevant')">Csak releváns</button>
                         <button class="sort-btn" data-relv="all" onclick="setRelevance('all')">Mind</button>
                     </div>
                     <span class="sort-label">Rendezés:</span>
                     <div class="sort-buttons" id="sort-buttons">
-                        <button class="sort-btn active" data-sort="score" onclick="setSort('score')">Relevancia</button>
+                        <button class="sort-btn active pro-only" data-sort="score" onclick="setSort('score')">Relevancia</button>
                         <button class="sort-btn" data-sort="deadline" onclick="setSort('deadline')">Határidő</button>
                         <button class="sort-btn" data-sort="amount" onclick="setSort('amount')">Összeg</button>
                         <button class="sort-btn" data-sort="new" onclick="setSort('new')">Új először</button>
@@ -739,29 +744,28 @@
         </div>
     </div>
 
-    <!-- LEADS PAGE (partner / writer view) -->
+    <!-- "PÁLYÁZATAIM" PAGE — consultation requests the user has submitted -->
     <div id="page-leads" class="page hidden">
         <div class="topbar">
-            <h1>Leadek <span style="font-size:11px;font-weight:700;color:var(--green-700);background:var(--green-50);border:1px solid var(--green-200);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px;margin-left:8px;">Partner nézet</span></h1>
+            <h1>Pályázataim</h1>
             <div class="topbar-actions">
                 <button class="btn-sm" onclick="exportLeadsCSV()">Exportálás</button>
-                <button class="btn-sm" onclick="clearLeads()">Lista ürítése</button>
             </div>
         </div>
         <div class="content">
             <div style="background:var(--green-50);border:1px solid var(--green-200);border-radius:var(--radius-lg);padding:14px 18px;margin-bottom:18px;font-size:13px;color:var(--gray-700);line-height:1.5;">
-                <b style="color:var(--green-800);">Így működik:</b> amikor egy ügyfél egy pályázatnál a „Pályázatíró konzultáció" gombra kattint, az igénylése — a pályázat kontextusával együtt — itt jelenik meg. Fehér címkés változatban ez az Ön saját lead-csatornája.
+                <b style="color:var(--green-800);">Itt látja azokat a pályázatokat,</b> amelyekhez konzultációt igényelt egy pályázatíró partnertől. Egy pályázat megnyitásával, majd a „Pályázatíró konzultáció" gombra kattintva tudja hozzáadni.
             </div>
             <div class="sort-bar">
-                <div class="sort-left"><b id="leads-count">0</b> beérkezett konzultációs igény</div>
+                <div class="sort-left"><b id="leads-count">0</b> aktív pályázat</div>
             </div>
             <div id="leads-list"></div>
             <div id="leads-empty" class="empty hidden">
                 <div class="empty-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg>
                 </div>
-                <div class="empty-title">Még nincs beérkezett lead</div>
-                <div class="empty-text">Nyisson meg egy pályázatot, és kérjen „Pályázatíró konzultációt" — az igénylés azonnal itt jelenik meg, a pályázat adataival együtt.</div>
+                <div class="empty-title">Még nincs felvett pályázat</div>
+                <div class="empty-text">Nyisson meg egy pályázatot, és kattintson a „Pályázatíró konzultáció" gombra — onnantól itt listázzuk.</div>
                 <button class="btn-sm primary" onclick="showPage('grants')">Pályázatok megnyitása</button>
             </div>
         </div>
@@ -1513,6 +1517,39 @@ function resetFilters() {
     filterGrants();
 }
 
+// Robust sign-out — Supabase + legacy demo + always redirect, even if Supabase errors.
+async function doSignOut() {
+    try {
+        if (window.gp && window.gp.client) {
+            await window.gp.client.auth.signOut();
+        }
+    } catch (e) { console.warn('[gp] supabase signOut error', e); }
+    try {
+        sessionStorage.removeItem('gp_auth_token');
+        sessionStorage.removeItem('gp_user_email');
+        sessionStorage.removeItem('gp_auth_time');
+        // Also clear the Supabase localStorage session key
+        localStorage.removeItem('grantpilot-auth');
+    } catch (e) {}
+    // Hard redirect (replace so user can't go back)
+    window.location.replace('index.html');
+}
+
+// Navigate to the Pályázatok page with a preset filter intent from a hero-stat click.
+// 'all' = no filter, 'relevant' = Pro relevance filter, 'expiring' = sort by deadline ascending.
+function goGrants(intent) {
+    showPage('grants');
+    // Reset then apply the intent
+    activeCat = 'all'; activeSort = (intent === 'expiring') ? 'deadline' : 'score';
+    activeRelv = (intent === 'relevant' && window.currentTier === 'pro') ? 'relevant' : 'all';
+    const search = document.getElementById('search'); if (search) search.value = '';
+    const fv = document.getElementById('filter-verdict'); if (fv) fv.value = 'all';
+    document.querySelectorAll('.pill').forEach(p => p.classList.toggle('active', p.dataset.cat === 'all'));
+    document.querySelectorAll('#relevance-toggle .sort-btn').forEach(b => b.classList.toggle('active', b.dataset.relv === activeRelv));
+    document.querySelectorAll('#sort-buttons .sort-btn').forEach(b => b.classList.toggle('active', b.dataset.sort === activeSort));
+    filterGrants();
+}
+
 /* ===== Card renderers ===== */
 function renderReco(g) {
     const color = logoColor(g.source);
@@ -1540,7 +1577,7 @@ function renderReco(g) {
             <div class="progress-track"><div class="progress-fill ${win.color}" style="width:${win.pct}%"></div></div>
             <div class="progress-labels"><span>Nyitva</span><span>Határidő: ${g.deadline}</span></div>
         </div>
-        <div class="reco-card-footer">
+        <div class="reco-card-footer pro-only">
             <div class="reco-card-score"><span class="score-dot"></span>${g.score}/100 illeszkedés</div>
             <span class="verdict ${vClass(g.verdict)}">${vText(g.verdict)}</span>
         </div>
@@ -1567,7 +1604,7 @@ function renderCard(g) {
         <div class="grant-card-right">
             <div class="grant-card-amount">${g.amount}</div>
             <div class="grant-card-actions">
-                <span class="verdict ${vClass(g.verdict)}">${g.score}</span>
+                <span class="verdict ${vClass(g.verdict)} pro-only">${g.score}</span>
                 <button class="bookmark-btn ${bookmarks.has(g.id) ? 'saved' : ''}" data-bm="${g.id}" onclick="toggleBookmark('${g.id}', event)" aria-label="Mentés">${BOOKMARK_SVG}</button>
             </div>
         </div>
@@ -1738,29 +1775,29 @@ function initDashboard() {
     }).length;
 
     document.getElementById('hero-stats').innerHTML = `
-        <div class="hero-stat">
+        <div class="hero-stat clickable" onclick="goGrants('all')" title="Összes pályázat megnyitása">
             <div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg></div>
             <div class="hero-stat-label">Aktív pályázatok</div>
             <div class="hero-stat-value" data-counter="total">0</div>
             <div class="hero-stat-sub">Folyamatos monitoring</div>
         </div>
-        <div class="hero-stat blue">
+        <div class="hero-stat blue clickable pro-only" onclick="goGrants('relevant')" title="Releváns pályázatok megnyitása">
             <div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
             <div class="hero-stat-label">Önnek releváns</div>
             <div class="hero-stat-value" data-counter="relevant" style="color: var(--blue-600);">0</div>
             <div class="hero-stat-sub">Illeszkedési pontszám &gt; 60</div>
+        </div>
+        <div class="hero-stat ${expiringThisMonth > 0 ? 'red' : 'amber'} clickable" onclick="goGrants('expiring')" title="Hamarosan lejáró pályázatok">
+            <div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
+            <div class="hero-stat-label">Ebben a hónapban lejár</div>
+            <div class="hero-stat-value" data-counter="expiring" style="color: ${expiringThisMonth > 0 ? 'var(--red-600)' : 'var(--amber-600)'};">0</div>
+            <div class="hero-stat-sub">Sürgős figyelmet igényel</div>
         </div>
         <div class="hero-stat">
             <div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4"/></svg></div>
             <div class="hero-stat-label">Elérhető keret</div>
             <div class="hero-stat-value" data-counter="funding">0</div>
             <div class="hero-stat-sub">Összes pályázat keretösszege</div>
-        </div>
-        <div class="hero-stat ${expiringThisMonth > 0 ? 'red' : 'amber'}">
-            <div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
-            <div class="hero-stat-label">Ebben a hónapban lejár</div>
-            <div class="hero-stat-value" data-counter="expiring" style="color: ${expiringThisMonth > 0 ? 'var(--red-600)' : 'var(--amber-600)'};">0</div>
-            <div class="hero-stat-sub">Sürgős figyelmet igényel</div>
         </div>
     `;
     animateCounter(document.querySelector('[data-counter="total"]'), totalActive);
@@ -1795,6 +1832,15 @@ function initDashboard() {
         return sb - sa || a.days - b.days;
     }).slice(0, 5);
     document.getElementById('reco-grid').innerHTML = top.map(renderReco).join('');
+
+    // Free/anonymous users: render the FULL grant list as a stacked vertical column
+    // under the "Pro lock" so they can browse from the dashboard without going to
+    // the Pályázatok page. Sorted by deadline (soonest first).
+    const allWrap = document.getElementById('dashboard-all-grants');
+    if (allWrap) {
+        const byDeadline = [...G].sort((a, b) => a.days - b.days);
+        allWrap.innerHTML = byDeadline.map(renderCard).join('');
+    }
 
     // Personalization status: subtitle + banner when no profile is found.
     const recoPill = document.getElementById('reco-section-pill');
@@ -2709,7 +2755,17 @@ function initProfile() {
                 <div><div class="profile-name">${company}</div><div class="profile-meta">${meta}</div></div>
             </div>
 
-            <div class="detail-section">
+            <!-- Free / anonymous users: prominent Upgrade-to-Pro CTA at top -->
+            <div class="anonymous-only basic-only" style="background:linear-gradient(135deg, var(--green-50) 0%, white 100%); border:1px solid var(--green-200); border-radius:var(--radius-lg); padding:22px 26px; margin-bottom:20px; display:flex; align-items:center; gap:18px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:240px;">
+                    <div style="font-weight:700; font-size:16px; color:var(--green-800); margin-bottom:4px;">Pro upgrade — 5 067 Ft/hó</div>
+                    <div style="font-size:13px; color:var(--gray-600); line-height:1.5;">AI illeszkedési pontozás, AI Pályázat-vázlat, személyre szabott heti riport, sürgős határidő-riasztás. Bármikor lemondható, 14 napos elállási jog.</div>
+                </div>
+                <a href="signup.html?upgrade=pro" style="background:var(--green-600); color:white; padding:11px 22px; border-radius:6px; font-size:14px; font-weight:600; text-decoration:none; white-space:nowrap;">Upgrade Pro-ra</a>
+            </div>
+
+            <!-- Cégprofil — Pro only. Free users see the Upgrade CTA above instead. -->
+            <div class="detail-section pro-only">
                 <h3>Cégprofil — ez vezérli a személyre szabott ajánlásokat</h3>
                 <div class="set-grid">
                     <div class="set-field full"><label>Cégnév</label><input id="s_company" type="text" value="${(p.company||'').replace(/"/g,'&quot;')}" placeholder="Pl. InnoTech Kft."></div>
@@ -2731,6 +2787,20 @@ function initProfile() {
                     <button class="btn-sm primary" onclick="saveProfile()">Profil mentése</button>
                     <span class="save-ok" id="prof-ok">Mentve ✓ — az ajánlások frissültek</span>
                 </div>
+            </div>
+
+            <!-- Free / Basic: minimal account info -->
+            <div class="detail-section anonymous-only basic-only">
+                <h3>Felhasználói adatok</h3>
+                <div class="set-grid">
+                    <div class="set-field"><label>Név</label><input id="s_contact" type="text" value="${(p.contact_name||'').replace(/"/g,'&quot;')}" placeholder="Név"></div>
+                    <div class="set-field"><label>E-mail</label><input id="s_email" type="email" value="${(p.email||'').replace(/"/g,'&quot;')}" placeholder="on@vallalkozas.hu" disabled style="background:var(--gray-50); cursor:not-allowed;"></div>
+                </div>
+                <div class="save-bar">
+                    <button class="btn-sm primary" onclick="saveProfile()">Mentés</button>
+                    <span class="save-ok" id="prof-ok">Mentve ✓</span>
+                </div>
+                <p style="font-size:12px; color:var(--gray-500); margin-top:10px;">Az e-mail címet a regisztrációkor adta meg — módosítása ügyfélszolgálaton keresztül lehetséges (info@aipalyazo.hu).</p>
             </div>
 
             <div class="detail-section">
