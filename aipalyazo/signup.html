@@ -91,6 +91,10 @@
                 <label for="email">E-mail cím</label>
                 <input type="email" id="email" name="email" required autocomplete="email" placeholder="on@vallalkozas.hu">
             </div>
+            <div class="form-group">
+                <label for="phone">Telefonszám <span style="font-weight:400;color:var(--gray-400);">(opcionális)</span></label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+36 30 123 4567" pattern="^[\d\s\+\-\(\)]{6,20}$">
+            </div>
             <div class="form-row">
                 <div class="form-group">
                     <label for="password">Jelszó (min. 8)</label>
@@ -175,6 +179,7 @@ async function signUpEmail(ev) {
     const name = document.getElementById('name').value.trim();
     const company = document.getElementById('company').value.trim();
     const email = document.getElementById('email').value.trim().toLowerCase();
+    const phone = (document.getElementById('phone') || {}).value?.trim() || '';
     const password = document.getElementById('password').value;
     const password2 = document.getElementById('password2').value;
     const gdpr = document.getElementById('gdpr').checked;
@@ -194,16 +199,16 @@ async function signUpEmail(ev) {
         const { data, error } = await withClient(c => c.auth.signUp({
             email, password,
             options: {
-                data: { full_name: name, company: company },
+                data: { full_name: name, company: company, phone: phone },
                 emailRedirectTo: location.origin + location.pathname.replace(/signup\.html$/, 'confirm-email.html')
             }
         }));
         if (error) throw error;
-        // Save name+company to localStorage in case the trigger doesn't pick it up
-        // (the next portal load + migrateLocalToSupabase will sync).
+        // Save name+company+phone to localStorage in case the trigger doesn't pick
+        // them up (the next portal load + migrateLocalToSupabase will sync).
         try {
             localStorage.setItem('grantpilot:profile', JSON.stringify({
-                contact_name: name, company: company, email: email,
+                contact_name: name, company: company, email: email, phone: phone,
                 submitted: new Date().toISOString()
             }));
         } catch (e) {}
