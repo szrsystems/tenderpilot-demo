@@ -174,8 +174,10 @@ async function confirmCode(ev) {
     btn.disabled = true; btn.textContent = 'Ellenőrzés…';
 
     try {
+        // For signup confirmation, the OTP type is 'signup' (not 'email').
+        // 'email' is for already-confirmed users re-verifying a new email address.
         const { data, error } = await withClient(c => c.auth.verifyOtp({
-            email, token: code, type: 'email'
+            email, token: code, type: 'signup'
         }));
         if (error) throw error;
         showMsg('Sikeres megerősítés ✓ — átirányítunk a portálra…', 'success');

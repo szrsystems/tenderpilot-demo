@@ -556,32 +556,37 @@
         /* Anonymous: hide save buttons */
         body.tier-anonymous .save-btn, body.tier-anonymous .bookmark-btn { display: none !important; }
 
-        /* Tier CTA buttons (signup nudge, upgrade-to-pro, etc.) — consistent height + alignment.
-           Inline-flex centers vertically, line-height fixes font-rendering baseline issues. */
+        /* Tier CTA buttons (signup nudge, upgrade-to-pro, etc.) — consistent height,
+           equal min-width, vertically centered. Fixes the "buttons look different
+           heights / alignment" complaint. */
         .tier-cta-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             background: var(--green-600);
             color: white !important;
-            padding: 10px 22px;
-            border-radius: 6px;
+            height: 42px;
+            min-width: 160px;
+            padding: 0 22px;
+            border-radius: 8px;
             font-size: 14px;
             font-weight: 600;
             text-decoration: none;
             white-space: nowrap;
-            line-height: 1.2;
-            border: none;
+            line-height: 1;
+            border: 1px solid var(--green-600);
             cursor: pointer;
-            transition: background 0.15s;
+            transition: background 0.15s, border-color 0.15s, transform 0.05s;
+            box-sizing: border-box;
         }
-        .tier-cta-btn:hover { background: var(--green-700); }
+        .tier-cta-btn:hover { background: var(--green-700); border-color: var(--green-700); }
+        .tier-cta-btn:active { transform: translateY(1px); }
         .tier-cta-btn.secondary {
             background: white;
             color: var(--green-700) !important;
-            border: 1px solid var(--green-200);
+            border: 1px solid var(--green-300, #86efac);
         }
-        .tier-cta-btn.secondary:hover { background: var(--green-50); }
+        .tier-cta-btn.secondary:hover { background: var(--green-50); border-color: var(--green-600); }
 
         /* Anonymous signup nudge banner — flex layout normalized */
         .signup-nudge {
@@ -604,7 +609,7 @@
 
 <div class="sidebar">
     <div class="sidebar-header">
-        <div class="sidebar-logo"><span>AI</span>pályázó</div>
+        <a href="index.html" class="sidebar-logo" style="text-decoration:none;color:inherit;display:block;"><span>AI</span>pályázó</a>
     </div>
     <div class="sidebar-nav">
         <div class="nav-item active" onclick="showPage('dashboard')">
@@ -960,13 +965,11 @@
     </div>
 </div>
 
-<!-- FLOATING CTA -->
+<!-- FLOATING CTA — tier-aware; populated by maybeShowCTA() -->
 <div class="floating-cta" id="floating-cta">
-    <div class="floating-cta-text">
-        <b>Próbálja ki 14 napig ingyen</b> — heti pályázat-monitoring, AI-pontozás, e-mail értesítések.
-    </div>
+    <div class="floating-cta-text" id="floating-cta-text"></div>
     <div class="floating-cta-actions">
-        <a href="onboarding.html" class="floating-cta-link">Regisztráció</a>
+        <a href="#" class="floating-cta-link" id="floating-cta-link"></a>
         <button class="floating-cta-dismiss" onclick="dismissCTA()" aria-label="Elrejtés">×</button>
     </div>
 </div>
@@ -3406,8 +3409,31 @@ function dismissCTA() {
     try { localStorage.setItem('grantpilot:cta-dismissed', '1'); } catch(e) {}
 }
 function maybeShowCTA() {
+    // Pro users: nothing to upsell.
+    if (window.currentTier === 'pro') return;
     try { if (localStorage.getItem('grantpilot:cta-dismissed') === '1') return; } catch(e) {}
+    const textEl = document.getElementById('floating-cta-text');
+    const linkEl = document.getElementById('floating-cta-link');
+    if (!textEl || !linkEl) return;
+    if (window.currentTier === 'anonymous') {
+        textEl.innerHTML = '<b>Regisztrálj ingyenesen</b> — mentsd el a pályázataid és kapj heti hírlevelet.';
+        linkEl.textContent = 'Ingyenes regisztráció';
+        linkEl.href = 'signup.html';
+    } else {
+        // basic
+        textEl.innerHTML = '<b>Pro upgrade — 3 990 Ft/hó</b> — AI-pontozás, AI vázlat, személyre szabott riport.';
+        linkEl.textContent = 'Upgrade Pro-ra';
+        linkEl.href = 'pricing.html';
+    }
     setTimeout(() => document.getElementById('floating-cta').classList.add('show'), 1200);
+}
+
+// Re-evaluate CTA when the tier changes (after Supabase resolves the real tier).
+function refreshCTA() {
+    const cta = document.getElementById('floating-cta');
+    if (!cta) return;
+    cta.classList.remove('show');
+    maybeShowCTA();
 }
 
 // Auth: user widget + logout
@@ -3515,6 +3541,9 @@ function applyTier(tier, displayName) {
         else if (tier === 'basic') t.textContent = 'Free csomag';
         else if (tier === 'pro')   t.textContent = 'Pro csomag ✓';
     }
+    // Re-evaluate the floating CTA — Pro hides it, basic/anonymous show
+    // appropriate text + destination.
+    if (typeof refreshCTA === 'function') refreshCTA();
 }
 
 // Pro-only nav clicks: if not Pro, deflect to upgrade
@@ -3596,7 +3625,11 @@ async function resolveTier() {
             const profile = await window.gp.getUserProfile();
             if (profile) {
                 const isPro = profile.tier === 'pro' && ['trialing','active'].includes(profile.subscription_status);
-                applyTier(isPro ? 'pro' : 'basic', profile.display_name || profile.email || 'Felhasználó');
+                // Use the EMAIL on the sidebar, not display_name.
+                // display_name can be stale (split_part of email by handle_new_user
+                // trigger, or "Ádám" from an old invite seed) and confused users.
+                // Email is always authoritative.
+                applyTier(isPro ? 'pro' : 'basic', profile.email || 'Felhasználó');
                 migrateLocalToSupabase(window.gp.client, profile.id);
                 return;
             }
