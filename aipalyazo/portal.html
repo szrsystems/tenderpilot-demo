@@ -341,10 +341,27 @@
 
         /* ===== WEEKLY DIGEST ===== */
         .digest-card { background: linear-gradient(135deg, #f0fdf4 0%, white 60%); border: 1px solid var(--green-100); border-radius: var(--radius-lg); padding: 20px 24px; margin-bottom: 24px; display: flex; gap: 20px; align-items: center; }
-        .profile-banner { display: flex; align-items: center; gap: 14px; background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius-lg); padding: 14px 18px; margin-bottom: 20px; text-decoration: none; color: var(--gray-800); transition: all 0.15s; }
+        /* Profile-completion banner (Pro user without a filled cégprofil).
+           Uses a 3-column grid so the icon, text, and CTA never overlap each
+           other, and wraps to 2 columns (icon+text on one row, CTA below) on
+           narrow viewports. */
+        .profile-banner {
+            display: grid;
+            grid-template-columns: 32px 1fr auto;
+            align-items: center;
+            gap: 14px 18px;
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: var(--radius-lg);
+            padding: 16px 22px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--gray-800);
+            transition: background 0.15s, border-color 0.15s;
+        }
         .profile-banner:hover { background: #fef3c7; border-color: #fcd34d; }
-        .profile-banner-icon { font-size: 20px; flex-shrink: 0; }
-        .profile-banner-text { flex: 1; display: flex; flex-direction: column; gap: 2px; font-size: 13px; }
+        .profile-banner-icon { font-size: 22px; flex-shrink: 0; }
+        .profile-banner-text { display: flex; flex-direction: column; gap: 2px; font-size: 13px; min-width: 0; }
         .profile-banner-text b { color: var(--gray-900); font-weight: 700; }
         .profile-banner-sub { color: var(--gray-500); font-size: 12px; }
         .profile-banner-cta { font-size: 13px; font-weight: 600; color: #92400e; white-space: nowrap; }
@@ -604,7 +621,8 @@
         }
         .tier-cta-btn.secondary:hover { background: var(--green-50); border-color: var(--green-600); }
 
-        /* Anonymous signup nudge banner — flex layout normalized */
+        /* Anonymous signup nudge banner — flex layout with comfortable gaps
+           between the text + two CTAs so they never visually collide. */
         .signup-nudge {
             background: linear-gradient(135deg, #f0fdf4 0%, white 100%);
             border: 1px solid var(--green-200);
@@ -613,10 +631,11 @@
             margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px 24px;
             flex-wrap: wrap;
         }
-        .signup-nudge-text { flex: 1; min-width: 240px; }
+        .signup-nudge .tier-cta-btn + .tier-cta-btn { margin-left: 4px; }
+        .signup-nudge-text { flex: 1 1 240px; min-width: 240px; }
         .signup-nudge-title { font-weight: 700; font-size: 15px; color: var(--green-800); margin-bottom: 4px; }
         .signup-nudge-sub { font-size: 13px; color: var(--gray-600); }
     </style>
@@ -791,6 +810,14 @@
                     <div class="sort-buttons pro-only" id="relevance-toggle" style="margin-right:10px;">
                         <button class="sort-btn active" data-relv="relevant" onclick="setRelevance('relevant')">Csak releváns</button>
                         <button class="sort-btn" data-relv="all" onclick="setRelevance('all')">Mind</button>
+                    </div>
+                    <!-- Pro relevance threshold slider: shown only when "Csak
+                         releváns" is active. Default 55. The user picks the
+                         minimum score (with profileBoost) to display. -->
+                    <div class="pro-only" id="threshold-wrap" style="display:none; align-items:center; gap:8px; margin-right:14px; font-size:12px; color:var(--gray-600);">
+                        <label for="threshold-slider">Min. pontszám:</label>
+                        <input type="range" id="threshold-slider" min="40" max="95" step="5" value="55" onchange="setThreshold(this.value)" oninput="document.getElementById('threshold-val').textContent = this.value">
+                        <span id="threshold-val" style="font-weight:700; color:var(--green-700); min-width:24px;">55</span>
                     </div>
                     <span class="sort-label">Rendezés:</span>
                     <div class="sort-buttons" id="sort-buttons">
@@ -1649,7 +1676,16 @@ const CATEGORY_ORDER = ['all','digital','energy','capacity','rd','export','train
 let activeCat = 'all';
 let activeSort = 'score';
 let activeRelv = 'relevant'; // 'relevant' (default — eligible-fit only) | 'all'
-const RELV_THRESHOLD = 55;    // score + profileBoost >= this counts as "relevant"
+let RELV_THRESHOLD = 55;     // mutable: Pro user can adjust via slider
+try { const t = parseInt(localStorage.getItem('grantpilot:relv_threshold'), 10); if (t >= 40 && t <= 95) RELV_THRESHOLD = t; } catch(e) {}
+
+function setThreshold(val) {
+    const n = parseInt(val, 10);
+    if (!isFinite(n) || n < 40 || n > 95) return;
+    RELV_THRESHOLD = n;
+    try { localStorage.setItem('grantpilot:relv_threshold', String(n)); } catch(e) {}
+    filterGrants();
+}
 
 function setSort(s) {
     activeSort = s;
@@ -1660,6 +1696,14 @@ function setSort(s) {
 function setRelevance(r) {
     activeRelv = r;
     document.querySelectorAll('#relevance-toggle .sort-btn').forEach(b => b.classList.toggle('active', b.dataset.relv === r));
+    // Show the threshold slider only when "Csak releváns" is active.
+    const wrap = document.getElementById('threshold-wrap');
+    if (wrap) wrap.style.display = (r === 'relevant' && window.currentTier === 'pro') ? 'inline-flex' : 'none';
+    // Sync slider position to stored threshold
+    const slider = document.getElementById('threshold-slider');
+    const val = document.getElementById('threshold-val');
+    if (slider) slider.value = RELV_THRESHOLD;
+    if (val) val.textContent = RELV_THRESHOLD;
     filterGrants();
 }
 
@@ -2115,6 +2159,13 @@ function getFilteredGrants() {
 
 function initGrants() {
     renderPills();
+    // Sync the relevance threshold slider state on page open.
+    const wrap = document.getElementById('threshold-wrap');
+    const slider = document.getElementById('threshold-slider');
+    const val = document.getElementById('threshold-val');
+    if (wrap) wrap.style.display = (activeRelv === 'relevant' && window.currentTier === 'pro') ? 'inline-flex' : 'none';
+    if (slider) slider.value = RELV_THRESHOLD;
+    if (val) val.textContent = RELV_THRESHOLD;
     filterGrants();
 }
 
@@ -3044,7 +3095,18 @@ function initDrafter() { dr_renderDoc(); }
 
 const INDUSTRY_OPTS = [['IT','IT / Szoftverfejlesztés'],['HVAC','Épületgépészet / HVAC'],['Construction','Építőipar'],['Manufacturing','Gyártás'],['Healthcare','Egészségügy'],['Restaurant','Vendéglátás'],['Tourism','Turizmus'],['Agriculture','Mezőgazdaság'],['Retail','Kereskedelem'],['Education','Oktatás'],['General','Egyéb']];
 const EMP_OPTS = ['1-5','6-10','11-25','26-50','51-100','100+'];
-const REV_OPTS = [['<100K','< €100K'],['100K-500K','€100K - €500K'],['500K-1M','€500K - €1M'],['1M-5M','€1M - €5M'],['5M+','€5M+']];
+// Hungarian KKV revenue ranges in HUF. Maps to the KKV-tv. small/medium
+// thresholds (50/200/500M and 1/3Mrd) so the AI scoring lines up with
+// pályázati felhívás eligibility tiers.
+const REV_OPTS = [
+    ['<50M','< 50 M Ft (mikro)'],
+    ['50M-200M','50 - 200 M Ft (kicsi)'],
+    ['200M-500M','200 - 500 M Ft'],
+    ['500M-1Mrd','500 M - 1 Mrd Ft'],
+    ['1Mrd-3Mrd','1 - 3 Mrd Ft'],
+    ['3Mrd-10Mrd','3 - 10 Mrd Ft'],
+    ['10Mrd+','10 Mrd Ft felett']
+];
 const YEARS_OPTS = [['0','Még nincs lezárt évem'],['1','1 év'],['2','2 év'],['3-5','3–5 év'],['5+','5+ év']];
 const LEGAL_OPTS = [['Kft','Kft.'],['Bt','Bt.'],['EV','Egyéni vállalkozó'],['Zrt','Zrt.'],['Nyrt','Nyrt.'],['Szövetkezet','Szövetkezet'],['Egyéb','Egyéb']];
 const PREF_CATS = ['KKV fejlesztés','Digitális átalakulás','Kutatás-fejlesztés','Energiahatékonyság','Munkahelyteremtés','Export','Turizmus','Mezőgazdaság','Környezetvédelem','Oktatás'];
@@ -3114,7 +3176,7 @@ function initProfile() {
                     <div class="set-field full"><label>Cégnév</label><input id="s_company" type="text" value="${(p.company||'').replace(/"/g,'&quot;')}" placeholder="Pl. InnoTech Kft."></div>
                     <div class="set-field"><label>Iparág</label><select id="s_industry">${opt(INDUSTRY_OPTS, p.industry||'IT')}</select></div>
                     <div class="set-field"><label>Létszám</label><select id="s_employees">${opt(EMP_OPTS, p.employees||'11-25')}</select></div>
-                    <div class="set-field"><label>Árbevétel</label><select id="s_revenue">${opt(REV_OPTS, p.revenue||'500K-1M')}</select></div>
+                    <div class="set-field"><label>Árbevétel (előző üzleti év)</label><select id="s_revenue">${opt(REV_OPTS, p.revenue||'50M-200M')}</select></div>
                     <div class="set-field"><label>Székhely / régió</label><input id="s_location" type="text" value="${(p.location||'').replace(/"/g,'&quot;')}" placeholder="Pl. Budapest"></div>
                     <div class="set-field"><label>Lezárt üzleti évek</label><select id="s_years">${opt(YEARS_OPTS, p.years_operating||'1')}</select></div>
                     <div class="set-field"><label>Cégforma</label><select id="s_legal">${opt(LEGAL_OPTS, p.legal_form||'Kft')}</select></div>
@@ -3123,8 +3185,10 @@ function initProfile() {
                             ${PREF_CATS.map(c => `<label class="chip-opt ${cats.includes(c)?'on':''}"><input type="checkbox" value="${c}" ${cats.includes(c)?'checked':''} onchange="this.closest('.chip-opt').classList.toggle('on',this.checked)">${c}</label>`).join('')}
                         </div>
                     </div>
-                    <div class="set-field"><label>Kapcsolattartó</label><input id="s_contact" type="text" value="${(p.contact_name||'').replace(/"/g,'&quot;')}" placeholder="Név"></div>
-                    <div class="set-field"><label>E-mail</label><input id="s_email" type="email" value="${(p.email||'').replace(/"/g,'&quot;')}" placeholder="on@vallalkozas.hu"></div>
+                    <div class="set-field full"><label>Kapcsolattartó</label><input id="s_contact" type="text" value="${(p.contact_name||'').replace(/"/g,'&quot;')}" placeholder="Név"></div>
+                    <!-- E-mail input removed: the registration email is already
+                         on the auth account; editing it here was confusing. -->
+                    <input type="hidden" id="s_email" value="${(p.email||userEmail||'').replace(/"/g,'&quot;')}">
                 </div>
                 <div class="save-bar">
                     <button class="btn-sm primary" onclick="saveProfile()">Profil mentése</button>

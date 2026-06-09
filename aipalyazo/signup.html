@@ -35,10 +35,27 @@
         .form-group input.mismatch { border-color: var(--red-600); }
         .field-hint { font-size: 11px; color: var(--gray-500); margin-top: 4px; }
         .field-hint.error { color: var(--red-600); }
-        .gdpr-box { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 12px 14px; margin: 16px 0; font-size: 12px; color: var(--gray-700); line-height: 1.5; }
-        .gdpr-box label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
-        .gdpr-box input { margin-top: 2px; flex-shrink: 0; }
-        .gdpr-box a { color: var(--green-700); }
+        .gdpr-box {
+            background: var(--green-50);
+            border: 1px solid var(--green-200);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin: 18px 0;
+            font-size: 12.5px;
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+        .gdpr-box label { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
+        .gdpr-box input[type=checkbox] {
+            margin-top: 2px;
+            flex-shrink: 0;
+            width: 18px; height: 18px;
+            accent-color: var(--green-600);
+            cursor: pointer;
+        }
+        .gdpr-box a { color: var(--green-700); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+        .gdpr-box a:hover { color: var(--green-800); }
+        .gdpr-box .gdpr-text { flex: 1; min-width: 0; word-break: break-word; }
         .btn-primary { width: 100%; padding: 12px 16px; background: var(--green-600); color: white; border: none; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; transition: background 0.1s; }
         .btn-primary:hover { background: var(--green-700); }
         .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
@@ -110,7 +127,7 @@
             <div class="gdpr-box">
                 <label>
                     <input type="checkbox" id="gdpr" required>
-                    <span>Elolvastam és elfogadom az <a href="adatvedelem.html" target="_blank" rel="noopener">Adatkezelési tájékoztatót</a> és az <a href="aszf.html" target="_blank" rel="noopener">ÁSZF</a>-et. Hozzájárulok az e-mailem kezeléséhez.</span>
+                    <span class="gdpr-text">Elolvastam és elfogadom az <a href="adatvedelem.html" target="_blank" rel="noopener">Adatkezelési tájékoztatót</a> és az <a href="aszf.html" target="_blank" rel="noopener">ÁSZF-et</a>. Hozzájárulok az e-mail címem kezeléséhez.</span>
                 </label>
             </div>
 
