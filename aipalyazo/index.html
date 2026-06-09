@@ -96,9 +96,18 @@
         .price-card .price span { font-size: 16px; font-weight: 500; color: var(--gray-400); }
         .price-card .price-period { font-size: 13px; color: var(--gray-400); margin-bottom: 24px; }
         .price-card ul { list-style: none; margin-bottom: 28px; }
-        .price-card li { padding: 10px 0; font-size: 14px; border-bottom: 1px solid var(--gray-100); display: flex; align-items: center; gap: 10px; }
+        /* `<li>` uses padding-left for the check icon and an absolute ::before so
+           inline children (b + text) flow naturally on one line instead of being
+           split into separate flex items (which made "Mentett pályázatok" and
+           "(regisztráció után)" jump to opposite ends of the row). */
+        .price-card li { position: relative; padding: 10px 0 10px 28px; font-size: 14px; border-bottom: 1px solid var(--gray-100); line-height: 1.5; }
         .price-card li:last-child { border-bottom: none; }
-        .price-card li::before { content: ''; width: 18px; height: 18px; background: var(--green-100); border-radius: 50%; flex-shrink: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2316a34a'%3E%3Cpath fill-rule='evenodd' d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'/%3E%3C/svg%3E"); background-size: 14px; background-repeat: no-repeat; background-position: center; }
+        .price-card li::before {
+            content: ''; position: absolute; left: 0; top: 13px;
+            width: 18px; height: 18px; background: var(--green-100); border-radius: 50%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2316a34a'%3E%3Cpath fill-rule='evenodd' d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'/%3E%3C/svg%3E");
+            background-size: 14px; background-repeat: no-repeat; background-position: center;
+        }
         .price-card .btn { width: 100%; justify-content: center; }
 
         /* CTA */
@@ -245,7 +254,7 @@
     <div class="section-header">
         <div class="section-label">Árazás</div>
         <h2 class="section-title">Kezdjen ingyen — fizessen csak ha nő</h2>
-        <p class="section-desc">A Free csomag korlátlan ideig használható, regisztráció után. A fizetős csomagok 14 napos ingyenes próbával indulnak — bármikor lemondható.</p>
+        <p class="section-desc">A Free csomag korlátlan ideig használható, regisztráció nélkül is. A Pro előfizetés bármikor lemondható, magánszemély fogyasztóként 14 napos elállási jog illeti meg.</p>
     </div>
     <div class="pricing-grid">
         <div class="price-card">
