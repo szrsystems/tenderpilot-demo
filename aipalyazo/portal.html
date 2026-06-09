@@ -3269,6 +3269,20 @@ async function deleteAccount() {
             }
         } catch (e) { console.warn('[gp] edge fn unreachable, falling back', e); }
 
+        // ALWAYS record the email in deleted_emails (the persistent ban list).
+        // This catches Google OAuth re-signups that would otherwise create a
+        // fresh user_id with the same email and bypass the per-profile sentinel.
+        try {
+            const { data: { user } } = await window.gp.client.auth.getUser();
+            if (user && user.email) {
+                await window.gp.client.from('deleted_emails').insert({
+                    email: user.email.toLowerCase(),
+                    user_id: user.id,
+                    reason: 'user_requested'
+                });
+            }
+        } catch (e) { console.warn('[gp] deleted_emails insert failed (may not exist yet)', e); }
+
         // Fallback: wipe user-owned rows from the client (no auth.users delete)
         if (!edgeFnOk) {
             const { data: { user } } = await window.gp.client.auth.getUser();
@@ -3277,10 +3291,7 @@ async function deleteAccount() {
                 await window.gp.client.from('drafts').delete().eq('user_id', user.id);
                 await window.gp.client.from('leads').delete().eq('user_id', user.id);
                 await window.gp.client.from('notif_prefs').delete().eq('user_id', user.id);
-                // Mark profile with a clear sentinel that login.html refuses.
-                // (The auth.users row still exists until the Edge Function is
-                // deployed, but the user can't log back in because login.html
-                // checks for this sentinel and refuses with a clear message.)
+                // Mark profile with a clear sentinel as belt-and-suspenders.
                 await window.gp.client.from('profiles').update({
                     display_name: '__DELETED__',
                     email: 'deleted-' + user.id + '@aipalyazo.hu'
@@ -3669,7 +3680,15 @@ async function resolveTier() {
                     return;
                 }
                 const isPro = profile.tier === 'pro' && ['trialing','active'].includes(profile.subscription_status);
-                applyTier(isPro ? 'pro' : 'basic', profile.email || 'Felhasználó');
+                // Prefer display_name (set from raw_user_meta_data.full_name on
+                // signup, or Google's profile name on OAuth). If it's missing or
+                // equals the email local-part (the trigger's split_part fallback),
+                // fall back to the full email so the user always sees something.
+                const localPart = (profile.email || '').split('@')[0];
+                const showName = (profile.display_name && profile.display_name !== localPart)
+                    ? profile.display_name
+                    : (profile.email || 'Felhasználó');
+                applyTier(isPro ? 'pro' : 'basic', showName);
                 migrateLocalToSupabase(window.gp.client, profile.id);
                 return;
             }

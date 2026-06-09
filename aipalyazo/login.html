@@ -328,7 +328,12 @@ async function loginGoogle() {
     try {
         const { error } = await withClient(c => c.auth.signInWithOAuth({
             provider: 'google',
-            options: { redirectTo: location.origin + location.pathname.replace(/login\.html$/, 'portal.html') }
+            options: {
+                redirectTo: location.origin + location.pathname.replace(/login\.html$/, 'portal.html'),
+                // Force Google's account picker every time — otherwise the
+                // single signed-in Chrome account auto-logs in without choice.
+                queryParams: { prompt: 'select_account' }
+            }
         }));
         if (error) throw error;
     } catch (e) {

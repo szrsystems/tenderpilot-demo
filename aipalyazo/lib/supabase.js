@@ -116,13 +116,26 @@ if (_signedOutFlag) {
         window.location.replace(redirectTo || 'index.html');
     }
 
-    // Helper: check if the authenticated user's profile is flagged as deleted.
-    // Returns { deleted: true } if so. Used by login.html/signup.html/portal.html
-    // to refuse re-login on a fiók-törlés-flagged account, even when the
-    // auth.users row hasn't actually been removed yet (Edge Function pending).
+    // Helper: check if the authenticated user's profile is flagged as deleted
+    // OR their email appears in the persistent deleted_emails ban list (which
+    // survives cascade deletes when a Google OAuth user re-creates an account).
     async function checkDeletedAccount() {
         const { data: { user } } = await client.auth.getUser();
         if (!user) return { deleted: false };
+        // Primary check: the persistent deleted_emails table. This catches
+        // OAuth re-signups that create fresh profiles with the old email.
+        if (user.email) {
+            try {
+                const { data: del } = await client
+                    .from('deleted_emails')
+                    .select('email')
+                    .eq('email', user.email.toLowerCase())
+                    .maybeSingle();
+                if (del && del.email) return { deleted: true, reason: 'deleted_emails' };
+            } catch (e) { /* table might not exist yet — fall through */ }
+        }
+        // Secondary check: profile sentinel (works for password accounts where
+        // the cascade delete didn't run because the auth.users row is still there).
         const { data, error } = await client
             .from('profiles')
             .select('display_name, email')

@@ -230,7 +230,12 @@ async function signUpGoogle() {
     try {
         const { error } = await withClient(c => c.auth.signInWithOAuth({
             provider: 'google',
-            options: { redirectTo: location.origin + location.pathname.replace(/signup\.html$/, 'portal.html') }
+            options: {
+                redirectTo: location.origin + location.pathname.replace(/signup\.html$/, 'portal.html'),
+                // Force Google's account picker every time — lets the user
+                // explicitly choose which Google identity to register with.
+                queryParams: { prompt: 'select_account' }
+            }
         }));
         if (error) throw error;
     } catch (e) {
