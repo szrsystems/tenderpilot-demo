@@ -2111,12 +2111,19 @@ function initDashboard() {
     }
     // Profile-completion banner: only Pro users (who can edit the company
     // profile and get personalised scoring) AND who haven't filled it yet.
-    // Use 'grid' to match the .profile-banner CSS (3-column layout —
-    // setting 'flex' here would override and re-introduce the overlap).
+    // The `.pro-only` class uses `display: none !important` (and
+    // `body.tier-pro .pro-only { display: revert !important }` which reverts
+    // to the UA default of `inline` for <a>). Both would override a plain
+    // inline `style.display = 'grid'`, so we MUST use setProperty with
+    // 'important' to win the cascade and get the 3-column layout.
     const banner = document.getElementById('profile-banner');
     if (banner) {
         const showBanner = window.currentTier === 'pro' && !profile;
-        banner.style.display = showBanner ? 'grid' : 'none';
+        if (showBanner) {
+            banner.style.setProperty('display', 'grid', 'important');
+        } else {
+            banner.style.setProperty('display', 'none', 'important');
+        }
     }
     const expBanner = document.getElementById('expired-dashboard-note');
     if (expBanner) {
