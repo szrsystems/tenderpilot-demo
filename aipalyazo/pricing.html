@@ -75,7 +75,10 @@
         .price-amount { font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; margin-bottom: 6px; }
         .price-amount .unit { font-size: 15px; font-weight: 600; color: var(--gray-500); margin-left: 2px; }
         .price-billing { font-size: 12px; color: var(--gray-500); margin-bottom: 4px; min-height: 16px; }
-        .price-strikethrough { font-size: 12px; color: var(--gray-400); text-decoration: line-through; margin-bottom: 4px; min-height: 16px; }
+        /* Only show the line-through when there's actual text; otherwise just
+           reserve the height so the cards line up across columns. */
+        .price-strikethrough { font-size: 12px; color: var(--gray-400); margin-bottom: 4px; min-height: 16px; }
+        .price-strikethrough:not(:empty) { text-decoration: line-through; }
         .price-vat { font-size: 11px; color: var(--gray-400); margin-bottom: 22px; min-height: 14px; }
 
         .price-cta {
@@ -128,7 +131,8 @@
         <div class="nav-links">
             <a href="index.html">Főoldal</a>
             <a href="portal.html">Pályázatok</a>
-            <a href="login.html" class="nav-cta">Belépés</a>
+            <a href="login.html" style="color: var(--green-700); font-weight: 600;">Belépés</a>
+            <a href="signup.html" class="nav-cta">Ingyenes regisztráció</a>
         </div>
     </div>
 </nav>
@@ -154,7 +158,7 @@
             <div class="price-tagline">Mindenkinek aki pályázatot keres</div>
             <div class="price-amount">0 Ft<span class="unit">/hó</span></div>
             <div class="price-billing">Bankkártya nem szükséges</div>
-            <div class="price-strikethrough">&nbsp;</div>
+            <div class="price-strikethrough"></div>
             <div class="price-vat">Korlátlan ideig ingyenes</div>
             <a href="signup.html" class="price-cta">Ingyenes regisztráció</a>
             <div class="price-features">
@@ -175,7 +179,7 @@
             <div class="price-tagline">Aktívan pályázó vállalkozásoknak</div>
             <div class="price-amount" id="pro-amount">3 990 Ft<span class="unit">/hó</span></div>
             <div class="price-billing" id="pro-billing">Havi számlázás, bármikor lemondható</div>
-            <div class="price-strikethrough" id="pro-strike">&nbsp;</div>
+            <div class="price-strikethrough" id="pro-strike"></div>
             <div class="price-vat">Bruttó ár (ÁFA-val) · 14 napos elállási jog</div>
             <button class="price-cta primary" id="pro-cta" onclick="startCheckout('pro')">Pro előfizetés indítása</button>
             <div class="price-features">
@@ -196,7 +200,7 @@
             <div class="price-tagline">Pályázatíróknak, könyvelőknek</div>
             <div class="price-amount">Egyedi</div>
             <div class="price-billing">&nbsp;</div>
-            <div class="price-strikethrough">&nbsp;</div>
+            <div class="price-strikethrough"></div>
             <div class="price-vat">Több ügyfél · fehér címke · lead-csatorna</div>
             <a href="partner.html" class="price-cta">Partner program →</a>
             <div class="price-features">
