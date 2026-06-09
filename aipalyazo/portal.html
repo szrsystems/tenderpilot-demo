@@ -3534,6 +3534,7 @@ injectHamburgers();
 window.currentTier = 'anonymous';
 
 function applyTier(tier, displayName) {
+    const prevTier = window.currentTier;
     window.currentTier = tier;
     document.body.classList.remove('tier-anonymous','tier-basic','tier-pro');
     document.body.classList.add('tier-' + tier);
@@ -3544,6 +3545,33 @@ function applyTier(tier, displayName) {
         if (tier === 'anonymous') t.textContent = 'Anonim böngészés';
         else if (tier === 'basic') t.textContent = 'Free csomag';
         else if (tier === 'pro')   t.textContent = 'Pro csomag ✓';
+    }
+    // Anonymous tier safety net: wipe ANY stale per-user data that might still
+    // live in localStorage from a prior signed-in session OR a personalized
+    // demo invite link (?for=Name) that seedFromInvite() wrote. Anonymous
+    // users don't own this data; showing leftover bookmarks/profile from a
+    // previous account is a privacy AND UX bug ("Mentett: 5" badge for a
+    // user who has never saved anything).
+    if (tier === 'anonymous') {
+        try {
+            const PER_USER_KEYS = [
+                'grantpilot:bookmarks',
+                'grantpilot:profile',
+                'grantpilot:leads',
+                'grantpilot:drafts',
+                'grantpilot:notif',
+                'grantpilot:invite_for',
+                'grantpilot:invite_firm',
+            ];
+            PER_USER_KEYS.forEach(k => { try { localStorage.removeItem(k); } catch(e) {} });
+            // Reset in-memory bookmarks Set + update badge
+            if (typeof bookmarks !== 'undefined') {
+                bookmarks.clear();
+                updateSavedBadge();
+            }
+            // Sidebar logo dropdown: also reset leads badge
+            updateLeadsBadge();
+        } catch (e) { console.warn('[gp] anonymous wipe failed', e); }
     }
     // Re-evaluate the floating CTA — Pro hides it, basic/anonymous show
     // appropriate text + destination.
