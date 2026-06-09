@@ -21,33 +21,27 @@
         .logo { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 8px; text-decoration: none; color: inherit; display: block; }
         .logo span { color: var(--green-600); }
         .logo-sub { font-size: 13px; color: var(--gray-500); text-align: center; margin-bottom: 32px; }
-        .card { background: white; border: 1px solid var(--gray-200); border-radius: 16px; padding: 36px 28px; box-shadow: 0 8px 28px rgba(34,197,94,0.06); text-align: center; }
-        .icon-wrap { width: 60px; height: 60px; background: var(--green-100); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 18px; font-size: 28px; }
-        h1 { font-size: 22px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.4px; }
-        p.lead { font-size: 14px; color: var(--gray-500); margin-bottom: 20px; line-height: 1.55; }
-        p.lead b { color: var(--gray-700); word-break: break-all; }
-        .code-inputs {
-            display: flex; gap: 8px; justify-content: center; margin: 22px 0 6px;
-        }
-        .code-inputs input {
-            width: 44px; height: 56px;
-            border: 1px solid var(--gray-300); border-radius: var(--radius);
-            font-size: 22px; font-weight: 700; text-align: center;
-            font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
-            color: var(--gray-900); transition: border-color 0.15s, box-shadow 0.15s;
-        }
-        .code-inputs input:focus { outline: none; border-color: var(--green-600); box-shadow: 0 0 0 3px rgba(34,197,94,0.1); }
-        .hint { font-size: 12px; color: var(--gray-500); margin-bottom: 18px; }
-        .btn { width: 100%; padding: 12px 16px; background: var(--green-600); color: white; border: none; border-radius: var(--radius); font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; transition: background 0.1s; }
-        .btn:hover { background: var(--green-700); }
-        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .card { background: white; border: 1px solid var(--gray-200); border-radius: 16px; padding: 40px 32px; box-shadow: 0 8px 28px rgba(34,197,94,0.06); text-align: center; }
+        .icon-wrap { width: 72px; height: 72px; background: var(--green-100); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 22px; font-size: 32px; }
+        h1 { font-size: 22px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.4px; }
+        p.lead { font-size: 15px; color: var(--gray-600); margin-bottom: 8px; line-height: 1.55; }
+        p.email-display { font-size: 15px; color: var(--gray-900); margin-bottom: 24px; font-weight: 600; word-break: break-all; }
+        .next-steps { background: var(--green-50); border: 1px solid var(--green-100); border-radius: var(--radius); padding: 16px 18px; text-align: left; margin: 20px 0; font-size: 13px; line-height: 1.6; color: var(--gray-700); }
+        .next-steps b { color: var(--green-800); }
+        .next-steps ol { margin: 8px 0 0 18px; padding: 0; }
+        .next-steps li { margin-bottom: 6px; }
         .msg { font-size: 13px; padding: 11px 14px; border-radius: var(--radius); margin-bottom: 14px; display: none; }
         .msg.show { display: block; }
         .msg.error { background: var(--red-50); border: 1px solid var(--red-100); color: var(--red-700); }
         .msg.success { background: var(--green-50); border: 1px solid var(--green-100); color: var(--green-800); }
-        .resend-row { font-size: 13px; color: var(--gray-500); margin-top: 20px; }
+        .btn-resend { background: white; border: 1px solid var(--gray-300); padding: 10px 18px; border-radius: var(--radius); font-size: 13px; font-weight: 600; color: var(--gray-700); cursor: pointer; font-family: inherit; transition: all 0.15s; margin-top: 18px; }
+        .btn-resend:hover { background: var(--gray-50); border-color: var(--gray-400); }
+        .btn-resend:disabled { opacity: 0.5; cursor: not-allowed; }
+        .resend-row { font-size: 13px; color: var(--gray-500); margin-top: 14px; }
         .resend-row a { color: var(--green-700); font-weight: 600; text-decoration: none; cursor: pointer; }
         .resend-row a:hover { text-decoration: underline; }
+        .checking { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--gray-300); border-top-color: var(--green-600); border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 8px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
         footer { text-align: center; padding: 24px; font-size: 12px; color: var(--gray-400); }
         footer a { color: var(--gray-500); margin: 0 8px; text-decoration: none; }
     </style>
@@ -61,26 +55,26 @@
     <div class="card">
         <div class="icon-wrap">✉️</div>
         <h1>Ellenőrizd a postaládád</h1>
-        <p class="lead">Küldtünk egy 6 jegyű megerősítő kódot a következő címre:<br><b id="email-display">…</b></p>
+        <p class="lead">Küldtünk egy megerősítő linket erre az e-mail címre:</p>
+        <p class="email-display" id="email-display">…</p>
 
         <div id="msg" class="msg"></div>
 
-        <form id="confirm-form" onsubmit="confirmCode(event)">
-            <div class="code-inputs">
-                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" id="d1" required>
-                <input type="text" inputmode="numeric" maxlength="1" id="d2" required>
-                <input type="text" inputmode="numeric" maxlength="1" id="d3" required>
-                <input type="text" inputmode="numeric" maxlength="1" id="d4" required>
-                <input type="text" inputmode="numeric" maxlength="1" id="d5" required>
-                <input type="text" inputmode="numeric" maxlength="1" id="d6" required>
-            </div>
-            <div class="hint">6 jegyű kódot várunk. Az e-mailben is van egy „Megerősítő link" gomb — az is működik.</div>
+        <div class="next-steps">
+            <b>Mit kell tenned:</b>
+            <ol>
+                <li>Nyisd meg a postafiókod (a <b>spam mappát is</b> nézd meg!)</li>
+                <li>Kattints az e-mailben lévő <b>„Megerősítés"</b> linkre</li>
+                <li>Visszakerülsz ide, és automatikusan beléptetünk a portálra</li>
+            </ol>
+        </div>
 
-            <button type="submit" class="btn" id="btn-confirm">Megerősítés</button>
-        </form>
+        <div id="auto-status" style="font-size:12px;color:var(--gray-500);margin-top:14px;">
+            <span class="checking"></span>Várom hogy rákattints a link-re…
+        </div>
 
         <div class="resend-row">
-            Nem érkezett meg? <a id="resend-link" onclick="resendCode()">Új kód küldése</a>
+            Nem érkezett meg? <a id="resend-link" onclick="resendCode()">Új e-mail küldése</a>
         </div>
 
         <div class="resend-row" style="margin-top: 8px;">
@@ -100,38 +94,8 @@
 const email = (new URLSearchParams(location.search)).get('email') || '';
 document.getElementById('email-display').textContent = email || '(az e-mail amellyel regisztráltál)';
 
-const inputs = ['d1','d2','d3','d4','d5','d6'].map(id => document.getElementById(id));
-inputs.forEach((inp, i) => {
-    inp.addEventListener('input', (e) => {
-        // Only digits
-        inp.value = inp.value.replace(/\D/g, '').slice(0, 1);
-        if (inp.value && i < inputs.length - 1) inputs[i + 1].focus();
-        // Auto-submit when all 6 are filled
-        if (inputs.every(x => x.value)) {
-            document.getElementById('btn-confirm').click();
-        }
-    });
-    inp.addEventListener('keydown', (e) => {
-        if (e.key === 'Backspace' && !inp.value && i > 0) {
-            inputs[i - 1].focus();
-        }
-        // Paste handling — capture the 6 digits across all inputs
-        if ((e.ctrlKey || e.metaKey) && e.key === 'v') {
-            // Let paste happen, then redistribute
-            setTimeout(() => {
-                const all = inputs.map(x => x.value).join('');
-                const digits = all.replace(/\D/g, '').slice(0, 6);
-                inputs.forEach((x, idx) => x.value = digits[idx] || '');
-                if (digits.length === 6) document.getElementById('btn-confirm').click();
-            }, 10);
-        }
-    });
-});
-
-// Focus first input on load
-inputs[0].focus();
-
 const msgEl = document.getElementById('msg');
+const statusEl = document.getElementById('auto-status');
 function showMsg(text, kind) {
     msgEl.textContent = text;
     msgEl.className = 'msg show ' + kind;
@@ -142,57 +106,40 @@ async function withClient(fn) {
     return fn(window.gp.client);
 }
 
-// Email-link fallback: if the user clicked the magic link in their email
-// (instead of typing the 6-digit code), Supabase places an access_token in
-// the URL hash. lib/supabase.js detects this on init and creates a session
-// automatically. We wait for that and redirect to portal.
+// Magic-link flow: the user clicks the link in their email → returns here
+// with an access_token in the URL hash → lib/supabase.js detects it and
+// creates a session → we detect the session and bounce to portal.html.
 window.addEventListener('gp-ready', async () => {
     // Give detectSessionInUrl a tick to process the URL hash
     setTimeout(async () => {
         try {
             const { data: { session } } = await window.gp.client.auth.getSession();
             if (session && session.user) {
-                showMsg('Sikeres megerősítés a linkkel ✓ — átirányítunk a portálra…', 'success');
-                setTimeout(() => { location.replace('portal.html'); }, 1000);
+                statusEl.style.display = 'none';
+                showMsg('Sikeres megerősítés ✓ — átirányítunk a portálra…', 'success');
+                setTimeout(() => { location.replace('portal.html'); }, 1200);
             }
-        } catch (e) { /* no session yet, user will enter code */ }
+        } catch (e) { /* no session yet, user hasn't clicked link */ }
     }, 300);
 });
 
-async function confirmCode(ev) {
-    if (ev) ev.preventDefault();
-    const code = inputs.map(i => i.value).join('');
-    if (code.length !== 6) {
-        showMsg('Add meg mind a 6 számjegyet.', 'error');
-        return;
-    }
-    if (!email) {
-        showMsg('Hiányzik az e-mail cím — térj vissza a regisztráció oldalra.', 'error');
-        return;
-    }
-    const btn = document.getElementById('btn-confirm');
-    btn.disabled = true; btn.textContent = 'Ellenőrzés…';
-
+// Also poll periodically — if user clicks the link in another tab/window,
+// the session might be set in another tab. Re-check every 3 sec for 5 min.
+let pollCount = 0;
+const pollInterval = setInterval(async () => {
+    pollCount++;
+    if (pollCount > 100) { clearInterval(pollInterval); return; }
+    if (!window.gp || !window.gp.client) return;
     try {
-        // For signup confirmation, the OTP type is 'signup' (not 'email').
-        // 'email' is for already-confirmed users re-verifying a new email address.
-        const { data, error } = await withClient(c => c.auth.verifyOtp({
-            email, token: code, type: 'signup'
-        }));
-        if (error) throw error;
-        showMsg('Sikeres megerősítés ✓ — átirányítunk a portálra…', 'success');
-        setTimeout(() => { location.replace('portal.html'); }, 1200);
-    } catch (e) {
-        const m = (e && e.message) || 'Ismeretlen hiba.';
-        if (/invalid|expired|wrong/i.test(m)) {
-            showMsg('Hibás vagy lejárt kód. Kérj újat lent.', 'error');
-        } else {
-            showMsg('Megerősítés sikertelen: ' + m, 'error');
+        const { data: { session } } = await window.gp.client.auth.getSession();
+        if (session && session.user) {
+            clearInterval(pollInterval);
+            statusEl.style.display = 'none';
+            showMsg('Megerősítés érzékelve ✓ — átirányítunk a portálra…', 'success');
+            setTimeout(() => { location.replace('portal.html'); }, 1200);
         }
-        btn.disabled = false; btn.textContent = 'Megerősítés';
-        inputs.forEach(x => x.value = ''); inputs[0].focus();
-    }
-}
+    } catch (e) {}
+}, 3000);
 
 async function resendCode() {
     if (!email) { showMsg('Hiányzik az e-mail cím.', 'error'); return; }
@@ -201,12 +148,12 @@ async function resendCode() {
     try {
         const { error } = await withClient(c => c.auth.resend({ type: 'signup', email }));
         if (error) throw error;
-        showMsg('Új kódot küldtünk. Nézd a postafiókodat (spam mappát is).', 'success');
+        showMsg('Új megerősítő e-mailt küldtünk. Nézd a postafiókodat (spam mappát is).', 'success');
     } catch (e) {
-        showMsg('Új kód küldése sikertelen: ' + ((e && e.message) || 'ismeretlen hiba'), 'error');
+        showMsg('Új e-mail küldése sikertelen: ' + ((e && e.message) || 'ismeretlen hiba'), 'error');
     } finally {
         setTimeout(() => {
-            link.textContent = 'Új kód küldése'; link.style.pointerEvents = '';
+            link.textContent = 'Új e-mail küldése'; link.style.pointerEvents = '';
         }, 3000);
     }
 }

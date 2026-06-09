@@ -3277,8 +3277,12 @@ async function deleteAccount() {
                 await window.gp.client.from('drafts').delete().eq('user_id', user.id);
                 await window.gp.client.from('leads').delete().eq('user_id', user.id);
                 await window.gp.client.from('notif_prefs').delete().eq('user_id', user.id);
+                // Mark profile with a clear sentinel that login.html refuses.
+                // (The auth.users row still exists until the Edge Function is
+                // deployed, but the user can't log back in because login.html
+                // checks for this sentinel and refuses with a clear message.)
                 await window.gp.client.from('profiles').update({
-                    display_name: '[deleted]',
+                    display_name: '__DELETED__',
                     email: 'deleted-' + user.id + '@aipalyazo.hu'
                 }).eq('id', user.id);
             }
@@ -3624,11 +3628,19 @@ async function resolveTier() {
         try {
             const profile = await window.gp.getUserProfile();
             if (profile) {
+                // Guard: if the profile is flagged as deleted (e.g. user came in
+                // via Google OAuth after a delete-account), force sign-out and
+                // bounce to login with an error banner.
+                const isDeleted = profile.display_name === '__DELETED__' ||
+                    (typeof profile.email === 'string' && profile.email.startsWith('deleted-'));
+                if (isDeleted) {
+                    console.warn('[gp] deleted account detected — signing out');
+                    try { await window.gp.client.auth.signOut({ scope: 'local' }); } catch (e) {}
+                    alert('Ez a fiók törölve lett. Új belépés nem lehetséges.\nÍrjon info@aipalyazo.hu-ra ha hibát észlel.');
+                    window.location.href = 'index.html?signed_out=1&deleted=1';
+                    return;
+                }
                 const isPro = profile.tier === 'pro' && ['trialing','active'].includes(profile.subscription_status);
-                // Use the EMAIL on the sidebar, not display_name.
-                // display_name can be stale (split_part of email by handle_new_user
-                // trigger, or "Ádám" from an old invite seed) and confused users.
-                // Email is always authoritative.
                 applyTier(isPro ? 'pro' : 'basic', profile.email || 'Felhasználó');
                 migrateLocalToSupabase(window.gp.client, profile.id);
                 return;

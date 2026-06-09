@@ -376,6 +376,17 @@ form.addEventListener("submit", async (e) => {
     try {
         const { data, error } = await withClient(c => c.auth.signInWithPassword({ email, password }));
         if (!error && data.session) {
+            // Refuse login for accounts that have been marked for deletion
+            // (display_name = '__DELETED__' or email starts with 'deleted-').
+            const del = await window.gp.checkDeletedAccount();
+            if (del.deleted) {
+                await window.gp.client.auth.signOut({ scope: 'local' });
+                errorEl.textContent = 'Ez a fiók törölve lett. Új fiókhoz kérjük regisztráljon másik e-mail címmel, vagy írjon info@aipalyazo.hu címre.';
+                errorEl.classList.add("show");
+                btn.disabled = false;
+                btn.textContent = "Bejelentkezés";
+                return;
+            }
             window.location.replace("portal.html" + location.search);
             return;
         }

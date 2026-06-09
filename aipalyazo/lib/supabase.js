@@ -116,6 +116,25 @@ if (_signedOutFlag) {
         window.location.replace(redirectTo || 'index.html');
     }
 
+    // Helper: check if the authenticated user's profile is flagged as deleted.
+    // Returns { deleted: true } if so. Used by login.html/signup.html/portal.html
+    // to refuse re-login on a fiók-törlés-flagged account, even when the
+    // auth.users row hasn't actually been removed yet (Edge Function pending).
+    async function checkDeletedAccount() {
+        const { data: { user } } = await client.auth.getUser();
+        if (!user) return { deleted: false };
+        const { data, error } = await client
+            .from('profiles')
+            .select('display_name, email')
+            .eq('id', user.id)
+            .single();
+        if (error || !data) return { deleted: false };
+        const isDeleted =
+            data.display_name === '__DELETED__' ||
+            (typeof data.email === 'string' && data.email.startsWith('deleted-'));
+        return { deleted: isDeleted };
+    }
+
     // Helper: require auth — redirect to login if not signed in.
     async function requireAuth(loginUrl) {
         const { data: { user } } = await client.auth.getUser();
@@ -126,7 +145,7 @@ if (_signedOutFlag) {
         return user;
     }
 
-    window.gp = { client, getTier, getUserProfile, signOut, requireAuth };
+    window.gp = { client, getTier, getUserProfile, signOut, requireAuth, checkDeletedAccount };
 
     // Notify the page that the client is ready.
     window.dispatchEvent(new CustomEvent('gp-ready'));
