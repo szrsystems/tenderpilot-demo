@@ -2111,11 +2111,12 @@ function initDashboard() {
     }
     // Profile-completion banner: only Pro users (who can edit the company
     // profile and get personalised scoring) AND who haven't filled it yet.
-    // Also explicitly hide for non-Pro to avoid overlap with the digest card.
+    // Use 'grid' to match the .profile-banner CSS (3-column layout —
+    // setting 'flex' here would override and re-introduce the overlap).
     const banner = document.getElementById('profile-banner');
     if (banner) {
         const showBanner = window.currentTier === 'pro' && !profile;
-        banner.style.display = showBanner ? 'flex' : 'none';
+        banner.style.display = showBanner ? 'grid' : 'none';
     }
     const expBanner = document.getElementById('expired-dashboard-note');
     if (expBanner) {
