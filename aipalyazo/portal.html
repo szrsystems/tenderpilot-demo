@@ -938,10 +938,10 @@
 <div class="detail-panel" id="detail-panel">
     <div class="detail-top">
         <div>
-            <div id="detail-verdict" class="verdict verdict-apply" style="display: inline-block; margin-bottom: 8px;"></div>
+            <div id="detail-verdict" class="verdict verdict-apply pro-only" style="display: inline-block; margin-bottom: 8px;"></div>
             <h2 id="detail-title" style="font-size: 17px; font-weight: 700; line-height: 1.3;"></h2>
         </div>
-        <button class="detail-close" onclick="closeDetail()">Bezárás</button>
+        <button class="detail-close" onclick="closeDetail()" aria-label="Bezárás" title="Bezárás" style="background:transparent;border:none;font-size:22px;color:var(--gray-500);cursor:pointer;padding:6px 10px;line-height:1;border-radius:6px;">&times;</button>
     </div>
     <div class="detail-body" id="detail-body"></div>
 </div>
@@ -1559,6 +1559,13 @@ try { bookmarks = new Set(JSON.parse(localStorage.getItem(BOOKMARKS_KEY) || '[]'
 
 function toggleBookmark(id, ev) {
     if (ev) ev.stopPropagation();
+    // Anonymous users: nudge them to register instead of silently noop-ing
+    if (window.currentTier === 'anonymous') {
+        if (confirm('A pályázat mentéséhez ingyenes regisztráció szükséges. Regisztrálsz most?')) {
+            window.location.href = 'signup.html';
+        }
+        return;
+    }
     const wasSaved = bookmarks.has(id);
     if (wasSaved) bookmarks.delete(id);
     else bookmarks.add(id);
@@ -1657,9 +1664,11 @@ function resetFilters() {
 // The redirect uses ?signed_out=1 which is intercepted by lib/supabase.js (which
 // re-nukes storage before init) and by login.html/signup.html bounce-out guards.
 function doSignOut() {
-    console.log('[gp] doSignOut: clearing all auth state');
+    console.log('[gp] doSignOut: clearing all auth state + per-user data');
     try {
-        // 1) Aggressively wipe any key that could hold a Supabase session.
+        // 1) Aggressively wipe auth state AND all per-user data so the next
+        //    visitor (e.g. another account, or anonymous) doesn't see leftover
+        //    bookmarks, profile, leads, drafts, etc.
         const toRemove = [];
         for (let i = 0; i < localStorage.length; i++) {
             const k = localStorage.key(i);
@@ -1668,7 +1677,9 @@ function doSignOut() {
                 k.startsWith('sb-') ||
                 k.includes('-auth-token') ||
                 k.startsWith('grantpilot-auth.') ||
-                k.startsWith('gp_migrated_')) {
+                k.startsWith('gp_migrated_') ||
+                // ↓ per-user data — clear on signout so accounts don't leak
+                k.startsWith('grantpilot:')) {
                 toRemove.push(k);
             }
         }
@@ -1698,13 +1709,17 @@ function doSignOut() {
     window.location.href = 'index.html?signed_out=1';
 }
 
-// "Önnek releváns" KPI click — Pro users get the filtered grant list; non-Pro
-// goes to the upgrade signup page (the metric only makes sense with a profile).
+// "Önnek releváns" KPI click — routing by tier:
+//   anonymous → signup.html  (must register first to even have a profile)
+//   basic     → pricing.html (registered but needs to upgrade)
+//   pro       → goGrants('relevant') (filtered list)
 function goGrantsRelevant() {
     if (window.currentTier === 'pro') {
         goGrants('relevant');
+    } else if (window.currentTier === 'anonymous') {
+        window.location.href = 'signup.html?from=relevant';
     } else {
-        window.location.href = 'pricing.html&from=relevant';
+        window.location.href = 'pricing.html?from=relevant';
     }
 }
 
@@ -2256,15 +2271,15 @@ function showDetail(id) {
     document.getElementById('detail-title').textContent = g.title;
     const dv = document.getElementById('detail-verdict');
     const isPro = window.currentTier === 'pro';
-    // For non-Pro: hide the score/verdict header pill entirely (just show category).
+    // Pro: show score+verdict pill. Non-Pro: hide it entirely (Kategória appears
+    // in Alapadatok below so we don't duplicate it as a header pill).
     if (isPro) {
-        dv.className = `verdict ${vClass(g.verdict)}`;
+        dv.className = `verdict ${vClass(g.verdict)} pro-only`;
         dv.textContent = `${g.score}/100 — ${vText(g.verdict)}`;
-        dv.style.display = '';
+        dv.style.cssText = 'display: inline-block; margin-bottom: 8px;';
     } else {
-        dv.textContent = g.cat;
-        dv.className = 'verdict';
-        dv.style.cssText = 'background:var(--gray-100); color:var(--gray-600); border:1px solid var(--gray-200);';
+        dv.textContent = '';
+        dv.className = 'verdict pro-only';
     }
 
     const f = g.factors;
@@ -2449,6 +2464,33 @@ function initSaved() {
     const list = document.getElementById('saved-list');
     const empty = document.getElementById('saved-empty');
     document.getElementById('saved-count').textContent = saved.length;
+
+    // Anonymous users: replace the empty state with a register-to-save nudge.
+    if (window.currentTier === 'anonymous') {
+        list.innerHTML = '';
+        list.classList.add('hidden');
+        empty.classList.add('hidden');
+        // Inject a one-off nudge wrapper (only once)
+        let nudge = document.getElementById('saved-anon-nudge');
+        if (!nudge) {
+            nudge = document.createElement('div');
+            nudge.id = 'saved-anon-nudge';
+            nudge.style.cssText = 'background:linear-gradient(135deg, var(--green-50) 0%, white 100%); border:1px solid var(--green-200); border-radius:var(--radius-lg); padding:36px 28px; text-align:center; margin-top:12px;';
+            nudge.innerHTML = `
+                <div style="font-size:42px; line-height:1; margin-bottom:14px;">🔖</div>
+                <h3 style="font-size:18px; color:var(--green-800); margin-bottom:8px;">Regisztrálj ingyenesen a mentéshez</h3>
+                <p style="font-size:14px; color:var(--gray-600); line-height:1.6; max-width:440px; margin:0 auto 18px;">A pályázatok mentése + heti hírlevél a Free csomag része. Korlátlan ideig ingyenes. 30 másodperc.</p>
+                <a href="signup.html" class="tier-cta-btn">Ingyenes regisztráció</a>
+            `;
+            list.parentElement.insertBefore(nudge, list);
+        }
+        nudge.style.display = '';
+        document.getElementById('saved-summary').textContent = '';
+        return;
+    } else {
+        const nudge = document.getElementById('saved-anon-nudge');
+        if (nudge) nudge.style.display = 'none';
+    }
 
     if (saved.length === 0) {
         list.innerHTML = '';
@@ -2988,10 +3030,27 @@ function getNotif() {
 
 function initProfile() {
     const p = getUserProfile() || {};
-    const company = p.company || 'Demo Vállalkozás Kft.';
-    const initials = company.trim().split(/\s+/).slice(0,2).map(w => w[0]).join('').toUpperCase() || 'GP';
+    const isPro = window.currentTier === 'pro';
+    // Resolve display name from Supabase session if available
+    let userEmail = p.email || '';
+    try {
+        const stored = localStorage.getItem('grantpilot-auth');
+        if (stored) {
+            const parsed = JSON.parse(stored);
+            userEmail = userEmail || parsed?.user?.email || parsed?.currentSession?.user?.email || '';
+        }
+    } catch (e) {}
+
+    // Pro: business-card header. Free/Anonymous: just a neutral user header.
+    const company = isPro && p.company ? p.company : '';
+    const headerTitle = isPro && company
+        ? company
+        : (p.contact_name || userEmail || (window.currentTier === 'anonymous' ? 'Vendég' : 'Felhasználói fiók'));
+    const initials = (headerTitle || 'AI').trim().split(/\s+/).slice(0,2).map(w => w[0]).join('').toUpperCase() || 'AI';
     const indLabel = (INDUSTRY_OPTS.find(o => o[0] === p.industry) || [null,'IT / Szoftverfejlesztés'])[1];
-    const meta = [p.location || 'Budapest', indLabel, (p.employees || '11-25') + ' fő'].join(' · ');
+    const meta = isPro && p.company
+        ? [p.location || 'Budapest', indLabel, (p.employees || '11-25') + ' fő'].join(' · ')
+        : (userEmail || (window.currentTier === 'anonymous' ? 'Anonim böngészés' : 'Free csomag'));
     const n = getNotif();
     const opt = (arr, sel) => arr.map(o => { const v = Array.isArray(o)?o[0]:o, l = Array.isArray(o)?o[1]:o+' fő'; return `<option value="${v}" ${v===sel?'selected':''}>${l}</option>`; }).join('');
     const cats = Array.isArray(p.categories) ? p.categories : ['KKV fejlesztés','Digitális átalakulás','Kutatás-fejlesztés'];
@@ -3000,7 +3059,7 @@ function initProfile() {
         <div class="profile-section">
             <div class="profile-header">
                 <div class="profile-avatar">${initials}</div>
-                <div><div class="profile-name">${company}</div><div class="profile-meta">${meta}</div></div>
+                <div><div class="profile-name">${headerTitle}</div><div class="profile-meta">${meta}</div></div>
             </div>
 
             <!-- Free / anonymous users: prominent Upgrade-to-Pro CTA at top -->

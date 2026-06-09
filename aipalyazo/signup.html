@@ -83,8 +83,8 @@
                     <input type="text" id="name" name="name" required autocomplete="name" placeholder="Pl. Kovács János">
                 </div>
                 <div class="form-group">
-                    <label for="company">Cégnév</label>
-                    <input type="text" id="company" name="company" required autocomplete="organization" placeholder="Pl. InnoTech Kft.">
+                    <label for="company">Cégnév <span style="font-weight:400;color:var(--gray-400);">(opcionális)</span></label>
+                    <input type="text" id="company" name="company" autocomplete="organization" placeholder="Magánszemélynek nem kötelező">
                 </div>
             </div>
             <div class="form-group">
@@ -180,7 +180,7 @@ async function signUpEmail(ev) {
     const gdpr = document.getElementById('gdpr').checked;
 
     if (!name) { showError('Kérlek add meg a neved.'); return; }
-    if (!company) { showError('Kérlek add meg a cégnevet.'); return; }
+    // Company is OPTIONAL — Free users don't need it; Pro users fill it later.
     if (!gdpr) { showError('Az adatkezelési tájékoztató elfogadása szükséges.'); return; }
     if (password.length < 8) { showError('A jelszó legalább 8 karakter legyen.'); return; }
     if (password !== password2) { showError('A két jelszó nem egyezik.'); return; }

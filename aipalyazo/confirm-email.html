@@ -142,6 +142,23 @@ async function withClient(fn) {
     return fn(window.gp.client);
 }
 
+// Email-link fallback: if the user clicked the magic link in their email
+// (instead of typing the 6-digit code), Supabase places an access_token in
+// the URL hash. lib/supabase.js detects this on init and creates a session
+// automatically. We wait for that and redirect to portal.
+window.addEventListener('gp-ready', async () => {
+    // Give detectSessionInUrl a tick to process the URL hash
+    setTimeout(async () => {
+        try {
+            const { data: { session } } = await window.gp.client.auth.getSession();
+            if (session && session.user) {
+                showMsg('Sikeres megerősítés a linkkel ✓ — átirányítunk a portálra…', 'success');
+                setTimeout(() => { location.replace('portal.html'); }, 1000);
+            }
+        } catch (e) { /* no session yet, user will enter code */ }
+    }, 300);
+});
+
 async function confirmCode(ev) {
     if (ev) ev.preventDefault();
     const code = inputs.map(i => i.value).join('');
