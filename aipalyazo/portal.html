@@ -1359,7 +1359,22 @@ const G = [
     {id:"G-300",title:"HEPA Export Delegáció és Piackutatás — kiállítás és külpiaci megjelenés",source:"hepa.hu",cat:"Export",amount:"2-20M HUF",deadline:"2026-05-31",days:0,score:0,verdict:"REVIEW",url:"https://hepa.hu",factors:{size:82,industry:78,location:85,deadline:80,preference:82}},
 ];
 
+// The data file accumulated category-label variants over time. Category
+// matching is EXACT-string everywhere (onboarding checkboxes, profile boost,
+// filter pills), so un-normalized variants silently fall out of the
+// profile-category +12 boost and fragment the pills bar into duplicates
+// ("Digitalizáció 6" next to "Digitális átalakulás 21").
+const CAT_ALIASES = {
+    'Kkv-fejlesztés': 'KKV fejlesztés',
+    'Digitalizáció':  'Digitális átalakulás',
+    'Energia':        'Energiahatékonyság'
+};
+
 G.forEach(g => {
+    if (CAT_ALIASES[g.cat]) g.cat = CAT_ALIASES[g.cat];
+    // Display normalization: amounts were entered as both "12M Ft" and
+    // "12M HUF" — show the Hungarian form everywhere.
+    if (g.amount) g.amount = g.amount.replace(/\s*HUF\b/g, ' Ft');
     try {
         const dl = new Date(g.deadline); dl.setHours(0,0,0,0);
         const now = new Date(); now.setHours(0,0,0,0);
@@ -1368,6 +1383,12 @@ G.forEach(g => {
         g.days = Math.max(0, delta);
     } catch(e) { g.days = 90; g.expired = false; }
     const f = g.factors;
+    // The deadline factor is computed LIVE from the actual days remaining —
+    // the value baked into the data file goes stale (a grant entered with
+    // "deadline: 95" eventually has 4 days left). Tight deadlines score
+    // lower because the grant is less actionable, not because it fits worse.
+    f.deadline = g.days <= 7 ? 35 : g.days <= 14 ? 50 : g.days <= 30 ? 65
+               : g.days <= 60 ? 80 : g.days <= 120 ? 90 : 95;
     g.score = Math.round((f.size*25 + f.industry*25 + f.location*20 + f.deadline*15 + f.preference*15) / 100 * 10) / 10;
     g.verdict = g.score >= 80 ? 'APPLY' : g.score >= 60 ? 'REVIEW' : 'SKIP';
 });
@@ -1978,7 +1999,7 @@ function nf_search() {
         return;
     }
     res.innerHTML = `
-        <div class="nf-res-head"><span>${matches.length} illeszkedő pályázat a(z) „${q}" igényre:</span><a onclick="showPage('grants')">Összes pályázat →</a></div>
+        <div class="nf-res-head"><span>${matches.length} illeszkedő pályázat a(z) „${escHtml(q)}" igényre:</span><a onclick="showPage('grants')">Összes pályázat →</a></div>
         ${matches.map(g => `
             <div class="nf-card" onclick="showDetail('${g.id}')">
                 <div>
@@ -2017,13 +2038,17 @@ async function loadFreshness() {
         txt.textContent = 'Adatbázis frissítve: ' + when;
         const sm = s.summary || {};
         let title = `${sm.ok || 0}/${sm.totalSources || 0} forrás elérhető · utolsó ellenőrzés: ${checked.toLocaleString('hu-HU')}`;
+        if (sm.blocked) title += `\n${sm.blocked} forrás bot-védelem mögött (emberi látogatónak elérhető)`;
         if (sm.countedSources && sm.totalListedItems) {
             title += `\n${sm.totalListedItems} aktív felhívás figyelve ${sm.countedSources} forrás indexéből`;
             if (sm.newGrantsDetected > 0) title += `\n+${sm.newGrantsDetected} új a múlt ellenőrzés óta`;
         }
         el.title = title;
-        // Health-based color
-        const okRatio = s.summary.ok / s.summary.totalSources;
+        // Health-based color. Sources behind bot protection (hipa.hu etc.)
+        // reject the monitor but serve humans fine — exclude them from the
+        // health ratio so they don't turn the badge red.
+        const denom = (sm.totalSources || 0) - (sm.blocked || 0);
+        const okRatio = denom > 0 ? sm.ok / denom : 1;
         el.classList.remove('warn','bad');
         if (okRatio < 0.6 || hours > 48) el.classList.add('bad');
         else if (okRatio < 0.85 || hours > 30) el.classList.add('warn');
@@ -2463,7 +2488,7 @@ function showDetail(id) {
         ${recommendationSection}
         <div class="detail-section">
             <h3>Alapadatok</h3>
-            <div class="detail-row"><span class="label">Forrás</span><span class="value">${g.url ? `<a href="${g.url}" target="_blank" rel="noopener" style="color: var(--green-600); text-decoration: none;">${g.source} ↗</a>` : g.source}</span></div>
+            <div class="detail-row"><span class="label">Forrás</span><span class="value">${g.url ? `<a href="${g.url}" target="_blank" rel="noopener" style="color: var(--green-600); text-decoration: none;">${g.source} ↗</a>` : g.source}${/^https?:\/\/[^\/]+\/?$/.test(g.url || '') ? ` · <a href="https://www.google.com/search?q=${encodeURIComponent('"' + g.title.split('—')[0].trim() + '" pályázat')}" target="_blank" rel="noopener" style="color: var(--gray-500); text-decoration: none;" title="A forrás-link a kiíró főoldalára mutat — ez a keresés a konkrét felhívást találja meg">felhívás keresése ↗</a>` : ''}</span></div>
             <div class="detail-row"><span class="label">Kategória</span><span class="value">${g.cat}</span></div>
             <div class="detail-row"><span class="label">Összeg</span><span class="value">${g.amount}</span></div>
             <div class="detail-row"><span class="label">Határidő</span><span class="value" style="color: ${g.days < 30 ? 'var(--red-600)' : 'inherit'};">${g.deadline} (${g.days} nap)</span></div>
@@ -2814,8 +2839,8 @@ function dr_industryLabel(code) {
     return o ? o[1] : 'KKV';
 }
 
-// Plausible budget split + total derived from the grant amount range.
-// Picks the midpoint of the parsed amount (in HUF).
+// Plausible budget split + total derived from the grant amount range:
+// 70% of the parsed maximum (in HUF) as a realistic project size.
 function dr_budget(g) {
     const max = parseAmount(g.amount) || 10000000;
     // Use 70% of max as a realistic project size
