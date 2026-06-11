@@ -2,6 +2,7 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIpályázó — Áttekintés</title>
     <script src="lib/supabase.js" defer></script>
@@ -301,7 +302,7 @@
         .sort-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
         .sort-left { font-size: 13px; color: var(--gray-500); font-weight: 500; }
         .sort-left b { color: var(--gray-900); font-weight: 700; }
-        .sort-right { display: flex; align-items: center; gap: 8px; }
+        .sort-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
         .sort-label { font-size: 12px; color: var(--gray-500); font-weight: 600; }
         .sort-buttons { display: inline-flex; background: var(--gray-100); border-radius: 8px; padding: 3px; gap: 2px; }
         .sort-btn { padding: 5px 12px; font-size: 12px; font-weight: 600; color: var(--gray-500); background: transparent; border: none; border-radius: 6px; cursor: pointer; transition: all 0.1s; font-family: inherit; }
@@ -558,7 +559,7 @@
             .grant-card-logo { width: 36px; height: 36px; }
             .grant-card-right { grid-column: 1 / -1; flex-direction: row; justify-content: space-between; min-width: 0; align-items: center; padding-top: 8px; border-top: 1px solid var(--gray-100); }
             .sort-bar { flex-direction: column; align-items: stretch; }
-            .sort-right { justify-content: space-between; }
+            .sort-right { justify-content: flex-start; row-gap: 10px; }
         }
 
         /* TIER-GATING — controlled by body class .tier-anonymous|.tier-basic|.tier-pro */
@@ -854,7 +855,7 @@
         </div>
         <div class="content">
             <div class="sort-bar">
-                <div class="sort-left"><b id="saved-count">0</b> mentett pályázat — <span id="saved-summary"></span></div>
+                <div class="sort-left"><b id="saved-count">0</b> mentett pályázat<span id="saved-summary"></span></div>
             </div>
             <div class="grant-cards" id="saved-list"></div>
             <div id="saved-empty" class="empty hidden">
@@ -1427,7 +1428,9 @@ function sizeFit(g, profile) {
     const f = (g.factors && g.factors.size) || 0;
     const established = (profile && profile.past_grants === 'won') ||
         ['11-25','26-50','51-100','100+'].includes(profile && profile.employees) ||
-        ['1M-5M','5M+'].includes(profile && profile.revenue);
+        // HUF tiers (current) + legacy EUR values from profiles saved before
+        // the dropdowns switched to forint. ≥500M Ft ≈ ≥€1M.
+        ['500M-1Mrd','1Mrd-3Mrd','3Mrd-10Mrd','10Mrd+','1M-5M','5M+'].includes(profile && profile.revenue);
 
     // Does the title explicitly include small/medium firms? Then a "mikro"
     // mention does NOT exclude a small company (e.g. "mikro- és kisvállalkozások").
@@ -1577,6 +1580,21 @@ function logoColor(src) {
     let h = 0; for (let i = 0; i < src.length; i++) h = (h * 31 + src.charCodeAt(i)) & 0xffff;
     return palette[h % palette.length];
 }
+// Truncate with a real ellipsis — only when the string is actually cut, so
+// short titles never end in a dangling "…" and long ones never end mid-word
+// with no visual hint ("Forgótőke fin").
+function trunc(s, n) {
+    s = s || '';
+    return s.length > n ? s.slice(0, n).replace(/\s+\S*$/, '') + '…' : s;
+}
+
+// Escape HTML special chars before interpolating user-typed text into
+// innerHTML (needs-finder query etc.).
+function escHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, c =>
+        ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
 function logoInitials(src) {
     if (!src) return '?';
     const clean = src.replace(/^www\./, '').split('.')[0];
@@ -1956,7 +1974,7 @@ function nf_search() {
     const profile = getUserProfile();
     const matches = nf_match(q, profile);
     if (!matches.length) {
-        res.innerHTML = `<div class="nf-empty">Nem találtam pontos egyezést a(z) „${q}" igényre. Próbálja más szavakkal, vagy <a onclick="showPage('grants')">böngéssze az összes pályázatot</a>. Új igényekre is folyamatosan figyelünk.</div>`;
+        res.innerHTML = `<div class="nf-empty">Nem találtam pontos egyezést a(z) „${escHtml(q)}" igényre. Próbálja más szavakkal, vagy <a onclick="showPage('grants')">böngéssze az összes pályázatot</a>. Új igényekre is folyamatosan figyelünk.</div>`;
         return;
     }
     res.innerHTML = `
@@ -2321,7 +2339,7 @@ function submitWriterLead(ev, id) {
     wrap.innerHTML = `<div class="lead-success">
         <div class="ls-check">&#10003;</div>
         <h4>Köszönjük! Igényét rögzítettük.</h4>
-        <p>Pályázatíró partnerünk <b>2 munkanapon belül</b> felveszi Önnel a kapcsolatot a(z) „${g ? g.title.slice(0,60) : ''}…" pályázattal kapcsolatban, és díjmentes előzetes jogosultsági konzultációt ad.</p>
+        <p>Pályázatíró partnerünk <b>2 munkanapon belül</b> felveszi Önnel a kapcsolatot a(z) „${g ? trunc(g.title, 60) : ''}" pályázattal kapcsolatban, és díjmentes előzetes jogosultsági konzultációt ad.</p>
     </div>`;
 }
 
@@ -2428,7 +2446,7 @@ function showDetail(id) {
             <div style="background: #ffffff; color: var(--gray-800); border: 1px solid var(--gray-200); border-radius: 12px; padding: 16px; font-size: 12px; line-height: 1.6; font-family: -apple-system, sans-serif;">
                 <div style="font-size: 11px; color: var(--gray-400); margin-bottom: 8px;">Feladó: AIpályázó &lt;ertesites@aipalyazo.hu&gt;</div>
                 <div style="font-weight: 700; color: var(--green-700); margin-bottom: 8px;">🎯 Új releváns pályázat — ${g.score}/100</div>
-                <div style="font-weight: 600; margin-bottom: 6px;">${g.title.slice(0, 80)}</div>
+                <div style="font-weight: 600; margin-bottom: 6px;">${trunc(g.title, 80)}</div>
                 <div style="color: var(--gray-600);">📊 ${vText(g.verdict)} · 💰 ${g.amount} · 📅 ${g.deadline}</div>
                 <div style="color: var(--gray-600);">📂 ${g.cat}</div>
                 <div style="margin-top: 8px; color: var(--gray-500); font-style: italic; font-size: 11px;">${g.verdict === 'APPLY' ? 'Javasolt: azonnali pályázatkészítés.' : g.verdict === 'REVIEW' ? 'Érdemes áttekinteni.' : 'Nem ajánlott.'}</div>
@@ -2468,7 +2486,7 @@ function showDetail(id) {
                 <button class="lead-submit" onclick="requestWriterQuote('${g.id}')">Ingyenes konzultáció kérése</button>
             </div>
             <form class="lead-card" id="lead-form-${g.id}" style="display:none;" onsubmit="submitWriterLead(event, '${g.id}')">
-                <h4>Pályázatíró konzultáció — ${g.title.slice(0, 48)}…</h4>
+                <h4>Pályázatíró konzultáció — ${trunc(g.title, 48)}</h4>
                 <p>Hagyja meg elérhetőségét, partnerünk 2 munkanapon belül jelentkezik.</p>
                 <div class="lead-field"><input type="text" id="ld-name-${g.id}" placeholder="Név / cégnév" required></div>
                 <div class="lead-field"><input type="email" id="ld-email-${g.id}" placeholder="E-mail cím" required></div>
@@ -2511,7 +2529,7 @@ function initAlerts() {
     // 2. New high-fit grants
     ranked.filter(isNew).slice(0, 3).forEach(g => alerts.push({
         color: 'green',
-        title: `Új releváns pályázat (${g.score}/100): ${g.title.slice(0, 55)}`,
+        title: `Új releváns pályázat (${g.score}/100): ${trunc(g.title, 55)}`,
         text: `${g.amount} · ${g.cat}. Az Ön cégprofilja alapján kiemelten ajánlott — érdemes előzetes jogosultsági konzultációt kérni.`,
         time: 'Ezen a héten', id: g.id
     }));
@@ -2520,7 +2538,7 @@ function initAlerts() {
     getLeads().slice().reverse().slice(0, 3).forEach(ld => alerts.push({
         color: 'amber',
         title: `Konzultációs igény rögzítve: ${ld.name || '(név nélkül)'}`,
-        text: `${[ld.email, ld.phone].filter(Boolean).join(' · ') || '—'} — pályázat: ${(ld.grantTitle || ld.grantId || '').slice(0, 60)}. Pályázatíró partner 2 munkanapon belül jelentkezik.`,
+        text: `${[ld.email, ld.phone].filter(Boolean).join(' · ') || '—'} — pályázat: ${trunc(ld.grantTitle || ld.grantId || '', 60)}. Pályázatíró partner 2 munkanapon belül jelentkezik.`,
         time: new Date(ld.ts || Date.now()).toLocaleString('hu-HU', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' })
     }));
 
@@ -2594,7 +2612,9 @@ function initSaved() {
         const totalFunding = saved.reduce((s, g) => s + parseAmount(g.amount), 0);
         let summary = totalFunding > 0 ? `${formatFt(totalFunding)} elérhető keret` : 'mentett pályázatok';
         if (expiredSaved > 0) summary += ` · ${expiredSaved} mentett időközben lejárt`;
-        document.getElementById('saved-summary').textContent = summary;
+        // The " — " separator lives here (not in the static HTML) so a zero
+        // state never shows a dangling dash after "0 mentett pályázat".
+        document.getElementById('saved-summary').textContent = ' — ' + summary;
     }
 }
 
@@ -2655,7 +2675,7 @@ function initLeads() {
             <div class="lead-main">
                 <div class="lead-name">${ld.name || '(név nélkül)'}</div>
                 <div class="lead-contact">${contact || '—'}</div>
-                <div class="lead-grant">Pályázat: <b>${(ld.grantTitle || ld.grantId || '').slice(0, 80)}</b></div>
+                <div class="lead-grant">Pályázat: <b>${trunc(ld.grantTitle || ld.grantId || '', 80)}</b></div>
             </div>
             <div class="lead-time">${when}${fresh}</div>
         </div>`;
@@ -2867,7 +2887,7 @@ function dr_section_applicant(g, p) {
     const co = p.company || 'A Pályázó';
     const ind = dr_industryLabel(p.industry).toLowerCase();
     const emp = p.employees || '11-25';
-    const rev = p.revenue || '500K-1M';
+    const rev = revenueLabel(p.revenue) || '200 - 500 M Ft';
     const loc = p.location || 'Magyarország';
     const yr = (p.past_grants === 'won') ? ' és korábban már sikeresen pályázott hazai támogatásra' : '';
     return `<p>A(z) <b>${co}</b> magyarországi székhelyű, <b>${ind}</b> területén működő kis- és középvállalkozás (létszám: ${emp} fő, éves árbevétel: ${rev})${yr}. Székhelye: ${loc}. A vállalkozás stabil piaci jelenléttel, kiépített vevőkörrel és működő üzleti modellel rendelkezik, így a jelen pályázati projekt által célzott fejlesztések szilárd alapra építhetők.</p>
@@ -3023,7 +3043,7 @@ function dr_renderHome() {
     const wrap = document.getElementById('drafter-wrap');
     const grants = [...G].sort((a, b) => a.title.localeCompare(b.title, 'hu'));
     const drafts = dr_getDrafts().slice().reverse();
-    const grantOpts = grants.map(g => `<option value="${g.id}">${g.title.slice(0, 90)}</option>`).join('');
+    const grantOpts = grants.map(g => `<option value="${g.id}">${trunc(g.title, 90)}</option>`).join('');
     wrap.innerHTML = `
         <div class="dr-card">
             <h3>AI Pályázat-vázlat generálása</h3>
@@ -3040,7 +3060,7 @@ function dr_renderHome() {
                 ${drafts.map(d => {
                     const g = G.find(x => x.id === d.grantId) || {title:'(törölt/lejárt pályázat)'};
                     return `<div class="dr-saved-row">
-                        <div class="t">${g.title.slice(0, 80)}</div>
+                        <div class="t">${trunc(g.title, 80)}</div>
                         <div class="when">${new Date(d.ts).toLocaleString('hu-HU', {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'})}</div>
                         <button onclick="dr_load('${d.id}')">Megnyitás</button>
                         <button class="del" onclick="dr_delete('${d.id}')">Törlés</button>
@@ -3115,6 +3135,19 @@ const REV_OPTS = [
     ['3Mrd-10Mrd','3 - 10 Mrd Ft'],
     ['10Mrd+','10 Mrd Ft felett']
 ];
+
+// Stored value -> human label for prose (drafter etc.). Handles current HUF
+// values, legacy EUR values from older profiles, and unknown input.
+function revenueLabel(val) {
+    if (!val) return '';
+    const hit = REV_OPTS.find(([v]) => v === val);
+    if (hit) return hit[1];
+    const legacy = {
+        '<100K': '< 50 M Ft', '100K-500K': '50 - 200 M Ft',
+        '500K-1M': '200 - 500 M Ft', '1M-5M': '500 M - 1 Mrd Ft', '5M+': '1 Mrd Ft felett'
+    };
+    return legacy[val] || val;
+}
 const YEARS_OPTS = [['0','Még nincs lezárt évem'],['1','1 év'],['2','2 év'],['3-5','3–5 év'],['5+','5+ év']];
 const LEGAL_OPTS = [['Kft','Kft.'],['Bt','Bt.'],['EV','Egyéni vállalkozó'],['Zrt','Zrt.'],['Nyrt','Nyrt.'],['Szövetkezet','Szövetkezet'],['Egyéb','Egyéb']];
 const PREF_CATS = ['KKV fejlesztés','Digitális átalakulás','Kutatás-fejlesztés','Energiahatékonyság','Munkahelyteremtés','Export','Turizmus','Mezőgazdaság','Környezetvédelem','Oktatás'];
@@ -3545,13 +3578,22 @@ function maybeShowCTA() {
         linkEl.textContent = 'Upgrade Pro-ra';
         linkEl.href = 'pricing.html';
     }
-    setTimeout(() => document.getElementById('floating-cta').classList.add('show'), 1200);
+    // The 1200ms delay can race with the async Supabase tier resolution:
+    // init runs with tier=anonymous, then applyTier('pro') hides the CTA,
+    // then THIS stale timeout fires and re-shows it to a Pro user. Track the
+    // id so refreshCTA can cancel it, and re-check the tier before showing.
+    if (window._ctaTimer) clearTimeout(window._ctaTimer);
+    window._ctaTimer = setTimeout(() => {
+        if (window.currentTier === 'pro') return;
+        document.getElementById('floating-cta').classList.add('show');
+    }, 1200);
 }
 
 // Re-evaluate CTA when the tier changes (after Supabase resolves the real tier).
 function refreshCTA() {
     const cta = document.getElementById('floating-cta');
     if (!cta) return;
+    if (window._ctaTimer) clearTimeout(window._ctaTimer);
     cta.classList.remove('show');
     maybeShowCTA();
 }
@@ -3610,7 +3652,7 @@ function seedFromInvite() {
             company: firm || (forName ? forName + ' Pályázatíró Iroda' : 'Demo Vállalkozás Kft.'),
             industry: 'General',
             employees: '11-25',
-            revenue: '500K-1M',
+            revenue: '200M-500M',
             location: 'Budapest',
             categories: ['KKV fejlesztés','Digitális átalakulás','Kutatás-fejlesztés'],
             channels: ['email','weekly'],

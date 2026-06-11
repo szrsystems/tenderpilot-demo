@@ -2,6 +2,7 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow">
     <title>Launch checklist — AIpályázó</title>
@@ -55,6 +56,21 @@
     <div class="ready"><b>Ami már él:</b> bejelentkezés-gate, onboarding (most már auto-belépéssel), GDPR + impresszum + ÁSZF váz, cookie consent, OG meta tagek, sitemap, robots.txt, napi forrás-monitorozás. A demo bárkinek megmutatható már most.</div>
 
     <div class="blocker"><b>Ami publikus indítás nélkül NEM működik:</b> a regisztrációk és konzultáció-kérések jelenleg csak a böngészőben (localStorage) tárolódnak. Senkinek nem jönnek hozzád e-mailben. <b>Ezt a 2. lépés oldja meg</b> — 5 perc.</div>
+
+    <!-- 0 — SECURITY, DO FIRST -->
+    <div class="card" style="border: 2px solid #dc2626;">
+        <span class="num" style="background:#dc2626;">0</span>
+        <h2>🚨 Biztonsági SQL-fix — futtasd le MOST (2 perc)</h2>
+        <p>A <code>user_with_tier</code> nézet jelenleg <b>minden regisztrált felhasználó adatát kiadja</b> bárkinek, aki a publikus anon kulccsal lekérdezi (e-mail, név, cég, előfizetés). Élesítés előtt kötelező javítani.</p>
+        <ul>
+            <li>Supabase Dashboard → SQL Editor → futtasd le a <code>supabase/migrations/20260611000001_fix_user_with_tier_leak.sql</code> tartalmát:<br>
+                <code>alter view public.user_with_tier set (security_invoker = on);</code><br>
+                <code>revoke select on public.user_with_tier from anon;</code></li>
+            <li>Ugyanitt futtasd le a telefonmező-migrációt is: <code>alter table public.profiles add column if not exists phone text;</code></li>
+            <li>Élesítés előtt rotáld a <code>service_role</code> kulcsot (Dashboard → Settings → API → Reset)</li>
+            <li>Takarítás: a <code>leads</code> táblában van 1 teszt-sor (<code>probe@test.local</code>) — törölheted</li>
+        </ul>
+    </div>
 
     <!-- 1 -->
     <div class="card">
