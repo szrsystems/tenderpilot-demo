@@ -70,6 +70,32 @@
         </ul>
     </div>
 
+    <!-- 0/B — branded auth email -->
+    <div class="card">
+        <span class="num" style="background:#16a34a;">✉</span>
+        <h2>Márkázott megerősítő e-mail (2 perc)</h2>
+        <p>A regisztrációs e-mail jelenleg a Supabase alap-sablonja. Kész, márkázott HTML-sablon vár a repóban.</p>
+        <ul>
+            <li>Supabase Dashboard → <b>Authentication → Email Templates</b> → „Confirm signup"</li>
+            <li>Tárgy: <code>Erősítse meg e-mail-címét — AIpályázó</code></li>
+            <li>Törzs: másold be a <code>supabase/email-templates/confirm-signup.html</code> teljes tartalmát → Save</li>
+            <li>A feladó cím (<code>noreply@mail.app.supabase.io</code>) csak custom SMTP-vel cserélhető — domain után Resend (ingyenes 3000 e-mail/hó), részletek: <code>supabase/email-templates/README.md</code></li>
+        </ul>
+    </div>
+
+    <!-- 0/C — AI backend decision -->
+    <div class="card">
+        <span class="num" style="background:#2563eb;">AI</span>
+        <h2>Valós LLM az AI-funkciókhoz (döntés + ~30 perc setup)</h2>
+        <p>A vázlat-generátor és a szükséglet-kereső ma sablon-alapú. Valós LLM-hez ajánlott: <b>Claude Haiku 4.5</b> — a legolcsóbb Claude ($1 input / $5 output per millió token). Egy pályázat-vázlat ≈ 3000 token ≈ <b>~2,5 Ft</b>; havi 500 vázlat ≈ 1 250 Ft.</p>
+        <ul>
+            <li>API kulcs: console.anthropic.com → API Keys (kreditalapú, $5 minimum)</li>
+            <li>A kulcs SOHA nem mehet a frontend-be — Supabase Edge Function proxy kell (<code>supabase functions new ai-draft</code>), a kulcs Edge Function secretként</li>
+            <li>Modell-string: <code>claude-haiku-4-5</code> · ha a vázlat-minőség kevés, váltás <code>claude-sonnet-4-6</code>-ra (3× drágább, érezhetően jobb hosszú magyar szövegre)</li>
+            <li>Szólj, és megírom az Edge Functiont + a portal-integrációt</li>
+        </ul>
+    </div>
+
     <!-- 1 -->
     <div class="card">
         <span class="num">1</span>

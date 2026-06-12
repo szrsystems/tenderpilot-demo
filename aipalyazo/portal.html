@@ -1723,7 +1723,17 @@ function setThreshold(val) {
     if (!isFinite(n) || n < 40 || n > 95) return;
     RELV_THRESHOLD = n;
     try { localStorage.setItem('grantpilot:relv_threshold', String(n)); } catch(e) {}
+    // The threshold is adjustable from TWO places (grants-page slider and the
+    // Beállítások select) and drives the dashboard KPI too — sync every
+    // control and re-render whichever page is visible.
+    const slider = document.getElementById('threshold-slider');
+    if (slider && parseInt(slider.value, 10) !== n) slider.value = n;
+    const valEl = document.getElementById('threshold-val');
+    if (valEl) valEl.textContent = n;
+    const sel = document.getElementById('n_threshold');
+    if (sel && parseInt(sel.value, 10) !== n) sel.value = String(n);
     filterGrants();
+    if (typeof currentPage === 'string' && currentPage === 'dashboard') initDashboard();
 }
 
 function setSort(s) {
@@ -2061,7 +2071,11 @@ function initDashboard() {
     nf_renderChips();
     const today = new Date();
     const totalActive = G.length;
-    const relevant = G.filter(g => g.score > 60).length;
+    // "Önnek releváns" honours the same user-set threshold as the grants-page
+    // slider and the Beállítások select (default 55), with the profile boost
+    // applied — so the KPI, the list and the reports all agree.
+    const dashProfile = getUserProfile();
+    const relevant = G.filter(g => (g.score + profileBoost(g, dashProfile)) >= RELV_THRESHOLD).length;
     const totalFunding = G.reduce((s, g) => s + parseAmount(g.amount), 0);
     const expiringThisMonth = G.filter(g => {
         const d = new Date(g.deadline);
@@ -2079,7 +2093,7 @@ function initDashboard() {
             <div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
             <div class="hero-stat-label">Önnek releváns ${window.currentTier === 'pro' ? '' : '<span class="nav-pro-badge" style="margin-left:6px;">Pro</span>'}</div>
             ${window.currentTier === 'pro'
-                ? `<div class="hero-stat-value" data-counter="relevant" style="color: var(--blue-600);">0</div><div class="hero-stat-sub">Illeszkedési pontszám &gt; 60</div>`
+                ? `<div class="hero-stat-value" data-counter="relevant" style="color: var(--blue-600);">0</div><div class="hero-stat-sub">Illeszkedési pontszám &ge; ${RELV_THRESHOLD}</div>`
                 : `<div class="hero-stat-value" style="color: var(--gray-400); font-size: 32px;">—</div><div class="hero-stat-sub" style="color: var(--green-700); font-weight: 600;">Csak Pro előfizetéssel</div>`
             }
         </div>
@@ -2568,7 +2582,7 @@ function initAlerts() {
     }));
 
     // 4. Weekly summary line
-    const relevant = ranked.filter(g => (g.score + profileBoost(g, profile)) > 60).length;
+    const relevant = ranked.filter(g => (g.score + profileBoost(g, profile)) >= RELV_THRESHOLD).length;
     const funding = ranked.filter(g => (g.score + profileBoost(g, profile)) > 60).reduce((s,g)=>s+parseAmount(g.amount),0);
     alerts.push({
         color: 'green',
@@ -2737,7 +2751,7 @@ function reportContext() {
         return sb - sa || a.days - b.days;
     });
     const today = new Date();
-    const relevant = ranked.filter(g => (g.score + profileBoost(g, profile)) > 60);
+    const relevant = ranked.filter(g => (g.score + profileBoost(g, profile)) >= RELV_THRESHOLD);
     const closingSoon = ranked.filter(g => g.days > 0 && g.days <= 30).sort((a,b) => a.days - b.days);
     const expiringThisMonth = ranked.filter(g => {
         const d = new Date(g.deadline);
@@ -2783,7 +2797,7 @@ function genSummary(c) {
         <div class="rd-sec"><div class="rd-sec-title">Kulcsszámok</div>
             <div class="rd-stat-row">
                 <div class="rd-stat"><div class="v">${c.ranked.length}</div><div class="l">aktív pályázat a rendszerben</div></div>
-                <div class="rd-stat"><div class="v">${c.relevant.length}</div><div class="l">Önnek releváns (>60 pont)</div></div>
+                <div class="rd-stat"><div class="v">${c.relevant.length}</div><div class="l">Önnek releváns (≥${RELV_THRESHOLD} pont)</div></div>
                 <div class="rd-stat"><div class="v">${formatFt(c.funding)}</div><div class="l">elérhető keret (releváns)</div></div>
                 <div class="rd-stat"><div class="v">${c.expiringThisMonth.length}</div><div class="l">ebben a hónapban lejár</div></div>
             </div>
@@ -3283,6 +3297,12 @@ function initProfile() {
                 <div class="toggle-row">
                     <div><div class="tr-label">Sürgős határidő riasztás</div><div class="tr-sub">Külön értesítés, ha releváns pályázat 14 napon belül lejár</div></div>
                     <label class="switch"><input type="checkbox" id="n_urgent" ${n.urgent?'checked':''}><span class="sl"></span></label>
+                </div>
+                <div class="toggle-row">
+                    <div><div class="tr-label">Illeszkedési küszöb — „Önnek releváns"</div><div class="tr-sub">Csak az e pontszám feletti pályázatok számítanak relevánsnak (lista, KPI, riportok)</div></div>
+                    <select id="n_threshold" onchange="setThreshold(this.value)" style="width:90px;padding:8px 10px;border:1px solid var(--gray-300);border-radius:8px;font-family:inherit;font-size:14px;font-weight:600;color:var(--green-700);">
+                        ${[40,45,50,55,60,65,70,75,80,85,90,95].map(v=>`<option value="${v}" ${v===RELV_THRESHOLD?'selected':''}>${v}+</option>`).join('')}
+                    </select>
                 </div>
                 <div class="set-grid" style="margin-top:14px;">
                     <div class="set-field"><label>Gyakoriság</label><select id="n_freq">${['heti','kéthetente','havi'].map(f=>`<option ${f===n.freq?'selected':''}>${f}</option>`).join('')}</select></div>
@@ -3881,6 +3901,29 @@ async function resolveTier() {
                 const showName = (profile.display_name && profile.display_name !== localPart)
                     ? profile.display_name
                     : (profile.email || 'Felhasználó');
+                // Down-sync: a profile filled on ANOTHER device/browser (or via
+                // Google OAuth where localStorage starts empty) lives only in
+                // Supabase. Mirror it into grantpilot:profile BEFORE applyTier
+                // so the "Töltse ki a profilját" banner and the personalised
+                // scoring see it on first paint.
+                try {
+                    if (profile.company && !localStorage.getItem('grantpilot:profile')) {
+                        localStorage.setItem('grantpilot:profile', JSON.stringify({
+                            company: profile.company,
+                            industry: profile.industry || '',
+                            employees: profile.employees || '',
+                            revenue: profile.revenue || '',
+                            location: profile.location || '',
+                            years_operating: profile.years_operating || '',
+                            legal_form: profile.legal_form || '',
+                            categories: Array.isArray(profile.categories) ? profile.categories : [],
+                            contact_name: profile.display_name || '',
+                            email: profile.email || '',
+                            synced_from_supabase: new Date().toISOString()
+                        }));
+                        console.log('[gp] profile down-synced from Supabase');
+                    }
+                } catch (e) { /* localStorage unavailable — banner logic falls back */ }
                 applyTier(isPro ? 'pro' : 'basic', showName);
                 migrateLocalToSupabase(window.gp.client, profile.id);
                 return;

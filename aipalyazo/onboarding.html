@@ -154,7 +154,7 @@
                     <input type="text" id="f_location" placeholder="Pl. Budapest">
                 </div>
                 <div class="field">
-                    <label>Mióta működik a cég? <span class="hint" style="color:var(--gray-400);font-weight:400;">(lezárt üzleti évek)</span></label>
+                    <label>Lezárt üzleti évek</label>
                     <select id="f_years">
                         <option value="">Válasszon...</option>
                         <option value="0">Még nincs lezárt évem</option>
@@ -234,36 +234,39 @@
                     <label>Kapcsolattartó neve <span class="req">*</span></label>
                     <input type="text" id="f_name" placeholder="Vezetéknév Keresztnév">
                 </div>
-                <div class="field">
+                <!-- Hidden for signed-in users (we already know their account
+                     e-mail) — shown only in the anonymous walk-in flow where
+                     this form doubles as first contact. -->
+                <div class="field" id="f_email_wrap">
                     <label>E-mail <span class="req">*</span></label>
                     <input type="email" id="f_email" placeholder="nev@ceg.hu">
                 </div>
             </div>
 
             <div class="field">
-                <label>Telefonszám</label>
+                <label>Telefonszám <span class="req" id="f_phone_req" style="display:none;">*</span></label>
                 <input type="tel" id="f_phone" placeholder="+36 20 123 4567">
             </div>
 
             <div class="field">
                 <label>Értesítési csatorna <span class="req">*</span></label>
                 <div class="checkbox-grid">
-                    <label class="checkbox-item"><input type="checkbox" value="email" checked> E-mail (azonnali)</label>
+                    <label class="checkbox-item"><input type="checkbox" value="email" checked> E-mail értesítés</label>
                     <label class="checkbox-item"><input type="checkbox" value="weekly" checked> Heti összefoglaló</label>
                 </div>
-                <div class="hint">E-mailen kap azonnali értesítést új releváns pályázatokról, és hetente egy összefoglaló e-mailt.</div>
+                <div class="hint" style="margin-top:8px;">Ezekre a csatornákra küldjük majd az új releváns pályázatokról szóló értesítéseket és a heti összefoglalót.</div>
             </div>
 
-            <div class="field" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:14px 16px;">
-                <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:13px;color:#374151;">
-                    <input type="checkbox" id="f_gdpr" style="margin-top:3px;flex-shrink:0;">
-                    <span>Elolvastam és elfogadom az <a href="adatvedelem.html" target="_blank" rel="noopener" style="color:#16a34a;">Adatkezelési tájékoztatót</a> és az <a href="aszf.html" target="_blank" rel="noopener" style="color:#16a34a;">ÁSZF-et</a>. Hozzájárulok ahhoz, hogy a megadott adataimat az AIpályázó a leírtak szerint kezelje. <span style="color:#dc2626;">*</span></span>
+            <div class="field" style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px 16px;margin-top:24px;">
+                <label style="display:flex;gap:12px;align-items:flex-start;cursor:pointer;font-size:13px;color:#374151;line-height:1.6;">
+                    <input type="checkbox" id="f_gdpr" style="width:18px;height:18px;min-width:18px;flex:0 0 18px;margin-top:2px;accent-color:#16a34a;cursor:pointer;">
+                    <span style="flex:1;">Elolvastam és elfogadom az <a href="adatvedelem.html" target="_blank" rel="noopener" style="color:#16a34a;text-decoration:underline;text-underline-offset:2px;">Adatkezelési tájékoztatót</a> és az <a href="aszf.html" target="_blank" rel="noopener" style="color:#16a34a;text-decoration:underline;text-underline-offset:2px;">ÁSZF-et</a>. Hozzájárulok ahhoz, hogy a megadott adataimat az AIpályázó a leírtak szerint kezelje. <span style="color:#dc2626;">*</span></span>
                 </label>
             </div>
 
-            <div class="form-actions">
+            <div class="form-actions" style="margin-top:24px;">
                 <button class="btn btn-secondary" onclick="nextStep(2)">Vissza</button>
-                <button class="btn btn-primary" onclick="submitForm()">Regisztráció indítása</button>
+                <button class="btn btn-primary" id="submit-btn" onclick="submitForm()">Regisztráció indítása</button>
             </div>
         </div>
 
@@ -335,6 +338,7 @@ async function syncProfileToSupabase(data) {
             years_operating: data.years_operating || null,
             legal_form: data.legal_form || null,
             categories: Array.isArray(data.categories) ? data.categories : null,
+            phone: data.phone || null,
         };
         // Drop nulls so we don't blank out existing fields if a step was skipped
         Object.keys(patch).forEach(k => patch[k] === null && delete patch[k]);
@@ -345,10 +349,50 @@ async function syncProfileToSupabase(data) {
     } catch (e) { console.warn('[gp] syncProfileToSupabase error', e); }
 }
 
+// Signed-in mode: this form is the CÉGPROFIL editor, not a registration.
+// We already know the account e-mail (hide the field), the phone becomes
+// required (the pályázatíró partner needs it to reach the client), and the
+// CTA/success copy say "profil mentése" instead of "regisztráció".
+let signedInUser = null;
+(async function detectSession() {
+    await new Promise(r => {
+        if (window.gp) return r();
+        const onReady = () => { window.removeEventListener('gp-ready', onReady); r(); };
+        window.addEventListener('gp-ready', onReady);
+        setTimeout(r, 1500);
+    });
+    if (!window.gp || !window.gp.client) return;
+    try {
+        const { data: { user } } = await window.gp.client.auth.getUser();
+        if (!user) return;
+        signedInUser = user;
+        const wrap = document.getElementById('f_email_wrap');
+        if (wrap) wrap.style.display = 'none';
+        const email = document.getElementById('f_email');
+        if (email) email.value = user.email || '';
+        const phoneReq = document.getElementById('f_phone_req');
+        if (phoneReq) phoneReq.style.display = '';
+        const btn = document.getElementById('submit-btn');
+        if (btn) btn.textContent = 'Cégprofil mentése';
+        const h = document.querySelector('#step-success h2');
+        if (h) h.textContent = 'Cégprofil mentve!';
+        const p = document.querySelector('#step-success p');
+        if (p) p.textContent = 'A pontozást azonnal a cégprofiljához igazítjuk. Átirányítjuk a portálra…';
+    } catch (e) { /* anonymous flow stays as-is */ }
+})();
+
 function submitForm() {
     if (!document.getElementById('f_name').value || !document.getElementById('f_email').value) {
         if (!document.getElementById('f_name').value) document.getElementById('f_name').style.borderColor = '#dc2626';
         if (!document.getElementById('f_email').value) document.getElementById('f_email').style.borderColor = '#dc2626';
+        return;
+    }
+    // Phone is required in the signed-in (cégprofil) flow only.
+    if (signedInUser && !document.getElementById('f_phone').value.trim()) {
+        const ph = document.getElementById('f_phone');
+        ph.style.borderColor = '#dc2626';
+        ph.scrollIntoView({behavior:'smooth', block:'center'});
+        ph.focus();
         return;
     }
     // GDPR consent — required before submission
