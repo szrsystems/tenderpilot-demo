@@ -3,55 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TenderPilot + AIpályázó — AI Üzleti Intelligencia</title>
-    <meta name="description" content="AI közbeszerzési és pályázatfigyelő közép-európai vállalkozásoknak. TenderPilot épületgépészeknek, AIpályázó magyar KKV-knak.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>AIpályázó — AI Pályázatfigyelő</title>
+    <!-- aipalyazo.hu is the AIpályázó product domain → send visitors straight
+         to the app. Relative path so it also works on the github.io demo URL.
+         TenderPilot still lives at /tenderpilot/. -->
+    <meta http-equiv="refresh" content="0; url=aipalyazo/index.html">
+    <script>location.replace('aipalyazo/index.html' + location.search + location.hash);</script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', -apple-system, sans-serif; background: #0f172a; color: white; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; -webkit-font-smoothing: antialiased; }
-        .container { max-width: 800px; width: 100%; text-align: center; }
-        .logo { font-size: 14px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; }
-        h1 { font-size: 40px; font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; line-height: 1.2; }
-        p { font-size: 18px; color: #94a3b8; max-width: 500px; margin: 0 auto 48px; line-height: 1.6; }
-        .products { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
-        .product { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 40px 32px; text-align: left; transition: border-color 0.2s, transform 0.2s; text-decoration: none; color: white; display: block; }
-        .product:hover { border-color: #60a5fa; transform: translateY(-2px); }
-        .product.green:hover { border-color: #4ade80; }
-        .product-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 24px; font-weight: 800; }
-        .product-icon.blue { background: rgba(37,99,235,0.2); color: #60a5fa; }
-        .product-icon.green { background: rgba(22,163,74,0.2); color: #4ade80; }
-        .product h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
-        .product p { font-size: 14px; color: #94a3b8; margin: 0 0 20px; max-width: none; }
-        .product .tag { display: inline-block; padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; }
-        .product .tag.blue { background: rgba(37,99,235,0.15); color: #60a5fa; }
-        .product .tag.green { background: rgba(22,163,74,0.15); color: #4ade80; }
-        .footer { font-size: 13px; color: #475569; }
-        .footer a { color: #64748b; text-decoration: none; }
-        @media (max-width: 640px) { .products { grid-template-columns: 1fr; } h1 { font-size: 28px; } }
+        body { font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; background: #f0fdf4; color: #111827; min-height: 100vh; display: flex; align-items: center; justify-content: center; margin: 0; text-align: center; }
+        a { color: #16a34a; font-weight: 600; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">TenderPilot + AIpályázó</div>
-        <h1>AI intelligencia közép-európai vállalkozásoknak.</h1>
-        <p>Segítünk az épületgépészeknek közbeszerzéseket nyerni és a magyar KKV-knak megtalálni a megfelelő pályázatokat — gyorsabban, mint bárki más.</p>
-        <div class="products">
-            <a href="tenderpilot/index.html" class="product">
-                <div class="product-icon blue">TP</div>
-                <h2>TenderPilot</h2>
-                <p>AI közbeszerzési figyelő épületgépészeknek. Osztrák és magyar közbeszerzések keresése, pontozása, ajánlati dokumentumok generálása 5 perc alatt.</p>
-                <span class="tag blue">€299/hó-tól</span>
-            </a>
-            <a href="aipalyazo/index.html" class="product green">
-                <div class="product-icon green">AI</div>
-                <h2>AIpályázó</h2>
-                <p>AI pályázatfigyelő magyar KKV-knak és vállalkozóknak. 20+ forrás napi keresése, cégprofil alapú AI-pontozás, AI pályázat-vázlat.</p>
-                <span class="tag green">Free / 5 067 Ft/hó</span>
-            </a>
-        </div>
-        <div class="footer">
-            <p>Budapest · <a href="mailto:info@growthcrow.co">info@growthcrow.co</a></p>
-        </div>
-    </div>
+    <p>Átirányítás az <a href="aipalyazo/index.html">AIpályázó</a> oldalra…</p>
 </body>
 </html>
