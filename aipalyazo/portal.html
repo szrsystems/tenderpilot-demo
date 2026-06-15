@@ -2000,7 +2000,26 @@ function nf_chip(q) {
     nf_search();
 }
 
-function nf_search() {
+// Rank the local grant list using the LLM's interpreted intent (categories +
+// keywords). Cheap — we never ship the grant DB to the model, only rank with
+// what it returns. Falls back to nf_match upstream if this yields nothing.
+function nf_rankByIntent(intent, profile) {
+    const cats = (intent.categories || []).map(c => String(c).toLowerCase()).filter(Boolean);
+    const kws = (intent.keywords || []).map(k => String(k).toLowerCase()).filter(k => k.length >= 3);
+    const scored = G.map(g => {
+        const title = (g.title || '').toLowerCase();
+        const cat = (g.cat || '').toLowerCase();
+        let s = 0;
+        if (cats.some(c => cat === c || cat.includes(c) || c.includes(cat))) s += 14;
+        kws.forEach(k => { if (title.includes(k)) s += 5; else if (cat.includes(k)) s += 2; });
+        if (s <= 0) return null;
+        s += profileBoost(g, profile) * 0.4;
+        return { g, s };
+    }).filter(Boolean).sort((a, b) => b.s - a.s || b.g.score - a.g.score);
+    return scored.slice(0, 5).map(x => x.g);
+}
+
+async function nf_search() {
     const input = document.getElementById('nf-input');
     const res = document.getElementById('nf-results');
     if (!input || !res) return;
@@ -2008,7 +2027,19 @@ function nf_search() {
     nf_lastQuery = q;
     if (!q) { res.innerHTML = ''; return; }
     const profile = getUserProfile();
-    const matches = nf_match(q, profile);
+    res.innerHTML = '<div class="nf-empty">Keresés…</div>';
+    // Try LLM intent (signed-in only); silently fall back to keyword matching.
+    let matches = null;
+    try {
+        const cats = [...new Set(G.map(g => g.cat))];
+        const out = await aiCall('needs', { query: q, categories: cats });
+        if (out && (Array.isArray(out.categories) || Array.isArray(out.keywords))) {
+            matches = nf_rankByIntent(out, profile);
+        }
+    } catch (e) { /* fall back to keyword matching */ }
+    if (!matches || !matches.length) matches = nf_match(q, profile);
+    // Stale-guard: if the user changed the query while we awaited, drop this result.
+    if (input.value.trim() !== q) return;
     if (!matches.length) {
         res.innerHTML = `<div class="nf-empty">Nem találtam pontos egyezést a(z) „${escHtml(q)}" igényre. Próbálja más szavakkal, vagy <a onclick="showPage('grants')">böngéssze az összes pályázatot</a>. Új igényekre is folyamatosan figyelünk.</div>`;
         return;
@@ -3010,6 +3041,28 @@ function dr_section_risks(g, p) {
 </tbody></table>`;
 }
 
+// ===== Real-LLM bridge (Supabase Edge Function 'ai-generate') =====
+// Calls the server-side proxy that holds the Gemini key (never the browser).
+// Throws on anonymous / not-deployed / error — every caller falls back to the
+// built-in template/keyword logic, so the app behaves exactly as before until
+// the function is deployed and GEMINI_API_KEY is set.
+async function aiCall(task, payload) {
+    if (!window.gp || !window.gp.client) throw new Error('no-client');
+    const { data: { session } } = await window.gp.client.auth.getSession();
+    if (!session) throw new Error('anon'); // anonymous → caller uses fallback
+    const { data, error } = await window.gp.client.functions.invoke('ai-generate', { body: { task, payload } });
+    if (error) throw error;
+    if (data && data.error) throw new Error(data.error);
+    return data;
+}
+
+// Plain-text (LLM output) → safe paragraph HTML for the editable draft body.
+function dr_textToHtml(t) {
+    return String(t || '').split(/\n\s*\n+/).map(par =>
+        '<p>' + escHtml(par.trim()).replace(/\n/g, '<br>') + '</p>'
+    ).join('') || '<p></p>';
+}
+
 function dr_generate(grantId) {
     const g = G.find(x => x.id === grantId);
     if (!g) return null;
@@ -3116,20 +3169,48 @@ function dr_renderHome() {
     `;
 }
 
-function dr_doGenerate() {
-    const id = document.getElementById('dr-grant-pick').value;
+async function dr_doGenerate() {
+    const sel = document.getElementById('dr-grant-pick');
+    const id = sel ? sel.value : '';
     if (!id) { alert('Válasszon pályázatot a generáláshoz.'); return; }
-    const d = dr_generate(id);
-    if (!d) { alert('Nem található a pályázat.'); return; }
-    currentDraft = d;
+    await dr_buildAndShow(id);
+}
+
+// Build a draft: try the real LLM (Pro, via Edge Function), fall back to the
+// built-in template generator on anonymous / non-Pro / error.
+async function dr_buildAndShow(grantId) {
+    const g = G.find(x => x.id === grantId);
+    if (!g) { alert('Nem található a pályázat.'); return; }
+    const wrap = document.getElementById('drafter-wrap');
+    if (wrap) wrap.innerHTML = '<div class="dr-card"><div class="dr-empty">✨ AI vázlat készítése folyamatban… ez 10–20 másodperc lehet.</div></div>';
+    let sections = null, viaAI = false;
+    try {
+        const p = getUserProfile() || {};
+        const out = await aiCall('draft', {
+            grant: { title: g.title, cat: g.cat, amount: g.amount, deadline: g.deadline, source: g.source },
+            profile: { company: p.company, industry: p.industry, employees: p.employees,
+                       revenue: revenueLabel(p.revenue), location: p.location,
+                       years_operating: p.years_operating, legal_form: p.legal_form }
+        });
+        if (out && Array.isArray(out.sections) && out.sections.length >= 5) {
+            sections = out.sections.map(s => ({ title: s.title, body: dr_textToHtml(s.body) }));
+            viaAI = true;
+        }
+    } catch (e) { /* fall through to template */ }
+    if (!sections) {
+        const d = dr_generate(grantId);
+        if (!d) return;
+        sections = d.sections;
+    }
+    currentDraft = { id: 'D-' + Date.now().toString(36), grantId, ts: Date.now(), sections, ai: viaAI };
     dr_renderDoc();
 }
 
-function openDrafterForGrant(grantId) {
-    const d = dr_generate(grantId);
-    if (!d) return;
-    currentDraft = d;
-    showPage('drafter'); // initDrafter will render currentDraft
+async function openDrafterForGrant(grantId) {
+    if (!G.find(x => x.id === grantId)) return;
+    currentDraft = null;
+    showPage('drafter');       // renders home, then we replace with loading + result
+    await dr_buildAndShow(grantId);
 }
 
 function dr_save() {

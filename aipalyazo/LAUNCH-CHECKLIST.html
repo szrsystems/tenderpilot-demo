@@ -88,17 +88,18 @@
         </ul>
     </div>
 
-    <!-- 0/C — AI backend decision -->
+    <!-- 0/C — AI backend: deploy the function -->
     <div class="card">
         <span class="num" style="background:#2563eb;">AI</span>
-        <h2>Valós LLM az AI-funkciókhoz (döntés + ~30 perc setup)</h2>
-        <p>A vázlat-generátor és a szükséglet-kereső ma sablon-alapú. Valós LLM-hez ajánlott: <b>Claude Haiku 4.5</b> — a legolcsóbb Claude ($1 input / $5 output per millió token). Egy pályázat-vázlat ≈ 3000 token ≈ <b>~2,5 Ft</b>; havi 500 vázlat ≈ 1 250 Ft.</p>
+        <h2>Valós LLM bekapcsolása — Edge Function deploy (kód kész)</h2>
+        <p><b>✅ A kód kész és élesben van:</b> az <code>ai-generate</code> Edge Function (Gemini-proxy, provider-agnosztikus) + a portal integrációja (AI Vázlat + szükséglet-kereső). Amíg nincs deploy-olva, minden a beépített sablon/kulcsszavas logikára esik vissza — semmi nem törik. Az alábbi 4 parancs kapcsolja be (te futtatod, mert a kulcsod/azonosításod kell hozzá):</p>
         <ul>
-            <li>API kulcs: console.anthropic.com → API Keys (kreditalapú, $5 minimum)</li>
-            <li>A kulcs SOHA nem mehet a frontend-be — Supabase Edge Function proxy kell (<code>supabase functions new ai-draft</code>), a kulcs Edge Function secretként</li>
-            <li>Modell-string: <code>claude-haiku-4-5</code> · ha a vázlat-minőség kevés, váltás <code>claude-sonnet-4-6</code>-ra (3× drágább, érezhetően jobb hosszú magyar szövegre)</li>
-            <li>Szólj, és megírom az Edge Functiont + a portal-integrációt</li>
+            <li><code>supabase login</code> (böngészőben azonosít)</li>
+            <li><code>supabase link --project-ref kacnvchwfwvpkkyhyupb</code></li>
+            <li><code>supabase secrets set GEMINI_API_KEY=AIza...</code> (az AI Studio kulcsod — Tier 1 Postpay)</li>
+            <li><code>supabase functions deploy ai-generate</code></li>
         </ul>
+        <p class="small">Alapértelmezett modell: <code>gemini-flash-lite-latest</code> (legolcsóbb; ~600 Ft/hó a te volumeneden). Váltás Claude-ra bármikor: <code>supabase secrets set AI_PROVIDER=anthropic ANTHROPIC_API_KEY=... ANTHROPIC_MODEL=claude-haiku-4-5</code> — kód-módosítás nélkül. A kulcs csak az Edge Functionben él, a böngészőbe SOHA nem kerül. A vázlat Pro-only (szerver-oldalon ellenőrzött), a kereső minden bejelentkezett usernek megy; anonim usernek a kulcsszavas verzió marad.</p>
     </div>
 
     <!-- 1 -->
