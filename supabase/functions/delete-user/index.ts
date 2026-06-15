@@ -71,6 +71,22 @@ Deno.serve(async (req) => {
     console.warn('[delete-user] subscription check failed (proceeding)', e);
   }
 
+  // Authoritatively add the email to the persistent ban list BEFORE deleting
+  // auth.users. The frontend's own insert fails on the success path (its RLS
+  // check reads auth.users, which is gone once we delete the row), so this
+  // server-side write via service role is what actually blocks re-registration
+  // (incl. fresh Google-OAuth signups that reuse the email).
+  if (user.email) {
+    try {
+      await adminClient.from('deleted_emails').upsert(
+        { email: user.email.toLowerCase(), user_id: user.id, reason: 'user_requested' },
+        { onConflict: 'email' }
+      );
+    } catch (e) {
+      console.warn('[delete-user] deleted_emails upsert failed', e);
+    }
+  }
+
   // Wipe user-owned rows (defensive — frontend already does this, but make sure)
   const tables = ['bookmarks', 'drafts', 'leads', 'notif_prefs', 'subscriptions'];
   for (const t of tables) {

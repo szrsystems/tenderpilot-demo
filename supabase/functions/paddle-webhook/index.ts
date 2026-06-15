@@ -37,15 +37,24 @@ const db = createClient(SUPABASE_URL, SERVICE_ROLE, {
 // Paddle-Signature: ts=<unix>;h1=<hmac>
 // -------------------------------------------------------------------------
 async function verifyPaddleSignature(rawBody: string, header: string | null): Promise<boolean> {
+  // FAIL CLOSED: never accept an unsigned webhook. An unset secret in
+  // production would let anyone forge a subscription.created and grant
+  // themselves Pro for free, so we refuse instead of skipping verification.
   if (!PADDLE_SECRET) {
-    console.warn('[paddle-webhook] PADDLE_WEBHOOK_SECRET unset; skipping verification (DEV ONLY)');
-    return true;
+    console.error('[paddle-webhook] PADDLE_WEBHOOK_SECRET unset — refusing all events (fail closed)');
+    return false;
   }
   if (!header) return false;
   const parts = Object.fromEntries(header.split(';').map(p => p.split('=')));
   const ts = parts.ts;
   const sig = parts.h1;
   if (!ts || !sig) return false;
+
+  // Replay protection: reject signatures whose timestamp is more than 5 min
+  // off from now (Paddle signs `ts:body`; a stale ts means a replayed event).
+  const tsNum = parseInt(ts, 10);
+  const nowSec = Math.floor(Date.now() / 1000);
+  if (!Number.isFinite(tsNum) || Math.abs(nowSec - tsNum) > 300) return false;
 
   const payload = `${ts}:${rawBody}`;
   const key = await crypto.subtle.importKey(

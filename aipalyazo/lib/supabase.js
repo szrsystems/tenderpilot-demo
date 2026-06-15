@@ -15,6 +15,11 @@ async function ensureSupabase() {
     return new Promise((resolve, reject) => {
         const s = document.createElement('script');
         s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js';
+        // Subresource Integrity: pin the exact byte content of the CDN file so a
+        // compromised/altered CDN response can't inject code. Hash is for the
+        // pinned @2.45.0 UMD build — recompute if the version above changes.
+        s.integrity = 'sha384-NNePyabYRaJyedI6EQAY7SV5Z8/0sQkuQ5WVfhKm0H+j0KSugkI2ZMNzw/QtzAWz';
+        s.crossOrigin = 'anonymous';
         s.onload = () => resolve(window.supabase);
         s.onerror = () => reject(new Error('Failed to load Supabase SDK'));
         document.head.appendChild(s);

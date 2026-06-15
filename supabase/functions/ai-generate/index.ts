@@ -125,6 +125,18 @@ function generate(prompt: string, schema: any): Promise<any> {
   return PROVIDER === 'anthropic' ? callAnthropic(prompt) : callGemini(prompt, schema);
 }
 
+// Per-user/day rate limit via the bump_ai_usage RPC (service role only).
+// Returns true if the caller is still under the limit. Fails OPEN on infra
+// error so a transient DB hiccup doesn't break paying users — abuse is still
+// bounded the moment the RPC is reachable again.
+async function allowUsage(admin: any, userId: string, limit: number): Promise<boolean> {
+  const { data, error } = await admin.rpc('bump_ai_usage', { p_user: userId, p_limit: limit });
+  if (error) { console.error('[ai-generate] usage rpc error', error); return true; }
+  return data === true;
+}
+const LIMIT_DRAFT = 25;   // Pro drafts per user per day
+const LIMIT_NEEDS = 100;  // needs-finder calls per user per day
+
 // ---- Handler ------------------------------------------------------------
 Deno.serve(async (req) => {
   const origin = req.headers.get('Origin');
@@ -152,6 +164,8 @@ Deno.serve(async (req) => {
       const isPro = prof?.tier === 'pro' && ['trialing', 'active'].includes(prof?.subscription_status);
       if (!isPro) return json({ error: 'pro_required' }, 403);
 
+      if (!(await allowUsage(admin, user.id, LIMIT_DRAFT))) return json({ error: 'rate_limited' }, 429);
+
       const schema = {
         type: 'object',
         properties: {
@@ -167,6 +181,7 @@ Deno.serve(async (req) => {
     }
 
     if (task === 'needs') {
+      if (!(await allowUsage(admin, user.id, LIMIT_NEEDS))) return json({ error: 'rate_limited' }, 429);
       const cats: string[] = Array.isArray(payload?.categories) ? payload.categories : [];
       const schema = {
         type: 'object',

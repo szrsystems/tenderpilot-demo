@@ -2744,13 +2744,13 @@ function initLeads() {
         const ageH = (now - (ld.ts || now)) / 3600000;
         const when = new Date(ld.ts || now).toLocaleString('hu-HU', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
         const fresh = ageH < 24 ? '<div class="lead-new">Új</div>' : '';
-        const contact = [ld.email, ld.phone].filter(Boolean).join(' · ');
+        const contact = [ld.email, ld.phone].filter(Boolean).map(escHtml).join(' · ');
         return `<div class="lead-row">
-            <div class="lead-avatar">${initials}</div>
+            <div class="lead-avatar">${escHtml(initials)}</div>
             <div class="lead-main">
-                <div class="lead-name">${ld.name || '(név nélkül)'}</div>
+                <div class="lead-name">${ld.name ? escHtml(ld.name) : '(név nélkül)'}</div>
                 <div class="lead-contact">${contact || '—'}</div>
-                <div class="lead-grant">Pályázat: <b>${trunc(ld.grantTitle || ld.grantId || '', 80)}</b></div>
+                <div class="lead-grant">Pályázat: <b>${escHtml(trunc(ld.grantTitle || ld.grantId || '', 80))}</b></div>
             </div>
             <div class="lead-time">${when}${fresh}</div>
         </div>`;
@@ -3104,7 +3104,7 @@ function dr_renderDoc() {
                 <div class="dr-head">
                     <div class="brand"><span>AI</span>pályázó · AI Pályázat-vázlat</div>
                     <h2>${g.title}</h2>
-                    <div class="meta">${p.company || ''} · ${g.source || ''} · keret: ${g.amount || ''} · határidő: ${g.deadline || ''}</div>
+                    <div class="meta">${escHtml(p.company || '')} · ${escHtml(g.source || '')} · keret: ${escHtml(g.amount || '')} · határidő: ${escHtml(g.deadline || '')}</div>
                 </div>
                 <div class="dr-disc">
                     <b>AI-generált vázlat.</b> A kimenet 80%-ban előkészített tervezet — a végleges pályázatot az Ön pályázatíró partnerével szakmailag és tartalmilag véglegesíteni kell. A pontos elszámolható költségeket, indikátorokat és a 3 árajánlatos eljárást a hivatalos felhívás határozza meg.
@@ -3112,7 +3112,7 @@ function dr_renderDoc() {
                 <div class="dr-body" id="dr-body">
                     ${currentDraft.sections.map((s, i) => `
                         <div class="dr-sec">
-                            <div class="dr-sec-h"><span>${i+1}. ${s.title}</span><span class="edit-hint">Szerkeszthető — kattints a szövegre</span></div>
+                            <div class="dr-sec-h"><span>${i+1}. ${escHtml(s.title)}</span><span class="edit-hint">Szerkeszthető — kattints a szövegre</span></div>
                             <div class="dr-sec-body" contenteditable="true" data-idx="${i}" oninput="dr_onEdit(this)">${s.body}</div>
                         </div>
                     `).join('')}
@@ -3322,8 +3322,8 @@ function initProfile() {
     document.getElementById('profile-card').innerHTML = `
         <div class="profile-section">
             <div class="profile-header">
-                <div class="profile-avatar">${initials}</div>
-                <div><div class="profile-name">${headerTitle}</div><div class="profile-meta">${meta}</div></div>
+                <div class="profile-avatar">${escHtml(initials)}</div>
+                <div><div class="profile-name">${escHtml(headerTitle)}</div><div class="profile-meta">${escHtml(meta)}</div></div>
             </div>
 
             <!-- Free / anonymous users: prominent Upgrade-to-Pro CTA at top -->
