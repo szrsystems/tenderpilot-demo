@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <!-- Security headers (meta subset — GitHub Pages cannot send real HTTP
+         headers; X-Frame-Options / X-Content-Type-Options / Permissions-Policy
+         and CSP frame-ancestors require Cloudflare. See SECURITY-HEADERS.md). -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://kacnvchwfwvpkkyhyupb.supabase.co wss://kacnvchwfwvpkkyhyupb.supabase.co; form-action 'self'; base-uri 'self'; object-src 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hívás-elemzés — hol csúszott el a deal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --green-50: #f0fdf4; --green-100: #dcfce7; --green-200: #bbf7d0; --green-500: #22c55e; --green-600: #16a34a; --green-700: #15803d; --green-800: #166534;
+            --amber-50: #fffbeb; --amber-100: #fef3c7; --amber-500: #f59e0b; --amber-600: #d97706; --amber-800: #92400e;
+            --red-50: #fef2f2; --red-100: #fee2e2; --red-500: #ef4444; --red-600: #dc2626; --red-700: #b91c1c;
+            --blue-50: #eff6ff; --blue-100: #dbeafe; --blue-600: #2563eb;
+            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
+            --radius: 8px; --radius-lg: 12px;
+        }
+        body { font-family: 'Inter', -apple-system, sans-serif; color: var(--gray-900); background: var(--gray-50); -webkit-font-smoothing: antialiased; line-height: 1.55; }
+        .wrap { max-width: 860px; margin: 0 auto; padding: 32px 24px 80px; }
+
+        .nav-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--gray-500); margin-bottom: 24px; text-decoration: none; }
+        .nav-back:hover { color: var(--gray-900); }
+
+        .header { background: var(--gray-900); color: white; padding: 32px; border-radius: var(--radius-lg); margin-bottom: 28px; }
+        .header-tag { display: inline-block; background: var(--blue-600); color: white; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .header h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 8px; }
+        .header p { font-size: 15px; color: var(--gray-300); }
+
+        .card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 20px; }
+        .card-tag { display: inline-block; font-size: 11px; font-weight: 700; color: var(--green-700); background: var(--green-50); padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .card-tag.amber { color: var(--amber-800); background: var(--amber-50); }
+        .card-tag.red { color: var(--red-700); background: var(--red-50); }
+        .card-tag.blue { color: var(--blue-600); background: var(--blue-50); }
+        .card-tag.gray { color: var(--gray-600); background: var(--gray-100); }
+        .card h2 { font-size: 20px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 12px; }
+        .card h2 .icon { margin-right: 6px; }
+        .card p { font-size: 14px; color: var(--gray-700); margin-bottom: 8px; }
+
+        /* ---- input form ---- */
+        label.fld { display: block; font-size: 13px; font-weight: 700; color: var(--gray-700); margin: 16px 0 6px; }
+        label.fld .hint { font-weight: 400; color: var(--gray-400); }
+        input[type=text], textarea { width: 100%; font-family: inherit; font-size: 14px; color: var(--gray-900); border: 1px solid var(--gray-300); border-radius: var(--radius); padding: 10px 12px; background: white; resize: vertical; }
+        input[type=text]:focus, textarea:focus { outline: none; border-color: var(--blue-600); box-shadow: 0 0 0 3px var(--blue-50); }
+        textarea#transcript { min-height: 200px; line-height: 1.5; }
+        .row2 { display: flex; gap: 16px; }
+        .row2 > div { flex: 1; }
+        .drop { border: 2px dashed var(--gray-300); border-radius: var(--radius); padding: 14px; text-align: center; font-size: 13px; color: var(--gray-500); cursor: pointer; margin-top: 8px; transition: all 0.12s; }
+        .drop:hover, .drop.over { border-color: var(--blue-600); background: var(--blue-50); color: var(--blue-600); }
+        .drop b { color: var(--gray-700); }
+
+        .btn { display: inline-flex; align-items: center; gap: 8px; background: var(--gray-900); color: white; border: none; font-family: inherit; font-size: 15px; font-weight: 700; padding: 13px 28px; border-radius: 24px; cursor: pointer; margin-top: 22px; transition: all 0.12s; }
+        .btn:hover:not(:disabled) { background: var(--gray-700); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+        .charcount { font-size: 12px; color: var(--gray-400); margin-top: 22px; }
+
+        .err { background: var(--red-50); border: 1px solid var(--red-100); color: var(--red-700); font-size: 13px; padding: 12px 14px; border-radius: var(--radius); margin-top: 16px; }
+
+        /* ---- loading ---- */
+        .spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ---- results ---- */
+        #results { display: none; }
+        .score-hero { display: flex; align-items: center; gap: 24px; }
+        .score-ring { flex-shrink: 0; width: 96px; height: 96px; border-radius: 50%; display: grid; place-items: center; font-size: 30px; font-weight: 800; color: white; }
+        .score-hero .verdict { font-size: 18px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 4px; }
+        .score-hero .outcome { font-size: 13px; color: var(--gray-600); }
+
+        .dims { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 20px; }
+        .dim { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 12px 14px; }
+        .dim .top { display: flex; justify-content: space-between; align-items: baseline; }
+        .dim .name { font-size: 12px; font-weight: 700; color: var(--gray-700); }
+        .dim .val { font-size: 14px; font-weight: 800; }
+        .dim .bar { height: 5px; background: var(--gray-100); border-radius: 3px; margin: 8px 0 6px; overflow: hidden; }
+        .dim .bar > span { display: block; height: 100%; border-radius: 3px; }
+        .dim .note { font-size: 12px; color: var(--gray-500); line-height: 1.4; }
+
+        .item { padding: 16px 0; border-bottom: 1px dashed var(--gray-200); }
+        .item:last-child { border-bottom: none; }
+        .item .moment { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-400); margin-bottom: 6px; }
+        .item .title { font-size: 15px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+        .item .body { font-size: 14px; color: var(--gray-700); margin-bottom: 6px; }
+        .item .body b { color: var(--gray-900); }
+        .quote { background: var(--gray-50); border-left: 3px solid var(--gray-300); padding: 8px 14px; margin: 8px 0; font-size: 13px; color: var(--gray-600); font-style: italic; border-radius: 4px; }
+        .sev { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; margin-left: 8px; vertical-align: middle; }
+        .sev.high { background: var(--red-100); color: var(--red-700); }
+        .sev.medium { background: var(--amber-100); color: var(--amber-800); }
+        .sev.low { background: var(--gray-100); color: var(--gray-600); }
+
+        .better { background: var(--green-50); border-left: 3px solid var(--green-600); padding: 10px 14px; border-radius: 4px; margin-top: 8px; font-size: 14px; color: var(--gray-800); }
+        .better .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--green-700); display: block; margin-bottom: 3px; }
+
+        .rewrite { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; margin-bottom: 12px; }
+        .rewrite > div { padding: 12px 14px; font-size: 13px; line-height: 1.5; }
+        .rewrite .from { background: var(--red-50); color: var(--gray-700); border-right: 1px solid var(--gray-200); }
+        .rewrite .to { background: var(--green-50); color: var(--gray-800); }
+        .rewrite .lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px; }
+        .rewrite .from .lbl { color: var(--red-600); }
+        .rewrite .to .lbl { color: var(--green-700); }
+
+        .green-row, .step-row { display: flex; gap: 12px; align-items: flex-start; padding: 9px 0; border-bottom: 1px dashed var(--gray-200); font-size: 14px; color: var(--gray-700); }
+        .green-row:last-child, .step-row:last-child { border-bottom: none; }
+        .green-row .dot { width: 8px; height: 8px; background: var(--green-500); border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+        .step-row .num { flex-shrink: 0; width: 20px; height: 20px; background: var(--gray-900); color: white; border-radius: 50%; font-size: 11px; font-weight: 700; display: grid; place-items: center; margin-top: 1px; }
+
+        .print-btn { position: fixed; bottom: 24px; right: 24px; background: var(--gray-900); color: white; padding: 12px 20px; border-radius: 24px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2); display: none; }
+        .print-btn:hover { background: var(--gray-700); }
+
+        @media print {
+            body { background: white; }
+            .header { background: white; color: var(--gray-900); border: 1px solid var(--gray-300); }
+            .header h1 { color: var(--gray-900); } .header p { color: var(--gray-600); }
+            #input-card, .print-btn, .nav-back { display: none; }
+            .card { box-shadow: none; break-inside: avoid; }
+        }
+        @media (max-width: 640px) {
+            .wrap { padding: 16px 16px 80px; }
+            .header { padding: 20px; } .header h1 { font-size: 22px; }
+            .card { padding: 20px; }
+            .row2 { flex-direction: column; gap: 0; }
+            .rewrite { grid-template-columns: 1fr; }
+            .rewrite .from { border-right: none; border-bottom: 1px solid var(--gray-200); }
+            .score-hero { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+
+    <a href="portal.html" class="nav-back">← Vissza a portálra</a>
+
+    <div class="header">
+        <span class="header-tag">Bizalmas · csak neked</span>
+        <h1>Hívás-elemzés</h1>
+        <p>Illeszd be egy értékesítési hívás leiratát. Az AI megmutatja hol csúszott el, mit kellett volna máshogy mondanod, és hogyan mehetett volna jobban a deal.</p>
+    </div>
+
+    <!-- ===== INPUT ===== -->
+    <div class="card" id="input-card">
+        <span class="card-tag blue">A leirat</span>
+        <h2>Töltsd fel a hívást</h2>
+
+        <label class="fld" for="transcript">Hívás leirata <span class="hint">— illeszd be vagy húzz ide egy .txt fájlt</span></label>
+        <textarea id="transcript" placeholder="Pl.&#10;Én: Köszönöm, hogy időt szakítottál...&#10;Ügyfél: Persze, mondd...&#10;Én: ..."></textarea>
+        <div class="drop" id="drop">📄 <b>Kattints</b> vagy húzz ide egy <b>.txt</b> / <b>.vtt</b> / <b>.srt</b> leiratot</div>
+        <input type="file" id="file" accept=".txt,.vtt,.srt,.md,text/plain" style="display:none">
+
+        <div class="row2">
+            <div>
+                <label class="fld" for="me">Te melyik néven szerepelsz? <span class="hint">(opcionális)</span></label>
+                <input type="text" id="me" placeholder="pl. Én / Oliver / Sales" autocomplete="off">
+            </div>
+            <div>
+                <label class="fld" for="context">Deal kontextus <span class="hint">(opcionális)</span></label>
+                <input type="text" id="context" placeholder="pl. €499/hó SaaS, első discovery hívás" autocomplete="off">
+            </div>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn" id="go">Elemzés indítása</button>
+            <span class="charcount" id="cc">0 karakter</span>
+        </div>
+        <div class="err" id="err" style="display:none"></div>
+    </div>
+
+    <!-- ===== RESULTS ===== -->
+    <div id="results"></div>
+
+</div>
+
+<button class="print-btn" id="printBtn" onclick="window.print()">🖨️ Mentés PDF-be</button>
+
+<script src="lib/supabase.js"></script>
+<script>
+// ---- helpers -------------------------------------------------------------
+const $ = (id) => document.getElementById(id);
+function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, (c) =>
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+function scoreColor(n) {
+    n = Number(n) || 0;
+    if (n >= 75) return 'var(--green-600)';
+    if (n >= 50) return 'var(--amber-500)';
+    return 'var(--red-500)';
+}
+
+// ---- auth gate -----------------------------------------------------------
+let ready = false;
+window.addEventListener('gp-ready', async () => {
+    const user = await window.gp.requireAuth('login.html');
+    if (!user) return;            // redirected to login
+    ready = true;
+});
+
+// ---- transcript input ----------------------------------------------------
+const ta = $('transcript');
+function updateCount() {
+    const n = ta.value.length;
+    $('cc').textContent = n.toLocaleString('hu-HU') + ' karakter' + (n > 60000 ? ' (csak az első 60 000 elemzem)' : '');
+}
+ta.addEventListener('input', updateCount);
+
+const drop = $('drop'), fileInput = $('file');
+drop.addEventListener('click', () => fileInput.click());
+fileInput.addEventListener('change', () => { if (fileInput.files[0]) readFile(fileInput.files[0]); });
+['dragover', 'dragenter'].forEach((e) => drop.addEventListener(e, (ev) => { ev.preventDefault(); drop.classList.add('over'); }));
+['dragleave', 'drop'].forEach((e) => drop.addEventListener(e, (ev) => { ev.preventDefault(); drop.classList.remove('over'); }));
+drop.addEventListener('drop', (ev) => { const f = ev.dataTransfer.files[0]; if (f) readFile(f); });
+function readFile(f) {
+    if (f.size > 2 * 1024 * 1024) { showErr('A fájl túl nagy (max 2 MB).'); return; }
+    const r = new FileReader();
+    r.onload = () => { ta.value = cleanTranscript(String(r.result), f.name); updateCount(); };
+    r.readAsText(f);
+}
+// Strip common VTT/SRT timestamp + index noise so the model sees clean dialogue.
+function cleanTranscript(text, name) {
+    if (/\.(vtt|srt)$/i.test(name || '')) {
+        return text
+            .replace(/^WEBVTT.*$/im, '')
+            .replace(/^\d+\s*$/gm, '')                                   // SRT cue numbers
+            .replace(/^\d{2}:\d{2}:\d{2}[.,]\d{3}\s*-->.*$/gm, '')       // timecodes
+            .replace(/\n{3,}/g, '\n\n').trim();
+    }
+    return text;
+}
+
+// ---- run analysis --------------------------------------------------------
+function showErr(msg) { const e = $('err'); e.textContent = msg; e.style.display = 'block'; }
+function hideErr() { $('err').style.display = 'none'; }
+
+$('go').addEventListener('click', async () => {
+    hideErr();
+    const transcript = ta.value.trim();
+    if (transcript.length < 40) { showErr('Illessz be egy leiratot előbb (legalább pár mondat).'); return; }
+    if (!ready || !window.gp) { showErr('A munkamenet még tölt — próbáld újra egy pillanat múlva.'); return; }
+
+    const btn = $('go');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Elemzem a hívást…';
+
+    try {
+        const { data, error } = await window.gp.client.functions.invoke('ai-generate', {
+            body: { task: 'callreview', payload: {
+                transcript: transcript.slice(0, 60000),
+                me: $('me').value.trim(),
+                context: $('context').value.trim(),
+            } },
+        });
+        if (error) throw error;
+        if (!data || data.error) throw new Error(data && data.error);
+        render(data);
+    } catch (e) {
+        const code = (e && e.message) || '';
+        if (/rate_limited/.test(code)) showErr('Elérted a napi elemzési limitet. Próbáld újra holnap.');
+        else if (/transcript_too_short/.test(code)) showErr('A leirat túl rövid az elemzéshez.');
+        else if (/unauthorized/.test(code)) showErr('Lejárt a munkamenet — jelentkezz be újra.');
+        else showErr('Az elemzés nem sikerült. Próbáld újra kicsit később.');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = 'Elemzés indítása';
+    }
+});
+
+// ---- render --------------------------------------------------------------
+function render(d) {
+    const score = Math.max(0, Math.min(100, Number(d.overall_score) || 0));
+    let h = '';
+
+    // hero scorecard
+    h += `<div class="card">
+        <div class="score-hero">
+            <div class="score-ring" style="background:${scoreColor(score)}">${score}</div>
+            <div>
+                <div class="verdict">${esc(d.headline || 'Hívás-értékelés')}</div>
+                ${d.outcome ? `<div class="outcome">${esc(d.outcome)}</div>` : ''}
+            </div>
+        </div>
+        ${d.summary ? `<p style="margin-top:18px">${esc(d.summary)}</p>` : ''}
+        ${renderDims(d.scores)}
+    </div>`;
+
+    // what went well
+    if (arr(d.went_well).length) {
+        h += card('green', 'Erősségek', '✅ Ez működött', d.went_well.map((w) =>
+            `<div class="green-row"><span class="dot"></span><div>${esc(w.point)}${w.quote ? `<div class="quote">„${esc(w.quote)}”</div>` : ''}</div></div>`
+        ).join(''));
+    }
+
+    // mistakes — where you went wrong
+    if (arr(d.mistakes).length) {
+        h += card('red', 'Hibák', '⚠️ Hol csúszott el', d.mistakes.map((m) => `
+            <div class="item">
+                ${m.moment ? `<div class="moment">${esc(m.moment)}</div>` : ''}
+                <div class="title">${esc(m.what_happened)}${sevBadge(m.severity)}</div>
+                ${m.why_it_hurt ? `<div class="body"><b>Miért fájt:</b> ${esc(m.why_it_hurt)}</div>` : ''}
+                ${m.quote ? `<div class="quote">„${esc(m.quote)}”</div>` : ''}
+            </div>`).join(''));
+    }
+
+    // missed opportunities
+    if (arr(d.missed_opportunities).length) {
+        h += card('amber', 'Lehetőség', '💡 Elszalasztott lehetőségek', d.missed_opportunities.map((m) => `
+            <div class="item">
+                ${m.moment ? `<div class="moment">${esc(m.moment)}</div>` : ''}
+                <div class="body">${esc(m.what_you_couldve_done)}</div>
+                ${m.better_line ? `<div class="better"><span class="lbl">Ezt mondhattad volna</span>„${esc(m.better_line)}”</div>` : ''}
+            </div>`).join(''));
+    }
+
+    // objection handling
+    if (arr(d.objections).length) {
+        h += card('blue', 'Ellenérvek', '🛡️ Ellenérv-kezelés', d.objections.map((o) => `
+            <div class="item">
+                <div class="title">„${esc(o.objection)}”</div>
+                ${o.how_handled ? `<div class="body"><b>Amit csináltál:</b> ${esc(o.how_handled)}</div>` : ''}
+                <div class="better"><span class="lbl">Erősebb válasz</span>„${esc(o.better_response)}”</div>
+            </div>`).join(''));
+    }
+
+    // line rewrites
+    if (arr(d.rewrites).length) {
+        h += card('gray', 'Átírások', '✏️ Mondat-átírások', d.rewrites.map((r) => `
+            <div class="rewrite">
+                <div class="from"><span class="lbl">Amit mondtál</span>„${esc(r.instead_of)}”</div>
+                <div class="to"><span class="lbl">Inkább</span>„${esc(r.say)}”</div>
+            </div>`).join(''));
+    }
+
+    // next steps
+    if (arr(d.next_steps).length) {
+        h += card('green', 'Teendők', '🎯 Következő lépések', d.next_steps.map((s, i) =>
+            `<div class="step-row"><span class="num">${i + 1}</span><div>${esc(s)}</div></div>`
+        ).join(''));
+    }
+
+    const res = $('results');
+    res.innerHTML = h;
+    res.style.display = 'block';
+    $('printBtn').style.display = 'block';
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function arr(x) { return Array.isArray(x) ? x : []; }
+function card(tag, label, title, inner) {
+    return `<div class="card"><span class="card-tag ${tag}">${esc(label)}</span><h2>${esc(title)}</h2>${inner}</div>`;
+}
+function sevBadge(s) {
+    s = String(s || '').toLowerCase();
+    const map = { high: 'magas', medium: 'közepes', low: 'alacsony' };
+    if (!map[s]) return '';
+    return `<span class="sev ${s}">${map[s]}</span>`;
+}
+function renderDims(scores) {
+    if (!arr(scores).length) return '';
+    return `<div class="dims">${scores.map((s) => {
+        const v = Math.max(0, Math.min(100, Number(s.score) || 0));
+        return `<div class="dim">
+            <div class="top"><span class="name">${esc(s.dimension)}</span><span class="val" style="color:${scoreColor(v)}">${v}</span></div>
+            <div class="bar"><span style="width:${v}%;background:${scoreColor(v)}"></span></div>
+            <div class="note">${esc(s.note || '')}</div>
+        </div>`;
+    }).join('')}</div>`;
+}
+</script>
+
+</body>
+</html>

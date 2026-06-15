@@ -89,6 +89,108 @@ Elérhető pályázati kategóriák: ${categories.join(', ')}.
 Add vissza a legjobban illeszkedő kategóriákat és magyar kulcsszavakat, amikkel a releváns pályázatok megtalálhatók.`;
 }
 
+// Sales-call review: a transcript goes in, structured coaching comes out.
+// `me` is the seller's label in the transcript (e.g. a name or "Sales");
+// everything else is treated as the prospect side. Transcripts are Hungarian,
+// so the feedback is written in Hungarian — including the verbatim quotes,
+// which stay in the transcript's original wording.
+function callReviewPrompt(transcript: string, me: string, context: string): string {
+  return `You are an elite B2B sales coach reviewing a recorded Hungarian sales call. Be blunt, specific and useful — name the exact moments where the deal slipped, not generic advice.
+
+The seller (the person being coached) is labelled "${me || 'unknown — infer the seller from context'}" in the transcript. Everyone else is the prospect/buyer side.
+${context ? `\nDEAL CONTEXT the seller gave you: ${context}\n` : ''}
+Rules:
+- The transcript is in Hungarian. Write ALL of your feedback in Hungarian (magyarul), in natural, professional Hungarian sales language.
+- Every criticism must point to a concrete moment and, where possible, quote the actual words VERBATIM (short, in the original Hungarian) so the seller recognises it.
+- "better_line" / "say" fields must be a ready-to-use Hungarian sentence the seller could have said out loud — not a description of one.
+- Score honestly. A call that lost the deal should score low. Do not inflate.
+- If the transcript is too short or unclear to judge, say so in the summary and score conservatively.
+
+TRANSCRIPT (Hungarian):
+${transcript}`;
+}
+
+const CALLREVIEW_SCHEMA = {
+  type: 'object',
+  properties: {
+    overall_score: { type: 'integer' }, // 0-100
+    headline: { type: 'string' },       // one-line verdict
+    summary: { type: 'string' },        // 2-4 sentences: what happened on the call
+    outcome: { type: 'string' },        // likely result: won / advancing / stalled / lost — with why
+    scores: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          dimension: { type: 'string' }, // e.g. Discovery, Rapport, Objection handling, Closing, Talk ratio
+          score: { type: 'integer' },    // 0-100
+          note: { type: 'string' },
+        },
+        required: ['dimension', 'score', 'note'],
+      },
+    },
+    went_well: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: { point: { type: 'string' }, quote: { type: 'string' } },
+        required: ['point'],
+      },
+    },
+    mistakes: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          moment: { type: 'string' },     // where in the call
+          what_happened: { type: 'string' },
+          why_it_hurt: { type: 'string' },
+          quote: { type: 'string' },      // the seller's actual words, if any
+          severity: { type: 'string' },   // low / medium / high
+        },
+        required: ['moment', 'what_happened', 'why_it_hurt'],
+      },
+    },
+    missed_opportunities: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          moment: { type: 'string' },
+          what_you_couldve_done: { type: 'string' },
+          better_line: { type: 'string' },
+        },
+        required: ['what_you_couldve_done'],
+      },
+    },
+    objections: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          objection: { type: 'string' },     // what the prospect pushed back with
+          how_handled: { type: 'string' },   // what the seller actually did
+          better_response: { type: 'string' },
+        },
+        required: ['objection', 'better_response'],
+      },
+    },
+    rewrites: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          instead_of: { type: 'string' }, // weak line the seller said
+          say: { type: 'string' },        // stronger replacement
+        },
+        required: ['instead_of', 'say'],
+      },
+    },
+    next_steps: { type: 'array', items: { type: 'string' } }, // concrete follow-up actions
+  },
+  required: ['overall_score', 'headline', 'summary', 'mistakes', 'next_steps'],
+};
+
 // ---- Provider calls -----------------------------------------------------
 async function callGemini(prompt: string, schema: any): Promise<any> {
   if (!GEMINI_KEY) throw new Error('GEMINI_API_KEY not set');
@@ -136,6 +238,7 @@ async function allowUsage(admin: any, userId: string, limit: number): Promise<bo
 }
 const LIMIT_DRAFT = 25;   // Pro drafts per user per day
 const LIMIT_NEEDS = 100;  // needs-finder calls per user per day
+const LIMIT_CALLREVIEW = 40; // sales-call reviews per user per day
 
 // ---- Handler ------------------------------------------------------------
 Deno.serve(async (req) => {
@@ -196,6 +299,16 @@ Deno.serve(async (req) => {
         categories: Array.isArray(out?.categories) ? out.categories.slice(0, 6) : [],
         keywords: Array.isArray(out?.keywords) ? out.keywords.slice(0, 12) : [],
       });
+    }
+
+    if (task === 'callreview') {
+      if (!(await allowUsage(admin, user.id, LIMIT_CALLREVIEW))) return json({ error: 'rate_limited' }, 429);
+      const transcript = String(payload?.transcript ?? '').slice(0, 60000); // ~15k tokens, plenty for one call
+      if (transcript.trim().length < 40) return json({ error: 'transcript_too_short' }, 400);
+      const me = String(payload?.me ?? '').slice(0, 80);
+      const context = String(payload?.context ?? '').slice(0, 1000);
+      const out = await generate(callReviewPrompt(transcript, me, context), CALLREVIEW_SCHEMA);
+      return json(out);
     }
 
     return json({ error: 'unknown_task' }, 400);
