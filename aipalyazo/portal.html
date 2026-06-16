@@ -615,17 +615,21 @@
             line-height: 1;
             border: 1px solid var(--green-600);
             cursor: pointer;
-            transition: background 0.15s, border-color 0.15s, transform 0.05s;
+            transition: background 0.15s, border-color 0.15s, transform 0.05s, box-shadow 0.15s;
             box-sizing: border-box;
+            box-shadow: 0 1px 2px rgba(22,163,74,0.22);
         }
-        .tier-cta-btn:hover { background: var(--green-700); border-color: var(--green-700); }
-        .tier-cta-btn:active { transform: translateY(1px); }
+        .tier-cta-btn:hover { background: var(--green-700); border-color: var(--green-700); box-shadow: 0 2px 6px rgba(22,163,74,0.28); }
+        .tier-cta-btn:active { transform: translateY(1px); box-shadow: 0 1px 2px rgba(22,163,74,0.22); }
+        /* Secondary = soft green pill (a thin outline reads washed-out on the
+           pale-green card background). */
         .tier-cta-btn.secondary {
-            background: white;
+            background: var(--green-50);
             color: var(--green-700) !important;
-            border: 1px solid var(--green-300, #86efac);
+            border: 1px solid var(--green-200);
+            box-shadow: none;
         }
-        .tier-cta-btn.secondary:hover { background: var(--green-50); border-color: var(--green-600); }
+        .tier-cta-btn.secondary:hover { background: var(--green-100); border-color: var(--green-300, #86efac); box-shadow: none; }
 
         /* Anonymous signup nudge banner — flex layout with comfortable gaps
            between the text + two CTAs so they never visually collide. */
@@ -640,10 +644,15 @@
             gap: 14px 24px;
             flex-wrap: wrap;
         }
-        .signup-nudge .tier-cta-btn + .tier-cta-btn { margin-left: 4px; }
         .signup-nudge-text { flex: 1 1 240px; min-width: 240px; }
         .signup-nudge-title { font-weight: 700; font-size: 15px; color: var(--green-800); margin-bottom: 4px; }
         .signup-nudge-sub { font-size: 13px; color: var(--gray-600); }
+        /* Keep the two CTAs as one tidy unit; stack full-width on phones. */
+        .signup-nudge-actions { display: flex; gap: 10px; flex-shrink: 0; }
+        @media (max-width: 600px) {
+            .signup-nudge-actions { width: 100%; }
+            .signup-nudge-actions .tier-cta-btn { flex: 1 1 0; min-width: 0; }
+        }
     </style>
 </head>
 <body>
@@ -708,8 +717,10 @@
                     <div class="signup-nudge-title">Regisztráljon ingyen — mentse el a kedvenc pályázatait</div>
                     <div class="signup-nudge-sub">Korlátlan ideig ingyenes. Bankkártya nem szükséges. 30 másodperc.</div>
                 </div>
-                <a href="signup.html" class="tier-cta-btn">Ingyenes regisztráció</a>
-                <a href="login.html" class="tier-cta-btn secondary">Belépés</a>
+                <div class="signup-nudge-actions">
+                    <a href="signup.html" class="tier-cta-btn">Ingyenes regisztráció</a>
+                    <a href="login.html" class="tier-cta-btn secondary">Belépés</a>
+                </div>
             </div>
 
             <!-- PRO-ONLY: AI NEEDS FINDER. Anonymous/Basic see a lock card instead. -->
