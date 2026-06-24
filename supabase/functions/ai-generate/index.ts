@@ -261,12 +261,8 @@ Deno.serve(async (req) => {
     const { task, payload } = await req.json();
 
     if (task === 'draft') {
-      // 2. Drafts are Pro-only — verify server-side (never trust the client).
-      const { data: prof } = await admin.from('user_with_tier')
-        .select('tier, subscription_status').eq('id', user.id).single();
-      const isPro = prof?.tier === 'pro' && ['trialing', 'active'].includes(prof?.subscription_status);
-      if (!isPro) return json({ error: 'pro_required' }, 403);
-
+      // Drafts are free for every signed-in user (the JWT was verified above).
+      // Still rate-limited per user/day to cap LLM cost and abuse.
       if (!(await allowUsage(admin, user.id, LIMIT_DRAFT))) return json({ error: 'rate_limited' }, 429);
 
       const schema = {

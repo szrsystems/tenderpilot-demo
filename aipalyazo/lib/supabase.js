@@ -80,21 +80,13 @@ if (_signedOutFlag) {
         try { await client.auth.signOut({ scope: 'local' }); } catch (e) {}
     }
 
-    // Helper: get tier of current user. Returns 'anonymous' | 'basic' | 'pro'.
+    // Helper: get tier of current user. Returns 'anonymous' | 'pro'.
+    // AIpályázó is fully free: every signed-in user has full ('pro') access.
+    // (The old paid 'basic' vs 'pro' split + Paddle billing was removed.)
     async function getTier() {
         const { data: { user } } = await client.auth.getUser();
         if (!user) return 'anonymous';
-        const { data, error } = await client
-            .from('user_with_tier')
-            .select('tier, subscription_status, current_period_end')
-            .eq('id', user.id)
-            .single();
-        if (error || !data) return 'basic'; // safe default
-        // Pro means the row reports pro AND subscription is active.
-        if (data.tier === 'pro' && ['trialing','active'].includes(data.subscription_status)) {
-            return 'pro';
-        }
-        return 'basic';
+        return 'pro';
     }
 
     // Helper: get the full user-with-tier row.

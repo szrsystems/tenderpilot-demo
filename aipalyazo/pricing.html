@@ -9,12 +9,12 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Árazás — AIpályázó</title>
-    <meta name="description" content="Free vs Pro AIpályázó csomagok. Pro havi 3 990 Ft vagy éves 20% kedvezménnyel. Bármikor lemondható, 14 napos elállási jog.">
+    <title>Ingyenes — AIpályázó</title>
+    <meta name="description" content="Az AIpályázó teljesen ingyenes: AI pontozás, AI pályázat-vázlat, igény-felmérő és heti riport — nincs Pro csomag, nincs előfizetés. Egy ingyenes regisztráció kell hozzá.">
     <meta name="theme-color" content="#16a34a">
     <link rel="canonical" href="https://aipalyazo.hu/pricing.html">
-    <meta property="og:title" content="AIpályázó — Árazás">
-    <meta property="og:description" content="Free vs Pro csomagok. 3 990 Ft/hó, vagy éves 20% kedvezménnyel.">
+    <meta property="og:title" content="AIpályázó — Ingyenes">
+    <meta property="og:description" content="Minden funkció ingyenes. Nincs Pro csomag, nincs előfizetés — csak egy ingyenes regisztráció.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="hu_HU">
     <meta property="og:site_name" content="AIpályázó">
@@ -145,58 +145,31 @@
 
 <div class="wrap">
     <div class="page-head">
-        <h1>Egyszerű árazás</h1>
-        <p>A Free tier korlátlan ideig használható, regisztráció nélkül is. A Pro funkciók — AI pontozás, AI vázlat, személyre szabott riport — havi 3 990 Ft-ért érhetőek el. Bármikor lemondható.</p>
-    </div>
-
-    <div class="toggle-wrap">
-        <div class="interval-toggle">
-            <button id="ti-monthly" class="active" onclick="setInterval('monthly')">Havi</button>
-            <button id="ti-annual" onclick="setInterval('annual')">Éves <span class="badge-save">Spórolj 20%</span></button>
-        </div>
+        <h1>Teljesen ingyenes</h1>
+        <p>Az AIpályázó minden funkciója — pályázatkereső, AI illeszkedési pontozás, AI Pályázat-vázlat, AI igény-felmérő és heti riport — ingyenes. Nincs Pro csomag, nincs előfizetés, nincs rejtett költség. Egyetlen ingyenes regisztráció kell hozzá.</p>
     </div>
 
     <div class="pricing-grid">
 
-        <!-- FREE -->
-        <div class="price-card">
-            <div class="price-name">Free</div>
-            <div class="price-tagline">Mindenkinek aki pályázatot keres</div>
-            <div class="price-amount">0 Ft<span class="unit">/hó</span></div>
+        <!-- INGYENES (minden funkció) -->
+        <div class="price-card popular">
+            <div class="price-name">Ingyenes</div>
+            <div class="price-tagline">Mindenkinek, aki pályázatot keres</div>
+            <div class="price-amount">0 Ft</div>
             <div class="price-billing">Bankkártya nem szükséges</div>
             <div class="price-strikethrough"></div>
-            <div class="price-vat">Korlátlan ideig ingyenes</div>
-            <a href="signup.html" class="price-cta">Ingyenes regisztráció</a>
+            <div class="price-vat">Minden funkció, korlátlan ideig</div>
+            <a href="signup.html" class="price-cta primary">Ingyenes regisztráció</a>
             <div class="price-features">
-                <div class="price-feature"><span class="check">✓</span> Összes magyar pályázat (~300) böngészés</div>
-                <div class="price-feature"><span class="check">✓</span> Keresés, szűrés, részletes nézet</div>
-                <div class="price-feature"><span class="check">✓</span> Pályázat mentése (regisztráció után)</div>
-                <div class="price-feature"><span class="check">✓</span> Konzultáció-igénylés pályázatíró partnertől</div>
-                <div class="price-feature"><span class="check">✓</span> Általános heti hírlevél (opt-in)</div>
-                <div class="price-feature"><span class="cross">×</span> <span class="muted">AI cégprofil-pontozás</span></div>
-                <div class="price-feature"><span class="cross">×</span> <span class="muted">AI Pályázat-vázlat</span></div>
-                <div class="price-feature"><span class="cross">×</span> <span class="muted">Személyre szabott riport</span></div>
-            </div>
-        </div>
-
-        <!-- PRO -->
-        <div class="price-card popular">
-            <div class="price-name">Pro</div>
-            <div class="price-tagline">Aktívan pályázó vállalkozásoknak</div>
-            <div class="price-amount" id="pro-amount">3 990 Ft<span class="unit">/hó</span></div>
-            <div class="price-billing" id="pro-billing">Havi számlázás, bármikor lemondható</div>
-            <div class="price-strikethrough" id="pro-strike"></div>
-            <div class="price-vat">Bruttó ár (ÁFA-val) · 14 napos elállási jog</div>
-            <button class="price-cta primary" id="pro-cta" onclick="startCheckout('pro')">Pro előfizetés indítása</button>
-            <div class="price-features">
-                <div class="price-feature"><span class="check">✓</span> <b>Minden, ami a Free-ben</b></div>
+                <div class="price-feature"><span class="check">✓</span> Összes magyar pályázat (~300) böngészés, keresés, szűrés</div>
+                <div class="price-feature"><span class="check">✓</span> Pályázat mentése, részletes nézet</div>
                 <div class="price-feature"><span class="check">✓</span> AI illeszkedési pontozás a cégprofilra (0-100)</div>
                 <div class="price-feature"><span class="check">✓</span> AI Pályázat-vázlat (1 kattintásra)</div>
                 <div class="price-feature"><span class="check">✓</span> AI igény-felmérő („Mire van szüksége?")</div>
                 <div class="price-feature"><span class="check">✓</span> Személyre szabott heti email riport</div>
                 <div class="price-feature"><span class="check">✓</span> Sürgős határidő-riasztások</div>
-                <div class="price-feature"><span class="check">✓</span> Exportálható dokumentumok</div>
-                <div class="price-feature"><span class="check">✓</span> Jogosultsági checklist a cégprofilra szabva</div>
+                <div class="price-feature"><span class="check">✓</span> Exportálható dokumentumok + jogosultsági checklist</div>
+                <div class="price-feature"><span class="check">✓</span> Konzultáció-igénylés pályázatíró partnertől</div>
             </div>
         </div>
 
@@ -220,33 +193,23 @@
 
     </div>
 
-    <div class="coming-soon-banner">
-        <b>Pro előfizetés — hamarosan élesedik.</b> A Paddle (EU Merchant of Record) integráció utolsó fázisában van.
-        Addig is: <a href="signup.html" style="color: var(--green-700); font-weight: 600;">regisztráljon ingyen</a>,
-        kapja meg a Free funkciókat, és értesítjük amikor a Pro elérhető. Vagy írjon: <a href="mailto:info@aipalyazo.hu" style="color: var(--green-700); font-weight: 600;">info@aipalyazo.hu</a>.
-    </div>
-
     <div class="faq">
         <h2>Gyakori kérdések</h2>
         <details>
-            <summary>Mennyibe kerül a Pro?</summary>
-            <p>Havi 3 990 Ft (bruttó, ÁFA-val) vagy éves 38 304 Ft (~20% kedvezmény). Magánszemély és cég ügyfeleknek egyaránt ugyanaz az ár. A számlázást a Paddle (EU Merchant of Record) végzi, NAV-kompatibilis számlával.</p>
+            <summary>Tényleg ingyenes? Van rejtett költség?</summary>
+            <p>Igen, teljesen ingyenes. Nincs Pro csomag, nincs előfizetés, nincs bankkártya. Minden AI-funkció (pontozás, vázlat, igény-felmérő, heti riport) elérhető a regisztráció után.</p>
         </details>
         <details>
-            <summary>Bármikor lemondható?</summary>
-            <p>Igen — egy kattintással a Beállítások menüpontban, vagy info@aipalyazo.hu címen. A futó hónap végéig használhatja a Pro funkciókat, utána a fiók visszaesik Free-re. Visszatérítés (a 14 napos elállási jogon kívül) a futó hónapra nem jár.</p>
+            <summary>Miért kell regisztrálni?</summary>
+            <p>A pályázatokat böngészni regisztráció nélkül is lehet. Az AI-funkciókhoz és a mentésekhez ingyenes fiók szükséges — így tudjuk a cégprofiljához szabni az ajánlásokat és elmenteni az adatait.</p>
         </details>
         <details>
-            <summary>14 napos elállási jog?</summary>
-            <p>Magánszemély fogyasztóként 14 napon belül indoklás nélkül elállhat az előfizetéstől [45/2014. (II. 26.) Korm. rend.]. Az elállást követően a teljes díjat 14 napon belül visszatérítjük. Részletek az <a href="aszf.html">ÁSZF</a>-ben.</p>
+            <summary>Van-e korlát az AI-funkciókon?</summary>
+            <p>A visszaélések és a túlterhelés elkerülése érdekében napi méltányos használati korlát van az AI-funkciókon. A normál használatot ez nem érinti.</p>
         </details>
         <details>
-            <summary>Mit jelent az éves 20% kedvezmény?</summary>
-            <p>Az éves előfizetés egyszeri 38 304 Ft befizetést jelent (3 990 × 12 = 47 880 Ft helyett). Effektív havi 3 192 Ft. Bármikor lemondható, de a már kifizetett összeg az időszak végéig jár.</p>
-        </details>
-        <details>
-            <summary>Számlát kapok?</summary>
-            <p>Igen — a Paddle minden tranzakció után elektronikus PDF számlát küld a megadott email címre. A számlán szerepel az ÁFA, és NAV-kompatibilis formátumban van.</p>
+            <summary>Pályázatíró vagyok — van valami nekem?</summary>
+            <p>Igen — a <a href="partner.html">Partner program</a> fehér címkés hozzáférést, lead-csatornát és AI-támogatást ad pályázatíróknak. Vegye fel velünk a kapcsolatot: <a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a>.</p>
         </details>
     </div>
 </div>
