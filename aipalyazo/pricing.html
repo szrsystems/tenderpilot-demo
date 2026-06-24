@@ -221,53 +221,7 @@
     <a href="aszf.html">ÁSZF</a>
 </footer>
 
-<script>
-// Pricing intervals — visually toggle between monthly and annual.
-// Pro Annual: 3990 × 12 = 47 880 Ft × 0.8 (20% off) = 38 304 Ft/year (~3 192 Ft/hó effective)
-const PRICING = {
-    monthly: {
-        amount: '3 990 Ft',
-        unit: '/hó',
-        billing: 'Havi számlázás, bármikor lemondható',
-        strike: ''
-    },
-    annual: {
-        amount: '3 192 Ft',
-        unit: '/hó',
-        billing: 'Éves 38 304 Ft egyösszegű (20% kedvezménnyel)',
-        strike: '47 880 Ft helyett'
-    }
-};
-
-let currentInterval = 'monthly';
-
-function setInterval(intv) {
-    currentInterval = intv;
-    document.getElementById('ti-monthly').classList.toggle('active', intv === 'monthly');
-    document.getElementById('ti-annual').classList.toggle('active', intv === 'annual');
-    const p = PRICING[intv];
-    document.getElementById('pro-amount').innerHTML = `${p.amount}<span class="unit">${p.unit}</span>`;
-    document.getElementById('pro-billing').textContent = p.billing;
-    document.getElementById('pro-strike').textContent = p.strike || ' ';
-}
-
-// Checkout placeholder — wired to Paddle later. For now, redirects unauthenticated
-// users to signup, and shows a "hamarosan" alert for authenticated ones.
-function startCheckout(plan) {
-    // TODO: wire Paddle.Checkout.open({ items: [{ priceId: '<paddle-price-id>', quantity: 1 }], customData: { user_id, plan, interval: currentInterval } })
-    // For now: encode the chosen plan + interval in the URL so we can pick it up later.
-    const params = new URLSearchParams({ plan, interval: currentInterval });
-
-    // Check if user is signed in (legacy demo session OR future Supabase check)
-    const hasLegacy = sessionStorage.getItem('gp_auth_token');
-    if (hasLegacy) {
-        alert('A Pro előfizetés Paddle-en keresztül hamarosan elérhető. Addig is jelezze szándékát: info@aipalyazo.hu — és az élesedéskor első körben szólunk Önnek.');
-        return;
-    }
-    // Anonymous: ask to register first
-    window.location.href = 'signup.html?upgrade=pro&' + params.toString();
-}
-</script>
+<!-- Pricing/Paddle script removed — AIpályázó is fully free. -->
 
 </body>
 </html>
