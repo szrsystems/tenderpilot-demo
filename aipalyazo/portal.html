@@ -2318,7 +2318,12 @@ function filterGrants() {
 function fundingIdeas(g) {
     const t = ((g.cat || '') + ' ' + (g.title || '')).toLowerCase();
     const has = (...ks) => ks.some(k => t.includes(k));
-    if (has('digit', 'informatik', 'szoftver', 'adatvagyon', 'mesterséges', 'ai', 'automat'))
+    // Whole-word match (Hungarian-aware) for short/ambiguous tokens like "ai".
+    // A bare includes('ai') wrongly matches the "-ai" adjective suffix
+    // (e.g. "turisztikai", "logisztikai"), which mis-routed those grants into
+    // the automation list instead of their real category.
+    const hasWord = (...ks) => ks.some(k => new RegExp('(^|[^a-záéíóöőúüű0-9])' + k + '([^a-záéíóöőúüű0-9]|$)').test(t));
+    if (has('digit', 'informatik', 'szoftver', 'adatvagyon', 'mesterséges', 'automat') || hasWord('ai'))
         return [
             ['🤖', 'Folyamatautomatizálás — számlafeldolgozás, dokumentumkezelés, adatrögzítés kiváltása'],
             ['💬', 'Ügyfélszolgálati automatizáció — AI chatbot, e-mail- és ajánlatkezelés'],
@@ -2346,7 +2351,7 @@ function fundingIdeas(g) {
             ['📱', 'Online foglalási és vendégélmény-rendszer bevezetése'],
             ['🌳', 'Attrakció- és élményfejlesztés, kültéri beruházás']
         ];
-    if (has('mező', 'agrár', 'gazda', 'leader'))
+    if (has('mező', 'agrár', 'leader'))
         return [
             ['🚜', 'Gép-, erőgép- és eszközbeszerzés'],
             ['🏗️', 'Telephely-, tároló- és feldolgozókapacitás építése'],
