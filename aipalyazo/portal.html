@@ -2119,7 +2119,13 @@ function initDashboard() {
     // slider and the Beállítások select (default 55), with the profile boost
     // applied — so the KPI, the list and the reports all agree.
     const dashProfile = getUserProfile();
-    const relevant = G.filter(g => (g.score + profileBoost(g, dashProfile)) >= RELV_THRESHOLD).length;
+    // A profile counts as "set" only once the user has actually filled it in
+    // (company name). Until then we don't claim personalised relevance.
+    const profileSet = !!(dashProfile && dashProfile.company && String(dashProfile.company).trim());
+    // Relevance is judged on the SAME score shown on each card (g.score), so the
+    // threshold the user sees always matches the badges. profileBoost still
+    // personalises the ranking/sort, just not the cutoff.
+    const relevant = G.filter(g => g.score >= RELV_THRESHOLD).length;
     const totalFunding = G.reduce((s, g) => s + parseAmount(g.amount), 0);
     const expiringThisMonth = G.filter(g => {
         const d = new Date(g.deadline);
@@ -2133,12 +2139,14 @@ function initDashboard() {
             <div class="hero-stat-value" data-counter="total">0</div>
             <div class="hero-stat-sub">Folyamatos monitoring</div>
         </div>
-        <div class="hero-stat blue clickable" onclick="goGrantsRelevant()" title="${window.currentTier === 'pro' ? 'Önnek releváns pályázatok' : 'Pro upgrade-re kattintáshoz'}">
+        <div class="hero-stat blue clickable" onclick="goGrantsRelevant()" title="Önnek releváns pályázatok">
             <div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
             <div class="hero-stat-label">Önnek releváns</div>
-            ${window.currentTier === 'pro'
-                ? `<div class="hero-stat-value" data-counter="relevant" style="color: var(--blue-600);">0</div><div class="hero-stat-sub">Illeszkedési pontszám &ge; ${RELV_THRESHOLD}</div>`
-                : `<div class="hero-stat-value" style="color: var(--gray-400); font-size: 32px;">—</div><div class="hero-stat-sub" style="color: var(--green-700); font-weight: 600;">Regisztrációval érhető el</div>`
+            ${window.currentTier === 'anonymous'
+                ? `<div class="hero-stat-value" style="color: var(--gray-400); font-size: 32px;">—</div><div class="hero-stat-sub" style="color: var(--green-700); font-weight: 600;">Regisztrációval érhető el</div>`
+                : profileSet
+                    ? `<div class="hero-stat-value" data-counter="relevant" style="color: var(--blue-600);">0</div><div class="hero-stat-sub">Illeszkedési pontszám &ge; ${RELV_THRESHOLD}</div>`
+                    : `<div class="hero-stat-value" style="color: var(--gray-400); font-size: 32px;">—</div><div class="hero-stat-sub" style="color: var(--green-700); font-weight: 600;">Töltse ki a cégprofilt</div>`
             }
         </div>
         <div class="hero-stat ${expiringThisMonth > 0 ? 'red' : 'amber'} clickable" onclick="goGrants('expiring')" title="Hamarosan lejáró pályázatok">
@@ -2256,7 +2264,7 @@ function getFilteredGrants() {
         if (sl && !(g.title.toLowerCase().includes(sl) || g.cat.toLowerCase().includes(sl) || g.source.toLowerCase().includes(sl))) return false;
         if (v !== 'all' && g.verdict !== v) return false;
         if (catDef && !catDef.match(g)) return false;
-        if (activeRelv === 'relevant' && (g.score + profileBoost(g, profile)) < RELV_THRESHOLD) return false;
+        if (activeRelv === 'relevant' && g.score < RELV_THRESHOLD) return false;
         return true;
     });
     if (activeSort === 'score') f.sort((a,b) => (b.score + profileBoost(b, profile)) - (a.score + profileBoost(a, profile)) || a.days - b.days);
@@ -2631,7 +2639,7 @@ function initAlerts() {
     }));
 
     // 4. Weekly summary line
-    const relevant = ranked.filter(g => (g.score + profileBoost(g, profile)) >= RELV_THRESHOLD).length;
+    const relevant = ranked.filter(g => g.score >= RELV_THRESHOLD).length;
     const funding = ranked.filter(g => (g.score + profileBoost(g, profile)) > 60).reduce((s,g)=>s+parseAmount(g.amount),0);
     alerts.push({
         color: 'green',
@@ -2800,7 +2808,7 @@ function reportContext() {
         return sb - sa || a.days - b.days;
     });
     const today = new Date();
-    const relevant = ranked.filter(g => (g.score + profileBoost(g, profile)) >= RELV_THRESHOLD);
+    const relevant = ranked.filter(g => g.score >= RELV_THRESHOLD);
     const closingSoon = ranked.filter(g => g.days > 0 && g.days <= 30).sort((a,b) => a.days - b.days);
     const expiringThisMonth = ranked.filter(g => {
         const d = new Date(g.deadline);
