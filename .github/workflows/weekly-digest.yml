@@ -1,0 +1,26 @@
+name: Weekly digest e-mail
+
+# Every Monday 07:00 UTC (09:00 Budapest in summer) triggers the weekly-digest
+# Edge Function, which e-mails opted-in users a personalised grant summary via
+# Resend. Protected by CRON_SECRET (a GitHub repo secret) so only this job can
+# fire it. The anon key below is public by design (RLS is the real control).
+on:
+  schedule:
+    - cron: '0 7 * * 1'
+  workflow_dispatch: {} # also runnable manually from the Actions tab
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger weekly-digest function
+        env:
+          ANON: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImthY252Y2h3Znd2cGtreWh5dXBiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzQwNDEsImV4cCI6MjA5NjE1MDA0MX0.ajkwWvyPP-ENAnOXmokvBQ-1PP0So-qoZg4DJmsPob0'
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          curl -fsS -X POST "https://kacnvchwfwvpkkyhyupb.supabase.co/functions/v1/weekly-digest" \
+            -H "Authorization: Bearer $ANON" \
+            -H "apikey: $ANON" \
+            -H "x-cron-secret: $CRON_SECRET" \
+            -H "Content-Type: application/json" \
+            -d '{}'
