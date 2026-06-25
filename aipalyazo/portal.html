@@ -2156,7 +2156,7 @@ function initDashboard() {
             <div class="hero-stat-sub">Sürgős figyelmet igényel</div>
         </div>
         <div class="hero-stat">
-            <div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4"/></svg></div>
+            <div class="hero-stat-icon"><span style="font-size:15px;font-weight:800;letter-spacing:-0.5px;line-height:1;">Ft</span></div>
             <div class="hero-stat-label">Elérhető keret</div>
             <div class="hero-stat-value" data-counter="funding">0</div>
             <div class="hero-stat-sub">Összes pályázat keretösszege</div>
@@ -2766,14 +2766,21 @@ function initLeads() {
         const when = new Date(ld.ts || now).toLocaleString('hu-HU', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
         const fresh = ageH < 24 ? '<div class="lead-new">Új</div>' : '';
         const contact = [ld.email, ld.phone].filter(Boolean).map(escHtml).join(' · ');
-        return `<div class="lead-row">
+        // Pull the live grant so we can show its details and open the full panel.
+        const g = G.find(x => x.id === ld.grantId);
+        const grantMeta = g
+            ? `<div class="lead-grant" style="color:var(--gray-500);margin-top:3px;font-weight:500;">${escHtml(g.cat)} · ${escHtml(g.amount)} · határidő: ${escHtml(g.deadline)}${g.days > 0 ? ` (${g.days} nap)` : ''}</div>`
+            : `<div class="lead-grant" style="color:var(--gray-400);margin-top:3px;">A pályázat már nem aktív / lejárt</div>`;
+        const click = g ? `onclick="showDetail('${g.id}')" style="cursor:pointer;"` : '';
+        return `<div class="lead-row" ${click}>
             <div class="lead-avatar">${escHtml(initials)}</div>
             <div class="lead-main">
                 <div class="lead-name">${ld.name ? escHtml(ld.name) : '(név nélkül)'}</div>
                 <div class="lead-contact">${contact || '—'}</div>
                 <div class="lead-grant">Pályázat: <b>${escHtml(trunc(ld.grantTitle || ld.grantId || '', 80))}</b></div>
+                ${grantMeta}
             </div>
-            <div class="lead-time">${when}${fresh}</div>
+            <div class="lead-time">${when}${fresh}${g ? '<div style="margin-top:8px;font-size:11px;color:var(--green-700);font-weight:700;">Részletek →</div>' : ''}</div>
         </div>`;
     }).join('');
 }
@@ -3337,8 +3344,10 @@ function initProfile() {
         ? [p.location || 'Budapest', indLabel, (p.employees || '11-25') + ' fő'].join(' · ')
         : (userEmail || (window.currentTier === 'anonymous' ? 'Anonim böngészés' : 'Free csomag'));
     const n = getNotif();
-    const opt = (arr, sel) => arr.map(o => { const v = Array.isArray(o)?o[0]:o, l = Array.isArray(o)?o[1]:o+' fő'; return `<option value="${v}" ${v===sel?'selected':''}>${l}</option>`; }).join('');
-    const cats = Array.isArray(p.categories) ? p.categories : ['KKV fejlesztés','Digitális átalakulás','Kutatás-fejlesztés'];
+    // Placeholder-first: nothing is pre-selected until the user actually picks,
+    // so an unfilled profile doesn't look "set".
+    const opt = (arr, sel) => `<option value="" disabled${sel ? '' : ' selected'}>— Válasszon —</option>` + arr.map(o => { const v = Array.isArray(o)?o[0]:o, l = Array.isArray(o)?o[1]:o+' fő'; return `<option value="${v}" ${v===sel?'selected':''}>${l}</option>`; }).join('');
+    const cats = Array.isArray(p.categories) ? p.categories : [];
 
     document.getElementById('profile-card').innerHTML = `
         <div class="profile-section">
@@ -3361,12 +3370,12 @@ function initProfile() {
                 <h3>Cégprofil — ez vezérli a személyre szabott ajánlásokat</h3>
                 <div class="set-grid">
                     <div class="set-field full"><label>Cégnév</label><input id="s_company" type="text" value="${(p.company||'').replace(/"/g,'&quot;')}" placeholder="Pl. InnoTech Kft."></div>
-                    <div class="set-field"><label>Iparág</label><select id="s_industry">${opt(INDUSTRY_OPTS, p.industry||'IT')}</select></div>
-                    <div class="set-field"><label>Létszám</label><select id="s_employees">${opt(EMP_OPTS, p.employees||'11-25')}</select></div>
-                    <div class="set-field"><label>Árbevétel (előző üzleti év)</label><select id="s_revenue">${opt(REV_OPTS, p.revenue||'50M-200M')}</select></div>
+                    <div class="set-field"><label>Iparág</label><select id="s_industry">${opt(INDUSTRY_OPTS, p.industry)}</select></div>
+                    <div class="set-field"><label>Létszám</label><select id="s_employees">${opt(EMP_OPTS, p.employees)}</select></div>
+                    <div class="set-field"><label>Árbevétel (előző üzleti év)</label><select id="s_revenue">${opt(REV_OPTS, p.revenue)}</select></div>
                     <div class="set-field"><label>Székhely / régió</label><input id="s_location" type="text" value="${(p.location||'').replace(/"/g,'&quot;')}" placeholder="Pl. Budapest"></div>
-                    <div class="set-field"><label>Lezárt üzleti évek</label><select id="s_years">${opt(YEARS_OPTS, p.years_operating||'1')}</select></div>
-                    <div class="set-field"><label>Cégforma</label><select id="s_legal">${opt(LEGAL_OPTS, p.legal_form||'Kft')}</select></div>
+                    <div class="set-field"><label>Lezárt üzleti évek</label><select id="s_years">${opt(YEARS_OPTS, p.years_operating)}</select></div>
+                    <div class="set-field"><label>Cégforma</label><select id="s_legal">${opt(LEGAL_OPTS, p.legal_form)}</select></div>
                     <div class="set-field full"><label>Preferált kategóriák</label>
                         <div class="chip-grid" id="s_cats">
                             ${PREF_CATS.map(c => `<label class="chip-opt ${cats.includes(c)?'on':''}"><input type="checkbox" value="${c}" ${cats.includes(c)?'checked':''} onchange="this.closest('.chip-opt').classList.toggle('on',this.checked)">${c}</label>`).join('')}

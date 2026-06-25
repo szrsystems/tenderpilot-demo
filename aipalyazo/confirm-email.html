@@ -156,7 +156,15 @@ async function resendCode() {
         if (error) throw error;
         showMsg('Új megerősítő e-mailt küldtünk. Nézd a postafiókodat (spam mappát is).', 'success');
     } catch (e) {
-        showMsg('Új e-mail küldése sikertelen: ' + ((e && e.message) || 'ismeretlen hiba'), 'error');
+        // Supabase returns these errors in English — translate the common ones.
+        const raw = (e && e.message) || '';
+        const sec = raw.match(/after\s+(\d+)\s+seconds/i);
+        let hu;
+        if (/security purposes/i.test(raw) && sec) hu = `Biztonsági okból csak ${sec[1]} másodperc múlva kérhetsz újabb e-mailt.`;
+        else if (/rate limit/i.test(raw)) hu = 'Túl sok kérés rövid időn belül — kérlek, próbáld újra pár perc múlva.';
+        else if (/already.*(registered|confirmed)/i.test(raw)) hu = 'Ez az e-mail-cím már meg van erősítve — jelentkezz be.';
+        else hu = raw || 'ismeretlen hiba';
+        showMsg('Új e-mail küldése sikertelen: ' + hu, 'error');
     } finally {
         setTimeout(() => {
             link.textContent = 'Új e-mail küldése'; link.style.pointerEvents = '';
