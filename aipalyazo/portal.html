@@ -2459,7 +2459,16 @@ async function submitLeadToSupabase(payload) {
         };
         const { error } = await window.gp.client.from('leads').insert(row);
         if (error) console.warn('[gp] lead insert failed', error);
-        else console.log('[gp] lead saved to Supabase');
+        else {
+            console.log('[gp] lead saved to Supabase');
+            // Fire-and-forget confirmation e-mail to the requester. The
+            // function re-checks the lead exists server-side before sending.
+            try {
+                window.gp.client.functions.invoke('lead-notify', {
+                    body: { email: payload.email, grantTitle: payload.grantTitle }
+                }).catch(() => {});
+            } catch (e) {}
+        }
     } catch (e) { console.warn('[gp] submitLeadToSupabase error', e); }
 }
 
