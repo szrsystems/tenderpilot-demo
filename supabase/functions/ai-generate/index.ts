@@ -27,6 +27,7 @@ import { createClient } from 'jsr:@supabase/supabase-js@2';
 
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
 const SERVICE_ROLE = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+const CRON_SECRET = Deno.env.get('CRON_SECRET') ?? ''; // for cron-only tasks (extract)
 
 const PROVIDER = (Deno.env.get('AI_PROVIDER') ?? 'gemini').toLowerCase();
 const GEMINI_KEY = Deno.env.get('GEMINI_API_KEY') ?? '';
@@ -240,6 +241,45 @@ const LIMIT_DRAFT = 25;   // Pro drafts per user per day
 const LIMIT_NEEDS = 100;  // needs-finder calls per user per day
 const LIMIT_CALLREVIEW = 40; // sales-call reviews per user per day
 
+// Turns a scraped webpage's text into a clean structured grant record (or
+// rejects it as not-a-grant). Used by the daily scraper pipeline (cron).
+function extractPrompt(p: any): string {
+  const text = String(p?.pageText ?? '').replace(/\s+/g, ' ').slice(0, 12000);
+  return `Az alábbi szöveg egy magyar weboldal tartalma (forrás: ${p?.source ?? ''}, URL: ${p?.sourceUrl ?? ''}).
+Döntsd el, hogy ez EGY KONKRÉT, JELENLEG NYITOTT pályázati felhívás-e — NEM hír, NEM programkezdőlap, NEM általános tájékoztató, NEM lezárt felhívás.
+Csak akkor isGrant=true, ha ez egy tényleges, beadható pályázati felhívás.
+
+Mezők:
+- isGrant: boolean
+- title: a felhívás pontos címe, tisztítva ("Betöltés...", menü- és lábléc-szöveg nélkül)
+- category: egy kategória magyarul (Digitális átalakulás | Energiahatékonyság | K+F | Képzés | Export | Mezőgazdaság | Turizmus | KKV fejlesztés | Egyéb)
+- amount: az elérhető támogatás/keret szövegként, ha szerepel (pl. "5-50M Ft"); különben ""
+- deadline: benyújtási határidő ISO formátumban (YYYY-MM-DD), ha szerepel; különben ""
+- region: támogatott régió, ha van korlátozás (pl. "Konvergencia régió", "Budapest kivételével"); különben ""
+- eligibility: 1-2 mondat a jogosultsági feltételekről, ha kiderül; különben ""
+- summary: 1 mondatos magyar összefoglaló
+
+Szöveg:
+"""${text}"""
+
+Válaszolj KIZÁRÓLAG a megadott JSON sémával, magyarázat nélkül.`;
+}
+
+const EXTRACT_SCHEMA = {
+  type: 'object',
+  properties: {
+    isGrant: { type: 'boolean' },
+    title: { type: 'string' },
+    category: { type: 'string' },
+    amount: { type: 'string' },
+    deadline: { type: 'string' },
+    region: { type: 'string' },
+    eligibility: { type: 'string' },
+    summary: { type: 'string' },
+  },
+  required: ['isGrant'],
+};
+
 // ---- Handler ------------------------------------------------------------
 Deno.serve(async (req) => {
   const origin = req.headers.get('Origin');
@@ -251,6 +291,18 @@ Deno.serve(async (req) => {
     new Response(JSON.stringify(obj), { status, headers: { ...cors, 'Content-Type': 'application/json' } });
 
   try {
+    // 0. Cron-only "extract" task — no user, gated by the shared cron secret.
+    //    Used by the daily scraper pipeline to structure grant pages with the LLM.
+    const cronSecret = req.headers.get('x-cron-secret');
+    if (cronSecret && CRON_SECRET && cronSecret === CRON_SECRET) {
+      const { task, payload } = await req.json();
+      if (task === 'extract') {
+        const out = await generate(extractPrompt(payload), EXTRACT_SCHEMA);
+        return json(out ?? { isGrant: false });
+      }
+      return json({ error: 'unknown_cron_task' }, 400);
+    }
+
     // 1. Require an authenticated Supabase user (blocks anonymous abuse of the paid API).
     const jwt = (req.headers.get('Authorization') ?? '').replace(/^Bearer\s+/i, '');
     if (!jwt) return json({ error: 'unauthorized' }, 401);
