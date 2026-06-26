@@ -201,11 +201,23 @@ async function callGemini(prompt: string, schema: any): Promise<any> {
     generationConfig: { temperature: 0.6, responseMimeType: 'application/json' },
   };
   if (schema) body.generationConfig.responseSchema = schema;
-  const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-  if (!r.ok) throw new Error('gemini ' + r.status + ' ' + (await r.text()).slice(0, 300));
-  const j = await r.json();
-  const text = j?.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
-  return JSON.parse(text);
+  // Gemini's free tier returns 429/503 ("high demand") in spikes — retry with
+  // exponential backoff so transient overloads self-heal instead of failing.
+  const RETRY_STATUS = new Set([429, 500, 502, 503, 504]);
+  const DELAYS = [800, 1800, 3500, 6000];
+  let lastErr = '';
+  for (let attempt = 0; attempt <= DELAYS.length; attempt++) {
+    const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    if (r.ok) {
+      const j = await r.json();
+      const text = j?.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+      return JSON.parse(text);
+    }
+    lastErr = 'gemini ' + r.status + ' ' + (await r.text()).slice(0, 200);
+    if (!RETRY_STATUS.has(r.status) || attempt === DELAYS.length) break;
+    await new Promise((res) => setTimeout(res, DELAYS[attempt]));
+  }
+  throw new Error(lastErr);
 }
 
 async function callAnthropic(prompt: string): Promise<any> {
