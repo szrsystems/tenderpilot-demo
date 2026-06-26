@@ -3321,6 +3321,11 @@ function revenueLabel(val) {
 const YEARS_OPTS = [['0','Még nincs lezárt évem'],['1','1 év'],['2','2 év'],['3-5','3–5 év'],['5+','5+ év']];
 const LEGAL_OPTS = [['Kft','Kft.'],['Bt','Bt.'],['EV','Egyéni vállalkozó'],['Zrt','Zrt.'],['Nyrt','Nyrt.'],['Szövetkezet','Szövetkezet'],['Egyéb','Egyéb']];
 const PREF_CATS = ['KKV fejlesztés','Digitális átalakulás','Kutatás-fejlesztés','Energiahatékonyság','Munkahelyteremtés','Export','Turizmus','Mezőgazdaság','Környezetvédelem','Oktatás'];
+// Standard HU grant eligibility fields. Telephely (project-site region) is a
+// frequent gate — many calls exclude Budapest/Pest (only konvergencia régió).
+const REGION_OPTS = [['Budapest','Budapest'],['Pest','Pest megye'],['Közép-Dunántúl','Közép-Dunántúl'],['Nyugat-Dunántúl','Nyugat-Dunántúl'],['Dél-Dunántúl','Dél-Dunántúl'],['Észak-Magyarország','Észak-Magyarország'],['Észak-Alföld','Észak-Alföld'],['Dél-Alföld','Dél-Alföld'],['Több','Több régió / országos']];
+const YESNO_OPTS = [['igen','Igen'],['nem','Nem']];
+const OWNFUNDS_OPTS = [['igen','Igen, rendelkezésre áll'],['reszben','Részben'],['nem','Nem']];
 const NOTIF_KEY = 'grantpilot:notif';
 
 function getNotif() {
@@ -3399,6 +3404,11 @@ function initProfile() {
                     <div class="set-field"><label>Székhely / régió</label><input id="s_location" type="text" value="${(p.location||'').replace(/"/g,'&quot;')}" placeholder="Pl. Budapest"></div>
                     <div class="set-field"><label>Lezárt üzleti évek</label><select id="s_years">${opt(YEARS_OPTS, p.years_operating)}</select></div>
                     <div class="set-field"><label>Cégforma</label><select id="s_legal">${opt(LEGAL_OPTS, p.legal_form)}</select></div>
+                    <div class="set-field"><label>Telephely / megvalósítás régiója</label><select id="s_site_region">${opt(REGION_OPTS, p.site_region)}</select></div>
+                    <div class="set-field"><label>Köztartozásmentes (NAV)</label><select id="s_public_debt">${opt(YESNO_OPTS, p.public_debt_free)}</select></div>
+                    <div class="set-field"><label>Saját erő (önerő) rendelkezésre áll</label><select id="s_own_funds">${opt(OWNFUNDS_OPTS, p.own_funds)}</select></div>
+                    <div class="set-field"><label>Nehéz helyzetű vállalkozás</label><select id="s_difficulty">${opt(YESNO_OPTS, p.in_difficulty)}</select></div>
+                    <div class="set-field full"><label>TEÁOR főtevékenység (kód vagy megnevezés)</label><input id="s_teaor" type="text" value="${(p.teaor||'').replace(/"/g,'&quot;')}" placeholder="Pl. 6201 Számítógépes programozás"></div>
                     <div class="set-field full"><label>Preferált kategóriák</label>
                         <div class="chip-grid" id="s_cats">
                             ${PREF_CATS.map(c => `<label class="chip-opt ${cats.includes(c)?'on':''}"><input type="checkbox" value="${c}" ${cats.includes(c)?'checked':''} onchange="this.closest('.chip-opt').classList.toggle('on',this.checked)">${c}</label>`).join('')}
@@ -3667,6 +3677,11 @@ function saveProfile() {
         location:       getVal('s_location').trim() || prev.location,
         years_operating: getVal('s_years') || prev.years_operating,
         legal_form:    getVal('s_legal') || prev.legal_form,
+        site_region:     getVal('s_site_region') || prev.site_region,
+        public_debt_free: getVal('s_public_debt') || prev.public_debt_free,
+        own_funds:       getVal('s_own_funds') || prev.own_funds,
+        in_difficulty:   getVal('s_difficulty') || prev.in_difficulty,
+        teaor:           getVal('s_teaor').trim() || prev.teaor,
         categories:    cats.length ? cats : prev.categories,
         contact_name:  getVal('s_contact').trim() || prev.contact_name,
         email:         getVal('s_email').trim() || prev.email,
