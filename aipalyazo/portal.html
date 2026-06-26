@@ -1446,7 +1446,7 @@ const INDUSTRY_KEYWORDS = {
 // Company size tier from the onboarding employee bucket (EU-style).
 //   micro: 1-10 · small: 11-50 · mid: 51+
 function sizeTier(employees) {
-    if (['1-5','6-10'].includes(employees)) return 'micro';
+    if (['1','1-5','6-10'].includes(employees)) return 'micro';
     if (['11-25','26-50'].includes(employees)) return 'small';
     if (['51-100','100+'].includes(employees)) return 'mid';
     return null;
@@ -1534,9 +1534,8 @@ function profileBoost(g, profile) {
     if (Array.isArray(profile.categories) && profile.categories.length) {
         if (profile.categories.includes(g.cat)) boost += 12;
     }
-    if (profile.industry && INDUSTRY_KEYWORDS[profile.industry]) {
-        if (INDUSTRY_KEYWORDS[profile.industry].test((g.cat || '') + ' ' + (g.title || ''))) boost += 8;
-    }
+    const inds = Array.isArray(profile.industries) ? profile.industries : (profile.industry ? [profile.industry] : []);
+    if (inds.some(ind => INDUSTRY_KEYWORDS[ind] && INDUSTRY_KEYWORDS[ind].test((g.cat || '') + ' ' + (g.title || '')))) boost += 8;
     return boost + sizeFit(g, profile) + geoFit(g, profile) + yearsFit(g, profile);
 }
 
@@ -3293,7 +3292,7 @@ function dr_print() { window.print(); }
 function initDrafter() { dr_renderDoc(); }
 
 const INDUSTRY_OPTS = [['IT','IT / Szoftverfejlesztés'],['HVAC','Épületgépészet / HVAC'],['Construction','Építőipar'],['Manufacturing','Gyártás'],['Healthcare','Egészségügy'],['Restaurant','Vendéglátás'],['Tourism','Turizmus'],['Agriculture','Mezőgazdaság'],['Retail','Kereskedelem'],['Education','Oktatás'],['General','Egyéb']];
-const EMP_OPTS = ['1-5','6-10','11-25','26-50','51-100','100+'];
+const EMP_OPTS = [['1','1 fő (egyéni vállalkozó)'],['1-5','1–5 fő'],['6-10','6–10 fő'],['11-25','11–25 fő'],['26-50','26–50 fő'],['51-100','51–100 fő'],['100+','100+ fő']];
 // Hungarian KKV revenue ranges in HUF. Maps to the KKV-tv. small/medium
 // thresholds (50/200/500M and 1/3Mrd) so the AI scoring lines up with
 // pályázati felhívás eligibility tiers.
@@ -3366,6 +3365,8 @@ function initProfile() {
     // so an unfilled profile doesn't look "set".
     const opt = (arr, sel) => `<option value="" disabled${sel ? '' : ' selected'}>— Válasszon —</option>` + arr.map(o => { const v = Array.isArray(o)?o[0]:o, l = Array.isArray(o)?o[1]:o+' fő'; return `<option value="${v}" ${v===sel?'selected':''}>${l}</option>`; }).join('');
     const cats = Array.isArray(p.categories) ? p.categories : [];
+    // Industries are multi-select now; stay backward-compatible with the old single `industry`.
+    const inds = Array.isArray(p.industries) ? p.industries : (p.industry ? [p.industry] : []);
 
     document.getElementById('profile-card').innerHTML = `
         <div class="profile-section">
@@ -3388,7 +3389,11 @@ function initProfile() {
                 <h3>Cégprofil — ez vezérli a személyre szabott ajánlásokat</h3>
                 <div class="set-grid">
                     <div class="set-field full"><label>Cégnév</label><input id="s_company" type="text" value="${(p.company||'').replace(/"/g,'&quot;')}" placeholder="Pl. InnoTech Kft."></div>
-                    <div class="set-field"><label>Iparág</label><select id="s_industry">${opt(INDUSTRY_OPTS, p.industry)}</select></div>
+                    <div class="set-field full"><label>Iparág(ak) — több is választható</label>
+                        <div class="chip-grid" id="s_industries">
+                            ${INDUSTRY_OPTS.map(([v,l]) => `<label class="chip-opt ${inds.includes(v)?'on':''}"><input type="checkbox" value="${v}" ${inds.includes(v)?'checked':''} onchange="this.closest('.chip-opt').classList.toggle('on',this.checked)">${l}</label>`).join('')}
+                        </div>
+                    </div>
                     <div class="set-field"><label>Létszám</label><select id="s_employees">${opt(EMP_OPTS, p.employees)}</select></div>
                     <div class="set-field"><label>Árbevétel (előző üzleti év)</label><select id="s_revenue">${opt(REV_OPTS, p.revenue)}</select></div>
                     <div class="set-field"><label>Székhely / régió</label><input id="s_location" type="text" value="${(p.location||'').replace(/"/g,'&quot;')}" placeholder="Pl. Budapest"></div>
@@ -3650,11 +3655,13 @@ function saveProfile() {
     const prev = getUserProfile() || {};
     const getVal = id => (document.getElementById(id) || {}).value || '';
     const cats = [...document.querySelectorAll('#s_cats input:checked')].map(c => c.value);
+    const inds = [...document.querySelectorAll('#s_industries input:checked')].map(c => c.value);
     // Some fields only exist on Pro view (cégprofil block). Free shows just
     // s_contact + s_email. Build the patch from whatever inputs are present.
     const data = Object.assign({}, prev, {
         company:        getVal('s_company').trim() || prev.company,
-        industry:       getVal('s_industry') || prev.industry,
+        industries:     inds.length ? inds : (prev.industries || (prev.industry ? [prev.industry] : [])),
+        industry:       inds.length ? inds[0] : prev.industry,
         employees:      getVal('s_employees') || prev.employees,
         revenue:        getVal('s_revenue') || prev.revenue,
         location:       getVal('s_location').trim() || prev.location,
