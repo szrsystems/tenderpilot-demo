@@ -7,10 +7,11 @@
 //                  (the client ranks the local grant list with them — cheap,
 //                  no need to ship the whole DB to the model). Any signed-in user.
 //
-// Provider-agnostic: defaults to Gemini, swap to Claude with one secret
-// (AI_PROVIDER=anthropic). The API key NEVER reaches the browser — it lives
-// here as a Supabase secret. The frontend calls this via
-// supabase.functions.invoke('ai-generate'), which carries the user's JWT.
+// Dual-provider: Gemini is primary (free); Claude is the automatic fallback
+// when Gemini is overloaded/fails, and the FIRST choice for hard tasks. Just
+// set ANTHROPIC_API_KEY to activate it — no key = Gemini-only (unchanged).
+// API keys NEVER reach the browser — they live here as Supabase secrets. The
+// frontend calls this via supabase.functions.invoke('ai-generate') (carries JWT).
 //
 // Deploy:
 //   supabase functions deploy ai-generate
@@ -236,8 +237,27 @@ async function callAnthropic(prompt: string): Promise<any> {
   return JSON.parse(text);
 }
 
-function generate(prompt: string, schema: any): Promise<any> {
-  return PROVIDER === 'anthropic' ? callAnthropic(prompt) : callGemini(prompt, schema);
+// Dual-provider routing. Gemini is the default (free) and Claude is the
+// automatic fallback when Gemini fails after its retries (429/503 spikes,
+// timeouts). For "hard" tasks (e.g. eligibility verdicts) Claude goes FIRST,
+// with Gemini as the fallback. Without ANTHROPIC_API_KEY set, this is
+// Gemini-only — identical to the previous behaviour, no regression.
+// AI_PROVIDER=anthropic forces Claude-first for everything.
+async function generate(prompt: string, schema: any, opts: { hard?: boolean } = {}): Promise<any> {
+  const claudeFirst = PROVIDER === 'anthropic' || (!!opts.hard && !!ANTHROPIC_KEY);
+  const order: Array<'gemini' | 'anthropic'> = claudeFirst ? ['anthropic', 'gemini'] : ['gemini', 'anthropic'];
+  let lastErr: unknown = null;
+  for (const provider of order) {
+    if (provider === 'anthropic' && !ANTHROPIC_KEY) continue;
+    if (provider === 'gemini' && !GEMINI_KEY) continue;
+    try {
+      return provider === 'anthropic' ? await callAnthropic(prompt) : await callGemini(prompt, schema);
+    } catch (e) {
+      lastErr = e;
+      console.error(`[ai-generate] ${provider} failed; trying fallback`, String(e).slice(0, 160));
+    }
+  }
+  throw lastErr ?? new Error('no_ai_provider_configured');
 }
 
 // Per-user/day rate limit via the bump_ai_usage RPC (service role only).
