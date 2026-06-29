@@ -109,28 +109,28 @@
                 <label>Cégnév <span class="req">*</span></label>
                 <input type="text" id="f_company" placeholder="Pl. InnoTech Solutions Kft.">
             </div>
-            <div class="field-row">
-                <div class="field">
-                    <label>Iparág <span class="req">*</span></label>
-                    <select id="f_industry">
-                        <option value="">Válasszon...</option>
-                        <option value="IT">IT / Szoftverfejlesztés</option>
-                        <option value="HVAC">Épületgépészet / HVAC</option>
-                        <option value="Construction">Építőipar</option>
-                        <option value="Manufacturing">Gyártás</option>
-                        <option value="Healthcare">Egészségügy</option>
-                        <option value="Restaurant">Vendéglátás</option>
-                        <option value="Tourism">Turizmus</option>
-                        <option value="Agriculture">Mezőgazdaság</option>
-                        <option value="Retail">Kereskedelem</option>
-                        <option value="Education">Oktatás</option>
-                        <option value="General">Egyéb</option>
-                    </select>
+            <div class="field">
+                <label>Iparág(ak) <span class="req">*</span> <span style="font-weight:400;color:var(--gray-400);">— több is választható</span></label>
+                <div class="checkbox-grid" id="f_industries">
+                    <label class="checkbox-item"><input type="checkbox" value="IT"> IT / Szoftverfejlesztés</label>
+                    <label class="checkbox-item"><input type="checkbox" value="HVAC"> Épületgépészet / HVAC</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Construction"> Építőipar</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Manufacturing"> Gyártás</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Healthcare"> Egészségügy</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Restaurant"> Vendéglátás</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Tourism"> Turizmus</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Agriculture"> Mezőgazdaság</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Retail"> Kereskedelem</label>
+                    <label class="checkbox-item"><input type="checkbox" value="Education"> Oktatás</label>
+                    <label class="checkbox-item"><input type="checkbox" value="General"> Egyéb</label>
                 </div>
+            </div>
+            <div class="field-row">
                 <div class="field">
                     <label>Alkalmazottak <span class="req">*</span></label>
                     <select id="f_employees">
                         <option value="">Válasszon...</option>
+                        <option value="1">1 fő (egyéni vállalkozó)</option>
                         <option value="1-5">1-5 fő</option>
                         <option value="6-10">6-10 fő</option>
                         <option value="11-25">11-25 fő</option>
@@ -139,8 +139,6 @@
                         <option value="100+">100+ fő</option>
                     </select>
                 </div>
-            </div>
-            <div class="field-row">
                 <div class="field">
                     <label>Éves árbevétel</label>
                     <select id="f_revenue">
@@ -154,10 +152,29 @@
                         <option value="10Mrd+">10 Mrd Ft felett</option>
                     </select>
                 </div>
+            </div>
+            <div class="field-row">
                 <div class="field">
                     <label>Székhely</label>
                     <input type="text" id="f_location" placeholder="Pl. Budapest">
                 </div>
+                <div class="field">
+                    <label>Telephely / megvalósítás régiója</label>
+                    <select id="f_site_region">
+                        <option value="">Válasszon...</option>
+                        <option value="Budapest">Budapest</option>
+                        <option value="Pest">Pest megye</option>
+                        <option value="Közép-Dunántúl">Közép-Dunántúl</option>
+                        <option value="Nyugat-Dunántúl">Nyugat-Dunántúl</option>
+                        <option value="Dél-Dunántúl">Dél-Dunántúl</option>
+                        <option value="Észak-Magyarország">Észak-Magyarország</option>
+                        <option value="Észak-Alföld">Észak-Alföld</option>
+                        <option value="Dél-Alföld">Dél-Alföld</option>
+                        <option value="Több">Több régió / országos</option>
+                    </select>
+                </div>
+            </div>
+            <div class="field-row">
                 <div class="field">
                     <label>Lezárt üzleti évek</label>
                     <select id="f_years">
@@ -181,6 +198,40 @@
                         <option value="Szövetkezet">Szövetkezet</option>
                         <option value="Egyéb">Egyéb</option>
                     </select>
+                </div>
+            </div>
+            <div style="margin:24px 0 4px;font-size:13px;font-weight:700;color:var(--gray-600);">Jogosultsági adatok <span style="font-weight:400;color:var(--gray-400);">— opcionális, de pontosabb találatokat ad</span></div>
+            <div class="field-row">
+                <div class="field">
+                    <label>Köztartozásmentes (NAV)</label>
+                    <select id="f_public_debt">
+                        <option value="">Válasszon...</option>
+                        <option value="igen">Igen</option>
+                        <option value="nem">Nem</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Saját erő (önerő) rendelkezésre áll</label>
+                    <select id="f_own_funds">
+                        <option value="">Válasszon...</option>
+                        <option value="igen">Igen, rendelkezésre áll</option>
+                        <option value="reszben">Részben</option>
+                        <option value="nem">Nem</option>
+                    </select>
+                </div>
+            </div>
+            <div class="field-row">
+                <div class="field">
+                    <label>Nehéz helyzetű vállalkozás</label>
+                    <select id="f_difficulty">
+                        <option value="">Válasszon...</option>
+                        <option value="nem">Nem</option>
+                        <option value="igen">Igen</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>TEÁOR főtevékenység</label>
+                    <input type="text" id="f_teaor" placeholder="Pl. 6201 Számítógépes programozás">
                 </div>
             </div>
 
@@ -291,10 +342,11 @@
 function nextStep(n) {
     // Validate current step
     if (n === 2 && document.getElementById('step-1').classList.contains('active')) {
-        if (!document.getElementById('f_company').value || !document.getElementById('f_industry').value || !document.getElementById('f_employees').value) {
-            [...document.querySelectorAll('#step-1 [required], #step-1 select')].forEach(el => {
-                if (!el.value) el.style.borderColor = '#dc2626';
-            });
+        const industryCount = document.querySelectorAll('#f_industries input:checked').length;
+        if (!document.getElementById('f_company').value || industryCount === 0 || !document.getElementById('f_employees').value) {
+            if (!document.getElementById('f_company').value) document.getElementById('f_company').style.borderColor = '#dc2626';
+            if (!document.getElementById('f_employees').value) document.getElementById('f_employees').style.borderColor = '#dc2626';
+            document.getElementById('f_industries').style.outline = industryCount === 0 ? '2px solid #dc2626' : '';
             return;
         }
     }
@@ -411,14 +463,21 @@ function submitForm() {
     // Separate interest categories (step 2) from notification channels (step 3)
     const interestCategories = [...document.querySelectorAll('#step-2 .checkbox-grid input:checked')].map(c => c.value);
     const channels = [...document.querySelectorAll('#step-3 .checkbox-grid input:checked')].map(c => c.value);
+    const industries = [...document.querySelectorAll('#f_industries input:checked')].map(c => c.value);
     const data = {
         company: document.getElementById('f_company').value,
-        industry: document.getElementById('f_industry').value,
+        industries: industries,
+        industry: industries[0] || '',
         employees: document.getElementById('f_employees').value,
         revenue: document.getElementById('f_revenue').value,
         location: document.getElementById('f_location').value,
+        site_region: (document.getElementById('f_site_region') || {}).value || '',
         years_operating: (document.getElementById('f_years') || {}).value || '',
         legal_form: (document.getElementById('f_legal') || {}).value || '',
+        public_debt_free: (document.getElementById('f_public_debt') || {}).value || '',
+        own_funds: (document.getElementById('f_own_funds') || {}).value || '',
+        in_difficulty: (document.getElementById('f_difficulty') || {}).value || '',
+        teaor: (document.getElementById('f_teaor') || {}).value || '',
         categories: interestCategories,
         channels: channels,
         past_grants: document.getElementById('f_past').value,
