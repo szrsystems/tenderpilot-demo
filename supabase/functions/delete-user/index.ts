@@ -51,25 +51,13 @@ Deno.serve(async (req) => {
     });
   }
 
-  // Check for active subscription — refuse if Pro is active, force cancel first.
+  // NOTE: the old "refuse if active Pro subscription" check was removed with
+  // the fully-free conversion — billing is gone, so there is nothing to cancel
+  // and the check would have permanently blocked deletion for anyone with a
+  // legacy/comp subscription row.
   const adminClient = createClient(SUPABASE_URL, SERVICE_ROLE, {
     auth: { persistSession: false, autoRefreshToken: false }
   });
-  try {
-    const { data: subs } = await adminClient
-      .from('subscriptions')
-      .select('status')
-      .eq('user_id', user.id);
-    const hasActive = (subs || []).some(s => ['active', 'trialing', 'past_due'].includes(s.status));
-    if (hasActive) {
-      return new Response(JSON.stringify({
-        error: 'active_subscription',
-        message: 'Aktív Pro előfizetés van — előbb mondja le a Beállítások / Csomag menüpontban.'
-      }), { status: 409, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
-    }
-  } catch (e) {
-    console.warn('[delete-user] subscription check failed (proceeding)', e);
-  }
 
   // Authoritatively add the email to the persistent ban list BEFORE deleting
   // auth.users. The frontend's own insert fails on the success path (its RLS
