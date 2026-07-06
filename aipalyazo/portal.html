@@ -782,7 +782,7 @@
                 <div class="section-head first">
                     <div>
                         <div class="section-title-row">
-                            <div class="section-title">Összes magyar pályázat (~300)</div>
+                            <div class="section-title">Összes aktív magyar pályázat</div>
                             <span class="section-pill">Ingyenes böngészés</span>
                         </div>
                         <div class="section-sub">Regisztráljon ingyen a személyre szabott AI-pontozásért és a heti riportért</div>
@@ -1385,35 +1385,59 @@ const CAT_ALIASES = {
     'Energia':        'Energiahatékonyság'
 };
 
-G.forEach(g => {
-    if (CAT_ALIASES[g.cat]) g.cat = CAT_ALIASES[g.cat];
-    // Display normalization: amounts were entered as both "12M Ft" and
-    // "12M HUF" — show the Hungarian form everywhere.
-    if (g.amount) g.amount = g.amount.replace(/\s*HUF\b/g, ' Ft');
-    try {
-        const dl = new Date(g.deadline); dl.setHours(0,0,0,0);
-        const now = new Date(); now.setHours(0,0,0,0);
-        const delta = Math.ceil((dl - now) / (1000*60*60*24));
-        g.expired = delta < 0;
-        g.days = Math.max(0, delta);
-    } catch(e) { g.days = 90; g.expired = false; }
-    const f = g.factors;
-    // The deadline factor is computed LIVE from the actual days remaining —
-    // the value baked into the data file goes stale (a grant entered with
-    // "deadline: 95" eventually has 4 days left). Tight deadlines score
-    // lower because the grant is less actionable, not because it fits worse.
-    f.deadline = g.days <= 7 ? 35 : g.days <= 14 ? 50 : g.days <= 30 ? 65
-               : g.days <= 60 ? 80 : g.days <= 120 ? 90 : 95;
-    g.score = Math.round((f.size*25 + f.industry*25 + f.location*20 + f.deadline*15 + f.preference*15) / 100 * 10) / 10;
-    g.verdict = g.score >= 80 ? 'APPLY' : g.score >= 60 ? 'REVIEW' : 'SKIP';
-});
-
-// Auto-hide expired grants: keep them out of G so all stats, filters and
-// pagination reflect only active opportunities. The count is surfaced in the UI.
 let EXPIRED_COUNT = 0;
-for (let i = G.length - 1; i >= 0; i--) {
-    if (G[i].expired) { EXPIRED_COUNT++; G.splice(i, 1); }
+function prepGrants() {
+    G.forEach(g => {
+        if (CAT_ALIASES[g.cat]) g.cat = CAT_ALIASES[g.cat];
+        // Display normalization: amounts were entered as both "12M Ft" and
+        // "12M HUF" — show the Hungarian form everywhere.
+        if (g.amount) g.amount = g.amount.replace(/\s*HUF\b/g, ' Ft');
+        try {
+            const dl = new Date(g.deadline); dl.setHours(0,0,0,0);
+            const now = new Date(); now.setHours(0,0,0,0);
+            const delta = Math.ceil((dl - now) / (1000*60*60*24));
+            g.expired = delta < 0;
+            g.days = Math.max(0, delta);
+        } catch(e) { g.days = 90; g.expired = false; }
+        const f = g.factors;
+        // The deadline factor is computed LIVE from the actual days remaining —
+        // the value baked into the data file goes stale (a grant entered with
+        // "deadline: 95" eventually has 4 days left). Tight deadlines score
+        // lower because the grant is less actionable, not because it fits worse.
+        f.deadline = g.days <= 7 ? 35 : g.days <= 14 ? 50 : g.days <= 30 ? 65
+                   : g.days <= 60 ? 80 : g.days <= 120 ? 90 : 95;
+        g.score = Math.round((f.size*25 + f.industry*25 + f.location*20 + f.deadline*15 + f.preference*15) / 100 * 10) / 10;
+        g.verdict = g.score >= 80 ? 'APPLY' : g.score >= 60 ? 'REVIEW' : 'SKIP';
+    });
+    // Auto-hide expired grants: keep them out of G so all stats, filters and
+    // pagination reflect only active opportunities. The count is surfaced in the UI.
+    EXPIRED_COUNT = 0;
+    for (let i = G.length - 1; i >= 0; i--) {
+        if (G[i].expired) { EXPIRED_COUNT++; G.splice(i, 1); }
+    }
 }
+prepGrants();
+
+// ==== LIVE GRANT FEED ====================================================
+// grants_live.json is rebuilt daily by the GitHub Actions cron from the
+// OFFICIAL palyazat.gov.hu backend API (real call codes, deadlines, keret,
+// region + company-size eligibility) plus link-verified curated entries.
+// The bundled G above is the fallback when the feed is missing/broken.
+(async function loadLiveGrants() {
+    try {
+        const r = await fetch('grants_live.json', { cache: 'no-store' });
+        if (!r.ok) return;
+        const live = await r.json();
+        // Sanity floor: never swap to a suspiciously small/broken feed.
+        if (!Array.isArray(live) || live.length < 20) return;
+        G.length = 0;
+        live.forEach(g => G.push(g));
+        prepGrants();
+        try { document.getElementById('nav-count').textContent = G.length; } catch(e) {}
+        try { showPage(currentPage); } catch(e) {}
+        console.log('[gp] live grant feed loaded:', G.length, 'grants');
+    } catch (e) { console.warn('[gp] live feed unavailable — using bundled data'); }
+})();
 
 let currentPage = 'dashboard';
 
@@ -1457,6 +1481,17 @@ function sizeTier(employees) {
 function sizeFit(g, profile) {
     const tier = sizeTier(profile && profile.employees);
     if (!tier) return 0;
+    // Structured eligibility from the official API (live feed) beats title
+    // guessing: the call declares exactly which company-size classes may apply.
+    if (Array.isArray(g.sizeClasses) && g.sizeClasses.length) {
+        const cls = g.sizeClasses.map(s => String(s).toLowerCase());
+        const anySize = cls.some(s => s === 'vállalkozás' || s === 'egyéb vállalkozás');
+        const ok = anySize
+            || (tier === 'micro' && cls.some(s => s.includes('mikro')))
+            || (tier === 'small' && cls.some(s => s.includes('kisvállalkoz')))
+            || (tier === 'mid'   && cls.some(s => s.includes('középvállalkoz')));
+        return ok ? 5 : -25;
+    }
     // Eligibility nuance is judged on the TITLE only — the category is a coarse
     // bucket label (e.g. "KKV fejlesztés") and must not override an explicit
     // "Mikrovállalkozások" in the grant's own title.
@@ -1496,6 +1531,16 @@ function sizeFit(g, profile) {
 // Positive when the company's location is named in the title; negative on a
 // clear region conflict so an ineligible-by-geography grant drops out.
 function geoFit(g, profile) {
+    // Structured region list from the official API ([] = országos). Only the
+    // structured site_region profile field is compared — free-text city names
+    // can't be reliably mapped to régiók.
+    if (Array.isArray(g.regions) && g.regions.length) {
+        const site = ((profile && profile.site_region) || '').trim();
+        if (site && site !== 'Több') {
+            const hit = g.regions.some(r => r.includes(site) || site.includes(r));
+            return hit ? 5 : -25; // pl. budapesti telephely vs. csak-konvergencia felhívás
+        }
+    }
     const loc = ((profile && profile.location) || '').trim().toLowerCase();
     if (!loc) return 0;
     const title = (g.title || '').toLowerCase();

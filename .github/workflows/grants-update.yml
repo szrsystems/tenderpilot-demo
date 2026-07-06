@@ -27,14 +27,18 @@ jobs:
       - name: Run grant monitor
         run: node scripts/update-grants.mjs
 
+      - name: Build live grant feed (official palyazat.gov.hu API + link-verified curated)
+        run: node scripts/fetch-live-grants.mjs
+
       - name: Commit changes (if any)
         run: |
           git config user.name "aipalyazo-bot"
           git config user.email "bot@aipalyazo.hu"
-          git add aipalyazo/grants-status.json
+          git add aipalyazo/grants-status.json aipalyazo/grants_live.json aipalyazo/grants-meta.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "monitor: daily grant-source health check ($(date -u +%Y-%m-%d))"
+            CHANGES=$(node -e "try{const m=require('./aipalyazo/grants-meta.json');const c=m.changes||[];console.log(c.length?c.slice(0,5).map(x=>x.type+': '+(x.title||x.id).slice(0,60)).join('; '):'refresh')}catch(e){console.log('n/a')}")
+            git commit -m "data: daily live grant feed ($(date -u +%Y-%m-%d)) — $CHANGES"
             git push
           fi
