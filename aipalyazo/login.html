@@ -237,9 +237,8 @@
             Még nincs fiókja? <a href="signup.html" style="color:#15803d;font-weight:600;text-decoration:none;">Ingyenes regisztráció</a>
         </div>
 
-        <div class="demo-hint" style="margin-top:18px;">
-            <b>Demo (legacy):</b> demo@aipalyazo.hu / grantpilot2026 — <i>író-kapcsolatokkal való demókhoz</i>
-        </div>
+        <!-- Demo credentials box removed for public launch — the ?demo link
+             flow (banner + prefilled e-mail) still works for 1:1 demo shares. -->
     </div>
 </div>
 
@@ -248,9 +247,10 @@
 </footer>
 
 <script>
-// Demo creds: hash of `demo@aipalyazo.hu:grantpilot2026`. Legacy SHA-256 gate;
-// used only for the writer demo flow (?for=&firm= invite links). Real users
-// go through Supabase Auth (see lib/supabase.js).
+// Legacy SHA-256 gate for the demo account (`email:password` hash — the
+// plaintext is intentionally NOT in this public file). Used only for the
+// writer demo flow (?for=&firm= invite links). Real users go through
+// Supabase Auth (see lib/supabase.js).
 const VALID_HASHES = {
     "361b040bca673f9f3edccfec9240ec01cae01181356bde47b39ee592ff2bc1db": "demo@aipalyazo.hu"
 };

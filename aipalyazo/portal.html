@@ -569,21 +569,18 @@
             .sort-right { justify-content: flex-start; row-gap: 10px; }
         }
 
-        /* TIER-GATING — controlled by body class .tier-anonymous|.tier-basic|.tier-pro */
-        /* Default state: hide everything tier-restricted; reveal per body class. */
+        /* TIER-GATING — fully-free model: only two states remain,
+           .tier-anonymous (guest) and .tier-pro (any signed-in user). */
         .pro-only        { display: none !important; }
         .signed-in-only  { display: none !important; }
         .anonymous-only  { display: none !important; }
-        .basic-only      { display: none !important; }
         body.tier-pro       .pro-only        { display: revert !important; }
         body.tier-pro       .signed-in-only  { display: revert !important; }
-        body.tier-basic     .signed-in-only  { display: revert !important; }
-        body.tier-basic     .basic-only      { display: revert !important; }
         body.tier-anonymous .anonymous-only  { display: revert !important; }
 
-        /* Pro feature lock-card (inline upgrade prompt) */
+        /* Register-to-unlock lock-card (shown to guests) */
         .pro-lock { display: none; border: 1px dashed var(--green-600); background: linear-gradient(135deg, #f0fdf4 0%, white 100%); border-radius: var(--radius-lg); padding: 24px; text-align: center; margin: 20px 0; }
-        body.tier-anonymous .pro-lock, body.tier-basic .pro-lock { display: block; }
+        body.tier-anonymous .pro-lock { display: block; }
         .pro-lock h3 { font-size: 16px; font-weight: 700; color: var(--green-800); margin-bottom: 6px; }
         .pro-lock p  { font-size: 13px; color: var(--gray-600); margin-bottom: 14px; }
         .pro-lock .lock-icon { width: 32px; height: 32px; background: var(--green-600); color: white; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; font-size: 16px; }
@@ -781,7 +778,7 @@
             </div>
 
             <!-- BASIC/ANONYMOUS browse-all CTA + stacked grant list -->
-            <div class="anonymous-only basic-only">
+            <div class="anonymous-only">
                 <div class="section-head first">
                     <div>
                         <div class="section-title-row">
@@ -2699,7 +2696,7 @@ function initSaved() {
             nudge.innerHTML = `
                 <div style="font-size:42px; line-height:1; margin-bottom:14px;">🔖</div>
                 <h3 style="font-size:18px; color:var(--green-800); margin-bottom:8px;">Regisztrálj ingyenesen a mentéshez</h3>
-                <p style="font-size:14px; color:var(--gray-600); line-height:1.6; max-width:440px; margin:0 auto 18px;">A pályázatok mentése + heti hírlevél a Free csomag része. Korlátlan ideig ingyenes. 30 másodperc.</p>
+                <p style="font-size:14px; color:var(--gray-600); line-height:1.6; max-width:440px; margin:0 auto 18px;">A pályázatok mentése és a heti hírlevél is ingyenes — korlátlan ideig. A regisztráció 30 másodperc.</p>
                 <a href="signup.html" class="tier-cta-btn">Ingyenes regisztráció</a>
             `;
             list.parentElement.insertBefore(nudge, list);
@@ -3361,17 +3358,21 @@ function initProfile() {
         ? company
         : (nameFromStash || p.contact_name || userEmail || (window.currentTier === 'anonymous' ? 'Vendég' : 'Felhasználói fiók'));
     const initials = (headerTitle || 'AI').trim().split(/\s+/).slice(0,2).map(w => w[0]).join('').toUpperCase() || 'AI';
-    const indLabel = (INDUSTRY_OPTS.find(o => o[0] === p.industry) || [null,'IT / Szoftverfejlesztés'])[1];
-    const meta = isPro && p.company
-        ? [p.location || 'Budapest', indLabel, (p.employees || '11-25') + ' fő'].join(' · ')
-        : (userEmail || (window.currentTier === 'anonymous' ? 'Anonim böngészés' : 'Free csomag'));
+    // Industries are multi-select now; stay backward-compatible with the old single `industry`.
+    const inds = Array.isArray(p.industries) ? p.industries : (p.industry ? [p.industry] : []);
+    const indLabel = inds.length
+        ? ((INDUSTRY_OPTS.find(o => o[0] === inds[0]) || [null, inds[0]])[1] + (inds.length > 1 ? ` +${inds.length - 1}` : ''))
+        : '';
+    // Only show profile parts the user actually filled — no fake defaults.
+    const metaParts = [p.location, indLabel, p.employees ? p.employees + ' fő' : ''].filter(Boolean);
+    const meta = isPro && p.company && metaParts.length
+        ? metaParts.join(' · ')
+        : (userEmail || (window.currentTier === 'anonymous' ? 'Anonim böngészés' : 'Ingyenes fiók'));
     const n = getNotif();
     // Placeholder-first: nothing is pre-selected until the user actually picks,
     // so an unfilled profile doesn't look "set".
     const opt = (arr, sel) => `<option value="" disabled${sel ? '' : ' selected'}>— Válasszon —</option>` + arr.map(o => { const v = Array.isArray(o)?o[0]:o, l = Array.isArray(o)?o[1]:o+' fő'; return `<option value="${v}" ${v===sel?'selected':''}>${l}</option>`; }).join('');
     const cats = Array.isArray(p.categories) ? p.categories : [];
-    // Industries are multi-select now; stay backward-compatible with the old single `industry`.
-    const inds = Array.isArray(p.industries) ? p.industries : (p.industry ? [p.industry] : []);
 
     document.getElementById('profile-card').innerHTML = `
         <div class="profile-section">
@@ -3716,6 +3717,22 @@ async function syncProfileSettingsToSupabase(data) {
         if (Object.keys(patch).length === 0) return;
         const { error } = await window.gp.client.from('profiles').update(patch).eq('id', user.id);
         if (error) console.warn('[gp] settings profile sync failed', error);
+        // Extended fields live in a SEPARATE patch: if the DB migration that adds
+        // these columns hasn't run yet, only this patch fails (silently) — the
+        // legacy fields above still sync. Starts persisting once the migration runs.
+        const extended = {
+            industries: Array.isArray(data.industries) && data.industries.length ? data.industries : undefined,
+            site_region: data.site_region || undefined,
+            public_debt_free: data.public_debt_free || undefined,
+            own_funds: data.own_funds || undefined,
+            in_difficulty: data.in_difficulty || undefined,
+            teaor: data.teaor || undefined,
+        };
+        Object.keys(extended).forEach(k => extended[k] === undefined && delete extended[k]);
+        if (Object.keys(extended).length) {
+            window.gp.client.from('profiles').update(extended).eq('id', user.id)
+                .then(({ error: e2 }) => { if (e2) console.info('[gp] extended profile fields not synced (migration pending)'); });
+        }
     } catch (e) { console.warn('[gp] syncProfileSettingsToSupabase error', e); }
 }
 
@@ -3929,14 +3946,10 @@ function applyTier(tier, displayName) {
     }
 }
 
-// Pro-only nav clicks: if not Pro, deflect to upgrade
+// Gated nav clicks: navigate either way — signed-in users get the feature,
+// guests see the register-to-unlock card that's already rendered on the page.
 function goToProFeature(ev, page) {
-    if (window.currentTier === 'pro') {
-        showPage(page);
-    } else {
-        // Still navigate so the user sees the lock card (it's already rendered)
-        showPage(page);
-    }
+    showPage(page);
 }
 
 // Migrate localStorage bookmarks/profile to Supabase on first sign-in
@@ -4037,11 +4050,19 @@ async function resolveTier() {
                         localStorage.setItem('grantpilot:profile', JSON.stringify({
                             company: profile.company,
                             industry: profile.industry || '',
+                            industries: Array.isArray(profile.industries) && profile.industries.length
+                                ? profile.industries
+                                : (profile.industry ? [profile.industry] : []),
                             employees: profile.employees || '',
                             revenue: profile.revenue || '',
                             location: profile.location || '',
+                            site_region: profile.site_region || '',
                             years_operating: profile.years_operating || '',
                             legal_form: profile.legal_form || '',
+                            public_debt_free: profile.public_debt_free || '',
+                            own_funds: profile.own_funds || '',
+                            in_difficulty: profile.in_difficulty || '',
+                            teaor: profile.teaor || '',
                             categories: Array.isArray(profile.categories) ? profile.categories : [],
                             contact_name: profile.display_name || '',
                             email: profile.email || '',

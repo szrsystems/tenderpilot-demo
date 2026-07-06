@@ -208,7 +208,7 @@ async function signUpEmail(ev) {
     const gdpr = document.getElementById('gdpr').checked;
 
     if (!name) { showError('Kérlek add meg a neved.'); return; }
-    // Company is OPTIONAL — Free users don't need it; Pro users fill it later.
+    // Company is OPTIONAL — it can be filled later in the cégprofil.
     if (!gdpr) { showError('Az adatkezelési tájékoztató elfogadása szükséges.'); return; }
     if (password.length < 8) { showError('A jelszó legalább 8 karakter legyen.'); return; }
     if (password !== password2) { showError('A két jelszó nem egyezik.'); return; }
