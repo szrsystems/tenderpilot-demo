@@ -403,6 +403,22 @@ async function syncProfileToSupabase(data) {
         const { error } = await window.gp.client.from('profiles').update(patch).eq('id', user.id);
         if (error) console.warn('[gp] onboarding profile sync failed', error);
         else console.log('[gp] profile synced to Supabase:', Object.keys(patch));
+        // Extended fields (multi-industry + eligibility) go in a separate patch:
+        // if the DB migration adding these columns hasn't run yet, only this
+        // patch fails (silently) — the legacy fields above still sync.
+        const extended = {
+            industries: Array.isArray(data.industries) && data.industries.length ? data.industries : null,
+            site_region: data.site_region || null,
+            public_debt_free: data.public_debt_free || null,
+            own_funds: data.own_funds || null,
+            in_difficulty: data.in_difficulty || null,
+            teaor: data.teaor || null,
+        };
+        Object.keys(extended).forEach(k => extended[k] === null && delete extended[k]);
+        if (Object.keys(extended).length) {
+            window.gp.client.from('profiles').update(extended).eq('id', user.id)
+                .then(({ error: e2 }) => { if (e2) console.info('[gp] extended profile fields not synced (migration pending)'); });
+        }
     } catch (e) { console.warn('[gp] syncProfileToSupabase error', e); }
 }
 
