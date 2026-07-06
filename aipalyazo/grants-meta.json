@@ -1,9 +1,95 @@
 {
- "updatedAt": "2026-07-06T13:42:15.217Z",
+ "updatedAt": "2026-07-06T13:48:04.433Z",
  "counts": {
-  "total": 97,
+  "total": 80,
   "api": 40,
-  "curated": 57
+  "curated": 40
  },
- "changes": []
+ "changes": [
+  {
+   "id": "G-114",
+   "type": "removed",
+   "title": "GINOP Plusz 3.2.1-25 — Munkavállalók képzésének támogatása KKV-knál"
+  },
+  {
+   "id": "G-115",
+   "type": "removed",
+   "title": "GINOP Plusz 3.1.1-25 — Foglalkoztatás bővítése KKV-knál bértámogatással"
+  },
+  {
+   "id": "G-116",
+   "type": "removed",
+   "title": "GINOP Plusz 1.2.5-25 — Mikrovállalkozások kapacitásbővítő beruházásai"
+  },
+  {
+   "id": "G-117",
+   "type": "removed",
+   "title": "GINOP Plusz 1.3.1-25 — KKV-k körforgásos gazdaságra való átállása"
+  },
+  {
+   "id": "G-119",
+   "type": "removed",
+   "title": "KEHOP Plusz 5.2.2-25 — KKV-k megújuló energiatermelése és energiahatékonyság"
+  },
+  {
+   "id": "G-120",
+   "type": "removed",
+   "title": "KEHOP Plusz 1.4.1-25 — Klímaadaptáció és vízgazdálkodási fejlesztések"
+  },
+  {
+   "id": "G-148",
+   "type": "removed",
+   "title": "GINOP Plusz 1.3.1 — Turizmusfejlesztés vidéki térségekben"
+  },
+  {
+   "id": "G-151",
+   "type": "removed",
+   "title": "GINOP Plusz 2.1.1 — Napelemes rendszerek KKV-knak"
+  },
+  {
+   "id": "G-157",
+   "type": "removed",
+   "title": "Irinyi Terv — Ipar 4.0 ipari digitalizációs fejlesztések"
+  },
+  {
+   "id": "G-163",
+   "type": "removed",
+   "title": "GINOP Plusz 3.2.1 — Munkavállalók képzése KKV-knál"
+  },
+  {
+   "id": "G-165",
+   "type": "removed",
+   "title": "GINOP Plusz 5.1.1 — Megváltozott munkaképességűek foglalkoztatása"
+  },
+  {
+   "id": "G-167",
+   "type": "removed",
+   "title": "GINOP Plusz 3.2.2 — Munkahelyi képzések finanszírozása"
+  },
+  {
+   "id": "G-187",
+   "type": "removed",
+   "title": "GINOP Plusz 1.2.3-24 — Munkahelyteremtő beruházások Pest megyén kívül"
+  },
+  {
+   "id": "G-189",
+   "type": "removed",
+   "title": "GINOP Plusz 2.1.3-24 — Iparjogvédelmi (IP) támogatás KKV-knak"
+  },
+  {
+   "id": "G-202",
+   "type": "removed",
+   "title": "Logisztikai Központfejlesztési Program — Raktártechnológia és automatizáció"
+  },
+  {
+   "id": "G-204",
+   "type": "removed",
+   "title": "Feldolgozóipari Ipar 4.0 Pályázat — Digitális gyártás és automatizáció"
+  },
+  {
+   "id": "G-287",
+   "type": "removed",
+   "title": "GINOP Plusz AI Tananyag és Pilot — generatív AI munkahelyi alkalmazás"
+  }
+ ]
 }
