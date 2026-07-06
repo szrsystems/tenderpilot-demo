@@ -1,12 +1,13 @@
 -- =========================================================================
--- Profile eligibility fields (2026-07-06)
+-- Profile eligibility fields (2026-07-06) — v2
 -- =========================================================================
--- The cégprofil form now captures multi-select industries and the standard
--- Hungarian grant-eligibility gates. Until this migration runs, the frontend
--- syncs these in a separate fire-and-forget patch that fails silently — so
--- applying this is non-breaking in either order.
+-- v1 failed with 42P16: CREATE OR REPLACE VIEW cannot reorder/insert view
+-- columns — the view must be DROPped and recreated instead.
+-- NOTE: run together with 20260706000002_drop_billing.sql (one combined
+-- paste in the SQL Editor). The view is recreated THERE, after the dead
+-- billing columns are dropped, so it's only dropped/created once.
 --
--- Apply via the Supabase SQL Editor (paste + run), NOT `db push`.
+-- Apply via the Supabase SQL Editor, NOT `db push`.
 
 alter table public.profiles add column if not exists industries       text[];
 alter table public.profiles add column if not exists site_region      text;
@@ -21,43 +22,3 @@ update public.profiles
  where industries is null
    and industry is not null
    and industry <> '';
-
--- Recreate the view so the app's profile reads include the new columns.
--- IMPORTANT: re-assert the 2026-06-11 leak fix (security_invoker + no anon),
--- because CREATE OR REPLACE VIEW resets storage parameters on some versions.
-create or replace view public.user_with_tier as
-select
-  p.id,
-  p.email,
-  p.display_name,
-  p.tier,
-  s.status            as subscription_status,
-  s.billing_interval,
-  s.current_period_end,
-  p.company,
-  p.industry,
-  p.industries,
-  p.employees,
-  p.revenue,
-  p.location,
-  p.site_region,
-  p.years_operating,
-  p.legal_form,
-  p.public_debt_free,
-  p.own_funds,
-  p.in_difficulty,
-  p.teaor,
-  p.categories,
-  p.created_at
-from public.profiles p
-left join lateral (
-  select status, billing_interval, current_period_end
-  from public.subscriptions s
-  where s.user_id = p.id
-    and s.status in ('trialing','active')
-  order by s.current_period_end desc
-  limit 1
-) s on true;
-
-alter view public.user_with_tier set (security_invoker = on);
-revoke select on public.user_with_tier from anon;
