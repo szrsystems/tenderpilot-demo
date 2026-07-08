@@ -27,7 +27,7 @@
    "vállalkozás"
   ],
   "rate": 100,
-  "modified": "2026-07-07T09:27:31.719Z",
+  "modified": "2026-07-08T08:11:38.136Z",
   "live": true,
   "factors": {
    "size": 82,
@@ -71,6 +71,284 @@
   }
  },
  {
+  "id": "pg-IKOP_PLUSZ-2.2.0-23",
+  "code": "IKOP_PLUSZ-2.2.0-23",
+  "title": "TEN-T vasúti és regionális intermodális közlekedés fejlesztése a 4 legszegényebb magyarországi régió területein",
+  "cat": "KKV fejlesztés",
+  "amount": "1M Ft – 261.2 Mrd Ft",
+  "keret": 261165382210,
+  "deadline": "2029-12-30",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=IKOP_PLUSZ&code=IKOP_PLUSZ-2.2.0-23",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "egyéb vállalkozás",
+   "vállalkozás"
+  ],
+  "rate": 100,
+  "modified": "2026-07-08T08:11:38.716Z",
+  "live": true,
+  "factors": {
+   "size": 82,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-DIMOP_PLUSZ-1.2.3/A1-24",
+  "code": "DIMOP_PLUSZ-1.2.3/A1-24",
+  "title": "Kombinált keret DIMOP PLUSZ 1.prioritás keretében fejlettebb régióban - technikai felhívás",
+  "cat": "Digitális átalakulás",
+  "amount": "1M Ft – 3.7 Mrd Ft",
+  "keret": 3663554989,
+  "deadline": "2029-12-30",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-1.2.3%2FA1-24",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "vállalkozás"
+  ],
+  "rate": 100,
+  "modified": "2026-07-08T08:11:35.030Z",
+  "live": true,
+  "factors": {
+   "size": 82,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-DIMOP_PLUSZ-1.2.3/B2-24",
+  "code": "DIMOP_PLUSZ-1.2.3/B2-24",
+  "title": "Hitelkeret DIMOP Plusz 1.prioritás keretében kevésbé fejlett régióban - technikai felhívás",
+  "cat": "Digitális átalakulás",
+  "amount": "1M Ft – 5.3 Mrd Ft",
+  "keret": 5289468396,
+  "deadline": "2029-12-30",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-1.2.3%2FB2-24",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "vállalkozás"
+  ],
+  "rate": 100,
+  "modified": "2026-07-08T08:11:40.112Z",
+  "live": true,
+  "factors": {
+   "size": 82,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-IKOP_PLUSZ-2.1.0-23",
+  "code": "IKOP_PLUSZ-2.1.0-23",
+  "title": "TEN-T vasúti és regionális intermodális közlekedés fejlesztése a 4 legszegényebb magyarországi régión kívüli területeken",
+  "cat": "KKV fejlesztés",
+  "amount": "1M Ft – 458.6 Mrd Ft",
+  "keret": 458598867059,
+  "deadline": "2029-12-30",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=IKOP_PLUSZ&code=IKOP_PLUSZ-2.1.0-23",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "egyéb vállalkozás",
+   "vállalkozás"
+  ],
+  "rate": 100,
+  "modified": "2026-07-08T08:11:28.787Z",
+  "live": true,
+  "factors": {
+   "size": 82,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-IKOP_PLUSZ-1.2.0-23",
+  "code": "IKOP_PLUSZ-1.2.0-23",
+  "title": "Tiszta üzemű városi-elővárosi közlekedés erősítése a fővároson és a budapesti agglomeráción kívüli településeken",
+  "cat": "KKV fejlesztés",
+  "amount": "300M Ft – 141.5 Mrd Ft",
+  "keret": 283486991235,
+  "deadline": "2029-12-30",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=IKOP_PLUSZ&code=IKOP_PLUSZ-1.2.0-23",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "egyéb vállalkozás",
+   "vállalkozás"
+  ],
+  "rate": 100,
+  "modified": "2026-07-08T08:11:39.230Z",
+  "live": true,
+  "factors": {
+   "size": 82,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-DIMOP_PLUSZ-5.1.4-26",
+  "code": "DIMOP_PLUSZ-5.1.4-26",
+  "title": "Kockázati tőkeprogram a digitális startup program támogatására",
+  "cat": "Digitális átalakulás",
+  "amount": "50M Ft – 900M Ft",
+  "keret": 16700000000,
+  "deadline": "2029-12-30",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-5.1.4-26",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "középvállalkozás",
+   "Mikrovállalkozás",
+   "kisvállalkozás"
+  ],
+  "rate": 100,
+  "modified": "2026-07-08T08:11:39.434Z",
+  "live": true,
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-IKOP_PLUSZ-1.1.0-23",
+  "code": "IKOP_PLUSZ-1.1.0-23",
+  "title": "Tiszta üzemű városi-elővárosi közlekedés erősítése Budapesten és agglomerációs településein",
+  "cat": "KKV fejlesztés",
+  "amount": "1M Ft – 501.6 Mrd Ft",
+  "keret": 501639976703,
+  "deadline": "2029-12-30",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=IKOP_PLUSZ&code=IKOP_PLUSZ-1.1.0-23",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "egyéb vállalkozás",
+   "vállalkozás"
+  ],
+  "rate": 100,
+  "modified": "2026-07-08T08:11:42.865Z",
+  "live": true,
+  "factors": {
+   "size": 82,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-DIMOP_PLUSZ-1.2.3/A2-24",
+  "code": "DIMOP_PLUSZ-1.2.3/A2-24",
+  "title": "Kombinált keret DIMOP PLUSZ 1.prioritás keretében kevésbé fejlett régióban - technikai felhívás",
+  "cat": "Digitális átalakulás",
+  "amount": "1M Ft – 21.2 Mrd Ft",
+  "keret": 21157873582,
+  "deadline": "2029-12-30",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-1.2.3%2FA2-24",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "vállalkozás"
+  ],
+  "rate": 100,
+  "modified": "2026-07-08T08:11:40.973Z",
+  "live": true,
+  "factors": {
+   "size": 82,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
   "id": "pg-DIMOP_PLUSZ-1.2.3/AB-1-24",
   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
   "title": "HVSZ és Közvetítők költségtérítése DIMOP Plusz 1. prioritás keretében fejlettebb régióban - technikai felhívás",
@@ -95,7 +373,77 @@
    "vállalkozás"
   ],
   "rate": 100,
-  "modified": "2026-07-07T09:27:35.778Z",
+  "modified": "2026-07-08T08:11:43.324Z",
+  "live": true,
+  "factors": {
+   "size": 82,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-GINOP_PLUSZ-2.5.1-25",
+  "code": "GINOP_PLUSZ-2.5.1-25",
+  "title": "Korai fázisú kutatás-fejlesztési kockázati tőkeprogram",
+  "cat": "Kutatás-fejlesztés",
+  "amount": "40M Ft – 118M Ft",
+  "keret": 18119714427,
+  "deadline": "2029-12-30",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=GINOP_PLUSZ&code=GINOP_PLUSZ-2.5.1-25",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "középvállalkozás",
+   "Mikrovállalkozás",
+   "kisvállalkozás"
+  ],
+  "rate": 100,
+  "modified": "2026-07-08T08:11:36.931Z",
+  "live": true,
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-GINOP_PLUSZ-2.5.4-25",
+  "code": "GINOP_PLUSZ-2.5.4-25",
+  "title": "HVSZ költségtérítése GINOP Plusz 2. prioritás keretében kevésbé fejlett régióban - technikai felhívás",
+  "cat": "KKV fejlesztés",
+  "amount": "max 743M Ft",
+  "keret": 742523364,
+  "deadline": "2029-12-30",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=GINOP_PLUSZ&code=GINOP_PLUSZ-2.5.4-25",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "vállalkozás"
+  ],
+  "rate": 100,
+  "modified": "2026-07-08T08:11:39.048Z",
   "live": true,
   "factors": {
    "size": 82,
@@ -129,41 +477,7 @@
    "vállalkozás"
   ],
   "rate": 100,
-  "modified": "2026-07-07T09:27:31.669Z",
-  "live": true,
-  "factors": {
-   "size": 82,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-GINOP_PLUSZ-2.5.4-25",
-  "code": "GINOP_PLUSZ-2.5.4-25",
-  "title": "HVSZ költségtérítése GINOP Plusz 2. prioritás keretében kevésbé fejlett régióban - technikai felhívás",
-  "cat": "KKV fejlesztés",
-  "amount": "max 743M Ft",
-  "keret": 742523364,
-  "deadline": "2029-12-30",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=GINOP_PLUSZ&code=GINOP_PLUSZ-2.5.4-25",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "vállalkozás"
-  ],
-  "rate": 100,
-  "modified": "2026-07-07T09:27:31.267Z",
+  "modified": "2026-07-08T08:11:38.081Z",
   "live": true,
   "factors": {
    "size": 82,
@@ -200,324 +514,10 @@
    "vállalkozás"
   ],
   "rate": 100,
-  "modified": "2026-07-07T09:27:31.972Z",
+  "modified": "2026-07-08T08:11:38.421Z",
   "live": true,
   "factors": {
    "size": 92,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-GINOP_PLUSZ-2.5.1-25",
-  "code": "GINOP_PLUSZ-2.5.1-25",
-  "title": "Korai fázisú kutatás-fejlesztési kockázati tőkeprogram",
-  "cat": "Kutatás-fejlesztés",
-  "amount": "40M Ft – 118M Ft",
-  "keret": 18119714427,
-  "deadline": "2029-12-30",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=GINOP_PLUSZ&code=GINOP_PLUSZ-2.5.1-25",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "középvállalkozás",
-   "Mikrovállalkozás",
-   "kisvállalkozás"
-  ],
-  "rate": 100,
-  "modified": "2026-07-07T09:27:31.635Z",
-  "live": true,
-  "factors": {
-   "size": 92,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-DIMOP_PLUSZ-5.1.4-26",
-  "code": "DIMOP_PLUSZ-5.1.4-26",
-  "title": "Kockázati tőkeprogram a digitális startup program támogatására",
-  "cat": "Digitális átalakulás",
-  "amount": "50M Ft – 900M Ft",
-  "keret": 16700000000,
-  "deadline": "2029-12-30",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-5.1.4-26",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "középvállalkozás",
-   "Mikrovállalkozás",
-   "kisvállalkozás"
-  ],
-  "rate": 100,
-  "modified": "2026-07-07T09:28:50.606Z",
-  "live": true,
-  "factors": {
-   "size": 92,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-IKOP_PLUSZ-2.2.0-23",
-  "code": "IKOP_PLUSZ-2.2.0-23",
-  "title": "TEN-T vasúti és regionális intermodális közlekedés fejlesztése a 4 legszegényebb magyarországi régió területein",
-  "cat": "KKV fejlesztés",
-  "amount": "1M Ft – 261.2 Mrd Ft",
-  "keret": 261165382210,
-  "deadline": "2029-12-30",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=IKOP_PLUSZ&code=IKOP_PLUSZ-2.2.0-23",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "egyéb vállalkozás",
-   "vállalkozás"
-  ],
-  "rate": 100,
-  "modified": "2026-07-07T09:28:49.914Z",
-  "live": true,
-  "factors": {
-   "size": 82,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-DIMOP_PLUSZ-1.2.3/A1-24",
-  "code": "DIMOP_PLUSZ-1.2.3/A1-24",
-  "title": "Kombinált keret DIMOP PLUSZ 1.prioritás keretében fejlettebb régióban - technikai felhívás",
-  "cat": "Digitális átalakulás",
-  "amount": "1M Ft – 3.7 Mrd Ft",
-  "keret": 3663554989,
-  "deadline": "2029-12-30",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-1.2.3%2FA1-24",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "vállalkozás"
-  ],
-  "rate": 100,
-  "modified": "2026-07-07T09:28:46.494Z",
-  "live": true,
-  "factors": {
-   "size": 82,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-DIMOP_PLUSZ-1.2.3/B2-24",
-  "code": "DIMOP_PLUSZ-1.2.3/B2-24",
-  "title": "Hitelkeret DIMOP Plusz 1.prioritás keretében kevésbé fejlett régióban - technikai felhívás",
-  "cat": "Digitális átalakulás",
-  "amount": "1M Ft – 5.3 Mrd Ft",
-  "keret": 5289468396,
-  "deadline": "2029-12-30",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-1.2.3%2FB2-24",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "vállalkozás"
-  ],
-  "rate": 100,
-  "modified": "2026-07-07T09:28:51.776Z",
-  "live": true,
-  "factors": {
-   "size": 82,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-IKOP_PLUSZ-2.1.0-23",
-  "code": "IKOP_PLUSZ-2.1.0-23",
-  "title": "TEN-T vasúti és regionális intermodális közlekedés fejlesztése a 4 legszegényebb magyarországi régión kívüli területeken",
-  "cat": "KKV fejlesztés",
-  "amount": "1M Ft – 458.6 Mrd Ft",
-  "keret": 458598867059,
-  "deadline": "2029-12-30",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=IKOP_PLUSZ&code=IKOP_PLUSZ-2.1.0-23",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "egyéb vállalkozás",
-   "vállalkozás"
-  ],
-  "rate": 100,
-  "modified": "2026-07-07T09:28:40.522Z",
-  "live": true,
-  "factors": {
-   "size": 82,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-IKOP_PLUSZ-1.2.0-23",
-  "code": "IKOP_PLUSZ-1.2.0-23",
-  "title": "Tiszta üzemű városi-elővárosi közlekedés erősítése a fővároson és a budapesti agglomeráción kívüli településeken",
-  "cat": "KKV fejlesztés",
-  "amount": "300M Ft – 141.5 Mrd Ft",
-  "keret": 283486991235,
-  "deadline": "2029-12-30",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=IKOP_PLUSZ&code=IKOP_PLUSZ-1.2.0-23",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "egyéb vállalkozás",
-   "vállalkozás"
-  ],
-  "rate": 100,
-  "modified": "2026-07-07T09:28:50.397Z",
-  "live": true,
-  "factors": {
-   "size": 82,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-DIMOP_PLUSZ-1.2.3/A2-24",
-  "code": "DIMOP_PLUSZ-1.2.3/A2-24",
-  "title": "Kombinált keret DIMOP PLUSZ 1.prioritás keretében kevésbé fejlett régióban - technikai felhívás",
-  "cat": "Digitális átalakulás",
-  "amount": "1M Ft – 21.2 Mrd Ft",
-  "keret": 21157873582,
-  "deadline": "2029-12-30",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-1.2.3%2FA2-24",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "vállalkozás"
-  ],
-  "rate": 100,
-  "modified": "2026-07-07T09:28:52.638Z",
-  "live": true,
-  "factors": {
-   "size": 82,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-IKOP_PLUSZ-1.1.0-23",
-  "code": "IKOP_PLUSZ-1.1.0-23",
-  "title": "Tiszta üzemű városi-elővárosi közlekedés erősítése Budapesten és agglomerációs településein",
-  "cat": "KKV fejlesztés",
-  "amount": "1M Ft – 501.6 Mrd Ft",
-  "keret": 501639976703,
-  "deadline": "2029-12-30",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=IKOP_PLUSZ&code=IKOP_PLUSZ-1.1.0-23",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "egyéb vállalkozás",
-   "vállalkozás"
-  ],
-  "rate": 100,
-  "modified": "2026-07-07T09:28:55.343Z",
-  "live": true,
-  "factors": {
-   "size": 82,
    "industry": 85,
    "location": 78,
    "preference": 85
@@ -558,16 +558,16 @@
   }
  },
  {
-  "id": "pg-GINOP_PLUSZ-1.4.7-24",
-  "code": "GINOP_PLUSZ-1.4.7-24",
-  "title": "HVSZ és Közvetítők költségtérítése GINOP PLUSZ 1. prioritás keretében fejlettebb régióban -technikai felhívás",
-  "cat": "KKV fejlesztés",
-  "amount": "max 7.8 Mrd Ft",
-  "keret": 7841294427,
+  "id": "pg-KEHOP_PLUSZ-3.1.11-25",
+  "code": "KEHOP_PLUSZ-3.1.11-25",
+  "title": "Szennyezett területek humán-egészségügyi kockázatainak csökkentése (ERFA)",
+  "cat": "Energiahatékonyság",
+  "amount": "1 Mrd Ft – 6.3 Mrd Ft",
+  "keret": 6290000000,
   "deadline": "2027-12-30",
   "days": 0,
   "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=GINOP_PLUSZ&code=GINOP_PLUSZ-1.4.7-24",
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=KEHOP_PLUSZ&code=KEHOP_PLUSZ-3.1.11-25",
   "source": "palyazat.gov.hu",
   "status": "Aktív",
   "regions": [
@@ -579,10 +579,10 @@
    "Dél-Alföld"
   ],
   "sizeClasses": [
-   "vállalkozás"
+   "egyéb vállalkozás"
   ],
   "rate": 100,
-  "modified": "2026-07-07T09:27:32.680Z",
+  "modified": "2026-07-08T08:11:39.145Z",
   "live": true,
   "factors": {
    "size": 82,
@@ -616,7 +616,7 @@
    "egyéb vállalkozás"
   ],
   "rate": 100,
-  "modified": "2026-07-07T09:27:30.919Z",
+  "modified": "2026-07-08T08:11:38.479Z",
   "live": true,
   "factors": {
    "size": 82,
@@ -650,7 +650,7 @@
    "vállalkozás"
   ],
   "rate": 100,
-  "modified": "2026-07-07T09:27:34.496Z",
+  "modified": "2026-07-08T08:11:41.385Z",
   "live": true,
   "factors": {
    "size": 82,
@@ -660,16 +660,16 @@
   }
  },
  {
-  "id": "pg-KEHOP_PLUSZ-3.1.11-25",
-  "code": "KEHOP_PLUSZ-3.1.11-25",
-  "title": "Szennyezett területek humán-egészségügyi kockázatainak csökkentése (ERFA)",
-  "cat": "Energiahatékonyság",
-  "amount": "1 Mrd Ft – 6.3 Mrd Ft",
-  "keret": 6290000000,
+  "id": "pg-GINOP_PLUSZ-1.4.7-24",
+  "code": "GINOP_PLUSZ-1.4.7-24",
+  "title": "HVSZ és Közvetítők költségtérítése GINOP PLUSZ 1. prioritás keretében fejlettebb régióban -technikai felhívás",
+  "cat": "KKV fejlesztés",
+  "amount": "max 7.8 Mrd Ft",
+  "keret": 7841294427,
   "deadline": "2027-12-30",
   "days": 0,
   "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=KEHOP_PLUSZ&code=KEHOP_PLUSZ-3.1.11-25",
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=GINOP_PLUSZ&code=GINOP_PLUSZ-1.4.7-24",
   "source": "palyazat.gov.hu",
   "status": "Aktív",
   "regions": [
@@ -681,51 +681,13 @@
    "Dél-Alföld"
   ],
   "sizeClasses": [
-   "egyéb vállalkozás"
+   "vállalkozás"
   ],
   "rate": 100,
-  "modified": "2026-07-07T09:28:50.280Z",
+  "modified": "2026-07-08T08:12:39.339Z",
   "live": true,
   "factors": {
    "size": 82,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-MAHOP_PLUSZ-2.1.1-25",
-  "code": "MAHOP_PLUSZ-2.1.1-25",
-  "title": "Akvakultúra beruházás támogatása",
-  "cat": "Mezőgazdaság",
-  "amount": "6M Ft – 400M Ft",
-  "keret": 6318400000,
-  "deadline": "2027-08-30",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=MAHOP_PLUSZ&code=MAHOP_PLUSZ-2.1.1-25",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "középvállalkozás",
-   "egyéb vállalkozás",
-   "Mikrovállalkozás",
-   "kisvállalkozás",
-   "vállalkozás"
-  ],
-  "rate": 60,
-  "modified": "2026-07-07T09:27:32.269Z",
-  "live": true,
-  "factors": {
-   "size": 92,
    "industry": 85,
    "location": 78,
    "preference": 85
@@ -760,7 +722,81 @@
    "vállalkozás"
   ],
   "rate": 50,
-  "modified": "2026-07-07T09:28:50.325Z",
+  "modified": "2026-07-08T08:11:38.012Z",
+  "live": true,
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-MAHOP_PLUSZ-2.1.1-25",
+  "code": "MAHOP_PLUSZ-2.1.1-25",
+  "title": "Akvakultúra beruházás támogatása",
+  "cat": "Mezőgazdaság",
+  "amount": "6M Ft – 400M Ft",
+  "keret": 6318400000,
+  "deadline": "2027-08-30",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=MAHOP_PLUSZ&code=MAHOP_PLUSZ-2.1.1-25",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "középvállalkozás",
+   "egyéb vállalkozás",
+   "Mikrovállalkozás",
+   "kisvállalkozás",
+   "vállalkozás"
+  ],
+  "rate": 60,
+  "modified": "2026-07-08T08:11:37.620Z",
+  "live": true,
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-DIMOP_PLUSZ-1.2.3/A-24",
+  "code": "DIMOP_PLUSZ-1.2.3/A-24",
+  "title": "Mikro-, kis- és középvállalkozások digitalizációjának támogatása egyműveletes kombinált hiteltermék keretében",
+  "cat": "Digitális átalakulás",
+  "amount": "3M Ft – 20M Ft",
+  "keret": 27800000000,
+  "deadline": "2027-06-29",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-1.2.3%2FA-24",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "középvállalkozás",
+   "kisvállalkozás",
+   "mikrovállalkozás természetes személy"
+  ],
+  "rate": 90,
+  "modified": "2026-07-08T08:11:42.485Z",
   "live": true,
   "factors": {
    "size": 92,
@@ -795,46 +831,10 @@
    "kisvállalkozás"
   ],
   "rate": 90,
-  "modified": "2026-07-07T09:27:35.152Z",
+  "modified": "2026-07-08T08:11:42.573Z",
   "live": true,
   "factors": {
    "size": 82,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-DIMOP_PLUSZ-1.2.3/A-24",
-  "code": "DIMOP_PLUSZ-1.2.3/A-24",
-  "title": "Mikro-, kis- és középvállalkozások digitalizációjának támogatása egyműveletes kombinált hiteltermék keretében",
-  "cat": "Digitális átalakulás",
-  "amount": "3M Ft – 20M Ft",
-  "keret": 27800000000,
-  "deadline": "2027-06-29",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-1.2.3%2FA-24",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "középvállalkozás",
-   "kisvállalkozás",
-   "mikrovállalkozás természetes személy"
-  ],
-  "rate": 90,
-  "modified": "2026-07-07T09:28:53.995Z",
-  "live": true,
-  "factors": {
-   "size": 92,
    "industry": 85,
    "location": 78,
    "preference": 85
@@ -868,7 +868,7 @@
    "kisvállalkozás"
   ],
   "rate": 90,
-  "modified": "2026-07-07T09:28:49.318Z",
+  "modified": "2026-07-08T08:11:38.064Z",
   "live": true,
   "factors": {
    "size": 92,
@@ -904,7 +904,7 @@
    "kisvállalkozás"
   ],
   "rate": 85,
-  "modified": "2026-07-07T09:28:48.651Z",
+  "modified": "2026-07-08T08:11:37.464Z",
   "live": true,
   "factors": {
    "size": 92,
@@ -914,16 +914,53 @@
   }
  },
  {
-  "id": "pg-2025-3.1.1-ED",
-  "code": "2025-3.1.1-ED",
-  "title": "KFI tv.szerinti (közfinanszírozású) támogatási kérelem",
-  "cat": "KKV fejlesztés",
-  "amount": "max 10 Mrd Ft",
-  "keret": 17500000000,
+  "id": "pg-MAHOP_PLUSZ-1.3.1-25",
+  "code": "MAHOP_PLUSZ-1.3.1-25",
+  "title": "A fenntartható természetesvízi halgazdálkodás támogatása",
+  "cat": "Környezetvédelem",
+  "amount": "25M Ft – 600M Ft",
+  "keret": 2843000000,
   "deadline": "2026-12-30",
   "days": 0,
   "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=2025&code=2025-3.1.1-ED",
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=MAHOP_PLUSZ&code=MAHOP_PLUSZ-1.3.1-25",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "középvállalkozás",
+   "egyéb vállalkozás",
+   "Mikrovállalkozás",
+   "kisvállalkozás"
+  ],
+  "rate": 100,
+  "modified": "2026-07-08T08:11:38.357Z",
+  "live": true,
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-GINOP_PLUSZ-1.4.3-24",
+  "code": "GINOP_PLUSZ-1.4.3-24",
+  "title": "KKV Technológia Plusz Hitelprogram",
+  "cat": "Kutatás-fejlesztés",
+  "amount": "5M Ft – 150M Ft",
+  "keret": 155540000000,
+  "deadline": "2026-12-30",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=GINOP_PLUSZ&code=GINOP_PLUSZ-1.4.3-24",
   "source": "palyazat.gov.hu",
   "status": "Aktív",
   "regions": [
@@ -941,12 +978,12 @@
    "mikrovállalkozás természetes személy",
    "vállalkozás"
   ],
-  "rate": 100,
-  "modified": "2026-07-07T09:27:32.278Z",
+  "rate": 90,
+  "modified": "2026-07-08T08:11:43.133Z",
   "live": true,
   "factors": {
    "size": 92,
-   "industry": 72,
+   "industry": 85,
    "location": 78,
    "preference": 85
   }
@@ -980,7 +1017,7 @@
    "vállalkozás"
   ],
   "rate": 90,
-  "modified": "2026-07-07T09:27:35.342Z",
+  "modified": "2026-07-08T08:11:41.943Z",
   "live": true,
   "factors": {
    "size": 92,
@@ -1019,7 +1056,7 @@
    "vállalkozás"
   ],
   "rate": 90,
-  "modified": "2026-07-07T09:27:32.136Z",
+  "modified": "2026-07-08T08:11:37.487Z",
   "live": true,
   "factors": {
    "size": 92,
@@ -1029,16 +1066,16 @@
   }
  },
  {
-  "id": "pg-GINOP_PLUSZ-1.4.3-24",
-  "code": "GINOP_PLUSZ-1.4.3-24",
-  "title": "KKV Technológia Plusz Hitelprogram",
-  "cat": "Kutatás-fejlesztés",
-  "amount": "5M Ft – 150M Ft",
-  "keret": 155540000000,
+  "id": "pg-2025-3.1.1-ED",
+  "code": "2025-3.1.1-ED",
+  "title": "KFI tv.szerinti (közfinanszírozású) támogatási kérelem",
+  "cat": "KKV fejlesztés",
+  "amount": "max 10 Mrd Ft",
+  "keret": 17500000000,
   "deadline": "2026-12-30",
   "days": 0,
   "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=GINOP_PLUSZ&code=GINOP_PLUSZ-1.4.3-24",
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=2025&code=2025-3.1.1-ED",
   "source": "palyazat.gov.hu",
   "status": "Aktív",
   "regions": [
@@ -1056,49 +1093,12 @@
    "mikrovállalkozás természetes személy",
    "vállalkozás"
   ],
-  "rate": 90,
-  "modified": "2026-07-07T09:28:54.806Z",
-  "live": true,
-  "factors": {
-   "size": 92,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-MAHOP_PLUSZ-1.3.1-25",
-  "code": "MAHOP_PLUSZ-1.3.1-25",
-  "title": "A fenntartható természetesvízi halgazdálkodás támogatása",
-  "cat": "Környezetvédelem",
-  "amount": "25M Ft – 600M Ft",
-  "keret": 2843000000,
-  "deadline": "2026-12-30",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=MAHOP_PLUSZ&code=MAHOP_PLUSZ-1.3.1-25",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "középvállalkozás",
-   "egyéb vállalkozás",
-   "Mikrovállalkozás",
-   "kisvállalkozás"
-  ],
   "rate": 100,
-  "modified": "2026-07-07T09:28:47.995Z",
+  "modified": "2026-07-08T08:11:38.918Z",
   "live": true,
   "factors": {
    "size": 92,
-   "industry": 85,
+   "industry": 72,
    "location": 78,
    "preference": 85
   }
@@ -1132,7 +1132,83 @@
    "vállalkozás"
   ],
   "rate": 90,
-  "modified": "2026-07-07T09:28:48.822Z",
+  "modified": "2026-07-08T08:11:37.429Z",
+  "live": true,
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-KEHOP_PLUSZ-4.2.3-25",
+  "code": "KEHOP_PLUSZ-4.2.3-25",
+  "title": "Geotermikus alapú villamosenergia-termelés",
+  "cat": "Energiahatékonyság",
+  "amount": "1 Mrd Ft – 12 Mrd Ft",
+  "keret": 12000000000,
+  "deadline": "2026-10-29",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=KEHOP_PLUSZ&code=KEHOP_PLUSZ-4.2.3-25",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "középvállalkozás",
+   "egyéb vállalkozás",
+   "Mikrovállalkozás",
+   "kisvállalkozás",
+   "vállalkozás"
+  ],
+  "rate": 45,
+  "modified": "2026-07-08T08:11:38.511Z",
+  "live": true,
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-KEHOP_PLUSZ-4.2.4-25",
+  "code": "KEHOP_PLUSZ-4.2.4-25",
+  "title": "Geotermikus fúrási kockázatok csökkentése",
+  "cat": "Energiahatékonyság",
+  "amount": "40M Ft – 1 Mrd Ft",
+  "keret": 10000000000,
+  "deadline": "2026-10-29",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=KEHOP_PLUSZ&code=KEHOP_PLUSZ-4.2.4-25",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "középvállalkozás",
+   "egyéb vállalkozás",
+   "Mikrovállalkozás",
+   "kisvállalkozás",
+   "vállalkozás"
+  ],
+  "rate": 50,
+  "modified": "2026-07-08T08:11:37.148Z",
   "live": true,
   "factors": {
    "size": 92,
@@ -1171,83 +1247,7 @@
    "vállalkozás"
   ],
   "rate": 55,
-  "modified": "2026-07-07T09:27:31.578Z",
-  "live": true,
-  "factors": {
-   "size": 92,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-KEHOP_PLUSZ-4.2.3-25",
-  "code": "KEHOP_PLUSZ-4.2.3-25",
-  "title": "Geotermikus alapú villamosenergia-termelés",
-  "cat": "Energiahatékonyság",
-  "amount": "1 Mrd Ft – 12 Mrd Ft",
-  "keret": 12000000000,
-  "deadline": "2026-10-29",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=KEHOP_PLUSZ&code=KEHOP_PLUSZ-4.2.3-25",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "középvállalkozás",
-   "egyéb vállalkozás",
-   "Mikrovállalkozás",
-   "kisvállalkozás",
-   "vállalkozás"
-  ],
-  "rate": 45,
-  "modified": "2026-07-07T09:28:49.778Z",
-  "live": true,
-  "factors": {
-   "size": 92,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-KEHOP_PLUSZ-4.2.4-25",
-  "code": "KEHOP_PLUSZ-4.2.4-25",
-  "title": "Geotermikus fúrási kockázatok csökkentése",
-  "cat": "Energiahatékonyság",
-  "amount": "40M Ft – 1 Mrd Ft",
-  "keret": 10000000000,
-  "deadline": "2026-10-29",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=KEHOP_PLUSZ&code=KEHOP_PLUSZ-4.2.4-25",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "középvállalkozás",
-   "egyéb vállalkozás",
-   "Mikrovállalkozás",
-   "kisvállalkozás",
-   "vállalkozás"
-  ],
-  "rate": 50,
-  "modified": "2026-07-07T09:28:48.240Z",
+  "modified": "2026-07-08T08:11:37.947Z",
   "live": true,
   "factors": {
    "size": 92,
@@ -1285,43 +1285,7 @@
    "vállalkozás"
   ],
   "rate": 100,
-  "modified": "2026-07-07T09:27:31.085Z",
-  "live": true,
-  "factors": {
-   "size": 92,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-KEHOP_PLUSZ-2.3.22-26",
-  "code": "KEHOP_PLUSZ-2.3.22-26",
-  "title": "Vállalati fenntarthatóságot és körforgásos működést elősegítő demonstrációs mintaprojektek támogatása",
-  "cat": "Energiahatékonyság",
-  "amount": "30M Ft – 110M Ft",
-  "keret": 6900000000,
-  "deadline": "2026-08-30",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=KEHOP_PLUSZ&code=KEHOP_PLUSZ-2.3.22-26",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "középvállalkozás",
-   "Mikrovállalkozás",
-   "kisvállalkozás"
-  ],
-  "rate": 70,
-  "modified": "2026-07-07T09:27:31.690Z",
+  "modified": "2026-07-08T08:11:37.562Z",
   "live": true,
   "factors": {
    "size": 92,
@@ -1355,7 +1319,77 @@
    "vállalkozás"
   ],
   "rate": 95,
-  "modified": "2026-07-07T09:28:51.740Z",
+  "modified": "2026-07-08T08:11:40.089Z",
+  "live": true,
+  "factors": {
+   "size": 82,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-KEHOP_PLUSZ-2.3.22-26",
+  "code": "KEHOP_PLUSZ-2.3.22-26",
+  "title": "Vállalati fenntarthatóságot és körforgásos működést elősegítő demonstrációs mintaprojektek támogatása",
+  "cat": "Energiahatékonyság",
+  "amount": "30M Ft – 110M Ft",
+  "keret": 6900000000,
+  "deadline": "2026-08-30",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=KEHOP_PLUSZ&code=KEHOP_PLUSZ-2.3.22-26",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "középvállalkozás",
+   "Mikrovállalkozás",
+   "kisvállalkozás"
+  ],
+  "rate": 70,
+  "modified": "2026-07-08T08:11:38.112Z",
+  "live": true,
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-RRF-GS-6.7.1-26",
+  "code": "RRF-GS-6.7.1-26",
+  "title": "Az okos villamosenergia-fogyasztásmérők beszerzésének és telepítésének támogatása",
+  "cat": "Energiahatékonyság",
+  "amount": "max 18 Mrd Ft",
+  "keret": 26649750000,
+  "deadline": "2026-07-14",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=RRF-GS&code=RRF-GS-6.7.1-26",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "regions": [
+   "Nyugat-Dunántúl",
+   "Észak-Magyarország",
+   "Közép-Dunántúl",
+   "Észak-Alföld",
+   "Dél-Dunántúl",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "vállalkozás"
+  ],
+  "rate": 100,
+  "modified": "2026-07-08T08:11:42.969Z",
   "live": true,
   "factors": {
    "size": 82,
@@ -1389,41 +1423,7 @@
    "vállalkozás"
   ],
   "rate": 90,
-  "modified": "2026-07-07T09:28:44.712Z",
-  "live": true,
-  "factors": {
-   "size": 82,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-RRF-GS-6.7.1-26",
-  "code": "RRF-GS-6.7.1-26",
-  "title": "Az okos villamosenergia-fogyasztásmérők beszerzésének és telepítésének támogatása",
-  "cat": "Energiahatékonyság",
-  "amount": "max 18 Mrd Ft",
-  "keret": 26649750000,
-  "deadline": "2026-07-14",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=RRF-GS&code=RRF-GS-6.7.1-26",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "regions": [
-   "Nyugat-Dunántúl",
-   "Észak-Magyarország",
-   "Közép-Dunántúl",
-   "Észak-Alföld",
-   "Dél-Dunántúl",
-   "Dél-Alföld"
-  ],
-  "sizeClasses": [
-   "vállalkozás"
-  ],
-  "rate": 100,
-  "modified": "2026-07-07T09:28:55.478Z",
+  "modified": "2026-07-08T08:11:33.501Z",
   "live": true,
   "factors": {
    "size": 82,
@@ -1451,7 +1451,7 @@
    "preference": 80
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-010",
@@ -1472,7 +1472,7 @@
    "preference": 75
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-014",
@@ -1493,7 +1493,7 @@
    "preference": 80
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-022",
@@ -1514,7 +1514,7 @@
    "preference": 40
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-065",
@@ -1535,7 +1535,7 @@
    "preference": 75
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-066",
@@ -1556,7 +1556,7 @@
    "preference": 75
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-103",
@@ -1577,7 +1577,7 @@
    "preference": 50
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-105",
@@ -1598,7 +1598,7 @@
    "preference": 70
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-128",
@@ -1619,7 +1619,7 @@
    "preference": 70
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-129",
@@ -1640,7 +1640,7 @@
    "preference": 75
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-130",
@@ -1661,7 +1661,7 @@
    "preference": 80
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-131",
@@ -1682,7 +1682,7 @@
    "preference": 50
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-132",
@@ -1703,7 +1703,7 @@
    "preference": 55
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-133",
@@ -1724,7 +1724,7 @@
    "preference": 50
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-138",
@@ -1745,7 +1745,7 @@
    "preference": 70
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-149",
@@ -1766,7 +1766,7 @@
    "preference": 35
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-155",
@@ -1787,7 +1787,7 @@
    "preference": 75
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-160",
@@ -1808,7 +1808,7 @@
    "preference": 65
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-161",
@@ -1829,7 +1829,7 @@
    "preference": 85
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-162",
@@ -1850,7 +1850,7 @@
    "preference": 70
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-166",
@@ -1871,7 +1871,7 @@
    "preference": 55
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-194",
@@ -1892,7 +1892,7 @@
    "preference": 85
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-196",
@@ -1913,7 +1913,7 @@
    "preference": 85
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-197",
@@ -1934,7 +1934,7 @@
    "preference": 80
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-212",
@@ -1955,7 +1955,7 @@
    "preference": 90
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-213",
@@ -1976,7 +1976,7 @@
    "preference": 90
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-221",
@@ -1997,7 +1997,7 @@
    "preference": 90
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-222",
@@ -2018,7 +2018,7 @@
    "preference": 95
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-227",
@@ -2039,7 +2039,7 @@
    "preference": 90
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-230",
@@ -2060,7 +2060,7 @@
    "preference": 80
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-238",
@@ -2081,7 +2081,49 @@
    "preference": 85
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
+ },
+ {
+  "id": "G-240",
+  "title": "MEKH Hőszivattyú Vállalkozói Beruházás — fűtéskorszerűsítés KKV-knak",
+  "source": "mekh.hu",
+  "cat": "Energiahatékonyság",
+  "amount": "2-25M HUF",
+  "deadline": "2026-07-31",
+  "days": 0,
+  "score": 0,
+  "verdict": "REVIEW",
+  "url": "https://www.mekh.hu",
+  "factors": {
+   "size": 80,
+   "industry": 85,
+   "location": 80,
+   "deadline": 80,
+   "preference": 85
+  },
+  "live": false,
+  "verifiedAt": "2026-07-08"
+ },
+ {
+  "id": "G-241",
+  "title": "Energiaaudit Kötelező Program — MEKH KKV audit támogatás (EED 8. cikk)",
+  "source": "mekh.hu",
+  "cat": "Energiahatékonyság",
+  "amount": "200 000-1,5M HUF",
+  "deadline": "2026-12-05",
+  "days": 0,
+  "score": 0,
+  "verdict": "REVIEW",
+  "url": "https://www.mekh.hu",
+  "factors": {
+   "size": 90,
+   "industry": 85,
+   "location": 90,
+   "deadline": 90,
+   "preference": 85
+  },
+  "live": false,
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-249",
@@ -2102,7 +2144,7 @@
    "preference": 80
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-250",
@@ -2123,7 +2165,7 @@
    "preference": 85
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-252",
@@ -2144,7 +2186,7 @@
    "preference": 85
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-253",
@@ -2165,7 +2207,7 @@
    "preference": 80
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-254",
@@ -2186,7 +2228,7 @@
    "preference": 80
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-257",
@@ -2207,7 +2249,7 @@
    "preference": 80
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  },
  {
   "id": "G-273",
@@ -2228,6 +2270,6 @@
    "preference": 80
   },
   "live": false,
-  "verifiedAt": "2026-07-07"
+  "verifiedAt": "2026-07-08"
  }
 ]
