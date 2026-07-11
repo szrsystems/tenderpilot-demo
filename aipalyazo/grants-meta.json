@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-10T09:23:21.802Z",
+ "updatedAt": "2026-07-11T07:44:36.124Z",
  "counts": {
   "total": 79,
   "api": 41,
@@ -7,19 +7,24 @@
  },
  "changes": [
   {
-   "id": "pg-2025-1.1.1-BAY_VOUCHER",
-   "type": "new",
-   "title": "KKV-k számára nyújtandó K+F+I szolgáltatások"
-  },
-  {
    "id": "G-160",
-   "type": "removed",
+   "type": "new",
    "title": "EXIM Exportcélú Beruházási Hitel — gyártókapacitás bővítés"
   },
   {
    "id": "G-162",
-   "type": "removed",
+   "type": "new",
    "title": "EXIM Forgóeszköz-hitelprogram exportőröknek — kedvezményes kamattal"
+  },
+  {
+   "id": "G-240",
+   "type": "removed",
+   "title": "MEKH Hőszivattyú Vállalkozói Beruházás — fűtéskorszerűsítés KKV-knak"
+  },
+  {
+   "id": "G-241",
+   "type": "removed",
+   "title": "Energiaaudit Kötelező Program — MEKH KKV audit támogatás (EED 8. cikk)"
   }
  ]
 }
