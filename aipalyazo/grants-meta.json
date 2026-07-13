@@ -1,9 +1,20 @@
 {
- "updatedAt": "2026-07-12T08:06:16.684Z",
+ "updatedAt": "2026-07-13T08:55:56.621Z",
  "counts": {
-  "total": 79,
+  "total": 81,
   "api": 41,
-  "curated": 38
+  "curated": 40
  },
- "changes": []
+ "changes": [
+  {
+   "id": "G-240",
+   "type": "new",
+   "title": "MEKH Hőszivattyú Vállalkozói Beruházás — fűtéskorszerűsítés KKV-knak"
+  },
+  {
+   "id": "G-241",
+   "type": "new",
+   "title": "Energiaaudit Kötelező Program — MEKH KKV audit támogatás (EED 8. cikk)"
+  }
+ ]
 }
