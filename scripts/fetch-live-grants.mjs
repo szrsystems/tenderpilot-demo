@@ -162,15 +162,26 @@ async function main() {
 
   // ---- 2) Curated survivors (hazai programs the API doesn't cover) ------
   let curated = [];
+  let droppedByRegistry = 0;
   if (existsSync(CURATED)) {
     const all = JSON.parse(readFileSync(CURATED, 'utf8'));
+    // The official registry is authoritative for Széchenyi Terv Plusz calls:
+    // verified 2026-07-06 that the curated set's GINOP/DIMOP/… entries are
+    // either closed (Lezárva) or carry codes the registry has never heard of
+    // (synthetic demo leftovers) — so ALL coded curated entries are dropped;
+    // genuinely open ones arrive via the API feed with live keret anyway.
     const candidates = all.filter((g) => {
       if (!g.deadline || g.deadline < today) return false;
       let host = ''; try { host = new URL(g.url).hostname.replace(/^www\./, ''); } catch { return false; }
       if (!OFFICIAL_DOMAINS.some((d) => host.includes(d))) return false;
-      // skip if the API feed already covers this call (match by code in title)
-      const codeM = (g.title || '').match(/[A-ZÁÉÍÓÖŐÚÜŰ]+[_ ]?(?:PLUSZ|Plusz)?[- ][0-9][.0-9-]+[0-9]/);
-      if (codeM && apiGrants.some((a) => a.code.replace(/[_ ]/g, '') === codeM[0].replace(/[_ ]/g, ''))) return false;
+      const codeM = (g.title || '').match(/(?:GINOP|DIMOP|KEHOP|EFOP|TOP|MAHOP|IKOP|VINOP)\s*Plusz?\s*[-–]?\s*\d[\d.]*(?:-\d+)?/i);
+      if (codeM) {
+        // Széchenyi-coded call: if Aktív, the API feed already carries it
+        // (with live keret); if Lezárva/Felfüggesztve/unknown code, it is not
+        // verifiably open. Either way the curated copy goes.
+        droppedByRegistry++;
+        return false;
+      }
       return true;
     }).map((g) => ({
       ...g,
