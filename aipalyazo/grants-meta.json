@@ -1,30 +1,45 @@
 {
- "updatedAt": "2026-07-15T07:55:39.570Z",
+ "updatedAt": "2026-07-16T08:01:04.248Z",
  "counts": {
-  "total": 74,
+  "total": 77,
   "api": 39,
-  "curated": 35
+  "curated": 38
  },
  "changes": [
   {
-   "id": "G-240",
+   "id": "G-003",
    "type": "new",
+   "title": "GINOP Plusz 2.1.3-24 — KKV-k innovációs képességének támogatása"
+  },
+  {
+   "id": "G-010",
+   "type": "new",
+   "title": "NKFI ADVANCED_25 — Alkalmazott kutatási pályázat"
+  },
+  {
+   "id": "G-065",
+   "type": "new",
+   "title": "Horizont Európa 2026-2027 — 700+ felhívás"
+  },
+  {
+   "id": "G-066",
+   "type": "new",
+   "title": "NKFI Alap 2026 — 120 Mrd Ft kutatás és innováció"
+  },
+  {
+   "id": "G-212",
+   "type": "new",
+   "title": "Innovációs Utalvány (Mikro) — Tanácsadási és technológiai szolgáltatások"
+  },
+  {
+   "id": "G-240",
+   "type": "removed",
    "title": "MEKH Hőszivattyú Vállalkozói Beruházás — fűtéskorszerűsítés KKV-knak"
   },
   {
    "id": "G-241",
-   "type": "new",
+   "type": "removed",
    "title": "Energiaaudit Kötelező Program — MEKH KKV audit támogatás (EED 8. cikk)"
-  },
-  {
-   "id": "pg-RRF-GS-6.6.1-26",
-   "type": "removed",
-   "title": "Rugalmas és biztonságos villamosenergia-hálózat biztosítása az időjárásfüggő megújuló energiaforrások integrálása érdekében"
-  },
-  {
-   "id": "pg-RRF-GS-6.7.1-26",
-   "type": "removed",
-   "title": "Az okos villamosenergia-fogyasztásmérők beszerzésének és telepítésének támogatása"
   }
  ]
 }
