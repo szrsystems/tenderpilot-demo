@@ -1684,6 +1684,14 @@ function keretBadge(g) {
     if (k.low)  return '<span class="badge badge-soon" title="A keret nagy része már lekötött — hivatalos adat, naponta frissítve">Keret fogyóban</span>';
     return '';
 }
+// Compact per-card keret line: total keret + how much is still free.
+function keretLine(g) {
+    const k = keretState(g);
+    if (!k) return '';
+    const col = k.full ? 'var(--red-600)' : k.low ? 'var(--amber-600)' : 'var(--green-700)';
+    const txt = k.full ? 'Keret lekötve — 0 Ft szabad' : 'Szabad keret: ' + fmtFt(k.remaining);
+    return `<div style="font-size:11.5px;font-weight:600;color:${col};margin-top:3px;" title="Teljes keret: ${fmtFt(g.keret)} · hivatalos adat, naponta frissítve">${txt}<span style="color:var(--gray-400);font-weight:500;"> / ${fmtFt(g.keret)}</span></div>`;
+}
 function keretDetailBlock(g) {
     const k = keretState(g);
     if (!k) return '';
@@ -1968,6 +1976,7 @@ function renderReco(g) {
         <div>
             <div class="reco-card-amount-label">Támogatás</div>
             <div class="reco-card-amount">${g.amount}</div>
+            ${keretLine(g)}
         </div>
         <div class="badge-row">
             ${isNew(g) ? '<span class="badge badge-new">Új</span>' : ''}
@@ -2006,6 +2015,7 @@ function renderCard(g) {
         </div>
         <div class="grant-card-right">
             <div class="grant-card-amount">${g.amount}</div>
+            ${keretLine(g)}
             <div class="grant-card-actions">
                 <span class="verdict ${vClass(g.verdict)} pro-only">${g.score}</span>
                 <button class="bookmark-btn ${bookmarks.has(g.id) ? 'saved' : ''}" data-bm="${g.id}" onclick="toggleBookmark('${g.id}', event)" aria-label="Mentés">${BOOKMARK_SVG}</button>
