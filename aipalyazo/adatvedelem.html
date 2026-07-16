@@ -38,7 +38,12 @@
         .note { background: var(--amber-50); border-left: 3px solid var(--amber-600); padding: 14px 18px; border-radius: 4px; font-size: 13px; color: var(--gray-700); margin: 24px 0; line-height: 1.55; }
         .note b { color: var(--gray-900); }
         table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
-        th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+        th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--gray-200); vertical-align: top; word-break: break-word; }
+        /* Phone: wide processor tables scroll inside themselves, page never scrolls sideways */
+        @media (max-width: 640px) {
+            table { display: block; overflow-x: auto; }
+            th, td { padding: 8px 10px; }
+        }
         th { background: var(--gray-50); font-weight: 700; font-size: 12px; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.4px; }
         footer { border-top: 1px solid var(--gray-200); padding: 24px; text-align: center; font-size: 12px; color: var(--gray-400); }
         footer a { color: var(--gray-500); margin: 0 8px; text-decoration: none; }

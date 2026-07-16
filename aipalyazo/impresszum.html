@@ -31,7 +31,8 @@
         h2 { font-size: 18px; font-weight: 700; margin-top: 32px; margin-bottom: 12px; }
         p { font-size: 14px; color: var(--gray-700); margin-bottom: 12px; }
         table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 14px; }
-        th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+        th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--gray-200); vertical-align: top; word-break: break-word; }
+        @media (max-width: 640px) { th, td { padding: 8px 10px; } }
         th { width: 35%; color: var(--gray-500); font-weight: 600; font-size: 13px; }
         .note { background: var(--amber-50); border-left: 3px solid var(--amber-600); padding: 14px 18px; border-radius: 4px; font-size: 13px; color: var(--gray-700); margin: 24px 0; }
         .note b { color: var(--gray-900); }

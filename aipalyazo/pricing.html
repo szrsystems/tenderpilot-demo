@@ -63,6 +63,12 @@
         /* PRICING GRID */
         .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto; }
         @media (max-width: 920px) { .pricing-grid { grid-template-columns: 1fr; max-width: 480px; } }
+        @media (max-width: 640px) {
+            .nav-inner { padding: 0 16px; }
+            .nav-links { gap: 12px; }
+            /* Phone: only Belépés + the CTA fit comfortably */
+            .nav-links a:not(.nav-cta):not([href="login.html"]) { display: none; }
+        }
 
         .price-card {
             background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-xl);

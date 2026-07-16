@@ -650,7 +650,14 @@
         .signup-nudge-actions { display: flex; gap: 10px; flex-shrink: 0; }
         @media (max-width: 600px) {
             .signup-nudge-actions { width: 100%; }
-            .signup-nudge-actions .tier-cta-btn { flex: 1 1 0; min-width: 0; }
+            .signup-nudge-actions .tier-cta-btn { flex: 1 1 0; min-width: 0; padding: 10px 10px; font-size: 13px; }
+            /* Compact floating bar: one line of text + button, minimal height */
+            .floating-cta { padding: 10px 12px; gap: 10px; flex-wrap: nowrap; align-items: center; }
+            .floating-cta-text { font-size: 12px; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+            .floating-cta-link { padding: 9px 12px; font-size: 12px; white-space: nowrap; }
+            /* Bigger tap targets for the app chrome */
+            .hamburger { padding: 10px; }
+            .bookmark-btn { min-width: 40px; min-height: 40px; }
         }
     </style>
 </head>

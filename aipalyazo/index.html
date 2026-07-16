@@ -135,7 +135,11 @@
             .features-grid { grid-template-columns: 1fr; }
             .steps-grid { grid-template-columns: repeat(2, 1fr); }
             .pricing-grid { grid-template-columns: 1fr; }
-            .nav-links a:not(.nav-cta) { display: none; }
+            /* Phone: both nav actions stay visible — just tighter */
+            .nav-inner { padding: 0 16px; }
+            .nav-links { gap: 14px; }
+            .nav-links a { font-size: 13px; white-space: nowrap; }
+            .nav-cta { padding: 8px 14px; }
             .footer-inner { flex-direction: column; gap: 8px; }
         }
     </style>
