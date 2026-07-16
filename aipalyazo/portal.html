@@ -1407,6 +1407,10 @@ function prepGrants() {
         f.deadline = g.days <= 7 ? 35 : g.days <= 14 ? 50 : g.days <= 30 ? 65
                    : g.days <= 60 ? 80 : g.days <= 120 ? 90 : 95;
         g.score = Math.round((f.size*25 + f.industry*25 + f.location*20 + f.deadline*15 + f.preference*15) / 100 * 10) / 10;
+        // Fully committed keret (official data) → much less actionable, demote.
+        if (g.keret > 0 && typeof g.remaining === 'number' && g.remaining <= 0) {
+            g.score = Math.max(25, Math.round((g.score - 15) * 10) / 10);
+        }
         g.verdict = g.score >= 80 ? 'APPLY' : g.score >= 60 ? 'REVIEW' : 'SKIP';
     });
     // Auto-hide expired grants: keep them out of G so all stats, filters and
@@ -1653,6 +1657,40 @@ function urgencyBadge(days) {
 }
 
 function isNew(g) { return g.days > 183; } // > 6 months
+
+/* ===== Live keret (budget) monitoring — data from the official API, daily ===== */
+function fmtFt(n) {
+    if (!n && n !== 0) return '';
+    if (n >= 1e9) return (Math.round(n / 1e8) / 10).toLocaleString('hu-HU') + ' Mrd Ft';
+    if (n >= 1e6) return Math.round(n / 1e6).toLocaleString('hu-HU') + ' M Ft';
+    return Math.round(n / 1e3).toLocaleString('hu-HU') + ' E Ft';
+}
+function keretState(g) {
+    if (!g || !g.keret || typeof g.remaining !== 'number') return null;
+    const used = g.keret > 0 ? Math.min(1, (g.requested || 0) / g.keret) : 0;
+    return { used, remaining: g.remaining, full: g.remaining <= 0, low: g.remaining > 0 && used >= 0.8 };
+}
+function keretBadge(g) {
+    const k = keretState(g);
+    if (!k) return '';
+    if (k.full) return '<span class="badge badge-urgent" title="A teljes keretösszegre beérkezett már igény — hivatalos adat, naponta frissítve">Keret lekötve</span>';
+    if (k.low)  return '<span class="badge badge-soon" title="A keret nagy része már lekötött — hivatalos adat, naponta frissítve">Keret fogyóban</span>';
+    return '';
+}
+function keretDetailBlock(g) {
+    const k = keretState(g);
+    if (!k) return '';
+    const pct = Math.round(k.used * 100);
+    const col = k.full ? 'var(--red-600)' : k.low ? 'var(--amber-600)' : 'var(--green-500)';
+    return `<div class="detail-section">
+        <h3>Keret-figyelés <span style="font-weight:500;font-size:12px;color:var(--gray-400);">— hivatalos adat, naponta frissítve</span></h3>
+        <div class="detail-row"><span class="label">Teljes keret</span><span class="value">${fmtFt(g.keret)}</span></div>
+        <div class="detail-row"><span class="label">Már igényelt</span><span class="value">${fmtFt(g.requested || 0)} (${pct}%)</span></div>
+        <div class="detail-row"><span class="label">Szabad keret</span><span class="value" style="font-weight:700;color:${k.full ? 'var(--red-600)' : 'var(--green-700)'};">${k.full ? 'lekötve — 0 Ft' : fmtFt(k.remaining)}</span></div>
+        <div class="bar-bg" style="margin-top:8px;"><div class="bar-fill" style="width:${pct}%;background:${col};"></div></div>
+        ${k.full ? '<div class="fund-note" style="margin-top:8px;">A teljes keretre beérkezett már támogatási igény. Beadás előtt ellenőrizze a hivatalos oldalon, hogy várható-e keretemelés vagy szakaszos elbírálás.</div>' : ''}
+    </div>`;
+}
 
 // Deterministic colored logo from source
 function logoColor(src) {
@@ -1927,6 +1965,7 @@ function renderReco(g) {
         <div class="badge-row">
             ${isNew(g) ? '<span class="badge badge-new">Új</span>' : ''}
             ${urgencyBadge(g.days)}
+            ${keretBadge(g)}
             <span class="badge badge-cat">${g.cat}</span>
         </div>
         <div class="progress-window">
@@ -1955,6 +1994,7 @@ function renderCard(g) {
                 <span class="badge badge-cat">${g.cat}</span>
                 ${newBadge}
                 ${urgBadge}
+                ${keretBadge(g)}
             </div>
         </div>
         <div class="grant-card-right">
@@ -2616,6 +2656,7 @@ function showDetail(id) {
             <div class="detail-row"><span class="label">Összeg</span><span class="value">${g.amount}</span></div>
             <div class="detail-row"><span class="label">Határidő</span><span class="value" style="color: ${g.days < 30 ? 'var(--red-600)' : 'inherit'};">${g.deadline} (${g.days} nap)</span></div>
         </div>
+        ${keretDetailBlock(g)}
         ${scoringSection}
         <div class="detail-section">
             <h3>Mire fordíthatja ezt a támogatást?</h3>

@@ -112,6 +112,10 @@ function mapTender(t) {
     url: `https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=${encodeURIComponent(t.operationalProgram || '')}&code=${encodeURIComponent(t.code)}`,
     source: 'palyazat.gov.hu',
     status: t.status,
+    // Live budget monitoring: the API publishes both the total keret and the
+    // already-requested sum → remaining budget, refreshed by the daily cron.
+    requested: t.sumRequestedSupportAmount || 0,
+    remaining: Math.max(0, (t.sumAvailableSupportAmount || 0) - (t.sumRequestedSupportAmount || 0)),
     regions: nationwide ? [] : regions, // [] = országos
     sizeClasses,
     rate: t.rateOfSupport || '',
@@ -194,6 +198,7 @@ async function main() {
       if (!p) { changes.push({ id: g.id, type: 'new', title: g.title }); continue; }
       if (p.deadline !== g.deadline) changes.push({ id: g.id, type: 'deadline', from: p.deadline, to: g.deadline, title: g.title });
       if ((p.keret || 0) !== (g.keret || 0)) changes.push({ id: g.id, type: 'keret', from: p.keret, to: g.keret, title: g.title });
+      if ((p.remaining ?? -1) !== (g.remaining ?? -1)) changes.push({ id: g.id, type: 'szabad-keret', from: p.remaining, to: g.remaining, title: g.title });
     }
     for (const id of Object.keys(prev)) if (!grants.some((g) => g.id === id)) changes.push({ id, type: 'removed', title: prev[id].title });
   }
