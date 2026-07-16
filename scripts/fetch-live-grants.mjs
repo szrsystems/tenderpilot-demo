@@ -109,6 +109,9 @@ function mapTender(t) {
     keret: t.sumAvailableSupportAmount || 0,
     deadline,
     days: 0, score: 0, // recomputed client-side
+    // Canonical detail page (verified after mapping; falls back to this
+    // redirect link when the call has no detail page yet):
+    // /programok/szechenyi-terv-plusz/<op>/<code-slug>/alapadatok
     url: `https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=${encodeURIComponent(t.operationalProgram || '')}&code=${encodeURIComponent(t.code)}`,
     source: 'palyazat.gov.hu',
     status: t.status,
@@ -159,6 +162,22 @@ async function main() {
     .filter((t) => (t.beneficiaries || []).some((b) => BUSINESS_BENEF.includes(b)))
     .map(mapTender);
   console.log(`API: ${apiGrants.length} open business calls`);
+
+  // Upgrade to canonical alapadatok deep links where they exist — the same
+  // page the government site shows (keret %, dates, feltételek). Slug rule:
+  // GINOP_PLUSZ-1.4.6-24 → ginop-plusz-146-24 (lowercase, dots/slashes out).
+  let canonical = 0;
+  for (let i = 0; i < apiGrants.length; i += 10) {
+    await Promise.all(apiGrants.slice(i, i + 10).map(async (g) => {
+      const op = (g.url.match(/op=([A-Z_%-]+)/) || [])[1];
+      if (!op || !/_PLUSZ$/.test(decodeURIComponent(op))) return; // only STP programs have this URL shape
+      const slug = g.code.toLowerCase().replace(/_/g, '-').replace(/[./]/g, '').replace(/--+/g, '-');
+      const opSlug = decodeURIComponent(op).toLowerCase().replace(/_/g, '-');
+      const candidate = `https://www.palyazat.gov.hu/programok/szechenyi-terv-plusz/${opSlug}/${slug}/alapadatok`;
+      if (await linkAlive(candidate)) { g.url = candidate; canonical++; }
+    }));
+  }
+  console.log(`API: ${canonical}/${apiGrants.length} upgraded to canonical alapadatok links`);
 
   // ---- 2) Curated survivors (hazai programs the API doesn't cover) ------
   let curated = [];
