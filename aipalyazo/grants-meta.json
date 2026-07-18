@@ -1,60 +1,15 @@
 {
- "updatedAt": "2026-07-17T07:58:41.753Z",
+ "updatedAt": "2026-07-18T07:39:38.153Z",
  "counts": {
-  "total": 72,
+  "total": 71,
   "api": 39,
-  "curated": 33
+  "curated": 32
  },
  "changes": [
   {
-   "id": "G-010",
+   "id": "G-273",
    "type": "removed",
-   "title": "NKFI ADVANCED_25 — Alkalmazott kutatási pályázat"
-  },
-  {
-   "id": "G-065",
-   "type": "removed",
-   "title": "Horizont Európa 2026-2027 — 700+ felhívás"
-  },
-  {
-   "id": "G-066",
-   "type": "removed",
-   "title": "NKFI Alap 2026 — 120 Mrd Ft kutatás és innováció"
-  },
-  {
-   "id": "G-157",
-   "type": "removed",
-   "title": "Irinyi Terv — Ipar 4.0 ipari digitalizációs fejlesztések"
-  },
-  {
-   "id": "G-202",
-   "type": "removed",
-   "title": "Logisztikai Központfejlesztési Program — Raktártechnológia és automatizáció"
-  },
-  {
-   "id": "G-204",
-   "type": "removed",
-   "title": "Feldolgozóipari Ipar 4.0 Pályázat — Digitális gyártás és automatizáció"
-  },
-  {
-   "id": "G-212",
-   "type": "removed",
-   "title": "Innovációs Utalvány (Mikro) — Tanácsadási és technológiai szolgáltatások"
-  },
-  {
-   "id": "G-240",
-   "type": "removed",
-   "title": "MEKH Hőszivattyú Vállalkozói Beruházás — fűtéskorszerűsítés KKV-knak"
-  },
-  {
-   "id": "G-241",
-   "type": "removed",
-   "title": "Energiaaudit Kötelező Program — MEKH KKV audit támogatás (EED 8. cikk)"
-  },
-  {
-   "id": "G-287",
-   "type": "removed",
-   "title": "GINOP Plusz AI Tananyag és Pilot — generatív AI munkahelyi alkalmazás"
+   "title": "Energiaközösség Mintaprojekt — REC napelem és tárolás közösségi modell"
   }
  ]
 }
