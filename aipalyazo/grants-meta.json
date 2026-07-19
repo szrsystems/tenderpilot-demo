@@ -1,15 +1,30 @@
 {
- "updatedAt": "2026-07-18T07:39:38.153Z",
+ "updatedAt": "2026-07-19T08:05:11.356Z",
  "counts": {
-  "total": 71,
+  "total": 75,
   "api": 39,
-  "curated": 32
+  "curated": 36
  },
  "changes": [
   {
-   "id": "G-273",
-   "type": "removed",
-   "title": "Energiaközösség Mintaprojekt — REC napelem és tárolás közösségi modell"
+   "id": "G-010",
+   "type": "new",
+   "title": "NKFI ADVANCED_25 — Alkalmazott kutatási pályázat"
+  },
+  {
+   "id": "G-065",
+   "type": "new",
+   "title": "Horizont Európa 2026-2027 — 700+ felhívás"
+  },
+  {
+   "id": "G-066",
+   "type": "new",
+   "title": "NKFI Alap 2026 — 120 Mrd Ft kutatás és innováció"
+  },
+  {
+   "id": "G-212",
+   "type": "new",
+   "title": "Innovációs Utalvány (Mikro) — Tanácsadási és technológiai szolgáltatások"
   }
  ]
 }
