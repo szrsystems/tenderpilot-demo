@@ -1,24 +1,44 @@
 {
- "updatedAt": "2026-07-20T08:46:14.899Z",
+ "updatedAt": "2026-07-21T08:14:07.524Z",
  "counts": {
-  "total": 78,
+  "total": 71,
   "api": 39,
-  "curated": 39
+  "curated": 32
  },
  "changes": [
   {
+   "id": "G-010",
+   "type": "removed",
+   "title": "NKFI ADVANCED_25 — Alkalmazott kutatási pályázat"
+  },
+  {
+   "id": "G-065",
+   "type": "removed",
+   "title": "Horizont Európa 2026-2027 — 700+ felhívás"
+  },
+  {
+   "id": "G-066",
+   "type": "removed",
+   "title": "NKFI Alap 2026 — 120 Mrd Ft kutatás és innováció"
+  },
+  {
+   "id": "G-212",
+   "type": "removed",
+   "title": "Innovációs Utalvány (Mikro) — Tanácsadási és technológiai szolgáltatások"
+  },
+  {
    "id": "G-240",
-   "type": "new",
+   "type": "removed",
    "title": "MEKH Hőszivattyú Vállalkozói Beruházás — fűtéskorszerűsítés KKV-knak"
   },
   {
    "id": "G-241",
-   "type": "new",
+   "type": "removed",
    "title": "Energiaaudit Kötelező Program — MEKH KKV audit támogatás (EED 8. cikk)"
   },
   {
    "id": "G-273",
-   "type": "new",
+   "type": "removed",
    "title": "Energiaközösség Mintaprojekt — REC napelem és tárolás közösségi modell"
   }
  ]
