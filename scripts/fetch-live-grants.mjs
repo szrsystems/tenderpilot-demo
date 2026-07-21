@@ -184,12 +184,21 @@ async function main() {
   let droppedByRegistry = 0;
   if (existsSync(CURATED)) {
     const all = JSON.parse(readFileSync(CURATED, 'utf8'));
+    // Manual verification overrides (see curated-overrides.json): exact
+    // official URLs for verified programs; drop for unverifiable ones.
+    let overrides = {};
+    try { overrides = JSON.parse(readFileSync('scripts/curated-overrides.json', 'utf8')); } catch { /* optional */ }
+    for (const g of all) {
+      const o = overrides[g.id];
+      if (o && o.url) g.url = o.url;
+    }
     // The official registry is authoritative for Széchenyi Terv Plusz calls:
     // verified 2026-07-06 that the curated set's GINOP/DIMOP/… entries are
     // either closed (Lezárva) or carry codes the registry has never heard of
     // (synthetic demo leftovers) — so ALL coded curated entries are dropped;
     // genuinely open ones arrive via the API feed with live keret anyway.
     const candidates = all.filter((g) => {
+      if (overrides[g.id] && overrides[g.id].drop) return false;
       if (!g.deadline || g.deadline < today) return false;
       let host = ''; try { host = new URL(g.url).hostname.replace(/^www\./, ''); } catch { return false; }
       if (!OFFICIAL_DOMAINS.some((d) => host.includes(d))) return false;

@@ -1,0 +1,26 @@
+{
+  "_comment": "Manual verification results for curated grants with shallow (homepage-level) source links — researched 2026-07-21. Rule: a grant stays only with an EXACT official detail URL; programs whose names could not be verified as real open calls (stale/synthetic demo-era entries) are dropped. Applied by fetch-live-grants.mjs.",
+
+  "G-222": { "url": "https://www.kavosz.hu/termekek/szechenyi-mikrohitel-max-plusz/", "note": "verified exact KAVOSZ product page" },
+  "G-212": { "url": "https://nkfih.gov.hu/hivatalrol/sajtokozlemenyek/uj-innovacios-utalvany", "note": "real NKFIH innovation-voucher program; official program announcement page" },
+
+  "G-149": { "drop": true, "note": "Kisfaludy strand — no verifiable open call page; only homepage" },
+  "G-257": { "drop": true, "note": "MTÜ attrakciófejlesztés — no verifiable open call page" },
+  "G-155": { "drop": true, "note": "MFB name not among MFB's actual current products" },
+  "G-194": { "drop": true, "note": "'Új Magyarország' is 2007-era branding — stale/synthetic" },
+  "G-196": { "drop": true, "note": "not among MFB's actual current products" },
+  "G-197": { "drop": true, "note": "not among MFB's actual current products" },
+  "G-221": { "drop": true, "note": "not among MFB's actual current products" },
+  "G-227": { "drop": true, "note": "not among MFB's actual current products" },
+  "G-230": { "drop": true, "note": "BGA 'Gyere Haza' — old program, no verifiable open call" },
+  "G-238": { "drop": true, "note": "IFKA — no such verifiable open call" },
+  "G-249": { "drop": true, "note": "IFKA — no such verifiable open call" },
+  "G-250": { "drop": true, "note": "IFKA — no such verifiable open call" },
+  "G-240": { "drop": true, "note": "MEKH is a regulator, not a grant issuer — synthetic" },
+  "G-241": { "drop": true, "note": "energy audit is an obligation, not a grant — synthetic" },
+  "G-273": { "drop": true, "note": "MEKH — synthetic" },
+  "G-252": { "drop": true, "note": "VP-era code; KAP successor call not verifiable — dropped" },
+  "G-253": { "drop": true, "note": "VP-era code — dropped" },
+  "G-254": { "drop": true, "note": "VP-era code — dropped" },
+  "G-287": { "drop": true, "note": "no such GINOP Plusz call in the official registry" }
+}
