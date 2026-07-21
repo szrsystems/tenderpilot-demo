@@ -1,105 +1,55 @@
 {
- "updatedAt": "2026-07-21T09:31:37.052Z",
+ "updatedAt": "2026-07-21T12:36:33.494Z",
  "counts": {
-  "total": 63,
+  "total": 54,
   "api": 39,
-  "curated": 24
+  "curated": 15
  },
  "changes": [
   {
-   "id": "G-149",
+   "id": "G-010",
    "type": "removed",
-   "title": "Kisfaludy Strand-fejlesztési Program — szabadtéri turizmus"
+   "title": "NKFI ADVANCED_25 — Alkalmazott kutatási pályázat"
   },
   {
-   "id": "G-155",
+   "id": "G-014",
    "type": "removed",
-   "title": "MFB Energiahatékonysági Hitelprogram — kedvezményes hitel"
+   "title": "Horizon Europe 2026 — SME Instrument / EIC Accelerator"
   },
   {
-   "id": "G-194",
+   "id": "G-022",
    "type": "removed",
-   "title": "MFB Új Magyarország Beruházási Hitelprogram — KKV beruházási hitel"
+   "title": "Erasmus+ KA2 2026 — Stratégiai partnerségek digitális készségekre"
   },
   {
-   "id": "G-196",
+   "id": "G-065",
    "type": "removed",
-   "title": "MFB Versenyképességi Hitelprogram — Külpiaci terjeszkedés finanszírozása"
+   "title": "Horizont Európa 2026-2027 — 700+ felhívás"
   },
   {
-   "id": "G-197",
+   "id": "G-066",
    "type": "removed",
-   "title": "MFB Vidéki Hitelprogram — Falusi és kisvárosi vállalkozások finanszírozása"
+   "title": "NKFI Alap 2026 — 120 Mrd Ft kutatás és innováció"
   },
   {
-   "id": "G-221",
+   "id": "G-157",
    "type": "removed",
-   "title": "MFB Mikrohitel Plusz — mikrovállalkozói finanszírozás 10 fő alatt"
+   "title": "Irinyi Terv — Ipar 4.0 ipari digitalizációs fejlesztések"
   },
   {
-   "id": "G-227",
+   "id": "G-202",
    "type": "removed",
-   "title": "MFB Pont Fiatal Vállalkozó — 35 év alatti vállalkozók indító tőkéje"
+   "title": "Logisztikai Központfejlesztési Program — Raktártechnológia és automatizáció"
   },
   {
-   "id": "G-230",
+   "id": "G-204",
    "type": "removed",
-   "title": "Gyere Haza Vállalkozó — Bethlen Gábor Alap diaszpóra vállalkozásindítás"
+   "title": "Feldolgozóipari Ipar 4.0 Pályázat — Digitális gyártás és automatizáció"
   },
   {
-   "id": "G-238",
+   "id": "G-212",
    "type": "removed",
-   "title": "IFKA Elektromobilitás — EV töltőhálózat KKV beruházás támogatás"
-  },
-  {
-   "id": "G-240",
-   "type": "removed",
-   "title": "MEKH Hőszivattyú Vállalkozói Beruházás — fűtéskorszerűsítés KKV-knak"
-  },
-  {
-   "id": "G-241",
-   "type": "removed",
-   "title": "Energiaaudit Kötelező Program — MEKH KKV audit támogatás (EED 8. cikk)"
-  },
-  {
-   "id": "G-249",
-   "type": "removed",
-   "title": "Raktártechnológia Modernizáció — IFKA logisztikai fejlesztés WMS"
-  },
-  {
-   "id": "G-250",
-   "type": "removed",
-   "title": "IFKA Zöld Logisztika — elektromos haszonjármű flottafrissítés"
-  },
-  {
-   "id": "G-252",
-   "type": "removed",
-   "title": "VP4 KAP Élelmiszeripari Feldolgozóipar — feldolgozó kapacitás bővítés"
-  },
-  {
-   "id": "G-253",
-   "type": "removed",
-   "title": "VP6 Rövid Ellátási Lánc REL — termelői értékesítés és helyi piac"
-  },
-  {
-   "id": "G-254",
-   "type": "removed",
-   "title": "VP3 Borászati Gép és Technológia — pincészeti modernizáció"
-  },
-  {
-   "id": "G-257",
-   "type": "removed",
-   "title": "MTÜ Attrakciófejlesztés — turisztikai attrakció létrehozása és bővítése"
-  },
-  {
-   "id": "G-273",
-   "type": "removed",
-   "title": "Energiaközösség Mintaprojekt — REC napelem és tárolás közösségi modell"
-  },
-  {
-   "id": "G-287",
-   "type": "removed",
-   "title": "GINOP Plusz AI Tananyag és Pilot — generatív AI munkahelyi alkalmazás"
+   "title": "Innovációs Utalvány (Mikro) — Tanácsadási és technológiai szolgáltatások"
   }
  ]
 }

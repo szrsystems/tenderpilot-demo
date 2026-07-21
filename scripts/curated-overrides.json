@@ -2,7 +2,21 @@
   "_comment": "Manual verification results for curated grants with shallow (homepage-level) source links — researched 2026-07-21. Rule: a grant stays only with an EXACT official detail URL; programs whose names could not be verified as real open calls (stale/synthetic demo-era entries) are dropped. Applied by fetch-live-grants.mjs.",
 
   "G-222": { "url": "https://www.kavosz.hu/termekek/szechenyi-mikrohitel-max-plusz/", "note": "verified exact KAVOSZ product page" },
-  "G-212": { "url": "https://nkfih.gov.hu/hivatalrol/sajtokozlemenyek/uj-innovacios-utalvany", "note": "real NKFIH innovation-voucher program; official program announcement page" },
+  "G-105": { "url": "https://www.kavosz.hu/termekek/szechenyi-lizing-max-plusz/", "note": "verified exact KAVOSZ product page (was the older MAX page)" },
+  "G-132": { "url": "https://cinea.ec.europa.eu/programmes/life/life-calls-proposals_en", "note": "LIFE calls-for-proposals page (was program landing)" },
+  "G-133": { "url": "https://cinea.ec.europa.eu/programmes/life/life-calls-proposals_en", "note": "LIFE calls-for-proposals page" },
+  "G-166": { "url": "https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-organisations/cooperation-among-organisations-and-institutions", "note": "exact Erasmus+ cooperation-partnerships page" },
+  "G-138": { "url": "https://hepa.hu/hu/szolgaltatasok/beszallitoi-program", "note": "HEPA beszállítói program page" },
+
+  "G-010": { "drop": true, "note": "NKFI ADVANCED_25 — submission closed (page shows post-submission docs), 2026-07-21" },
+  "G-014": { "drop": true, "note": "generic EU funding portal link; duplicates G-130 EIC Accelerator" },
+  "G-022": { "drop": true, "note": "generic portal link; duplicates G-166 Erasmus+ KA2" },
+  "G-065": { "drop": true, "note": "news article about 700+ calls — meta-entry, not a grant" },
+  "G-066": { "drop": true, "note": "whole-fund listing — meta-entry, not a specific call" },
+  "G-157": { "drop": true, "note": "Irinyi Terv (2016-era strategy) — generic STP link, no verifiable open call" },
+  "G-202": { "drop": true, "note": "generic STP link, no verifiable open call" },
+  "G-204": { "drop": true, "note": "generic STP link, no verifiable open call" },
+  "G-212": { "drop": true, "note": "innovation voucher press release is from 2024; current availability unverifiable (user flagged)" },
 
   "G-149": { "drop": true, "note": "Kisfaludy strand — no verifiable open call page; only homepage" },
   "G-257": { "drop": true, "note": "MTÜ attrakciófejlesztés — no verifiable open call page" },
