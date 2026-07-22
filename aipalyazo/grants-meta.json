@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-21T12:36:33.494Z",
+ "updatedAt": "2026-07-22T08:13:20.321Z",
  "counts": {
   "total": 54,
   "api": 39,
@@ -7,49 +7,11 @@
  },
  "changes": [
   {
-   "id": "G-010",
-   "type": "removed",
-   "title": "NKFI ADVANCED_25 — Alkalmazott kutatási pályázat"
-  },
-  {
-   "id": "G-014",
-   "type": "removed",
-   "title": "Horizon Europe 2026 — SME Instrument / EIC Accelerator"
-  },
-  {
-   "id": "G-022",
-   "type": "removed",
-   "title": "Erasmus+ KA2 2026 — Stratégiai partnerségek digitális készségekre"
-  },
-  {
-   "id": "G-065",
-   "type": "removed",
-   "title": "Horizont Európa 2026-2027 — 700+ felhívás"
-  },
-  {
-   "id": "G-066",
-   "type": "removed",
-   "title": "NKFI Alap 2026 — 120 Mrd Ft kutatás és innováció"
-  },
-  {
-   "id": "G-157",
-   "type": "removed",
-   "title": "Irinyi Terv — Ipar 4.0 ipari digitalizációs fejlesztések"
-  },
-  {
-   "id": "G-202",
-   "type": "removed",
-   "title": "Logisztikai Központfejlesztési Program — Raktártechnológia és automatizáció"
-  },
-  {
-   "id": "G-204",
-   "type": "removed",
-   "title": "Feldolgozóipari Ipar 4.0 Pályázat — Digitális gyártás és automatizáció"
-  },
-  {
-   "id": "G-212",
-   "type": "removed",
-   "title": "Innovációs Utalvány (Mikro) — Tanácsadási és technológiai szolgáltatások"
+   "id": "pg-IKOP_PLUSZ-1.2.0-23",
+   "type": "szabad-keret",
+   "from": 108191160392,
+   "to": 108231836869,
+   "title": "Tiszta üzemű városi-elővárosi közlekedés erősítése a fővároson és a budapesti agglomeráción kívüli településeken"
   }
  ]
 }
