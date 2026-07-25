@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-24T08:12:56.646Z",
+ "updatedAt": "2026-07-25T07:55:14.158Z",
  "counts": {
   "total": 54,
   "api": 39,
@@ -7,19 +7,11 @@
  },
  "changes": [
   {
-   "id": "G-103",
-   "type": "new",
-   "title": "Széchenyi Turisztikai Kártya MAX+ — szállás- és vendéglátóhelyek finanszírozása"
-  },
-  {
-   "id": "G-105",
-   "type": "new",
-   "title": "Széchenyi Lízing MAX+ — KKV gépjármű- és eszközlízing"
-  },
-  {
-   "id": "G-222",
-   "type": "new",
-   "title": "KAVOSZ Széchenyi Mikrohitel MAX+ — 0% kamatozású mikrohitel"
+   "id": "pg-2025-1.1.1-BAY_VOUCHER",
+   "type": "szabad-keret",
+   "from": 214097369,
+   "to": 215469119,
+   "title": "KKV-k számára nyújtandó K+F+I szolgáltatások"
   }
  ]
 }
