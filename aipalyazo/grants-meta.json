@@ -1,17 +1,9 @@
 {
- "updatedAt": "2026-07-25T07:55:14.158Z",
+ "updatedAt": "2026-07-26T08:13:25.918Z",
  "counts": {
   "total": 54,
   "api": 39,
   "curated": 15
  },
- "changes": [
-  {
-   "id": "pg-2025-1.1.1-BAY_VOUCHER",
-   "type": "szabad-keret",
-   "from": 214097369,
-   "to": 215469119,
-   "title": "KKV-k számára nyújtandó K+F+I szolgáltatások"
-  }
- ]
+ "changes": []
 }
