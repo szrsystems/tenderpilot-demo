@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-31T08:38:55.242Z",
+ "updatedAt": "2026-08-01T08:08:40.564Z",
  "counts": {
   "total": 53,
   "api": 39,
@@ -8,8 +8,13 @@
  "changes": [
   {
    "id": "G-132",
-   "type": "removed",
+   "type": "new",
    "title": "LIFE Programme — Környezetvédelem és körforgásos gazdaság"
+  },
+  {
+   "id": "G-133",
+   "type": "removed",
+   "title": "LIFE Programme — Éghajlatváltozás csökkentés és alkalmazkodás"
   }
  ]
 }
