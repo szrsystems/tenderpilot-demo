@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-08-01T08:08:40.564Z",
+ "updatedAt": "2026-08-02T08:10:35.968Z",
  "counts": {
   "total": 53,
   "api": 39,
@@ -7,14 +7,14 @@
  },
  "changes": [
   {
-   "id": "G-132",
+   "id": "G-133",
    "type": "new",
-   "title": "LIFE Programme — Környezetvédelem és körforgásos gazdaság"
+   "title": "LIFE Programme — Éghajlatváltozás csökkentés és alkalmazkodás"
   },
   {
-   "id": "G-133",
+   "id": "G-166",
    "type": "removed",
-   "title": "LIFE Programme — Éghajlatváltozás csökkentés és alkalmazkodás"
+   "title": "Erasmus+ KA2 — Innovációs partnerségek a felnőttképzésben"
   }
  ]
 }
