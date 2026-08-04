@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-08-03T09:30:32.136Z",
+ "updatedAt": "2026-08-04T08:25:46.159Z",
  "counts": {
   "total": 54,
   "api": 39,
@@ -7,9 +7,11 @@
  },
  "changes": [
   {
-   "id": "G-166",
-   "type": "new",
-   "title": "Erasmus+ KA2 — Innovációs partnerségek a felnőttképzésben"
+   "id": "pg-KEHOP_PLUSZ-2.3.11-26",
+   "type": "szabad-keret",
+   "from": 818357619,
+   "to": 0,
+   "title": "Egyes kiemelt hulladékáramok hasznosításának elősegítése (ERFA)"
   }
  ]
 }
