@@ -1,17 +1,9 @@
 {
- "updatedAt": "2026-08-04T08:25:46.159Z",
+ "updatedAt": "2026-08-05T08:24:21.620Z",
  "counts": {
   "total": 54,
   "api": 39,
   "curated": 15
  },
- "changes": [
-  {
-   "id": "pg-KEHOP_PLUSZ-2.3.11-26",
-   "type": "szabad-keret",
-   "from": 818357619,
-   "to": 0,
-   "title": "Egyes kiemelt hulladékáramok hasznosításának elősegítése (ERFA)"
-  }
- ]
+ "changes": []
 }
