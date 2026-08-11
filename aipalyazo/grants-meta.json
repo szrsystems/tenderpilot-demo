@@ -1,9 +1,20 @@
 {
- "updatedAt": "2026-08-10T07:16:46.470Z",
+ "updatedAt": "2026-08-11T06:54:46.660Z",
  "counts": {
-  "total": 54,
+  "total": 52,
   "api": 39,
-  "curated": 15
+  "curated": 13
  },
- "changes": []
+ "changes": [
+  {
+   "id": "G-132",
+   "type": "removed",
+   "title": "LIFE Programme — Környezetvédelem és körforgásos gazdaság"
+  },
+  {
+   "id": "G-133",
+   "type": "removed",
+   "title": "LIFE Programme — Éghajlatváltozás csökkentés és alkalmazkodás"
+  }
+ ]
 }
