@@ -1,27 +1,15 @@
 {
- "updatedAt": "2026-08-15T06:25:01.703Z",
+ "updatedAt": "2026-08-16T06:28:16.998Z",
  "counts": {
-  "total": 53,
+  "total": 52,
   "api": 38,
-  "curated": 15
+  "curated": 14
  },
  "changes": [
   {
-   "id": "pg-MAHOP_PLUSZ-2.5.1-25",
-   "type": "szabad-keret",
-   "from": 194206971,
-   "to": 204301773,
-   "title": "Halfeldolgozás"
-  },
-  {
-   "id": "G-132",
-   "type": "new",
-   "title": "LIFE Programme — Környezetvédelem és körforgásos gazdaság"
-  },
-  {
-   "id": "pg-KEHOP_PLUSZ-2.3.11-26",
+   "id": "G-166",
    "type": "removed",
-   "title": "Egyes kiemelt hulladékáramok hasznosításának elősegítése (ERFA)"
+   "title": "Erasmus+ KA2 — Innovációs partnerségek a felnőttképzésben"
   }
  ]
 }
