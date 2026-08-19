@@ -1,31 +1,9 @@
 {
- "updatedAt": "2026-08-18T06:30:27.372Z",
+ "updatedAt": "2026-08-19T06:31:07.529Z",
  "counts": {
   "total": 53,
   "api": 38,
   "curated": 15
  },
- "changes": [
-  {
-   "id": "pg-MAHOP_PLUSZ-2.1.1-25",
-   "type": "keret",
-   "from": 6318400000,
-   "to": 7146074859,
-   "title": "Akvakultúra beruházás támogatása"
-  },
-  {
-   "id": "pg-MAHOP_PLUSZ-1.3.1-25",
-   "type": "keret",
-   "from": 2843000000,
-   "to": 1895520000,
-   "title": "A fenntartható természetesvízi halgazdálkodás támogatása"
-  },
-  {
-   "id": "pg-MAHOP_PLUSZ-1.3.1-25",
-   "type": "szabad-keret",
-   "from": 2394168151,
-   "to": 1446688151,
-   "title": "A fenntartható természetesvízi halgazdálkodás támogatása"
-  }
- ]
+ "changes": []
 }
