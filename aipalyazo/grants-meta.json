@@ -1,45 +1,24 @@
 {
- "updatedAt": "2026-08-20T06:33:33.943Z",
+ "updatedAt": "2026-08-21T06:34:11.577Z",
  "counts": {
-  "total": 50,
+  "total": 53,
   "api": 38,
-  "curated": 12
+  "curated": 15
  },
  "changes": [
   {
-   "id": "pg-IKOP_PLUSZ-1.2.0-23",
-   "type": "szabad-keret",
-   "from": 108231836869,
-   "to": 146231836869,
-   "title": "Tiszta üzemű városi-elővárosi közlekedés erősítése a fővároson és a budapesti agglomeráción kívüli településeken"
-  },
-  {
-   "id": "pg-IKOP_PLUSZ-1.1.0-23",
-   "type": "szabad-keret",
-   "from": 331004383089,
-   "to": 382666887735,
-   "title": "Tiszta üzemű városi-elővárosi közlekedés erősítése Budapesten és agglomerációs településein"
-  },
-  {
-   "id": "pg-IKOP_PLUSZ-2.2.0-23",
-   "type": "szabad-keret",
-   "from": 75935041625,
-   "to": 218644398311,
-   "title": "TEN-T vasúti és regionális intermodális közlekedés fejlesztése a 4 legszegényebb magyarországi régió területein"
-  },
-  {
    "id": "G-103",
-   "type": "removed",
+   "type": "new",
    "title": "Széchenyi Turisztikai Kártya MAX+ — szállás- és vendéglátóhelyek finanszírozása"
   },
   {
    "id": "G-105",
-   "type": "removed",
+   "type": "new",
    "title": "Széchenyi Lízing MAX+ — KKV gépjármű- és eszközlízing"
   },
   {
    "id": "G-222",
-   "type": "removed",
+   "type": "new",
    "title": "KAVOSZ Széchenyi Mikrohitel MAX+ — 0% kamatozású mikrohitel"
   }
  ]
