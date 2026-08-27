@@ -1,20 +1,22 @@
 {
- "updatedAt": "2026-08-26T06:36:07.679Z",
+ "updatedAt": "2026-08-27T17:11:46.474Z",
  "counts": {
-  "total": 52,
+  "total": 51,
   "api": 38,
-  "curated": 14
+  "curated": 13
  },
  "changes": [
   {
-   "id": "G-166",
-   "type": "new",
-   "title": "Erasmus+ KA2 — Innovációs partnerségek a felnőttképzésben"
+   "id": "pg-IKOP_PLUSZ-1.1.0-23",
+   "type": "szabad-keret",
+   "from": 382666887735,
+   "to": 381388785946,
+   "title": "Tiszta üzemű városi-elővárosi közlekedés erősítése Budapesten és agglomerációs településein"
   },
   {
-   "id": "G-213",
+   "id": "G-129",
    "type": "removed",
-   "title": "SZTNH IP Voucher — Szellemi tulajdonvédelmi költségek támogatása"
+   "title": "Digital Europe Programme — digitális készségek és kibervédelem"
   }
  ]
 }
