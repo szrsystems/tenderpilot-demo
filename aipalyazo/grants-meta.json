@@ -1,21 +1,14 @@
 {
- "updatedAt": "2026-08-27T17:11:46.474Z",
+ "updatedAt": "2026-08-28T17:58:38.804Z",
  "counts": {
-  "total": 51,
+  "total": 52,
   "api": 38,
-  "curated": 13
+  "curated": 14
  },
  "changes": [
   {
-   "id": "pg-IKOP_PLUSZ-1.1.0-23",
-   "type": "szabad-keret",
-   "from": 382666887735,
-   "to": 381388785946,
-   "title": "Tiszta üzemű városi-elővárosi közlekedés erősítése Budapesten és agglomerációs településein"
-  },
-  {
    "id": "G-129",
-   "type": "removed",
+   "type": "new",
    "title": "Digital Europe Programme — digitális készségek és kibervédelem"
   }
  ]
