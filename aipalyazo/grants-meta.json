@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-08-28T17:58:38.804Z",
+ "updatedAt": "2026-08-29T12:04:11.352Z",
  "counts": {
   "total": 52,
   "api": 38,
@@ -7,9 +7,11 @@
  },
  "changes": [
   {
-   "id": "G-129",
-   "type": "new",
-   "title": "Digital Europe Programme — digitális készségek és kibervédelem"
+   "id": "pg-KEHOP_PLUSZ-2.3.22-26",
+   "type": "szabad-keret",
+   "from": 6431502709,
+   "to": 6322412083,
+   "title": "Vállalati fenntarthatóságot és körforgásos működést elősegítő demonstrációs mintaprojektek támogatása"
   }
  ]
 }
