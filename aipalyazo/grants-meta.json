@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-08-29T12:04:11.352Z",
+ "updatedAt": "2026-08-30T11:00:33.471Z",
  "counts": {
   "total": 52,
   "api": 38,
@@ -9,8 +9,8 @@
   {
    "id": "pg-KEHOP_PLUSZ-2.3.22-26",
    "type": "szabad-keret",
-   "from": 6431502709,
-   "to": 6322412083,
+   "from": 6322412083,
+   "to": 6253322083,
    "title": "Vállalati fenntarthatóságot és körforgásos működést elősegítő demonstrációs mintaprojektek támogatása"
   }
  ]
