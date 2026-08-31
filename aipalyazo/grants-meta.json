@@ -1,16 +1,19 @@
 {
- "updatedAt": "2026-08-30T11:00:33.471Z",
+ "updatedAt": "2026-08-31T12:20:08.097Z",
  "counts": {
-  "total": 52,
-  "api": 38,
+  "total": 50,
+  "api": 36,
   "curated": 14
  },
  "changes": [
   {
+   "id": "pg-KEHOP_PLUSZ-2.1.10-23",
+   "type": "removed",
+   "title": "Felhívás szennyvíz-elvezetés és –tisztítás, szennyvízkezelés megvalósítására – szakaszolt projektek"
+  },
+  {
    "id": "pg-KEHOP_PLUSZ-2.3.22-26",
-   "type": "szabad-keret",
-   "from": 6322412083,
-   "to": 6253322083,
+   "type": "removed",
    "title": "Vállalati fenntarthatóságot és körforgásos működést elősegítő demonstrációs mintaprojektek támogatása"
   }
  ]
