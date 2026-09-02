@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-09-01T10:54:48.146Z",
+ "updatedAt": "2026-09-02T10:20:17.384Z",
  "counts": {
   "total": 48,
   "api": 37,
@@ -7,31 +7,11 @@
  },
  "changes": [
   {
-   "id": "pg-MAHOP_PLUSZ-2.5.1-25",
-   "type": "szabad-keret",
-   "from": 204301773,
-   "to": 0,
-   "title": "Halfeldolgozás"
-  },
-  {
    "id": "pg-DIMOP_PLUSZ-1.2.6/C-26",
-   "type": "new",
+   "type": "szabad-keret",
+   "from": 2000000000,
+   "to": 0,
    "title": "KKV-k növekedési lehetőségeinek támogatása a digitális infrastruktúra és transzformáció elősegítésére (III. kör, Budapest)"
-  },
-  {
-   "id": "G-103",
-   "type": "removed",
-   "title": "Széchenyi Turisztikai Kártya MAX+ — szállás- és vendéglátóhelyek finanszírozása"
-  },
-  {
-   "id": "G-105",
-   "type": "removed",
-   "title": "Széchenyi Lízing MAX+ — KKV gépjármű- és eszközlízing"
-  },
-  {
-   "id": "G-222",
-   "type": "removed",
-   "title": "KAVOSZ Széchenyi Mikrohitel MAX+ — 0% kamatozású mikrohitel"
   }
  ]
 }
