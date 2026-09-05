@@ -1,9 +1,24 @@
 {
- "updatedAt": "2026-09-04T10:17:59.094Z",
+ "updatedAt": "2026-09-05T09:45:40.706Z",
  "counts": {
   "total": 50,
   "api": 36,
   "curated": 14
  },
- "changes": []
+ "changes": [
+  {
+   "id": "pg-IKOP_PLUSZ-1.2.0-23",
+   "type": "szabad-keret",
+   "from": 146231836869,
+   "to": 133112871764,
+   "title": "Tiszta üzemű városi-elővárosi közlekedés erősítése a fővároson és a budapesti agglomeráción kívüli településeken"
+  },
+  {
+   "id": "pg-IKOP_PLUSZ-2.2.0-23",
+   "type": "szabad-keret",
+   "from": 218644398311,
+   "to": 211243900259,
+   "title": "TEN-T vasúti és regionális intermodális közlekedés fejlesztése a 4 legszegényebb magyarországi régió területein"
+  }
+ ]
 }
