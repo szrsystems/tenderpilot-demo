@@ -1,17 +1,9 @@
 {
- "updatedAt": "2026-09-08T10:23:02.099Z",
+ "updatedAt": "2026-09-09T10:32:22.968Z",
  "counts": {
   "total": 51,
   "api": 37,
   "curated": 14
  },
- "changes": [
-  {
-   "id": "pg-GINOP_PLUSZ-1.1.6-25",
-   "type": "szabad-keret",
-   "from": 5881033162,
-   "to": 5767306554,
-   "title": "Minősített klasztermenedzsment szervezetek támogatása"
-  }
- ]
+ "changes": []
 }
