@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-09-15T10:47:10.805Z",
+ "updatedAt": "2026-09-16T10:36:18.917Z",
  "counts": {
   "total": 51,
   "api": 37,
@@ -7,19 +7,11 @@
  },
  "changes": [
   {
-   "id": "G-132",
-   "type": "new",
-   "title": "LIFE Programme — Környezetvédelem és körforgásos gazdaság"
-  },
-  {
-   "id": "G-133",
-   "type": "new",
-   "title": "LIFE Programme — Éghajlatváltozás csökkentés és alkalmazkodás"
-  },
-  {
-   "id": "G-166",
-   "type": "new",
-   "title": "Erasmus+ KA2 — Innovációs partnerségek a felnőttképzésben"
+   "id": "pg-KEHOP_PLUSZ-4.2.4-25",
+   "type": "szabad-keret",
+   "from": 8782073518,
+   "to": 7782073518,
+   "title": "Geotermikus fúrási kockázatok csökkentése"
   }
  ]
 }
