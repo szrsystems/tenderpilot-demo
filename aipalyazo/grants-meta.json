@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-09-16T10:36:18.917Z",
+ "updatedAt": "2026-09-17T10:45:35.469Z",
  "counts": {
   "total": 51,
   "api": 37,
@@ -7,11 +7,11 @@
  },
  "changes": [
   {
-   "id": "pg-KEHOP_PLUSZ-4.2.4-25",
+   "id": "pg-EFOP_PLUSZ-TEF-3.1.3/TEF-25",
    "type": "szabad-keret",
-   "from": 8782073518,
-   "to": 7782073518,
-   "title": "Geotermikus fúrási kockázatok csökkentése"
+   "from": 16613091181,
+   "to": 16567779833,
+   "title": "„Nő az esély” a közszolgáltatásokban (végső kedvezményezettek)"
   }
  ]
 }
