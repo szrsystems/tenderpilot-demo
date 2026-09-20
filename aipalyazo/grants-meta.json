@@ -1,51 +1,46 @@
 {
- "updatedAt": "2026-09-19T10:04:21.013Z",
+ "updatedAt": "2026-09-20T10:23:22.757Z",
  "counts": {
-  "total": 57,
+  "total": 51,
   "api": 37,
-  "curated": 20
+  "curated": 14
  },
  "changes": [
   {
-   "id": "pg-EFOP_PLUSZ-TEF-3.1.3/TEF-25",
+   "id": "pg-MAHOP_PLUSZ-1.3.1-25",
    "type": "szabad-keret",
-   "from": 16541922486,
-   "to": 16492068520,
-   "title": "„Nő az esély” a közszolgáltatásokban (végső kedvezményezettek)"
+   "from": 846688152,
+   "to": 448615488,
+   "title": "A fenntartható természetesvízi halgazdálkodás támogatása"
   },
   {
    "id": "G-118",
-   "type": "new",
+   "type": "removed",
    "title": "VEKOP Plusz 1.2.1-25 — Közép-magyarországi mikro- és kisvállalkozások fejlesztése"
   },
   {
    "id": "G-141",
-   "type": "new",
+   "type": "removed",
    "title": "KAP Stratégiai Terv — Fiatal mezőgazdasági termelők induló támogatása"
   },
   {
    "id": "G-142",
-   "type": "new",
+   "type": "removed",
    "title": "VP — Mezőgazdasági termékek feldolgozásához kapcsolódó beruházások"
   },
   {
    "id": "G-146",
-   "type": "new",
+   "type": "removed",
    "title": "VP — Erdőtelepítési és erdőgazdálkodási támogatás"
   },
   {
    "id": "G-153",
-   "type": "new",
+   "type": "removed",
    "title": "KEHOP Plusz — Vállalati épületenergetikai korszerűsítés"
   },
   {
-   "id": "G-166",
-   "type": "new",
-   "title": "Erasmus+ KA2 — Innovációs partnerségek a felnőttképzésben"
-  },
-  {
    "id": "G-176",
-   "type": "new",
+   "type": "removed",
    "title": "VEKOP Plusz 6.1.3 — Helyi gazdaságfejlesztés Budapest"
   }
  ]
