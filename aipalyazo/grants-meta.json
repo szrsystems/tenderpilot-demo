@@ -1,47 +1,25 @@
 {
- "updatedAt": "2026-09-20T10:23:22.757Z",
+ "updatedAt": "2026-09-21T11:38:14.065Z",
  "counts": {
-  "total": 51,
+  "total": 48,
   "api": 37,
-  "curated": 14
+  "curated": 11
  },
  "changes": [
   {
-   "id": "pg-MAHOP_PLUSZ-1.3.1-25",
-   "type": "szabad-keret",
-   "from": 846688152,
-   "to": 448615488,
-   "title": "A fenntartható természetesvízi halgazdálkodás támogatása"
+   "id": "G-103",
+   "type": "removed",
+   "title": "Széchenyi Turisztikai Kártya MAX+ — szállás- és vendéglátóhelyek finanszírozása"
   },
   {
-   "id": "G-118",
+   "id": "G-105",
    "type": "removed",
-   "title": "VEKOP Plusz 1.2.1-25 — Közép-magyarországi mikro- és kisvállalkozások fejlesztése"
+   "title": "Széchenyi Lízing MAX+ — KKV gépjármű- és eszközlízing"
   },
   {
-   "id": "G-141",
+   "id": "G-222",
    "type": "removed",
-   "title": "KAP Stratégiai Terv — Fiatal mezőgazdasági termelők induló támogatása"
-  },
-  {
-   "id": "G-142",
-   "type": "removed",
-   "title": "VP — Mezőgazdasági termékek feldolgozásához kapcsolódó beruházások"
-  },
-  {
-   "id": "G-146",
-   "type": "removed",
-   "title": "VP — Erdőtelepítési és erdőgazdálkodási támogatás"
-  },
-  {
-   "id": "G-153",
-   "type": "removed",
-   "title": "KEHOP Plusz — Vállalati épületenergetikai korszerűsítés"
-  },
-  {
-   "id": "G-176",
-   "type": "removed",
-   "title": "VEKOP Plusz 6.1.3 — Helyi gazdaságfejlesztés Budapest"
+   "title": "KAVOSZ Széchenyi Mikrohitel MAX+ — 0% kamatozású mikrohitel"
   }
  ]
 }
