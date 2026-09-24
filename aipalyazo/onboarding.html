@@ -18,6 +18,8 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="hu_HU">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="lib/hu-geo.js"></script>
+    <script src="lib/match.js"></script>
     <script src="lib/supabase.js" defer></script>
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -52,6 +54,18 @@
         .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--green-600); box-shadow: 0 0 0 3px rgba(22,163,74,0.1); }
         .field input::placeholder { color: var(--gray-400); }
         .field .hint { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
+        .taxbox { background: var(--green-50); border: 1px solid var(--green-200); border-radius: var(--radius-lg); padding: 14px 16px; margin-bottom: 20px; }
+        .taxbox-row { display: flex; gap: 8px; }
+        .taxbox-row input { flex: 1; min-width: 0; padding: 10px 14px; border: 1px solid var(--gray-300); border-radius: var(--radius); font-size: 15px; font-family: inherit; background: #fff; }
+        .taxbox-row input:focus { outline: none; border-color: var(--green-600); box-shadow: 0 0 0 3px rgba(22,163,74,0.1); }
+        .taxbox-row button { flex: 0 0 auto; padding: 10px 16px; border-radius: var(--radius); border: none; background: var(--green-700); color: #fff; font-weight: 700; font-size: 14px; cursor: pointer; font-family: inherit; }
+        .taxbox-row button:disabled { opacity: .6; cursor: wait; }
+        .taxbox-msg { font-size: 13px; margin-top: 8px; line-height: 1.5; color: var(--gray-700); }
+        .taxbox-msg.err { color: #b91c1c; }
+        .from-nav { display: inline-block; font-size: 11px; font-weight: 700; color: var(--green-800); background: var(--green-100); border-radius: 6px; padding: 1px 6px; margin-left: 6px; }
+        .need-fill { border-color: #d97706 !important; box-shadow: 0 0 0 3px rgba(217,119,6,.12); }
+        .missing-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius); padding: 10px 12px; font-size: 13px; color: #92400e; margin-top: 10px; line-height: 1.5; }
+        @media (max-width: 420px) { .taxbox-row { flex-direction: column; } }
         .field textarea { resize: vertical; min-height: 80px; }
         .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
@@ -105,6 +119,14 @@
             <h2>Cégadatok</h2>
             <p class="subtitle">Alapvető információk az Ön vállalkozásáról</p>
 
+            <div class="taxbox">
+                <label for="f_taxnumber" style="font-size:14px;font-weight:700;color:var(--green-800);display:block;margin-bottom:6px;">Gyorskitöltés adószám alapján</label>
+                <div class="taxbox-row">
+                    <input type="text" id="f_taxnumber" inputmode="numeric" autocomplete="off" placeholder="12345678-1-12" aria-describedby="taxbox-msg">
+                    <button type="button" id="taxbox-btn" onclick="lookupCompany()">Adatok kitöltése</button>
+                </div>
+                <div class="taxbox-msg" id="taxbox-msg" aria-live="polite">A cégnevet, a székhelyet és a cégformát a NAV nyilvános adataiból töltjük ki. A többit Ön adja meg — ezekből dől el, mely pályázatokra jogosult.</div>
+            </div>
             <div class="field">
                 <label>Cégnév <span class="req">*</span></label>
                 <input type="text" id="f_company" placeholder="Pl. InnoTech Solutions Kft.">
@@ -231,10 +253,12 @@
                 </div>
                 <div class="field">
                     <label>TEÁOR főtevékenység</label>
-                    <input type="text" id="f_teaor" placeholder="Pl. 6201 Számítógépes programozás">
+                    <input type="text" id="f_teaor" placeholder="Pl. 6201 Számítógépes programozás" oninput="teaorChanged()">
+                    <div class="hint" id="teaor-hint">A cégkivonatban vagy az adóhatósági igazoláson találja. A főtevékenység alapján szűrjük az ágazati felhívásokat.</div>
                 </div>
             </div>
 
+            <div class="missing-box" id="missing-box" style="display:none;"></div>
             <div class="form-actions">
                 <button class="btn btn-primary" onclick="nextStep(2)">Tovább</button>
             </div>
@@ -339,6 +363,64 @@
 </div>
 
 <script>
+// ===== Tax-number quick fill (NAV queryTaxpayer via company-lookup) =====
+const FIELD_IDS = { employees: 'f_employees', site_region: 'f_site_region', teaor: 'f_teaor', years_operating: 'f_years', public_debt_free: 'f_public_debt', in_difficulty: 'f_difficulty', own_funds: 'f_own_funds' };
+function currentProfileDraft() {
+    const v = (id) => (document.getElementById(id) || {}).value || '';
+    return { employees: v('f_employees'), site_region: v('f_site_region'), teaor: v('f_teaor'), years_operating: v('f_years'), public_debt_free: v('f_public_debt'), in_difficulty: v('f_difficulty'), own_funds: v('f_own_funds') };
+}
+// Show which matching inputs are still empty and highlight them.
+function refreshMissing(highlight) {
+    const missing = window.AIPMatch ? window.AIPMatch.missingFields(currentProfileDraft()) : [];
+    Object.values(FIELD_IDS).forEach(id => { const el = document.getElementById(id); if (el) el.classList.remove('need-fill'); });
+    const box = document.getElementById('missing-box');
+    if (!missing.length) { box.style.display = 'none'; return; }
+    if (highlight) missing.forEach(f => { const el = document.getElementById(FIELD_IDS[f.key]); if (el) el.classList.add('need-fill'); });
+    box.innerHTML = '<b>A pontos illeszkedéshez még adja meg:</b> ' + missing.map(f => f.label).join(', ') + '. Ezek hiányában a jogosultságot „?” jellel jelöljük.';
+    box.style.display = 'block';
+}
+function markFromNav(id) {
+    const el = document.getElementById(id);
+    const label = el && el.closest('.field') && el.closest('.field').querySelector('label');
+    if (label && !label.querySelector('.from-nav')) label.insertAdjacentHTML('beforeend', '<span class="from-nav">NAV</span>');
+}
+async function lookupCompany() {
+    const input = document.getElementById('f_taxnumber');
+    const msg = document.getElementById('taxbox-msg');
+    const btn = document.getElementById('taxbox-btn');
+    const digits = input.value.replace(/\D/g, '');
+    msg.className = 'taxbox-msg';
+    if (!(digits.length === 8 || digits.length === 11)) { msg.textContent = 'Adjon meg 8 vagy 11 számjegyű adószámot (pl. 12345678-1-12).'; msg.className = 'taxbox-msg err'; input.focus(); return; }
+    if (!window.gp || !window.gp.client) { msg.textContent = 'A gyorskitöltéshez jelentkezzen be. Az adatokat kézzel is megadhatja.'; msg.className = 'taxbox-msg err'; return; }
+    btn.disabled = true; btn.textContent = 'Keresés…';
+    try {
+        const { data, error } = await window.gp.client.functions.invoke('company-lookup', { body: { taxNumber: digits } });
+        if (error || !data) throw new Error('lookup');
+        if (!data.found) { msg.textContent = 'Ezzel az adószámmal nem találtunk érvényes adózót a NAV nyilvántartásában. Ellenőrizze a számot, vagy töltse ki kézzel.'; msg.className = 'taxbox-msg err'; return; }
+        const set = (id, val) => { const el = document.getElementById(id); if (el && val) { el.value = val; el.style.borderColor = ''; markFromNav(id); } };
+        set('f_company', data.name);
+        set('f_location', [data.postalCode, data.city ? data.city.charAt(0) + data.city.slice(1).toLowerCase() : ''].filter(Boolean).join(' '));
+        if (data.legalForm) set('f_legal', data.legalForm);
+        if (data.region && !document.getElementById('f_site_region').value) set('f_site_region', data.region);
+        msg.innerHTML = '<b>Kitöltöttük:</b> cégnév, székhely, cégforma' + (data.region ? ', régió (a székhely irányítószáma alapján — ha a beruházás máshol lesz, módosítsa)' : '') + '. A többi adatot a NAV nem teszi közzé, ezeket kérjük, adja meg lent.';
+        refreshMissing(true);
+    } catch (e) {
+        msg.textContent = 'A gyorskitöltés most nem érhető el. Kérjük, töltse ki az adatokat kézzel.'; msg.className = 'taxbox-msg err';
+    } finally {
+        btn.disabled = false; btn.textContent = 'Adatok kitöltése';
+    }
+}
+// TEÁOR → tick the matching industry box(es) if none is ticked yet.
+function teaorChanged() {
+    const val = document.getElementById('f_teaor').value;
+    const inds = window.AIPMatch ? window.AIPMatch.teaorIndustries(val) : [];
+    const map = { IT: 'IT', HVAC: 'HVAC', Construction: 'Construction', Manufacturing: 'Manufacturing', Healthcare: 'Healthcare', Restaurant: 'Restaurant', Tourism: 'Tourism', Agriculture: 'Agriculture', Retail: 'Retail', Education: 'Education', General: 'General', Food: 'Manufacturing' };
+    const boxes = [...document.querySelectorAll('#f_industries input')];
+    if (inds.length && !boxes.some(b => b.checked)) inds.forEach(i => { const b = boxes.find(x => x.value === map[i]); if (b) b.checked = true; });
+    refreshMissing(false);
+}
+document.addEventListener('change', (e) => { if (e.target && Object.values(FIELD_IDS).includes(e.target.id)) refreshMissing(false); });
+
 function nextStep(n) {
     // Validate current step
     if (n === 2 && document.getElementById('step-1').classList.contains('active')) {
@@ -347,6 +429,15 @@ function nextStep(n) {
             if (!document.getElementById('f_company').value) document.getElementById('f_company').style.borderColor = '#dc2626';
             if (!document.getElementById('f_employees').value) document.getElementById('f_employees').style.borderColor = '#dc2626';
             document.getElementById('f_industries').style.outline = industryCount === 0 ? '2px solid #dc2626' : '';
+            return;
+        }
+        // Eligibility fields are optional, but ask once before moving on.
+        const missing = window.AIPMatch ? window.AIPMatch.missingFields(currentProfileDraft()) : [];
+        if (missing.length && !window.__missingWarned) {
+            window.__missingWarned = true;
+            refreshMissing(true);
+            document.getElementById('missing-box').insertAdjacentHTML('beforeend', ' <b>Kattintson újra a „Tovább” gombra, ha most kihagyná.</b>');
+            document.getElementById('missing-box').scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
     }

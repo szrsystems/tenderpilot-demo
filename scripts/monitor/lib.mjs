@@ -42,8 +42,8 @@ export function parseRobots(txt) {
   return out;
 }
 
-export function makeFetcher({ fetchImpl = fetch, delayMs = 1200, timeoutMs = 20000, respectRobots = true } = {}) {
-  return async function politeFetch(url) {
+export function makeFetcher({ fetchImpl = fetch, delayMs = 1200, timeoutMs = 20000, respectRobots = true, cache = null } = {}) {
+  const fetchOnce = async function politeFetch(url) {
     const host = new URL(url).host;
     const prev = hostQueue.get(host) || Promise.resolve();
     let release;
@@ -66,6 +66,10 @@ export function makeFetcher({ fetchImpl = fetch, delayMs = 1200, timeoutMs = 200
       release();
     }
   };
+  // Optional per-run cache: the re-check, summaries and discovery read many
+  // of the same pages — fetch each once per run.
+  if (!cache) return fetchOnce;
+  return (url) => { if (!cache.has(url)) cache.set(url, fetchOnce(url)); return cache.get(url); };
 }
 
 const safeJson = (s) => { try { return JSON.parse(s); } catch { return null; } };

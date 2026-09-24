@@ -580,6 +580,15 @@
         .badge-type-other { background: #eff6ff; color: #1e3a8a; border: 1px solid #bfdbfe; }
         .grant-card-deadline { font-size: 12.5px; color: var(--gray-600); margin-top: 4px; }
         .match-checks { display: grid; gap: 6px; }
+        .summary-block .sum-sec { margin-bottom: 10px; }
+        .summary-block .sum-title { font-size: 13px; font-weight: 700; color: var(--gray-800); margin-bottom: 4px; }
+        .summary-block ul { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--gray-700); }
+        .summary-block li { margin-bottom: 4px; }
+        .sum-quote summary { font-size: 11.5px; color: var(--gray-500); cursor: pointer; list-style: none; display: inline; margin-left: 6px; }
+        .sum-quote summary::-webkit-details-marker { display: none; }
+        .sum-quote q { display: block; margin-top: 3px; font-size: 12.5px; color: var(--gray-600); font-style: italic; border-left: 2px solid var(--green-200); padding-left: 8px; }
+        .sum-foot { font-size: 12px; color: var(--gray-500); margin-top: 6px; }
+        .sum-foot a { color: var(--green-700); }
         .match-row { display: grid; grid-template-columns: 18px 118px 1fr; gap: 8px; align-items: baseline; font-size: 13.5px; line-height: 1.45; }
         .match-mark { font-weight: 800; text-align: center; }
         .match-label { font-weight: 600; color: var(--gray-800); }
@@ -672,6 +681,9 @@
             .hamburger { padding: 10px; }
             .bookmark-btn { min-width: 40px; min-height: 40px; }
         }
+        .set-grid > * { min-width: 0; } .set-field input, .set-field select { max-width: 100%; } .save-bar { flex-wrap: wrap; }
+        @media (max-width: 520px) { .set-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 520px) { #page-saved .topbar { height: auto; min-height: 56px; flex-wrap: wrap; gap: 8px; padding-top: 10px; padding-bottom: 10px; } #page-saved .topbar-actions { flex-wrap: wrap; } }
     </style>
 </head>
 <body>
@@ -769,6 +781,7 @@
             <div class="hero-stats" id="hero-stats"></div>
 
             <!-- PROFILE BANNER (shown when no onboarding profile is in localStorage) -->
+            <div id="missing-fields-banner" role="status" style="display:none;background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:12px;padding:12px 16px;font-size:13.5px;line-height:1.55;margin-bottom:16px;"></div>
             <a href="onboarding.html" id="profile-banner" class="profile-banner pro-only" style="display:none;">
                 <span class="profile-banner-icon">✨</span>
                 <span class="profile-banner-text">
@@ -885,6 +898,7 @@
         <div class="topbar">
             <h1>Mentett pályázatok</h1>
             <div class="topbar-actions">
+                <button class="btn-sm" onclick="icsSaved()" title="Minden mentett határidő naptárfájlban, emlékeztetővel 14 és 3 nappal előtte">Naptárba (.ics)</button>
                 <button class="btn-sm" onclick="exportSavedCSV()">Exportálás</button>
             </div>
         </div>
@@ -1442,6 +1456,24 @@ function prepGrants() {
 }
 prepGrants();
 
+// ==== OFFICIAL CALL SUMMARIES =============================================
+// summaries.json is written by the daily monitor: short sheets whose every
+// line quotes the official call text (scripts/monitor/summarize.mjs).
+let SUMMARIES = {};
+fetch('summaries.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : {}).then(j => { SUMMARIES = j || {}; }).catch(() => {});
+
+function summaryBlock(g) {
+    const s = SUMMARIES[g.id];
+    if (!s || !Array.isArray(s.sections) || !s.sections.length) return '';
+    let host = ''; try { host = new URL(s.sourceUrl).hostname.replace(/^www\./, ''); } catch (e) {}
+    return `<div class="detail-section summary-block">
+            <h3>A felhívás röviden</h3>
+            ${s.sections.map(sec => `<div class="sum-sec"><div class="sum-title">${escHtml(sec.title)}</div>
+                <ul>${sec.items.map(it => `<li>${escHtml(it.text)}<details class="sum-quote"><summary>Idézet a felhívásból</summary><q>${escHtml(it.quote)}</q></details></li>`).join('')}</ul></div>`).join('')}
+            <div class="sum-foot">Minden pont a hivatalos szövegből idéz: <a href="${escHtml(s.sourceUrl)}" target="_blank" rel="noopener">${escHtml(host)}</a> · frissítve: ${escHtml(s.generatedAt)}. A döntés előtt olvassa el a teljes felhívást.</div>
+        </div>`;
+}
+
 // ==== LIVE GRANT FEED ====================================================
 // grants_live.json is rebuilt daily by the GitHub Actions cron from the
 // OFFICIAL palyazat.gov.hu backend API (real call codes, deadlines, keret,
@@ -1461,7 +1493,60 @@ prepGrants();
         try { showPage(currentPage); } catch(e) {}
         console.log('[gp] live grant feed loaded:', G.length, 'grants');
     } catch (e) { console.warn('[gp] live feed unavailable — using bundled data'); }
+    finally { setTimeout(openDeepLink, 0); }
 })();
+
+// portal.html?grant=<id> (from e-mails and the public call pages) opens that
+// call's detail panel once the feed is in. Runs once; unknown ids are ignored.
+let deepLinkDone = false;
+function openDeepLink() {
+    if (deepLinkDone) return;
+    deepLinkDone = true;
+    let id = '';
+    try { id = new URLSearchParams(location.search).get('grant') || ''; } catch (e) {}
+    if (!id || !G.some(g => g.id === id)) return;
+    try { showPage('grants'); } catch (e) {}
+    try { showDetail(id); } catch (e) {}
+}
+
+/* ===== Calendar export (.ics) ===== */
+// All-day event on the deadline with reminders 14 and 3 days before.
+// Rolling ("Folyamatos") calls have no date and are skipped.
+function icsEscape(s) { return String(s || '').replace(/\\/g, '\\\\').replace(/[;,]/g, m => '\\' + m).replace(/\r?\n/g, '\\n'); }
+function icsFold(line) { const out = []; while (line.length > 73) { out.push(line.slice(0, 73)); line = ' ' + line.slice(73); } out.push(line); return out.join('\r\n'); }
+function buildICS(list) {
+    const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
+    const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//AIpalyazo//Hataridok//HU', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:AIpályázó határidők'];
+    let n = 0;
+    for (const g of list) {
+        if (!g || g.rollingDeadline || !/^\d{4}-\d{2}-\d{2}$/.test(g.deadline || '')) continue;
+        const d = g.deadline.replace(/-/g, '');
+        const next = new Date(g.deadline + 'T12:00:00Z'); next.setUTCDate(next.getUTCDate() + 1);
+        const d2 = next.toISOString().slice(0, 10).replace(/-/g, '');
+        const link = 'https://aipalyazo.hu/aipalyazo/portal.html?grant=' + encodeURIComponent(g.id);
+        lines.push('BEGIN:VEVENT', 'UID:' + String(g.id).replace(/[^A-Za-z0-9._-]/g, '_') + '@aipalyazo.hu', 'DTSTAMP:' + stamp,
+            'DTSTART;VALUE=DATE:' + d, 'DTEND;VALUE=DATE:' + d2,
+            'SUMMARY:' + icsEscape('Pályázati határidő: ' + g.title),
+            'DESCRIPTION:' + icsEscape((g.amount ? 'Összeg: ' + g.amount + '\n' : '') + 'Hivatalos oldal: ' + (g.url || '—') + '\nAIpályázó: ' + link + '\nA határidőt mindig ellenőrizze a hivatalos kiírásban.'),
+            'URL:' + link,
+            'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + icsEscape('2 hét múlva lejár: ' + g.title), 'TRIGGER:-P14D', 'END:VALARM',
+            'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + icsEscape('3 nap múlva lejár: ' + g.title), 'TRIGGER:-P3D', 'END:VALARM',
+            'END:VEVENT');
+        n++;
+    }
+    lines.push('END:VCALENDAR');
+    return { text: lines.map(icsFold).join('\r\n') + '\r\n', count: n };
+}
+function downloadICS(list, filename) {
+    const { text, count } = buildICS(list);
+    if (!count) { alert('Nincs letölthető határidő (a folyamatos beadású felhívásoknak nincs dátuma).'); return; }
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([text], { type: 'text/calendar;charset=utf-8' }));
+    a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+}
+function icsOne(id) { const g = G.find(x => x.id === id); if (g) downloadICS([g], 'aipalyazo-hatarido.ics'); }
+function icsSaved() { downloadICS(G.filter(g => bookmarks.has(g.id)), 'aipalyazo-mentett-hataridok.ics'); }
 
 let currentPage = 'dashboard';
 
@@ -2410,6 +2495,17 @@ function initDashboard() {
     // to the UA default of `inline` for <a>). Both would override a plain
     // inline `style.display = 'grid'`, so we MUST use setProperty with
     // 'important' to win the cascade and get the 3-column layout.
+    // Profile exists but some matching inputs are empty → say which.
+    try {
+        const mb = document.getElementById('missing-fields-banner');
+        const miss = (window.currentTier === 'pro' && profile && window.AIPMatch) ? window.AIPMatch.missingFields(profile) : [];
+        if (mb) {
+            if (miss.length) {
+                mb.innerHTML = `<b>A pontos illeszkedéshez még hiányzik:</b> ${miss.map(f => escHtml(f.label)).join(', ')}. Ezek nélkül a jogosultságot „?” jellel jelöljük. <a href="#" onclick="showPage('profile');return false;">Kitöltés a Beállításokban →</a>`;
+                mb.style.display = 'block';
+            } else mb.style.display = 'none';
+        }
+    } catch (e) {}
     const banner = document.getElementById('profile-banner');
     if (banner) {
         const showBanner = window.currentTier === 'pro' && !profile;
@@ -2772,12 +2868,13 @@ function showDetail(id) {
             <div class="detail-row"><span class="label">Forrás</span><span class="value">${g.url ? `<a href="${escHtml(g.url)}" target="_blank" rel="noopener" style="color: var(--green-600); text-decoration: none;">${escHtml(g.source)} ↗</a>` : escHtml(g.source)}${/^https?:\/\/[^\/]+\/?$/.test(g.url || '') ? ` · <a href="https://www.google.com/search?q=${encodeURIComponent('"' + g.title.split('—')[0].trim() + '" pályázat')}" target="_blank" rel="noopener" style="color: var(--gray-500); text-decoration: none;" title="A forrás-link a kiíró főoldalára mutat — ez a keresés a konkrét felhívást találja meg">felhívás keresése ↗</a>` : ''}</span></div>
             <div class="detail-row"><span class="label">Kategória</span><span class="value">${escHtml(g.cat)}</span></div>
             <div class="detail-row"><span class="label">Összeg</span><span class="value">${escHtml(g.amount || '—')}</span></div>
-            <div class="detail-row"><span class="label">Határidő</span><span class="value" style="color: ${!g.rollingDeadline && g.days < 30 ? 'var(--red-600)' : 'inherit'};">${deadlineText(g)}${g.rollingDeadline ? '' : ` (${g.days} nap)`}</span></div>
+            <div class="detail-row"><span class="label">Határidő</span><span class="value" style="color: ${!g.rollingDeadline && g.days < 30 ? 'var(--red-600)' : 'inherit'};">${deadlineText(g)}${g.rollingDeadline ? '' : ` (${g.days} nap) · <a href="#" onclick="icsOne('${escHtml(g.id)}');return false;" style="color: var(--green-600); text-decoration: none; white-space: nowrap;" title="Naptárfájl (.ics) emlékeztetővel 14 és 3 nappal előtte">naptárba ↓</a>`}</span></div>
             ${sourceRows(g)}
         </div>
         ${keretDetailBlock(g)}
         ${scoringSection}
-        <div class="detail-section">
+        ${summaryBlock(g)}
+        <div class="detail-section"${SUMMARIES[g.id] ? ' style="display:none"' : ''}>
             <h3>Mire fordíthatja ezt a támogatást?</h3>
             ${fundingIdeas(g).map(([ic, txt]) => `<div class="fund-idea"><span class="fi-ico">${ic}</span><span>${txt}</span></div>`).join('')}
             <div class="fund-note">Tájékoztató példák a kategória alapján — a pontos elszámolható költségeket a hivatalos kiírás határozza meg. Konkrét projekttervhez kérjen pályázatírói konzultációt lentebb.</div>
@@ -3650,6 +3747,10 @@ function initProfile() {
                     <label class="switch"><input type="checkbox" id="n_weekly" ${n.weekly?'checked':''} onchange="saveNotif()"><span class="sl"></span></label>
                 </div>
                 <div class="toggle-row">
+                    <div><div class="tr-label">Azonnali értesítés <span style="font-size:11px;font-weight:600;color:var(--gray-500);">(alapból kikapcsolva)</span></div><div class="tr-sub">Még aznap szólunk, ha (1) új felhívás jelenik meg, amelyre cége a profil alapján jogosult lehet, vagy (2) egy mentett felhívás hivatalos keretének már több mint 80%-a elfogyott. Legfeljebb napi egy levél.</div></div>
+                    <label class="switch"><input type="checkbox" id="n_instant" ${n.instant?'checked':''} onchange="saveNotif()"><span class="sl"></span></label>
+                </div>
+                <div class="toggle-row">
                     <div><div class="tr-label">Sürgős határidő riasztás</div><div class="tr-sub">Külön értesítés, ha releváns pályázat 14 napon belül lejár</div></div>
                     <label class="switch"><input type="checkbox" id="n_urgent" ${n.urgent?'checked':''}><span class="sl"></span></label>
                 </div>
@@ -3961,14 +4062,22 @@ async function loadNotifFromServer() {
         .select('weekly_enabled, urgent_enabled, frequency, section_new_since_last, section_deadlines, section_saved_updates')
         .eq('user_id', user.id).maybeSingle();
     if (error || !data) return;
+    // instant_enabled lives in a later migration: read it separately so a
+    // missing column never breaks the rest of the settings.
+    let instant = false;
+    try {
+        const r = await window.gp.client.from('notif_prefs').select('instant_enabled').eq('user_id', user.id).maybeSingle();
+        instant = !!(r && r.data && r.data.instant_enabled);
+    } catch (e) {}
     const n = Object.assign(getNotif(), {
+        instant,
         weekly: !!data.weekly_enabled, urgent: !!data.urgent_enabled, freq: data.frequency || 'heti',
         secNew: data.section_new_since_last !== false, secDeadline: data.section_deadlines !== false,
         secSaved: !!data.section_saved_updates, email: user.email || ''
     });
     try { localStorage.setItem(NOTIF_KEY, JSON.stringify(n)); } catch(e) {}
     const set = (id, v) => { const el = document.getElementById(id); if (el) { el.checked = v; const c = el.closest('.chip-opt'); if (c) c.classList.toggle('on', v); } };
-    set('n_weekly', n.weekly); set('n_urgent', n.urgent); set('n_new', n.secNew); set('n_deadline', n.secDeadline); set('n_saved', n.secSaved);
+    set('n_weekly', n.weekly); set('n_instant', n.instant); set('n_urgent', n.urgent); set('n_new', n.secNew); set('n_deadline', n.secDeadline); set('n_saved', n.secSaved);
     const f = document.getElementById('n_freq'); if (f) f.value = FREQ_DB[n.freq] || 'heti';
 }
 
@@ -3976,6 +4085,7 @@ async function saveNotif() {
     const val = (id) => { const el = document.getElementById(id); return el ? el.checked : false; };
     const data = {
         weekly: val('n_weekly'),
+        instant: val('n_instant'),
         urgent: val('n_urgent'),
         freq: FREQ_DB[(document.getElementById('n_freq') || {}).value] || 'heti',
         email: ((document.getElementById('n_email') || {}).value || '').trim(),
@@ -4004,6 +4114,13 @@ async function saveNotif() {
         console.warn('[gp] notif_prefs save failed', error);
         if (err) { err.textContent = 'A mentés nem sikerült. Kérjük, próbálja újra.'; err.style.display = 'inline'; }
         return;
+    }
+    const r2 = await window.gp.client.from('notif_prefs').update({ instant_enabled: data.instant }).eq('user_id', user.id);
+    if (r2 && r2.error) {
+        console.warn('[gp] instant_enabled save failed', r2.error);
+        if (err) { err.textContent = 'Az azonnali értesítés beállítása most nem menthető. Kérjük, próbálja később.'; err.style.display = 'inline'; }
+        const el = document.getElementById('n_instant'); if (el && data.instant) el.checked = false;
+        data.instant = false;
     }
     try { localStorage.setItem(NOTIF_KEY, JSON.stringify(data)); } catch(e) {}
     flashOk('notif-ok');

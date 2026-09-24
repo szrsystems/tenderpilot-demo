@@ -50,3 +50,33 @@ test('every live item gets a valid match for a sample profile', () => {
     assert.ok(r.checks.every((c) => c.label && c.reason && ['ok', 'warn', 'fail', 'unknown', 'neutral'].includes(c.status)), it.id);
   }
 });
+
+import { createHash } from 'node:crypto';
+const G = require('../aipalyazo/lib/hu-geo.js');
+test('postcode → region; copies identical', () => {
+  assert.equal(readFileSync(new URL('../aipalyazo/lib/hu-geo.js', import.meta.url), 'utf8'), readFileSync(new URL('../supabase/functions/_shared/hu-geo.js', import.meta.url), 'utf8'));
+  assert.equal(G.regionOf('1025'), 'Budapest');
+  assert.equal(G.regionOf('2440'), 'Pest');
+  assert.equal(G.regionOf('4032'), 'Észak-Alföld');
+  assert.equal(G.regionOf('8360'), 'Nyugat-Dunántúl');
+  assert.equal(G.regionOf('7621'), 'Dél-Dunántúl');
+  assert.equal(G.regionOf('x'), null);
+});
+test('TEÁOR drives sector and exclusion checks', () => {
+  assert.deepEqual(M.teaorIndustries('1071 Kenyérgyártás'), ['Manufacturing', 'Food']);
+  const r = M.match(g({}), { ...maker, industries: [], teaor: '6820' }, TODAY);
+  assert.ok(r.checks.some((c) => c.key === 'teaor' && c.status === 'warn'));
+  assert.deepEqual(M.missingFields({ employees: '1-5' }).map((f) => f.key), ['site_region', 'teaor', 'years_operating', 'public_debt_free', 'in_difficulty', 'own_funds']);
+});
+test('NAV queryTaxpayer: request signature and response parsing', async () => {
+  const { buildQueryTaxpayerXml, parseTaxpayerResponse, normalizeTaxNumber } = await import('../supabase/functions/_shared/nav.mjs');
+  const h = (alg) => (s) => createHash(alg).update(s).digest('hex');
+  const xml = await buildQueryTaxpayerXml({ login: 'l', password: 'p', signKey: 'k', ownTaxNumber: '12345678', software: { id: 'HU12345678AIPALY01', name: 'x', version: '1.0', devName: 'x', devContact: 'x@y.hu', devTaxNumber: '12345678' }, targetTaxNumber: '87654321', requestId: 'RID1', date: new Date('2026-09-25T10:11:12.345Z') }, { sha512Hex: h('sha512'), sha3_512Hex: h('sha3-512') });
+  assert.ok(xml.includes(h('sha3-512')('RID120260925101112k').toUpperCase()));
+  assert.ok(xml.includes(h('sha512')('p').toUpperCase()));
+  assert.equal(normalizeTaxNumber('12345678-1-41'), '12345678');
+  const ok = parseTaxpayerResponse('<ns2:R><result><funcCode>OK</funcCode></result><ns2:taxpayerValidity>true</ns2:taxpayerValidity><ns2:taxpayerName>MINTA BT</ns2:taxpayerName><ns2:incorporation>ORGANIZATION</ns2:incorporation><ns2:taxpayerAddressItem><ns2:taxpayerAddressType>HQ</ns2:taxpayerAddressType><ns3:postalCode>6720</ns3:postalCode><ns3:city>SZEGED</ns3:city></ns2:taxpayerAddressItem></ns2:R>');
+  assert.equal(ok.legalForm, 'Bt'); assert.equal(ok.postalCode, '6720');
+  assert.equal(parseTaxpayerResponse('<x><funcCode>OK</funcCode><taxpayerValidity>false</taxpayerValidity></x>').found, false);
+  assert.equal(parseTaxpayerResponse('<x><funcCode>ERROR</funcCode><errorCode>E</errorCode></x>').ok, false);
+});

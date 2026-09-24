@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /aipalyazo/portal.html
+Disallow: /aipalyazo/login.html
+Disallow: /aipalyazo/reset-password.html
+Disallow: /aipalyazo/confirm-email.html
+Disallow: /aipalyazo/leiratkozas.html
+Disallow: /tenderpilot/
+
+Sitemap: https://aipalyazo.hu/aipalyazo/sitemap.xml

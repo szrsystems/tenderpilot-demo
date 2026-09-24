@@ -35,7 +35,7 @@
     { re: /halász|akvakult|halfeldolg|halgazd|\bfish|aquacult/i, need: ['Agriculture'], label: 'halászat / akvakultúra' },
     { re: /erdő|erdősít|fásít|\bforest/i, need: ['Agriculture'], label: 'erdőgazdálkodás' },
     { re: /ültetvény|gazdaságátad|termelői csoport|őstermel|agrár.*kártya|agrár.*hitel|mezőgazdasági termel/i, need: ['Agriculture'], label: 'mezőgazdasági termelés' },
-    { re: /élelmiszeripar|élelmiszer-feldolg|\bTÉSZ\b|food process/i, need: ['Agriculture'], soft: ['Manufacturing', 'Retail'], label: 'élelmiszeripar' },
+    { re: /élelmiszeripar|élelmiszer-feldolg|\bTÉSZ\b|food process/i, need: ['Agriculture', 'Food'], soft: ['Manufacturing', 'Retail'], label: 'élelmiszeripar' },
     { re: /geoterm|földhő/i, need: ['HVAC'], soft: ['Manufacturing', 'Construction'], label: 'geotermikus energia' },
     { re: /turisztikai kártya|szálláshely|vendéglát/i, need: ['Tourism', 'Restaurant'], label: 'turizmus / vendéglátás' },
     { re: /előadó-művész|performing arts|kulturális örökség|cultural heritage/i, need: ['Education', 'General'], label: 'kultúra' },
@@ -55,10 +55,32 @@
     return Math.round((Date.parse(dateStr + 'T00:00:00Z') - Date.parse(today + 'T00:00:00Z')) / 86400000);
   }
 
+  // TEÁOR (NACE) main activity → 2-digit division → our industry buckets.
+  function teaorDivision(t) {
+    var m = String(t || '').match(/\b(\d{2})(?:[.\s]?\d{1,2})?\b/);
+    return m ? +m[1] : null;
+  }
+  function teaorIndustries(t) {
+    var d = teaorDivision(t);
+    if (d === null) return [];
+    if (d <= 3) return ['Agriculture'];
+    if (d >= 10 && d <= 12) return ['Manufacturing', 'Food'];
+    if (d >= 5 && d <= 33) return ['Manufacturing'];
+    if (d === 35) return ['HVAC'];
+    if (d >= 41 && d <= 43) return ['Construction'];
+    if (d >= 45 && d <= 47) return ['Retail'];
+    if (d === 55) return ['Tourism'];
+    if (d === 56) return ['Restaurant'];
+    if (d >= 58 && d <= 63) return ['IT'];
+    if (d === 85) return ['Education'];
+    if (d >= 86 && d <= 88) return ['Healthcare'];
+    return ['General'];
+  }
   function industriesOf(p) {
     if (!p) return [];
-    if (Array.isArray(p.industries) && p.industries.length) return p.industries;
-    return p.industry ? [p.industry] : [];
+    var list = Array.isArray(p.industries) && p.industries.length ? p.industries.slice() : (p.industry ? [p.industry] : []);
+    teaorIndustries(p.teaor).forEach(function (x) { if (list.indexOf(x) < 0) list.push(x); });
+    return list;
   }
 
   // ---- the individual checks ---------------------------------------------
@@ -140,6 +162,16 @@
     return { key: 'basics', label: 'Alapfeltételek', status: 'unknown', reason: 'Köztartozásmentesség és „nehéz helyzet” ellenőrizendő.' };
   }
 
+  // Main activities most Hungarian state-aid calls exclude.
+  function checkTeaor(g, p) {
+    var d = teaorDivision(p && p.teaor);
+    if (d === null || g.scope === 'eu' || ['grant', 'loan', 'loan+grant', 'wage-subsidy'].indexOf(g.type) < 0) return null;
+    if ([64, 65, 66, 68, 92].indexOf(d) >= 0) {
+      return { key: 'teaor', label: 'Főtevékenység', status: 'warn', reason: 'Pénzügyi, ingatlan- és szerencsejáték-tevékenység sok felhívásból ki van zárva — ellenőrizze a felhívásban.' };
+    }
+    return null;
+  }
+
   function checkApplicant(g) {
     if (g.scope === 'eu' && g.singleApplicant === false) return { key: 'applicant', label: 'Pályázói kör', status: 'warn', reason: 'Nemzetközi konzorcium kell (partnerek más országokból).' };
     if (/csak minősített|kizárólag|csak .*szervezet|szűk kör|engedély szükséges|koncesszió|MGFÜ-regisztráció/i.test(g.note || '')) return { key: 'applicant', label: 'Pályázói kör', status: 'warn', reason: g.note };
@@ -167,7 +199,7 @@
   function match(g, profile, today) {
     today = today || new Date().toISOString().slice(0, 10);
     var p = profile && (profile.company || profile.employees || industriesOf(profile).length) ? profile : null;
-    var checks = [checkSize(g, p), checkRegion(g, p), checkSector(g, p), checkYears(g, p), checkBasics(g, p), checkApplicant(g), checkMoney(g, p), checkTiming(g, today)]
+    var checks = [checkSize(g, p), checkRegion(g, p), checkSector(g, p), checkTeaor(g, p), checkYears(g, p), checkBasics(g, p), checkApplicant(g), checkMoney(g, p), checkTiming(g, today)]
       .filter(Boolean);
     var fails = checks.filter(function (c) { return c.status === 'fail'; }).length;
     var warns = checks.filter(function (c) { return c.status === 'warn'; }).length;
@@ -192,7 +224,17 @@
     return { score: score, verdict: verdict, eligible: !fails, personal: !!p, checks: checks };
   }
 
-  var api = { match: match, sizeTier: sizeTier, ALL_REGIONS: ALL_REGIONS };
+  // Profile fields the matching uses, and which are still empty.
+  var NEEDED = [
+    ['employees', 'Létszám'], ['site_region', 'Megvalósítás régiója'], ['teaor', 'TEÁOR főtevékenység'],
+    ['years_operating', 'Lezárt üzleti évek'], ['public_debt_free', 'Köztartozásmentesség'],
+    ['in_difficulty', 'Nehéz helyzetű-e'], ['own_funds', 'Önerő'],
+  ];
+  function missingFields(p) {
+    return NEEDED.filter(function (f) { return !p || !p[f[0]]; }).map(function (f) { return { key: f[0], label: f[1] }; });
+  }
+
+  var api = { match: match, sizeTier: sizeTier, teaorIndustries: teaorIndustries, missingFields: missingFields, ALL_REGIONS: ALL_REGIONS };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.AIPMatch = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

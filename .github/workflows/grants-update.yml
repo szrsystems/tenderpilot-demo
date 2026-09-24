@@ -30,7 +30,7 @@ jobs:
         run: node scripts/update-grants.mjs
 
       - name: Test the feed builder and monitor (offline)
-        run: node --test scripts/feed.test.mjs scripts/monitor/monitor.test.mjs scripts/match.test.mjs
+        run: node --test scripts/feed.test.mjs scripts/monitor/monitor.test.mjs scripts/match.test.mjs scripts/pages.test.mjs
 
       # Re-checks every listed item on its official page, discovers new calls
       # on official listing pages, fact-checks them with quotes from the page.
@@ -48,11 +48,15 @@ jobs:
       - name: Build live grant feed (palyazat.gov.hu API + hand-verified list + EU Funding & Tenders API)
         run: node scripts/fetch-live-grants.mjs
 
+      # One public, indexable page per call + index + sitemap (SEO).
+      - name: Build public call pages
+        run: node scripts/build-pages.mjs
+
       - name: Commit changes (if any)
         run: |
           git config user.name "aipalyazo-bot"
           git config user.email "bot@aipalyazo.hu"
-          git add aipalyazo/grants-status.json aipalyazo/grants_live.json aipalyazo/grants-meta.json scripts/monitor/state.json scripts/monitor/flags.json scripts/monitor/auto-grants.json scripts/monitor/review-queue.json
+          git add aipalyazo/grants-status.json aipalyazo/grants_live.json aipalyazo/grants-meta.json scripts/monitor/state.json scripts/monitor/flags.json scripts/monitor/auto-grants.json scripts/monitor/review-queue.json aipalyazo/summaries.json aipalyazo/palyazat aipalyazo/sitemap.xml robots.txt
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
@@ -60,6 +64,23 @@ jobs:
             git commit -m "data: daily live grant feed ($(date -u +%Y-%m-%d)) — $CHANGES"
             git push
           fi
+
+      # Opt-in instant e-mails (new eligible calls, saved calls >80% committed).
+      # The function only mails users who switched it on; alert_log stops repeats.
+      # Skipped quietly until CRON_SECRET is set. Response body is not printed.
+      - name: Send instant alerts (opt-in users only)
+        continue-on-error: true
+        env:
+          ANON: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImthY252Y2h3Znd2cGtreWh5dXBiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzQwNDEsImV4cCI6MjA5NjE1MDA0MX0.ajkwWvyPP-ENAnOXmokvBQ-1PP0So-qoZg4DJmsPob0'
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          if [ -z "$CRON_SECRET" ]; then echo "CRON_SECRET not set — skipping."; exit 0; fi
+          node -e "const g=require('./aipalyazo/grants_live.json');const m=require('./aipalyazo/grants-meta.json');process.stdout.write(JSON.stringify({grants:g,changes:m.changes||[]}))" > /tmp/alerts.json
+          CODE=$(curl -sS -o /tmp/alerts-resp.json -w '%{http_code}' -X POST "https://kacnvchwfwvpkkyhyupb.supabase.co/functions/v1/instant-alerts" \
+            -H "Authorization: Bearer $ANON" -H "apikey: $ANON" -H "x-cron-secret: $CRON_SECRET" \
+            -H "Content-Type: application/json" --data-binary @/tmp/alerts.json)
+          echo "instant-alerts HTTP $CODE"
+          node -e "try{const r=require('/tmp/alerts-resp.json');console.log('sent',r.sent,'skipped',r.skipped,'failed',r.failed,r.reason||'')}catch(e){}"
 
       - name: Post the review list to a GitHub issue (if anything needs a human)
         env:

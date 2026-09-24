@@ -12,6 +12,8 @@
 //   2. The site's leiratkozas.html page:
 //        POST /functions/v1/unsubscribe   body: {"t":"<token>","action":"off"|"on"}
 //      ("on" lets someone who clicked by mistake re-subscribe.)
+//   Optional kind=instant (query ?kind=instant or body "kind":"instant")
+//   switches the instant alerts instead of the weekly e-mail.
 //
 // GET is deliberately NOT supported: link scanners and mail previewers
 // fetch GET links automatically and would unsubscribe people by accident.
@@ -55,26 +57,30 @@ Deno.serve(async (req) => {
   const url = new URL(req.url);
   let token = url.searchParams.get('t') ?? '';
   let action: 'off' | 'on' = 'off';
+  let kind: 'weekly' | 'instant' = url.searchParams.get('kind') === 'instant' ? 'instant' : 'weekly';
   const ctype = req.headers.get('content-type') ?? '';
   if (ctype.includes('application/json')) {
     try {
       const body = await req.json();
       if (typeof body?.t === 'string') token = body.t;
       if (body?.action === 'on') action = 'on';
+      if (body?.kind === 'instant') kind = 'instant';
     } catch { /* fall through with query token */ }
   }
   token = token.trim();
   if (!UUID_RE.test(token)) return json(origin, { error: 'invalid_token' }, 400);
 
   const admin = createClient(SUPABASE_URL, SERVICE_ROLE);
-  const patch = action === 'on'
-    ? { weekly_enabled: true }
-    : { weekly_enabled: false, urgent_enabled: false };
+  const patch = kind === 'instant'
+    ? { instant_enabled: action === 'on' }
+    : action === 'on'
+      ? { weekly_enabled: true }
+      : { weekly_enabled: false, urgent_enabled: false };
   const { error } = await admin
     .from('notif_prefs')
     .update(patch)
     .eq('unsubscribe_token', token);
   if (error) return json(origin, { error: 'update_failed' }, 500);
   // Same answer whether or not the token exists: don't reveal valid tokens.
-  return json(origin, { ok: true, weekly_enabled: action === 'on' });
+  return json(origin, kind === 'instant' ? { ok: true, kind, instant_enabled: action === 'on' } : { ok: true, kind, weekly_enabled: action === 'on' });
 });

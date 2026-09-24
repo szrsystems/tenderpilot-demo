@@ -132,3 +132,55 @@ test('coverage cross-check: codes we miss and new items on another site go to re
   const r2 = await runMonitor({ ...base, state: r1.state });
   assert.ok(r2.review.some((x) => x.kind === 'benchmark-new' && x.title === 'uj felhivas'));
 });
+
+import { validateSummary, updateSummaries } from './summarize.mjs';
+import { makeFetcher } from './lib.mjs';
+
+const CALL = `Kedvezményezettek köre: mikro-, kis- és középvállalkozások, legalább 1 lezárt üzleti évvel.
+A támogatás összege: 3–20 millió Ft, a hitel legfeljebb 50%-a vissza nem térítendő.
+Elszámolható: szoftverbeszerzés, hardver, webáruház fejlesztése.
+Önerő: az elszámolható költség legalább 10%-a.
+Benyújtás: 2027. június 30-ig folyamatosan, az MFB Pontokon.
+Nem támogatható: ingatlanvásárlás. ${'Részletes feltételek. '.repeat(40)}`;
+
+test('summary: only lines quoting the official text survive', () => {
+  const raw = { items: [
+    { section: 'who', text: 'KKV-k, legalább 1 lezárt évvel.', quote: 'mikro-, kis- és középvállalkozások, legalább 1 lezárt üzleti évvel' },
+    { section: 'money', text: '3–20 M Ft, max. fele vissza nem térítendő.', quote: 'A támogatás összege: 3–20 millió Ft' },
+    { section: 'own', text: 'Min. 10% önerő.', quote: 'legalább 10%-a' },
+    { section: 'what', text: 'Autóvásárlás is.', quote: 'gépjármű beszerzése' },          // invented → dropped
+    { section: 'bogus', text: 'x', quote: 'Önerő' },                                       // bad section → dropped
+  ] };
+  const v = validateSummary(raw, CALL);
+  assert.equal(v.ok, true);
+  assert.equal(v.kept, 3);
+  assert.equal(v.dropped, 2);
+  assert.deepEqual(v.sections.map((s) => s.key), ['who', 'money', 'own']);
+  assert.equal(validateSummary({ items: raw.items.slice(3) }, CALL).ok, false);
+});
+
+test('summaries: generated once, reused while the source is unchanged, EU topics read from the portal JSON', async () => {
+  let calls = 0;
+  const llm = async () => { calls++; return JSON.stringify({ items: [
+    { section: 'who', text: 'KKV-k.', quote: 'mikro-, kis- és középvállalkozások' },
+    { section: 'money', text: '3–20 M Ft.', quote: '3–20 millió Ft' },
+    { section: 'how', text: 'MFB Pontokon.', quote: 'az MFB Pontokon' },
+  ] }); };
+  const { fetchImpl } = fakeWeb({
+    'https://mfb.hu/termek': html(CALL),
+    'https://ec.europa.eu/info/funding-tenders/opportunities/data/topicDetails/horizon-y-01.json': { TopicDetails: { title: 'Y', description: '<p>' + CALL + '</p>', conditions: '' } },
+    'https://www.palyazat.gov.hu/x': html('Betöltés…'),   // JS shell → skipped
+  });
+  const fetchPage = makeFetcher({ fetchImpl, delayMs: 0, cache: new Map() });
+  const items = [
+    { id: 'a', title: 'A', url: 'https://mfb.hu/termek' },
+    { id: 'b', title: 'B', url: 'https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-y-01' },
+    { id: 'c', title: 'C', url: 'https://www.palyazat.gov.hu/x' },
+  ];
+  const r1 = await updateSummaries({ items, fetchPage, llm, today: TODAY });
+  assert.deepEqual(Object.keys(r1.summaries).sort(), ['a', 'b']);
+  assert.equal(calls, 2);
+  const r2 = await updateSummaries({ items: items.slice(0, 1), prev: r1.summaries, fetchPage, llm, today: TODAY });
+  assert.equal(calls, 2);                          // unchanged source → no new call
+  assert.deepEqual(Object.keys(r2.summaries), ['a']); // removed call's summary dropped
+});

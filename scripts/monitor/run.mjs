@@ -23,6 +23,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { makeFetcher, extractLinks, hash, pool, todayBudapest } from './lib.mjs';
 import { extractFacts, llmFromEnv } from './extract.mjs';
+import { updateSummaries } from './summarize.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const P = (f) => join(HERE, f);
@@ -55,9 +56,9 @@ const ckey = (c) => String(c || '').toLowerCase().replace(/plusz/g, '').replace(
 export async function runMonitor({
   benchmarks = [], knownCodes = [],
   items, sources, officialDomains, state, fetchImpl = fetch, llm = null, today = todayBudapest(),
-  maxLlmCalls = 60, maxNewPerSource = 15, delayMs = 1200, prevAuto = [],
+  maxLlmCalls = 60, maxNewPerSource = 15, delayMs = 1200, prevAuto = [], fetchPage: givenFetch = null,
 }) {
-  const fetchPage = makeFetcher({ fetchImpl, delayMs });
+  const fetchPage = givenFetch || makeFetcher({ fetchImpl, delayMs });
   state.pages = state.pages || {};
   state.seen = state.seen || {};
   const flags = { hide: {}, overrides: {} };
@@ -198,13 +199,24 @@ async function main() {
   const prevAuto = readJson(P('auto-grants.json'), []);
   const cfg = readJson(P('sources.json'), { sources: [], officialDomains: [] });
   const state = readJson(P('state.json'), {});
+  const llm = llmFromEnv();
+  const fetchPage = makeFetcher({ cache: new Map() });
   const out = await runMonitor({
+    fetchPage,
     items: [...verified, ...prevAuto], sources: cfg.sources, officialDomains: cfg.officialDomains, state,
     benchmarks: cfg.benchmarks || [],
     // codes that are deliberately NOT listed (excluded) or come from the API
     knownCodes: [...Object.keys(readJson(join(REPO, 'scripts/api-verified.json'), {})), ...readJson(join(REPO, 'aipalyazo/grants_live.json'), []).map((g) => g.code)],
-    llm: llmFromEnv(), today, prevAuto, maxLlmCalls: +(process.env.MAX_LLM_CALLS || 60),
+    llm, today, prevAuto, maxLlmCalls: +(process.env.MAX_LLM_CALLS || 60),
   });
+  // Official call summaries for everything currently listed.
+  const feed = readJson(join(REPO, 'aipalyazo/grants_live.json'), []);
+  const sum = await updateSummaries({
+    items: feed, prev: readJson(join(REPO, 'aipalyazo/summaries.json'), {}), fetchPage, llm, today,
+    maxCalls: +(process.env.MAX_SUMMARY_CALLS || 40),
+  });
+  writeFileSync(join(REPO, 'aipalyazo/summaries.json'), JSON.stringify(sum.summaries));
+  out.log.push(`Summaries: ${Object.keys(sum.summaries).length} published — new ${sum.stats.made}, unchanged ${sum.stats.kept}, no usable source/queued ${sum.stats.skipped}, rejected ${sum.stats.failed}`);
   writeFileSync(P('state.json'), JSON.stringify(out.state, null, 1));
   writeFileSync(P('flags.json'), JSON.stringify({ updatedAt: today, ...out.flags }, null, 1));
   writeFileSync(P('auto-grants.json'), JSON.stringify(out.auto, null, 1));
