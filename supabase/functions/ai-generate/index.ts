@@ -68,6 +68,11 @@ A PÁLYÁZAT:
 - Keretösszeg: ${grant?.amount ?? ''}
 - Határidő: ${grant?.deadline ?? ''}
 - Forrás: ${grant?.source ?? ''}
+- Felhívás kódja: ${String(grant?.code ?? '').slice(0, 80)}
+- Kiíró: ${String(grant?.issuer ?? '').slice(0, 120)}
+- Támogatás típusa: ${String(grant?.type ?? '').slice(0, 30)} ${String(grant?.rate ?? '').slice(0, 80)}
+- Fontos jogosultsági feltétel: ${String(grant?.note ?? '').slice(0, 400)}
+- Hivatalos felhívás: ${String(grant?.url ?? '').slice(0, 300)}
 
 A PÁLYÁZÓ CÉG:
 - Cégnév: ${p.company ?? 'A Pályázó'}
@@ -82,7 +87,8 @@ KÖVETELMÉNYEK:
 - Magyar nyelven, hivatalos pályázati stílusban, a cégprofilra konkrétan szabva.
 - Szekciónként 2-4 bekezdés sima szöveg (NE használj HTML-t, jelölést, csillagot vagy markdownt). Bekezdéseket üres sorral válassz el.
 - Reális, de a hivatalos felhívással ellenőrizendő tartalmak. A költségvetésnél adj kerek becsült összegeket és arányokat.
-- Ne találj ki konkrét számszerű referenciát (pl. korábbi pályázati azonosítót).`;
+- Ne találj ki konkrét számszerű referenciát (pl. korábbi pályázati azonosítót).
+- Ha a támogatás hitel vagy kombinált termék, a költségvetésnél a visszafizetést és a hitelképességet is vedd figyelembe; ha a feltétel szűkít (pl. régió, cégméret, lezárt évek), a Pályázó bemutatásánál mutasd meg, hogy megfelel.`;
 }
 
 function needsPrompt(query: string, categories: string[]): string {

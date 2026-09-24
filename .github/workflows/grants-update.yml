@@ -30,7 +30,7 @@ jobs:
         run: node scripts/update-grants.mjs
 
       - name: Test the feed builder and monitor (offline)
-        run: node --test scripts/feed.test.mjs scripts/monitor/monitor.test.mjs
+        run: node --test scripts/feed.test.mjs scripts/monitor/monitor.test.mjs scripts/match.test.mjs
 
       # Re-checks every listed item on its official page, discovers new calls
       # on official listing pages, fact-checks them with quotes from the page.

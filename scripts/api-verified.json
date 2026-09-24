@@ -333,7 +333,8 @@
    "https://qlm.hu/ginop-plusz-1-4-4-24-kkv-technologia-plusz-budapest-hitelprogram/",
    "https://pafi.hu/p/kkv-technologia-plusz-budapest-hitelprogram-ginop-plusz-144-24"
   ],
-  "confidence": "medium"
+  "confidence": "medium",
+  "cat": "KKV fejlesztés"
  },
  "2025-1.1.1-BAY_VOUCHER": {
   "type": "in-kind",
@@ -422,7 +423,8 @@
    "https://mgfu.hu/hu/article/1314",
    "https://www.mfb.hu/vallalkozasok/mukodo/kombinalt_termekek/ginop-plusz--145-25-nemzeti-bajnokok-t251-masolat-t251-p252"
   ],
-  "confidence": "high"
+  "confidence": "high",
+  "cat": "KKV fejlesztés"
  },
  "GINOP_PLUSZ-1.4.3-24": {
   "type": "loan",
@@ -445,7 +447,8 @@
    "https://pulzuspalyazatiras.hu/osszes-palyazat/255-kkv-technologia-plusz-hitelprogram",
    "https://granitbank.hu/vallalati-mfbpontplusz-hitelprogramok/kkv-technologia-plusz"
   ],
-  "confidence": "high"
+  "confidence": "high",
+  "cat": "KKV fejlesztés"
  },
  "KEHOP_PLUSZ-4.2.5-25": {
   "type": "loan",

@@ -10,6 +10,7 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIpályázó — Áttekintés</title>
+    <script src="lib/match.js"></script>
     <script src="lib/supabase.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -578,6 +579,12 @@
         .badge-type-grant { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
         .badge-type-other { background: #eff6ff; color: #1e3a8a; border: 1px solid #bfdbfe; }
         .grant-card-deadline { font-size: 12.5px; color: var(--gray-600); margin-top: 4px; }
+        .match-checks { display: grid; gap: 6px; }
+        .match-row { display: grid; grid-template-columns: 18px 118px 1fr; gap: 8px; align-items: baseline; font-size: 13.5px; line-height: 1.45; }
+        .match-mark { font-weight: 800; text-align: center; }
+        .match-label { font-weight: 600; color: var(--gray-800); }
+        .match-reason { color: var(--gray-700); }
+        @media (max-width: 480px) { .match-row { grid-template-columns: 18px 1fr; } .match-reason { grid-column: 2; } }
         .signed-in-only  { display: none !important; }
         .anonymous-only  { display: none !important; }
         body.tier-pro       .pro-only        { display: revert !important; }
@@ -1400,6 +1407,8 @@ const CAT_ALIASES = {
 
 let EXPIRED_COUNT = 0;
 function prepGrants() {
+    const prof = getUserProfile();
+    const todayIso = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Budapest' });
     G.forEach(g => {
         if (CAT_ALIASES[g.cat]) g.cat = CAT_ALIASES[g.cat];
         // Display normalization: amounts were entered as both "12M Ft" and
@@ -1416,19 +1425,13 @@ function prepGrants() {
             g.expired = delta < 0;
             g.days = Math.max(0, delta);
         } catch(e) { g.days = 90; g.expired = false; }
-        const f = g.factors;
-        // The deadline factor is computed LIVE from the actual days remaining —
-        // the value baked into the data file goes stale (a grant entered with
-        // "deadline: 95" eventually has 4 days left). Tight deadlines score
-        // lower because the grant is less actionable, not because it fits worse.
-        f.deadline = g.days <= 7 ? 35 : g.days <= 14 ? 50 : g.days <= 30 ? 65
-                   : g.days <= 60 ? 80 : g.days <= 120 ? 90 : 95;
-        g.score = Math.round((f.size*25 + f.industry*25 + f.location*20 + f.deadline*15 + f.preference*15) / 100 * 10) / 10;
-        // Fully committed keret (official data) → much less actionable, demote.
-        if (g.keret > 0 && typeof g.remaining === 'number' && g.remaining <= 0) {
-            g.score = Math.max(25, Math.round((g.score - 15) * 10) / 10);
-        }
-        g.verdict = g.score >= 80 ? 'APPLY' : g.score >= 60 ? 'REVIEW' : 'SKIP';
+        // Point-by-point match against the company profile (lib/match.js):
+        // size, region, activity, closed years, basic eligibility, applicant
+        // circle, budget, timing. Without a profile only actionability counts.
+        const m = window.AIPMatch.match(g, prof, todayIso);
+        g.match = m;
+        g.score = m.score;
+        g.verdict = m.verdict;
     });
     // Auto-hide expired grants: keep them out of G so all stats, filters and
     // pagination reflect only active opportunities. The count is surfaced in the UI.
@@ -1592,7 +1595,11 @@ function yearsFit(g, profile) {
 }
 
 function profileBoost(g, profile) {
+    // The match score (lib/match.js) is already personal; this legacy nudge
+    // is kept only as a tiny tie-breaker for the user's chosen topics.
     if (!profile) return 0;
+    return (Array.isArray(profile.categories) && profile.categories.includes(g.cat)) ? 1 : 0;
+    // eslint-disable-next-line no-unreachable
     let boost = 0;
     if (Array.isArray(profile.categories) && profile.categories.length) {
         if (profile.categories.includes(g.cat)) boost += 12;
@@ -1899,14 +1906,14 @@ const CATEGORY_ORDER = ['all','hu','grant','loan','eu','digital','energy','capac
 let activeCat = 'all';
 let activeSort = 'score';
 let activeRelv = 'relevant'; // 'relevant' (default — eligible-fit only) | 'all'
-let RELV_THRESHOLD = 55;     // mutable: Pro user can adjust via slider
-try { const t = parseInt(localStorage.getItem('grantpilot:relv_threshold'), 10); if (t >= 40 && t <= 95) RELV_THRESHOLD = t; } catch(e) {}
+let RELV_THRESHOLD = 70;     // mutable: Pro user can adjust via slider (point-by-point match scale)
+try { const t = parseInt(localStorage.getItem('grantpilot:relv_threshold2'), 10); if (t >= 40 && t <= 95) RELV_THRESHOLD = t; } catch(e) {}
 
 function setThreshold(val) {
     const n = parseInt(val, 10);
     if (!isFinite(n) || n < 40 || n > 95) return;
     RELV_THRESHOLD = n;
-    try { localStorage.setItem('grantpilot:relv_threshold', String(n)); } catch(e) {}
+    try { localStorage.setItem('grantpilot:relv_threshold2', String(n)); } catch(e) {}
     // The threshold is adjustable from TWO places (grants-page slider and the
     // Beállítások select) and drives the dashboard KPI too — sync every
     // control and re-render whichever page is visible.
@@ -2302,7 +2309,9 @@ function initDashboard() {
     // threshold the user sees always matches the badges. profileBoost still
     // personalises the ranking/sort, just not the cutoff.
     const relevant = G.filter(g => g.score >= RELV_THRESHOLD).length;
-    const totalFunding = G.reduce((s, g) => s + parseAmount(g.amount), 0);
+    // Only the official free budget (palyazat.gov.hu API) — summing per-company
+    // maximums or programme envelopes gave meaningless totals.
+    const totalFunding = G.reduce((s, g) => s + (g.keret > 0 && typeof g.remaining === 'number' ? g.remaining : 0), 0);
     const expiringThisMonth = G.filter(g => {
         const d = new Date(g.deadline);
         return d.getFullYear() === today.getFullYear() && d.getMonth() === today.getMonth() && d >= today;
@@ -2333,9 +2342,9 @@ function initDashboard() {
         </div>
         <div class="hero-stat">
             <div class="hero-stat-icon"><span style="font-size:15px;font-weight:800;letter-spacing:-0.5px;line-height:1;">Ft</span></div>
-            <div class="hero-stat-label">Elérhető keret</div>
+            <div class="hero-stat-label">Szabad hazai keret</div>
             <div class="hero-stat-value" data-counter="funding">0</div>
-            <div class="hero-stat-sub">Összes pályázat keretösszege</div>
+            <div class="hero-stat-sub">Hivatalos adat, naponta frissítve</div>
         </div>
     `;
     animateCounter(document.querySelector('[data-counter="total"]'), totalActive);
@@ -2476,9 +2485,9 @@ function filterGrants() {
         empty.classList.add('hidden');
         list.innerHTML = f.map(renderCard).join('');
     }
-    const totalFunding = f.reduce((s, g) => s + parseAmount(g.amount), 0);
+    const totalFunding = f.reduce((s, g) => s + (g.keret > 0 && typeof g.remaining === 'number' ? g.remaining : 0), 0);
     document.getElementById('grant-count').textContent = f.length;
-    let summary = totalFunding > 0 ? `${formatFt(totalFunding)} elérhető keret` : 'a kiválasztott szűrőkkel';
+    let summary = totalFunding > 0 ? `${formatFt(totalFunding)} szabad keret (hivatalos adat)` : 'a kiválasztott szűrőkkel';
     if (activeRelv === 'relevant') {
         const hidden = G.length - f.length;
         if (hidden > 0) summary += ` · ${hidden} kevésbé illeszkedő elrejtve`;
@@ -2580,7 +2589,7 @@ function requestWriterQuote(id) {
 //   Example: 'https://formspree.io/f/abcd1234'
 const LEAD_BACKEND_URL = '';
 
-function submitWriterLead(ev, id) {
+async function submitWriterLead(ev, id) {
     ev.preventDefault();
     const g = G.find(x => x.id === id);
     const wrap = document.getElementById('lead-wrap-' + id);
@@ -2590,35 +2599,48 @@ function submitWriterLead(ev, id) {
     const email = (document.getElementById('ld-email-' + id) || {}).value || '';
     const phone = (document.getElementById('ld-phone-' + id) || {}).value || '';
     const payload = { grantId: id, grantTitle: g ? g.title : id, name, email, phone, gdpr_consent: true, gdpr_consent_ts: new Date().toISOString(), ts: Date.now() };
-    // Always keep a local copy (works offline + signed-out)
+    const form = ev.target;
+    const btn = form && form.querySelector('button[type="submit"], button:not([type])');
+    if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = 'Küldés…'; }
+    let errBox = form && form.querySelector('.lead-error');
+    if (errBox) errBox.remove();
+
+    // The request is only confirmed once the server has it. Before this fix
+    // the form said "rögzítettük" even when the insert failed (ad-blocker,
+    // CDN outage) — a lost lead and a customer waiting for a call.
+    let ok = await submitLeadToSupabase(payload);
+    if (!ok && LEAD_BACKEND_URL) {
+        ok = await fetch(LEAD_BACKEND_URL, { method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}, body: JSON.stringify(payload) })
+            .then(r => r.ok).catch(() => false);
+    }
+    if (!ok) {
+        if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || 'Küldés'; }
+        const subject = encodeURIComponent('Konzultációs igény: ' + (g ? g.title : id));
+        const body = encodeURIComponent(`Név: ${name}\nE-mail: ${email}\nTelefon: ${phone}\nPályázat: ${g ? g.title : id}`);
+        const box = document.createElement('div');
+        box.className = 'lead-error'; box.setAttribute('role', 'alert');
+        box.style.cssText = 'margin-top:10px;padding:10px 12px;border-radius:8px;background:var(--red-50);color:var(--red-600);font-size:13px;line-height:1.5;';
+        box.innerHTML = `Az igénylést nem sikerült elküldeni. Kérjük, próbálja újra, vagy írjon nekünk: <a href="mailto:info@aipalyazo.hu?subject=${subject}&body=${body}" style="color:inherit;font-weight:700;">info@aipalyazo.hu</a>`;
+        if (form) form.appendChild(box);
+        return;
+    }
     try {
         const leads = JSON.parse(localStorage.getItem('grantpilot:leads') || '[]');
         leads.push(payload);
         localStorage.setItem('grantpilot:leads', JSON.stringify(leads));
     } catch(e) {}
-    // Insert into Supabase public.leads. RLS allows insert when user_id matches
-    // current auth.uid() OR is null (anonymous consultation requests).
-    submitLeadToSupabase(payload);
-    // Legacy webhook fallback (kept for parity with old demo flow)
-    if (LEAD_BACKEND_URL) {
-        fetch(LEAD_BACKEND_URL, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-            body: JSON.stringify(payload)
-        }).catch(() => {});
-    }
     updateLeadsBadge();
     wrap.innerHTML = `<div class="lead-success">
         <div class="ls-check">&#10003;</div>
         <h4>Köszönjük! Igényét rögzítettük.</h4>
-        <p>Pályázatíró partnerünk <b>2 munkanapon belül</b> felveszi Önnel a kapcsolatot a(z) „${g ? trunc(g.title, 60) : ''}" pályázattal kapcsolatban, és díjmentes előzetes jogosultsági konzultációt ad.</p>
+        <p>Pályázatíró partnerünk <b>2 munkanapon belül</b> felveszi Önnel a kapcsolatot a(z) „${g ? escHtml(trunc(g.title, 60)) : ''}" pályázattal kapcsolatban, és díjmentes előzetes jogosultsági konzultációt ad.</p>
     </div>`;
 }
 
 // Insert a lead into Supabase. Includes user_id when signed in; null otherwise
 // (RLS policy "leads: insert own or anonymous" allows both).
 async function submitLeadToSupabase(payload) {
-    if (!window.gp || !window.gp.client) return;
+    if (!window.gp || !window.gp.client) return false;
     try {
         let userId = null;
         try {
@@ -2634,7 +2656,7 @@ async function submitLeadToSupabase(payload) {
             phone: payload.phone || null,
         };
         const { error } = await window.gp.client.from('leads').insert(row);
-        if (error) console.warn('[gp] lead insert failed', error);
+        if (error) { console.warn('[gp] lead insert failed', error); return false; }
         else {
             console.log('[gp] lead saved to Supabase');
             // Fire-and-forget confirmation e-mail to the requester. The
@@ -2645,7 +2667,8 @@ async function submitLeadToSupabase(payload) {
                 }).catch(() => {});
             } catch (e) {}
         }
-    } catch (e) { console.warn('[gp] submitLeadToSupabase error', e); }
+        return true;
+    } catch (e) { console.warn('[gp] submitLeadToSupabase error', e); return false; }
 }
 
 function showDetail(id) {
@@ -2676,32 +2699,33 @@ function showDetail(id) {
         <div class="detail-section" style="background:linear-gradient(135deg, var(--green-50) 0%, white 100%); border-left:4px solid var(--green-600); padding-left:14px;">
             <h3 style="color:var(--green-800);">Ajánlás</h3>
             <p style="font-size: 14px; color: var(--gray-700); line-height: 1.6; margin: 0;">
-                ${g.verdict === 'APPLY' ? `<b>Erősen ajánlott pályázat.</b> A cégprofilja jól illeszkedik a kiíráshoz. Javasolt lépés: azonnali pályázatkészítés megkezdése. Szükség esetén pályázatíró partnerünket ajánljuk.` :
-                  g.verdict === 'REVIEW' ? `<b>Érdemes áttekinteni</b> a részletes kiírást. Részleges illeszkedés — a jogosultsági feltételek alapos vizsgálata szükséges a döntés előtt.` :
-                  `<b>Nem ajánlott.</b> Az Ön cégprofilja alapján ez a pályázat nem illeszkedik megfelelően. Nem érdemes rá időt fordítani.`}
+                ${g.match && !g.match.personal ? `<b>Töltse ki a cégprofilt</b>, és megmutatjuk, hogy cége jogosult-e erre a felhívásra.` :
+                  !g.match.eligible ? `<b>Az Ön cége a profil alapján nem jogosult:</b> ${escHtml((g.match.checks.find(c => c.status === 'fail') || {}).reason || '')}` :
+                  g.verdict === 'APPLY' ? `<b>Jó illeszkedés.</b> A profilja alapján jogosult, és a felhívás témája illik a tevékenységéhez. Érdemes elindítani a felkészülést.` :
+                  `<b>Lehetséges, de nézze át:</b> ${escHtml(g.match.checks.filter(c => c.status === 'warn' || c.status === 'unknown').map(c => c.reason).join(' ') || 'a téma csak részben kapcsolódik a tevékenységéhez.')}`}
             </p>
         </div>` : '';
 
     // AI Pontozás (Pro) OR the combined lock card (non-Pro). This stays in its
     // original position (between Alapadatok and Mire fordíthatja).
+    const MARK = { ok: ['✓', 'var(--green-700)'], warn: ['!', 'var(--amber-600)'], fail: ['✗', 'var(--red-600)'], unknown: ['?', 'var(--gray-500)'], neutral: ['–', 'var(--gray-500)'] };
+    const checks = (g.match && g.match.checks) || [];
     const scoringSection = isPro ? `
         <div class="detail-section">
-            <h3>AI Pontozás (${g.score}/100)</h3>
-            <div class="score-bars">
-                ${bar('Cégméret', f.size)}
-                ${bar('Iparág', f.industry)}
-                ${bar('Lokáció', f.location)}
-                ${bar('Határidő', f.deadline)}
-                ${bar('Preferencia', f.preference)}
+            <h3>Illeszkedés a cégéhez: ${g.score}/100</h3>
+            ${g.match && !g.match.personal ? '<p style="font-size:13px;color:var(--amber-600);margin:0 0 8px;">Töltse ki a cégprofilt, hogy a pontozás az Ön cégére szóljon.</p>' : ''}
+            <div class="match-checks">
+                ${checks.map(c => `<div class="match-row"><span class="match-mark" style="color:${MARK[c.status][1]};" aria-label="${c.status}">${MARK[c.status][0]}</span><span class="match-label">${escHtml(c.label)}</span><span class="match-reason">${escHtml(c.reason)}</span></div>`).join('')}
             </div>
+            <div style="font-size:11.5px;color:var(--gray-500);margin-top:8px;">✓ megfelel · ! akadály lehet · ✗ nem jogosult · ? hiányzó adat — a végső jogosultságot a hivatalos felhívás dönti el.</div>
         </div>` : `
         <div class="detail-section">
             <div style="background:linear-gradient(135deg, #f0fdf4 0%, white 100%); border:1px solid var(--green-200); border-radius:var(--radius-lg); padding:18px 20px;">
                 <div style="display:flex; align-items:flex-start; gap:12px;">
                     <div style="width:32px; height:32px; background:var(--green-600); color:white; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;">🔒</div>
                     <div style="flex:1;">
-                        <div style="font-weight:700; font-size:14px; color:var(--green-800); margin-bottom:4px;">AI Pontozás + Ajánlás — regisztráljon ingyen</div>
-                        <div style="font-size:13px; color:var(--gray-600); line-height:1.5; margin-bottom:12px;">Az AI a cégprofiljához méri ezt a pályázatot 5 tényező alapján, és konkrét ajánlást ad: pályázzon, gondolja végig vagy hagyja ki. Ingyenes regisztrációval elérhető.</div>
+                        <div style="font-weight:700; font-size:14px; color:var(--green-800); margin-bottom:4px;">Pontos illeszkedés a cégéhez — regisztráljon ingyen</div>
+                        <div style="font-size:13px; color:var(--gray-600); line-height:1.5; margin-bottom:12px;">Pontról pontra megmutatjuk, hogy cégmérete, telephelye, tevékenysége és működési ideje alapján jogosult-e erre a felhívásra, és mi lehet akadály. Ingyenes regisztrációval elérhető.</div>
                         <a href="signup.html" class="tier-cta-btn">Ingyenes regisztráció</a>
                     </div>
                 </div>
@@ -2709,15 +2733,16 @@ function showDetail(id) {
         </div>`;
 
     // Eligibility checklist is Pro-only too (Pro user has a profile to match against).
-    const eligibilityBlock = (isPro && g.verdict === 'APPLY') ? `<div class="detail-section">
-            <h3>Jogosultsági ellenőrzőlista</h3>
-            <div style="font-size: 13px; line-height: 2;">
-                <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--green-600);">&#10003;</span> KKV besorolás (${g.cat.includes('KKV') || g.score > 80 ? 'megfelel' : 'ellenőrizendő'})</div>
-                <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--green-600);">&#10003;</span> Székhely Magyarországon (megfelel)</div>
-                <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--green-600);">&#10003;</span> Köztartozásmentes adózó (szükséges)</div>
-                <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--amber-600);">&#9744;</span> Saját erő biztosítása (10-30% szükséges)</div>
-                <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--amber-600);">&#9744;</span> Projekt terv elkészítése</div>
-                <div style="display: flex; gap: 8px; align-items: center;"><span style="color: var(--amber-600);">&#9744;</span> Árajánlatok beszerzése (min. 3 db)</div>
+    // Preparation checklist (practical next steps) — only for calls the
+    // company is actually eligible for; eligibility itself is in the match above.
+    const eligibilityBlock = (isPro && g.match && g.match.eligible && g.verdict !== 'SKIP') ? `<div class="detail-section">
+            <h3>Következő lépések</h3>
+            <div style="font-size: 13px; line-height: 1.9;">
+                <div>☐ Olvassa el a hivatalos felhívást (fenti link) — különösen a jogosultsági feltételeket.</div>
+                ${['grant','loan+grant'].includes(g.type) ? '<div>☐ Önerő: számoljon a projekt nem támogatott részével.</div>' : ''}
+                ${['loan','loan+grant','guarantee'].includes(g.type) ? '<div>☐ Egyeztessen a bankkal / MFB Ponttal a hitelbírálatról.</div>' : ''}
+                <div>☐ Költségterv és árajánlatok a tervezett beszerzésekre.</div>
+                <div>☐ Kérjen díjmentes előzetes konzultációt pályázatíró partnerünktől (lent).</div>
             </div>
         </div>` : '';
 
@@ -2807,7 +2832,7 @@ function initAlerts() {
     const alerts = [];
 
     // 1. Urgent deadlines on relevant grants (<=14 days)
-    ranked.filter(g => g.days > 0 && g.days <= 14 && (g.score + profileBoost(g, profile)) > 55)
+    ranked.filter(g => g.days > 0 && g.days <= 14 && g.score >= RELV_THRESHOLD)
           .slice(0, 4).forEach(g => alerts.push({
         color: 'red',
         title: `Sürgős határidő: ${g.days} nap — ${g.title.slice(0, 60)}`,
@@ -2833,7 +2858,7 @@ function initAlerts() {
 
     // 4. Weekly summary line
     const relevant = ranked.filter(g => g.score >= RELV_THRESHOLD).length;
-    const funding = ranked.filter(g => (g.score + profileBoost(g, profile)) > 60).reduce((s,g)=>s+parseAmount(g.amount),0);
+    const funding = ranked.filter(g => g.score >= RELV_THRESHOLD).reduce((s,g)=>s+(g.keret > 0 && typeof g.remaining === 'number' ? g.remaining : 0),0);
     alerts.push({
         color: 'green',
         title: 'Heti összefoglaló',
@@ -3409,7 +3434,7 @@ async function dr_buildAndShow(grantId) {
     try {
         const p = getUserProfile() || {};
         const out = await aiCall('draft', {
-            grant: { title: g.title, cat: g.cat, amount: g.amount, deadline: g.deadline, source: g.source },
+            grant: { title: g.title, code: g.code || '', cat: g.cat, amount: g.amount, deadline: g.deadline, source: g.source, issuer: g.issuer || '', type: g.type || '', rate: g.rate || '', note: g.note || '', url: g.url || '' },
             profile: { company: p.company, industry: p.industry, employees: p.employees,
                        revenue: revenueLabel(p.revenue), location: p.location,
                        years_operating: p.years_operating, legal_form: p.legal_form }
@@ -3875,6 +3900,7 @@ function saveProfile() {
     const banner = document.getElementById('profile-banner');
     if (banner && data.company) banner.style.display = 'none';
     flashOk('prof-ok');
+    try { prepGrants(); } catch (e) {} // new profile → new match for every grant
     initProfile(); // re-render with new values + status
 }
 
@@ -4117,6 +4143,7 @@ injectHamburgers();
 window.currentTier = 'anonymous';
 
 function applyTier(tier, displayName) {
+    try { prepGrants(); } catch (e) {} // profile may have just been down-synced
     const prevTier = window.currentTier;
     const tierChanged = prevTier !== tier;
     window.currentTier = tier;

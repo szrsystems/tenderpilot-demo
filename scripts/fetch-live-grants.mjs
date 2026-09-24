@@ -159,7 +159,7 @@ function mapTender(t, overlay) {
     scope: 'hazai',
   };
   if (overlay) {
-    for (const k of ['type', 'regions', 'regionNote', 'amount', 'deadline', 'windowOpen', 'note', 'url', 'rate', 'verifiedAt', 'confidence']) {
+    for (const k of ['type', 'cat', 'regions', 'regionNote', 'amount', 'deadline', 'windowOpen', 'note', 'url', 'rate', 'verifiedAt', 'confidence']) {
       if (overlay[k] === false) delete g[k];          // e.g. rate: false = the API value is misleading
       else if (overlay[k] !== undefined && overlay[k] !== null) g[k] = overlay[k];
     }

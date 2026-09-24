@@ -17,6 +17,9 @@
 // =========================================================================
 
 import { createClient } from 'jsr:@supabase/supabase-js@2';
+// Same point-by-point matcher as the portal (byte-identical copy, test-enforced).
+import '../_shared/match.js';
+const AIPMatch = (globalThis as any).AIPMatch;
 
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
 const SERVICE_ROLE = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
@@ -28,21 +31,6 @@ const UNSUB_PAGE = 'https://aipalyazo.hu/aipalyazo/leiratkozas.html';
 const UNSUB_API = `${SUPABASE_URL}/functions/v1/unsubscribe`;
 const PORTAL_URL = 'https://aipalyazo.hu/aipalyazo/portal.html';
 const FROM = 'AIpályázó <noreply@aipalyazo.hu>';
-
-// Mirror of portal.html INDUSTRY_KEYWORDS.
-const INDUSTRY_KEYWORDS: Record<string, RegExp> = {
-  IT: /digit|innov|kutat|szoftver|informatik|adat/i,
-  HVAC: /energi|épít|hvac|gépész|fűt/i,
-  Construction: /épít|kapacit|telephely|infrastruktúr/i,
-  Manufacturing: /gyárt|kapacit|innov|ipar|eszközbe|gépbe/i,
-  Healthcare: /egészség|innov|orvos/i,
-  Restaurant: /vendég|turiz|étterm|gasztron/i,
-  Tourism: /turiz|szálláshely|vendég/i,
-  Agriculture: /mező|agrár|gazda|leader|élelmiszer/i,
-  Retail: /kkv|kapacit|kereskede/i,
-  Education: /oktat|képz/i,
-  General: /kkv/i,
-};
 
 function esc(s: unknown) {
   return String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c] as string));
@@ -70,18 +58,12 @@ function prepGrants(raw: any[]) {
   return out;
 }
 
-function boost(g: any, categories: string[], industry: string | null) {
-  let b = 0;
-  if (Array.isArray(categories) && categories.includes(g.cat)) b += 12;
-  if (industry && INDUSTRY_KEYWORDS[industry] && INDUSTRY_KEYWORDS[industry].test((g.cat || '') + ' ' + (g.title || ''))) b += 8;
-  return b;
-}
-
 function grantRow(g: any) {
   const urgent = g.days <= 14;
   return `<tr>
     <td style="padding:10px 0;border-bottom:1px solid #f3f4f6;">
       <div style="font-size:14px;font-weight:700;color:#111827;">${esc(g.title)}</div>
+      ${g.why ? `<div style="font-size:12px;color:#15803d;margin-top:2px;">${esc(g.why)}</div>` : ''}
       <div style="font-size:12px;color:#6b7280;margin-top:2px;">${esc(g.cat)} · ${esc(g.amount)} · határidő: ${esc(g.deadline)}${g.days >= 365 && !/^\d/.test(String(g.deadline)) ? '' : ` <span style="color:${urgent ? '#dc2626' : '#9ca3af'};">(${g.days} nap)</span>`}</div>
     </td>
     <td style="padding:10px 0;border-bottom:1px solid #f3f4f6;text-align:right;white-space:nowrap;vertical-align:top;">
@@ -162,7 +144,7 @@ Deno.serve(async (req) => {
   const admin = createClient(SUPABASE_URL, SERVICE_ROLE);
   const { data: rows, error } = await admin
     .from('notif_prefs')
-    .select('user_id, urgent_enabled, frequency, section_deadlines, unsubscribe_token, recipient_email, section_top_n, profiles(email, display_name, company, industry, categories)')
+    .select('user_id, urgent_enabled, frequency, section_deadlines, unsubscribe_token, recipient_email, section_top_n, profiles(email, display_name, company, industry, industries, categories, employees, site_region, years_operating, public_debt_free, in_difficulty, own_funds)')
     .eq('weekly_enabled', true);
   if (error) return new Response(JSON.stringify({ error: 'query_failed', detail: error.message }), { status: 500 });
 
@@ -189,10 +171,11 @@ Deno.serve(async (req) => {
     const to = (row as any).recipient_email || p.email;
     if (!to || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(to)) { skipped++; continue; }
 
-    const cats: string[] = Array.isArray(p.categories) ? p.categories : [];
+    // Only calls the company is eligible for, best fit first.
+    const todayIso = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Budapest' });
     const ranked = grants
-      .map((g) => ({ g, s: g.score + boost(g, cats, p.industry) }))
-      .filter((x) => x.s >= 55)
+      .map((g) => { const m = AIPMatch.match(g, p, todayIso); return { g: { ...g, score: m.score, why: (m.checks.find((c: any) => c.key === 'sector' && c.status === 'ok') || {}).reason || '' }, s: m.score, ok: m.eligible }; })
+      .filter((x) => x.ok && x.s >= 60)
       .sort((a, b) => b.s - a.s || a.g.days - b.g.days);
     if (!ranked.length) { skipped++; continue; }
 
