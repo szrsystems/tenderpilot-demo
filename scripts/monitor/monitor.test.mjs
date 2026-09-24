@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { datesIn, parseRobots, htmlToText, extractLinks } from './lib.mjs';
 import { validate, grounded } from './extract.mjs';
-import { runMonitor, euTopicFacts } from './run.mjs';
+import { runMonitor, euTopicFacts, CODE_RE } from './run.mjs';
 import { applyMonitor } from '../fetch-live-grants.mjs';
 
 const TODAY = '2026-09-24';
@@ -114,4 +114,21 @@ test('no LLM key: deterministic checks still run, new pages go to review', async
   const r = await runMonitor({ items: [], sources: [{ id: 'kap', name: 'KAP', list: ['https://kap.gov.hu/tags/842'], pattern: '^https://kap\\.gov\\.hu/tamogatas/', scope: 'hazai' }], officialDomains: ['gov.hu'], fetchImpl, llm: null, today: TODAY, delayMs: 0, state: {} });
   assert.equal(r.auto.length, 0);
   assert.equal(r.review.length, 1);
+});
+
+test('coverage cross-check: codes we miss and new items on another site go to review', async () => {
+  assert.deepEqual('GINOP Plusz-1.4.3-24 és KAP-RD40-RD12-1-26, 2025-1.1.1-BAY_VOUCHER; DIMOP_PLUSZ-1.2.3/A-24'.match(CODE_RE),
+    ['GINOP Plusz-1.4.3-24', 'KAP-RD40-RD12-1-26', '2025-1.1.1-BAY_VOUCHER', 'DIMOP_PLUSZ-1.2.3/A-24']);
+  let day = 1;
+  const { fetchImpl } = fakeWeb({
+    'https://bench.hu/lista': () => ({ ok: true, status: 200, url: 'https://bench.hu/lista', headers: new Map([['content-type', 'text/html']]),
+      text: async () => '<p>GINOP Plusz-1.4.3-24 és KEHOP Plusz-2.3.11-26</p><a href="/p/a">a</a>' + (day === 2 ? '<a href="/p/uj-felhivas">b</a>' : '') }),
+  });
+  const bench = [{ id: 'b', name: 'bench', list: ['https://bench.hu/lista'], linkPattern: '^https://bench\\.hu/p/' }];
+  const base = { items: [{ id: 'x', code: 'GINOP_PLUSZ-1.4.3-24' }], sources: [], officialDomains: [], fetchImpl, llm: null, today: TODAY, delayMs: 0, benchmarks: bench };
+  const r1 = await runMonitor({ ...base, state: {} });
+  assert.deepEqual(r1.review.map((x) => x.title), ['KEHOP Plusz-2.3.11-26']);   // first run: only the missing code
+  day = 2;
+  const r2 = await runMonitor({ ...base, state: r1.state });
+  assert.ok(r2.review.some((x) => x.kind === 'benchmark-new' && x.title === 'uj felhivas'));
 });

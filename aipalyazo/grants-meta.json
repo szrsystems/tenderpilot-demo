@@ -1,13 +1,13 @@
 {
- "updatedAt": "2026-09-24T21:28:30.554Z",
+ "updatedAt": "2026-09-24T21:49:33.153Z",
  "counts": {
-  "total": 176,
-  "api": 16,
-  "verified": 160,
+  "total": 182,
+  "api": 17,
+  "verified": 165,
   "euAuto": 0,
-  "hazai": 53,
-  "eu": 123,
-  "excluded": 21
+  "hazai": 55,
+  "eu": 127,
+  "excluded": 20
  },
  "note": "Rebuilt 2026-09-24 after a manual verification of every listed call. The next daily run adds EU calls from the official EU API.",
  "euApiFailed": false,
@@ -50,10 +50,6 @@
   {
    "code": "IKOP_PLUSZ-1.1.0-23",
    "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
-  },
-  {
-   "code": "DIMOP_PLUSZ-5.1.4-26",
-   "why": "Kockázati tőke kiválasztott alapokon keresztül; közvetlenül nem pályázható."
   },
   {
    "code": "GINOP_PLUSZ-2.5.4-25",

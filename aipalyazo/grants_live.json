@@ -90,6 +90,53 @@
   }
  },
  {
+  "id": "pg-DIMOP_PLUSZ-5.1.4-26",
+  "code": "DIMOP_PLUSZ-5.1.4-26",
+  "title": "Kockázati tőkeprogram a digitális startup program támogatására",
+  "issuer": "Széchenyi Terv Plusz / palyazat.gov.hu",
+  "cat": "Digitális átalakulás",
+  "type": "equity",
+  "amount": "50–900 M Ft tőkebefektetés",
+  "keret": 16700000000,
+  "deadline": "2029-12-31",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-5.1.4-26",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "requested": 0,
+  "remaining": 16700000000,
+  "regions": [
+   "Közép-Dunántúl",
+   "Nyugat-Dunántúl",
+   "Dél-Dunántúl",
+   "Észak-Magyarország",
+   "Észak-Alföld",
+   "Dél-Alföld"
+  ],
+  "sizeClasses": [
+   "középvállalkozás",
+   "Mikrovállalkozás",
+   "kisvállalkozás"
+  ],
+  "modified": "2026-09-24T10:50:54.449Z",
+  "live": true,
+  "scope": "hazai",
+  "note": "Kockázati tőke digitális (IKT) startupoknak kiválasztott alapkezelőkön keresztül; Budapest és Pest nem.",
+  "verifiedAt": "2026-09-24",
+  "confidence": "medium",
+  "sources": [
+   "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-5.1.4-26",
+   "https://www.palyazas.hu/palyazatok/dimop-plusz-5-1-4-26"
+  ],
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
   "id": "pg-MAHOP_PLUSZ-2.1.1-25",
   "code": "MAHOP_PLUSZ-2.1.1-25",
   "title": "Akvakultúra beruházás támogatása",
@@ -6392,6 +6439,202 @@
    "industry": 85,
    "location": 78,
    "preference": 85
+  }
+ },
+ {
+  "id": "v-eitum-umx-2026",
+  "code": "EITUM-UMX-2026",
+  "title": "Urban Mobility Explained (UMX) Open Call – 2. cut-off",
+  "issuer": "EIT Urban Mobility",
+  "cat": "Oktatás",
+  "type": "grant",
+  "amount": "max. 700 000 EUR / pályázat (teljes keret kb. 2–4 M EUR)",
+  "rate": null,
+  "deadline": "2026-09-29",
+  "rolling": false,
+  "windowOpen": null,
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "note": "Városi mobilitási szakmai képzések fejlesztésére és skálázására pályázhatnak KKV-k és nagyvállalatok is, egyedül vagy konzorciumban, páneurópai jelleg igazolásával.",
+  "url": "https://www.eiturbanmobility.eu/call-for-proposals/urban-mobility-explained-umx-open-call-2/",
+  "source": "eiturbanmobility.eu",
+  "sources": [
+   "https://www.eiturbanmobility.eu/call-for-proposals/urban-mobility-explained-umx-open-call-2/",
+   "https://pafi.hu/p/urban-mobility-explained-umx-open-call"
+  ],
+  "verifiedAt": "2026-09-24",
+  "confidence": "high",
+  "scope": "eu",
+  "singleApplicant": true,
+  "live": false,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 95,
+   "preference": 72
+  }
+ },
+ {
+  "id": "v-marc-impact-hu-2026",
+  "code": "MARC-IMPACT-HU-2026",
+  "title": "Marc Impact Programme – nemzetközi társadalmi vállalkozásfejlesztő program (2026/27)",
+  "issuer": "Simpact / IFUA Nonprofit Partner",
+  "cat": "KKV fejlesztés",
+  "type": "in-kind",
+  "amount": "ingyenes képzés, 15 óra egyéni mentorálás, befektetői pitch; a legjobbak vissza nem térítendő támogatást nyerhetnek",
+  "rate": null,
+  "deadline": "2026-09-28",
+  "rolling": false,
+  "windowOpen": null,
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás"
+  ],
+  "regions": [],
+  "note": "Valós üzleti működéssel és mérhető társadalmi vagy környezeti hatással bíró magyar vállalkozások, startupok és társadalmi vállalkozások jelentkezhetnek.",
+  "url": "https://hu.marc-impactprogramme.net/",
+  "source": "hu.marc-impactprogramme.net",
+  "sources": [
+   "https://hu.marc-impactprogramme.net/",
+   "https://pafi.hu/p/marc-nemzetkozi-tarsadalmi-vallalkozas-fejleszto-program"
+  ],
+  "verifiedAt": "2026-09-24",
+  "confidence": "high",
+  "scope": "hazai",
+  "live": false,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 95,
+   "preference": 85
+  }
+ },
+ {
+  "id": "v-innowwide-call5-2026",
+  "code": "INNOWWIDE-CALL5-2026",
+  "title": "Innowwide 5. felhívás – piaci megvalósíthatósági projektek EU-n kívüli piacokra (Autumn 2026)",
+  "issuer": "Eureka / European Partnership on Innovative SMEs (Horizon Európa társfinanszírozás)",
+  "cat": "Export",
+  "type": "grant",
+  "amount": "fix 60 000 EUR átalány projektenként (70% előleg, 30% zárás után); keret 4,2 M EUR, ~70 projekt",
+  "rate": "max 70%",
+  "deadline": "2026-12-01",
+  "rolling": false,
+  "windowOpen": "2026-10-01",
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás"
+  ],
+  "regions": [],
+  "note": "Innovatív, EU-tagállami (így magyar) KKV önállóan pályázik; a célországbeli (Afrika, Amerika, Ázsia, Óceánia) helyi partner alvállalkozó. 6 hónapos projekt, cégenként egy pályázat. Beadás 2026.10.01-től 12.01. 14:00 CET-ig.",
+  "url": "https://www.eurekanetwork.org/programmes-and-calls/innowwide/5th-innowwide-call-for-market-feasibility-projects-autumn-2026/",
+  "source": "eurekanetwork.org",
+  "sources": [
+   "https://www.eurekanetwork.org/programmes-and-calls/innowwide/5th-innowwide-call-for-market-feasibility-projects-autumn-2026/",
+   "https://palyazatmenedzser.hu/europai-unios-palyazat-innovativ-kkv-k-reszere-az-innovativ-megoldasaik-europan-kivuli-piaci-megvalosithatosaga-felmeresenek-tamogatasara-2/"
+  ],
+  "verifiedAt": "2026-09-24",
+  "confidence": "high",
+  "scope": "eu",
+  "singleApplicant": true,
+  "live": false,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 95,
+   "preference": 72
+  }
+ },
+ {
+  "id": "v-eic-wip-2027",
+  "code": "EIC-WIP-2027",
+  "title": "2027 European Prize for Women Innovators (Európai díj női innovátoroknak 2027 – női alapítók díja)",
+  "issuer": "European Commission – EIC / EISMEA, with EIT",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "Prizes: Women Innovators EUR 100,000 / 70,000 / 50,000; Rising Innovators (under 35) EUR 50,000 / 30,000 / 20,000",
+  "rate": null,
+  "deadline": "2026-12-01",
+  "rolling": false,
+  "windowOpen": null,
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás"
+  ],
+  "regions": [],
+  "note": "Women founders or co-founders of innovative companies established in an EU Member State or a Horizon Europe associated country (Hungary eligible). Prize, not a project grant; apply via the F&T portal (3 category topics). Díj (nem pályázati támogatás): már elért innovációs eredményért.",
+  "url": "https://www.eit.europa.eu/our-activities/opportunities/2027-european-prize-women-innovators-apply-now",
+  "source": "eit.europa.eu",
+  "sources": [
+   "https://www.eit.europa.eu/our-activities/opportunities/2027-european-prize-women-innovators-apply-now",
+   "https://www.eit.europa.eu/our-activities/opportunities"
+  ],
+  "verifiedAt": "2026-09-24",
+  "confidence": "high",
+  "scope": "eu",
+  "singleApplicant": true,
+  "live": false,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 95,
+   "preference": 72
+  }
+ },
+ {
+  "id": "v-perform-europe-2026-2028",
+  "code": "PERFORM-EUROPE-2026-2028",
+  "title": "Perform Europe Open Call 2026–2028 (Előadó-művészeti nemzetközi turnék támogatása)",
+  "issuer": "Perform Europe consortium (Creative Europe)",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "EUR 15,000 / 25,000 / 55,000 tiers + top-ups up to EUR 5,000 (max EUR 60,000), 100% funding",
+  "rate": null,
+  "deadline": "2026-10-22",
+  "rolling": false,
+  "windowOpen": null,
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás"
+  ],
+  "regions": [],
+  "note": "Consortium of at least 3 partners from different Creative Europe countries (Hungary eligible), each an organisation or professional in the performing arts. Needs a finished work toured in 3 or more countries between Mar 2027 and Jan 2028. Culture sector: suits cultural SMEs and companies only.",
+  "url": "https://performeurope.eu/open-call/",
+  "source": "performeurope.eu",
+  "sources": [
+   "https://cascadefunding.eu/open-call/perform-europe-oc-2026-2028/",
+   "https://performeurope.eu/open-call/",
+   "https://www.cein.es/en/blog/2026/convocatorias-europeas-de-financiacion-en-cascada-septiembre-2026"
+  ],
+  "verifiedAt": "2026-09-24",
+  "confidence": "medium",
+  "scope": "eu",
+  "singleApplicant": false,
+  "live": false,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
   }
  }
 ]

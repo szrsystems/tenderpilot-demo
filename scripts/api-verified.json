@@ -146,12 +146,24 @@
   ]
  },
  "DIMOP_PLUSZ-5.1.4-26": {
-  "exclude": true,
-  "reason": "Kockázati tőke kiválasztott alapokon keresztül; közvetlenül nem pályázható.",
+  "type": "equity",
+  "rate": false,
+  "regions": [
+   "Közép-Dunántúl",
+   "Nyugat-Dunántúl",
+   "Dél-Dunántúl",
+   "Észak-Magyarország",
+   "Észak-Alföld",
+   "Dél-Alföld"
+  ],
+  "amount": "50–900 M Ft tőkebefektetés",
+  "note": "Kockázati tőke digitális (IKT) startupoknak kiválasztott alapkezelőkön keresztül; Budapest és Pest nem.",
   "verifiedAt": "2026-09-24",
   "sources": [
-   "https://www.bkmkik.hu/hu/palyazatok/aktualis-palyazatok/7845-kockazati-tokeprogram-a-digitalis-startup-program-tamogatasara"
-  ]
+   "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-5.1.4-26",
+   "https://www.palyazas.hu/palyazatok/dimop-plusz-5-1-4-26"
+  ],
+  "confidence": "medium"
  },
  "DIMOP_PLUSZ-1.2.3/AB-1-24": {
   "exclude": true,

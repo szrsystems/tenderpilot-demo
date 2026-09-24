@@ -47,7 +47,13 @@ export function euTopicFacts(json, today) {
   return { next, closed: !next || /closed/.test(statusTxt) && !/open|forthcoming/.test(statusTxt) };
 }
 
+// Official call codes as written on Hungarian pages (GINOP Plusz-1.4.3-24,
+// KAP-RD40-RD12-1-26, 2025-1.1.1-BAY_VOUCHER …).
+export const CODE_RE = /\b(?:(?:GINOP|DIMOP|KEHOP|TOP|VINOP|EFOP|MAHOP|IKOP)[ _]?PLUSZ[ -]?\d+(?:\.\d+)+(?:\/[A-Z0-9]+)?-\d{2}|KAP-RD[0-9A-Za-z]+(?:-[0-9A-Za-z]+)*|20\d\d-\d\.\d\.\d-[A-Z_]{2,})\b/gi;
+const ckey = (c) => String(c || '').toLowerCase().replace(/plusz/g, '').replace(/[^a-z0-9]/g, '').replace(/(\d)[a-z]$/, '$1');
+
 export async function runMonitor({
+  benchmarks = [], knownCodes = [],
   items, sources, officialDomains, state, fetchImpl = fetch, llm = null, today = todayBudapest(),
   maxLlmCalls = 60, maxNewPerSource = 15, delayMs = 1200, prevAuto = [],
 }) {
@@ -155,6 +161,31 @@ export async function runMonitor({
     }
     state.seen[src.id] = [...seen].slice(-2000);
   }
+  // ------------------------------------------------ 3) coverage cross-check
+  // Other grant sites are read ONLY to spot what we might be missing: call
+  // codes we don't list, and item pages that appeared since yesterday.
+  const ours = new Set([...knownCodes, ...items.map((g) => g.code)].map(ckey).filter(Boolean));
+  state.bench = state.bench || {};
+  for (const b of benchmarks) {
+    const re = new RegExp(b.linkPattern);
+    const links = new Set(); const codes = new Set(); let ok = 0;
+    for (const u of b.list) {
+      const r = await fetchPage(u);
+      if (r.status !== 200) continue;
+      ok++;
+      for (const l of extractLinks(r.html, r.finalUrl || u)) if (re.test(l)) links.add(l);
+      for (const m of r.text.matchAll(CODE_RE)) codes.add(m[0]);
+    }
+    const prev = new Set(state.bench[b.id] || []);
+    const firstRun = !state.bench[b.id];
+    const missingCodes = [...codes].filter((c) => !ours.has(ckey(c)));
+    const newLinks = firstRun ? [] : [...links].filter((l) => !prev.has(l));
+    for (const c of missingCodes) review.push({ kind: 'benchmark-code', source: b.id, title: c, url: b.list[0], detail: `a(z) ${b.name} listáján szerepel, nálunk nincs — ellenőrizd a hivatalos oldalon` });
+    for (const l of newLinks) review.push({ kind: 'benchmark-new', source: b.id, title: decodeURIComponent(l.split('/').pop()).replace(/-/g, ' '), url: l, detail: `új tétel a(z) ${b.name} oldalon` });
+    if (ok) state.bench[b.id] = [...links].slice(-3000);
+    log.push(`Benchmark ${b.id}: ${ok}/${b.list.length} pages, ${links.size} items, ${codes.size} codes, ${missingCodes.length} codes we don't list, ${newLinks.length} new items since last run${ok && !links.size ? ' — ⚠ 0 item links: check linkPattern' : ''}`);
+  }
+
   log.push(`LLM calls: ${llmCalls}${llm ? '' : ' (no key — extraction off)'}; auto-published: ${auto.size}; review queue: ${review.length}; hidden: ${Object.keys(flags.hide).length}`);
   return { flags, review, auto: [...auto.values()], state, log };
 }
@@ -169,6 +200,9 @@ async function main() {
   const state = readJson(P('state.json'), {});
   const out = await runMonitor({
     items: [...verified, ...prevAuto], sources: cfg.sources, officialDomains: cfg.officialDomains, state,
+    benchmarks: cfg.benchmarks || [],
+    // codes that are deliberately NOT listed (excluded) or come from the API
+    knownCodes: [...Object.keys(readJson(join(REPO, 'scripts/api-verified.json'), {})), ...readJson(join(REPO, 'aipalyazo/grants_live.json'), []).map((g) => g.code)],
     llm: llmFromEnv(), today, prevAuto, maxLlmCalls: +(process.env.MAX_LLM_CALLS || 60),
   });
   writeFileSync(P('state.json'), JSON.stringify(out.state, null, 1));
