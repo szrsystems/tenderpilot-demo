@@ -176,14 +176,18 @@
   ]
  },
  "GINOP_PLUSZ-1.1.6-25": {
-  "exclude": true,
-  "reason": "Csak minősített klasztermenedzsment szervezetek pályázhatnak.",
+  "type": "grant",
+  "regions": [],
+  "amount": "20–120 M Ft",
+  "deadline": "2027-01-15",
+  "note": "Csak minősített klasztermenedzsment szervezetek pályázhatnak (GINOP Plusz-1.1.5-24 minősítéssel).",
   "verifiedAt": "2026-09-24",
   "sources": [
    "https://kormany.hu/hirek/megjelent-a-minositett-klasztermenedzsment-szervezetek-tamogatasat-celzo-uj-palyazat",
    "https://vmkik.hu/hirek/megjelent-a-minositett-klasztermenedzsment-szervezetek-tamogatasa-cimu-palyazati-felhivas",
    "https://hirlevel.egov.hu/2026/03/15/megjelent-a-minositett-klasztermenedzsment-szervezetek-tamogatasat-celzo-uj-palyazat/"
-  ]
+  ],
+  "confidence": "high"
  },
  "GINOP_PLUSZ-2.5.1-25": {
   "type": "equity",

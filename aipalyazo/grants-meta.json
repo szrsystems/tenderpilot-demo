@@ -1,13 +1,13 @@
 {
- "updatedAt": "2026-09-24T18:03:37.117Z",
+ "updatedAt": "2026-09-24T21:08:25.077Z",
  "counts": {
-  "total": 65,
-  "api": 15,
-  "verified": 50,
+  "total": 176,
+  "api": 16,
+  "verified": 160,
   "euAuto": 0,
-  "hazai": 39,
-  "eu": 26,
-  "excluded": 22
+  "hazai": 53,
+  "eu": 123,
+  "excluded": 21
  },
  "note": "Rebuilt 2026-09-24 after a manual verification of every listed call. The next daily run adds EU calls from the official EU API.",
  "euApiFailed": false,
@@ -86,10 +86,6 @@
   {
    "code": "KEHOP_PLUSZ-3.1.11-25",
    "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
-  },
-  {
-   "code": "GINOP_PLUSZ-1.1.6-25",
-   "why": "Csak minősített klasztermenedzsment szervezetek pályázhatnak."
   },
   {
    "code": "2025-3.1.1-ED",

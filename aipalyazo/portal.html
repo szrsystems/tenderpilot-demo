@@ -1876,6 +1876,7 @@ const BOOKMARK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBo
 /* ===== Category mapping for filter pills ===== */
 const CATEGORY_MAP = {
     'all':              { label: 'Mind',              match: () => true },
+    'hu':               { label: 'Hazai',             match: g => g.scope !== 'eu' },
     'grant':            { label: 'Vissza nem térítendő', match: g => ['grant','wage-subsidy','in-kind','grant+equity'].includes(g.type) },
     'digital':          { label: 'Digitalizáció',     match: g => /digit/i.test(g.cat) },
     'energy':           { label: 'Energetika',        match: g => /energi/i.test(g.cat) },
@@ -1890,7 +1891,7 @@ const CATEGORY_MAP = {
     'eu':               { label: 'EU direkt',         match: g => g.scope === 'eu' || /ec\.europa\.eu|eic\.|cinea|hadea|interreg|erasmus|eit\.europa/i.test(g.source) },
     'loan':             { label: 'Hitel/Tőke',        match: g => ['loan','loan+grant','equity','guarantee'].includes(g.type) || (!g.type && (/mfb|garantiqa|kavosz|bgazrt|exim|hiventures/i.test(g.source) || /hitel|garancia|kölcsön|kockázati tőke/i.test(g.title))) }
 };
-const CATEGORY_ORDER = ['all','grant','loan','eu','digital','energy','capacity','rd','agri','env','tourism','jobs','export','training'];
+const CATEGORY_ORDER = ['all','hu','grant','loan','eu','digital','energy','capacity','rd','agri','env','tourism','jobs','export','training'];
 
 let activeCat = 'all';
 let activeSort = 'score';
