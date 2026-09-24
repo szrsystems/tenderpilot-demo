@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-09-23T10:34:09.340Z",
+ "updatedAt": "2026-09-24T10:52:44.085Z",
  "counts": {
   "total": 49,
   "api": 37,
@@ -7,21 +7,18 @@
  },
  "changes": [
   {
+   "id": "pg-2025-1.1.1-BAY_VOUCHER",
+   "type": "deadline",
+   "from": "2026-09-30",
+   "to": "2026-12-01",
+   "title": "KKV-k számára nyújtandó K+F+I szolgáltatások"
+  },
+  {
    "id": "pg-EFOP_PLUSZ-TEF-3.1.3/TEF-25",
    "type": "szabad-keret",
-   "from": 16492068520,
-   "to": 16353380784,
+   "from": 16353380784,
+   "to": 16295986494,
    "title": "„Nő az esély” a közszolgáltatásokban (végső kedvezményezettek)"
-  },
-  {
-   "id": "G-132",
-   "type": "removed",
-   "title": "LIFE Programme — Környezetvédelem és körforgásos gazdaság"
-  },
-  {
-   "id": "G-133",
-   "type": "removed",
-   "title": "LIFE Programme — Éghajlatváltozás csökkentés és alkalmazkodás"
   }
  ]
 }
