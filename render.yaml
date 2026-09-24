@@ -38,3 +38,6 @@ services:
       - type: rewrite
         source: /aipalyazo/aszf
         destination: /aipalyazo/aszf.html
+      - type: rewrite
+        source: /aipalyazo/leiratkozas
+        destination: /aipalyazo/leiratkozas.html

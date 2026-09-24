@@ -3439,7 +3439,7 @@ function getNotif() {
         if (r) return r;
     } catch(e) {}
     const p = getUserProfile();
-    return { weekly: true, freq: 'heti', email: (p && p.email) || '', secNew: true, secDeadline: true, secReco: true, secSaved: false, urgent: true };
+    return { weekly: false, freq: 'heti', email: (p && p.email) || '', secNew: true, secDeadline: true, secReco: true, secSaved: false, urgent: true };
 }
 
 function initProfile() {
@@ -3549,8 +3549,8 @@ function initProfile() {
             <div class="detail-section pro-only">
                 <h3>Értesítési beállítások</h3>
                 <div class="toggle-row">
-                    <div><div class="tr-label">Heti e-mail jelentés</div><div class="tr-sub">Személyre szabott összefoglaló a legrelevánsabb pályázatokról</div></div>
-                    <label class="switch"><input type="checkbox" id="n_weekly" ${n.weekly?'checked':''}><span class="sl"></span></label>
+                    <div><div class="tr-label">Heti e-mail jelentés</div><div class="tr-sub">Személyre szabott összefoglaló a legrelevánsabb pályázatokról. Bármikor kikapcsolhatja itt vagy a levél alján lévő leiratkozási linkkel.</div></div>
+                    <label class="switch"><input type="checkbox" id="n_weekly" ${n.weekly?'checked':''} onchange="saveNotif()"><span class="sl"></span></label>
                 </div>
                 <div class="toggle-row">
                     <div><div class="tr-label">Sürgős határidő riasztás</div><div class="tr-sub">Külön értesítés, ha releváns pályázat 14 napon belül lejár</div></div>
@@ -3563,8 +3563,8 @@ function initProfile() {
                     </select>
                 </div>
                 <div class="set-grid" style="margin-top:14px;">
-                    <div class="set-field"><label>Gyakoriság</label><select id="n_freq">${['heti','kéthetente','havi'].map(f=>`<option ${f===n.freq?'selected':''}>${f}</option>`).join('')}</select></div>
-                    <div class="set-field"><label>Értesítési e-mail cím</label><input id="n_email" type="email" value="${(n.email||'').replace(/"/g,'&quot;')}" placeholder="on@vallalkozas.hu"></div>
+                    <div class="set-field"><label>Gyakoriság</label><select id="n_freq">${[['heti','Hetente'],['kétheti','Kéthetente'],['havi','Havonta']].map(([v,l])=>`<option value="${v}" ${v===n.freq||(v==='kétheti'&&n.freq==='kéthetente')?'selected':''}>${l}</option>`).join('')}</select></div>
+                    <div class="set-field"><label>Értesítési e-mail cím</label><input id="n_email" type="email" value="${(userEmail||n.email||'').replace(/"/g,'&quot;')}" readonly title="A jelentést a fiókjához tartozó e-mail címre küldjük" style="background:var(--gray-50);color:var(--gray-600);"></div>
                     <div class="set-field full"><label>A jelentés tartalmazza</label>
                         <div class="chip-grid">
                             <label class="chip-opt ${n.secNew?'on':''}"><input type="checkbox" id="n_new" ${n.secNew?'checked':''} onchange="this.closest('.chip-opt').classList.toggle('on',this.checked)">Új pályázatok</label>
@@ -3577,6 +3577,7 @@ function initProfile() {
                 <div class="save-bar">
                     <button class="btn-sm primary" onclick="saveNotif()">Beállítások mentése</button>
                     <span class="save-ok" id="notif-ok">Mentve ✓</span>
+                    <span id="notif-err" role="alert" style="display:none;font-size:13px;color:var(--red-600);font-weight:600;"></span>
                     <button class="btn-sm" onclick="openReport('weekly')">Heti jelentés előnézet</button>
                 </div>
             </div>
@@ -3614,6 +3615,7 @@ function initProfile() {
             </div>
         </div>
     `;
+    loadNotifFromServer();
 }
 
 /* ===== Profile / data portability ===== */
@@ -3844,17 +3846,67 @@ async function syncProfileSettingsToSupabase(data) {
     } catch (e) { console.warn('[gp] syncProfileSettingsToSupabase error', e); }
 }
 
-function saveNotif() {
+// Weekly e-mail preferences live in Supabase (notif_prefs) — the weekly-digest
+// function reads them from there. localStorage is only a UI cache.
+const FREQ_DB = { 'heti': 'heti', 'kétheti': 'kétheti', 'kéthetente': 'kétheti', 'havi': 'havi' };
+
+async function gpUser() {
+    if (!window.gp || !window.gp.client) return null;
+    try { const { data: { user } } = await window.gp.client.auth.getUser(); return user || null; }
+    catch (e) { return null; }
+}
+
+async function loadNotifFromServer() {
+    const user = await gpUser();
+    if (!user) return;
+    const { data, error } = await window.gp.client.from('notif_prefs')
+        .select('weekly_enabled, urgent_enabled, frequency, section_new_since_last, section_deadlines, section_saved_updates')
+        .eq('user_id', user.id).maybeSingle();
+    if (error || !data) return;
+    const n = Object.assign(getNotif(), {
+        weekly: !!data.weekly_enabled, urgent: !!data.urgent_enabled, freq: data.frequency || 'heti',
+        secNew: data.section_new_since_last !== false, secDeadline: data.section_deadlines !== false,
+        secSaved: !!data.section_saved_updates, email: user.email || ''
+    });
+    try { localStorage.setItem(NOTIF_KEY, JSON.stringify(n)); } catch(e) {}
+    const set = (id, v) => { const el = document.getElementById(id); if (el) { el.checked = v; const c = el.closest('.chip-opt'); if (c) c.classList.toggle('on', v); } };
+    set('n_weekly', n.weekly); set('n_urgent', n.urgent); set('n_new', n.secNew); set('n_deadline', n.secDeadline); set('n_saved', n.secSaved);
+    const f = document.getElementById('n_freq'); if (f) f.value = FREQ_DB[n.freq] || 'heti';
+}
+
+async function saveNotif() {
+    const val = (id) => { const el = document.getElementById(id); return el ? el.checked : false; };
     const data = {
-        weekly: document.getElementById('n_weekly').checked,
-        urgent: document.getElementById('n_urgent').checked,
-        freq: document.getElementById('n_freq').value,
-        email: document.getElementById('n_email').value.trim(),
-        secNew: document.getElementById('n_new').checked,
-        secDeadline: document.getElementById('n_deadline').checked,
-        secReco: document.getElementById('n_reco').checked,
-        secSaved: document.getElementById('n_saved').checked
+        weekly: val('n_weekly'),
+        urgent: val('n_urgent'),
+        freq: FREQ_DB[(document.getElementById('n_freq') || {}).value] || 'heti',
+        email: ((document.getElementById('n_email') || {}).value || '').trim(),
+        secNew: val('n_new'),
+        secDeadline: val('n_deadline'),
+        secReco: val('n_reco'),
+        secSaved: val('n_saved')
     };
+    const err = document.getElementById('notif-err');
+    if (err) { err.style.display = 'none'; err.textContent = ''; }
+    const user = await gpUser();
+    if (!user) {
+        if (err) { err.textContent = 'A mentéshez be kell jelentkeznie.'; err.style.display = 'inline'; }
+        return;
+    }
+    const { error } = await window.gp.client.from('notif_prefs').upsert({
+        user_id: user.id,
+        weekly_enabled: data.weekly,
+        urgent_enabled: data.urgent,
+        frequency: data.freq,
+        section_new_since_last: data.secNew,
+        section_deadlines: data.secDeadline,
+        section_saved_updates: data.secSaved
+    }, { onConflict: 'user_id' });
+    if (error) {
+        console.warn('[gp] notif_prefs save failed', error);
+        if (err) { err.textContent = 'A mentés nem sikerült. Kérjük, próbálja újra.'; err.style.display = 'inline'; }
+        return;
+    }
     try { localStorage.setItem(NOTIF_KEY, JSON.stringify(data)); } catch(e) {}
     flashOk('notif-ok');
 }

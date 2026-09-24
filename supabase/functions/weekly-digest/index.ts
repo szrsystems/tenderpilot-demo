@@ -22,7 +22,10 @@ const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
 const SERVICE_ROLE = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY') ?? '';
 const CRON_SECRET = Deno.env.get('CRON_SECRET') ?? '';
-const GRANTS_URL = 'https://aipalyazo.hu/aipalyazo/grants.json';
+// The live daily feed — NOT grants.json (the old 300-item demo bundle).
+const GRANTS_URL = 'https://aipalyazo.hu/aipalyazo/grants_live.json';
+const UNSUB_PAGE = 'https://aipalyazo.hu/aipalyazo/leiratkozas.html';
+const UNSUB_API = `${SUPABASE_URL}/functions/v1/unsubscribe`;
 const PORTAL_URL = 'https://aipalyazo.hu/aipalyazo/portal.html';
 const FROM = 'AIpályázó <noreply@aipalyazo.hu>';
 
@@ -85,8 +88,9 @@ function grantRow(g: any) {
   </tr>`;
 }
 
-function emailHtml(name: string, top: any[], urgent: any[]) {
-  const greet = name ? esc(name) : 'Üdvözöljük';
+function emailHtml(name: string, top: any[], urgent: any[], token: string) {
+  const greet = name ? `Tisztelt ${esc(name)}!` : 'Tisztelt Felhasználónk!';
+  const unsubUrl = `${UNSUB_PAGE}?t=${encodeURIComponent(token)}`;
   const urgentBlock = urgent.length
     ? `<div style="margin:24px 0 8px;font-size:13px;font-weight:800;color:#b91c1c;text-transform:uppercase;letter-spacing:.4px;">⏰ Sürgős határidők (14 napon belül)</div>
        <table width="100%" cellpadding="0" cellspacing="0" border="0">${urgent.map(grantRow).join('')}</table>`
@@ -99,7 +103,7 @@ function emailHtml(name: string, top: any[], urgent: any[]) {
       </td></tr>
       <tr><td style="padding:32px;">
         <h1 style="margin:0 0 6px;font-size:20px;line-height:1.3;color:#111827;">Heti pályázati összefoglaló</h1>
-        <p style="margin:0 0 20px;font-size:14px;line-height:1.6;color:#4b5563;">Szia ${greet}! A cégprofilja alapján ezek a legjobban illeszkedő, aktuális pályázatok:</p>
+        <p style="margin:0 0 20px;font-size:14px;line-height:1.6;color:#4b5563;">${greet} A cégprofilja alapján ezek a legjobban illeszkedő, aktuális pályázatok:</p>
         <table width="100%" cellpadding="0" cellspacing="0" border="0">${top.map(grantRow).join('')}</table>
         ${urgentBlock}
         <div style="margin-top:26px;text-align:center;">
@@ -108,7 +112,8 @@ function emailHtml(name: string, top: any[], urgent: any[]) {
       </td></tr>
       <tr><td style="padding:18px 32px;background-color:#f9fafb;border-top:1px solid #f3f4f6;">
         <p style="margin:0;font-size:12px;line-height:1.6;color:#9ca3af;">
-          Ezt a heti összefoglalót azért kapja, mert bekapcsolta a Beállítások → Heti e-mail jelentést. Kikapcsolni a portál Beállítások menüjében tud. ·
+          Ezt az összefoglalót azért kapja, mert feliratkozott az AIpályázó heti e-mail jelentésére. ·
+          <a href="${unsubUrl}" style="color:#16a34a;">Leiratkozás egy kattintással</a> ·
           <a href="https://aipalyazo.hu/aipalyazo/adatvedelem.html" style="color:#16a34a;">Adatkezelés</a>
         </p>
       </td></tr>
@@ -117,11 +122,20 @@ function emailHtml(name: string, top: any[], urgent: any[]) {
 </table>`;
 }
 
-async function sendEmail(to: string, subject: string, html: string) {
+async function sendEmail(to: string, subject: string, html: string, token: string) {
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: FROM, to: [to], subject, html }),
+    body: JSON.stringify({
+      from: FROM, to: [to], subject, html,
+      // RFC 8058 one-click unsubscribe: Gmail / Outlook show a native
+      // "Leiratkozás" button that POSTs to UNSUB_API. Required by Gmail and
+      // Yahoo for bulk senders since 2024.
+      headers: {
+        'List-Unsubscribe': `<${UNSUB_API}?t=${token}>, <mailto:info@aipalyazo.hu?subject=Leiratkozas>`,
+        'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+      },
+    }),
   });
   if (!r.ok) { const t = await r.text().catch(() => ''); throw new Error(`resend ${r.status} ${t}`); }
 }
@@ -146,13 +160,28 @@ Deno.serve(async (req) => {
   const admin = createClient(SUPABASE_URL, SERVICE_ROLE);
   const { data: rows, error } = await admin
     .from('notif_prefs')
-    .select('user_id, urgent_enabled, recipient_email, section_top_n, profiles(email, display_name, company, industry, categories)')
+    .select('user_id, urgent_enabled, frequency, section_deadlines, unsubscribe_token, recipient_email, section_top_n, profiles(email, display_name, company, industry, categories)')
     .eq('weekly_enabled', true);
   if (error) return new Response(JSON.stringify({ error: 'query_failed', detail: error.message }), { status: 500 });
+
+  // Frequency: 'heti' every run; 'kétheti' on even ISO weeks; 'havi' only in
+  // the first run of the month (the cron fires once a week).
+  const now = new Date();
+  const isoWeek = (() => {
+    const d = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+    const day = d.getUTCDay() || 7; d.setUTCDate(d.getUTCDate() + 4 - day);
+    const y0 = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    return Math.ceil(((d.getTime() - y0.getTime()) / 86400000 + 1) / 7);
+  })();
+  const dueThisWeek = (f: string | null) =>
+    f === 'kétheti' ? isoWeek % 2 === 0 : f === 'havi' ? now.getDate() <= 7 : true;
 
   let sent = 0, skipped = 0;
   const errors: string[] = [];
   for (const row of (rows ?? [])) {
+    if (!dueThisWeek((row as any).frequency)) { skipped++; continue; }
+    const token = (row as any).unsubscribe_token;
+    if (!token) { skipped++; continue; } // never send without a working unsubscribe link
     const p: any = (row as any).profiles;
     if (!p || !p.company || !String(p.company).trim()) { skipped++; continue; } // no profile → no personalised digest
     const to = (row as any).recipient_email || p.email;
@@ -167,14 +196,18 @@ Deno.serve(async (req) => {
 
     const topN = Math.min(Math.max((row as any).section_top_n || 5, 3), 8);
     const top = ranked.slice(0, topN).map((x) => x.g);
-    const urgent = (row as any).urgent_enabled
+    const urgent = ((row as any).urgent_enabled && (row as any).section_deadlines !== false)
       ? ranked.map((x) => x.g).filter((g) => g.days > 0 && g.days <= 14).slice(0, 5)
       : [];
 
     try {
-      await sendEmail(to, 'Heti pályázati összefoglaló — AIpályázó', emailHtml(p.display_name, top, urgent));
+      await sendEmail(to, 'Heti pályázati összefoglaló — AIpályázó', emailHtml(p.display_name, top, urgent, token), token);
       sent++;
-    } catch (e) { errors.push(`${to}: ${String(e).slice(0, 120)}`); }
+    } catch (e) {
+      // Log the detail server-side only; the response goes to a CI log.
+      console.error('digest send failed', (row as any).user_id, String(e).slice(0, 200));
+      errors.push(`user ${String((row as any).user_id).slice(0, 8)}: send failed`);
+    }
   }
 
   return new Response(JSON.stringify({ ok: true, sent, skipped, errors }), {

@@ -308,9 +308,9 @@
                 <label>Értesítési csatorna <span class="req">*</span></label>
                 <div class="checkbox-grid">
                     <label class="checkbox-item"><input type="checkbox" value="email" checked> E-mail értesítés</label>
-                    <label class="checkbox-item"><input type="checkbox" value="weekly" checked> Heti összefoglaló</label>
+                    <label class="checkbox-item"><input type="checkbox" value="weekly"> Heti összefoglaló e-mailben</label>
                 </div>
-                <div class="hint" style="margin-top:8px;">Ezekre a csatornákra küldjük majd az új releváns pályázatokról szóló értesítéseket és a heti összefoglalót.</div>
+                <div class="hint" style="margin-top:8px;">A heti összefoglalót csak akkor küldjük, ha bejelöli. Bármikor leiratkozhat a Beállításokban vagy a levél alján lévő linkkel.</div>
             </div>
 
             <div class="field" style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px 16px;margin-top:24px;">
@@ -400,6 +400,12 @@ async function syncProfileToSupabase(data) {
         // Drop nulls so we don't blank out existing fields if a step was skipped
         Object.keys(patch).forEach(k => patch[k] === null && delete patch[k]);
         if (Object.keys(patch).length === 0) return;
+        // Weekly e-mail is opt-in: store the explicit choice from step 3.
+        if (Array.isArray(data.channels)) {
+            const { error: nErr } = await window.gp.client.from('notif_prefs')
+                .upsert({ user_id: user.id, weekly_enabled: data.channels.includes('weekly') }, { onConflict: 'user_id' });
+            if (nErr) console.warn('[gp] notif_prefs sync failed', nErr);
+        }
         const { error } = await window.gp.client.from('profiles').update(patch).eq('id', user.id);
         if (error) console.warn('[gp] onboarding profile sync failed', error);
         else console.log('[gp] profile synced to Supabase:', Object.keys(patch));
