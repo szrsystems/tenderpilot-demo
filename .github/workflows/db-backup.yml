@@ -1,0 +1,74 @@
+name: Daily database backup
+
+# Every night: dump the Supabase database (public + auth schemas: profiles,
+# bookmarks, e-mail settings, logins), encrypt it with an age PUBLIC key, and
+# upload it to a private Cloudflare R2 bucket. The repo is public, so the dump
+# never touches git or Actions artifacts, and only the holder of the PRIVATE
+# key (kept offline, not in GitHub) can decrypt it.
+#
+# Retention: daily/ files are deleted by an R2 lifecycle rule after 30 days;
+# on the 1st of every month a copy also goes to monthly/ (lifecycle rule: 365 days).
+#
+# Secrets needed (repo → Settings → Secrets and variables → Actions):
+#   SUPABASE_DB_URL      Session pooler connection string (IPv4), from
+#                        Supabase → Connect → "Session pooler"
+#   AGE_PUBLIC_KEY       age1… public key (output of age-keygen)
+#   R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET
+# A failed run e-mails the repo owner automatically (GitHub default).
+on:
+  schedule:
+    - cron: '17 2 * * *'   # 04:17 Budapest (summer), quiet hour
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  backup:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      AGE_PUBLIC_KEY: ${{ secrets.AGE_PUBLIC_KEY }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: auto
+      R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+      R2_BUCKET: ${{ secrets.R2_BUCKET }}
+    steps:
+      - name: Check configuration
+        id: cfg
+        run: |
+          for v in SUPABASE_DB_URL AGE_PUBLIC_KEY AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY R2_ACCOUNT_ID R2_BUCKET; do
+            if [ -z "${!v}" ]; then echo "Missing secret for $v — backup not configured yet, skipping."; echo "skip=1" >> "$GITHUB_OUTPUT"; exit 0; fi
+          done
+
+      - name: Install pg_dump 17 and age
+        if: steps.cfg.outputs.skip != '1'
+        run: |
+          sudo install -d /usr/share/postgresql-common/pgdg
+          sudo curl -fsSo /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc https://www.postgresql.org/media/keys/ACCC4CF8.asc
+          echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt noble-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list >/dev/null
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq postgresql-client-17 age >/dev/null
+
+      - name: Dump, encrypt, upload
+        if: steps.cfg.outputs.skip != '1'
+        run: |
+          set -euo pipefail
+          umask 077
+          DAY=$(TZ=Europe/Budapest date +%Y-%m-%d)
+          FILE="aipalyazo-db-$DAY.dump.age"
+          # custom format (compressed, restorable table by table); no owners/grants
+          /usr/lib/postgresql/17/bin/pg_dump "$SUPABASE_DB_URL" -Fc --no-owner --no-privileges \
+            --schema=public --schema=auth -f /tmp/db.dump
+          SIZE=$(stat -c %s /tmp/db.dump)
+          if [ "$SIZE" -lt 10000 ]; then echo "Dump suspiciously small ($SIZE bytes) — failing so you get an e-mail."; exit 1; fi
+          age -r "$AGE_PUBLIC_KEY" -o "/tmp/$FILE" /tmp/db.dump
+          rm -f /tmp/db.dump
+          EP="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
+          aws s3 cp "/tmp/$FILE" "s3://$R2_BUCKET/daily/$FILE" --endpoint-url "$EP" --only-show-errors
+          if [ "$(TZ=Europe/Budapest date +%d)" = "01" ]; then
+            aws s3 cp "/tmp/$FILE" "s3://$R2_BUCKET/monthly/$FILE" --endpoint-url "$EP" --only-show-errors
+          fi
+          echo "Backed up $FILE ($SIZE bytes before encryption)" | tee -a "$GITHUB_STEP_SUMMARY"
