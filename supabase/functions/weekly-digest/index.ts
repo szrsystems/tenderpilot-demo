@@ -54,7 +54,9 @@ function prepGrants(raw: any[]) {
   const out: any[] = [];
   for (const g of raw) {
     let days = 90, expired = false;
-    try {
+    // "Folyamatos" = rolling product (loan, open-ended programme): no deadline.
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(g.deadline || ''))) days = 365;
+    else try {
       const dl = new Date(g.deadline); dl.setHours(0, 0, 0, 0);
       const delta = Math.ceil((dl.getTime() - today.getTime()) / 86400000);
       expired = delta < 0; days = Math.max(0, delta);
@@ -80,7 +82,7 @@ function grantRow(g: any) {
   return `<tr>
     <td style="padding:10px 0;border-bottom:1px solid #f3f4f6;">
       <div style="font-size:14px;font-weight:700;color:#111827;">${esc(g.title)}</div>
-      <div style="font-size:12px;color:#6b7280;margin-top:2px;">${esc(g.cat)} · ${esc(g.amount)} · határidő: ${esc(g.deadline)} <span style="color:${urgent ? '#dc2626' : '#9ca3af'};">(${g.days} nap)</span></div>
+      <div style="font-size:12px;color:#6b7280;margin-top:2px;">${esc(g.cat)} · ${esc(g.amount)} · határidő: ${esc(g.deadline)}${g.days >= 365 && !/^\d/.test(String(g.deadline)) ? '' : ` <span style="color:${urgent ? '#dc2626' : '#9ca3af'};">(${g.days} nap)</span>`}</div>
     </td>
     <td style="padding:10px 0;border-bottom:1px solid #f3f4f6;text-align:right;white-space:nowrap;vertical-align:top;">
       <span style="display:inline-block;background:#f0fdf4;color:#15803d;font-weight:800;font-size:13px;padding:3px 9px;border-radius:10px;">${g.score}</span>

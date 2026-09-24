@@ -27,7 +27,10 @@ jobs:
       - name: Run grant monitor
         run: node scripts/update-grants.mjs
 
-      - name: Build live grant feed (official palyazat.gov.hu API + link-verified curated)
+      - name: Test the feed builder (offline)
+        run: node --test scripts/feed.test.mjs
+
+      - name: Build live grant feed (palyazat.gov.hu API + hand-verified list + EU Funding & Tenders API)
         run: node scripts/fetch-live-grants.mjs
 
       - name: Commit changes (if any)

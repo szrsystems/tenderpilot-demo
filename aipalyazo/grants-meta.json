@@ -1,24 +1,108 @@
 {
- "updatedAt": "2026-09-24T10:52:44.085Z",
+ "updatedAt": "2026-09-24T18:03:37.117Z",
  "counts": {
-  "total": 49,
-  "api": 37,
-  "curated": 12
+  "total": 65,
+  "api": 15,
+  "verified": 50,
+  "euAuto": 0,
+  "hazai": 39,
+  "eu": 26,
+  "excluded": 22
  },
- "changes": [
+ "note": "Rebuilt 2026-09-24 after a manual verification of every listed call. The next daily run adds EU calls from the official EU API.",
+ "euApiFailed": false,
+ "needsReview": [],
+ "staleVerified": [],
+ "droppedVerified": [],
+ "excluded": [
   {
-   "id": "pg-2025-1.1.1-BAY_VOUCHER",
-   "type": "deadline",
-   "from": "2026-09-30",
-   "to": "2026-12-01",
-   "title": "KKV-k számára nyújtandó K+F+I szolgáltatások"
+   "code": "SSNS-NCC-HU-2026.KOMP",
+   "why": "Kiberbiztonsági kompetenciaközösségi tagság — nem pénzbeli, nem pályázat."
   },
   {
-   "id": "pg-EFOP_PLUSZ-TEF-3.1.3/TEF-25",
-   "type": "szabad-keret",
-   "from": 16353380784,
-   "to": 16295986494,
-   "title": "„Nő az esély” a közszolgáltatásokban (végső kedvezményezettek)"
+   "code": "GINOP_PLUSZ-1.4.8-24",
+   "why": "Pénzügyi eszköz keret alapkezelőnek."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.2.0-23",
+   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A1-24",
+   "why": "Alapkezelői technikai felhívás."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.1.0-23",
+   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
+  },
+  {
+   "code": "IKOP_PLUSZ-1.2.0-23",
+   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
+  },
+  {
+   "code": "IKOP_PLUSZ-1.1.0-23",
+   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
+  },
+  {
+   "code": "DIMOP_PLUSZ-5.1.4-26",
+   "why": "Kockázati tőke kiválasztott alapokon keresztül; közvetlenül nem pályázható."
+  },
+  {
+   "code": "GINOP_PLUSZ-2.5.4-25",
+   "why": "Alapkezelői költségtérítés."
+  },
+  {
+   "code": "DIMOP_PLUSZ-5.1.4-2-26",
+   "why": "Alapkezelői kezelési költségtérítés."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
+   "why": "Alapkezelői/bank költségtérítés."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
+   "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.6-24",
+   "why": "Hitelkeret alapkezelőnek (Budapest)."
+  },
+  {
+   "code": "KEHOP_PLUSZ-3.1.12-25",
+   "why": "Közszféra kármentesítési felhívás."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.7-24",
+   "why": "Alapkezelői/közvetítői költségtérítés."
+  },
+  {
+   "code": "KEHOP_PLUSZ-3.1.11-25",
+   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.1.6-25",
+   "why": "Csak minősített klasztermenedzsment szervezetek pályázhatnak."
+  },
+  {
+   "code": "2025-3.1.1-ED",
+   "why": "Egyedi döntésű NKFI kérelem, nem nyílt felhívás."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.1.5-24",
+   "why": "Klaszter minősítés — nem ad pénzt."
+  },
+  {
+   "code": "EFOP_PLUSZ-TEF-3.1.3/TEF-25",
+   "why": "Csak közintézmények, egyházak, nonprofitok; 2026-09-25-én zár."
   }
- ]
+ ],
+ "changes": []
 }

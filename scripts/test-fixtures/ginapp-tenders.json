@@ -1,0 +1,1003 @@
+{
+ "tenders": [
+  {
+   "code": "SSNS-NCC-HU-2026.KOMP",
+   "name": "Kiberbiztonsági kompetenciaközösségi tagsági jogviszony létesítése",
+   "status": "Aktív",
+   "endTime": "2036-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "egyéb vállalkozás",
+    "kisvállalkozás",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "SSNS-NCC-HU",
+   "minSupportAmount": 0,
+   "maxSupportAmount": 0,
+   "sumAvailableSupportAmount": 0,
+   "sumRequestedSupportAmount": 0,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:53.120Z"
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.8-24",
+   "name": "Kombinált keret GINOP PLUSZ 1.prioritás keretében kevésbé fejlett régióban -technikai felhívás",
+   "status": "Aktív",
+   "endTime": "2030-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 0,
+   "maxSupportAmount": 138900000000.0,
+   "sumAvailableSupportAmount": 138937500000,
+   "sumRequestedSupportAmount": 138937500000,
+   "rateOfSupport": 100,
+   "modificationTime": "2024-11-21T17:24:32.528Z"
+  },
+  {
+   "code": "IKOP_PLUSZ-2.2.0-23",
+   "name": "TEN-T vasúti és regionális intermodális közlekedés fejlesztése a 4 legszegényebb magyarországi régió területein",
+   "status": "Aktív",
+   "endTime": "2029-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "egyéb vállalkozás",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 1000000.0,
+   "maxSupportAmount": 261200000000.0,
+   "sumAvailableSupportAmount": 261165382210,
+   "sumRequestedSupportAmount": 49921481951,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:54.194Z"
+  },
+  {
+   "code": "GINOP_PLUSZ-2.5.1-25",
+   "name": "Korai fázisú kutatás-fejlesztési kockázati tőkeprogram",
+   "status": "Aktív",
+   "endTime": "2029-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "Mikrovállalkozás",
+    "kisvállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "GINOP_PLUSZ",
+   "minSupportAmount": 40000000.0,
+   "maxSupportAmount": 118000000.0,
+   "sumAvailableSupportAmount": 18119714427,
+   "sumRequestedSupportAmount": 0,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:54.833Z"
+  },
+  {
+   "code": "GINOP_PLUSZ-2.5.2-26",
+   "name": "Technológiaspecifikus Kockázati Tőkeprogram",
+   "status": "Aktív",
+   "endTime": "2029-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "Mikrovállalkozás",
+    "kisvállalkozás",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "GINOP_PLUSZ",
+   "minSupportAmount": 200000000.0,
+   "maxSupportAmount": 2000000000.0,
+   "sumAvailableSupportAmount": 55119302720,
+   "sumRequestedSupportAmount": 0,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:53.491Z"
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A1-24",
+   "name": "Kombinált keret DIMOP PLUSZ 1.prioritás keretében fejlettebb régióban - technikai felhívás",
+   "status": "Aktív",
+   "endTime": "2029-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 1000000.0,
+   "maxSupportAmount": 3700000000.0,
+   "sumAvailableSupportAmount": 3663554989,
+   "sumRequestedSupportAmount": 3663554989,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:50.838Z"
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
+   "name": "Hitelkeret DIMOP Plusz 1.prioritás keretében kevésbé fejlett régióban - technikai felhívás",
+   "status": "Aktív",
+   "endTime": "2029-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 1000000.0,
+   "maxSupportAmount": 5300000000.0,
+   "sumAvailableSupportAmount": 5289468396,
+   "sumRequestedSupportAmount": 5289468396,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:56.089Z"
+  },
+  {
+   "code": "IKOP_PLUSZ-2.1.0-23",
+   "name": "TEN-T vasúti és regionális intermodális közlekedés fejlesztése a 4 legszegényebb magyarországi régión kívüli területeken",
+   "status": "Aktív",
+   "endTime": "2029-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "egyéb vállalkozás",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 1000000.0,
+   "maxSupportAmount": 458600000000.0,
+   "sumAvailableSupportAmount": 458598867059,
+   "sumRequestedSupportAmount": 351547937751,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:43.350Z"
+  },
+  {
+   "code": "IKOP_PLUSZ-1.2.0-23",
+   "name": "Tiszta üzemű városi-elővárosi közlekedés erősítése a fővároson és a budapesti agglomeráción kívüli településeken",
+   "status": "Aktív",
+   "endTime": "2029-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "egyéb vállalkozás",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 300000000.0,
+   "maxSupportAmount": 141500000000.0,
+   "sumAvailableSupportAmount": 283486991235,
+   "sumRequestedSupportAmount": 150374119471,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:54.684Z"
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
+   "name": "Kombinált keret DIMOP PLUSZ 1.prioritás keretében kevésbé fejlett régióban - technikai felhívás",
+   "status": "Aktív",
+   "endTime": "2029-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "DIMOP_PLUSZ",
+   "minSupportAmount": 1000000.0,
+   "maxSupportAmount": 21200000000.0,
+   "sumAvailableSupportAmount": 21157873582,
+   "sumRequestedSupportAmount": 21157873582,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:56.825Z"
+  },
+  {
+   "code": "IKOP_PLUSZ-1.1.0-23",
+   "name": "Tiszta üzemű városi-elővárosi közlekedés erősítése Budapesten és agglomerációs településein",
+   "status": "Aktív",
+   "endTime": "2029-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "egyéb vállalkozás",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 1000000.0,
+   "maxSupportAmount": 501600000000.0,
+   "sumAvailableSupportAmount": 501639976703,
+   "sumRequestedSupportAmount": 120251190757,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:58.018Z"
+  },
+  {
+   "code": "DIMOP_PLUSZ-5.1.4-26",
+   "name": "Kockázati tőkeprogram a digitális startup program támogatására",
+   "status": "Aktív",
+   "endTime": "2029-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "Mikrovállalkozás",
+    "kisvállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "DIMOP_PLUSZ",
+   "minSupportAmount": 50000000.0,
+   "maxSupportAmount": 900000000.0,
+   "sumAvailableSupportAmount": 16700000000,
+   "sumRequestedSupportAmount": 0,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:54.449Z"
+  },
+  {
+   "code": "GINOP_PLUSZ-2.5.4-25",
+   "name": "HVSZ költségtérítése GINOP Plusz 2. prioritás keretében kevésbé fejlett régióban - technikai felhívás",
+   "status": "Aktív",
+   "endTime": "2029-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "GINOP_PLUSZ",
+   "minSupportAmount": 0,
+   "maxSupportAmount": 743000000.0,
+   "sumAvailableSupportAmount": 742523364,
+   "sumRequestedSupportAmount": 4348459056,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:54.324Z"
+  },
+  {
+   "code": "DIMOP_PLUSZ-5.1.4-2-26",
+   "name": "HVSZ és Közvetítők költségtérítése KOCKÁZATI TŐKE DIMOP Plusz 5. prioritás keretében kevésbé fejlett régióban - technikai felhívás",
+   "status": "Aktív",
+   "endTime": "2029-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "DIMOP_PLUSZ",
+   "minSupportAmount": 0,
+   "maxSupportAmount": 830000000.0,
+   "sumAvailableSupportAmount": 830383115,
+   "sumRequestedSupportAmount": 830383115,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:53.609Z"
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
+   "name": "HVSZ és Közvetítők költségtérítése DIMOP Plusz 1. prioritás keretében fejlettebb régióban - technikai felhívás",
+   "status": "Aktív",
+   "endTime": "2029-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 0,
+   "maxSupportAmount": 550000000.0,
+   "sumAvailableSupportAmount": 549533249,
+   "sumRequestedSupportAmount": 549533249,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:58.310Z"
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
+   "name": "Hitelkeret DIMOP Plusz 1.prioritás keretében fejlettebb régióban -technikai felhívás",
+   "status": "Aktív",
+   "endTime": "2029-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 1000000.0,
+   "maxSupportAmount": 916000000.0,
+   "sumAvailableSupportAmount": 915888747,
+   "sumRequestedSupportAmount": 915888747,
+   "rateOfSupport": 100,
+   "modificationTime": "2024-11-19T17:03:05.182Z"
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.6-24",
+   "name": "Hitelkeret GINOP PLUSZ 1.prioritás keretében fejlettebb régióban -technikai felhívás",
+   "status": "Aktív",
+   "endTime": "2027-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 0,
+   "maxSupportAmount": 65300000000.0,
+   "sumAvailableSupportAmount": 65344120222,
+   "sumRequestedSupportAmount": 65344120222,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:55.002Z"
+  },
+  {
+   "code": "KEHOP_PLUSZ-3.1.12-25",
+   "name": "Szennyezett területek humán-egészségügyi kockázatainak csökkentése (KA)",
+   "status": "Aktív",
+   "endTime": "2027-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "egyéb vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "KEHOP_PLUSZ",
+   "minSupportAmount": 3500000000.0,
+   "maxSupportAmount": 4000000000.0,
+   "sumAvailableSupportAmount": 7560000000,
+   "sumRequestedSupportAmount": 7560000000,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:53.899Z"
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.7-24",
+   "name": "HVSZ és Közvetítők költségtérítése GINOP PLUSZ 1. prioritás keretében fejlettebb régióban -technikai felhívás",
+   "status": "Aktív",
+   "endTime": "2027-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 0,
+   "maxSupportAmount": 7800000000.0,
+   "sumAvailableSupportAmount": 7841294427,
+   "sumRequestedSupportAmount": 7841294427,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:51:45.910Z"
+  },
+  {
+   "code": "KEHOP_PLUSZ-3.1.11-25",
+   "name": "Szennyezett területek humán-egészségügyi kockázatainak csökkentése (ERFA)",
+   "status": "Aktív",
+   "endTime": "2027-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "egyéb vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "KEHOP_PLUSZ",
+   "minSupportAmount": 1000000000.0,
+   "maxSupportAmount": 6300000000.0,
+   "sumAvailableSupportAmount": 6290000000,
+   "sumRequestedSupportAmount": 6290000000,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:54.102Z"
+  },
+  {
+   "code": "MAHOP_PLUSZ-2.1.1-25",
+   "name": "Akvakultúra beruházás támogatása",
+   "status": "Aktív",
+   "endTime": "2027-08-30T22:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "egyéb vállalkozás",
+    "Mikrovállalkozás",
+    "kisvállalkozás",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "MAHOP_PLUSZ",
+   "minSupportAmount": 6000000.0,
+   "maxSupportAmount": 400000000.0,
+   "sumAvailableSupportAmount": 7146074859,
+   "sumRequestedSupportAmount": 10006707155,
+   "rateOfSupport": 60,
+   "modificationTime": "2026-09-24T10:50:53.047Z"
+  },
+  {
+   "code": "MAHOP_PLUSZ-2.5.1-25",
+   "name": "Halfeldolgozás",
+   "status": "Aktív",
+   "endTime": "2027-08-30T22:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "egyéb vállalkozás",
+    "Mikrovállalkozás",
+    "kisvállalkozás",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "MAHOP_PLUSZ",
+   "minSupportAmount": 5000000.0,
+   "maxSupportAmount": 400000000.0,
+   "sumAvailableSupportAmount": 1698070000,
+   "sumRequestedSupportAmount": 1915089742,
+   "rateOfSupport": 50,
+   "modificationTime": "2026-09-24T10:50:53.361Z"
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/B-24",
+   "name": "Kis- és középvállalkozások digitalizációjának támogatása hitelprogram keretében",
+   "status": "Aktív",
+   "endTime": "2027-06-29T22:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "kisvállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 20000000.0,
+   "maxSupportAmount": 200000000.0,
+   "sumAvailableSupportAmount": 6950000000,
+   "sumRequestedSupportAmount": 0,
+   "rateOfSupport": 90,
+   "modificationTime": "2026-09-24T10:50:57.772Z"
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A-24",
+   "name": "Mikro-, kis- és középvállalkozások digitalizációjának támogatása egyműveletes kombinált hiteltermék keretében",
+   "status": "Aktív",
+   "endTime": "2027-06-29T22:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "kisvállalkozás",
+    "mikrovállalkozás természetes személy"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 3000000.0,
+   "maxSupportAmount": 20000000.0,
+   "sumAvailableSupportAmount": 27800000000,
+   "sumRequestedSupportAmount": 0,
+   "rateOfSupport": 90,
+   "modificationTime": "2026-09-24T10:50:57.658Z"
+  },
+  {
+   "code": "KEHOP_PLUSZ-4.1.6-25",
+   "name": "Vállalkozások energiahatékonysági fejlesztéseit elősegítő hitelkonstrukció",
+   "status": "Aktív",
+   "endTime": "2027-05-30T22:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "egyéb vállalkozás",
+    "Mikrovállalkozás",
+    "kisvállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "KEHOP_PLUSZ",
+   "minSupportAmount": 10000000.0,
+   "maxSupportAmount": 500000000.0,
+   "sumAvailableSupportAmount": 38700000000,
+   "sumRequestedSupportAmount": 0,
+   "rateOfSupport": 90,
+   "modificationTime": "2026-09-24T10:50:53.599Z"
+  },
+  {
+   "code": "GINOP_PLUSZ-1.1.6-25",
+   "name": "Minősített klasztermenedzsment szervezetek támogatása",
+   "status": "Aktív",
+   "endTime": "2027-01-14T23:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "Mikrovállalkozás",
+    "kisvállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "GINOP_PLUSZ",
+   "minSupportAmount": 20000000.0,
+   "maxSupportAmount": 120000000.0,
+   "sumAvailableSupportAmount": 6000000000,
+   "sumRequestedSupportAmount": 232693446,
+   "rateOfSupport": 85,
+   "modificationTime": "2026-09-24T10:50:52.604Z"
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.5-25",
+   "name": "Nemzeti Bajnokok – Zöld és digitális átállást célzó egyműveletes kombinált Hitelprogram",
+   "status": "Aktív",
+   "endTime": "2026-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "egyéb vállalkozás",
+    "Mikrovállalkozás",
+    "kisvállalkozás",
+    "mikrovállalkozás természetes személy",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "GINOP_PLUSZ",
+   "minSupportAmount": 150000000.0,
+   "maxSupportAmount": 1000000000.0,
+   "sumAvailableSupportAmount": 155610000000,
+   "sumRequestedSupportAmount": 0,
+   "rateOfSupport": 90,
+   "modificationTime": "2026-09-24T10:50:52.874Z"
+  },
+  {
+   "code": "2025-3.1.1-ED",
+   "name": "KFI tv.szerinti (közfinanszírozású) támogatási kérelem",
+   "status": "Aktív",
+   "endTime": "2026-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "egyéb vállalkozás",
+    "kisvállalkozás",
+    "mikrovállalkozás természetes személy",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 0,
+   "maxSupportAmount": 10000000000.0,
+   "sumAvailableSupportAmount": 17500000000,
+   "sumRequestedSupportAmount": 22651339537,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:54.360Z"
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.4-24",
+   "name": "KKV Technológia Plusz Budapest Hitelprogram",
+   "status": "Aktív",
+   "endTime": "2026-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "egyéb vállalkozás",
+    "kisvállalkozás",
+    "mikrovállalkozás természetes személy",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 5000000.0,
+   "maxSupportAmount": 150000000.0,
+   "sumAvailableSupportAmount": 73185414649,
+   "sumRequestedSupportAmount": 0,
+   "rateOfSupport": 90,
+   "modificationTime": "2026-09-24T10:50:59.087Z"
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.3-24",
+   "name": "KKV Technológia Plusz Hitelprogram",
+   "status": "Aktív",
+   "endTime": "2026-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "egyéb vállalkozás",
+    "kisvállalkozás",
+    "mikrovállalkozás természetes személy",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 5000000.0,
+   "maxSupportAmount": 150000000.0,
+   "sumAvailableSupportAmount": 155540000000,
+   "sumRequestedSupportAmount": 0,
+   "rateOfSupport": 90,
+   "modificationTime": "2026-09-24T10:50:58.107Z"
+  },
+  {
+   "code": "MAHOP_PLUSZ-1.3.1-25",
+   "name": "A fenntartható természetesvízi halgazdálkodás támogatása",
+   "status": "Aktív",
+   "endTime": "2026-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "egyéb vállalkozás",
+    "Mikrovállalkozás",
+    "kisvállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "MAHOP_PLUSZ",
+   "minSupportAmount": 25000000.0,
+   "maxSupportAmount": 600000000.0,
+   "sumAvailableSupportAmount": 1895520000,
+   "sumRequestedSupportAmount": 1446904512,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:53.735Z"
+  },
+  {
+   "code": "2025-1.1.1-BAY_VOUCHER",
+   "name": "KKV-k számára nyújtandó K+F+I szolgáltatások",
+   "status": "Aktív",
+   "endTime": "2026-12-01T23:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "egyéb vállalkozás",
+    "Mikrovállalkozás",
+    "kisvállalkozás",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "",
+   "minSupportAmount": 50000000.0,
+   "maxSupportAmount": 100000000.0,
+   "sumAvailableSupportAmount": 1538461539,
+   "sumRequestedSupportAmount": 1322992420,
+   "rateOfSupport": 75,
+   "modificationTime": "2026-09-24T10:50:53.926Z"
+  },
+  {
+   "code": "KEHOP_PLUSZ-4.2.5-25",
+   "name": "Földhő Hasznosítási Kedvezményes Hitelkonstrukció",
+   "status": "Aktív",
+   "endTime": "2026-11-14T23:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "egyéb vállalkozás",
+    "Mikrovállalkozás",
+    "kisvállalkozás",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "KEHOP_PLUSZ",
+   "minSupportAmount": 1000000000.0,
+   "maxSupportAmount": 6000000000.0,
+   "sumAvailableSupportAmount": 20320000000,
+   "sumRequestedSupportAmount": 0,
+   "rateOfSupport": 90,
+   "modificationTime": "2026-09-24T10:50:56.426Z"
+  },
+  {
+   "code": "KEHOP_PLUSZ-4.2.3-25",
+   "name": "Geotermikus alapú villamosenergia-termelés",
+   "status": "Aktív",
+   "endTime": "2026-10-29T23:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "egyéb vállalkozás",
+    "Mikrovállalkozás",
+    "kisvállalkozás",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "KEHOP_PLUSZ",
+   "minSupportAmount": 1000000000.0,
+   "maxSupportAmount": 12000000000.0,
+   "sumAvailableSupportAmount": 12000000000,
+   "sumRequestedSupportAmount": 11455800000,
+   "rateOfSupport": 45,
+   "modificationTime": "2026-09-24T10:50:54.048Z"
+  },
+  {
+   "code": "KEHOP_PLUSZ-4.2.4-25",
+   "name": "Geotermikus fúrási kockázatok csökkentése",
+   "status": "Aktív",
+   "endTime": "2026-10-29T23:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "egyéb vállalkozás",
+    "Mikrovállalkozás",
+    "kisvállalkozás",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "KEHOP_PLUSZ",
+   "minSupportAmount": 40000000.0,
+   "maxSupportAmount": 1000000000.0,
+   "sumAvailableSupportAmount": 10000000000,
+   "sumRequestedSupportAmount": 2217926482,
+   "rateOfSupport": 50,
+   "modificationTime": "2026-09-24T10:50:54.708Z"
+  },
+  {
+   "code": "GINOP_PLUSZ-1.1.5-24",
+   "name": "Klaszter minősítés",
+   "status": "Aktív",
+   "endTime": "2026-10-12T22:00:00.000Z",
+   "beneficiaries": [
+    "középvállalkozás",
+    "egyéb vállalkozás",
+    "Mikrovállalkozás",
+    "kisvállalkozás",
+    "vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "GINOP_PLUSZ",
+   "minSupportAmount": 0,
+   "maxSupportAmount": 0,
+   "sumAvailableSupportAmount": 0,
+   "sumRequestedSupportAmount": 0,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:56.588Z"
+  },
+  {
+   "code": "EFOP_PLUSZ-TEF-3.1.3/TEF-25",
+   "name": "„Nő az esély” a közszolgáltatásokban (végső kedvezményezettek)",
+   "status": "Aktív",
+   "endTime": "2026-09-24T22:00:00.000Z",
+   "beneficiaries": [
+    "egyéb vállalkozás"
+   ],
+   "categories": [
+    "Nyugat-Dunántúl",
+    "Észak-Magyarország",
+    "Közép-Dunántúl",
+    "Észak-Alföld",
+    "Dél-Dunántúl",
+    "Dél-Alföld"
+   ],
+   "operationalProgram": "EFOP_PLUSZ-TEF",
+   "minSupportAmount": 10000000.0,
+   "maxSupportAmount": 173000000.0,
+   "sumAvailableSupportAmount": 21631607200,
+   "sumRequestedSupportAmount": 5335620706,
+   "rateOfSupport": 100,
+   "modificationTime": "2026-09-24T10:50:52.940Z"
+  },
+  {
+   "code": "GINOP_PLUSZ-9.9.9-26",
+   "name": "Új KKV beruházási felhívás",
+   "status": "Aktív",
+   "endTime": "2027-03-30T22:00:00.000Z",
+   "beneficiaries": [
+    "kisvállalkozás"
+   ],
+   "categories": [],
+   "operationalProgram": "GINOP_PLUSZ",
+   "minSupportAmount": 5000000.0,
+   "maxSupportAmount": 50000000.0,
+   "sumAvailableSupportAmount": 1000000000.0,
+   "sumRequestedSupportAmount": 0
+  },
+  {
+   "code": "DIMOP_PLUSZ-9.9.9/Z1-26",
+   "name": "Technikai felhívás a hitelkeret biztosítására",
+   "status": "Aktív",
+   "endTime": "2029-12-30T23:00:00.000Z",
+   "beneficiaries": [
+    "vállalkozás"
+   ],
+   "categories": [],
+   "operationalProgram": "DIMOP_PLUSZ",
+   "minSupportAmount": 1,
+   "maxSupportAmount": 50000000000.0,
+   "sumAvailableSupportAmount": 50000000000.0,
+   "sumRequestedSupportAmount": 0
+  },
+  {
+   "code": "GINOP_PLUSZ-8.8.8-25",
+   "name": "Lezárt felhívás",
+   "status": "Lezárva",
+   "endTime": "2027-03-30T22:00:00.000Z",
+   "beneficiaries": [
+    "kisvállalkozás"
+   ],
+   "categories": [],
+   "operationalProgram": "GINOP_PLUSZ"
+  }
+ ]
+}

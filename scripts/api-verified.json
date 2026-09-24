@@ -1,0 +1,457 @@
+{
+ "_comment": "Manual verification of palyazat.gov.hu API calls (2026-09-24). exclude = not open to businesses / not a real SME call; otherwise the fields overlay the API data. New API codes that are NOT listed here are shown with needsReview=true until checked. Re-verify entries older than 60 days.",
+ "SSNS-NCC-HU-2026.KOMP": {
+  "exclude": true,
+  "reason": "Kiberbiztonsági kompetenciaközösségi tagság — nem pénzbeli, nem pályázat.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://palyazatkereses.hu/palyazat/ssns-ncc-hu-2026-komp-kiberbiztonsagi-kompetenciakozossegi-tagsagi-jogviszony-letesitese",
+   "https://www.palyazat.gov.hu/kozlemenyek/megjelent-a-kiberbiztonsagi-kompetenciakozossegi-tagsagi-jogviszony-letesitesere-iranyulo-ssns-ncc-hu-komp-2026-kodszamu-felhivas"
+  ]
+ },
+ "DIMOP_PLUSZ-1.2.3/B2-24": {
+  "exclude": true,
+  "reason": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://mfb.hu/vallalkozasok/mukodo/hitel/dimop-plusz--123b-24-kis--es-kozepvallalkozasok-digitalizaciojanak-tamogatasa-hitelprogram-t227-p227",
+   "https://palyazatok.org/wp-content/2025/11/dimop-plusz-123-a-24-felhivas-modositas.pdf"
+  ]
+ },
+ "DIMOP_PLUSZ-1.2.3/A2-24": {
+  "exclude": true,
+  "reason": "Alapkezelői technikai felhívás (pénzügyi eszköz keret).",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://palyazatok.org/wp-content/2025/11/dimop-plusz-123-a-24-felhivas-modositas.pdf",
+   "https://www.mfb.hu/vallalkozasok/mukodo/hitel/dimop-plusz--123a-24-mikro--kis--es-kozepvallalkozasok-digitalizaciojanak-tamogatasa-egymuveletes-kombinalt-hiteltermek-kereteben-t226-p226"
+  ]
+ },
+ "GINOP_PLUSZ-2.5.4-25": {
+  "exclude": true,
+  "reason": "Alapkezelői költségtérítés.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://palyazat.uni-obuda.hu/palyazati_felhivasok/korai-fazisu-kutatas-fejlesztesi-kockazati-tokeprogram-ginop-plusz-2-5-1-25/"
+  ]
+ },
+ "DIMOP_PLUSZ-1.2.3/B1-24": {
+  "exclude": true,
+  "reason": "Alapkezelői technikai felhívás (fejlettebb régió keret).",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://mfb.hu/vallalkozasok/mukodo/hitel/dimop-plusz--123b-24-kis--es-kozepvallalkozasok-digitalizaciojanak-tamogatasa-hitelprogram-t227-p227",
+   "https://palyazatok.org/wp-content/2025/11/dimop-plusz-123-a-24-felhivas-modositas.pdf"
+  ]
+ },
+ "GINOP_PLUSZ-1.4.7-24": {
+  "exclude": true,
+  "reason": "Alapkezelői/közvetítői költségtérítés.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://palyazat.uni-obuda.hu/palyazati_felhivasok/korai-fazisu-kutatas-fejlesztesi-kockazati-tokeprogram-ginop-plusz-2-5-1-25/"
+  ]
+ },
+ "2025-3.1.1-ED": {
+  "exclude": true,
+  "reason": "Egyedi döntésű NKFI kérelem, nem nyílt felhívás.",
+  "verifiedAt": "2026-09-24",
+  "sources": []
+ },
+ "EFOP_PLUSZ-TEF-3.1.3/TEF-25": {
+  "exclude": true,
+  "reason": "Csak közintézmények, egyházak, nonprofitok; 2026-09-25-én zár.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://tef.gov.hu/megnyilt-a-3-benyujtasi-szakasz-a-no-az-esely-projektben/",
+   "https://tef.gov.hu/efop-plusz-3-1-3-25-no-az-esely/",
+   "https://www.nonprofit.hu/hirek/Megnyilt-a-No-az-esely-a-kozszolgaltatasokban-cimu-EFOP_PLUSZ-313TEF-25-jelu-palyazat-kitolto-felulete"
+  ]
+ },
+ "GINOP_PLUSZ-1.4.8-24": {
+  "exclude": true,
+  "reason": "Pénzügyi eszköz keret alapkezelőnek.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://forrascenter.hu/pj-palyazatok/kombinalt-keret-ginop-plusz-1-prioritas-kereteben-kevesbe-fejlett-regioban-technikai-felhivas/",
+   "https://www.palyazat.gov.hu/programok/szechenyi-terv-plusz/ginop_plusz/GINOP_PLUSZ-1.4.8-24/egyszerusitett"
+  ]
+ },
+ "IKOP_PLUSZ-2.1.0-23": {
+  "exclude": true,
+  "reason": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV).",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://www.mavcsoport.hu/mav-csoport/mav-start-zrt-gorduloallomany-fejlesztese-19-db-nagykapacitasu-motorvonat-beszerzesevel",
+   "https://www.mavcsoport.hu/mav-csoport/tevekenyseg/ikop-plusz"
+  ]
+ },
+ "IKOP_PLUSZ-1.1.0-23": {
+  "exclude": true,
+  "reason": "Közösségi közlekedés, kijelölt kedvezményezett (BKK).",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://bkk.hu/hirek/2025/10/uj-caf-villamosok-budapesten-unios-tamogatassal-bovul-az-alacsonypadlos-flotta.15383/",
+   "https://palyazatfigyelo.com/megjelent-a-tiszta-uzemu-varosi-elovarosi-kozlekedes-erositese-budapesten-es-agglomeracios-telepulesein-cimu-ikop-plusz-1-1-0-23-kodszamu-felhivas-1703205293.6336"
+  ]
+ },
+ "DIMOP_PLUSZ-5.1.4-2-26": {
+  "exclude": true,
+  "reason": "Alapkezelői kezelési költségtérítés.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://pafi.hu/p/hvsz-es-kozvetitok-koltsegteritese-ginop-plusz-1-prioritas-kereteben-ginop-plusz-142-22"
+  ]
+ },
+ "GINOP_PLUSZ-1.4.6-24": {
+  "exclude": true,
+  "reason": "Hitelkeret alapkezelőnek (Budapest).",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://www.portfolio.hu/unios-forrasok/20210526/onallo-regio-lett-pest-megye-es-ezert-felrobban-az-elerheto-eu-tamogatasok-osszege-484996"
+  ]
+ },
+ "KEHOP_PLUSZ-3.1.11-25": {
+  "exclude": true,
+  "reason": "Kármentesítés, nagy közszféra-projektek; keret lekötve.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://www.palyazat.gov.hu/programok/szechenyi-terv-plusz/kehop-plusz/kehop-plusz-3111-25/alapadatok"
+  ]
+ },
+ "IKOP_PLUSZ-2.2.0-23": {
+  "exclude": true,
+  "reason": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://njt.jog.gov.hu/jogszabaly/2024-1042-30-22"
+  ]
+ },
+ "DIMOP_PLUSZ-1.2.3/A1-24": {
+  "exclude": true,
+  "reason": "Alapkezelői technikai felhívás.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://www.palyazat.gov.hu/programok/szechenyi-terv-plusz/dimop-plusz/dimop-plusz-123a1-24/alapadatok",
+   "https://palyaz.hu/kkv-k-digitalizaciojanak-tamogatasa-hitelprogram-dimop-a/"
+  ]
+ },
+ "IKOP_PLUSZ-1.2.0-23": {
+  "exclude": true,
+  "reason": "Közlekedési beruházás kijelölt állami kedvezményezettnek.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://njt.jog.gov.hu/jogszabaly/2024-1042-30-22",
+   "https://paksbusz.net/ikop-plusz/"
+  ]
+ },
+ "DIMOP_PLUSZ-5.1.4-26": {
+  "exclude": true,
+  "reason": "Kockázati tőke kiválasztott alapokon keresztül; közvetlenül nem pályázható.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://www.bkmkik.hu/hu/palyazatok/aktualis-palyazatok/7845-kockazati-tokeprogram-a-digitalis-startup-program-tamogatasara"
+  ]
+ },
+ "DIMOP_PLUSZ-1.2.3/AB-1-24": {
+  "exclude": true,
+  "reason": "Alapkezelői/bank költségtérítés.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://www.palyazat.gov.hu/programok/szechenyi-terv-plusz/dimop-plusz/dimop-plusz-123ab-1-24/alapadatok"
+  ]
+ },
+ "KEHOP_PLUSZ-3.1.12-25": {
+  "exclude": true,
+  "reason": "Közszféra kármentesítési felhívás.",
+  "verifiedAt": "2026-09-24",
+  "sources": []
+ },
+ "GINOP_PLUSZ-1.1.5-24": {
+  "exclude": true,
+  "reason": "Klaszter minősítés — nem ad pénzt.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://pbkik.hu/2025/02/06/hirek/klaszterek/megjelent-a-ginop-plusz-1-1-5-24-szamu-klaszter-minosites-felhivas/"
+  ]
+ },
+ "GINOP_PLUSZ-1.1.6-25": {
+  "exclude": true,
+  "reason": "Csak minősített klasztermenedzsment szervezetek pályázhatnak.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://kormany.hu/hirek/megjelent-a-minositett-klasztermenedzsment-szervezetek-tamogatasat-celzo-uj-palyazat",
+   "https://vmkik.hu/hirek/megjelent-a-minositett-klasztermenedzsment-szervezetek-tamogatasa-cimu-palyazati-felhivas",
+   "https://hirlevel.egov.hu/2026/03/15/megjelent-a-minositett-klasztermenedzsment-szervezetek-tamogatasat-celzo-uj-palyazat/"
+  ]
+ },
+ "GINOP_PLUSZ-2.5.1-25": {
+  "type": "equity",
+  "rate": false,
+  "regions": [],
+  "amount": "max. kb. 120 M Ft (~300 ezer EUR) tőkebefektetés",
+  "url": "https://hiventures.hu/befektetes/",
+  "note": "Kockázati tőke a Hiventures-en keresztül korai fázisú, innovatív vállalkozásoknak; nem vissza nem térítendő támogatás.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://palyazat.uni-obuda.hu/palyazati_felhivasok/korai-fazisu-kutatas-fejlesztesi-kockazati-tokeprogram-ginop-plusz-2-5-1-25/",
+   "https://forrascenter.hu/pj-palyazatok/ginop-plusz-2-5-1-25-korai-fazisu-kutatas-fejlesztesi-kockazati-tokeprogram/",
+   "https://www.portfolio.hu/gazdasag/20260319/vege-a-startupok-forrashianyanak-uj-17-milliard-forintos-korai-fazisu-tokeprogramot-indit-a-hiventures-824692"
+  ],
+  "confidence": "medium"
+ },
+ "MAHOP_PLUSZ-2.5.1-25": {
+  "type": "grant",
+  "regions": [],
+  "amount": "5–400 M Ft (50%)",
+  "deadline": "2027-08-31",
+  "note": "Működő halfeldolgozó üzemmel rendelkező mikro-, kis- és középvállalkozások.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://pafi.hu/p/halfeldolgozas-mahop-plusz-251-2025",
+   "https://www.palyazatihirek.eu/vallalkozasok/5180-uj-tamogatas-halfeldolgozok-fejlesztesere",
+   "https://www.palyazat4me.hu/palyazat/mahop-plusz-251-25"
+  ],
+  "confidence": "high"
+ },
+ "KEHOP_PLUSZ-4.1.6-25": {
+  "type": "loan",
+  "rate": "0% fix kamat",
+  "regions": [
+   "Pest",
+   "Közép-Dunántúl",
+   "Nyugat-Dunántúl",
+   "Dél-Dunántúl",
+   "Észak-Magyarország",
+   "Észak-Alföld",
+   "Dél-Alföld"
+  ],
+  "amount": "10–500 M Ft",
+  "note": "Legalább 30% primerenergia-megtakarítás szükséges; MFB Pontokon igényelhető.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://www.mfb.hu/vallalkozasok/mikro/hitel/kehop-plusz--416-25-vallalkozasok-energiahatekonysagi-fejleszteseit-elosegito-hitelkonstrukcio-t269-p269",
+   "https://www.otpbank.hu/portal/hu/mfb-pont-plusz/kehop-plusz-4-1-6-25",
+   "https://novekedes.hu/penzugy/kamatmentes-energetikai-hitelprogram-feltetel-a-30-szazalekos-energiamegtakaritas",
+   "https://pafi.hu/p/vallalkozasok-energiahatekonysagi-fejleszteseit-elosegito-hitelkonstrukcio-kehop-plusz-416-25"
+  ],
+  "confidence": "medium"
+ },
+ "MAHOP_PLUSZ-1.3.1-25": {
+  "type": "grant",
+  "regions": [],
+  "amount": "max. 400 M Ft",
+  "note": "Halgazdálkodási joggal rendelkezők pályázhatnak (szűk kör).",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://www.protask.hu/2026/01/20/termeszetesvizi-halgazdalkodas-tamogatasa/",
+   "https://forrascenter.hu/pj-palyazatok/a-fenntarthato-termeszetesvizi-halgazdalkodas-tamogatasa-mahop-plusz-1-3-1-2025-2/"
+  ],
+  "confidence": "medium"
+ },
+ "KEHOP_PLUSZ-4.2.3-25": {
+  "type": "grant",
+  "windowOpen": "2026-10-01",
+  "deadline": "2026-10-30",
+  "regions": [],
+  "regionNote": "Régiós feltételek: lásd a felhívást.",
+  "amount": "1–12 Mrd Ft",
+  "note": "Geotermikus villamosenergia-termelés; meglévő kútpár szükséges, jellemzően nagyvállalatoknak.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://pafi.hu/p/geotermikus-alapu-villamosenergia-termeles-kehop-plusz-423-25",
+   "https://mgte.hu/foldho-alapu-aramtermeles-lehet-palyazni/",
+   "https://forrascenter.hu/pj-palyazatok/geotermikus-alapu-villamosenergia-termeles-kehop-plusz-4-2-3-25/"
+  ],
+  "confidence": "medium"
+ },
+ "GINOP_PLUSZ-2.5.2-26": {
+  "type": "equity",
+  "rate": false,
+  "regions": [
+   "Pest",
+   "Közép-Dunántúl",
+   "Nyugat-Dunántúl",
+   "Dél-Dunántúl",
+   "Észak-Magyarország",
+   "Észak-Alföld",
+   "Dél-Alföld"
+  ],
+  "amount": "200 M – 2 Mrd Ft tőkebefektetés",
+  "note": "Kockázati tőke deep-tech, hardveres innovációs KKV-knak; alapkezelőn keresztül.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://www.bkmkik.hu/en/palyazatok/aktualis-palyazatok/8056-technologiaspecifikus-kockazati-tokeprogram",
+   "https://www.portfolio.hu/unios-forrasok/20210526/onallo-regio-lett-pest-megye-es-ezert-felrobban-az-elerheto-eu-tamogatasok-osszege-484996"
+  ],
+  "confidence": "medium"
+ },
+ "DIMOP_PLUSZ-1.2.3/B-24": {
+  "type": "loan",
+  "rate": "0% fix kamat",
+  "regions": [],
+  "amount": "20–200 M Ft",
+  "deadline": "2027-06-30",
+  "note": "Kis- és középvállalkozásoknak (mikro nem); min. 2 lezárt üzleti év, kettős könyvvitel.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://mfb.hu/vallalkozasok/mukodo/hitel/dimop-plusz--123b-24-kis--es-kozepvallalkozasok-digitalizaciojanak-tamogatasa-hitelprogram-t227-p227",
+   "https://palyaz.hu/kkv-k-digitalizaciojanak-tamogatasa-hitelprogram-dimop-b/",
+   "https://palyazatfigyelo.com/mikro--kis-es-kozepvallalkozasok-digitalizaciojanak-tamogatasa-hitelprogram-kereteben--dimop-plusz-1-2-3-b-24"
+  ],
+  "confidence": "high"
+ },
+ "GINOP_PLUSZ-1.4.4-24": {
+  "type": "loan",
+  "rate": "0% fix kamat",
+  "regions": [
+   "Budapest"
+  ],
+  "amount": "5–150 M Ft",
+  "deadline": "2026-12-31",
+  "note": "A beruházás helyszíne csak Budapest lehet; induló vállalkozásnak max. 25 M Ft.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://www.mfb.hu/vallalkozasok/mukodo/hitel/kkv-technologia-plusz-budapest-hitelprogram-ginop-plusz--144-24-t219-p220",
+   "https://pulzuspalyazatiras.hu/osszes-palyazat/284-kkv-technologia-plusz-hitelprogram-budapest",
+   "https://qlm.hu/ginop-plusz-1-4-4-24-kkv-technologia-plusz-budapest-hitelprogram/",
+   "https://pafi.hu/p/kkv-technologia-plusz-budapest-hitelprogram-ginop-plusz-144-24"
+  ],
+  "confidence": "medium"
+ },
+ "2025-1.1.1-BAY_VOUCHER": {
+  "type": "in-kind",
+  "regions": [],
+  "amount": "50–100 M Ft értékű K+F+I szolgáltatás",
+  "deadline": "2026-12-02",
+  "note": "Nem pénzbeli: a Bay Zoltán K+F szolgáltatását kapja 75%-os intenzitással; a keretből kevés maradt.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://www.bayzoltan.hu/bay-voucher/",
+   "https://www.bayzoltan.hu/2026/02/12/ujra-megnyilt-a-kkv-k-szamara-nyujtando-kfi-szolgaltatasok-cimu-2025-1-1-1-bay_voucher-kodszamu-felhivas/",
+   "https://www.bayzoltan.hu/2026/06/02/2025-1-1-1-bay_voucher-tamogatasi-kerelmekre-vonatkozoan-megszuletett-a-dontes/",
+   "https://www.bkmkik.hu/en/palyazatok/aktualis-palyazatok/8204-ujra-megnyilt-a-bay-voucher-palyzat"
+  ],
+  "confidence": "high"
+ },
+ "KEHOP_PLUSZ-4.2.4-25": {
+  "type": "grant",
+  "regions": [
+   "Pest",
+   "Közép-Dunántúl",
+   "Nyugat-Dunántúl",
+   "Dél-Dunántúl",
+   "Észak-Magyarország",
+   "Észak-Alföld",
+   "Dél-Alföld"
+  ],
+  "deadline": "2026-10-30",
+  "amount": "400 M – 1 Mrd Ft",
+  "rate": "sikeres fúrásnál 10%, sikertelennél 50%",
+  "note": "Geotermikus fúrás kockázatcsökkentése; koncesszió vagy kutatási engedély szükséges. Beadás: 2026-09-14 – 10-30.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://mgte.hu/keves-tamogatas-inkabb-kockazatatvallalas/",
+   "https://www.palyazatihirek.eu/energiatakarekossag/5211-uj-palyazat-a-geotermikus-furasi-kockazatok-csokkentesere",
+   "https://hvg.hu/kkv/20260122_geotermikus-energia-palyazat-termalkut-furasa-kutatasi-engedelyek-megujulok-geotermia",
+   "https://www.palyazat.gov.hu/kozlemenyek/megjelent-geotermikus-furasi-kockazatok-csokkentese-cimu-kehop-plusz-4-2-4-kodszamu-felhivas"
+  ],
+  "confidence": "medium"
+ },
+ "MAHOP_PLUSZ-2.1.1-25": {
+  "type": "grant",
+  "regions": [],
+  "amount": "6–400 M Ft (max. 60%)",
+  "deadline": "2027-08-31",
+  "note": "Akvakultúra-vállalkozások beruházásai.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://pafi.hu/p/akvakultura-beruhazas-tamogatasa-mahop-plusz-211-2025",
+   "https://www.bkmkik.hu/hu/palyazatok/aktualis-palyazatok/7762-akvakultura-beruhazas-tamogatasa"
+  ],
+  "confidence": "medium"
+ },
+ "DIMOP_PLUSZ-1.2.3/A-24": {
+  "type": "loan+grant",
+  "rate": "0% fix kamat",
+  "regions": [],
+  "amount": "3–20 M Ft (max. 50% vissza nem térítendő)",
+  "deadline": "2027-06-30",
+  "note": "Mikro-, kis- és középvállalkozások digitalizációja; MFB Pontokon igényelhető.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://palyaz.hu/kkv-k-digitalizaciojanak-tamogatasa-hitelprogram-dimop-a/",
+   "https://www.mfb.hu/vallalkozasok/mukodo/hitel/dimop-plusz--123a-24-mikro--kis--es-kozepvallalkozasok-digitalizaciojanak-tamogatasa-egymuveletes-kombinalt-hiteltermek-kereteben-t226-p226"
+  ],
+  "confidence": "medium"
+ },
+ "GINOP_PLUSZ-1.4.5-25": {
+  "type": "loan+grant",
+  "rate": "0% fix kamat",
+  "regions": [
+   "Pest",
+   "Közép-Dunántúl",
+   "Nyugat-Dunántúl",
+   "Dél-Dunántúl",
+   "Észak-Magyarország",
+   "Észak-Alföld",
+   "Dél-Alföld"
+  ],
+  "amount": "150 M – 1 Mrd Ft (max. 45% vissza nem térítendő)",
+  "deadline": "2026-12-31",
+  "note": "MGFÜ-regisztráció, min. 5 fő, 3 lezárt év és 100 M Ft árbevétel szükséges.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://pulzuspalyazatiras.hu/osszes-palyazat/326-nemzeti-bajnok-hitelprogram",
+   "https://mgfu.hu/hu/article/1314",
+   "https://www.mfb.hu/vallalkozasok/mukodo/kombinalt_termekek/ginop-plusz--145-25-nemzeti-bajnokok-t251-masolat-t251-p252"
+  ],
+  "confidence": "high"
+ },
+ "GINOP_PLUSZ-1.4.3-24": {
+  "type": "loan",
+  "rate": "0% fix kamat",
+  "regions": [
+   "Pest",
+   "Közép-Dunántúl",
+   "Nyugat-Dunántúl",
+   "Dél-Dunántúl",
+   "Észak-Magyarország",
+   "Észak-Alföld",
+   "Dél-Alföld"
+  ],
+  "amount": "5–150 M Ft",
+  "deadline": "2026-12-31",
+  "note": "Csak az „A” beruházási konstrukció nyitott; a „B” forgóeszköz-konstrukciót 2026-01-15-én felfüggesztették.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://www.mfb.hu/vallalkozasok/mukodo/hitel/kkv-technologia-plusz-hitelprogram-ginop-plusz-143-24-t212-p212",
+   "https://pulzuspalyazatiras.hu/osszes-palyazat/255-kkv-technologia-plusz-hitelprogram",
+   "https://granitbank.hu/vallalati-mfbpontplusz-hitelprogramok/kkv-technologia-plusz"
+  ],
+  "confidence": "high"
+ },
+ "KEHOP_PLUSZ-4.2.5-25": {
+  "type": "loan",
+  "rate": "0% fix kamat",
+  "regions": [
+   "Pest",
+   "Közép-Dunántúl",
+   "Nyugat-Dunántúl",
+   "Dél-Dunántúl",
+   "Észak-Magyarország",
+   "Észak-Alföld",
+   "Dél-Alföld"
+  ],
+  "amount": "1–6 Mrd Ft",
+  "deadline": "2026-11-15",
+  "note": "Földhő-hasznosítás; a 1 Mrd Ft-os minimum miatt a gyakorlatban nagyobb vállalkozásoknak.",
+  "verifiedAt": "2026-09-24",
+  "sources": [
+   "https://mgte.hu/kedvezmenyes-foldho-hitel-csak-nagyoknak/",
+   "https://www.palyazatihirek.eu/58-palyazati-hirek-eu/5212-tamogatas-a-foldho-hasznositasi-kedvezmenyes-hitelkonstrukcioval",
+   "https://www.mfb.hu/vallalkozasok/mikro/hitel/kehop-plusz--425-25-foldho-hasznositasi-kedvezmenyes-hitelkonstrukcio-t276-p276"
+  ],
+  "confidence": "high"
+ }
+}

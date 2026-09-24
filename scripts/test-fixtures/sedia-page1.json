@@ -1,0 +1,18 @@
+{
+ "totalResults": 6, "pageNumber": 1, "pageSize": 100,
+ "results": [
+  {"reference": "HORIZON-EIC-2026-PATHFINDERCHALLENGES-01-02", "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eic-2026-pathfinderchallenges-01-02",
+   "metadata": {"type": ["1"], "identifier": ["HORIZON-EIC-2026-PATHFINDERCHALLENGES-01-02"], "title": ["Biotechnology for Healthy Ageing"], "callTitle": ["EIC Pathfinder Challenges 2026"], "status": ["31094502"], "frameworkProgramme": ["43108390"], "startDate": ["2026-07-28T00:00:00.000+0000"], "deadlineDate": ["2026-10-28T00:00:00.000+0000"], "typesOfAction": ["HORIZON-EIC HORIZON EIC Grants"],
+     "budgetOverview": ["{\"budgetTopicActionMap\":{\"1\":[{\"action\":\"x\",\"minContribution\":500000,\"maxContribution\":4000000}]}}"]}},
+  {"reference": "HORIZON-CL4-2027-01-MAT-PROD-49",
+   "metadata": {"type": ["1"], "identifier": ["HORIZON-CL4-2027-01-MAT-PROD-49"], "title": ["Proof of market to improve valorisation"], "status": ["31094501"], "frameworkProgramme": ["43108390"], "startDate": ["2026-10-06T00:00:00.000+0000"], "deadlineDate": ["2027-02-02T00:00:00.000+0000"], "typesOfAction": ["HORIZON-CSA HORIZON Coordination and Support Actions"]}},
+  {"reference": "HORIZON-CL4-2027-01-DIGITAL-EMERGING-07",
+   "metadata": {"type": ["1"], "identifier": ["HORIZON-CL4-2027-01-DIGITAL-EMERGING-07"], "title": ["AI-driven robotics pilots for manufacturing"], "status": ["31094502"], "frameworkProgramme": ["43108390"], "deadlineDate": ["2027-03-18T00:00:00.000+0000"], "typesOfAction": ["HORIZON-IA HORIZON Innovation Actions"]}},
+  {"reference": "DIGITAL-ECCC-2027-DEPLOY-CYBER-11-AI4SME",
+   "metadata": {"type": ["1"], "identifier": ["DIGITAL-ECCC-2027-DEPLOY-CYBER-11-AI4SME"], "title": ["Strengthening cybersecurity capacities of European SMEs"], "status": ["31094502"], "frameworkProgramme": ["43152860"], "deadlineDate": ["2027-01-14T00:00:00.000+0000"]}},
+  {"reference": "LIFE-2026-OLD",
+   "metadata": {"type": ["1"], "identifier": ["LIFE-2026-OLD"], "title": ["Stale open topic"], "status": ["31094502"], "frameworkProgramme": ["43252405"], "deadlineDate": ["2026-09-22T00:00:00.000+0000"]}},
+  {"reference": "14742", "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/14742",
+   "metadata": {"type": ["8"], "identifier": ["TRUNSPORT Open Call 1"], "title": ["TRUNSPORT Open Call 1 – Cybersecurity resilience in transportation"], "status": ["31094502"], "frameworkProgramme": ["43108390"], "deadlineDate": ["2026-10-30T00:00:00.000+0000"]}}
+ ]
+}

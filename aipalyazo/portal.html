@@ -296,6 +296,8 @@
 
         /* ===== FILTER PILLS ===== */
         .pills-bar { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 10px; margin-bottom: 14px; scrollbar-width: thin; }
+        .pills-bar { min-width: 0; max-width: 100%; }
+        @media (max-width: 480px) { .topbar-actions { min-width: 0; flex: 1 1 auto; } .topbar-actions input { min-width: 0; width: 100%; } }
         .pills-bar::-webkit-scrollbar { height: 6px; }
         .pills-bar::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 3px; }
         .pill { white-space: nowrap; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--gray-200); background: white; font-size: 13px; font-weight: 600; color: var(--gray-600); cursor: pointer; transition: all 0.1s; flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; }
@@ -332,7 +334,8 @@
         .grant-card-meta { display: flex; gap: 10px; align-items: center; font-size: 12px; color: var(--gray-500); flex-wrap: wrap; }
         .grant-card-meta .dot-sep { width: 3px; height: 3px; background: var(--gray-300); border-radius: 50%; }
         .grant-card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; min-width: 140px; }
-        .grant-card-amount { font-size: 14px; font-weight: 700; color: var(--gray-900); white-space: nowrap; }
+        .grant-card-amount { font-size: 14px; font-weight: 700; color: var(--gray-900); max-width: 220px; text-align: right; line-height: 1.3; overflow-wrap: anywhere; }
+        @media (max-width: 640px) { .grant-card-amount { max-width: none; text-align: left; flex: 1 1 auto; min-width: 0; } .grant-card-right { flex-wrap: wrap; } }
         .grant-card-actions { display: flex; gap: 6px; align-items: center; }
         .bookmark-btn { background: none; border: 1px solid var(--gray-200); width: 30px; height: 30px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: var(--gray-400); transition: all 0.1s; padding: 0; }
         .bookmark-btn:hover { color: var(--green-700); border-color: var(--green-300, #86efac); background: var(--green-50); }
@@ -572,6 +575,9 @@
         /* TIER-GATING — fully-free model: only two states remain,
            .tier-anonymous (guest) and .tier-pro (any signed-in user). */
         .pro-only        { display: none !important; }
+        .badge-type-grant { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+        .badge-type-other { background: #eff6ff; color: #1e3a8a; border: 1px solid #bfdbfe; }
+        .grant-card-deadline { font-size: 12.5px; color: var(--gray-600); margin-top: 4px; }
         .signed-in-only  { display: none !important; }
         .anonymous-only  { display: none !important; }
         body.tier-pro       .pro-only        { display: revert !important; }
@@ -1399,7 +1405,11 @@ function prepGrants() {
         // Display normalization: amounts were entered as both "12M Ft" and
         // "12M HUF" — show the Hungarian form everywhere.
         if (g.amount) g.amount = g.amount.replace(/\s*HUF\b/g, ' Ft');
-        try {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(g.deadline || '')) {
+            // "Folyamatos" = rolling product (loans, open-ended programmes):
+            // never expires on the client; sorted after dated calls.
+            g.expired = false; g.days = 365; g.rollingDeadline = true;
+        } else try {
             const dl = new Date(g.deadline); dl.setHours(0,0,0,0);
             const now = new Date(); now.setHours(0,0,0,0);
             const delta = Math.ceil((dl - now) / (1000*60*60*24));
@@ -1733,6 +1743,56 @@ function escHtml(s) {
         ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
+/* ===== Funding type, deadline and verification labels ===== */
+const TYPE_LABEL = {
+    'grant': 'Vissza nem térítendő', 'loan': 'Kedvezményes hitel', 'loan+grant': 'Hitel + támogatás',
+    'grant+equity': 'Támogatás + tőke', 'equity': 'Tőkebefektetés', 'guarantee': 'Garancia',
+    'in-kind': 'Természetbeni (szolgáltatás)', 'wage-subsidy': 'Bértámogatás'
+};
+function typeBadge(g) {
+    const t = TYPE_LABEL[g.type];
+    if (!t) return '';
+    const cls = g.type === 'grant' || g.type === 'wage-subsidy' ? 'badge-type-grant' : 'badge-type-other';
+    return `<span class="badge ${cls}">${escHtml(t)}</span>`;
+}
+function euBadge(g) {
+    if (g.scope !== 'eu') return '';
+    return `<span class="badge badge-type-other" title="${g.singleApplicant ? 'Egyedül is pályázható' : 'Jellemzően nemzetközi konzorcium szükséges'}">EU${g.singleApplicant ? '' : ' · konzorcium'}</span>`;
+}
+function deadlineText(g) {
+    const open = g.windowOpen && /^\d{4}-\d{2}-\d{2}$/.test(g.windowOpen) && g.windowOpen > new Date().toISOString().slice(0,10)
+        ? `beadás ${escHtml(g.windowOpen)}-tól, ` : '';
+    if (g.rollingDeadline) return open + 'folyamatos';
+    return open + escHtml(g.deadline);
+}
+function sourceRows(g) {
+    const rows = [];
+    if (TYPE_LABEL[g.type]) rows.push(['Támogatás típusa', escHtml(TYPE_LABEL[g.type])]);
+    if (g.rate) rows.push(['Kamat / intenzitás', escHtml(g.rate)]);
+    if (g.issuer) rows.push(['Kiíró', escHtml(g.issuer)]);
+    const regs = Array.isArray(g.regions) && g.regions.length
+        ? (g.regions.length === 7 && !g.regions.includes('Budapest') ? 'Országos, Budapest kivételével' : g.regions.join(', '))
+        : (g.regionNote ? '' : 'Országos');
+    if (regs || g.regionNote) rows.push(['Régió', escHtml(regs || g.regionNote)]);
+    if (g.note) rows.push(['Fontos feltétel', escHtml(g.note)]);
+    let check;
+    if (g.verifiedAt) {
+        const links = (g.sources || []).slice(0, 3).map((u, i) => {
+            let host = ''; try { host = new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; }
+            return `<a href="${escHtml(u)}" target="_blank" rel="noopener" style="color:var(--green-700);">${escHtml(host)}</a>`;
+        }).filter(Boolean).join(', ');
+        check = `Kézzel ellenőrizve: ${escHtml(g.verifiedAt)}${links ? ' · ' + links : ''}${g.stale ? ' · <span style="color:var(--amber-600);">újraellenőrzés esedékes</span>' : ''}`;
+    } else if (g.auto) {
+        check = 'Közvetlenül a hivatalos EU pályázati portálról, naponta frissítve';
+    } else if (g.needsReview) {
+        check = '<span style="color:var(--amber-600);">Új felhívás a hivatalos listában — a részleteket még nem ellenőriztük, nézze meg a kiírást.</span>';
+    } else {
+        check = 'Hivatalos adat (palyazat.gov.hu), naponta frissítve';
+    }
+    rows.push(['Adatok', check]);
+    return rows.map(([l, v]) => `<div class="detail-row"><span class="label">${l}</span><span class="value" style="text-align:right;">${v}</span></div>`).join('');
+}
+
 function logoInitials(src) {
     if (!src) return '?';
     const clean = src.replace(/^www\./, '').split('.')[0];
@@ -1816,6 +1876,7 @@ const BOOKMARK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBo
 /* ===== Category mapping for filter pills ===== */
 const CATEGORY_MAP = {
     'all':              { label: 'Mind',              match: () => true },
+    'grant':            { label: 'Vissza nem térítendő', match: g => ['grant','wage-subsidy','in-kind','grant+equity'].includes(g.type) },
     'digital':          { label: 'Digitalizáció',     match: g => /digit/i.test(g.cat) },
     'energy':           { label: 'Energetika',        match: g => /energi/i.test(g.cat) },
     'capacity':         { label: 'Kapacitásbővítés',  match: g => /kkv|telephely|kapacit/i.test(g.cat) || /telephely|kapacit|eszközbe|gépbe/i.test(g.title) },
@@ -1824,10 +1885,12 @@ const CATEGORY_MAP = {
     'training':         { label: 'Képzés',            match: g => /oktat|képz/i.test(g.cat) || /képz|oktatás/i.test(g.title) },
     'agri':             { label: 'Agrár',             match: g => /mező|agrár/i.test(g.cat) || /agrár|gazda|leader/i.test(g.title) },
     'tourism':          { label: 'Turizmus',          match: g => /turiz|turist/i.test(g.cat) || /turisztik|szálláshely|vendéglát|étterm/i.test(g.title) },
-    'eu':               { label: 'EU direkt',         match: g => /ec\.europa\.eu|eic\.|cinea|hadea|interreg|erasmus|eit\.europa/i.test(g.source) },
-    'loan':             { label: 'Hitel/Garancia',    match: g => /mfb|garantiqa|kavosz|bgazrt|exim|hiventures/i.test(g.source) || /hitel|garancia|kölcsön|kockázati tőke/i.test(g.title) }
+    'env':              { label: 'Környezetvédelem',  match: g => /környezet/i.test(g.cat) },
+    'jobs':             { label: 'Foglalkoztatás',    match: g => /munkahely|foglalkoztat/i.test(g.cat) || g.type === 'wage-subsidy' },
+    'eu':               { label: 'EU direkt',         match: g => g.scope === 'eu' || /ec\.europa\.eu|eic\.|cinea|hadea|interreg|erasmus|eit\.europa/i.test(g.source) },
+    'loan':             { label: 'Hitel/Tőke',        match: g => ['loan','loan+grant','equity','guarantee'].includes(g.type) || (!g.type && (/mfb|garantiqa|kavosz|bgazrt|exim|hiventures/i.test(g.source) || /hitel|garancia|kölcsön|kockázati tőke/i.test(g.title))) }
 };
-const CATEGORY_ORDER = ['all','digital','energy','capacity','rd','export','training','agri','tourism','eu','loan'];
+const CATEGORY_ORDER = ['all','grant','loan','eu','digital','energy','capacity','rd','agri','env','tourism','jobs','export','training'];
 
 let activeCat = 'all';
 let activeSort = 'score';
@@ -1973,25 +2036,26 @@ function renderReco(g) {
         <div class="reco-card-head">
             <div class="reco-logo ${color}">${initials}</div>
             <div class="reco-card-meta">
-                <div class="reco-card-title">${g.title}</div>
-                <div class="reco-card-source">${g.source} · ${g.cat}</div>
+                <div class="reco-card-title">${escHtml(g.title)}</div>
+                <div class="reco-card-source">${escHtml(g.source)} · ${escHtml(g.cat)}</div>
             </div>
             <button class="bookmark-btn ${bookmarks.has(g.id) ? 'saved' : ''}" data-bm="${g.id}" onclick="toggleBookmark('${g.id}', event)" aria-label="Mentés">${BOOKMARK_SVG}</button>
         </div>
         <div>
             <div class="reco-card-amount-label">Támogatás</div>
-            <div class="reco-card-amount">${g.amount}</div>
+            <div class="reco-card-amount">${escHtml(g.amount || '—')}</div>
             ${keretLine(g)}
         </div>
         <div class="badge-row">
             ${isNew(g) ? '<span class="badge badge-new">Új</span>' : ''}
             ${urgencyBadge(g.days)}
             ${keretBadge(g)}
-            <span class="badge badge-cat">${g.cat}</span>
+            ${typeBadge(g)}
+            ${euBadge(g)}
         </div>
         <div class="progress-window">
             <div class="progress-track"><div class="progress-fill ${win.color}" style="width:${win.pct}%"></div></div>
-            <div class="progress-labels"><span>Nyitva</span><span>Határidő: ${g.deadline}</span></div>
+            <div class="progress-labels"><span>Nyitva</span><span>Határidő: ${deadlineText(g)}</span></div>
         </div>
         <div class="reco-card-footer pro-only">
             <div class="reco-card-score"><span class="score-dot"></span>${g.score}/100 illeszkedés</div>
@@ -2008,18 +2072,21 @@ function renderCard(g) {
     return `<div class="grant-card" onclick="showDetail('${g.id}')">
         <div class="grant-card-logo ${color}">${initials}</div>
         <div class="grant-card-body">
-            <div class="grant-card-title">${g.title}</div>
+            <div class="grant-card-title">${escHtml(g.title)}</div>
             <div class="grant-card-meta">
-                <span>${g.source}</span>
+                <span>${escHtml(g.source)}</span>
                 <span class="dot-sep"></span>
-                <span class="badge badge-cat">${g.cat}</span>
+                <span class="badge badge-cat">${escHtml(g.cat)}</span>
+                ${typeBadge(g)}
+                ${euBadge(g)}
                 ${newBadge}
                 ${urgBadge}
                 ${keretBadge(g)}
             </div>
+            <div class="grant-card-deadline">Határidő: ${deadlineText(g)}</div>
         </div>
         <div class="grant-card-right">
-            <div class="grant-card-amount">${g.amount}</div>
+            <div class="grant-card-amount">${escHtml(g.amount || '—')}</div>
             ${keretLine(g)}
             <div class="grant-card-actions">
                 <span class="verdict ${vClass(g.verdict)} pro-only">${g.score}</span>
@@ -2673,10 +2740,11 @@ function showDetail(id) {
         ${recommendationSection}
         <div class="detail-section">
             <h3>Alapadatok</h3>
-            <div class="detail-row"><span class="label">Forrás</span><span class="value">${g.url ? `<a href="${g.url}" target="_blank" rel="noopener" style="color: var(--green-600); text-decoration: none;">${g.source} ↗</a>` : g.source}${/^https?:\/\/[^\/]+\/?$/.test(g.url || '') ? ` · <a href="https://www.google.com/search?q=${encodeURIComponent('"' + g.title.split('—')[0].trim() + '" pályázat')}" target="_blank" rel="noopener" style="color: var(--gray-500); text-decoration: none;" title="A forrás-link a kiíró főoldalára mutat — ez a keresés a konkrét felhívást találja meg">felhívás keresése ↗</a>` : ''}</span></div>
-            <div class="detail-row"><span class="label">Kategória</span><span class="value">${g.cat}</span></div>
-            <div class="detail-row"><span class="label">Összeg</span><span class="value">${g.amount}</span></div>
-            <div class="detail-row"><span class="label">Határidő</span><span class="value" style="color: ${g.days < 30 ? 'var(--red-600)' : 'inherit'};">${g.deadline} (${g.days} nap)</span></div>
+            <div class="detail-row"><span class="label">Forrás</span><span class="value">${g.url ? `<a href="${escHtml(g.url)}" target="_blank" rel="noopener" style="color: var(--green-600); text-decoration: none;">${escHtml(g.source)} ↗</a>` : escHtml(g.source)}${/^https?:\/\/[^\/]+\/?$/.test(g.url || '') ? ` · <a href="https://www.google.com/search?q=${encodeURIComponent('"' + g.title.split('—')[0].trim() + '" pályázat')}" target="_blank" rel="noopener" style="color: var(--gray-500); text-decoration: none;" title="A forrás-link a kiíró főoldalára mutat — ez a keresés a konkrét felhívást találja meg">felhívás keresése ↗</a>` : ''}</span></div>
+            <div class="detail-row"><span class="label">Kategória</span><span class="value">${escHtml(g.cat)}</span></div>
+            <div class="detail-row"><span class="label">Összeg</span><span class="value">${escHtml(g.amount || '—')}</span></div>
+            <div class="detail-row"><span class="label">Határidő</span><span class="value" style="color: ${!g.rollingDeadline && g.days < 30 ? 'var(--red-600)' : 'inherit'};">${deadlineText(g)}${g.rollingDeadline ? '' : ` (${g.days} nap)`}</span></div>
+            ${sourceRows(g)}
         </div>
         ${keretDetailBlock(g)}
         ${scoringSection}
