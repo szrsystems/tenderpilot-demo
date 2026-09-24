@@ -11,10 +11,12 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
+    timeout-minutes: 40
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,8 +29,21 @@ jobs:
       - name: Run grant monitor
         run: node scripts/update-grants.mjs
 
-      - name: Test the feed builder (offline)
-        run: node --test scripts/feed.test.mjs
+      - name: Test the feed builder and monitor (offline)
+        run: node --test scripts/feed.test.mjs scripts/monitor/monitor.test.mjs
+
+      # Re-checks every listed item on its official page, discovers new calls
+      # on official listing pages, fact-checks them with quotes from the page.
+      # GEMINI_API_KEY (or ANTHROPIC_API_KEY) is optional: without it only the
+      # deterministic checks run and new pages go to the review issue.
+      - name: Daily monitor (discover + fact-check)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MAX_LLM_CALLS: '80'
+        run: |
+          node scripts/monitor/run.mjs
+          cat scripts/monitor/report.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Build live grant feed (palyazat.gov.hu API + hand-verified list + EU Funding & Tenders API)
         run: node scripts/fetch-live-grants.mjs
@@ -37,7 +52,7 @@ jobs:
         run: |
           git config user.name "aipalyazo-bot"
           git config user.email "bot@aipalyazo.hu"
-          git add aipalyazo/grants-status.json aipalyazo/grants_live.json aipalyazo/grants-meta.json
+          git add aipalyazo/grants-status.json aipalyazo/grants_live.json aipalyazo/grants-meta.json scripts/monitor/state.json scripts/monitor/flags.json scripts/monitor/auto-grants.json scripts/monitor/review-queue.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
@@ -45,3 +60,14 @@ jobs:
             git commit -m "data: daily live grant feed ($(date -u +%Y-%m-%d)) — $CHANGES"
             git push
           fi
+
+      - name: Post the review list to a GitHub issue (if anything needs a human)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          N=$(node -e "console.log(require('./scripts/monitor/review-queue.json').items.length)")
+          if [ "$N" = "0" ]; then echo "Nothing to review."; exit 0; fi
+          gh label create napi-ellenorzes --color FBCA04 --description "AIpályázó daily review" --force
+          ISSUE=$(gh issue list --label napi-ellenorzes --state open --json number -q '.[0].number')
+          if [ -n "$ISSUE" ]; then gh issue comment "$ISSUE" --body-file scripts/monitor/report.md
+          else gh issue create --title "Pályázatok — kézi ellenőrzésre vár" --label napi-ellenorzes --body-file scripts/monitor/report.md; fi

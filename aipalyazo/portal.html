@@ -1776,12 +1776,15 @@ function sourceRows(g) {
     if (regs || g.regionNote) rows.push(['Régió', escHtml(regs || g.regionNote)]);
     if (g.note) rows.push(['Fontos feltétel', escHtml(g.note)]);
     let check;
-    if (g.verifiedAt) {
+    const lastChk = g.lastChecked ? ` · hivatalos oldal újraellenőrizve: ${escHtml(g.lastChecked)}` : '';
+    if (g.autoVerified) {
+        check = `Automatikusan ellenőrizve a hivatalos oldalon: ${escHtml(g.verifiedAt)} (minden adat az oldalról idézve)${lastChk}`;
+    } else if (g.verifiedAt) {
         const links = (g.sources || []).slice(0, 3).map((u, i) => {
             let host = ''; try { host = new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; }
             return `<a href="${escHtml(u)}" target="_blank" rel="noopener" style="color:var(--green-700);">${escHtml(host)}</a>`;
         }).filter(Boolean).join(', ');
-        check = `Kézzel ellenőrizve: ${escHtml(g.verifiedAt)}${links ? ' · ' + links : ''}${g.stale ? ' · <span style="color:var(--amber-600);">újraellenőrzés esedékes</span>' : ''}`;
+        check = `Kézzel ellenőrizve: ${escHtml(g.verifiedAt)}${links ? ' · ' + links : ''}${lastChk}${g.stale ? ' · <span style="color:var(--amber-600);">újraellenőrzés esedékes</span>' : ''}`;
     } else if (g.auto) {
         check = 'Közvetlenül a hivatalos EU pályázati portálról, naponta frissítve';
     } else if (g.needsReview) {

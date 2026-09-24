@@ -190,7 +190,10 @@ export function selectVerified(items, today) {
   const kept = [], stale = [], dropped = [];
   for (const it of items) {
     if (it.deadline && it.deadline < today) { dropped.push({ id: it.id, why: 'lejárt' }); continue; }
-    const age = daysBetween(it.verifiedAt, today);
+    // Freshness = the later of the human check and the last successful
+    // automatic re-check of the official page (scripts/monitor).
+    const checked = [it.verifiedAt, it.lastChecked].filter(Boolean).sort().pop();
+    const age = daysBetween(checked, today);
     if (age > EXPIRE_DAYS) { dropped.push({ id: it.id, why: `${age} napja nem ellenőrzött` }); continue; }
     const g = { ...it, live: false, days: 0, score: 0, sources: (it.sources || []).slice(0, 3) };
     if (!g.deadline) g.deadline = 'Folyamatos';
@@ -205,7 +208,29 @@ export function selectVerified(items, today) {
 // "GINOP_PLUSZ-1.4.3-24" → "ginoppluszi1.4.3-24"-style normal form.
 export const codeKey = (c) => String(c || '').toLowerCase().replace(/plusz/g, '').replace(/[^a-z0-9]/g, '').replace(/(\d)[a-z]$/, '$1');
 
-export async function buildFeed({ tenders, verifiedItems, apiVerified, euItems, prevGrants = [], today }) {
+// Apply the daily monitor's results: hide items whose official page is gone
+// or says closed (2 checks in a row), take over re-checked deadlines, and
+// add auto-verified new calls (every fact quoted from an official page).
+export function applyMonitor(items, monitor) {
+  const { flags = {}, auto = [] } = monitor || {};
+  const hide = flags.hide || {}, ov = flags.overrides || {};
+  const hidden = [];
+  const out = [];
+  for (const it of items) {
+    if (hide[it.id]) { hidden.push({ id: it.id, why: hide[it.id] }); continue; }
+    const o = ov[it.id];
+    out.push(o ? { ...it, ...(o.deadline ? { deadline: o.deadline } : {}), ...(o.lastChecked ? { lastChecked: o.lastChecked } : {}) } : it);
+  }
+  const have = new Set(out.map((g) => codeKey(g.code)).filter(Boolean));
+  const urls = new Set(out.map((g) => g.url));
+  for (const a of auto) {
+    if (hide[a.id] || urls.has(a.url) || (a.code && have.has(codeKey(a.code)))) continue;
+    out.push(a);
+  }
+  return { items: out, hidden };
+}
+
+export async function buildFeed({ tenders, verifiedItems, apiVerified, euItems, prevGrants = [], today, monitor = null }) {
   // ---- 1) Official API feed ---------------------------------------------
   const now = new Date(today + 'T00:00:00Z').getTime();
   const excluded = [];
@@ -225,7 +250,9 @@ export async function buildFeed({ tenders, verifiedItems, apiVerified, euItems, 
 
   // ---- 2) Hand-verified items (not already carried by the API) -----------
   const apiKeys = new Set(apiGrants.map((g) => codeKey(g.code)).filter(Boolean));
-  const { kept, stale, dropped } = selectVerified(verifiedItems, today);
+  const mon = applyMonitor(verifiedItems, monitor);
+  const { kept, stale, dropped } = selectVerified(mon.items, today);
+  dropped.push(...mon.hidden.map((h) => ({ id: h.id, why: 'monitor: ' + h.why })));
   const verified = kept.filter((g) => !(g.code && apiKeys.has(codeKey(g.code))));
 
   // ---- 3) EU API (auto) — skip what is already hand-verified -------------
@@ -279,7 +306,9 @@ async function main() {
   try { euItems = await fetchEuCalls({ today }); console.log(`EU: ${euItems.length} open/forthcoming calls kept`); }
   catch (e) { console.warn(`EU API failed (${e.message}) — keeping yesterday's EU items`); }
 
-  const out = await buildFeed({ tenders, verifiedItems, apiVerified, euItems, prevGrants, today });
+  const readOpt = (f, d) => { try { return JSON.parse(readFileSync(f, 'utf8')); } catch { return d; } };
+  const monitor = { flags: readOpt('scripts/monitor/flags.json', {}), auto: readOpt('scripts/monitor/auto-grants.json', []) };
+  const out = await buildFeed({ tenders, verifiedItems, apiVerified, euItems, prevGrants, today, monitor });
 
   // Upgrade API links to canonical alapadatok pages where they exist.
   let canonical = 0;

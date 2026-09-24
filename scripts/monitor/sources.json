@@ -1,0 +1,14 @@
+{
+ "_comment": "Official listing pages the monitor reads every day to DISCOVER new calls. 'pattern' = regex for links to individual call/product pages. Only official issuers here — never aggregators (copyright + accuracy). If a source logs 0 matching links, its page layout changed: fix the pattern. The palyazat.gov.hu and EU Funding & Tenders sources are NOT here: they come from their official APIs in fetch-live-grants.mjs.",
+ "sources": [
+  { "id": "kap", "name": "KAP Stratégiai Terv (kap.gov.hu)", "list": ["https://kap.gov.hu/tags/842", "https://kap.gov.hu/tags/842?page=1", "https://kap.gov.hu/tags/842?page=2"], "pattern": "^https://kap\\.gov\\.hu/tamogatas/[a-z0-9-]+$", "scope": "hazai" },
+  { "id": "mfb", "name": "MFB vállalkozói termékek", "list": ["https://www.mfb.hu/vallalkozasok/mukodo/hitel", "https://www.mfb.hu/vallalkozasok/mukodo/kombinalt_termekek"], "pattern": "^https://(www\\.)?mfb\\.hu/vallalkozasok/mukodo/(hitel|kombinalt_termekek)/[^/?#]+$", "scope": "hazai" },
+  { "id": "nkfih", "name": "NKFI Alap felhívások", "list": ["https://nkfih.gov.hu/palyazoknak/nkfi-alap"], "pattern": "^https://nkfih\\.gov\\.hu/palyazoknak/nkfi-alap/[^/?#]+$", "scope": "hazai" },
+  { "id": "szechenyikartya", "name": "Széchenyi Kártya Program (BKIK)", "list": ["https://bkik.hu/szechenyi"], "pattern": "^https://bkik\\.hu/szechenyi/[^/?#]+$", "scope": "hazai" },
+  { "id": "nfsz", "name": "Nemzeti Foglalkoztatási Szolgálat — munkáltatói támogatások", "list": ["https://nfsz.munka.hu/tart/munkaltatoknak"], "pattern": "^https://nfsz\\.munka\\.hu/cikk/\\d+/", "scope": "hazai" },
+  { "id": "eit", "name": "EIT opportunities", "list": ["https://eit.europa.eu/our-activities/opportunities"], "pattern": "^https://eit\\.europa\\.eu/our-activities/opportunities/[^/?#]+$", "scope": "eu" },
+  { "id": "eureka", "name": "Eureka open calls", "list": ["https://eurekanetwork.org/open-calls"], "pattern": "^https://(www\\.)?eurekanetwork\\.org/programmes-and-calls/[^?#]+$", "scope": "eu" },
+  { "id": "nlnet", "name": "NLnet / NGI funds", "list": ["https://nlnet.nl/funding.html"], "pattern": "^https://nlnet\\.nl/[a-z0-9-]+$", "scope": "eu" }
+ ],
+ "officialDomains": ["gov.hu", "kap.gov.hu", "mfb.hu", "nkfih.gov.hu", "bkik.hu", "kavosz.hu", "munka.hu", "hiventures.hu", "exim.hu", "garantiqa.hu", "europa.eu", "eurekanetwork.org", "nlnet.nl", "esa.int", "eurohpc-ju.europa.eu", "visegradfund.org"]
+}
