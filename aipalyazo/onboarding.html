@@ -1,653 +1,413 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <!-- Security headers (meta subset — GitHub Pages cannot send real HTTP
-         headers; X-Frame-Options / X-Content-Type-Options / Permissions-Policy
-         and CSP frame-ancestors require Cloudflare. See SECURITY-HEADERS.md). -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://kacnvchwfwvpkkyhyupb.supabase.co wss://kacnvchwfwvpkkyhyupb.supabase.co https://formspree.io; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIpályázó — Regisztráció</title>
-    <meta name="description" content="Ingyenes regisztráció. 3 lépés, kb. 2 perc. Cégprofilra szabott pályázat-ajánlások egy helyen.">
-    <meta name="theme-color" content="#16a34a">
-    <meta name="robots" content="noindex,follow">
-    <meta property="og:title" content="AIpályázó — Ingyenes regisztráció">
-    <meta property="og:description" content="3 lépés, ~2 perc. Cégprofilra szabott pályázat-ajánlások.">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="hu_HU">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="lib/hu-geo.js"></script>
-    <script src="lib/match.js"></script>
-    <script src="lib/supabase.js" defer></script>
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --green-50: #f0fdf4; --green-100: #dcfce7; --green-200: #bbf7d0; --green-600: #16a34a; --green-700: #15803d; --green-800: #166534;
-            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
-            --radius: 8px; --radius-lg: 12px;
-        }
-        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--gray-50); color: var(--gray-900); -webkit-font-smoothing: antialiased; min-height: 100vh; }
-
-        nav { background: white; border-bottom: 1px solid var(--gray-200); }
-        .nav-inner { max-width: 1120px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-        .nav-logo { font-size: 20px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.5px; text-decoration: none; }
-        .nav-logo span { color: var(--green-600); }
-        .nav-back { font-size: 14px; color: var(--gray-500); text-decoration: none; }
-        .nav-back:hover { color: var(--gray-700); }
-
-        .container { max-width: 600px; margin: 40px auto; padding: 0 24px 60px; }
-
-        .progress { display: flex; gap: 8px; margin-bottom: 32px; }
-        .progress-step { flex: 1; height: 4px; background: var(--gray-200); border-radius: 2px; }
-        .progress-step.active { background: var(--green-600); }
-
-        .form-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 36px; }
-        .form-card h2 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
-        .form-card .subtitle { font-size: 14px; color: var(--gray-500); margin-bottom: 28px; }
-
-        .field { margin-bottom: 20px; }
-        .field label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--gray-700); }
-        .field label .req { color: #dc2626; font-size: 12px; }
-        .field input, .field select, .field textarea { width: 100%; padding: 10px 14px; border: 1px solid var(--gray-300); border-radius: var(--radius); font-size: 15px; font-family: inherit; background: white; color: var(--gray-900); transition: border-color 0.15s; }
-        .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--green-600); box-shadow: 0 0 0 3px rgba(22,163,74,0.1); }
-        .field input::placeholder { color: var(--gray-400); }
-        .field .hint { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
-        .taxbox { background: var(--green-50); border: 1px solid var(--green-200); border-radius: var(--radius-lg); padding: 14px 16px; margin-bottom: 20px; }
-        .taxbox-row { display: flex; gap: 8px; }
-        .taxbox-row input { flex: 1; min-width: 0; padding: 10px 14px; border: 1px solid var(--gray-300); border-radius: var(--radius); font-size: 15px; font-family: inherit; background: #fff; }
-        .taxbox-row input:focus { outline: none; border-color: var(--green-600); box-shadow: 0 0 0 3px rgba(22,163,74,0.1); }
-        .taxbox-row button { flex: 0 0 auto; padding: 10px 16px; border-radius: var(--radius); border: none; background: var(--green-700); color: #fff; font-weight: 700; font-size: 14px; cursor: pointer; font-family: inherit; }
-        .taxbox-row button:disabled { opacity: .6; cursor: wait; }
-        .taxbox-msg { font-size: 13px; margin-top: 8px; line-height: 1.5; color: var(--gray-700); }
-        .taxbox-msg.err { color: #b91c1c; }
-        .from-nav { display: inline-block; font-size: 11px; font-weight: 700; color: var(--green-800); background: var(--green-100); border-radius: 6px; padding: 1px 6px; margin-left: 6px; }
-        .need-fill { border-color: #d97706 !important; box-shadow: 0 0 0 3px rgba(217,119,6,.12); }
-        .missing-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius); padding: 10px 12px; font-size: 13px; color: #92400e; margin-top: 10px; line-height: 1.5; }
-        @media (max-width: 420px) { .taxbox-row { flex-direction: column; } }
-        .field textarea { resize: vertical; min-height: 80px; }
-        .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-        .checkbox-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-        .checkbox-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid var(--gray-200); border-radius: var(--radius); cursor: pointer; transition: all 0.15s; font-size: 14px; }
-        .checkbox-item:hover { border-color: var(--gray-300); }
-        .checkbox-item:has(input:checked) { background: var(--green-50); border-color: var(--green-200); }
-        .checkbox-item input { accent-color: var(--green-600); width: 16px; height: 16px; }
-
-        .form-actions { display: flex; gap: 12px; margin-top: 28px; }
-        .btn { flex: 1; padding: 12px 24px; border-radius: var(--radius); font-size: 15px; font-weight: 600; border: none; cursor: pointer; transition: all 0.15s; text-align: center; }
-        .btn-primary { background: var(--green-600); color: white; }
-        .btn-primary:hover { background: var(--green-700); }
-        .btn-secondary { background: white; color: var(--gray-700); border: 1px solid var(--gray-300); }
-        .btn-secondary:hover { background: var(--gray-50); }
-
-        .step { display: none; }
-        .step.active { display: block; }
-
-        .success-card { text-align: center; padding: 48px 36px; }
-        .success-icon { width: 64px; height: 64px; background: var(--green-100); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-        .success-icon svg { width: 32px; height: 32px; color: var(--green-600); }
-        .success-card h2 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
-        .success-card p { font-size: 15px; color: var(--gray-500); line-height: 1.6; margin-bottom: 24px; }
-
-        @media (max-width: 640px) {
-            .field-row { grid-template-columns: 1fr; }
-            .checkbox-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://*.goatcounter.com https://kacnvchwfwvpkkyhyupb.supabase.co wss://kacnvchwfwvpkkyhyupb.supabase.co; base-uri 'self'; object-src 'none'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Cégprofil — AIpályázó</title>
+<meta name="description" content="Cégprofil megadása: adószám alapján kitöltjük, és azonnal látja, mely felhívások illenek.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0e1a2b">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.ob{display:grid;gap:var(--s6);padding:var(--s6) 0 var(--s8)}
+@media(min-width:1000px){.ob{grid-template-columns:minmax(0,1fr) 340px;gap:var(--s7)}.ob-side{position:sticky;top:88px;align-self:start}}
+.ob-main{max-width:720px}.ob-main h1{margin:var(--s2) 0 var(--s3)}.ob-main .lede{margin-bottom:var(--s5)}
+.stepper{list-style:none;display:flex;gap:0;margin:0 0 var(--s6);padding:0;border-bottom:1px solid var(--line);counter-reset:s}
+.stepper li{counter-increment:s;flex:1;padding:10px 0;font-size:14px;color:var(--ink-3);border-bottom:3px solid transparent;margin-bottom:-1px}
+.stepper li::before{content:counter(s) '. ';font-family:var(--mono)}
+.stepper li.active{color:var(--ink);font-weight:600;border-color:var(--brand)}.stepper li.done{color:var(--brand)}
+.row2{display:grid;gap:0 var(--s4)}@media(min-width:620px){.row2{grid-template-columns:1fr 1fr}}
+.req{color:var(--danger)}.opt{font-weight:400;color:var(--ink-3)}
+fieldset.field{border:0;padding:0;margin:0 0 var(--s4)}fieldset legend{margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{position:relative;cursor:pointer}
+.chips input{position:absolute;opacity:0;width:1px;height:1px}
+.chips span{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1px solid var(--line-strong);border-radius:var(--r);font-size:15px;background:var(--paper);color:var(--ink)}
+.chips input:checked+span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chips input:focus-visible+span{outline:3px solid var(--focus);outline-offset:2px}
+.chips.invalid span{border-color:var(--danger)}
+.taxbox{border:1px solid var(--line);border-left:3px solid var(--brand);background:var(--surface);padding:var(--s4);border-radius:0 var(--r-lg) var(--r-lg) 0;margin-bottom:var(--s5)}
+.taxbox label{font-weight:600;font-size:15px;display:block;margin-bottom:8px}
+.taxbox-row{display:flex;gap:8px}.taxbox-row input{flex:1;min-width:0;min-height:44px;padding:10px 12px;border:1px solid var(--line-strong);border-radius:var(--r);font:500 16px/1.4 var(--mono);background:var(--paper);color:var(--ink)}
+.hint{font-size:13.5px;color:var(--ink-3);margin:6px 0 0}.hint.error{color:var(--danger)}
+.invalid,input.invalid,select.invalid{border-color:var(--danger)!important}
+.need-fill{border-color:var(--signal)!important;background:var(--signal-tint)!important}
+.form-actions{display:flex;gap:var(--s3);justify-content:flex-end;margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid var(--line)}
+.consent{margin-top:var(--s4)}
+.preview{border:1px solid var(--line);border-top:3px solid var(--brand);border-radius:var(--r-lg);background:var(--surface);padding:var(--s5)}
+.preview-num{margin:var(--s2) 0 var(--s3);font-size:15px;color:var(--ink-2)}.preview-num .num{font:500 34px/1 var(--mono);color:var(--ink);margin-right:6px}
+.pv-item{padding:10px 0;border-top:1px solid var(--line)}.pv-title{font-weight:600;font-size:14.5px;line-height:1.35}
+.pv-marks{font:500 12.5px/1.6 var(--mono);display:flex;flex-wrap:wrap;gap:2px 10px;margin-top:4px}
+.pv-marks .ok{color:var(--brand)}.pv-marks .fail{color:var(--danger)}.pv-marks .unknown,.pv-marks .warn{color:var(--signal)}
+.missing{margin-top:var(--s4);font-size:14px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:var(--s3)}.missing ul{margin:6px 0 0;padding-left:18px}
+</style>
 </head>
 <body>
-
-<nav>
-    <div class="nav-inner">
-        <a href="index.html" class="nav-logo"><span>AI</span>pályázó</a>
-        <a href="portal.html" class="nav-back">← Vissza az Áttekintésre</a>
+<a class="skip" href="#main">Ugrás a tartalomra</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="AIpályázó főoldal"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0a6b3d"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a>
+    <nav class="site-nav" aria-label="Fő navigáció">
+      <a href="palyazat/index.html">Nyitott pályázatok</a>
+      <a href="index.html#hogyan">Hogyan működik</a>
+      <a href="miert-ingyenes.html">Miért ingyenes?</a>
+    </nav>
+    <div class="head-actions">
+      <a class="btn btn-quiet btn-sm hide-sm" href="login.html" data-guest>Belépés</a>
+      <a class="btn btn-primary btn-sm" href="signup.html" data-guest>Regisztráció</a>
+      <a class="btn btn-primary btn-sm" href="portal.html" data-member hidden>Portál</a>
+      <button class="btn btn-ghost btn-sm head-menu" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     </div>
-</nav>
+  </div>
+  <div class="wrap">
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobil navigáció">
+      <a href="palyazat/index.html">Nyitott pályázatok</a>
+      <a href="index.html#hogyan">Hogyan működik</a>
+      <a href="miert-ingyenes.html">Miért ingyenes?</a>
+      <a href="login.html">Belépés</a>
+    </nav>
+  </div>
+</header>
+<main id="main"><div class="wrap"><div class="ob">
+<div class="ob-main">
+  <p class="eyebrow">Cégprofil · <span id="step-label">1 / 3</span></p>
+  <h1 class="h-1" id="ob-title">Mutassa be a cégét</h1>
+  <p class="lede" id="ob-lede">Ezekből dől el, mely felhívásokra jogosult. Adószám alapján a NAV-tól kitöltjük, amit lehet — a többit Ön adja meg.</p>
+  <ol class="stepper" aria-label="Lépések"><li class="active" id="prog-1">Cégadatok</li><li id="prog-2">Pontosítás</li><li id="prog-3">Értesítés</li></ol>
 
-<div class="container">
-    <div class="progress">
-        <div class="progress-step active" id="prog-1"></div>
-        <div class="progress-step" id="prog-2"></div>
-        <div class="progress-step" id="prog-3"></div>
+  <!-- STEP 1 -->
+  <section class="step active" id="step-1" aria-labelledby="s1h">
+    <h2 class="visually-hidden" id="s1h">Cégadatok</h2>
+    <div class="taxbox">
+      <label for="f_taxnumber">Gyorskitöltés adószámmal</label>
+      <div class="taxbox-row">
+        <input type="text" id="f_taxnumber" inputmode="numeric" autocomplete="off" placeholder="12345678-1-12" aria-describedby="taxbox-msg">
+        <button type="button" class="btn btn-ghost" id="taxbox-btn">Kitöltés</button>
+      </div>
+      <p class="hint" id="taxbox-msg" aria-live="polite">A cégnevet, a székhelyet és a cégformát a NAV nyilvános adataiból töltjük ki (bejelentkezve).</p>
     </div>
-
-    <div class="form-card">
-        <!-- STEP 1 -->
-        <div class="step active" id="step-1">
-            <h2>Cégadatok</h2>
-            <p class="subtitle">Alapvető információk az Ön vállalkozásáról</p>
-
-            <div class="taxbox">
-                <label for="f_taxnumber" style="font-size:14px;font-weight:700;color:var(--green-800);display:block;margin-bottom:6px;">Gyorskitöltés adószám alapján</label>
-                <div class="taxbox-row">
-                    <input type="text" id="f_taxnumber" inputmode="numeric" autocomplete="off" placeholder="12345678-1-12" aria-describedby="taxbox-msg">
-                    <button type="button" id="taxbox-btn" onclick="lookupCompany()">Adatok kitöltése</button>
-                </div>
-                <div class="taxbox-msg" id="taxbox-msg" aria-live="polite">A cégnevet, a székhelyet és a cégformát a NAV nyilvános adataiból töltjük ki. A többit Ön adja meg — ezekből dől el, mely pályázatokra jogosult.</div>
-            </div>
-            <div class="field">
-                <label>Cégnév <span class="req">*</span></label>
-                <input type="text" id="f_company" placeholder="Pl. InnoTech Solutions Kft.">
-            </div>
-            <div class="field">
-                <label>Iparág(ak) <span class="req">*</span> <span style="font-weight:400;color:var(--gray-400);">— több is választható</span></label>
-                <div class="checkbox-grid" id="f_industries">
-                    <label class="checkbox-item"><input type="checkbox" value="IT"> IT / Szoftverfejlesztés</label>
-                    <label class="checkbox-item"><input type="checkbox" value="HVAC"> Épületgépészet / HVAC</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Construction"> Építőipar</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Manufacturing"> Gyártás</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Healthcare"> Egészségügy</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Restaurant"> Vendéglátás</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Tourism"> Turizmus</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Agriculture"> Mezőgazdaság</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Retail"> Kereskedelem</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Education"> Oktatás</label>
-                    <label class="checkbox-item"><input type="checkbox" value="General"> Egyéb</label>
-                </div>
-            </div>
-            <div class="field-row">
-                <div class="field">
-                    <label>Alkalmazottak <span class="req">*</span></label>
-                    <select id="f_employees">
-                        <option value="">Válasszon...</option>
-                        <option value="1">1 fő (egyéni vállalkozó)</option>
-                        <option value="1-5">1-5 fő</option>
-                        <option value="6-10">6-10 fő</option>
-                        <option value="11-25">11-25 fő</option>
-                        <option value="26-50">26-50 fő</option>
-                        <option value="51-100">51-100 fő</option>
-                        <option value="100+">100+ fő</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label>Éves árbevétel</label>
-                    <select id="f_revenue">
-                        <option value="">Válasszon...</option>
-                        <option value="<50M">&lt; 50 M Ft (mikro)</option>
-                        <option value="50M-200M">50 - 200 M Ft (kicsi)</option>
-                        <option value="200M-500M">200 - 500 M Ft</option>
-                        <option value="500M-1Mrd">500 M - 1 Mrd Ft</option>
-                        <option value="1Mrd-3Mrd">1 - 3 Mrd Ft</option>
-                        <option value="3Mrd-10Mrd">3 - 10 Mrd Ft</option>
-                        <option value="10Mrd+">10 Mrd Ft felett</option>
-                    </select>
-                </div>
-            </div>
-            <div class="field-row">
-                <div class="field">
-                    <label>Székhely</label>
-                    <input type="text" id="f_location" placeholder="Pl. Budapest">
-                </div>
-                <div class="field">
-                    <label>Telephely / megvalósítás régiója</label>
-                    <select id="f_site_region">
-                        <option value="">Válasszon...</option>
-                        <option value="Budapest">Budapest</option>
-                        <option value="Pest">Pest megye</option>
-                        <option value="Közép-Dunántúl">Közép-Dunántúl</option>
-                        <option value="Nyugat-Dunántúl">Nyugat-Dunántúl</option>
-                        <option value="Dél-Dunántúl">Dél-Dunántúl</option>
-                        <option value="Észak-Magyarország">Észak-Magyarország</option>
-                        <option value="Észak-Alföld">Észak-Alföld</option>
-                        <option value="Dél-Alföld">Dél-Alföld</option>
-                        <option value="Több">Több régió / országos</option>
-                    </select>
-                </div>
-            </div>
-            <div class="field-row">
-                <div class="field">
-                    <label>Lezárt üzleti évek</label>
-                    <select id="f_years">
-                        <option value="">Válasszon...</option>
-                        <option value="0">Még nincs lezárt évem</option>
-                        <option value="1">1 év</option>
-                        <option value="2">2 év</option>
-                        <option value="3-5">3–5 év</option>
-                        <option value="5+">5+ év</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label>Cégforma</label>
-                    <select id="f_legal">
-                        <option value="">Válasszon...</option>
-                        <option value="Kft">Kft.</option>
-                        <option value="Bt">Bt.</option>
-                        <option value="EV">Egyéni vállalkozó</option>
-                        <option value="Zrt">Zrt.</option>
-                        <option value="Nyrt">Nyrt.</option>
-                        <option value="Szövetkezet">Szövetkezet</option>
-                        <option value="Egyéb">Egyéb</option>
-                    </select>
-                </div>
-            </div>
-            <div style="margin:24px 0 4px;font-size:13px;font-weight:700;color:var(--gray-600);">Jogosultsági adatok <span style="font-weight:400;color:var(--gray-400);">— opcionális, de pontosabb találatokat ad</span></div>
-            <div class="field-row">
-                <div class="field">
-                    <label>Köztartozásmentes (NAV)</label>
-                    <select id="f_public_debt">
-                        <option value="">Válasszon...</option>
-                        <option value="igen">Igen</option>
-                        <option value="nem">Nem</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label>Saját erő (önerő) rendelkezésre áll</label>
-                    <select id="f_own_funds">
-                        <option value="">Válasszon...</option>
-                        <option value="igen">Igen, rendelkezésre áll</option>
-                        <option value="reszben">Részben</option>
-                        <option value="nem">Nem</option>
-                    </select>
-                </div>
-            </div>
-            <div class="field-row">
-                <div class="field">
-                    <label>Nehéz helyzetű vállalkozás</label>
-                    <select id="f_difficulty">
-                        <option value="">Válasszon...</option>
-                        <option value="nem">Nem</option>
-                        <option value="igen">Igen</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label>TEÁOR főtevékenység</label>
-                    <input type="text" id="f_teaor" placeholder="Pl. 6201 Számítógépes programozás" oninput="teaorChanged()">
-                    <div class="hint" id="teaor-hint">A cégkivonatban vagy az adóhatósági igazoláson találja. A főtevékenység alapján szűrjük az ágazati felhívásokat.</div>
-                </div>
-            </div>
-
-            <div class="missing-box" id="missing-box" style="display:none;"></div>
-            <div class="form-actions">
-                <button class="btn btn-primary" onclick="nextStep(2)">Tovább</button>
-            </div>
-        </div>
-
-        <!-- STEP 2 -->
-        <div class="step" id="step-2">
-            <h2>Pályázati preferenciák</h2>
-            <p class="subtitle">Milyen típusú pályázatokat keres?</p>
-
-            <div class="field">
-                <label>Érdeklődési területek <span class="req">*</span></label>
-                <div class="checkbox-grid">
-                    <label class="checkbox-item"><input type="checkbox" value="KKV fejlesztés"> KKV fejlesztés</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Digitális átalakulás"> Digitalizáció</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Energiahatékonyság"> Energiahatékonyság</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Kutatás-fejlesztés"> K+F / Innováció</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Munkahelyteremtés"> Munkahelyteremtés</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Export"> Export / Nemzetközi</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Oktatás"> Oktatás / Képzés</label>
-                    <label class="checkbox-item"><input type="checkbox" value="Környezetvédelem"> Környezetvédelem</label>
-                </div>
-            </div>
-
-            <div class="field">
-                <label>Pályázott korábban?</label>
-                <select id="f_past">
-                    <option value="">Válasszon...</option>
-                    <option value="won">Igen, nyertem is</option>
-                    <option value="lost">Igen, de nem nyertem</option>
-                    <option value="no">Nem, ez az első</option>
-                </select>
-            </div>
-
-            <div class="field">
-                <label>Van konkrét projekt, amit pályázatból finanszírozna?</label>
-                <textarea id="f_notes" placeholder="Pl. Új CNC gép beszerzése, digitális raktárkezelő rendszer, napelem telepítés..."></textarea>
-            </div>
-
-            <div class="form-actions">
-                <button class="btn btn-secondary" onclick="nextStep(1)">Vissza</button>
-                <button class="btn btn-primary" onclick="nextStep(3)">Tovább</button>
-            </div>
-        </div>
-
-        <!-- STEP 3 -->
-        <div class="step" id="step-3">
-            <h2>Elérhetőség</h2>
-            <p class="subtitle">Hogyan értesítsük az új pályázatokról?</p>
-
-            <div class="field-row">
-                <div class="field">
-                    <label>Kapcsolattartó neve <span class="req">*</span></label>
-                    <input type="text" id="f_name" placeholder="Vezetéknév Keresztnév">
-                </div>
-                <!-- Hidden for signed-in users (we already know their account
-                     e-mail) — shown only in the anonymous walk-in flow where
-                     this form doubles as first contact. -->
-                <div class="field" id="f_email_wrap">
-                    <label>E-mail <span class="req">*</span></label>
-                    <input type="email" id="f_email" placeholder="nev@ceg.hu">
-                </div>
-            </div>
-
-            <div class="field">
-                <label>Telefonszám <span class="req" id="f_phone_req" style="display:none;">*</span></label>
-                <input type="tel" id="f_phone" placeholder="+36 20 123 4567">
-            </div>
-
-            <div class="field">
-                <label>Értesítési csatorna <span class="req">*</span></label>
-                <div class="checkbox-grid">
-                    <label class="checkbox-item"><input type="checkbox" value="email" checked> E-mail értesítés</label>
-                    <label class="checkbox-item"><input type="checkbox" value="weekly"> Heti összefoglaló e-mailben</label>
-                </div>
-                <div class="hint" style="margin-top:8px;">A heti összefoglalót csak akkor küldjük, ha bejelöli. Bármikor leiratkozhat a Beállításokban vagy a levél alján lévő linkkel.</div>
-            </div>
-
-            <div class="field" style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px 16px;margin-top:24px;">
-                <label style="display:flex;gap:12px;align-items:flex-start;cursor:pointer;font-size:13px;color:#374151;line-height:1.6;">
-                    <input type="checkbox" id="f_gdpr" style="width:18px;height:18px;min-width:18px;flex:0 0 18px;margin-top:2px;accent-color:#16a34a;cursor:pointer;">
-                    <span style="flex:1;">Elolvastam és elfogadom az <a href="adatvedelem.html" target="_blank" rel="noopener" style="color:#16a34a;text-decoration:underline;text-underline-offset:2px;">Adatkezelési tájékoztatót</a> és az <a href="aszf.html" target="_blank" rel="noopener" style="color:#16a34a;text-decoration:underline;text-underline-offset:2px;">ÁSZF-et</a>. Hozzájárulok ahhoz, hogy a megadott adataimat az AIpályázó a leírtak szerint kezelje. <span style="color:#dc2626;">*</span></span>
-                </label>
-            </div>
-
-            <div class="form-actions" style="margin-top:24px;">
-                <button class="btn btn-secondary" onclick="nextStep(2)">Vissza</button>
-                <button class="btn btn-primary" id="submit-btn" onclick="submitForm()">Regisztráció indítása</button>
-            </div>
-        </div>
-
-        <!-- SUCCESS -->
-        <div class="step" id="step-success">
-            <div class="success-card">
-                <div class="success-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg></div>
-                <h2>Regisztráció sikeres!</h2>
-                <p>Átirányítjuk a személyre szabott felületre…</p>
-                <a href="portal.html" class="btn btn-primary" style="display: inline-block; text-decoration: none;">Belépés a portálra →</a>
-            </div>
-        </div>
+    <div class="field"><label for="f_company">Cégnév <span class="req">*</span></label><input type="text" id="f_company" autocomplete="organization"></div>
+    <fieldset class="field">
+      <legend class="label">Tevékenység <span class="req">*</span> <span class="opt">— több is választható</span></legend>
+      <div class="chips" id="f_industries">
+        <label><input type="checkbox" value="IT"><span>Informatika, szoftver</span></label>
+        <label><input type="checkbox" value="Manufacturing"><span>Gyártás, ipar</span></label>
+        <label><input type="checkbox" value="Construction"><span>Építőipar</span></label>
+        <label><input type="checkbox" value="HVAC"><span>Épületgépészet, energetika</span></label>
+        <label><input type="checkbox" value="Retail"><span>Kereskedelem</span></label>
+        <label><input type="checkbox" value="Tourism"><span>Szálláshely, turizmus</span></label>
+        <label><input type="checkbox" value="Restaurant"><span>Vendéglátás</span></label>
+        <label><input type="checkbox" value="Agriculture"><span>Mezőgazdaság, élelmiszer</span></label>
+        <label><input type="checkbox" value="Healthcare"><span>Egészségügy</span></label>
+        <label><input type="checkbox" value="Education"><span>Oktatás, képzés</span></label>
+        <label><input type="checkbox" value="General"><span>Egyéb szolgáltatás</span></label>
+      </div>
+    </fieldset>
+    <div class="row2">
+      <div class="field"><label for="f_employees">Létszám <span class="req">*</span></label>
+        <select id="f_employees"><option value="">Válasszon…</option><option value="1">1 fő (egyéni vállalkozó)</option><option value="1-5">2–5 fő</option><option value="6-10">6–10 fő</option><option value="11-25">11–25 fő</option><option value="26-50">26–50 fő</option><option value="51-100">51–100 fő</option><option value="100+">100 fő felett</option></select></div>
+      <div class="field"><label for="f_years">Lezárt üzleti évek</label>
+        <select id="f_years"><option value="">Válasszon…</option><option value="0">Még nincs (induló)</option><option value="1">1 év</option><option value="2">2 év</option><option value="3-5">3–5 év</option><option value="5+">5 évnél több</option></select></div>
     </div>
+    <div class="row2">
+      <div class="field"><label for="f_site_region">Megvalósítás régiója</label>
+        <select id="f_site_region"><option value="">Válasszon…</option><option value="Budapest">Budapest</option><option value="Pest">Pest vármegye</option><option value="Közép-Dunántúl">Közép-Dunántúl</option><option value="Nyugat-Dunántúl">Nyugat-Dunántúl</option><option value="Dél-Dunántúl">Dél-Dunántúl</option><option value="Észak-Magyarország">Észak-Magyarország</option><option value="Észak-Alföld">Észak-Alföld</option><option value="Dél-Alföld">Dél-Alföld</option><option value="Több">Több régió / országos</option></select></div>
+      <div class="field"><label for="f_teaor">TEÁOR főtevékenység</label><input type="text" id="f_teaor" placeholder="pl. 6201" inputmode="text"><p class="hint" id="teaor-hint">A cégkivonatban találja.</p></div>
+    </div>
+    <p class="form-error" id="s1-err" role="alert" hidden>Adja meg a cégnevet, a tevékenységet és a létszámot.</p>
+    <div class="form-actions"><button class="btn btn-primary" type="button" data-next="2">Tovább</button></div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="step" id="step-2" aria-labelledby="s2h" hidden>
+    <h2 class="h-3" id="s2h">Pontosítás — a „?” pontokhoz</h2>
+    <p class="muted">Nem kötelező, de ezek nélkül sok feltételt csak kérdőjellel tudunk jelölni.</p>
+    <div class="row2">
+      <div class="field"><label for="f_public_debt">Köztartozásmentes?</label><select id="f_public_debt"><option value="">Válasszon…</option><option value="igen">Igen</option><option value="nem">Nem</option></select></div>
+      <div class="field"><label for="f_difficulty">Nehéz helyzetű vállalkozás?</label><select id="f_difficulty"><option value="">Válasszon…</option><option value="nem">Nem</option><option value="igen">Igen</option></select><p class="hint">Uniós definíció: pl. a saját tőke felét elvesztette.</p></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="f_own_funds">Van önereje a fejlesztéshez?</label><select id="f_own_funds"><option value="">Válasszon…</option><option value="igen">Igen</option><option value="reszben">Részben</option><option value="nem">Nem</option></select></div>
+      <div class="field"><label for="f_rnd">Tervez K+F / innovációs projektet?</label><select id="f_rnd"><option value="">Válasszon…</option><option value="igen">Igen</option><option value="nem">Nem</option></select><p class="hint">Sok uniós és NKFI-felhívás csak ilyet támogat.</p></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="f_revenue">Éves nettó árbevétel</label><select id="f_revenue"><option value="">Válasszon…</option><option value="<50M">50 M Ft alatt</option><option value="50M-200M">50–200 M Ft</option><option value="200M-500M">200–500 M Ft</option><option value="500M-1Mrd">500 M – 1 Mrd Ft</option><option value="1Mrd-3Mrd">1–3 Mrd Ft</option><option value="3Mrd-10Mrd">3–10 Mrd Ft</option><option value="10Mrd+">10 Mrd Ft felett</option></select></div>
+      <div class="field"><label for="f_women_led">Nők által alapított vagy vezetett cég?</label><select id="f_women_led"><option value="">Nem kívánom megadni</option><option value="igen">Igen</option><option value="nem">Nem</option></select><p class="hint">Néhány felhívás (pl. Women TechEU) csak ilyen cégeknek szól.</p></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="f_legal">Cégforma</label><select id="f_legal"><option value="">Válasszon…</option><option value="Kft">Kft.</option><option value="Bt">Bt.</option><option value="EV">Egyéni vállalkozó</option><option value="Zrt">Zrt.</option><option value="Nyrt">Nyrt.</option><option value="Szövetkezet">Szövetkezet</option><option value="Egyéb">Egyéb</option></select></div>
+      <div class="field"><label for="f_location">Székhely</label><input type="text" id="f_location" autocomplete="address-level2"></div>
+    </div>
+    <fieldset class="field">
+      <legend class="label">Mire keres forrást? <span class="opt">— segít a sorrendben</span></legend>
+      <div class="chips" id="f_categories">
+        <label><input type="checkbox" value="KKV fejlesztés"><span>Eszköz, kapacitás</span></label>
+        <label><input type="checkbox" value="Digitális átalakulás"><span>Digitalizáció</span></label>
+        <label><input type="checkbox" value="Energiahatékonyság"><span>Energia</span></label>
+        <label><input type="checkbox" value="Kutatás-fejlesztés"><span>K+F, innováció</span></label>
+        <label><input type="checkbox" value="Munkahelyteremtés"><span>Munkahelyteremtés</span></label>
+        <label><input type="checkbox" value="Export"><span>Export</span></label>
+        <label><input type="checkbox" value="Oktatás"><span>Képzés</span></label>
+        <label><input type="checkbox" value="Környezetvédelem"><span>Környezetvédelem</span></label>
+      </div>
+    </fieldset>
+    <div class="field"><label for="f_notes">Van konkrét projektje? <span class="opt">(nem kötelező)</span></label><textarea id="f_notes" placeholder="Pl. új CNC-gép, raktárkezelő rendszer, napelem a telephelyre…"></textarea></div>
+    <div class="field"><label for="f_past">Pályázott már?</label><select id="f_past"><option value="">Válasszon…</option><option value="won">Igen, nyertem is</option><option value="lost">Igen, de nem nyertem</option><option value="no">Nem, ez az első</option></select></div>
+    <div class="form-actions"><button class="btn btn-ghost" type="button" data-next="1">Vissza</button><button class="btn btn-primary" type="button" data-next="3">Tovább</button></div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="step" id="step-3" aria-labelledby="s3h" hidden>
+    <h2 class="h-3" id="s3h">Kapcsolat és értesítések</h2>
+    <div class="row2">
+      <div class="field"><label for="f_name">Kapcsolattartó neve <span class="req">*</span></label><input type="text" id="f_name" autocomplete="name"></div>
+      <div class="field" id="f_email_wrap"><label for="f_email">E-mail-cím <span class="req">*</span></label><input type="email" id="f_email" autocomplete="email"></div>
+    </div>
+    <div class="field"><label for="f_phone">Telefonszám <span class="req" id="f_phone_req" hidden>*</span></label><input type="tel" id="f_phone" autocomplete="tel"><p class="hint">Konzultáció kérésekor ezen keresi Önt a pályázatíró.</p></div>
+    <fieldset class="field" id="f_channels">
+      <legend class="label">Értesítések</legend>
+      <label class="check"><input type="checkbox" value="weekly"><span><b>Heti összefoglaló</b> — hétfőnként a cégére szabott új felhívások és közelgő határidők.</span></label>
+      <label class="check" style="margin-top:var(--s2)"><input type="checkbox" value="instant"><span><b>Azonnali értesítés</b> — ha új, Önnek jól illeszkedő felhívás jelenik meg, vagy egy mentett felhívás kerete fogy.</span></label>
+      <p class="hint">Bármikor kikapcsolhatja a Beállításokban vagy a levelek alján.</p>
+    </fieldset>
+    <label class="check consent" id="consent-wrap"><input type="checkbox" id="f_gdpr"><span>Elolvastam és elfogadom az <a href="adatvedelem.html" target="_blank" rel="noopener">adatkezelési tájékoztatót</a> és az <a href="aszf.html" target="_blank" rel="noopener">ÁSZF-et</a>. <span class="req">*</span></span></label>
+    <p class="form-error" id="s3-err" role="alert" hidden></p>
+    <div class="form-actions"><button class="btn btn-ghost" type="button" data-next="2">Vissza</button><button class="btn btn-primary" type="button" id="submit-btn">Profil mentése</button></div>
+  </section>
+
+  <section class="step" id="step-success" hidden>
+    <div class="notice ok"><b id="done-title">Cégprofil mentve.</b> <span id="done-text">Átirányítjuk a portálra…</span></div>
+    <p style="margin-top:var(--s4)"><a class="btn btn-primary" href="portal.html" id="done-link">Tovább a portálra</a></p>
+  </section>
 </div>
 
+<aside class="ob-side" aria-live="polite" aria-label="Előnézet">
+  <div class="preview">
+    <p class="eyebrow">Előnézet</p>
+    <p class="preview-num"><span class="num" id="pv-count">—</span> <span id="pv-label">felhívás illik most</span></p>
+    <div id="pv-list"></div>
+    <div class="missing" id="missing-box" hidden></div>
+  </div>
+</aside>
+</div>
+</div></main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0a6b3d"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a>
+        <p style="margin-top:var(--s3)">Ingyenes pályázatfigyelő magyar vállalkozásoknak. Tájékoztató szolgáltatás: beadás előtt mindig a hivatalos felhívás az irányadó.</p>
+      </div>
+      <div><h4>Pályázatok</h4><ul><li><a href="palyazat/index.html">Nyitott felhívások</a></li><li><a href="palyazat/index.html#temak">Témák és programok</a></li><li><a href="portal.html">Portál</a></li></ul></div>
+      <div><h4>Rólunk</h4><ul><li><a href="miert-ingyenes.html">Miért ingyenes?</a></li><li><a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a></li></ul></div>
+      <div><h4>Jogi</h4><ul><li><a href="impresszum.html">Impresszum</a></li><li><a href="adatvedelem.html">Adatkezelés</a></li><li><a href="aszf.html">ÁSZF</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 AIpályázó · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
+  </div>
+</footer>
+<script src="assets/site.js" defer></script>
+<script src="assets/analytics.js" defer></script>
+<script src="lib/hu-geo.js"></script>
+<script src="lib/match.js"></script>
+<script src="lib/supabase.js" defer></script>
 <script>
-// ===== Tax-number quick fill (NAV queryTaxpayer via company-lookup) =====
-const FIELD_IDS = { employees: 'f_employees', site_region: 'f_site_region', teaor: 'f_teaor', years_operating: 'f_years', public_debt_free: 'f_public_debt', in_difficulty: 'f_difficulty', own_funds: 'f_own_funds' };
-function currentProfileDraft() {
-    const v = (id) => (document.getElementById(id) || {}).value || '';
-    return { employees: v('f_employees'), site_region: v('f_site_region'), teaor: v('f_teaor'), years_operating: v('f_years'), public_debt_free: v('f_public_debt'), in_difficulty: v('f_difficulty'), own_funds: v('f_own_funds') };
-}
-// Show which matching inputs are still empty and highlight them.
-function refreshMissing(highlight) {
-    const missing = window.AIPMatch ? window.AIPMatch.missingFields(currentProfileDraft()) : [];
-    Object.values(FIELD_IDS).forEach(id => { const el = document.getElementById(id); if (el) el.classList.remove('need-fill'); });
-    const box = document.getElementById('missing-box');
-    if (!missing.length) { box.style.display = 'none'; return; }
-    if (highlight) missing.forEach(f => { const el = document.getElementById(FIELD_IDS[f.key]); if (el) el.classList.add('need-fill'); });
-    box.innerHTML = '<b>A pontos illeszkedéshez még adja meg:</b> ' + missing.map(f => f.label).join(', ') + '. Ezek hiányában a jogosultságot „?” jellel jelöljük.';
-    box.style.display = 'block';
-}
-function markFromNav(id) {
-    const el = document.getElementById(id);
-    const label = el && el.closest('.field') && el.closest('.field').querySelector('label');
-    if (label && !label.querySelector('.from-nav')) label.insertAdjacentHTML('beforeend', '<span class="from-nav">NAV</span>');
-}
-async function lookupCompany() {
-    const input = document.getElementById('f_taxnumber');
-    const msg = document.getElementById('taxbox-msg');
-    const btn = document.getElementById('taxbox-btn');
-    const digits = input.value.replace(/\D/g, '');
-    msg.className = 'taxbox-msg';
-    if (!(digits.length === 8 || digits.length === 11)) { msg.textContent = 'Adjon meg 8 vagy 11 számjegyű adószámot (pl. 12345678-1-12).'; msg.className = 'taxbox-msg err'; input.focus(); return; }
-    if (!window.gp || !window.gp.client) { msg.textContent = 'A gyorskitöltéshez jelentkezzen be. Az adatokat kézzel is megadhatja.'; msg.className = 'taxbox-msg err'; return; }
+(function () {
+  'use strict';
+  var TODAY = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Budapest' });
+  var FEED = [];
+  var $ = function (id) { return document.getElementById(id); };
+  var val = function (id) { var el = $(id); return el ? (el.value || '').trim() : ''; };
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  var FIELD_IDS = { employees: 'f_employees', site_region: 'f_site_region', teaor: 'f_teaor', years_operating: 'f_years', public_debt_free: 'f_public_debt', in_difficulty: 'f_difficulty', own_funds: 'f_own_funds', rnd: 'f_rnd' };
+
+  function checked(sel) { return Array.prototype.slice.call(document.querySelectorAll(sel + ' input:checked')).map(function (c) { return c.value; }); }
+  function draft() {
+    return {
+      company: val('f_company') || 'x', industries: checked('#f_industries'), employees: val('f_employees'), site_region: val('f_site_region'),
+      teaor: val('f_teaor'), years_operating: val('f_years'), public_debt_free: val('f_public_debt'), in_difficulty: val('f_difficulty'),
+      own_funds: val('f_own_funds'), rnd: val('f_rnd'), women_led: val('f_women_led'), revenue: val('f_revenue'), categories: checked('#f_categories')
+    };
+  }
+
+  // ---------- live preview ----------
+  var t = null;
+  function schedule() { clearTimeout(t); t = setTimeout(preview, 120); }
+  function preview() {
+    var p = draft();
+    refreshMissing(false);
+    if (!FEED.length || !window.AIPMatch) return;
+    if (!p.industries.length && !p.employees) { $('pv-count').textContent = '—'; $('pv-list').innerHTML = '<p class="muted small">Adja meg a tevékenységet és a létszámot, és itt azonnal látja, mi illik a cégéhez.</p>'; return; }
+    var rows = FEED.map(function (g) { return { g: g, m: AIPMatch.match(g, p, TODAY) }; }).filter(function (x) { return x.m.eligible && x.m.group !== 'consortium'; });
+    var rank = function (x) { return (x.m.verdict === 'APPLY' ? 1000 : 0) + (x.m.group === 'hazai' ? 100 : 0) + x.m.score; };
+    rows.sort(function (a, b) { return rank(b) - rank(a); });
+    var good = rows.filter(function (x) { return x.m.verdict === 'APPLY'; });
+    $('pv-count').textContent = good.length;
+    $('pv-label').textContent = good.length === 1 ? 'felhívás illik jól' : 'felhívás illik jól';
+    $('pv-list').innerHTML = rows.slice(0, 3).map(function (x) {
+      var marks = x.m.checks.filter(function (c) { return c.status !== 'neutral'; }).slice(0, 4).map(function (c) { return '<span class="' + c.status + '">' + ({ ok: '✓', fail: '✗', unknown: '?', warn: '!' }[c.status]) + ' ' + esc(c.label) + '</span>'; }).join('');
+      return '<div class="pv-item"><div class="pv-title">' + esc(x.g.title) + '</div><div class="pv-marks">' + marks + '</div></div>';
+    }).join('') || '<p class="muted small">Ezekkel az adatokkal most nincs jól illeszkedő felhívás. A „?” pontok kitöltése sokat változtathat.</p>';
+  }
+  fetch('grants_live.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : []; }).then(function (a) {
+    FEED = (Array.isArray(a) ? a : []).filter(function (g) { return !/^\d{4}-\d{2}-\d{2}$/.test(g.deadline || '') || g.deadline >= TODAY; });
+    preview();
+  }).catch(function () {});
+
+  function refreshMissing(highlight) {
+    var missing = window.AIPMatch ? AIPMatch.missingFields(draft()) : [];
+    Object.keys(FIELD_IDS).forEach(function (k) { var el = $(FIELD_IDS[k]); if (el) el.classList.remove('need-fill'); });
+    var box = $('missing-box');
+    if (!missing.length) { box.hidden = true; return; }
+    if (highlight) missing.forEach(function (f) { var el = $(FIELD_IDS[f.key]); if (el) el.classList.add('need-fill'); });
+    box.innerHTML = '<b>A pontos ellenőrzéshez még hiányzik:</b><ul>' + missing.map(function (f) { return '<li>' + esc(f.label) + '</li>'; }).join('') + '</ul>';
+    box.hidden = false;
+  }
+  document.addEventListener('input', schedule);
+  document.addEventListener('change', schedule);
+
+  // ---------- TEÁOR → industries ----------
+  $('f_teaor').addEventListener('input', function () {
+    var inds = window.AIPMatch ? AIPMatch.teaorIndustries(val('f_teaor')) : [];
+    var map = { Food: 'Manufacturing' };
+    var boxes = Array.prototype.slice.call(document.querySelectorAll('#f_industries input'));
+    if (inds.length && !boxes.some(function (b) { return b.checked; })) inds.forEach(function (i) { var b = boxes.filter(function (x) { return x.value === (map[i] || i); })[0]; if (b) b.checked = true; });
+  });
+
+  // ---------- tax number lookup ----------
+  function markFromNav(id) {
+    var el = $(id); var label = el && el.closest('.field') && el.closest('.field').querySelector('label');
+    if (label && !label.querySelector('.from-nav')) label.insertAdjacentHTML('beforeend', ' <span class="tag brand from-nav">NAV</span>');
+  }
+  $('taxbox-btn').addEventListener('click', async function () {
+    var input = $('f_taxnumber'), msg = $('taxbox-msg'), btn = this;
+    var digits = input.value.replace(/\D/g, '');
+    msg.className = 'hint';
+    if (!(digits.length === 8 || digits.length === 11)) { msg.textContent = 'Adjon meg 8 vagy 11 számjegyű adószámot (pl. 12345678-1-12).'; msg.className = 'hint error'; input.focus(); return; }
+    if (!window.gp || !window.gp.client || !signedInUser) { msg.innerHTML = 'A NAV-os kitöltéshez <a href="login.html">jelentkezzen be</a>. Az adatokat kézzel is megadhatja.'; msg.className = 'hint error'; return; }
     btn.disabled = true; btn.textContent = 'Keresés…';
     try {
-        const { data, error } = await window.gp.client.functions.invoke('company-lookup', { body: { taxNumber: digits } });
-        if (error || !data) throw new Error('lookup');
-        if (!data.found) { msg.textContent = 'Ezzel az adószámmal nem találtunk érvényes adózót a NAV nyilvántartásában. Ellenőrizze a számot, vagy töltse ki kézzel.'; msg.className = 'taxbox-msg err'; return; }
-        const set = (id, val) => { const el = document.getElementById(id); if (el && val) { el.value = val; el.style.borderColor = ''; markFromNav(id); } };
-        set('f_company', data.name);
-        set('f_location', [data.postalCode, data.city ? data.city.charAt(0) + data.city.slice(1).toLowerCase() : ''].filter(Boolean).join(' '));
-        if (data.legalForm) set('f_legal', data.legalForm);
-        if (data.region && !document.getElementById('f_site_region').value) set('f_site_region', data.region);
-        msg.innerHTML = '<b>Kitöltöttük:</b> cégnév, székhely, cégforma' + (data.region ? ', régió (a székhely irányítószáma alapján — ha a beruházás máshol lesz, módosítsa)' : '') + '. A többi adatot a NAV nem teszi közzé, ezeket kérjük, adja meg lent.';
-        refreshMissing(true);
+      var r = await window.gp.client.functions.invoke('company-lookup', { body: { taxNumber: digits } });
+      var data = r.data;
+      if (r.error || !data) throw new Error('lookup');
+      if (!data.found) { msg.textContent = 'Ezzel az adószámmal nem találtunk érvényes adózót a NAV nyilvántartásában. Ellenőrizze a számot, vagy töltse ki kézzel.'; msg.className = 'hint error'; return; }
+      var set = function (id, v) { var el = $(id); if (el && v) { el.value = v; markFromNav(id); } };
+      set('f_company', data.name);
+      set('f_location', [data.postalCode, data.city ? data.city.charAt(0) + data.city.slice(1).toLowerCase() : ''].filter(Boolean).join(' '));
+      if (data.legalForm) set('f_legal', data.legalForm);
+      if (data.region && !val('f_site_region')) set('f_site_region', data.region);
+      try { sessionStorage.setItem('aip:tax', digits.slice(0, 8)); } catch (e) {}
+      msg.textContent = 'Kitöltöttük: cégnév, székhely, cégforma' + (data.region ? ', régió (a székhely alapján — ha máshol fejleszt, módosítsa)' : '') + '. A többi adatot a NAV nem teszi közzé.';
+      if (window.aipTrack) aipTrack('tax-lookup');
+      preview();
     } catch (e) {
-        msg.textContent = 'A gyorskitöltés most nem érhető el. Kérjük, töltse ki az adatokat kézzel.'; msg.className = 'taxbox-msg err';
-    } finally {
-        btn.disabled = false; btn.textContent = 'Adatok kitöltése';
-    }
-}
-// TEÁOR → tick the matching industry box(es) if none is ticked yet.
-function teaorChanged() {
-    const val = document.getElementById('f_teaor').value;
-    const inds = window.AIPMatch ? window.AIPMatch.teaorIndustries(val) : [];
-    const map = { IT: 'IT', HVAC: 'HVAC', Construction: 'Construction', Manufacturing: 'Manufacturing', Healthcare: 'Healthcare', Restaurant: 'Restaurant', Tourism: 'Tourism', Agriculture: 'Agriculture', Retail: 'Retail', Education: 'Education', General: 'General', Food: 'Manufacturing' };
-    const boxes = [...document.querySelectorAll('#f_industries input')];
-    if (inds.length && !boxes.some(b => b.checked)) inds.forEach(i => { const b = boxes.find(x => x.value === map[i]); if (b) b.checked = true; });
-    refreshMissing(false);
-}
-document.addEventListener('change', (e) => { if (e.target && Object.values(FIELD_IDS).includes(e.target.id)) refreshMissing(false); });
+      msg.textContent = 'A gyorskitöltés most nem érhető el. Kérjük, töltse ki az adatokat kézzel.'; msg.className = 'hint error';
+    } finally { btn.disabled = false; btn.textContent = 'Kitöltés'; }
+  });
 
-function nextStep(n) {
-    // Validate current step
-    if (n === 2 && document.getElementById('step-1').classList.contains('active')) {
-        const industryCount = document.querySelectorAll('#f_industries input:checked').length;
-        if (!document.getElementById('f_company').value || industryCount === 0 || !document.getElementById('f_employees').value) {
-            if (!document.getElementById('f_company').value) document.getElementById('f_company').style.borderColor = '#dc2626';
-            if (!document.getElementById('f_employees').value) document.getElementById('f_employees').style.borderColor = '#dc2626';
-            document.getElementById('f_industries').style.outline = industryCount === 0 ? '2px solid #dc2626' : '';
-            return;
-        }
-        // Eligibility fields are optional, but ask once before moving on.
-        const missing = window.AIPMatch ? window.AIPMatch.missingFields(currentProfileDraft()) : [];
-        if (missing.length && !window.__missingWarned) {
-            window.__missingWarned = true;
-            refreshMissing(true);
-            document.getElementById('missing-box').insertAdjacentHTML('beforeend', ' <b>Kattintson újra a „Tovább” gombra, ha most kihagyná.</b>');
-            document.getElementById('missing-box').scrollIntoView({ behavior: 'smooth', block: 'center' });
-            return;
-        }
+  // ---------- steps ----------
+  var LABELS = { 1: ['Mutassa be a cégét', 'Ezekből dől el, mely felhívásokra jogosult. Adószám alapján a NAV-tól kitöltjük, amit lehet — a többit Ön adja meg.'], 2: ['Pontosítsa a feltételeket', 'Minél több pontot tud, annál kevesebb „?” marad az ellenőrzésben.'], 3: ['Hogyan értesítsük?', 'Csak akkor írunk, ha Ön kéri.'] };
+  function go(n) {
+    if (n === 2 && !$('step-1').hidden) {
+      var ok = val('f_company') && checked('#f_industries').length && val('f_employees');
+      $('s1-err').hidden = !!ok;
+      if (!ok) { ['f_company', 'f_employees'].forEach(function (id) { $(id).classList.toggle('invalid', !val(id)); }); $('f_industries').classList.toggle('invalid', !checked('#f_industries').length); return; }
     }
-    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-    document.getElementById('step-' + n).classList.add('active');
-    document.querySelectorAll('.progress-step').forEach((p, i) => {
-        p.classList.toggle('active', i < n);
-    });
-}
+    ['step-1', 'step-2', 'step-3'].forEach(function (id, i) { $(id).hidden = i + 1 !== n; $('prog-' + (i + 1)).className = i + 1 < n ? 'done' : i + 1 === n ? 'active' : ''; });
+    $('step-label').textContent = n + ' / 3';
+    $('ob-title').textContent = LABELS[n][0]; $('ob-lede').textContent = LABELS[n][1];
+    refreshMissing(n === 2);
+    window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  }
+  document.querySelectorAll('[data-next]').forEach(function (b) { b.addEventListener('click', function () { go(+b.getAttribute('data-next')); }); });
 
-// ===== Backend endpoint (REQUIRED for real public launch) =====
-// Set this to your Formspree / Airtable / Supabase / custom endpoint so real
-// signups reach you. Empty string = localStorage only (demo mode — fine for
-// 1:1 demo shares, NOT suitable for public broadcast launch).
-//   Formspree (recommended, free up to 50/mo, ~5 min signup):
-//     1) Go to https://formspree.io → free account → New Form
-//     2) Set the endpoint as the form's action URL
-//     3) Paste it here, e.g. 'https://formspree.io/f/abcd1234'
-//   Custom backend: 'https://api.aipalyazo.hu/onboard'
-const ONBOARD_BACKEND_URL = '';
+  // ---------- prefill ----------
+  function fill(p) {
+    if (!p) return;
+    var setv = function (id, v) { var el = $(id); if (el && v != null && v !== '' && !el.value) el.value = v; };
+    setv('f_company', p.company); setv('f_employees', p.employees); setv('f_years', p.years_operating); setv('f_site_region', p.site_region);
+    setv('f_teaor', p.teaor); setv('f_public_debt', p.public_debt_free); setv('f_difficulty', p.in_difficulty); setv('f_own_funds', p.own_funds);
+    setv('f_rnd', p.rnd); setv('f_women_led', p.women_led); setv('f_revenue', p.revenue); setv('f_legal', p.legal_form); setv('f_location', p.location);
+    setv('f_name', p.contact_name || p.display_name); setv('f_email', p.email); setv('f_phone', p.phone); setv('f_notes', p.notes); setv('f_past', p.past_grants);
+    var inds = Array.isArray(p.industries) && p.industries.length ? p.industries : (p.industry ? [p.industry] : []);
+    document.querySelectorAll('#f_industries input').forEach(function (b) { if (inds.indexOf(b.value) >= 0) b.checked = true; });
+    (p.categories || []).forEach(function (c) { var b = document.querySelector('#f_categories input[value="' + c + '"]'); if (b) b.checked = true; });
+  }
+  try { fill(JSON.parse(localStorage.getItem('grantpilot:profile') || 'null')); } catch (e) {}
+  try { fill(JSON.parse(localStorage.getItem('aip:quick') || 'null')); } catch (e) {}
 
-// Sync onboarding profile data to public.profiles when the user is signed in.
-// Silent on failure — localStorage is the source of truth offline and gets
-// migrated on the next sign-in by portal.html's migrateLocalToSupabase pass.
-async function syncProfileToSupabase(data) {
-    if (!window.gp) {
-        // Wait briefly for the SDK to load (defer-loaded), then try.
-        await new Promise(r => {
-            if (window.gp) return r();
-            const onReady = () => { window.removeEventListener('gp-ready', onReady); r(); };
-            window.addEventListener('gp-ready', onReady);
-            setTimeout(r, 1500); // bail-out timeout — anon users won't have window.gp
-        });
-    }
+  // ---------- session ----------
+  var signedInUser = null;
+  (async function () {
+    await new Promise(function (r) { if (window.gp) return r(); window.addEventListener('gp-ready', function () { r(); }, { once: true }); setTimeout(r, 2500); });
     if (!window.gp || !window.gp.client) return;
     try {
-        const { data: { user } } = await window.gp.client.auth.getUser();
-        if (!user) return; // anonymous — nothing to sync server-side
-        const patch = {
-            display_name: data.contact_name || null,
-            company: data.company || null,
-            industry: data.industry || null,
-            employees: data.employees || null,
-            revenue: data.revenue || null,
-            location: data.location || null,
-            years_operating: data.years_operating || null,
-            legal_form: data.legal_form || null,
-            categories: Array.isArray(data.categories) ? data.categories : null,
-            phone: data.phone || null,
-        };
-        // Drop nulls so we don't blank out existing fields if a step was skipped
-        Object.keys(patch).forEach(k => patch[k] === null && delete patch[k]);
-        if (Object.keys(patch).length === 0) return;
-        // Weekly e-mail is opt-in: store the explicit choice from step 3.
-        if (Array.isArray(data.channels)) {
-            const { error: nErr } = await window.gp.client.from('notif_prefs')
-                .upsert({ user_id: user.id, weekly_enabled: data.channels.includes('weekly') }, { onConflict: 'user_id' });
-            if (nErr) console.warn('[gp] notif_prefs sync failed', nErr);
-        }
-        const { error } = await window.gp.client.from('profiles').update(patch).eq('id', user.id);
-        if (error) console.warn('[gp] onboarding profile sync failed', error);
-        else console.log('[gp] profile synced to Supabase:', Object.keys(patch));
-        // Extended fields (multi-industry + eligibility) go in a separate patch:
-        // if the DB migration adding these columns hasn't run yet, only this
-        // patch fails (silently) — the legacy fields above still sync.
-        const extended = {
-            industries: Array.isArray(data.industries) && data.industries.length ? data.industries : null,
-            site_region: data.site_region || null,
-            public_debt_free: data.public_debt_free || null,
-            own_funds: data.own_funds || null,
-            in_difficulty: data.in_difficulty || null,
-            teaor: data.teaor || null,
-        };
-        Object.keys(extended).forEach(k => extended[k] === null && delete extended[k]);
-        if (Object.keys(extended).length) {
-            window.gp.client.from('profiles').update(extended).eq('id', user.id)
-                .then(({ error: e2 }) => { if (e2) console.info('[gp] extended profile fields not synced (migration pending)'); });
-        }
-    } catch (e) { console.warn('[gp] syncProfileToSupabase error', e); }
-}
+      var u = (await window.gp.client.auth.getUser()).data.user;
+      if (!u) return;
+      signedInUser = u;
+      $('f_email_wrap').hidden = true; $('f_email').value = u.email || '';
+      $('f_phone_req').hidden = false;
+      try { if (window.gp.getUserProfile) fill(await window.gp.getUserProfile()); } catch (e) {}
+      try {
+        var np = await window.gp.client.from('notif_prefs').select('weekly_enabled, instant_enabled').eq('user_id', u.id).maybeSingle();
+        if (np.data) { var w = document.querySelector('#f_channels input[value=weekly]'), i = document.querySelector('#f_channels input[value=instant]'); if (w) w.checked = !!np.data.weekly_enabled; if (i) i.checked = !!np.data.instant_enabled; }
+      } catch (e) {}
+      $('consent-wrap').hidden = true; $('f_gdpr').checked = true; // accepted at sign-up
+      preview();
+    } catch (e) {}
+  })();
 
-// Signed-in mode: this form is the CÉGPROFIL editor, not a registration.
-// We already know the account e-mail (hide the field), the phone becomes
-// required (the pályázatíró partner needs it to reach the client), and the
-// CTA/success copy say "profil mentése" instead of "regisztráció".
-let signedInUser = null;
-(async function detectSession() {
-    await new Promise(r => {
-        if (window.gp) return r();
-        const onReady = () => { window.removeEventListener('gp-ready', onReady); r(); };
-        window.addEventListener('gp-ready', onReady);
-        setTimeout(r, 1500);
+  // ---------- save ----------
+  async function syncProfile(data) {
+    if (!signedInUser) return true;
+    var c = window.gp.client;
+    var patch = { display_name: data.contact_name, company: data.company, industry: data.industry, industries: data.industries, employees: data.employees, revenue: data.revenue, location: data.location, site_region: data.site_region, years_operating: data.years_operating, legal_form: data.legal_form, public_debt_free: data.public_debt_free, own_funds: data.own_funds, in_difficulty: data.in_difficulty, teaor: data.teaor, categories: data.categories, phone: data.phone };
+    Object.keys(patch).forEach(function (k) { if (patch[k] === '' || patch[k] == null) delete patch[k]; });
+    var r = await c.from('profiles').update(patch).eq('id', signedInUser.id);
+    if (r.error) { console.warn('[gp] profile save failed', r.error); return false; }
+    var v2 = {}; if (data.rnd) v2.rnd = data.rnd; if (data.women_led) v2.women_led = data.women_led;
+    if (Object.keys(v2).length) { var r2 = await c.from('profiles').update(v2).eq('id', signedInUser.id); if (r2.error) console.info('[gp] v2 profile fields not saved (migration pending)'); }
+    var np = await c.from('notif_prefs').upsert({ user_id: signedInUser.id, weekly_enabled: data.channels.indexOf('weekly') >= 0 }, { onConflict: 'user_id' });
+    if (np.error) console.warn('[gp] notif_prefs save failed', np.error);
+    var ni = await c.from('notif_prefs').update({ instant_enabled: data.channels.indexOf('instant') >= 0 }).eq('user_id', signedInUser.id);
+    if (ni.error) console.info('[gp] instant_enabled not saved (migration pending)');
+    return true;
+  }
+  $('submit-btn').addEventListener('click', async function () {
+    var err = $('s3-err'); err.hidden = true;
+    var need = [];
+    if (!val('f_name')) need.push('f_name');
+    if (!signedInUser && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val('f_email'))) need.push('f_email');
+    if (signedInUser && !val('f_phone')) need.push('f_phone');
+    need.forEach(function (id) { $(id).classList.add('invalid'); });
+    if (need.length) { err.textContent = 'Töltse ki a csillaggal jelölt mezőket.'; err.hidden = false; $(need[0]).focus(); return; }
+    if (!$('f_gdpr').checked) { err.textContent = 'Fogadja el az adatkezelési tájékoztatót és az ÁSZF-et.'; err.hidden = false; return; }
+    var inds = checked('#f_industries');
+    var data = Object.assign(draft(), {
+      company: val('f_company'), industries: inds, industry: inds[0] || '', legal_form: val('f_legal'), location: val('f_location'),
+      channels: checked('#f_channels'), past_grants: val('f_past'), notes: val('f_notes'), contact_name: val('f_name'), email: val('f_email'), phone: val('f_phone'),
+      gdpr_consent: true, gdpr_consent_ts: new Date().toISOString(), submitted: new Date().toISOString()
     });
-    if (!window.gp || !window.gp.client) return;
-    try {
-        const { data: { user } } = await window.gp.client.auth.getUser();
-        if (!user) return;
-        signedInUser = user;
-        const wrap = document.getElementById('f_email_wrap');
-        if (wrap) wrap.style.display = 'none';
-        const email = document.getElementById('f_email');
-        if (email) email.value = user.email || '';
-        const phoneReq = document.getElementById('f_phone_req');
-        if (phoneReq) phoneReq.style.display = '';
-        const btn = document.getElementById('submit-btn');
-        if (btn) btn.textContent = 'Cégprofil mentése';
-        const h = document.querySelector('#step-success h2');
-        if (h) h.textContent = 'Cégprofil mentve!';
-        const p = document.querySelector('#step-success p');
-        if (p) p.textContent = 'A pontozást azonnal a cégprofiljához igazítjuk. Átirányítjuk a portálra…';
-    } catch (e) { /* anonymous flow stays as-is */ }
+    try { localStorage.setItem('grantpilot:profile', JSON.stringify(data)); localStorage.removeItem('aip:quick'); } catch (e) {}
+    var btn = this; btn.disabled = true; btn.textContent = 'Mentés…';
+    var ok = await syncProfile(data).catch(function () { return false; });
+    btn.disabled = false; btn.textContent = 'Profil mentése';
+    if (!ok) { err.textContent = 'A profilt most nem sikerült elmenteni a szerverre (a böngészőjében megvan). Kérjük, próbálja újra.'; err.hidden = false; return; }
+    if (window.aipTrack) aipTrack('profile-done');
+    ['step-1', 'step-2', 'step-3'].forEach(function (id) { $(id).hidden = true; });
+    $('step-success').hidden = false;
+    if (signedInUser) { setTimeout(function () { location.replace('portal.html'); }, 900); }
+    else {
+      $('done-title').textContent = 'A profilt elmentettük ebben a böngészőben.';
+      $('done-text').textContent = 'Hozzon létre ingyenes fiókot, hogy értesítést kaphasson és más eszközön is elérje.';
+      $('done-link').textContent = 'Fiók létrehozása'; $('done-link').href = 'signup.html?from=onboarding';
+    }
+  });
+  window.__obGo = go;
 })();
-
-function submitForm() {
-    if (!document.getElementById('f_name').value || !document.getElementById('f_email').value) {
-        if (!document.getElementById('f_name').value) document.getElementById('f_name').style.borderColor = '#dc2626';
-        if (!document.getElementById('f_email').value) document.getElementById('f_email').style.borderColor = '#dc2626';
-        return;
-    }
-    // Phone is required in the signed-in (cégprofil) flow only.
-    if (signedInUser && !document.getElementById('f_phone').value.trim()) {
-        const ph = document.getElementById('f_phone');
-        ph.style.borderColor = '#dc2626';
-        ph.scrollIntoView({behavior:'smooth', block:'center'});
-        ph.focus();
-        return;
-    }
-    // GDPR consent — required before submission
-    const consent = document.getElementById('f_gdpr');
-    if (consent && !consent.checked) {
-        consent.parentElement.parentElement.style.borderColor = '#dc2626';
-        consent.parentElement.parentElement.style.background = '#fef2f2';
-        consent.scrollIntoView({behavior:'smooth', block:'center'});
-        return;
-    }
-    // Separate interest categories (step 2) from notification channels (step 3)
-    const interestCategories = [...document.querySelectorAll('#step-2 .checkbox-grid input:checked')].map(c => c.value);
-    const channels = [...document.querySelectorAll('#step-3 .checkbox-grid input:checked')].map(c => c.value);
-    const industries = [...document.querySelectorAll('#f_industries input:checked')].map(c => c.value);
-    const data = {
-        company: document.getElementById('f_company').value,
-        industries: industries,
-        industry: industries[0] || '',
-        employees: document.getElementById('f_employees').value,
-        revenue: document.getElementById('f_revenue').value,
-        location: document.getElementById('f_location').value,
-        site_region: (document.getElementById('f_site_region') || {}).value || '',
-        years_operating: (document.getElementById('f_years') || {}).value || '',
-        legal_form: (document.getElementById('f_legal') || {}).value || '',
-        public_debt_free: (document.getElementById('f_public_debt') || {}).value || '',
-        own_funds: (document.getElementById('f_own_funds') || {}).value || '',
-        in_difficulty: (document.getElementById('f_difficulty') || {}).value || '',
-        teaor: (document.getElementById('f_teaor') || {}).value || '',
-        categories: interestCategories,
-        channels: channels,
-        past_grants: document.getElementById('f_past').value,
-        notes: document.getElementById('f_notes').value,
-        contact_name: document.getElementById('f_name').value,
-        email: document.getElementById('f_email').value,
-        phone: document.getElementById('f_phone').value,
-        gdpr_consent: true,
-        gdpr_consent_ts: new Date().toISOString(),
-        submitted: new Date().toISOString()
-    };
-    // Always persist locally for the in-app personalization
-    try { localStorage.setItem('grantpilot:profile', JSON.stringify(data)); } catch(e) {}
-    // Sync to Supabase if signed in (fire-and-forget — local copy is source of truth offline).
-    syncProfileToSupabase(data);
-    // Optionally forward to a configured backend (legacy fallback)
-    if (ONBOARD_BACKEND_URL) {
-        fetch(ONBOARD_BACKEND_URL, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-            body: JSON.stringify(data)
-        }).catch(() => { /* swallow — local copy already saved */ });
-    }
-    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-    document.getElementById('step-success').classList.add('active');
-    document.querySelectorAll('.progress-step').forEach(p => p.classList.add('active'));
-    // Honest demo-mode note: shown when no backend is configured.
-    // Auto-login: free tier doesn't need a separate password — set the session
-    // token and forward into the portal. New users go straight to value.
-    try {
-        const tok = Array.from(crypto.getRandomValues(new Uint8Array(24))).map(b => b.toString(16).padStart(2,'0')).join('');
-        sessionStorage.setItem('gp_auth_token', tok);
-        sessionStorage.setItem('gp_user_email', data.email || '');
-        sessionStorage.setItem('gp_auth_time', Date.now().toString());
-    } catch(e) {}
-    setTimeout(() => { window.location.replace('portal.html'); }, 1500);
-}
 </script>
-
-<!-- COOKIE CONSENT -->
-<div id="gpcb" style="display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:2000;max-width:680px;margin:0 auto;background:#111827;color:#e5e7eb;border-radius:12px;padding:16px 20px;font-family:'Inter',-apple-system,sans-serif;font-size:13px;line-height:1.55;box-shadow:0 10px 30px rgba(0,0,0,0.25);">
-    <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;">
-        <div style="flex:1;min-width:240px;">
-            <b style="color:white;">Sütik használata</b><br>
-            Az AIpályázó a működéshez szükséges sütiket használ. Részletek az
-            <a href="adatvedelem.html" style="color:#86efac;">Adatkezelési tájékoztatóban</a>.
-        </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button onclick="gpcbAccept('necessary')" style="background:transparent;color:#e5e7eb;border:1px solid #374151;padding:8px 14px;border-radius:6px;font-weight:600;font-size:12px;cursor:pointer;font-family:inherit;">Csak szükségesek</button>
-            <button onclick="gpcbAccept('all')" style="background:#16a34a;color:white;border:none;padding:8px 14px;border-radius:6px;font-weight:700;font-size:12px;cursor:pointer;font-family:inherit;">Elfogadom mind</button>
-        </div>
-    </div>
-</div>
-<script>
-(function(){ try { if (!localStorage.getItem('gp_cookie_consent')) { document.getElementById('gpcb').style.display = 'block'; } } catch(e) {} })();
-function gpcbAccept(level){ try { localStorage.setItem('gp_cookie_consent', JSON.stringify({level:level,ts:Date.now()})); } catch(e) {} var el = document.getElementById('gpcb'); if (el) el.style.display = 'none'; }
-</script>
-
 </body>
 </html>
