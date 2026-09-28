@@ -185,6 +185,31 @@ test('summaries: generated once, reused while the source is unchanged, EU topics
   assert.deepEqual(Object.keys(r2.summaries), ['a']); // removed call's summary dropped
 });
 
+test('summaries: document checklist section allows up to 6 grounded items; old-version summaries are refreshed', async () => {
+  const docs = ['cégkivonat', 'beszámoló', 'árajánlat', 'de minimis nyilatkozat', 'aláírási címpéldány', 'bankszámlaigazolás', 'fotók'];
+  const src = 'Csatolandó: ' + docs.join(', ') + '. ' + CALL;
+  const raw = { items: [
+    { section: 'who', text: 'KKV-k.', quote: 'mikro-, kis- és középvállalkozások' },
+    { section: 'money', text: '3–20 M Ft.', quote: '3–20 millió Ft' },
+    ...docs.map((d) => ({ section: 'docs', text: d, quote: d })),
+  ] };
+  const v = validateSummary(raw, src);
+  const d = v.sections.find((x) => x.key === 'docs');
+  assert.equal(d.title, 'Szükséges dokumentumok');
+  assert.equal(d.items.length, 6);
+  let calls = 0;
+  const llm = async () => { calls++; return JSON.stringify(raw); };
+  const { fetchImpl } = fakeWeb({ 'https://mfb.hu/termek': html(src) });
+  const fetchPage = makeFetcher({ fetchImpl, delayMs: 0, cache: new Map() });
+  const items = [{ id: 'a', title: 'A', url: 'https://mfb.hu/termek' }];
+  const r1 = await updateSummaries({ items, fetchPage, llm, today: TODAY });
+  const old = { a: { ...r1.summaries.a, v: undefined } };
+  await updateSummaries({ items, prev: old, fetchPage, llm, today: TODAY });
+  assert.equal(calls, 2);                           // v1 summary regenerated once
+  await updateSummaries({ items, prev: r1.summaries, fetchPage, llm, today: TODAY });
+  assert.equal(calls, 2);                           // current version kept
+});
+
 test('suggested eligibility tags: grounded ones kept on the auto item, invented ones dropped', async () => {
   const page = PAGE + '\nCsak NTAK-regisztrált szálláshely-szolgáltatók pályázhatnak.';
   const x = { ...GOOD, requires: {

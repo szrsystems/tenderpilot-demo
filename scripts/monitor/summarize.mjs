@@ -18,16 +18,22 @@ export const SECTIONS = [
   ['money', 'Összeg és támogatási arány'],
   ['own', 'Önerő és feltételek'],
   ['how', 'Beadás és határidők'],
+  ['docs', 'Szükséges dokumentumok'],
   ['watch', 'Mire figyeljen'],
 ];
+// Bump when the prompt/sections change: older summaries are then regenerated
+// (still capped by maxCalls per run, so the refresh spreads over a few days).
+export const SUMMARY_VERSION = 2;
+const PER_SECTION = { docs: 6 };
 const MIN_TEXT = 700;       // shorter pages (JS shells, empty pages) are skipped
 const MAX_CHARS = 30000;
 
 export function summaryPrompt(text, url, title) {
   return `Egy magyar pályázatkereső oldalnak készítesz rövid, közérthető összefoglalót egy támogatási felhívásról (${title}, forrás: ${url}).
 CSAK az alábbi hivatalos szövegből dolgozz. Válasz KIZÁRÓLAG JSON, ebben a formában:
-{"items":[{"section":"who|what|money|own|how|watch","text":"egy rövid magyar mondat, max 160 karakter","quote":"a forrásszöveg PONTOS, betű szerinti részlete (max 200 karakter), amire a mondat épül"}]}
-Szabályok: szekciónként 1–3 pont; ami nincs a szövegben, azt hagyd ki, ne találj ki semmit; angol forrásnál a "text" magyar, a "quote" az eredeti angol részlet; ne ismételd a címet.
+{"items":[{"section":"who|what|money|own|how|docs|watch","text":"egy rövid magyar mondat, max 160 karakter","quote":"a forrásszöveg PONTOS, betű szerinti részlete (max 200 karakter), amire a mondat épül"}]}
+A "docs" szekcióba a beadáshoz kért mellékletek, nyilatkozatok, igazolások kerüljenek (pl. cégkivonat, beszámoló, árajánlat, de minimis nyilatkozat), dokumentumonként egy pont, legfeljebb 6.
+Szabályok: a többi szekcióban 1–3 pont; ami nincs a szövegben, azt hagyd ki, ne találj ki semmit; angol forrásnál a "text" magyar, a "quote" az eredeti angol részlet; ne ismételd a címet.
 
 HIVATALOS SZÖVEG:
 ${text.slice(0, MAX_CHARS)}`;
@@ -45,7 +51,7 @@ export function validateSummary(raw, sourceText) {
     if (!grounded(String(it.quote || ''), sourceText)) { dropped++; continue; }
     kept.push({ section: it.section, text: String(it.text).trim(), quote: String(it.quote).trim().slice(0, 240) });
   }
-  const sections = SECTIONS.map(([key, title]) => ({ key, title, items: kept.filter((k) => k.section === key).slice(0, 3).map(({ text, quote }) => ({ text, quote })) }))
+  const sections = SECTIONS.map(([key, title]) => ({ key, title, items: kept.filter((k) => k.section === key).slice(0, PER_SECTION[key] || 3).map(({ text, quote }) => ({ text, quote })) }))
     .filter((s) => s.items.length);
   return { ok: kept.length >= 3, sections, kept: kept.length, dropped };
 }
@@ -78,12 +84,12 @@ export async function updateSummaries({ items, prev = {}, fetchPage, llm, today,
     const src = await sourceText(g, fetchPage).catch(() => null);
     if (!src) { skipped++; continue; }
     const h = hash(src.text);
-    if (out[g.id] && out[g.id].sourceHash === h) { kept++; continue; }
+    if (out[g.id] && out[g.id].sourceHash === h && (out[g.id].v || 1) >= SUMMARY_VERSION) { kept++; continue; }
     if (!llm || calls >= maxCalls) { skipped++; continue; }
     calls++;
     try {
       const v = validateSummary(await llm(summaryPrompt(src.text, src.url, g.title)), src.text);
-      if (v.ok) { out[g.id] = { sourceUrl: src.url, sourceHash: h, generatedAt: today, sections: v.sections }; made++; }
+      if (v.ok) { out[g.id] = { v: SUMMARY_VERSION, sourceUrl: src.url, sourceHash: h, generatedAt: today, sections: v.sections }; made++; }
       else failed++;
     } catch { failed++; }
   }

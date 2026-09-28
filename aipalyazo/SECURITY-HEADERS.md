@@ -1,104 +1,55 @@
 # Security headers — AIpályázó
 
-## TL;DR
+GitHub Pages cannot send custom HTTP headers. Today every page carries a CSP and
+a Referrer-Policy as `<meta>` tags. The rest (clickjacking protection, nosniff,
+Permissions-Policy) needs Cloudflare in front of the domain.
 
-GitHub Pages **cannot send custom HTTP headers**. We do what's possible with
-`<meta>` tags now (CSP + Referrer-Policy), and the full set of real headers
-gets set by **Cloudflare** once `aipalyazo.hu` is live. Until then, 3 of the 5
-requested headers (X-Frame-Options, X-Content-Type-Options, Permissions-Policy)
-**cannot be enforced** — that is a hosting limitation, not an oversight.
+## What is live now (meta tags)
 
----
-
-## What's live now (meta tags in every page `<head>`)
-
-```html
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://kacnvchwfwvpkkyhyupb.supabase.co wss://kacnvchwfwvpkkyhyupb.supabase.co https://formspree.io; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'">
-<meta name="referrer" content="strict-origin-when-cross-origin">
-```
-
-### Why `'unsafe-inline'` is here (and why it's not ideal)
-
-The app uses ~80 inline event handlers (`onclick=`), 121 inline `style=""`
-attributes, inline `<script>`/`<style>` blocks. A strict `script-src 'self'`
-would break the whole app. `'unsafe-inline'` still blocks **external** script
-loading and data exfiltration to non-allowlisted origins (real protection),
-but it does **not** stop inline-injection XSS. To get a truly strict CSP, see
-"Path to a strict CSP" below.
-
-### Origins in the allowlist and why
-
-| Origin | Directive | Used for |
+| Page group | script-src | Notes |
 |---|---|---|
-| `cdn.jsdelivr.net` | script-src | Supabase JS SDK |
-| `fonts.googleapis.com` | style-src | Google Fonts stylesheet |
-| `fonts.gstatic.com` | font-src | Google Fonts font files |
-| `kacnvchwfwvpkkyhyupb.supabase.co` (https + wss) | connect-src | Auth, REST, realtime |
-| `formspree.io` | connect-src, form-action | Lead/onboarding form (when wired up) |
-| `data:` | img-src | Inline SVG favicon / data-URI images |
+| `portal.html` | `'self'` + jsdelivr (Supabase SDK, SRI-pinned) + Turnstile + GoatCounter | **No `'unsafe-inline'`** — the portal has no inline scripts or handlers, so injected markup cannot run script. |
+| Auth pages, onboarding, unsubscribe, lead status | `'self' 'unsafe-inline'` + jsdelivr + GoatCounter | Still have inline `<script>` blocks. |
+| Home, legal, public call pages | `'self' 'unsafe-inline'` + GoatCounter | No Supabase access at all (`connect-src` limited). |
 
-**If you change the Supabase project, swap fonts, or move the SDK**, update the
-CSP in every HTML file (static sites can't share a header include).
+Common to all: `default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'`
+(fonts are self-hosted), `img-src 'self' data:`, `base-uri 'self'; object-src 'none'; form-action 'self'`.
 
----
+Allowed origins and why:
 
-## The full set of real headers (Cloudflare — do this at domain launch)
+| Origin | Used for |
+|---|---|
+| `cdn.jsdelivr.net` | Supabase JS SDK (pinned version + SRI hash in `lib/supabase.js`) |
+| `kacnvchwfwvpkkyhyupb.supabase.co` (https + wss) | Auth, database, Edge Functions |
+| `challenges.cloudflare.com` (script + frame) | Turnstile captcha on the consultation form (only when a site key is set) |
+| `gc.zgo.at`, `*.goatcounter.com` | Cookie-free analytics (only when `GC_CODE` is set) |
 
-Once `aipalyazo.hu` points at GitHub Pages **through Cloudflare** (free plan):
-Dashboard → **Rules → Transform Rules → Modify Response Header** → "Add" each:
+If the Supabase project, SDK version or analytics provider changes, update the
+CSP meta in the affected HTML files and `scripts/build-pages.mjs`.
+
+## Cloudflare (do this at domain launch)
+
+Dashboard → Rules → Transform Rules → Modify Response Header, for `aipalyazo.hu/*`:
 
 | Header | Value |
 |---|---|
-| `Content-Security-Policy` | *(same string as the meta tag above, plus `frame-ancestors 'none';`)* |
 | `X-Frame-Options` | `DENY` |
+| `Content-Security-Policy` | `frame-ancestors 'none'` (only this directive — the per-page meta CSP keeps doing the rest) |
 | `X-Content-Type-Options` | `nosniff` |
 | `Referrer-Policy` | `strict-origin-when-cross-origin` |
 | `Permissions-Policy` | `camera=(), microphone=(), geolocation=(), payment=(), usb=()` |
+| `Strict-Transport-Security` | `max-age=31536000` (add `includeSubDomains` only if every subdomain is HTTPS) |
 
-`frame-ancestors 'none'` (real header) + `X-Frame-Options: DENY` together give
-full clickjacking protection — neither works as a meta tag, so this is the step
-that actually closes that gap. Once these are live you can delete the CSP meta
-tag from the HTML (keep the `referrer` meta as a harmless fallback).
+Two CSPs (header + meta) are both enforced, so the header only needs `frame-ancestors`.
 
----
+## Next hardening step
 
-## Alternative: a header-capable host (`_headers` file)
+Move the remaining inline `<script>` blocks on the auth pages and onboarding
+into `assets/*.js` files, then drop `'unsafe-inline'` from their `script-src`
+the same way the portal already does.
 
-If you ever move off GitHub Pages to **Netlify** or **Cloudflare Pages**, drop a
-file named `_headers` at the site root — no other config needed:
+## Verify
 
-```
-/*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://kacnvchwfwvpkkyhyupb.supabase.co wss://kacnvchwfwvpkkyhyupb.supabase.co https://formspree.io; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'; frame-ancestors 'none'
-  X-Frame-Options: DENY
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
-```
-
----
-
-## Path to a strict CSP (drop `'unsafe-inline'`)
-
-Real XSS protection needs `script-src 'self'` with **no** `'unsafe-inline'`.
-That requires, in order:
-
-1. Move every inline `<script>` block into an external `.js` file.
-2. Replace all ~80 inline `on*=` handlers with `addEventListener` in those files
-   (event delegation keeps it small).
-3. For styles: move `<style>` blocks to a `.css` file; replace dynamic
-   `style=""` writes with class toggles (or keep `style-src 'unsafe-inline'` —
-   style injection is far lower-risk than script injection).
-4. Then tighten to: `script-src 'self' https://cdn.jsdelivr.net` (or
-   self-host the SDK and drop jsdelivr too).
-
-This is a real refactor (estimate 1–2 days for portal.html). Worth doing
-post-launch; not a blocker for going live.
-
----
-
-## Verifying
-
-- Headers: `curl -sI https://aipalyazo.hu/ | grep -iE 'content-security|x-frame|x-content|referrer|permissions'`
-- CSP violations: open the site, DevTools → Console — CSP blocks log as errors.
-- Score: https://securityheaders.com and https://observatory.mozilla.org
+- `curl -sI https://aipalyazo.hu/aipalyazo/ | grep -iE 'x-frame|x-content|referrer|permissions|strict-transport|content-security'`
+- DevTools → Console: CSP blocks show up as errors.
+- https://securityheaders.com, https://observatory.mozilla.org
