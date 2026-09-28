@@ -1,0 +1,36 @@
+name: Lead digest
+
+# Daily 07:10 UTC: retries undelivered lead notifications to the grant-writer
+# partner and, on Mondays, sends the weekly lead summary (edge function
+# `lead-digest`). Protected by CRON_SECRET (GitHub repo secret). The anon key
+# below is public by design (RLS is the real control).
+on:
+  schedule:
+    - cron: '10 7 * * *'
+  workflow_dispatch:
+    inputs:
+      weekly:
+        description: 'Send the weekly summary now'
+        type: boolean
+        default: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger lead-digest function
+        env:
+          ANON: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImthY252Y2h3Znd2cGtreWh5dXBiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzQwNDEsImV4cCI6MjA5NjE1MDA0MX0.ajkwWvyPP-ENAnOXmokvBQ-1PP0So-qoZg4DJmsPob0'
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          WEEKLY: ${{ inputs.weekly && 'true' || 'false' }}
+        run: |
+          if [ -z "$CRON_SECRET" ]; then
+            echo "CRON_SECRET is not set — skipping."
+            exit 0
+          fi
+          curl -fsS -X POST "https://kacnvchwfwvpkkyhyupb.supabase.co/functions/v1/lead-digest" \
+            -H "Authorization: Bearer $ANON" \
+            -H "apikey: $ANON" \
+            -H "x-cron-secret: $CRON_SECRET" \
+            -H "Content-Type: application/json" \
+            -d "{\"weekly\": $WEEKLY}"
