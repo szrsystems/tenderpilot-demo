@@ -1,448 +1,162 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <!-- Security headers (meta subset — GitHub Pages cannot send real HTTP
-         headers; X-Frame-Options / X-Content-Type-Options / Permissions-Policy
-         and CSP frame-ancestors require Cloudflare. See SECURITY-HEADERS.md). -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://kacnvchwfwvpkkyhyupb.supabase.co wss://kacnvchwfwvpkkyhyupb.supabase.co https://formspree.io; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIpályázó — Bejelentkezés</title>
-    <meta name="robots" content="noindex,nofollow">
-    <meta name="theme-color" content="#16a34a">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="lib/supabase.js" defer></script>
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --green-50: #f0fdf4; --green-100: #dcfce7; --green-200: #bbf7d0; --green-500: #22c55e; --green-600: #16a34a; --green-700: #15803d; --green-800: #166534;
-            --red-50: #fef2f2; --red-100: #fee2e2; --red-600: #dc2626; --red-700: #b91c1c;
-            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
-            --radius: 8px; --radius-lg: 12px;
-        }
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--gray-50);
-            color: var(--gray-900);
-            -webkit-font-smoothing: antialiased;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        .bg-decor {
-            position: fixed;
-            inset: 0;
-            background:
-                radial-gradient(circle at 15% 20%, rgba(34, 197, 94, 0.08), transparent 40%),
-                radial-gradient(circle at 85% 80%, rgba(34, 197, 94, 0.06), transparent 45%);
-            pointer-events: none;
-            z-index: 0;
-        }
-        .container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-            position: relative;
-            z-index: 1;
-        }
-        .login-card {
-            width: 100%;
-            max-width: 420px;
-            background: white;
-            border: 1px solid var(--gray-200);
-            border-radius: var(--radius-lg);
-            padding: 40px 36px 32px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
-        }
-        .logo-area {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-        .logo-mark {
-            width: 56px;
-            height: 56px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, var(--green-500), var(--green-700));
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-            box-shadow: 0 6px 14px rgba(22, 163, 74, 0.25);
-        }
-        .logo-mark svg { width: 28px; height: 28px; color: white; }
-        .logo-text { font-size: 22px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.5px; }
-        .logo-text span { color: var(--green-600); }
-        .logo-sub { font-size: 13px; color: var(--gray-500); margin-top: 6px; }
-
-        h1 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 6px;
-            text-align: center;
-        }
-        .subtitle {
-            font-size: 13px;
-            color: var(--gray-500);
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .form-group { margin-bottom: 16px; }
-        label {
-            display: block;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--gray-700);
-            margin-bottom: 6px;
-        }
-        input[type="email"], input[type="password"] {
-            width: 100%;
-            padding: 11px 14px;
-            border: 1px solid var(--gray-300);
-            border-radius: var(--radius);
-            font-size: 14px;
-            font-family: inherit;
-            color: var(--gray-900);
-            background: white;
-            transition: border-color 0.15s, box-shadow 0.15s;
-        }
-        input[type="email"]:focus, input[type="password"]:focus {
-            outline: none;
-            border-color: var(--green-500);
-            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
-        }
-
-        .row-helper {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: -8px;
-            margin-bottom: 20px;
-        }
-        .forgot-link {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--green-700);
-            text-decoration: none;
-        }
-        .forgot-link:hover { text-decoration: underline; }
-
-        button.btn-login {
-            width: 100%;
-            padding: 12px 16px;
-            background: var(--green-600);
-            color: white;
-            border: none;
-            border-radius: var(--radius);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: inherit;
-            transition: background 0.15s;
-        }
-        button.btn-login:hover { background: var(--green-700); }
-        button.btn-login:disabled { opacity: 0.6; cursor: not-allowed; }
-
-        .error-msg {
-            display: none;
-            margin-bottom: 16px;
-            padding: 10px 14px;
-            background: var(--red-50);
-            border: 1px solid var(--red-100);
-            border-radius: var(--radius);
-            color: var(--red-700);
-            font-size: 13px;
-            font-weight: 500;
-        }
-        .error-msg.show { display: block; }
-
-        .demo-hint {
-            margin-top: 20px;
-            padding: 12px 14px;
-            background: var(--green-50);
-            border: 1px solid var(--green-100);
-            border-radius: var(--radius);
-            font-size: 12px;
-            color: var(--green-800);
-            line-height: 1.5;
-        }
-        .demo-hint b { font-weight: 700; }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 12px;
-            color: var(--gray-400);
-            position: relative;
-            z-index: 1;
-        }
-        footer a { color: var(--gray-500); text-decoration: none; }
-        footer a:hover { color: var(--gray-700); }
-
-        @media (max-width: 480px) {
-            .login-card { padding: 32px 24px 24px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://*.goatcounter.com https://kacnvchwfwvpkkyhyupb.supabase.co wss://kacnvchwfwvpkkyhyupb.supabase.co; base-uri 'self'; object-src 'none'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Belépés — AIpályázó</title>
+<meta name="description" content="Belépés az AIpályázó fiókjába.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0e1a2b">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.auth-grid{display:grid;gap:var(--s7);padding:var(--s7) 0 var(--s8)}
+@media(min-width:960px){.auth-grid{grid-template-columns:minmax(0,440px) minmax(0,1fr);align-items:start}}
+.auth-card h1{font-size:30px;margin-bottom:var(--s2)}
+.auth-card .lede{font-size:16px;margin-bottom:var(--s5)}
+.msg{display:none;margin-bottom:var(--s4)}.msg.show{display:block}
+.btn-google{width:100%;background:var(--paper);color:var(--ink);border:1px solid var(--line-strong)}
+.btn-google:hover{background:var(--surface)}
+.btn-google svg{width:18px;height:18px}
+.form-row{display:grid;gap:0 var(--s4)}@media(min-width:520px){.form-row{grid-template-columns:1fr 1fr}}
+.opt{font-weight:400;color:var(--ink-3)}
+.field-hint{font-size:13px;color:var(--ink-3);margin:-8px 0 var(--s4)}.field-hint.error{color:var(--danger)}
+input.mismatch{border-color:var(--danger)!important}
+.aside-list{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.aside-list li{padding:var(--s4) 0;border-bottom:1px solid var(--line)}
+.aside-list b{display:block;font-size:17px;margin-bottom:4px}
+.aside-list span{color:var(--ink-2)}
+.alt-link{margin-top:var(--s5);color:var(--ink-2)}
+.submit{width:100%}
+</style>
 </head>
 <body>
-<div class="bg-decor"></div>
-
-<div class="container">
-    <div class="login-card">
-        <div class="logo-area">
-            <div class="logo-mark">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                </svg>
-            </div>
-            <div class="logo-text"><span>AI</span>pályázó</div>
-            <div class="logo-sub">Pályázati ügyfélportál</div>
-        </div>
-
-        <h1 id="login-h1">Bejelentkezés</h1>
-        <div class="subtitle" id="login-sub">Adja meg az ügyfélfiókja adatait a folytatáshoz</div>
-
-        <div id="invite-banner" style="display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:#166534;line-height:1.5;">
-            <b id="invite-name">Üdv!</b><br>
-            <span style="color:#374151;">Ez egy személyre szabott demo-hozzáférés. Nyugodtan próbáljon ki mindent — minden adat <b>kizárólag az Ön böngészőjében</b> tárolódik, más felhasználó nem látja.</span>
-        </div>
-
-        <div class="error-msg" id="error-msg">Hibás e-mail cím vagy jelszó.</div>
-
-        <button class="btn-login" type="button" onclick="loginGoogle()" id="google-btn" style="background:white;color:#374151;border:1px solid #d1d5db;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px;">
-            <svg viewBox="0 0 24 24" style="width:18px;height:18px;"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-            Belépés Google-fiókkal
-        </button>
-        <div style="display:flex;align-items:center;gap:12px;margin:14px 0;font-size:11px;color:#9ca3af;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;"><span style="flex:1;height:1px;background:#e5e7eb;"></span>vagy<span style="flex:1;height:1px;background:#e5e7eb;"></span></div>
-
-        <form id="login-form" autocomplete="on">
-            <div class="form-group">
-                <label for="email">E-mail cím</label>
-                <input type="email" id="email" name="email" required autocomplete="email" placeholder="on@vallalkozas.hu">
-            </div>
-            <div class="form-group">
-                <label for="password">Jelszó</label>
-                <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="••••••••">
-            </div>
-            <div class="row-helper">
-                <a href="#" onclick="resetPassword(event)" class="forgot-link">Elfelejtette jelszavát?</a>
-            </div>
-            <button type="submit" class="btn-login" id="login-btn">Bejelentkezés</button>
-        </form>
-
-        <div style="text-align:center;font-size:13px;color:#6b7280;margin-top:18px;">
-            Még nincs fiókja? <a href="signup.html" style="color:#15803d;font-weight:600;text-decoration:none;">Ingyenes regisztráció</a>
-        </div>
-
-        <!-- Demo credentials box removed for public launch — the ?demo link
-             flow (banner + prefilled e-mail) still works for 1:1 demo shares. -->
+<a class="skip" href="#main">Ugrás a tartalomra</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="AIpályázó főoldal"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0a6b3d"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a>
+    <nav class="site-nav" aria-label="Fő navigáció">
+      <a href="palyazat/index.html">Nyitott pályázatok</a>
+      <a href="index.html#hogyan">Hogyan működik</a>
+      <a href="miert-ingyenes.html">Miért ingyenes?</a>
+    </nav>
+    <div class="head-actions">
+      <a class="btn btn-quiet btn-sm hide-sm" href="login.html" data-guest>Belépés</a>
+      <a class="btn btn-primary btn-sm" href="signup.html" data-guest>Regisztráció</a>
+      <a class="btn btn-primary btn-sm" href="portal.html" data-member hidden>Portál</a>
+      <button class="btn btn-ghost btn-sm head-menu" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     </div>
-</div>
-
-<footer>
-    © 2026 AIpályázó · <a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a>
+  </div>
+  <div class="wrap">
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobil navigáció">
+      <a href="palyazat/index.html">Nyitott pályázatok</a>
+      <a href="index.html#hogyan">Hogyan működik</a>
+      <a href="miert-ingyenes.html">Miért ingyenes?</a>
+      <a href="login.html">Belépés</a>
+    </nav>
+  </div>
+</header>
+<main id="main"><div class="wrap">
+<div class="auth-grid">
+<section class="auth-card">
+<h1>Belépés</h1>
+<p class="lede">Lépjen be a fiókjába a cégére szabott listához, a mentett felhívásokhoz és az értesítésekhez.</p>
+<div class="msg" id="error-msg" role="alert"></div>
+<button class="btn btn-google submit" type="button" id="google-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Belépés Google-fiókkal</button>
+<div class="divider">vagy e-mail-címmel</div>
+<form id="login-form" autocomplete="on" novalidate>
+<div class="field"><label for="email">E-mail-cím</label><input type="email" id="email" name="email" required autocomplete="email" inputmode="email"></div>
+<div class="field"><label for="password">Jelszó</label><input type="password" id="password" name="password" required autocomplete="current-password"></div>
+<p class="small" style="margin:-4px 0 var(--s4)"><a href="#" id="forgot">Elfelejtette a jelszavát?</a></p>
+<button type="submit" class="btn btn-primary submit" id="login-btn">Belépés</button>
+</form>
+<p class="alt-link">Még nincs fiókja? <a href="signup.html">Ingyenes regisztráció</a></p>
+</section>
+<aside aria-label="Mit kap a fiókkal">
+<p class="eyebrow">Ingyenes fiók — minden funkció</p>
+<ul class="aside-list" style="margin-top:var(--s3)">
+<li><b>Pontról pontra ellenőrzött lista</b><span>Minden nyitott felhívás a cége adataival összevetve, indoklással.</span></li>
+<li><b>Cégadatok adószámból</b><span>A NAV adataiból kitöltjük a cégnevet, a cégformát és a székhelyet.</span></li>
+<li><b>Értesítések, ha kéri</b><span>Heti összefoglaló és azonnali levél új, Önnek megfelelő felhívásról.</span></li>
+<li><b>Díjmentes konzultáció</b><span>Egy kattintással pályázatíró partnerünkhöz fordulhat. Nem kötelez semmire.</span></li>
+</ul>
+</aside>
+</div></div></main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0a6b3d"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a>
+        <p style="margin-top:var(--s3)">Ingyenes pályázatfigyelő magyar vállalkozásoknak. Tájékoztató szolgáltatás: beadás előtt mindig a hivatalos felhívás az irányadó.</p>
+      </div>
+      <div><h4>Pályázatok</h4><ul><li><a href="palyazat/index.html">Nyitott felhívások</a></li><li><a href="palyazat/index.html#temak">Témák és programok</a></li><li><a href="portal.html">Portál</a></li></ul></div>
+      <div><h4>Rólunk</h4><ul><li><a href="miert-ingyenes.html">Miért ingyenes?</a></li><li><a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a></li></ul></div>
+      <div><h4>Jogi</h4><ul><li><a href="impresszum.html">Impresszum</a></li><li><a href="adatvedelem.html">Adatkezelés</a></li><li><a href="aszf.html">ÁSZF</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 AIpályázó · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
+  </div>
 </footer>
-
+<script src="assets/site.js" defer></script>
+<script src="assets/analytics.js" defer></script>
+<script src="lib/supabase.js" defer></script>
 <script>
-// Legacy SHA-256 gate for the demo account (`email:password` hash — the
-// plaintext is intentionally NOT in this public file). Used only for the
-// writer demo flow (?for=&firm= invite links). Real users go through
-// Supabase Auth (see lib/supabase.js).
-const VALID_HASHES = {
-    "361b040bca673f9f3edccfec9240ec01cae01181356bde47b39ee592ff2bc1db": "demo@aipalyazo.hu"
-};
-
-async function sha256Hex(text) {
-    const buf = new TextEncoder().encode(text);
-    const hash = await crypto.subtle.digest("SHA-256", buf);
-    return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, "0")).join("");
-}
-
-function genToken() {
-    const arr = new Uint8Array(24);
-    crypto.getRandomValues(arr);
-    return Array.from(arr).map(b => b.toString(16).padStart(2, "0")).join("");
-}
-
-// Personalized demo-share invite: ?for=Csaba&firm=Pankotai+Iroda
-// Pre-fills the email + shows a warm welcome. Forwards the params to the
-// portal after successful login so the profile auto-seeds there too.
-(function initInvite() {
-    try {
-        const p = new URLSearchParams(location.search);
-        const forName = (p.get('for') || '').trim();
-        const firm = (p.get('firm') || '').trim();
-        if (!forName && !firm) return;
-        sessionStorage.setItem('gp_invite_for', forName);
-        if (firm) sessionStorage.setItem('gp_invite_firm', firm);
-        const banner = document.getElementById('invite-banner');
-        const inviteName = document.getElementById('invite-name');
-        if (banner && inviteName) {
-            inviteName.textContent = forName ? `Üdv, ${forName}!` : 'Üdv!';
-            banner.style.display = 'block';
-        }
-        const h1 = document.getElementById('login-h1');
-        const sub = document.getElementById('login-sub');
-        if (h1) h1.textContent = 'AIpályázó demo';
-        if (sub) sub.textContent = 'Jelentkezzen be lent a demo-fiókkal, és nézze meg a rendszert testreszabva.';
-        // Pre-fill demo email so they don't have to type — password still required.
-        const emailEl = document.getElementById('email');
-        if (emailEl && !emailEl.value) emailEl.value = 'demo@aipalyazo.hu';
-    } catch (e) {}
-})();
-
-if (sessionStorage.getItem("gp_auth_token")) {
-    window.location.replace("portal.html" + location.search);
-}
-
-const form = document.getElementById("login-form");
-const errorEl = document.getElementById("error-msg");
-const btn = document.getElementById("login-btn");
-
-// Show success message if redirected here after password reset.
-if ((new URLSearchParams(location.search)).get('password_reset') === '1') {
-    errorEl.style.background = '#f0fdf4';
-    errorEl.style.borderColor = '#bbf7d0';
-    errorEl.style.color = '#166534';
-    errorEl.textContent = 'Új jelszó beállítva ✓ — most belépve az új jelszóval folytathatja.';
-    errorEl.classList.add('show');
-}
-
 async function withClient(fn) {
-    if (!window.gp) await new Promise(r => window.addEventListener('gp-ready', r, { once: true }));
+    if (!window.gp) await new Promise(function (r) { window.addEventListener('gp-ready', r, { once: true }); });
     return fn(window.gp.client);
 }
-
-// Bounce out if already signed in via Supabase.
-// Skip the bounce when we just signed out (the lib/supabase.js guard already
-// nuked storage; if anything stale survives, getUser() would otherwise pull
-// the user back to portal.html and undo the signout).
-window.addEventListener('gp-ready', async () => {
-    if ((new URLSearchParams(location.search)).get('signed_out') === '1' ||
-        sessionStorage.getItem('gp_just_signed_out') === '1') {
-        sessionStorage.removeItem('gp_just_signed_out');
-        return;
-    }
-    const { data: { user } } = await window.gp.client.auth.getUser();
-    if (user) window.location.replace('portal.html' + location.search);
-});
-
-async function loginGoogle() {
-    try {
-        const { error } = await withClient(c => c.auth.signInWithOAuth({
-            provider: 'google',
-            options: {
-                redirectTo: location.origin + location.pathname.replace(/login\.html$/, 'portal.html'),
-                // Force Google's account picker every time — otherwise the
-                // single signed-in Chrome account auto-logs in without choice.
-                queryParams: { prompt: 'select_account' }
-            }
-        }));
-        if (error) throw error;
-    } catch (e) {
-        errorEl.textContent = 'Google bejelentkezés sikertelen: ' + ((e && e.message) || 'ismeretlen hiba');
-        errorEl.classList.add("show");
-    }
-}
-
-async function resetPassword(ev) {
-    ev.preventDefault();
-    const email = document.getElementById("email").value.trim().toLowerCase();
-    if (!email) {
-        errorEl.textContent = 'Add meg az e-mail címet, mielőtt jelszó-visszaállítást kérsz.';
-        errorEl.classList.add("show");
-        document.getElementById("email").focus();
-        return;
-    }
-    try {
-        const { error } = await withClient(c => c.auth.resetPasswordForEmail(email, {
-            redirectTo: location.origin + location.pathname.replace(/login\.html$/, 'reset-password.html')
-        }));
-        if (error) throw error;
-        errorEl.style.background = '#f0fdf4';
-        errorEl.style.borderColor = '#bbf7d0';
-        errorEl.style.color = '#166534';
-        errorEl.textContent = 'Jelszó-visszaállító e-mailt küldtünk a(z) ' + email + ' címre.';
-        errorEl.classList.add("show");
-    } catch (e) {
-        errorEl.textContent = 'Sikertelen: ' + ((e && e.message) || 'ismeretlen hiba');
-        errorEl.classList.add("show");
-    }
-}
-
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    errorEl.classList.remove("show");
-    errorEl.style.background = ''; errorEl.style.borderColor = ''; errorEl.style.color = '';
-    btn.disabled = true;
-    btn.textContent = "Bejelentkezés...";
-
-    const email = document.getElementById("email").value.trim().toLowerCase();
-    const password = document.getElementById("password").value;
-
-    // 1) Try Supabase Auth first
-    try {
-        const { data, error } = await withClient(c => c.auth.signInWithPassword({ email, password }));
-        if (!error && data.session) {
-            // Refuse login for accounts that have been marked for deletion
-            // (display_name = '__DELETED__' or email starts with 'deleted-').
-            const del = await window.gp.checkDeletedAccount();
-            if (del.deleted) {
-                await window.gp.client.auth.signOut({ scope: 'local' });
-                errorEl.textContent = 'Ez a fiók törölve lett. Új fiókhoz kérjük regisztráljon másik e-mail címmel, vagy írjon info@aipalyazo.hu címre.';
-                errorEl.classList.add("show");
-                btn.disabled = false;
-                btn.textContent = "Bejelentkezés";
-                return;
-            }
-            window.location.replace("portal.html" + location.search);
-            return;
-        }
-        // 2) Fall through to legacy SHA-256 demo creds (for the writer demo flow)
-        const hash = await sha256Hex(email + ":" + password);
-        if (VALID_HASHES[hash] === email) {
-            sessionStorage.setItem("gp_auth_token", genToken());
-            sessionStorage.setItem("gp_user_email", email);
-            sessionStorage.setItem("gp_auth_time", Date.now().toString());
-            window.location.replace("portal.html" + location.search);
-            return;
-        }
-        // 3) Neither matched
-        errorEl.textContent = error ? (error.message.includes('Invalid login credentials') ? 'Hibás e-mail cím vagy jelszó.' : error.message) : 'Hibás e-mail cím vagy jelszó.';
-        errorEl.classList.add("show");
-    } catch (e) {
-        errorEl.textContent = 'Bejelentkezési hiba: ' + ((e && e.message) || 'ismeretlen hiba');
-        errorEl.classList.add("show");
-    }
-
-    btn.disabled = false;
-    btn.textContent = "Bejelentkezés";
-    document.getElementById("password").value = "";
-    document.getElementById("password").focus();
-});
+function show(id, text, kind) { var el = document.getElementById(id); el.className = 'msg notice ' + (kind || 'err') + ' show'; el.textContent = text; }
+function hide(id) { var el = document.getElementById(id); if (el) el.className = 'msg'; }
+function justSignedOut() { return (new URLSearchParams(location.search)).get('signed_out') === '1' || sessionStorage.getItem('gp_just_signed_out') === '1'; }
 </script>
-
-<!-- COOKIE CONSENT -->
-<div id="gpcb" style="display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:2000;max-width:680px;margin:0 auto;background:#111827;color:#e5e7eb;border-radius:12px;padding:16px 20px;font-family:'Inter',-apple-system,sans-serif;font-size:13px;line-height:1.55;box-shadow:0 10px 30px rgba(0,0,0,0.25);">
-    <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;">
-        <div style="flex:1;min-width:240px;">
-            <b style="color:white;">Sütik használata</b><br>
-            Az AIpályázó a működéshez szükséges sütiket használ. Részletek az
-            <a href="adatvedelem.html" style="color:#86efac;">Adatkezelési tájékoztatóban</a>.
-        </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button onclick="gpcbAccept('necessary')" style="background:transparent;color:#e5e7eb;border:1px solid #374151;padding:8px 14px;border-radius:6px;font-weight:600;font-size:12px;cursor:pointer;font-family:inherit;">Csak szükségesek</button>
-            <button onclick="gpcbAccept('all')" style="background:#16a34a;color:white;border:none;padding:8px 14px;border-radius:6px;font-weight:700;font-size:12px;cursor:pointer;font-family:inherit;">Elfogadom mind</button>
-        </div>
-    </div>
-</div>
 <script>
-(function(){ try { if (!localStorage.getItem('gp_cookie_consent')) { document.getElementById('gpcb').style.display = 'block'; } } catch(e) {} })();
-function gpcbAccept(level){ try { localStorage.setItem('gp_cookie_consent', JSON.stringify({level:level,ts:Date.now()})); } catch(e) {} var el = document.getElementById('gpcb'); if (el) el.style.display = 'none'; }
+(function () {
+  var form = document.getElementById('login-form'), btn = document.getElementById('login-btn');
+  var q = new URLSearchParams(location.search);
+  if (q.get('password_reset') === '1') show('error-msg', 'Új jelszó beállítva. Most már beléphet vele.', 'ok');
+  window.addEventListener('gp-ready', async function () {
+    if (justSignedOut()) { sessionStorage.removeItem('gp_just_signed_out'); return; }
+    var res = await window.gp.client.auth.getUser();
+    if (res.data && res.data.user) location.replace('portal.html');
+  });
+  document.getElementById('google-btn').addEventListener('click', async function () {
+    try {
+      var r = await withClient(function (c) { return c.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin + location.pathname.replace(/login\.html$/, 'portal.html'), queryParams: { prompt: 'select_account' } } }); });
+      if (r.error) throw r.error;
+    } catch (e) { show('error-msg', 'A Google-belépés nem sikerült. Kérjük, próbálja újra, vagy lépjen be e-mail-címmel.'); }
+  });
+  document.getElementById('forgot').addEventListener('click', async function (ev) {
+    ev.preventDefault();
+    var email = document.getElementById('email').value.trim().toLowerCase();
+    if (!email) { show('error-msg', 'Írja be az e-mail-címét, majd kattintson újra az „Elfelejtette a jelszavát?” linkre.'); document.getElementById('email').focus(); return; }
+    try {
+      var r = await withClient(function (c) { return c.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname.replace(/login\.html$/, 'reset-password.html') }); });
+      if (r.error) throw r.error;
+      show('error-msg', 'Ha ezzel a címmel van fiók, elküldtük a jelszó-visszaállító levelet a(z) ' + email + ' címre.', 'ok');
+    } catch (e) { show('error-msg', 'A levelet most nem sikerült elküldeni. Kérjük, próbálja újra néhány perc múlva.'); }
+  });
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault(); hide('error-msg');
+    var email = document.getElementById('email').value.trim().toLowerCase(), pw = document.getElementById('password').value;
+    if (!email || !pw) { show('error-msg', 'Adja meg az e-mail-címét és a jelszavát.'); return; }
+    btn.disabled = true; btn.textContent = 'Belépés…';
+    try {
+      var r = await withClient(function (c) { return c.auth.signInWithPassword({ email: email, password: pw }); });
+      if (!r.error && r.data.session) {
+        var del = await window.gp.checkDeletedAccount();
+        if (del.deleted) { await window.gp.client.auth.signOut({ scope: 'local' }); show('error-msg', 'Ez a fiók törölve lett. Új fiókhoz regisztráljon másik e-mail-címmel, vagy írjon az info@aipalyazo.hu címre.'); }
+        else { location.replace('portal.html'); return; }
+      } else {
+        var m = r.error && r.error.message || '';
+        show('error-msg', /Email not confirmed/i.test(m) ? 'Az e-mail-címét még nem erősítette meg. Nézze meg a postafiókját (a spam mappát is).' : 'Hibás e-mail-cím vagy jelszó.');
+      }
+    } catch (e2) { show('error-msg', 'A belépés most nem sikerült. Kérjük, próbálja újra.'); }
+    btn.disabled = false; btn.textContent = 'Belépés';
+    document.getElementById('password').value = '';
+  });
+})();
 </script>
-
 </body>
 </html>

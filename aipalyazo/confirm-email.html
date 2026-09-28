@@ -1,101 +1,96 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <!-- Security headers (meta subset — GitHub Pages cannot send real HTTP
-         headers; X-Frame-Options / X-Content-Type-Options / Permissions-Policy
-         and CSP frame-ancestors require Cloudflare. See SECURITY-HEADERS.md). -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://kacnvchwfwvpkkyhyupb.supabase.co wss://kacnvchwfwvpkkyhyupb.supabase.co https://formspree.io; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIpályázó — E-mail megerősítése</title>
-    <meta name="robots" content="noindex,nofollow">
-    <meta name="theme-color" content="#16a34a">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="lib/supabase.js" defer></script>
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --green-50: #f0fdf4; --green-100: #dcfce7; --green-200: #bbf7d0; --green-600: #16a34a; --green-700: #15803d; --green-800: #166534;
-            --red-50: #fef2f2; --red-100: #fee2e2; --red-600: #dc2626; --red-700: #b91c1c;
-            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-700: #374151; --gray-900: #111827;
-            --radius: 8px;
-        }
-        body { font-family: 'Inter', -apple-system, sans-serif; background: linear-gradient(180deg, white 0%, var(--green-50) 100%); color: var(--gray-900); min-height: 100vh; -webkit-font-smoothing: antialiased; }
-        .wrap { max-width: 440px; margin: 0 auto; padding: 60px 24px 40px; }
-        .logo { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 8px; text-decoration: none; color: inherit; display: block; }
-        .logo span { color: var(--green-600); }
-        .logo-sub { font-size: 13px; color: var(--gray-500); text-align: center; margin-bottom: 32px; }
-        .card { background: white; border: 1px solid var(--gray-200); border-radius: 16px; padding: 40px 32px; box-shadow: 0 8px 28px rgba(34,197,94,0.06); text-align: center; }
-        .icon-wrap { width: 72px; height: 72px; background: var(--green-100); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 22px; font-size: 32px; }
-        h1 { font-size: 22px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.4px; }
-        p.lead { font-size: 15px; color: var(--gray-600); margin-bottom: 8px; line-height: 1.55; }
-        p.email-display { font-size: 15px; color: var(--gray-900); margin-bottom: 24px; font-weight: 600; word-break: break-all; }
-        .next-steps { background: var(--green-50); border: 1px solid var(--green-100); border-radius: var(--radius); padding: 16px 18px; text-align: left; margin: 20px 0; font-size: 13px; line-height: 1.6; color: var(--gray-700); }
-        .next-steps b { color: var(--green-800); }
-        .next-steps ol { margin: 8px 0 0 18px; padding: 0; }
-        .next-steps li { margin-bottom: 6px; }
-        .msg { font-size: 13px; padding: 11px 14px; border-radius: var(--radius); margin-bottom: 14px; display: none; }
-        .msg.show { display: block; }
-        .msg.error { background: var(--red-50); border: 1px solid var(--red-100); color: var(--red-700); }
-        .msg.success { background: var(--green-50); border: 1px solid var(--green-100); color: var(--green-800); }
-        .btn-resend { background: white; border: 1px solid var(--gray-300); padding: 10px 18px; border-radius: var(--radius); font-size: 13px; font-weight: 600; color: var(--gray-700); cursor: pointer; font-family: inherit; transition: all 0.15s; margin-top: 18px; }
-        .btn-resend:hover { background: var(--gray-50); border-color: var(--gray-400); }
-        .btn-resend:disabled { opacity: 0.5; cursor: not-allowed; }
-        .resend-row { font-size: 13px; color: var(--gray-500); margin-top: 14px; }
-        .resend-row a { color: var(--green-700); font-weight: 600; text-decoration: none; cursor: pointer; }
-        .resend-row a:hover { text-decoration: underline; }
-        .checking { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--gray-300); border-top-color: var(--green-600); border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 8px; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        footer { text-align: center; padding: 24px; font-size: 12px; color: var(--gray-400); }
-        footer a { color: var(--gray-500); margin: 0 8px; text-decoration: none; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://*.goatcounter.com https://kacnvchwfwvpkkyhyupb.supabase.co wss://kacnvchwfwvpkkyhyupb.supabase.co; base-uri 'self'; object-src 'none'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Erősítse meg az e-mail-címét — AIpályázó</title>
+<meta name="description" content="E-mail-cím megerősítése.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0e1a2b">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.auth-grid{display:grid;gap:var(--s7);padding:var(--s7) 0 var(--s8)}
+@media(min-width:960px){.auth-grid{grid-template-columns:minmax(0,440px) minmax(0,1fr);align-items:start}}
+.auth-card h1{font-size:30px;margin-bottom:var(--s2)}
+.auth-card .lede{font-size:16px;margin-bottom:var(--s5)}
+.msg{display:none;margin-bottom:var(--s4)}.msg.show{display:block}
+.btn-google{width:100%;background:var(--paper);color:var(--ink);border:1px solid var(--line-strong)}
+.btn-google:hover{background:var(--surface)}
+.btn-google svg{width:18px;height:18px}
+.form-row{display:grid;gap:0 var(--s4)}@media(min-width:520px){.form-row{grid-template-columns:1fr 1fr}}
+.opt{font-weight:400;color:var(--ink-3)}
+.field-hint{font-size:13px;color:var(--ink-3);margin:-8px 0 var(--s4)}.field-hint.error{color:var(--danger)}
+input.mismatch{border-color:var(--danger)!important}
+.aside-list{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.aside-list li{padding:var(--s4) 0;border-bottom:1px solid var(--line)}
+.aside-list b{display:block;font-size:17px;margin-bottom:4px}
+.aside-list span{color:var(--ink-2)}
+.alt-link{margin-top:var(--s5);color:var(--ink-2)}
+.submit{width:100%}
+.msg.show{border-left:3px solid var(--line-strong);background:var(--surface);padding:12px 16px;border-radius:0 var(--r) var(--r) 0}.msg.error,.msg.err{border-color:var(--danger);background:var(--danger-tint)}.msg.success,.msg.ok{border-color:var(--brand);background:var(--brand-tint)}</style>
 </head>
 <body>
-
-<div class="wrap">
-    <a href="index.html" class="logo"><span>AI</span>pályázó</a>
-    <div class="logo-sub">E-mail megerősítés</div>
-
-    <div class="card">
-        <div class="icon-wrap">✉️</div>
-        <h1>Ellenőrizd a postaládád</h1>
-        <p class="lead">Küldtünk egy megerősítő linket erre az e-mail címre:</p>
-        <p class="email-display" id="email-display">…</p>
-
-        <div id="msg" class="msg"></div>
-
-        <div class="next-steps">
-            <b>Mit kell tenned:</b>
-            <ol>
-                <li>Nyisd meg a postafiókod (a <b>spam mappát is</b> nézd meg!)</li>
-                <li>Kattints az e-mailben lévő <b>„Megerősítés"</b> linkre</li>
-                <li>Visszakerülsz ide, és automatikusan beléptetünk a portálra</li>
-            </ol>
-        </div>
-
-        <div id="auto-status" style="font-size:12px;color:var(--gray-500);margin-top:14px;">
-            <span class="checking"></span>Várom hogy rákattints a link-re…
-        </div>
-
-        <div class="resend-row">
-            Nem érkezett meg? <a id="resend-link" onclick="resendCode()">Új e-mail küldése</a>
-        </div>
-
-        <div class="resend-row" style="margin-top: 8px;">
-            Másik email? <a href="signup.html">Vissza a regisztrációhoz</a>
-        </div>
+<a class="skip" href="#main">Ugrás a tartalomra</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="AIpályázó főoldal"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0a6b3d"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a>
+    <nav class="site-nav" aria-label="Fő navigáció">
+      <a href="palyazat/index.html">Nyitott pályázatok</a>
+      <a href="index.html#hogyan">Hogyan működik</a>
+      <a href="miert-ingyenes.html">Miért ingyenes?</a>
+    </nav>
+    <div class="head-actions">
+      <a class="btn btn-quiet btn-sm hide-sm" href="login.html" data-guest>Belépés</a>
+      <a class="btn btn-primary btn-sm" href="signup.html" data-guest>Regisztráció</a>
+      <a class="btn btn-primary btn-sm" href="portal.html" data-member hidden>Portál</a>
+      <button class="btn btn-ghost btn-sm head-menu" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     </div>
-</div>
-
-<footer>
-    <a href="adatvedelem.html">Adatvédelem</a> ·
-    <a href="impresszum.html">Impresszum</a> ·
-    <a href="aszf.html">ÁSZF</a>
-    <br>&copy; 2026 AIpályázó
+  </div>
+  <div class="wrap">
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobil navigáció">
+      <a href="palyazat/index.html">Nyitott pályázatok</a>
+      <a href="index.html#hogyan">Hogyan működik</a>
+      <a href="miert-ingyenes.html">Miért ingyenes?</a>
+      <a href="login.html">Belépés</a>
+    </nav>
+  </div>
+</header>
+<main id="main"><div class="wrap">
+<section class="auth-card" style="padding:var(--s7) 0 var(--s8);max-width:560px">
+<p class="eyebrow">Utolsó lépés</p>
+<h1 style="margin-top:var(--s2)">Erősítse meg az e-mail-címét</h1>
+<p class="lede">Megerősítő linket küldtünk erre a címre:</p>
+<p class="mono" id="email-display" style="font-size:17px;margin:-8px 0 var(--s5)">…</p>
+<div id="msg" class="msg" role="status"></div>
+<ol class="numbered" style="display:grid;gap:var(--s4)">
+<li><h3>Nyissa meg a postafiókját</h3><p>A levél néhány percen belül megérkezik — nézze meg a spam mappát is.</p></li>
+<li><h3>Kattintson a „Megerősítés” linkre</h3><p>Ezzel igazolja, hogy az e-mail-cím az Öné.</p></li>
+<li><h3>Visszahozzuk ide</h3><p>A megerősítés után automatikusan belépteti a rendszer, és kitöltheti a cégprofilt.</p></li>
+</ol>
+<p id="auto-status" class="small muted" style="margin-top:var(--s5)">Várakozás a megerősítésre…</p>
+<p class="small">Nem érkezett meg? <a href="#" id="resend-link">Új levél küldése</a> · Rossz címet adott meg? <a href="signup.html">Vissza a regisztrációhoz</a></p>
+</section></div></main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0a6b3d"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a>
+        <p style="margin-top:var(--s3)">Ingyenes pályázatfigyelő magyar vállalkozásoknak. Tájékoztató szolgáltatás: beadás előtt mindig a hivatalos felhívás az irányadó.</p>
+      </div>
+      <div><h4>Pályázatok</h4><ul><li><a href="palyazat/index.html">Nyitott felhívások</a></li><li><a href="palyazat/index.html#temak">Témák és programok</a></li><li><a href="portal.html">Portál</a></li></ul></div>
+      <div><h4>Rólunk</h4><ul><li><a href="miert-ingyenes.html">Miért ingyenes?</a></li><li><a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a></li></ul></div>
+      <div><h4>Jogi</h4><ul><li><a href="impresszum.html">Impresszum</a></li><li><a href="adatvedelem.html">Adatkezelés</a></li><li><a href="aszf.html">ÁSZF</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 AIpályázó · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
+  </div>
 </footer>
-
+<script src="assets/site.js" defer></script>
+<script src="assets/analytics.js" defer></script>
+<script src="lib/supabase.js" defer></script>
 <script>
 const email = (new URLSearchParams(location.search)).get('email') || '';
 document.getElementById('email-display').textContent = email || '(az e-mail amellyel regisztráltál)';
@@ -122,8 +117,8 @@ window.addEventListener('gp-ready', async () => {
             const { data: { session } } = await window.gp.client.auth.getSession();
             if (session && session.user) {
                 statusEl.style.display = 'none';
-                showMsg('Sikeres megerősítés ✓ — átirányítunk a portálra…', 'success');
-                setTimeout(() => { location.replace('portal.html'); }, 1200);
+                showMsg('Sikeres megerősítés ✓ — továbblépünk a cégprofilhoz…', 'success');
+                setTimeout(() => { location.replace('onboarding.html'); }, 1200);
             }
         } catch (e) { /* no session yet, user hasn't clicked link */ }
     }, 300);
@@ -141,8 +136,8 @@ const pollInterval = setInterval(async () => {
         if (session && session.user) {
             clearInterval(pollInterval);
             statusEl.style.display = 'none';
-            showMsg('Megerősítés érzékelve ✓ — átirányítunk a portálra…', 'success');
-            setTimeout(() => { location.replace('portal.html'); }, 1200);
+            showMsg('Megerősítés érzékelve ✓ — továbblépünk a cégprofilhoz…', 'success');
+            setTimeout(() => { location.replace('onboarding.html'); }, 1200);
         }
     } catch (e) {}
 }, 3000);
@@ -154,7 +149,7 @@ async function resendCode() {
     try {
         const { error } = await withClient(c => c.auth.resend({ type: 'signup', email }));
         if (error) throw error;
-        showMsg('Új megerősítő e-mailt küldtünk. Nézd a postafiókodat (spam mappát is).', 'success');
+        showMsg('Új megerősítő e-mailt küldtünk. Nézze meg a postafiókját (a spam mappát is).', 'success');
     } catch (e) {
         // Supabase returns these errors in English — translate the common ones.
         const raw = (e && e.message) || '';
@@ -167,11 +162,12 @@ async function resendCode() {
         showMsg('Új e-mail küldése sikertelen: ' + hu, 'error');
     } finally {
         setTimeout(() => {
-            link.textContent = 'Új e-mail küldése'; link.style.pointerEvents = '';
+            link.textContent = 'Új levél küldése'; link.style.pointerEvents = '';
         }, 3000);
     }
 }
 </script>
 
+<script>document.getElementById('resend-link').addEventListener('click',function(e){e.preventDefault();resendCode();});</script>
 </body>
 </html>

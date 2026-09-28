@@ -1,54 +1,46 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://kacnvchwfwvpkkyhyupb.supabase.co; form-action 'self'; base-uri 'self'; object-src 'none'">
-    <meta name="referrer" content="no-referrer">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIpályázó — Igény státusza</title>
-    <meta name="robots" content="noindex,nofollow">
-    <meta name="theme-color" content="#15803d">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --green-50: #f0fdf4; --green-100: #dcfce7; --green-700: #15803d; --green-800: #166534;
-            --red-50: #fef2f2; --red-100: #fee2e2; --red-700: #b91c1c;
-            --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-900: #111827;
-        }
-        body { font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; background: linear-gradient(180deg, #fff 0%, var(--green-50) 100%); color: var(--gray-900); min-height: 100vh; -webkit-font-smoothing: antialiased; }
-        main { max-width: 460px; margin: 0 auto; padding: 60px 16px 40px; }
-        .logo { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 28px; text-decoration: none; color: inherit; display: block; }
-        .logo span { color: var(--green-700); }
-        .card { background: #fff; border: 1px solid var(--gray-200); border-radius: 16px; padding: 36px 28px; box-shadow: 0 8px 28px rgba(21,128,61,0.06); }
-        h1 { font-size: 22px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.4px; }
-        p { font-size: 15px; color: var(--gray-600); line-height: 1.6; margin-bottom: 20px; }
-        .ref { font-variant-numeric: tabular-nums; white-space: nowrap; }
-        .status { color: var(--green-700); }
-        .status.bad { color: var(--red-700); }
-        label { display: block; font-size: 13px; font-weight: 600; color: var(--gray-700); margin-bottom: 6px; }
-        textarea { width: 100%; min-height: 84px; padding: 10px 12px; border: 1px solid var(--gray-300); border-radius: 10px; font: inherit; font-size: 14px; color: var(--gray-900); resize: vertical; margin-bottom: 16px; }
-        textarea:focus-visible { outline: 3px solid #86efac; outline-offset: 1px; }
-        .btn { display: inline-block; width: 100%; padding: 13px 18px; border-radius: 10px; font-family: inherit; font-size: 15px; font-weight: 700; line-height: 1.2; cursor: pointer; border: 1px solid transparent; text-align: center; text-decoration: none; }
-        .btn-primary { background: var(--green-700); color: #fff; }
-        .btn-primary:hover { background: var(--green-800); }
-        .btn:disabled { opacity: .55; cursor: wait; }
-        .btn:focus-visible { outline: 3px solid #86efac; outline-offset: 2px; }
-        .msg { font-size: 14px; padding: 12px 14px; border-radius: 8px; margin-bottom: 16px; display: none; line-height: 1.5; }
-        .msg.show { display: block; }
-        .msg.ok { background: var(--green-50); border: 1px solid var(--green-100); color: var(--green-800); }
-        .msg.err { background: var(--red-50); border: 1px solid var(--red-100); color: var(--red-700); }
-        .hidden { display: none; }
-        footer { text-align: center; padding: 24px; font-size: 12px; color: var(--gray-500); }
-        footer a { color: var(--gray-500); margin: 0 8px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://*.goatcounter.com https://kacnvchwfwvpkkyhyupb.supabase.co; base-uri 'self'; object-src 'none'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Konzultációs igény státusza — AIpályázó</title>
+<meta name="description" content="Konzultációs igény státusza — AIpályázó">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0e1a2b">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<style>.hidden{display:none!important}.card{max-width:600px;padding:var(--s7) 0 var(--s8)}.card h1{font-size:28px;margin-bottom:var(--s3)}.card p{color:var(--ink-2)}.card .btn{margin:var(--s2) var(--s2) 0 0}.msg{display:none;margin-bottom:var(--s4)}.msg.show{display:block;border-left:3px solid var(--line-strong);background:var(--surface);padding:12px 16px}.msg.ok,.msg.success{border-color:var(--brand);background:var(--brand-tint)}.msg.err,.msg.error{border-color:var(--danger);background:var(--danger-tint)}textarea{width:100%;min-height:100px;padding:10px 12px;border:1px solid var(--line-strong);border-radius:var(--r);font:inherit;background:var(--paper);color:var(--ink);margin:6px 0 var(--s4)}label{font-weight:600;font-size:14px}.ref{font-family:var(--mono)}</style>
 </head>
 <body>
-<main>
-    <a href="index.html" class="logo"><span>AI</span>pályázó</a>
-
-    <div class="card">
+<a class="skip" href="#main">Ugrás a tartalomra</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="AIpályázó főoldal"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0a6b3d"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a>
+    <nav class="site-nav" aria-label="Fő navigáció">
+      <a href="palyazat/index.html">Nyitott pályázatok</a>
+      <a href="index.html#hogyan">Hogyan működik</a>
+      <a href="miert-ingyenes.html">Miért ingyenes?</a>
+    </nav>
+    <div class="head-actions">
+      <a class="btn btn-quiet btn-sm hide-sm" href="login.html" data-guest>Belépés</a>
+      <a class="btn btn-primary btn-sm" href="signup.html" data-guest>Regisztráció</a>
+      <a class="btn btn-primary btn-sm" href="portal.html" data-member hidden>Portál</a>
+      <button class="btn btn-ghost btn-sm head-menu" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+  <div class="wrap">
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobil navigáció">
+      <a href="palyazat/index.html">Nyitott pályázatok</a>
+      <a href="index.html#hogyan">Hogyan működik</a>
+      <a href="miert-ingyenes.html">Miért ingyenes?</a>
+      <a href="login.html">Belépés</a>
+    </nav>
+  </div>
+</header>
+<main id="main"><div class="wrap"><div class="card">
         <div id="msg" class="msg" role="status" aria-live="polite"></div>
 
         <section id="step-confirm" class="hidden">
@@ -68,13 +60,23 @@
             <h1>Érvénytelen link</h1>
             <p>A státuszlink hiányos vagy sérült. Kérjük, használja a lead-értesítő e-mailben kapott linket, vagy írjon nekünk: <a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a>.</p>
         </section>
+    </div></div></main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0a6b3d"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a>
+        <p style="margin-top:var(--s3)">Ingyenes pályázatfigyelő magyar vállalkozásoknak. Tájékoztató szolgáltatás: beadás előtt mindig a hivatalos felhívás az irányadó.</p>
+      </div>
+      <div><h4>Pályázatok</h4><ul><li><a href="palyazat/index.html">Nyitott felhívások</a></li><li><a href="palyazat/index.html#temak">Témák és programok</a></li><li><a href="portal.html">Portál</a></li></ul></div>
+      <div><h4>Rólunk</h4><ul><li><a href="miert-ingyenes.html">Miért ingyenes?</a></li><li><a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a></li></ul></div>
+      <div><h4>Jogi</h4><ul><li><a href="impresszum.html">Impresszum</a></li><li><a href="adatvedelem.html">Adatkezelés</a></li><li><a href="aszf.html">ÁSZF</a></li></ul></div>
     </div>
-</main>
-<footer>
-    <a href="adatvedelem.html">Adatkezelés</a>
-    <a href="impresszum.html">Impresszum</a>
+    <div class="legal"><span>© 2026 AIpályázó · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
+  </div>
 </footer>
-
+<script src="assets/site.js" defer></script>
+<script src="assets/analytics.js" defer></script>
 <script>
 (function () {
     // Opened from the status links in a lead notification
