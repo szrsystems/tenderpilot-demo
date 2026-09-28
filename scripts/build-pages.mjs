@@ -216,7 +216,88 @@ export function renderClosed(m, slug) {
   return shell({ title: `${m.title} — lezárult | AIpályázó`, description: `${m.title}: ez a felhívás lezárult. Nézze meg a nyitott pályázatokat.`, canonical, noindex: true, body });
 }
 
-export function renderIndex(open, slugs, { updatedAt } = {}) {
+
+// ---- topic hub pages (SEO) ---------------------------------------------
+// palyazat/tema/<slug>.html — one page per programme family, company type,
+// support form and region, generated from the feed. A hub is written only
+// when it has at least MIN_HUB open calls. Intros are plain facts.
+export const MIN_HUB = 2;
+const txt = (g) => `${g.title || ''} ${g.note || ''}`;
+const has = (g, k) => !!(g.requires && g.requires[k]);
+const code = (g) => `${g.code || ''} ${g.id || ''}`;
+const sizes = (g) => (g.sizeClasses || []).map((x) => String(x).toLowerCase());
+const isEic = (g) => /\bEIC\b/.test(`${g.issuer || ''} ${g.title || ''}`) || /-eic-/i.test(g.id || '');
+const REGIONS = ['Budapest', 'Pest', 'Közép-Dunántúl', 'Nyugat-Dunántúl', 'Dél-Dunántúl', 'Észak-Magyarország', 'Észak-Alföld', 'Dél-Alföld'];
+
+export const HUBS = [
+  // programme families
+  { slug: 'ginop-plusz', group: 'Programok', name: 'GINOP Plusz', h1: 'GINOP Plusz pályázatok és hitelek', intro: 'A Gazdaságfejlesztési és Innovációs Operatív Program Plusz (GINOP Plusz) a Széchenyi Terv Plusz vállalkozásfejlesztési, innovációs és foglalkoztatási programja.', test: (g) => /GINOP/i.test(code(g)) },
+  { slug: 'dimop-plusz', group: 'Programok', name: 'DIMOP Plusz', h1: 'DIMOP Plusz pályázatok és hitelek', intro: 'A Digitális Megújulás Operatív Program Plusz (DIMOP Plusz) a vállalkozások digitalizációját és a digitális startupokat támogatja.', test: (g) => /DIMOP/i.test(code(g)) },
+  { slug: 'kehop-plusz', group: 'Programok', name: 'KEHOP Plusz', h1: 'KEHOP Plusz pályázatok és hitelek vállalkozásoknak', intro: 'A Környezeti és Energiahatékonysági Operatív Program Plusz (KEHOP Plusz) energiahatékonysági, megújulóenergia- és geotermikus fejlesztéseket finanszíroz.', test: (g) => /KEHOP/i.test(code(g)) },
+  { slug: 'mahop-plusz', group: 'Programok', name: 'MAHOP Plusz', h1: 'MAHOP Plusz halászati és akvakultúra pályázatok', intro: 'A Magyar Akvakultúra és Halászati Operatív Program Plusz (MAHOP Plusz) az akvakultúra, a halfeldolgozás és a természetesvízi halgazdálkodás fejlesztését támogatja.', test: (g) => /MAHOP/i.test(code(g)) },
+  { slug: 'kap', group: 'Programok', name: 'KAP Stratégiai Terv', h1: 'KAP Stratégiai Terv pályázatok (agrár és vidékfejlesztés)', intro: 'A Közös Agrárpolitika (KAP) Stratégiai Terv vidékfejlesztési felhívásait a KAP Nemzeti Irányító Hatóság hirdeti meg a kap.gov.hu oldalon.', test: (g) => /\bKAP-RD/i.test(code(g)) || /^KAP\b/.test(g.issuer || '') },
+  { slug: 'horizon-europe', group: 'Programok', name: 'Horizon Europe', h1: 'Horizon Europe felhívások magyar vállalkozásoknak', intro: 'A Horizon Europe az EU kutatási és innovációs keretprogramja; a legtöbb témára nemzetközi konzorciumban lehet pályázni. Az EIC felhívásai külön oldalon szerepelnek.', test: (g) => g.scope === 'eu' && /Horizon/i.test(g.issuer || '') && !isEic(g) },
+  { slug: 'eic', group: 'Programok', name: 'EIC', h1: 'Európai Innovációs Tanács (EIC) felhívások', intro: 'Az Európai Innovációs Tanács (EIC) mélytechnológiai startupokat és KKV-kat támogat vissza nem térítendő támogatással és tőkebefektetéssel; több felhívására egyetlen cég is pályázhat.', test: (g) => g.scope === 'eu' && isEic(g) },
+  { slug: 'eu-egyeb-programok', group: 'Programok', name: 'Erasmus+ és egyéb EU-programok', h1: 'Erasmus+, Digital Europe, EIT és egyéb EU-s felhívások', intro: 'Az EU kutatási keretprogramján kívüli uniós felhívások: Erasmus+, Digital Europe, EIT-tudásközösségek, EU-s partnerségek, kaszkád (FSTP) felhívások és más nemzetközi programok.', test: (g) => g.scope === 'eu' && !/Horizon/i.test(g.issuer || '') && !isEic(g) },
+  { slug: 'szechenyi-kartya', group: 'Programok', name: 'Széchenyi Kártya Program', h1: 'Széchenyi Kártya Program hitelei', intro: 'A Széchenyi Kártya Program kamattámogatott, kezességgel biztosított hiteleit a KAVOSZ ügyintézőinél, a partnerbankokon keresztül lehet igényelni.', test: (g) => /Széchenyi Kártya|KAVOSZ/i.test(g.issuer || '') },
+  // company types
+  { slug: 'egyeni-vallalkozo', group: 'Cégtípus', name: 'Egyéni vállalkozóknak', h1: 'Pályázatok és hitelek egyéni vállalkozóknak', intro: 'Azok a felhívások, amelyek kedvezményezettjei között a felhívás szövege kifejezetten említi az egyéni vállalkozókat (természetes személy mikrovállalkozókat).', test: (g) => sizes(g).includes('mikrovállalkozás természetes személy') || /egyéni vállalkoz/i.test(txt(g)) },
+  { slug: 'mikrovallalkozas', group: 'Cégtípus', name: 'Mikrovállalkozásoknak', h1: 'Pályázatok és hitelek mikrovállalkozásoknak', intro: 'Azok a hazai felhívások, amelyekre mikrovállalkozás (10 főnél kevesebb foglalkoztatott, legfeljebb 2 millió eurós árbevétel vagy mérlegfőösszeg) is pályázhat.', test: (g) => g.scope !== 'eu' && sizes(g).some((x) => x.startsWith('mikro')) && !/mikro nem/i.test(g.note || '') },
+  { slug: 'kkv', group: 'Cégtípus', name: 'KKV-knak', h1: 'Pályázatok és hitelek kis- és középvállalkozásoknak (KKV)', intro: 'Hazai felhívások, amelyekre mikro-, kis- vagy középvállalkozás pályázhat.', test: (g) => g.scope !== 'eu' && (sizes(g).some((x) => /mikro|kis|közép/.test(x)) || /\bKKV|kis- és középvállalkozás/i.test(txt(g))) },
+  { slug: 'startup', group: 'Cégtípus', name: 'Induló vállalkozásoknak, startupoknak', h1: 'Pályázatok, tőke és hitel induló vállalkozásoknak és startupoknak', intro: 'Felhívások, amelyek szövege kifejezetten induló vállalkozásokat vagy startupokat nevez meg a kedvezményezettek között.', test: (g) => has(g, 'startup_max_years') || (/startup|induló/i.test(txt(g)) && g.singleApplicant !== false) },
+  { slug: 'mezogazdasagi-termelo', group: 'Cégtípus', name: 'Mezőgazdasági termelőknek', h1: 'Pályázatok és hitelek mezőgazdasági termelőknek', intro: 'Mezőgazdasági termelőknek, őstermelőknek és agrárvállalkozásoknak szóló hazai felhívások és hitelek.', test: (g) => has(g, 'farmer') || sizes(g).includes('őstermelő') || (g.scope !== 'eu' && g.cat === 'Mezőgazdaság' && !has(g, 'forestry') && !has(g, 'fisheries')) },
+  { slug: 'turisztikai-vallalkozas', group: 'Cégtípus', name: 'Turisztikai vállalkozásoknak', h1: 'Pályázatok és hitelek turisztikai és vendéglátó vállalkozásoknak', intro: 'Szálláshelyeknek, vendéglátóhelyeknek és más turisztikai szolgáltatóknak szóló hazai felhívások; több közülük NTAK-regisztrációhoz kötött.', test: (g) => has(g, 'tourism_ntak') || has(g, 'restaurant') || (g.scope !== 'eu' && g.cat === 'Turizmus') },
+  // support forms
+  { slug: 'vissza-nem-teritendo', group: 'Támogatási forma', name: 'Vissza nem térítendő támogatás', h1: 'Vissza nem térítendő támogatások vállalkozásoknak', intro: 'Felhívások, amelyekben a támogatás egésze vagy egy része vissza nem térítendő (a kombinált hitel + támogatás konstrukciókkal együtt).', test: (g) => /grant/.test(g.type || '') },
+  { slug: 'hitel', group: 'Támogatási forma', name: 'Kedvezményes hitel', h1: 'Kedvezményes hitelek és lízing vállalkozásoknak', intro: 'Kamattámogatott vagy kedvezményes kamatozású hitelek, lízing és kombinált hiteltermékek.', test: (g) => /loan/.test(g.type || '') },
+  { slug: 'toke', group: 'Támogatási forma', name: 'Tőkebefektetés', h1: 'Kockázati tőke és tőkebefektetési programok', intro: 'Állami és uniós tőkeprogramok, amelyekben a befektető részesedést szerez a vállalkozásban.', test: (g) => /equity/.test(g.type || '') },
+  { slug: 'garancia', group: 'Támogatási forma', name: 'Garancia, kezesség', h1: 'Hitelgarancia és kezességvállalás vállalkozásoknak', intro: 'Intézményi kezességvállalás és uniós garanciaprogramok banki hitelekhez, lízinghez, bankgaranciához.', test: (g) => g.type === 'guarantee' },
+  // regions (only calls restricted to a set of regions)
+  ...REGIONS.map((r) => ({
+    slug: 'regio-' + r.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+    group: 'Régió', name: r, h1: `Régiós pályázatok és hitelek: ${r}`,
+    intro: `Azok a felhívások, amelyek csak meghatározott régiókban megvalósuló fejlesztést támogatnak, és ezek között szerepel ${r === 'Budapest' || r === 'Pest' ? r : `a(z) ${r} régió`}. Az országos felhívások az összes pályázat listáján találhatók.`,
+    test: (g) => (g.regions || []).includes(r),
+  })),
+];
+
+export function selectHubs(open) {
+  return HUBS.map((h) => ({ ...h, items: open.filter((g) => { try { return h.test(g); } catch { return false; } }) }))
+    .filter((h) => h.items.length >= MIN_HUB);
+}
+
+const byDeadline = (a, b) => {
+  const da = isDate(a.deadline) ? a.deadline : '9999', db = isDate(b.deadline) ? b.deadline : '9999';
+  return da.localeCompare(db) || a.title.localeCompare(b.title, 'hu');
+};
+
+export function renderHub(hub, slugs, { updatedAt } = {}) {
+  const canonical = `${BASE}/palyazat/tema/${hub.slug}.html`;
+  const items = [...hub.items].sort(byDeadline);
+  const li = (g) => `<li><a href="../${esc(slugs.get(g.id))}.html">${esc(g.title)}</a><div class="m">${esc(g.issuer || '')}${g.amount ? ' · ' + esc(g.amount) : ''} · ${isDate(g.deadline) ? 'határidő: ' + esc(huDate(g.deadline)) : 'folyamatos'}</div></li>`;
+  const intro = `${hub.intro} Jelenleg ${items.length} nyitott felhívás tartozik ide; a lista naponta frissül hivatalos forrásokból${updatedAt ? ` (utoljára: ${String(updatedAt).slice(0, 10)})` : ''}.`;
+  const body = `<div class="crumbs"><a href="../../index.html">AIpályázó</a> › <a href="../index.html">Pályázatok</a> › ${esc(hub.group)}</div>
+<h1>${esc(hub.h1)}</h1>
+<p class="intro">${esc(intro)}</p>
+<ul class="list hub-list">${items.map(li).join('')}</ul>
+<p class="back"><a href="../index.html">← Összes nyitott pályázat</a></p>
+<div class="note">Tájékoztató lista. Mindig a hivatalos felhívás és annak módosításai az irányadók.</div>`;
+  const jsonld = {
+    '@context': 'https://schema.org', '@type': 'CollectionPage', name: hub.h1, url: canonical, description: hub.intro, inLanguage: 'hu',
+    isPartOf: { '@type': 'WebSite', name: 'AIpályázó', url: `${BASE}/index.html` },
+    mainEntity: { '@type': 'ItemList', numberOfItems: items.length, itemListElement: items.map((g, i) => ({ '@type': 'ListItem', position: i + 1, url: `${BASE}/palyazat/${slugs.get(g.id)}.html`, name: g.title })) },
+  };
+  const description = `${hub.h1}: ${items.length} nyitott felhívás, naponta frissítve hivatalos forrásokból.`;
+  return shell({ title: `${hub.h1} (${items.length} nyitott) | AIpályázó`, description, canonical, noindex: false, body, jsonld, depth: 2 });
+}
+
+export function hubLinks(hubs) {
+  if (!hubs || !hubs.length) return '';
+  const groups = [...new Set(hubs.map((h) => h.group))];
+  return `<nav class="hubs" aria-label="Témák">${groups.map((gr) => `<h2>${esc(gr)}</h2><ul class="hub-links">${hubs.filter((h) => h.group === gr).map((h) => `<li><a href="tema/${esc(h.slug)}.html">${esc(h.name)}</a> <span class="n">(${h.items.length})</span></li>`).join('')}</ul>`).join('')}</nav>`;
+}
+
+export function renderIndex(open, slugs, { updatedAt, hubs = [] } = {}) {
   const sorted = [...open].sort((a, b) => {
     const da = isDate(a.deadline) ? a.deadline : '9999', db = isDate(b.deadline) ? b.deadline : '9999';
     return da.localeCompare(db) || a.title.localeCompare(b.title, 'hu');
@@ -226,6 +307,7 @@ export function renderIndex(open, slugs, { updatedAt } = {}) {
   const body = `<div class="crumbs"><a href="../index.html">AIpályázó</a> › Pályázatok</div>
 <h1>Nyitott pályázatok magyar vállalkozásoknak</h1>
 <p>${open.length} nyitott felhívás — ${hu.length} hazai és ${eu.length} EU-s / nemzetközi. Naponta frissítjük hivatalos forrásokból${updatedAt ? ` (utoljára: ${esc(String(updatedAt).slice(0, 10))})` : ''}.</p>
+${hubLinks(hubs)}
 <input id="q" type="search" placeholder="Keresés (pl. GINOP, energia, Horizon, startup)…" aria-label="Keresés a pályázatok között">
 <h2>Hazai pályázatok és hitelek (${hu.length})</h2><ul class="list">${hu.map(li).join('')}</ul>
 <h2>EU-s és nemzetközi (${eu.length})</h2><ul class="list">${eu.map(li).join('')}</ul>
@@ -240,13 +322,14 @@ export const STATIC_PAGES = [
   ['signup.html', '0.7', 'monthly'], ['pricing.html', '0.6', 'monthly'],
   ['impresszum.html', '0.2', 'yearly'], ['adatvedelem.html', '0.2', 'yearly'], ['aszf.html', '0.2', 'yearly'],
 ];
-export function buildSitemap(open, slugs, today) {
+export function buildSitemap(open, slugs, today, hubs = []) {
   const url = (loc, pri, freq, lastmod) => `  <url><loc>${esc(loc)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}<changefreq>${freq}</changefreq><priority>${pri}</priority></url>`;
   const lines = STATIC_PAGES.map(([p, pri, f]) => url(`${BASE}/${p}`, pri, f, p === 'palyazat/index.html' ? today : ''));
   for (const g of open) {
     const lm = [g.lastChecked, g.verifiedAt, g.modified && String(g.modified).slice(0, 10)].filter(isDate).sort().pop();
     lines.push(url(`${BASE}/palyazat/${slugs.get(g.id)}.html`, '0.7', 'weekly', lm || ''));
   }
+  for (const h of hubs) lines.push(url(`${BASE}/palyazat/tema/${h.slug}.html`, '0.6', 'daily', today));
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${lines.join('\n')}\n</urlset>\n`;
 }
 
@@ -287,11 +370,13 @@ export function buildAll({ grants, summaries = {}, manifest = {}, today, updated
     files.set(`palyazat/${slug}.html`, renderClosed(next[slug], slug));
     closed++;
   }
-  files.set('palyazat/index.html', renderIndex(open, slugs, { updatedAt }));
-  files.set('sitemap.xml', buildSitemap(open, slugs, today));
+  const hubs = selectHubs(open);
+  for (const h of hubs) files.set(`palyazat/tema/${h.slug}.html`, renderHub(h, slugs, { updatedAt }));
+  files.set('palyazat/index.html', renderIndex(open, slugs, { updatedAt, hubs }));
+  files.set('sitemap.xml', buildSitemap(open, slugs, today, hubs));
   const sortedManifest = Object.fromEntries(Object.entries(next).sort(([a], [b]) => a.localeCompare(b)));
   files.set('palyazat/pages.json', JSON.stringify(sortedManifest, null, 1) + '\n');
-  return { files, manifest: sortedManifest, removed, stats: { open: open.length, closed, removed: removed.length, withSummary: open.filter((g) => summaries[g.id]).length } };
+  return { files, manifest: sortedManifest, removed, stats: { open: open.length, hubs: hubs.length, closed, removed: removed.length, withSummary: open.filter((g) => summaries[g.id]).length } };
 }
 
 function main() {
@@ -305,14 +390,16 @@ function main() {
   const manifest = readJson(join(site, 'palyazat', 'pages.json'), {});
   const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Budapest' });
   const { files, removed, stats } = buildAll({ grants, summaries, manifest, today, updatedAt: meta.updatedAt });
-  mkdirSync(join(site, 'palyazat'), { recursive: true });
+  mkdirSync(join(site, 'palyazat', 'tema'), { recursive: true });
   for (const [rel, content] of files) writeFileSync(join(site, rel), content);
   for (const rel of removed) { const p = join(site, rel); if (existsSync(p)) unlinkSync(p); }
   // Stray html files not in the manifest (e.g. hand-deleted manifest) are removed.
   const keep = new Set([...files.keys()].map((k) => k.replace(/^palyazat\//, '')));
   for (const f of readdirSync(join(site, 'palyazat'))) if (f.endsWith('.html') && !keep.has(f)) unlinkSync(join(site, 'palyazat', f));
+  // Hubs that fell under the threshold today are removed (regenerated when back).
+  for (const f of readdirSync(join(site, 'palyazat', 'tema'))) if (f.endsWith('.html') && !files.has(`palyazat/tema/${f}`)) unlinkSync(join(site, 'palyazat', 'tema', f));
   writeFileSync(join(root, 'robots.txt'), ROBOTS);
-  console.log(`build-pages: ${stats.open} open pages (${stats.withSummary} with summary), ${stats.closed} closed kept, ${stats.removed} removed`);
+  console.log(`build-pages: ${stats.open} open pages (${stats.withSummary} with summary), ${stats.hubs} topic hubs, ${stats.closed} closed kept, ${stats.removed} removed`);
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) main();

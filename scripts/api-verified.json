@@ -199,7 +199,13 @@
    "https://vmkik.hu/hirek/megjelent-a-minositett-klasztermenedzsment-szervezetek-tamogatasa-cimu-palyazati-felhivas",
    "https://hirlevel.egov.hu/2026/03/15/megjelent-a-minositett-klasztermenedzsment-szervezetek-tamogatasat-celzo-uj-palyazat/"
   ],
-  "confidence": "high"
+  "confidence": "high",
+  "requires": {
+   "cluster_manager": true
+  },
+  "requiresEvidence": {
+   "cluster_manager": "Csak minősített klasztermenedzsment szervezetek pályázhatnak (GINOP Plusz-1.1.5-24 minősítéssel)."
+  }
  },
  "GINOP_PLUSZ-2.5.1-25": {
   "type": "equity",
@@ -214,7 +220,13 @@
    "https://forrascenter.hu/pj-palyazatok/ginop-plusz-2-5-1-25-korai-fazisu-kutatas-fejlesztesi-kockazati-tokeprogram/",
    "https://www.portfolio.hu/gazdasag/20260319/vege-a-startupok-forrashianyanak-uj-17-milliard-forintos-korai-fazisu-tokeprogramot-indit-a-hiventures-824692"
   ],
-  "confidence": "medium"
+  "confidence": "medium",
+  "requires": {
+   "rnd_project": true
+  },
+  "requiresEvidence": {
+   "rnd_project": "Korai fázisú kutatás-fejlesztési kockázati tőkeprogram (felhívás címe): innovatív vállalkozások K+F-alapú fejlesztése"
+  }
  },
  "MAHOP_PLUSZ-2.5.1-25": {
   "type": "grant",
@@ -228,7 +240,13 @@
    "https://www.palyazatihirek.eu/vallalkozasok/5180-uj-tamogatas-halfeldolgozok-fejlesztesere",
    "https://www.palyazat4me.hu/palyazat/mahop-plusz-251-25"
   ],
-  "confidence": "high"
+  "confidence": "high",
+  "requires": {
+   "fisheries": true
+  },
+  "requiresEvidence": {
+   "fisheries": "Működő halfeldolgozó üzemmel rendelkező mikro-, kis- és középvállalkozások."
+  }
  },
  "KEHOP_PLUSZ-4.1.6-25": {
   "type": "loan",
@@ -251,7 +269,13 @@
    "https://novekedes.hu/penzugy/kamatmentes-energetikai-hitelprogram-feltetel-a-30-szazalekos-energiamegtakaritas",
    "https://pafi.hu/p/vallalkozasok-energiahatekonysagi-fejleszteseit-elosegito-hitelkonstrukcio-kehop-plusz-416-25"
   ],
-  "confidence": "medium"
+  "confidence": "medium",
+  "requires": {
+   "bank_loan": true
+  },
+  "requiresEvidence": {
+   "bank_loan": "MFB Pontokon igényelhető."
+  }
  },
  "MAHOP_PLUSZ-1.3.1-25": {
   "type": "grant",
@@ -263,7 +287,13 @@
    "https://www.protask.hu/2026/01/20/termeszetesvizi-halgazdalkodas-tamogatasa/",
    "https://forrascenter.hu/pj-palyazatok/a-fenntarthato-termeszetesvizi-halgazdalkodas-tamogatasa-mahop-plusz-1-3-1-2025-2/"
   ],
-  "confidence": "medium"
+  "confidence": "medium",
+  "requires": {
+   "fisheries": true
+  },
+  "requiresEvidence": {
+   "fisheries": "Halgazdálkodási joggal rendelkezők pályázhatnak (szűk kör)."
+  }
  },
  "KEHOP_PLUSZ-4.2.3-25": {
   "type": "grant",
@@ -300,7 +330,13 @@
    "https://www.bkmkik.hu/en/palyazatok/aktualis-palyazatok/8056-technologiaspecifikus-kockazati-tokeprogram",
    "https://www.portfolio.hu/unios-forrasok/20210526/onallo-regio-lett-pest-megye-es-ezert-felrobban-az-elerheto-eu-tamogatasok-osszege-484996"
   ],
-  "confidence": "medium"
+  "confidence": "medium",
+  "requires": {
+   "deeptech": true
+  },
+  "requiresEvidence": {
+   "deeptech": "Kockázati tőke deep-tech, hardveres innovációs KKV-knak; alapkezelőn keresztül."
+  }
  },
  "DIMOP_PLUSZ-1.2.3/B-24": {
   "type": "loan",
@@ -315,7 +351,13 @@
    "https://palyaz.hu/kkv-k-digitalizaciojanak-tamogatasa-hitelprogram-dimop-b/",
    "https://palyazatfigyelo.com/mikro--kis-es-kozepvallalkozasok-digitalizaciojanak-tamogatasa-hitelprogram-kereteben--dimop-plusz-1-2-3-b-24"
   ],
-  "confidence": "high"
+  "confidence": "high",
+  "requires": {
+   "bank_loan": true
+  },
+  "requiresEvidence": {
+   "bank_loan": "A hitelprogram az MFB Pontokon (kereskedelmi bankfiókokban) igényelhető."
+  }
  },
  "GINOP_PLUSZ-1.4.4-24": {
   "type": "loan",
@@ -334,7 +376,13 @@
    "https://pafi.hu/p/kkv-technologia-plusz-budapest-hitelprogram-ginop-plusz-144-24"
   ],
   "confidence": "medium",
-  "cat": "KKV fejlesztés"
+  "cat": "KKV fejlesztés",
+  "requires": {
+   "bank_loan": true
+  },
+  "requiresEvidence": {
+   "bank_loan": "KKV Technológia Plusz Budapest Hitelprogram: igénylés az MFB Pontokon (bankfiókokban)."
+  }
  },
  "2025-1.1.1-BAY_VOUCHER": {
   "type": "in-kind",
@@ -349,7 +397,13 @@
    "https://www.bayzoltan.hu/2026/06/02/2025-1-1-1-bay_voucher-tamogatasi-kerelmekre-vonatkozoan-megszuletett-a-dontes/",
    "https://www.bkmkik.hu/en/palyazatok/aktualis-palyazatok/8204-ujra-megnyilt-a-bay-voucher-palyzat"
   ],
-  "confidence": "high"
+  "confidence": "high",
+  "requires": {
+   "rnd_project": true
+  },
+  "requiresEvidence": {
+   "rnd_project": "Nem pénzbeli: a Bay Zoltán K+F szolgáltatását kapja 75%-os intenzitással; a keretből kevés maradt."
+  }
  },
  "KEHOP_PLUSZ-4.2.4-25": {
   "type": "grant",
@@ -386,7 +440,13 @@
    "https://pafi.hu/p/akvakultura-beruhazas-tamogatasa-mahop-plusz-211-2025",
    "https://www.bkmkik.hu/hu/palyazatok/aktualis-palyazatok/7762-akvakultura-beruhazas-tamogatasa"
   ],
-  "confidence": "medium"
+  "confidence": "medium",
+  "requires": {
+   "fisheries": true
+  },
+  "requiresEvidence": {
+   "fisheries": "Akvakultúra-vállalkozások beruházásai."
+  }
  },
  "DIMOP_PLUSZ-1.2.3/A-24": {
   "type": "loan+grant",
@@ -400,7 +460,13 @@
    "https://palyaz.hu/kkv-k-digitalizaciojanak-tamogatasa-hitelprogram-dimop-a/",
    "https://www.mfb.hu/vallalkozasok/mukodo/hitel/dimop-plusz--123a-24-mikro--kis--es-kozepvallalkozasok-digitalizaciojanak-tamogatasa-egymuveletes-kombinalt-hiteltermek-kereteben-t226-p226"
   ],
-  "confidence": "medium"
+  "confidence": "medium",
+  "requires": {
+   "bank_loan": true
+  },
+  "requiresEvidence": {
+   "bank_loan": "MFB Pontokon igényelhető."
+  }
  },
  "GINOP_PLUSZ-1.4.5-25": {
   "type": "loan+grant",
@@ -424,7 +490,17 @@
    "https://www.mfb.hu/vallalkozasok/mukodo/kombinalt_termekek/ginop-plusz--145-25-nemzeti-bajnokok-t251-masolat-t251-p252"
   ],
   "confidence": "high",
-  "cat": "KKV fejlesztés"
+  "cat": "KKV fejlesztés",
+  "requires": {
+   "employer": true,
+   "min_revenue_huf": 100000000,
+   "bank_loan": true
+  },
+  "requiresEvidence": {
+   "employer": "MGFÜ-regisztráció, min. 5 fő, 3 lezárt év és 100 M Ft árbevétel szükséges.",
+   "min_revenue_huf": "MGFÜ-regisztráció, min. 5 fő, 3 lezárt év és 100 M Ft árbevétel szükséges.",
+   "bank_loan": "Egyműveletes kombinált hitelprogram: a kérelmet az MFB Pontokon (bankfiókokban) kell benyújtani."
+  }
  },
  "GINOP_PLUSZ-1.4.3-24": {
   "type": "loan",
@@ -448,7 +524,13 @@
    "https://granitbank.hu/vallalati-mfbpontplusz-hitelprogramok/kkv-technologia-plusz"
   ],
   "confidence": "high",
-  "cat": "KKV fejlesztés"
+  "cat": "KKV fejlesztés",
+  "requires": {
+   "bank_loan": true
+  },
+  "requiresEvidence": {
+   "bank_loan": "KKV Technológia Plusz Hitelprogram: igénylés az MFB Pontokon (bankfiókokban)."
+  }
  },
  "KEHOP_PLUSZ-4.2.5-25": {
   "type": "loan",

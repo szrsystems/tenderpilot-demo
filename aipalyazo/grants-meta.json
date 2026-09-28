@@ -1,13 +1,13 @@
 {
- "updatedAt": "2026-09-24T22:08:34.100Z",
+ "updatedAt": "2026-09-28T15:32:02.139Z",
  "counts": {
-  "total": 182,
+  "total": 184,
   "api": 17,
-  "verified": 165,
+  "verified": 167,
   "euAuto": 0,
-  "hazai": 55,
-  "eu": 127,
-  "excluded": 20
+  "hazai": 56,
+  "eu": 128,
+  "excluded": 0
  },
  "note": "Rebuilt 2026-09-24 after a manual verification of every listed call. The next daily run adds EU calls from the official EU API.",
  "euApiFailed": false,
@@ -96,5 +96,20 @@
    "why": "Csak közintézmények, egyházak, nonprofitok; 2026-09-25-én zár."
   }
  ],
- "changes": []
+ "changes": [
+  {
+   "id": "v-tff-5-1-5-2026-kth-start-kiegeszito",
+   "type": "new",
+   "title": "Kiegészítő támogatás a KTH START beruházási vagy forgóeszköz kölcsönhöz („2=3 akció”)"
+  },
+  {
+   "id": "v-eitcc-innovation-projects-2026",
+   "type": "new",
+   "title": "EIT Culture & Creativity Innovation Projects 2026 (Kreatívipari innovációs projektek – divat, audiovizuális média, építészet)"
+  }
+ ],
+ "offlineRebuild": {
+  "at": "2026-09-28",
+  "apiDataFrom": "2026-09-24T22:08:34.100Z"
+ }
 }

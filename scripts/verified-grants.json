@@ -60,7 +60,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "medium",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "farmer": true
+   },
+   "requiresEvidence": {
+    "farmer": "Mezőgazdasági termelők (különösen állattartók), halgazdaságok, egyéni vállalkozók és őstermelők forgóeszköz-finanszírozása max. 6 éves futamidővel; bankon kere…"
+   }
   },
   {
    "id": "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025",
@@ -121,7 +127,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "bank_loan": true
+   },
+   "requiresEvidence": {
+    "bank_loan": "Széchenyi Kártya Program: az igénylés a KAVOSZ ügyintézőnél, a partnerbank hiteleként történik."
+   }
   },
   {
    "id": "v-szechenyi-likviditasi-hitel-max",
@@ -151,7 +163,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "bank_loan": true
+   },
+   "requiresEvidence": {
+    "bank_loan": "Széchenyi Kártya Program: az igénylés a KAVOSZ ügyintézőnél, a partnerbank hiteleként történik."
+   }
   },
   {
    "id": "v-szechenyi-turisztikai-kartya-max",
@@ -181,7 +199,15 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "tourism_ntak": true,
+    "bank_loan": true
+   },
+   "requiresEvidence": {
+    "tourism_ntak": "Turisztikai főtevékenységű (szállás, vendéglátás, utazásszervezés, szabadidő stb.) KKV-k 1–3 éves folyószámlahitele, min. 1 lezárt üzleti évvel (150 M Ft felet…",
+    "bank_loan": "Széchenyi Kártya Program: az igénylés a KAVOSZ ügyintézőnél, a partnerbank hiteleként történik."
+   }
   },
   {
    "id": "v-szechenyi-beruhazasi-hitel-max",
@@ -212,7 +238,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "bank_loan": true
+   },
+   "requiresEvidence": {
+    "bank_loan": "Széchenyi Kártya Program: az igénylés a KAVOSZ ügyintézőnél, a partnerbank hiteleként történik."
+   }
   },
   {
    "id": "v-szechenyi-mikrohitel-max",
@@ -240,7 +272,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "bank_loan": true
+   },
+   "requiresEvidence": {
+    "bank_loan": "Széchenyi Kártya Program: az igénylés a KAVOSZ ügyintézőnél, a partnerbank hiteleként történik."
+   }
   },
   {
    "id": "v-szechenyi-lizing-max",
@@ -269,7 +307,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "bank_loan": true
+   },
+   "requiresEvidence": {
+    "bank_loan": "Széchenyi Kártya Program: a lízinget a KAVOSZ ügyintézőnél, a partner lízingtársaságon keresztül lehet igényelni."
+   }
   },
   {
    "id": "v-agrar-szechenyi-beruhazasi-hitel-max",
@@ -298,7 +342,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "medium",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "bank_loan": true
+   },
+   "requiresEvidence": {
+    "bank_loan": "Széchenyi Kártya Program: az igénylés a KAVOSZ ügyintézőnél, a partnerbank hiteleként történik."
+   }
   },
   {
    "id": "v-kth-start-beruhazasi-kolcson",
@@ -327,7 +377,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "tourism_ntak": true
+   },
+   "requiresEvidence": {
+    "tourism_ntak": "NTAK-regisztrált turisztikai vállalkozások és egyéni vállalkozók beruházásai max. 5 éves futamidővel, fedezet nélkül."
+   }
   },
   {
    "id": "v-kth-start-forgoeszkoz-kolcson",
@@ -356,7 +412,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "tourism_ntak": true
+   },
+   "requiresEvidence": {
+    "tourism_ntak": "NTAK-regisztrált turisztikai vállalkozások és egyéni vállalkozók forgóeszköz-finanszírozása max. 3 éves futamidővel, fedezet nélkül."
+   }
   },
   {
    "id": "v-2025-1-1-1-iparjog",
@@ -418,7 +480,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "hires_disadvantaged": true
+   },
+   "requiresEvidence": {
+    "hires_disadvantaged": "15–29 éves, nem tanuló, álláskereső fiatal felvételéhez; a kérelmet a foglalkoztatás megkezdése előtt a járási hivatal foglalkoztatási osztályán kell benyújtan…"
+   }
   },
   {
    "id": "v-ginop-plusz-3-1-1-23",
@@ -449,7 +517,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "medium",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "hires_disadvantaged": true
+   },
+   "requiresEvidence": {
+    "hires_disadvantaged": "30 év feletti, programba vont álláskereső felvételéhez (előnyben tartósan munkanélküli, 50+, alacsony végzettségű); kérelem a foglalkoztatás előtt a járási hiv…"
+   }
   },
   {
    "id": "v-vallalkozova-valast-elosegito-tamogatas",
@@ -476,7 +550,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "medium",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "jobseeker": true
+   },
+   "requiresEvidence": {
+    "jobseeker": "Min. 1 hónapja regisztrált álláskeresők vállalkozásindítására, kötelező vállalkozói képzés és elfogadott üzleti terv után; vármegyénként eltérő hirdetmények és…"
+   }
   },
   {
    "id": "v-kap-rd40-rd12-1-26",
@@ -507,7 +587,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "forestry": true
+   },
+   "requiresEvidence": {
+    "forestry": "Erdőgazdálkodó természetes vagy jogi személyek pályázhatnak; az utolsó benyújtási szakasz 2026.09.17–09.30."
+   }
   },
   {
    "id": "v-kap-rd35-1-25",
@@ -538,7 +624,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "forestry": true
+   },
+   "requiresEvidence": {
+    "forestry": "Nyilvántartásba vett erdőgazdálkodók; az aktuális szakasz 09.30-ig tart, a következő 2026.11.04–12.02."
+   }
   },
   {
    "id": "v-kap-rd35-2-26",
@@ -569,7 +661,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "forestry": true
+   },
+   "requiresEvidence": {
+    "forestry": "Nyilvántartásba vett erdőgazdálkodók folyamatos erdőborítást biztosító vállalásokra; a 2. szakasz 2026.09.24–10.08."
+   }
   },
   {
    "id": "v-kap-rd38-rd39-1-25",
@@ -629,7 +727,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "farmer": true
+   },
+   "requiresEvidence": {
+    "farmer": "Jóváhagyott gazdaságátadási szerződéssel rendelkező, mezőgazdasági tevékenységet folytató gazdaságátvevő; további szakaszok 2026.12.03–16-tól 2027.06.23-ig."
+   }
   },
   {
    "id": "v-kap-rd44-1-26",
@@ -659,7 +763,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "farmer": true
+   },
+   "requiresEvidence": {
+    "farmer": "Elismert termelői csoport vagy elismert termelői integrációs szervezet pályázhat; 3. szakasz 2026.11.05–12.16."
+   }
   },
   {
    "id": "v-kap-rd01a-rd01c-rd01d-rd01e-rd02-rd04a-rd04b-rd12-1-25",
@@ -722,7 +832,15 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "medium",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "farmer": true,
+    "bank_loan": true
+   },
+   "requiresEvidence": {
+    "farmer": "Mezőgazdasági, erdő-, vad- és halgazdálkodó KKV-k és őstermelők legalább egy lezárt üzleti évvel és MÁK ügyfél-azonosítóval.",
+    "bank_loan": "Széchenyi Kártya Program: az igénylés a KAVOSZ ügyintézőnél, a partnerbank hiteleként történik."
+   }
   },
   {
    "id": "v-horizon-eic-2026-accelerator-01",
@@ -749,7 +867,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": true
+   "singleApplicant": true,
+   "requires": {
+    "deeptech": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "deeptech": "EIC Accelerator: mélytech startupok/KKV-k skálázása",
+    "rnd_project": "EIC Accelerator: innovációs projekt (TRL 5/6 → 9) és skálázás támogatása."
+   }
   },
   {
    "id": "v-horizon-eic-2026-pathfinderchallenges-01-01",
@@ -775,7 +901,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": true
+   "singleApplicant": true,
+   "requires": {
+    "deeptech": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "deeptech": "korai fázisú (TRL 2–4) kutatás, mélytech KKV-knak reális.",
+    "rnd_project": "korai fázisú (TRL 2–4) kutatás"
+   }
   },
   {
    "id": "v-horizon-eic-2026-pathfinderchallenges-01-02",
@@ -801,7 +935,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": true
+   "singleApplicant": true,
+   "requires": {
+    "deeptech": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "deeptech": "korai fázisú (TRL 2–4) kutatás, mélytech KKV-knak reális.",
+    "rnd_project": "korai fázisú (TRL 2–4) kutatás"
+   }
   },
   {
    "id": "v-horizon-eic-2026-pathfinderchallenges-01-03",
@@ -827,7 +969,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": true
+   "singleApplicant": true,
+   "requires": {
+    "deeptech": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "deeptech": "korai fázisú (TRL 2–4) kutatás, mélytech KKV-knak reális.",
+    "rnd_project": "korai fázisú (TRL 2–4) kutatás"
+   }
   },
   {
    "id": "v-horizon-cl4-2027-01-mat-prod-49",
@@ -852,7 +1002,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Kis konzorcium (spin-off, startup, KKV)",
+    "rnd_project": "Horizon Europe: nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-horizon-cl4-2027-01-mat-prod-08",
@@ -877,7 +1035,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Konzorciumos IA",
+    "rnd_project": "Horizon Europe: nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-horizon-cl4-2027-04-digital-emerging-04",
@@ -902,7 +1068,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Konzorcium pályázik, de a keret nagy része kaszkádban megy KKV-k vagy KKV-vezette kis csapatok felé.",
+    "rnd_project": "Horizon Europe: nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-horizon-cl4-2027-04-digital-emerging-05",
@@ -927,7 +1101,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nagy konzorciumos IA",
+    "rnd_project": "Horizon Europe: nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-horizon-cl5-2027-05-d4-05",
@@ -952,7 +1134,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Konzorcium szükséges",
+    "rnd_project": "Horizon Europe: nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-horizon-cl6-2027-02-farm2fork-05",
@@ -977,7 +1167,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Multi-actor konzorcium",
+    "rnd_project": "Horizon Europe: nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-horizon-cl6-2027-02-communities-02",
@@ -1002,7 +1200,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "medium",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Konzorcium",
+    "rnd_project": "Horizon Europe: nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-horizon-neb-2026-01-regen-01",
@@ -1027,7 +1233,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Konzorciumos innovációs akció",
+    "rnd_project": "Horizon Europe: nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-eurostars-3-call-12",
@@ -1052,7 +1266,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Innovatív KKV vezeti, min. 2 független szervezet 2 Eurostars-országból",
+    "rnd_project": "Horizon Europe – Eurostars-3 partnership (Eureka): nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-horizon-eie-womentecheu-2",
@@ -1078,7 +1300,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": true
+   "singleApplicant": true,
+   "requires": {
+    "women_led": true,
+    "deeptech": true
+   },
+   "requiresEvidence": {
+    "women_led": "Nő által vezetett korai fázisú mélytech startup",
+    "deeptech": "Nő által vezetett korai fázisú mélytech startup"
+   }
   },
   {
    "id": "v-digital-eccc-2027-deploy-cyber-11-ai4sme",
@@ -1104,7 +1334,13 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true
+   },
+   "requiresEvidence": {
+    "consortium": "SME Support Action konzorciumoknak (KKV-knál 75% intenzitás)"
+   }
   },
   {
    "id": "v-i3-2026-inv1",
@@ -1130,7 +1366,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Több régiós quadruple-helix konzorcium",
+    "rnd_project": "I3 Instrument (ERFA, EISMEA): nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-i3-2026-inv2a",
@@ -1156,7 +1400,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Több régiós quadruple-helix konzorcium",
+    "rnd_project": "I3 Instrument (ERFA, EISMEA): nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-trunsport-oc1",
@@ -1261,7 +1513,13 @@
    "verifiedAt": "2026-09-24",
    "confidence": "medium",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true
+   },
+   "requiresEvidence": {
+    "consortium": "Kis konzorcium (OC2.1: min. 3, OC2.2: min. 2 szervezet), legalább egy KKV-val"
+   }
   },
   {
    "id": "v-ngi-restack",
@@ -1391,7 +1649,13 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true
+   },
+   "requiresEvidence": {
+    "consortium": "Legalább két országból álló partnerség"
+   }
   },
   {
    "id": "v-horizon-cl4-2027-01-mat-prod-22",
@@ -1416,7 +1680,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország)",
+    "rnd_project": "Horizon Europe – Cluster 4: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl4-2027-01-mat-prod-02",
@@ -1441,7 +1713,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország)",
+    "rnd_project": "Horizon Europe – Cluster 4: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl4-2027-01-mat-prod-16",
@@ -1466,7 +1746,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 4: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl4-2027-01-mat-prod-61",
@@ -1491,7 +1779,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Kis nemzetközi konzorcium (max. 6 résztvevő",
+    "rnd_project": "Horizon Europe – Cluster 4: nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-horizon-cl4-2027-01-mat-prod-62",
@@ -1516,7 +1812,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Kis nemzetközi konzorcium (max. 6 résztvevő",
+    "rnd_project": "Horizon Europe – Cluster 4: nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-horizon-cl4-2027-02-mat-prod-32-two-stage",
@@ -1541,7 +1845,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "nemzetközi konzorcium (min. 3 ország), feldolgozóipari vállalatok vezetésével",
+    "rnd_project": "Horizon Europe – Cluster 4: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl4-2027-04-data-08",
@@ -1566,7 +1878,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország)",
+    "rnd_project": "Horizon Europe – Cluster 4: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl4-2027-04-data-09",
@@ -1591,7 +1911,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 4: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl4-2027-04-digital-emerging-06",
@@ -1616,7 +1944,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 4: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl4-2027-space-03-12",
@@ -1641,7 +1977,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 4 (Space): kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl4-2027-space-03-34",
@@ -1666,7 +2010,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 4 (Space): kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2026-10-d2-03",
@@ -1691,7 +2043,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nagy ipari konzorcium (min. 3 ország)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2026-10-d6-06",
@@ -1716,7 +2076,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2026-10-d6-09",
@@ -1741,7 +2109,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2026-10-d6-10",
@@ -1766,7 +2142,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2026-11-d3-05",
@@ -1791,7 +2175,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2026-11-d3-14",
@@ -1816,7 +2208,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2026-11-d3-23",
@@ -1841,7 +2241,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2027-02-d2-05",
@@ -1866,7 +2274,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2027-02-d2-06",
@@ -1891,7 +2307,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nagy ipari konzorcium (min. 3 ország)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2027-02-d3-07",
@@ -1916,7 +2340,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2027-02-d3-15",
@@ -1941,7 +2373,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2027-02-d3-24",
@@ -1966,7 +2406,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2027-02-d3-30",
@@ -1991,7 +2439,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2027-03-d5-04",
@@ -2016,7 +2472,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nagy ipari konzorcium (min. 3 ország)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2027-03-d5-05",
@@ -2041,7 +2505,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium (min. 3 ország)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2027-05-d2-08",
@@ -2066,7 +2538,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2027-05-d4-06",
@@ -2091,7 +2571,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2027-05-d4-09",
@@ -2116,7 +2604,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2027-07-d3-17",
@@ -2141,7 +2637,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2027-07-d3-26",
@@ -2166,7 +2670,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl5-2027-07-d3-27",
@@ -2191,7 +2703,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl6-2027-01-circbio-01",
@@ -2216,7 +2736,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl6-2027-01-circbio-02",
@@ -2241,7 +2769,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl6-2027-01-circbio-07",
@@ -2266,7 +2802,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl6-2027-01-circbio-08",
@@ -2291,7 +2835,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl6-2027-01-circbio-09",
@@ -2316,7 +2868,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl6-2027-01-biodiv-03",
@@ -2341,7 +2901,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl6-2027-02-farm2fork-02",
@@ -2366,7 +2934,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl6-2027-02-farm2fork-06",
@@ -2391,7 +2967,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl6-2027-02-farm2fork-07",
@@ -2416,7 +3000,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-hlth-2027-02-ind-02-two-stage",
@@ -2441,7 +3033,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "nemzetközi konzorcium (min. 3 ország)",
+    "rnd_project": "Horizon Europe – Cluster 1 (Health): kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-hlth-2027-01-ind-01",
@@ -2466,7 +3066,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium (min. 3 ország)",
+    "rnd_project": "Horizon Europe – Cluster 1 (Health): kutatási-innovációs projekt (RIA)"
+   }
   },
   {
    "id": "v-horizon-hlth-2027-01-disease-08",
@@ -2491,7 +3099,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium (min. 3 ország)",
+    "rnd_project": "Horizon Europe – Cluster 1 (Health): kutatási-innovációs projekt (RIA)"
+   }
   },
   {
    "id": "v-horizon-hlth-2027-03-tool-04",
@@ -2516,7 +3132,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium (min. 3 ország)",
+    "rnd_project": "Horizon Europe – Cluster 1 (Health): kutatási-innovációs projekt (RIA)"
+   }
   },
   {
    "id": "v-horizon-cl3-2026-01-drs-02",
@@ -2541,7 +3165,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 3: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl3-2026-01-drs-03",
@@ -2566,7 +3198,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 3: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl3-2026-01-drs-04",
@@ -2591,7 +3231,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 3: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl3-2026-01-infra-01",
@@ -2616,7 +3264,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 3: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl3-2026-01-infra-03",
@@ -2641,7 +3297,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 3: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl3-2026-01-ssri-04",
@@ -2666,7 +3330,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 3: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl3-2026-01-bm-01",
@@ -2691,7 +3363,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 3: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl3-2027-01-ssri-01",
@@ -2716,7 +3396,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium",
+    "rnd_project": "Horizon Europe – Cluster 3: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl3-2027-01-drs-01",
@@ -2741,7 +3429,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 3: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl3-2027-01-drs-03",
@@ -2766,7 +3462,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 3: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-cl3-2027-01-infra-01",
@@ -2791,7 +3495,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Cluster 3: kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-miss-2027-04-cit-01",
@@ -2816,7 +3528,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Missions (Cities): kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-miss-2027-04-cit-ccri-04",
@@ -2841,7 +3561,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Missions (Cities): kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-miss-2027-05-soil-05-two-stage",
@@ -2866,7 +3594,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "nemzetközi konzorcium (min. 3 ország)",
+    "rnd_project": "Horizon Europe – Missions (Soil): kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-miss-2027-07-clima-cit-ccri-02",
@@ -2891,7 +3627,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Missions (Climate/Cities): kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-miss-2027-03-ocean-04",
@@ -2916,7 +3660,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
+    "rnd_project": "Horizon Europe – Missions (Ocean & Waters): kutatási-innovációs projekt (IA)"
+   }
   },
   {
    "id": "v-horizon-widera-2027-01-widening-01",
@@ -2941,7 +3693,13 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": true
+   "singleApplicant": true,
+   "requires": {
+    "deeptech": true
+   },
+   "requiresEvidence": {
+    "deeptech": "EIC Pre-accelerator: mélytech (deep-tech) startupok/KKV-k felkészítése az EIC Acceleratorra felzárkózó országokban."
+   }
   },
   {
    "id": "v-horizon-widera-2027-04-widening-01",
@@ -2966,7 +3724,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "vállalkozások partnerként részt vehetnek.",
+    "rnd_project": "Horizon Europe – Widening: nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-horizon-eic-2026-step",
@@ -2991,7 +3757,13 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": true
+   "singleApplicant": true,
+   "requires": {
+    "deeptech": true
+   },
+   "requiresEvidence": {
+    "deeptech": "EIC STEP Scale Up: tőkebefektetés kritikus (mély)technológiákban működő scale-upokba"
+   }
   },
   {
    "id": "v-digital-2026-ai-data-10-compliance",
@@ -3016,7 +3788,13 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true
+   },
+   "requiresEvidence": {
+    "consortium": "EU-tagállami/társult országbeli jogi személyek konzorciuma"
+   }
   },
   {
    "id": "v-digital-2026-skills-10-edtech",
@@ -3041,7 +3819,13 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true
+   },
+   "requiresEvidence": {
+    "consortium": "Konzorcium működteti a gyorsítót"
+   }
   },
   {
    "id": "v-digital-2026-ai-piloting-10-screening",
@@ -3066,7 +3850,13 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true
+   },
+   "requiresEvidence": {
+    "consortium": "Konzorcium egészségügyi intézményekkel"
+   }
   },
   {
    "id": "v-digital-eccc-2027-deploy-cyber-11-dualuse",
@@ -3091,7 +3881,13 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true
+   },
+   "requiresEvidence": {
+    "consortium": "EU/EGT-ben bejegyzett jogi személyek (konzorcium)"
+   }
   },
   {
    "id": "v-digital-eccc-2027-deploy-cyber-11-euleg",
@@ -3116,7 +3912,13 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true
+   },
+   "requiresEvidence": {
+    "consortium": "EU/EGT-ben bejegyzett jogi személyek (konzorcium)"
+   }
   },
   {
    "id": "v-eit-rib-hu-2027",
@@ -3143,7 +3945,13 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": true
+   "singleApplicant": true,
+   "requires": {
+    "employer": true
+   },
+   "requiresEvidence": {
+    "employer": "legalább 3 teljes munkaidős munkavállalót foglalkoztató"
+   }
   },
   {
    "id": "v-eitcc-shape-scale-2027",
@@ -3247,7 +4055,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Legalább 2 független szervezet 2 különböző EU/HE-társult országból",
+    "rnd_project": "EIT Urban Mobility: nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-eitrm-kava14-ris",
@@ -3273,7 +4089,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Legalább 2 szervezet 2 különböző RIS-országból (Magyarország RIS-ország), a tudásháromszög 2 elemével",
+    "rnd_project": "EIT RawMaterials (EIT RIS): nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-eitrm-kava14-upscaling",
@@ -3299,7 +4123,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Konzorcium (min. 2 partner 2 HE-országból), legalább egy EIT RawMaterials partnerrel, TRL 5+ → TRL 8",
+    "rnd_project": "EIT RawMaterials: nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-eitfood-poc-cofin-2026",
@@ -3588,7 +4420,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "cégek is pályázhatnak min. 3 ország 3 partneréből álló konzorciumban, amelyben önkormányzat is van (2 lépcsős, teljes pályázat 2027.04.15).",
+    "rnd_project": "Európai partnerség (Horizon Europe társfinanszírozás, NKFIH): nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-cetp-jc2026",
@@ -3614,7 +4454,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "KKV-k és nagyvállalatok min. 3 ország 3 partneréből álló konzorciumban pályázhatnak (előpályázat 10.08., teljes 2027.03.11).",
+    "rnd_project": "Európai partnerség (Horizon Europe társfinanszírozás): nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-water4all-jtc-2026",
@@ -3639,7 +4487,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "3–7 partneres, min. 3 országos konzorcium (előpályázat 2026.11.10., teljes pályázat 2027.04.06.)",
+    "rnd_project": "Európai partnerség (Horizon Europe társfinanszírozás): nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-eureka-celticnext-aut2026",
@@ -3665,7 +4521,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "min. 2 független szervezet 2 Eureka-országból, piaci hasznosítási céllal, polgári célra.",
+    "rnd_project": "Eureka Clusters (NKFIH): nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-eureka-eurogia2030-call31",
@@ -3690,7 +4554,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "min. 2 független szervezet 2 Eureka-országból.",
+    "rnd_project": "Eureka Clusters (NKFIH): nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-eureka-itea-2026",
@@ -3715,7 +4587,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "nemzetközi, iparvezérelt konzorcium",
+    "rnd_project": "Eureka Clusters (NKFIH): nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-eureka-xecs-call6",
@@ -3740,7 +4620,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "min. 2 szervezet 2 Eureka-országból (3 ajánlott), min. 35 emberév, projektvázlat-határidő 2027.01.21.",
+    "rnd_project": "Eureka Clusters (NKFIH): nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-ivf-visegrad-grants-2026-10",
@@ -3766,7 +4654,13 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true
+   },
+   "requiresEvidence": {
+    "consortium": "Magáncégek is pályázhatnak, de legalább 3 V4-országból (vagy határ menti 40 km-en belül 2 szomszédos országból) kell partner, max. 18 hónapos projektre."
+   }
   },
   {
    "id": "v-horizon-ju-eurohpc-2026-qti-13",
@@ -3791,7 +4685,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorcium kell",
+    "rnd_project": "EuroHPC Joint Undertaking (Horizon Europe): nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-horizon-ju-eurohpc-2026-nqkd-12",
@@ -3816,7 +4718,15 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Nemzetközi konzorciumban vállalatok és KKV-k is részt vehetnek kvantumkommunikációs K+F projektben.",
+    "rnd_project": "EuroHPC Joint Undertaking (Horizon Europe): nemzetközi K+F+I projekt"
+   }
   },
   {
    "id": "v-eye-rolling",
@@ -3870,7 +4780,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "bank_loan": true
+   },
+   "requiresEvidence": {
+    "bank_loan": "EIF InvestEU garanciával fedezett vállalati hitel a UniCredit Banknál."
+   }
   },
   {
    "id": "v-eif-sustainability-kh-hu",
@@ -3895,7 +4811,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "bank_loan": true
+   },
+   "requiresEvidence": {
+    "bank_loan": "A K&H vállalkozói ügyfelei számos hitelterméknél, külön fedezeti szerződés nélkül vehetik igénybe az EIF-kezességet."
+   }
   },
   {
    "id": "v-garantiqa-investeu",
@@ -3922,7 +4844,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "bank_loan": true
+   },
+   "requiresEvidence": {
+    "bank_loan": "Elégtelen fedezettel rendelkező, növekedési fázisú KKV-k igényelhetik bármelyik együttműködő hazai banknál (pl."
+   }
   },
   {
    "id": "v-garantiqa-kezesseg",
@@ -3949,7 +4877,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "bank_loan": true
+   },
+   "requiresEvidence": {
+    "bank_loan": "KKV-k (a Gazdaság Újjáépítési Programban nagyvállalatok is) igényelhetik a hitelező banknál rövid és hosszú lejáratú hitelhez, bankgaranciához, faktoringhoz."
+   }
   },
   {
    "id": "v-avhga-kezesseg",
@@ -3976,7 +4910,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "bank_loan": true
+   },
+   "requiresEvidence": {
+    "bank_loan": "Mezőgazdasági vagy vidéki KKV-k igényelhetik a banknál forgóeszköz- és beruházási hitelhez, hitelkerethez, bankgaranciához, faktoringhoz és lízinghez."
+   }
   },
   {
    "id": "v-eib-raiffeisen-lizing",
@@ -4000,7 +4940,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "bank_loan": true
+   },
+   "requiresEvidence": {
+    "bank_loan": "EIB refinanszírozott lízing a Raiffeisen Lízingnél: gépek, járművek lízingje."
+   }
   },
   {
    "id": "v-2025-1-2-2-eureka",
@@ -4031,7 +4977,15 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Csak jóváhagyott nemzetközi EUREKA-projekt (EUREKA Titkárság vagy klaszter adatbázis) magyar partnere/konzorciumvezetője; előzetes szakmai vélemény kell (kérhe…",
+    "rnd_project": "Az EUREKA programban való magyar részvétel támogatása: jóváhagyott nemzetközi K+F projekt magyar partnerének."
+   }
   },
   {
    "id": "v-2024-1-2-1-he-partnerseg",
@@ -4061,7 +5015,15 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "consortium": true,
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "consortium": "Olyan magyar szervezetek (a nem kutató vállalatokat is beleértve) pályázhatnak, amelyek egy európai partnerség közös nemzetközi felhívásán támogatásra javasolt…",
+    "rnd_project": "Horizont Európa európai partnerségek közös nemzetközi (K+F+I) felhívásaiban támogatásra javasolt konzorcium tagjai."
+   }
   },
   {
    "id": "v-2025-1-2-5-eu-kp",
@@ -4091,7 +5053,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "rnd_project": "Horizont Európa (vagy más közös EU-s program) pályázatot benyújtó magyar szervezetek, a vállalkozásokat is beleértve, az előkészítés költségeire kapják."
+   }
   },
   {
    "id": "v-kap-rd01a-rd12-2-25",
@@ -4122,7 +5090,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "farmer": true
+   },
+   "requiresEvidence": {
+    "farmer": "A Kedvezményezetti Nyilvántartási Rendszerben (KNYR) regisztrált mezőgazdasági termelők fagykárt szenvedett ültetvényei cseréjére."
+   }
   },
   {
    "id": "v-kap-rd41-3-25",
@@ -4153,7 +5127,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "forestry": true
+   },
+   "requiresEvidence": {
+    "forestry": "Jóváhagyott erdőtervvel rendelkező, az Evt. szerint nyilvántartott, KNYR-ben regisztrált erdőgazdálkodók."
+   }
   },
   {
    "id": "v-mfb-pvrk-forgoeszkoz-hitelprogram",
@@ -4182,7 +5162,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "bank_loan": true
+   },
+   "requiresEvidence": {
+    "bank_loan": "Forgóeszközt és működési költséget finanszíroz, a résztvevő pénzügyi vállalkozásokon keresztül (pl. Corrigia, MGV, Inhold)."
+   }
   },
   {
    "id": "v-top-plusz-3-1-1-21",
@@ -4221,7 +5207,13 @@
    ],
    "verifiedAt": "2026-09-24",
    "confidence": "high",
-   "scope": "hazai"
+   "scope": "hazai",
+   "requires": {
+    "hires_disadvantaged": true
+   },
+   "requiresEvidence": {
+    "hires_disadvantaged": "30 év feletti, hátrányos helyzetű (tartósan munkanélküli, inaktív, 50 év feletti stb.) álláskereső felvételéhez, max. 6 hónapra, de minimis alapon, nettó létsz…"
+   }
   },
   {
    "id": "v-eitum-umx-2026",
@@ -4341,7 +5333,13 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": true
+   "singleApplicant": true,
+   "requires": {
+    "women_led": true
+   },
+   "requiresEvidence": {
+    "women_led": "Women founders or co-founders of innovative companies"
+   }
   },
   {
    "id": "v-perform-europe-2026-2028",
@@ -4372,7 +5370,86 @@
    "verifiedAt": "2026-09-24",
    "confidence": "medium",
    "scope": "eu",
-   "singleApplicant": false
+   "singleApplicant": false,
+   "requires": {
+    "consortium": true
+   },
+   "requiresEvidence": {
+    "consortium": "Consortium of at least 3 partners from different Creative Europe countries (Hungary eligible), each an organisation or professional in the performing arts."
+   }
+  },
+  {
+   "id": "v-tff-5-1-5-2026-kth-start-kiegeszito",
+   "code": "TFF-5.1.5.-2026",
+   "title": "Kiegészítő támogatás a KTH START beruházási vagy forgóeszköz kölcsönhöz („2=3 akció”)",
+   "issuer": "Magyar Turisztikai Ügynökség / Kisfaludy Turisztikai Hitelközpont (KTH)",
+   "cat": "Turizmus",
+   "type": "loan+grant",
+   "amount": "max. 1 M Ft vissza nem térítendő (a megítélt 1–2 M Ft-os KTH Start kölcsön max. 50%-a)",
+   "rate": "a megítélt hitelösszeg max. 50%-a",
+   "deadline": null,
+   "rolling": true,
+   "windowOpen": null,
+   "sizeClasses": [
+    "mikrovállalkozás",
+    "kisvállalkozás",
+    "mikrovállalkozás természetes személy"
+   ],
+   "regions": [],
+   "note": "NTAK-regisztrált legkisebb turisztikai vállalkozások, adószámos magánszemélyek és egyéni vállalkozók; feltétel, hogy a KTH 1–2 M Ft közötti Start Kölcsönt ítéljen meg. Beadás 2026.01.26-tól a 700 M Ft-os keret kimerüléséig.",
+   "url": "https://kth.hu/hirdetmenyek/2-3-akcio-a-kth-start-kolcsonokhoz",
+   "source": "kth.hu",
+   "sources": [
+    "https://kth.hu/hirdetmenyek/2-3-akcio-a-kth-start-kolcsonokhoz",
+    "https://kth.hu/hiteltermekek",
+    "https://magyarhirlap.hu/belfold/20260119-indul-a-palyazat-kiegeszito-tamogatas-a-kisfaludy-hitelprogramban"
+   ],
+   "verifiedAt": "2026-09-28",
+   "confidence": "medium",
+   "scope": "hazai",
+   "requires": {
+    "tourism_ntak": true
+   },
+   "requiresEvidence": {
+    "tourism_ntak": "Turisztikai vállalkozások, egyéni vállalkozók, adószámos magánszemélyek, akik a Nemzeti Turisztikai Adatszolgáltató Központban (NTAK) regisztrációval rendelkez…"
+   }
+  },
+  {
+   "id": "v-eitcc-innovation-projects-2026",
+   "code": null,
+   "title": "EIT Culture & Creativity Innovation Projects 2026 (Kreatívipari innovációs projektek – divat, audiovizuális média, építészet)",
+   "issuer": "EIT Culture & Creativity (EU kaszkád)",
+   "cat": "KKV fejlesztés",
+   "type": "grant",
+   "amount": "1. szakasz: €20 000 átalány; 2. szakasz: max. €900 000 projektenként (max. 70%)",
+   "rate": "max. 70% (2. szakasz)",
+   "deadline": "2026-10-30",
+   "rolling": false,
+   "windowOpen": null,
+   "sizeClasses": [
+    "mikrovállalkozás",
+    "kisvállalkozás",
+    "középvállalkozás",
+    "nagyvállalkozás"
+   ],
+   "regions": [],
+   "note": "Az 1. szakaszban egyetlen jogi személy (startup, scale-up, KKV vagy nagyobb cég) pályázik Horizont Európa-jogosult országból (Magyarország is); a 2. szakaszba jutva 2–3 tagú konzorcium kell. Határidő: 2026.10.30. 17:00 CET.",
+   "url": "https://eit-culture-creativity.eu/your-opportunities/calls-funding/innovation-projects",
+   "source": "eit-culture-creativity.eu",
+   "sources": [
+    "https://eit-culture-creativity.eu/your-opportunities/calls-funding/innovation-projects",
+    "https://www.eit.europa.eu/our-activities/opportunities/eit-culture-creativity-innovation-projects-open-call"
+   ],
+   "verifiedAt": "2026-09-28",
+   "confidence": "high",
+   "scope": "eu",
+   "singleApplicant": true,
+   "requires": {
+    "rnd_project": true
+   },
+   "requiresEvidence": {
+    "rnd_project": "Innovation Projects: innovációs projektek fejlesztése és piacra vitele a kreatív ágazatokban (EIT Culture & Creativity)"
+   }
   }
  ]
 }

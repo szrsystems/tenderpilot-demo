@@ -1,0 +1,79 @@
+[
+ {
+  "id": "exp-kap-agrar-erdeszeti-rendszerek-2",
+  "title": "Agrár-erdészeti rendszerek telepítése, ápolása és fenntartása (2. kör)",
+  "programme": "KAP Stratégiai Terv (vidékfejlesztés)",
+  "expectedWindow": "2026 Q4",
+  "audience": "Mezőgazdasági termelők",
+  "amountHint": "Tervezett keret: 2,5 Mrd Ft",
+  "source": "https://kap.gov.hu/palyazatiutemterv",
+  "sourceNote": "A KAP Nemzeti Irányító Hatóság 2026.09.09-től hatályos pályázati menetrendje a 2026. III–IV. negyedévben meghirdetendő felhívások között sorolja fel; kedvezményezett: mezőgazdasági termelők.",
+  "addedAt": "2026-09-28"
+ },
+ {
+  "id": "exp-kap-tejhasznu-szarvasmarha-allatjolet-2",
+  "title": "Állatjóléti támogatás a tejtermelő szarvasmarha ágazatban (2. kör)",
+  "programme": "KAP Stratégiai Terv (vidékfejlesztés)",
+  "expectedWindow": "2026 Q4",
+  "audience": "Tejelő szarvasmarhát tartó mezőgazdasági termelők",
+  "amountHint": "Tervezett keret: 2,4 Mrd Ft",
+  "source": "https://kap.gov.hu/palyazatiutemterv",
+  "sourceNote": "A KAP pályázati menetrend (hatályos 2026.09.09-től) a 2026. III–IV. negyedévre tervezett felhívások között szerepelteti; kedvezményezett: mezőgazdasági termelők.",
+  "addedAt": "2026-09-28"
+ },
+ {
+  "id": "exp-kap-fiatal-erdok-allomanynevelese-2",
+  "title": "Fiatal erdők állománynevelésének támogatása (2. kör)",
+  "programme": "KAP Stratégiai Terv (vidékfejlesztés)",
+  "expectedWindow": "2026 Q4",
+  "audience": "Erdőgazdálkodók",
+  "amountHint": "Tervezett keret: 2 Mrd Ft",
+  "source": "https://kap.gov.hu/palyazatiutemterv",
+  "sourceNote": "A KAP pályázati menetrend (hatályos 2026.09.09-től) szerint a második kör meghirdetése 2026. III–IV. negyedévre tervezett; kedvezményezett: erdőgazdálkodók.",
+  "addedAt": "2026-09-28"
+ },
+ {
+  "id": "exp-kap-erdokarok-megelozese-2",
+  "title": "Erdőkárok megelőzésének támogatása (2. kör)",
+  "programme": "KAP Stratégiai Terv (vidékfejlesztés)",
+  "expectedWindow": "2026 Q4",
+  "audience": "Erdőgazdálkodók",
+  "amountHint": "Tervezett keret: 3 Mrd Ft",
+  "source": "https://kap.gov.hu/palyazatiutemterv",
+  "sourceNote": "A KAP pályázati menetrend (hatályos 2026.09.09-től) az erdőkárok megelőzését szolgáló támogatás második körét 2026. III–IV. negyedévre tervezi; kedvezményezett: erdőgazdálkodók.",
+  "addedAt": "2026-09-28"
+ },
+ {
+  "id": "exp-kap-eip-operativ-csoportok",
+  "title": "Európai Innovációs Partnerség (EIP) együttműködések támogatása",
+  "programme": "KAP Stratégiai Terv (vidékfejlesztés)",
+  "expectedWindow": "2026 Q4",
+  "audience": "Gazdálkodókból, agrár- és élelmiszeripari vállalkozásokból és kutatókból álló operatív csoportok",
+  "amountHint": "Tervezett keret: 7,7 Mrd Ft",
+  "source": "https://kap.gov.hu/palyazatiutemterv",
+  "sourceNote": "A KAP pályázati menetrend (hatályos 2026.09.09-től) a 2026. III–IV. negyedévben tervezett felhívások között sorolja fel; kedvezményezett: jogosult együttműködések (csoportok).",
+  "addedAt": "2026-09-28"
+ },
+ {
+  "id": "exp-kap-vizvisszatartas-mezogazdasagi-teruleten",
+  "title": "Vízvisszatartás mezőgazdasági területeken (kifizetés és beruházási támogatás)",
+  "programme": "KAP Stratégiai Terv (vidékfejlesztés)",
+  "expectedWindow": "2027 Q1–Q2",
+  "audience": "Mezőgazdasági termelők",
+  "amountHint": "Tervezett keret: 4,6 Mrd Ft (támogatás) + 2 Mrd Ft (beruházás)",
+  "source": "https://kap.gov.hu/palyazatiutemterv",
+  "sourceNote": "A KAP pályázati menetrend (hatályos 2026.09.09-től) két vízvisszatartási felhívást tervez 2027. I–II. negyedévre, mezőgazdasági termelők részére.",
+  "addedAt": "2026-09-28"
+ },
+ {
+  "id": "exp-eic-transition-2027",
+  "title": "EIC Transition 2027",
+  "programme": "Horizon Europe – EIC (2027-es munkaprogram)",
+  "expectedWindow": "2027 ősz (tervezett határidő: 2027. szeptember 16.)",
+  "audience": "Korábbi EIC/ERC/Horizon kutatási eredményt piacra vivő KKV-k, spin-offok, kutatóhelyek (egyedül vagy kis konzorciumban)",
+  "amountHint": "EU-s vissza nem térítendő támogatás (összeg a végleges munkaprogramban)",
+  "source": "https://euraxess.ec.europa.eu/worldwide/south-korea/news/pathfinder-and-transition-what-know-about-eic-grant-schemes-being",
+  "sourceNote": "EURAXESS (2026.08.05.): a 2027-es EIC munkaprogram-tervezet szerint az EIC Transition határideje 2027.09.16.; a tervezet az elfogadásig változhat.",
+  "addedAt": "2026-09-28"
+ }
+]

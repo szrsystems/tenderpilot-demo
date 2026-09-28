@@ -21,12 +21,20 @@
 // Output:
 //   aipalyazo/grants_live.json  — portal-schema grant list
 //   aipalyazo/grants-meta.json  — updatedAt, counts, keret/deadline changes
+//   aipalyazo/changes.json      — per-call change history, 12 months
+//                                 (scripts/changes-log.mjs)
+// Eligibility tags (requires/requiresEvidence, scripts/requires.mjs) come
+// from verified-grants.json / the api-verified.json overlay; EU calls that
+// are not single-applicant are tagged "consortium" automatically.
+// Offline (no API access): node scripts/rebuild-offline.mjs
 //
 // Run: node scripts/fetch-live-grants.mjs
 // =========================================================================
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fetchEuCalls } from './fetch-eu-calls.mjs';
+import { withConsortiumTag } from './requires.mjs';
+import { mergeChanges } from './changes-log.mjs';
 
 const API = 'https://ginapp-api.fair.gov.hu/papi/tenders/list';
 const API_HEADERS = {
@@ -39,6 +47,7 @@ const API_HEADERS = {
 
 const OUT_GRANTS = 'aipalyazo/grants_live.json';
 const OUT_META = 'aipalyazo/grants-meta.json';
+const OUT_CHANGES = 'aipalyazo/changes.json';
 const API_VERIFIED = 'scripts/api-verified.json';
 const VERIFIED = 'scripts/verified-grants.json';
 const STALE_DAYS = 45;   // verified item not re-checked for this long → flagged
@@ -131,6 +140,24 @@ function factorsFor(g) {
   };
 }
 
+// Hand-checked facts from api-verified.json on top of an API item (also
+// used by the offline rebuild, which re-applies them to yesterday's items).
+const OVERLAY_KEYS = ['type', 'cat', 'regions', 'regionNote', 'amount', 'deadline', 'windowOpen', 'note', 'url', 'rate', 'verifiedAt', 'confidence', 'requires', 'requiresEvidence'];
+export function applyOverlay(g, overlay) {
+  if (overlay) {
+    for (const k of OVERLAY_KEYS) {
+      if (overlay[k] === false) delete g[k];          // e.g. rate: false = the API value is misleading
+      else if (overlay[k] !== undefined && overlay[k] !== null) g[k] = overlay[k];
+    }
+    g.sources = (overlay.sources || []).slice(0, 3);
+    delete g.needsReview;
+  } else {
+    g.needsReview = true;
+    g.regionNote = 'Régiós és jogosultsági feltételek: lásd a hivatalos felhívást.';
+  }
+  return g;
+}
+
 function mapTender(t, overlay) {
   const cat = catFor(t);
   const g = {
@@ -158,16 +185,7 @@ function mapTender(t, overlay) {
     live: true,
     scope: 'hazai',
   };
-  if (overlay) {
-    for (const k of ['type', 'cat', 'regions', 'regionNote', 'amount', 'deadline', 'windowOpen', 'note', 'url', 'rate', 'verifiedAt', 'confidence']) {
-      if (overlay[k] === false) delete g[k];          // e.g. rate: false = the API value is misleading
-      else if (overlay[k] !== undefined && overlay[k] !== null) g[k] = overlay[k];
-    }
-    g.sources = (overlay.sources || []).slice(0, 3);
-  } else {
-    g.needsReview = true;
-    g.regionNote = 'Régiós és jogosultsági feltételek: lásd a hivatalos felhívást.';
-  }
+  applyOverlay(g, overlay);
   g.factors = factorsFor(g);
   return g;
 }
@@ -230,12 +248,14 @@ export function applyMonitor(items, monitor) {
   return { items: out, hidden };
 }
 
-export async function buildFeed({ tenders, verifiedItems, apiVerified, euItems, prevGrants = [], today, monitor = null }) {
+export async function buildFeed({ tenders, verifiedItems, apiVerified, euItems, prevGrants = [], today, monitor = null, prebuiltApi = null }) {
   // ---- 1) Official API feed ---------------------------------------------
+  // (prebuiltApi: already-mapped API items — the offline rebuild passes
+  // yesterday's items with the overlay re-applied instead of raw tenders.)
   const now = new Date(today + 'T00:00:00Z').getTime();
   const excluded = [];
-  const apiGrants = [];
-  for (const t of tenders) {
+  const apiGrants = prebuiltApi ? prebuiltApi.filter((g) => !g.deadline || g.deadline >= today) : [];
+  for (const t of prebuiltApi ? [] : tenders) {
     if (t.status !== 'Aktív') continue;
     if (!t.endTime || new Date(t.endTime).getTime() < now) continue;
     if (!(t.beneficiaries || []).some((b) => BUSINESS_BENEF.includes(b))) continue;
@@ -267,11 +287,13 @@ export async function buildFeed({ tenders, verifiedItems, apiVerified, euItems, 
   }
   const euAuto = eu.filter((g) => !haveKeys.has(codeKey(g.code))).map((g) => ({ ...g, live: true, days: 0, score: 0, factors: factorsFor(g) }));
 
-  const grants = [...apiGrants, ...verified, ...euAuto];
+  // Eligibility tags: EU calls that need a consortium are tagged even when
+  // nobody hand-tagged them (auto EU items, new verified items).
+  const grants = [...apiGrants, ...verified, ...euAuto].map(withConsortiumTag);
   return { grants, apiGrants, verified, euAuto, excluded, stale, dropped, euFailed };
 }
 
-function diff(prevList, grants) {
+export function diff(prevList, grants) {
   const changes = [];
   const prev = Object.fromEntries(prevList.map((g) => [g.id, g]));
   for (const g of grants) {
@@ -328,6 +350,10 @@ async function main() {
   const changes = diff(prevGrants, grants);
   const needsReview = out.apiGrants.filter((g) => g.needsReview).map((g) => ({ code: g.code, title: g.title }));
   writeFileSync(OUT_GRANTS, JSON.stringify(grants, null, 1));
+  // Per-call change history (12 months), merged with the monitor's page-level
+  // entries that scripts/monitor/run.mjs already wrote to the same file today.
+  const prevLog = existsSync(OUT_CHANGES) ? JSON.parse(readFileSync(OUT_CHANGES, 'utf8')) : {};
+  writeFileSync(OUT_CHANGES, JSON.stringify(mergeChanges(prevLog, changes, today), null, 1));
   writeFileSync(OUT_META, JSON.stringify({
     updatedAt: new Date().toISOString(),
     counts: {

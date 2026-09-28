@@ -55,3 +55,59 @@ test('rolling calls without a date stay open', () => {
 });
 
 test('esc handles quotes', () => assert.equal(esc(`<a href="x">'`), '&lt;a href=&quot;x&quot;&gt;&#39;'));
+
+import { selectHubs, renderHub, HUBS, MIN_HUB } from './build-pages.mjs';
+
+test('topic hubs: only with ≥2 open calls, linked from the index, in the sitemap, CollectionPage JSON-LD', () => {
+  const today = '2026-09-25';
+  const grants = [
+    g({ id: 'pg-GINOP_PLUSZ-1.4.3-24', code: 'GINOP_PLUSZ-1.4.3-24', title: 'KKV Technológia', type: 'loan', regions: ['Pest', 'Dél-Alföld'] }),
+    g({ id: 'pg-GINOP_PLUSZ-1.1.6-25', code: 'GINOP_PLUSZ-1.1.6-25', title: 'Klaszter', type: 'grant', regions: ['Dél-Alföld'] }),
+    g({ id: 'pg-GINOP_PLUSZ-9.9.9-20', code: 'GINOP_PLUSZ-9.9.9-20', title: 'Lejárt', deadline: '2026-01-01' }),
+    g({ id: 'pg-DIMOP_PLUSZ-1.2.3/A-24', code: 'DIMOP_PLUSZ-1.2.3/A-24', title: 'Digitalizáció', type: 'loan+grant' }),
+    g({ id: 'v-eic', code: null, title: 'EIC Accelerator', issuer: 'Horizon Europe – EIC', scope: 'eu', singleApplicant: true }),
+  ];
+  const r = buildAll({ grants, today, updatedAt: '2026-09-25T05:00:00Z' });
+  const hubFiles = [...r.files.keys()].filter((k) => k.startsWith('palyazat/tema/'));
+  assert.ok(hubFiles.includes('palyazat/tema/ginop-plusz.html'));        // 2 open GINOP calls (the expired one does not count)
+  assert.ok(hubFiles.includes('palyazat/tema/regio-del-alfold.html'));
+  assert.ok(!hubFiles.includes('palyazat/tema/dimop-plusz.html'));       // only 1 → no hub
+  assert.ok(!hubFiles.includes('palyazat/tema/regio-pest.html'));
+  assert.ok(!hubFiles.includes('palyazat/tema/eic.html'));
+  assert.equal(r.stats.hubs, hubFiles.length);
+
+  const html = r.files.get('palyazat/tema/ginop-plusz.html');
+  assert.match(html, /<h1>GINOP Plusz pályázatok és hitelek<\/h1>/);
+  assert.ok(html.includes('rel="canonical" href="https://aipalyazo.hu/aipalyazo/palyazat/tema/ginop-plusz.html"'));
+  assert.ok(html.includes('"@type":"CollectionPage"'));
+  assert.ok(html.includes('href="../ginop-plusz-1-4-3-24.html"') && html.includes('href="../ginop-plusz-1-1-6-25.html"'));
+  assert.ok(!html.includes('Lejárt'));
+  assert.ok(html.includes('href="../index.html"'));                       // back to the index
+  assert.ok(html.includes('href="../../favicon.svg"'));                   // shell at depth 2
+  assert.ok(!/<[a-z][^>]*\sstyle=/i.test(html), 'no inline style attributes');
+  assert.match(html, /Jelenleg 2 nyitott felhívás/);
+
+  const index = r.files.get('palyazat/index.html');
+  assert.ok(index.includes('href="tema/ginop-plusz.html"') && index.includes('href="tema/regio-del-alfold.html"'));
+  assert.ok(!index.includes('href="tema/dimop-plusz.html"'));
+  const sm = r.files.get('sitemap.xml');
+  assert.ok(sm.includes('/palyazat/tema/ginop-plusz.html') && !sm.includes('/palyazat/tema/dimop-plusz.html'));
+});
+
+test('hub definitions: unique slugs, every group present, filters behave', () => {
+  const slugs = HUBS.map((h) => h.slug);
+  assert.equal(slugs.length, new Set(slugs).size);
+  for (const s of ['ginop-plusz', 'dimop-plusz', 'kehop-plusz', 'mahop-plusz', 'kap', 'horizon-europe', 'eic', 'eu-egyeb-programok', 'szechenyi-kartya',
+    'egyeni-vallalkozo', 'mikrovallalkozas', 'kkv', 'startup', 'mezogazdasagi-termelo', 'turisztikai-vallalkozas',
+    'vissza-nem-teritendo', 'hitel', 'toke', 'garancia']) assert.ok(slugs.includes(s), s);
+  const hub = (slug) => HUBS.find((h) => h.slug === slug);
+  assert.equal(hub('eic').test(g({ scope: 'eu', issuer: 'Horizon Europe – EIC' })), true);
+  assert.equal(hub('horizon-europe').test(g({ scope: 'eu', issuer: 'Horizon Europe – EIC' })), false);
+  assert.equal(hub('turisztikai-vallalkozas').test(g({ requires: { tourism_ntak: true } })), true);
+  assert.equal(hub('mikrovallalkozas').test(g({ sizeClasses: ['kisvállalkozás'], note: 'Kis- és középvállalkozásoknak (mikro nem)' })), false);
+  assert.equal(hub('hitel').test(g({ type: 'loan+grant' })), true);
+  assert.equal(hub('vissza-nem-teritendo').test(g({ type: 'loan+grant' })), true);
+  assert.equal(selectHubs([g()]).length, 0, `a single call never makes a hub (MIN_HUB=${MIN_HUB})`);
+  const html = renderHub({ ...hub('kkv'), items: [g(), g({ id: 'v-2', title: 'Második' })] }, new Map([['pg-GINOP_PLUSZ-1.2.3/B-24', 'a'], ['v-2', 'b']]), {});
+  assert.ok(html.includes('Teszt &lt;felhívás&gt;') && !html.includes('<felhívás>'));
+});

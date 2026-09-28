@@ -184,3 +184,62 @@ test('summaries: generated once, reused while the source is unchanged, EU topics
   assert.equal(calls, 2);                          // unchanged source → no new call
   assert.deepEqual(Object.keys(r2.summaries), ['a']); // removed call's summary dropped
 });
+
+test('suggested eligibility tags: grounded ones kept on the auto item, invented ones dropped', async () => {
+  const page = PAGE + '\nCsak NTAK-regisztrált szálláshely-szolgáltatók pályázhatnak.';
+  const x = { ...GOOD, requires: {
+    tourism_ntak: { value: true, evidence: 'Csak NTAK-regisztrált szálláshely-szolgáltatók pályázhatnak.' },
+    farmer: { value: true, evidence: 'őstermelők is pályázhatnak' },   // not on the page
+    lottery: { value: true, evidence: 'Csak NTAK' },                  // not in the vocabulary
+  } };
+  const v = validate(x, page, TODAY);
+  assert.equal(v.ok, true);                                            // tags never block an item
+  assert.deepEqual(v.facts.requires, { tourism_ntak: true });
+  assert.equal(v.facts.requiresEvidence.tourism_ntak, 'Csak NTAK-regisztrált szálláshely-szolgáltatók pályázhatnak.');
+
+  const { fetchImpl } = fakeWeb({
+    'https://kap.gov.hu/tags/842': '<a href="/tamogatas/kap-rd99-1-26">x</a>',
+    'https://kap.gov.hu/tamogatas/kap-rd99-1-26': html(page),
+  });
+  const r = await runMonitor({ items: [], sources: [{ id: 'kap', name: 'KAP', list: ['https://kap.gov.hu/tags/842'], pattern: '^https://kap\\.gov\\.hu/tamogatas/', scope: 'hazai' }], officialDomains: ['gov.hu'], fetchImpl, llm: async () => JSON.stringify(x), today: TODAY, delayMs: 0, state: {} });
+  assert.deepEqual(r.auto[0].requires, { tourism_ntak: true });
+});
+
+test('page changes and official deadline moves are reported for the change log', async () => {
+  let body = html('Stabil termék\nHatáridő: 2026. december 31.');
+  const { fetchImpl } = fakeWeb({ 'https://bkik.hu/szechenyi/x': () => ({ ok: true, status: 200, url: 'https://bkik.hu/szechenyi/x', headers: new Map([['content-type', 'text/html']]), text: async () => body }) });
+  const items = [{ id: 'v-x', title: 'X', deadline: '2026-12-31', url: 'https://bkik.hu/szechenyi/x' }];
+  const base = { items, sources: [], officialDomains: ['bkik.hu'], fetchImpl, llm: null, today: TODAY, delayMs: 0 };
+  const r1 = await runMonitor({ ...base, state: {} });
+  assert.deepEqual(r1.changes, []);                                     // first sight = baseline
+  body = html('Stabil termék\nHatáridő: 2027. január 31.');
+  const r2 = await runMonitor({ ...base, state: r1.state });
+  assert.deepEqual(r2.changes, [{ id: 'v-x', type: 'page' }]);
+  const llm = async () => JSON.stringify({ ...GOOD, title: 'Stabil termék', deadline: '2027-01-31', window_open: null, amount: null,
+    evidence: { title: 'Stabil termék', status: 'Stabil termék', deadline: 'Határidő: 2027. január 31.', amount: null, eligibility: null } });
+  body = html('Stabil termék\nHatáridő: 2027. január 31.\nFrissítve');
+  const r3 = await runMonitor({ ...base, llm, state: r2.state });
+  assert.deepEqual(r3.changes, [{ id: 'v-x', type: 'page' }, { id: 'v-x', type: 'deadline-official', from: '2026-12-31', to: '2027-01-31' }]);
+});
+
+test('sources.json: every listing is on an official domain and its pattern matches a real call URL', async () => {
+  const { readFileSync } = await import('node:fs');
+  const cfg = JSON.parse(readFileSync(new URL('./sources.json', import.meta.url), 'utf8'));
+  const official = (u) => { const h = new URL(u).hostname; return cfg.officialDomains.some((d) => h === d || h.endsWith('.' + d)); };
+  const samples = {
+    kth: 'https://kth.hu/hirdetmenyek/2-3-akcio-a-kth-start-kolcsonokhoz',
+    mak: 'https://www.allamkincstar.gov.hu/nem-lakossagi-ugyek/Palyazatos_tamogatasok/minimalber-emeleshez-kapcsolodo-szocialis-hozzajarulasi-ado-tamogatas',
+    eismea: 'https://eismea.ec.europa.eu/funding-opportunities/calls-proposals/unite-project-2nd-open-call-interregional-innovation-proposals-areas-digital-health_en',
+    eitcc: 'https://eit-culture-creativity.eu/your-opportunities/calls-funding/innovation-projects',
+    eit: 'https://www.eit.europa.eu/our-activities/opportunities/ai-entrepreneurs-lab',
+  };
+  const ids = new Set();
+  for (const s of cfg.sources) {
+    assert.ok(!ids.has(s.id), 'duplicate id ' + s.id); ids.add(s.id);
+    const re = new RegExp(s.pattern);
+    for (const u of s.list) assert.ok(official(u), `${s.id}: ${u} not official`);
+    if (samples[s.id]) { assert.ok(re.test(samples[s.id]), s.id); assert.ok(official(samples[s.id]), s.id); }
+    assert.ok(!re.test(s.list[0]), `${s.id}: pattern matches its own list page`);
+  }
+  for (const id of Object.keys(samples)) assert.ok(ids.has(id), id);
+});

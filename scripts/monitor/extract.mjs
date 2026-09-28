@@ -11,6 +11,7 @@
 // default claude-haiku-4-5). Keys are sent in headers, never in URLs.
 // =========================================================================
 import { norm, datesIn } from './lib.mjs';
+import { REQUIRES_VOCAB, cleanRequires } from '../requires.mjs';
 
 const MAX_CHARS = 24000; // page text sent to the model (cost cap)
 
@@ -29,6 +30,9 @@ export const SCHEMA_HINT = `{
  "businesses_can_apply": true|false|null,
  "sizes": ["mikro","kis","közép","nagy"],
  "regions_note": "short, or null",
+ "requires": {                          // ONLY hard eligibility conditions stated on the page; omit keys that do not apply
+   "<key>": { "value": true (or a number for *_years / *_huf keys), "evidence": "EXACT substring from the page, max 160 chars" }
+ },
  "evidence": {                          // EXACT substrings copied from the page text, max 200 chars each
    "title": "...", "status": "...", "deadline": "... or null", "amount": "... or null", "eligibility": "... or null"
  }
@@ -38,6 +42,7 @@ export function buildPrompt(pageText, url, today) {
   return `Today is ${today} (Budapest). You check Hungarian and EU funding calls for a grant-finder used by Hungarian companies.
 Read the page text below (from ${url}) and answer ONLY with JSON in this shape:
 ${SCHEMA_HINT}
+Allowed "requires" keys: ${Object.keys(REQUIRES_VOCAB).join(', ')}.
 Rules: copy evidence strings character-for-character from the page text; if a fact is not on the page use null — never guess; "closed" if the page says submission ended, the budget ran out or the call was suspended; dates in the page may be Hungarian ("2026. október 30.").
 
 PAGE TEXT:
@@ -100,7 +105,14 @@ export function validate(x, pageText, today) {
   if (x.businesses_can_apply === false) problems.push('businesses cannot apply');
   if (x.businesses_can_apply == null) problems.push('eligibility unclear');
   if (!['open', 'upcoming'].includes(x.status)) problems.push(`status ${x.status}`);
-  return { ok: problems.length === 0, problems, facts: x };
+  // Suggested eligibility tags: same grounding rule as every other fact —
+  // a tag whose evidence is not on the page (or not in the vocabulary) is
+  // dropped silently; it never blocks the item.
+  const tags = cleanRequires(x.requires, (q) => grounded(q, pageText));
+  const facts = { ...x };
+  delete facts.requires;
+  if (tags) Object.assign(facts, tags);
+  return { ok: problems.length === 0, problems, facts };
 }
 
 export async function extractFacts(page, { llm, today }) {

@@ -55,7 +55,7 @@
    "list": [
     "https://eit.europa.eu/our-activities/opportunities"
    ],
-   "pattern": "^https://eit\\.europa\\.eu/our-activities/opportunities/[^/?#]+$",
+   "pattern": "^https://(www\\.)?eit\\.europa\\.eu/our-activities/opportunities/[^/?#]+$",
    "scope": "eu"
   },
   {
@@ -75,6 +75,42 @@
    ],
    "pattern": "^https://nlnet\\.nl/[a-z0-9-]+$",
    "scope": "eu"
+  },
+  {
+   "id": "kth",
+   "name": "Kisfaludy Turisztikai Hitelközpont (MTÜ) — hirdetmények (KTH Start, kiegészítő támogatások)",
+   "list": [
+    "https://kth.hu/hirdetmenyek"
+   ],
+   "pattern": "^https://(www\\.)?kth\\.hu/hirdetmenyek/[^/?#]+$",
+   "scope": "hazai"
+  },
+  {
+   "id": "mak",
+   "name": "Magyar Államkincstár — pályázatos támogatások",
+   "list": [
+    "https://www.allamkincstar.gov.hu/nem-lakossagi-ugyek/Palyazatos_tamogatasok"
+   ],
+   "pattern": "^https://www\\.allamkincstar\\.gov\\.hu/nem-lakossagi-ugyek/Palyazatos_tamogatasok/[^/?#]+$",
+   "scope": "hazai"
+  },
+  {
+   "id": "eismea",
+   "name": "EISMEA calls for proposals (incl. I3 / EIC project cascade calls)",
+   "list": [
+    "https://eismea.ec.europa.eu/funding-opportunities/calls-proposals_en"
+   ],
+   "pattern": "^https://eismea\\.ec\\.europa\\.eu/funding-opportunities/calls-proposals/[^/?#]+_en$",
+   "scope": "eu"
+  },
+  {
+   "id": "eitcc",
+   "name": "EIT Culture & Creativity calls",
+   "list": [
+    "https://eit-culture-creativity.eu/your-opportunities/calls-funding"
+   ],
+   "pattern": "^https://eit-culture-creativity\\.eu/your-opportunities/calls-funding/[^/?#]+$",
+   "scope": "eu"
   }
  ],
  "officialDomains": [
@@ -93,7 +129,11 @@
   "nlnet.nl",
   "esa.int",
   "eurohpc-ju.europa.eu",
-  "visegradfund.org"
+  "visegradfund.org",
+  "kth.hu",
+  "kisfaludyprogram.hu",
+  "eit-culture-creativity.eu",
+  "eitfood.eu"
  ],
  "benchmarks": [
   {
@@ -114,5 +154,6 @@
    "linkPattern": "^https://palyazas\\.hu/palyazat/[^/?#]+$"
   }
  ],
- "_comment_benchmarks": "Coverage cross-check only: listing pages of other grant sites are read for call CODES and for new item links. Anything we don't list goes to the review issue for a human to verify on the official page. Nothing is copied or published from these sites."
+ "_comment_benchmarks": "Coverage cross-check only: listing pages of other grant sites are read for call CODES and for new item links. Anything we don't list goes to the review issue for a human to verify on the official page. Nothing is copied or published from these sites.",
+ "_comment_sources_2026_09": "Added 2026-09-28: kth (KTH Start + TFF-5.1.5 kiegészítő támogatás announcements; info.kisfaludyprogram.hu programme pages now 404 — the site became a redirect hub), mak (Államkincstár pályázatos támogatások; the 2026 minimálbér-szocho window closed 2026-04-15), eismea (I3/EIC project cascade calls), eitcc. EU cascade/FSTP calls in general come from the SEDIA API (type 8) in fetch-eu-calls.mjs."
 }

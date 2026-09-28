@@ -24,6 +24,7 @@ import { fileURLToPath } from 'node:url';
 import { makeFetcher, extractLinks, hash, pool, todayBudapest } from './lib.mjs';
 import { extractFacts, llmFromEnv } from './extract.mjs';
 import { updateSummaries } from './summarize.mjs';
+import { mergeChanges } from '../changes-log.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const P = (f) => join(HERE, f);
@@ -65,6 +66,7 @@ export async function runMonitor({
   const review = [];
   const log = [];
   let llmCalls = 0;
+  const pageChanges = []; // → aipalyazo/changes.json ("page", "deadline-official")
   const canLlm = () => llm && llmCalls < maxLlmCalls;
   const official = (url) => { try { const h = new URL(url).hostname; return officialDomains.some((d) => h === d || h.endsWith('.' + d)); } catch { return false; } };
 
@@ -91,6 +93,7 @@ export async function runMonitor({
     const first = !st.hash;
     st.hash = h;
     if (!changed && !first) { st.lastOk = today; return { g, outcome: 'ok' }; }
+    if (changed) pageChanges.push({ id: g.id, type: 'page' });
     if (!canLlm()) return { g, outcome: first ? 'baseline' : 'changed-unchecked', detail: first ? 'első mentés' : 'az oldal megváltozott, LLM nélkül nem ellenőrizhető' };
     llmCalls++;
     const v = await extractFacts(r, { llm, today }).catch((e) => ({ ok: false, problems: [String(e.message || e)] }));
@@ -112,6 +115,7 @@ export async function runMonitor({
     const st = state.pages[x.g.url];
     if (x.outcome === 'ok') flags.overrides[x.g.id] = { ...(flags.overrides[x.g.id] || {}), lastChecked: today };
     if (x.outcome === 'deadline') {
+      pageChanges.push({ id: x.g.id, type: 'deadline-official', from: x.g.deadline || null, to: x.deadline });
       flags.overrides[x.g.id] = { deadline: x.deadline, lastChecked: today, note: x.detail };
       review.push({ kind: 'deadline-changed', id: x.g.id, title: x.g.title, url: x.g.url, outcome: 'auto-fixed', detail: x.detail });
     }
@@ -155,6 +159,7 @@ export async function runMonitor({
           url: l, source: new URL(l).hostname.replace(/^www\./, ''), sources: [l], verifiedAt: today, confidence: 'auto',
           autoVerified: true, scope: src.scope, singleApplicant: src.scope === 'eu' ? null : undefined,
           evidence: f.evidence,
+          ...(f.requires ? { requires: f.requires, requiresEvidence: f.requiresEvidence } : {}),
         });
       } else if (f.is_funding_call !== false) {
         review.push({ kind: 'new', source: src.id, url: l, title: f.title || null, detail: (v.problems || []).join('; ') });
@@ -188,7 +193,7 @@ export async function runMonitor({
   }
 
   log.push(`LLM calls: ${llmCalls}${llm ? '' : ' (no key — extraction off)'}; auto-published: ${auto.size}; review queue: ${review.length}; hidden: ${Object.keys(flags.hide).length}`);
-  return { flags, review, auto: [...auto.values()], state, log };
+  return { flags, review, auto: [...auto.values()], state, log, changes: pageChanges };
 }
 
 // ------------------------------------------------------------------ CLI
@@ -225,6 +230,8 @@ async function main() {
     out.review.length ? '### Kézi ellenőrzésre vár\n\n' + out.review.slice(0, 80).map((r) => `- [${r.kind}] ${r.title || r.id || ''} — ${r.detail || ''} — ${r.url}`).join('\n') : 'Nincs kézi teendő.',
     Object.keys(out.flags.hide).length ? '\n### Elrejtve (2 egymást követő sikertelen ellenőrzés)\n\n' + Object.entries(out.flags.hide).map(([k, v]) => `- ${k}: ${v}`).join('\n') : ''].join('\n');
   writeFileSync(P('report.md'), md);
+  const changesFile = join(REPO, 'aipalyazo/changes.json');
+  writeFileSync(changesFile, JSON.stringify(mergeChanges(readJson(changesFile, {}), out.changes, today), null, 1));
   console.log(out.log.join('\n'));
 }
 

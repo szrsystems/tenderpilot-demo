@@ -121,3 +121,42 @@ test('EU API failure keeps yesterday\'s still-open auto EU items', async () => {
   assert.equal(out.euFailed, true);
   assert.deepEqual(out.euAuto.map((g) => g.id), ['eu-X']);
 });
+
+test('eligibility tags pass through: API overlay, verified items, auto EU consortium tag', async () => {
+  const euItems = sedia.results.map((h) => mapEuHit(h, TODAY)).filter(Boolean);
+  const out = await buildFeed({ tenders, verifiedItems, apiVerified, euItems, today: TODAY });
+  const byId = Object.fromEntries(out.grants.map((g) => [g.id, g]));
+  // API item: tags come from the api-verified.json overlay
+  const bp = byId['pg-GINOP_PLUSZ-1.4.4-24'];
+  assert.equal(bp.requires.bank_loan, true);
+  assert.ok(bp.requiresEvidence.bank_loan.length > 4);
+  // hand-verified item keeps its own tags
+  const v = verifiedItems.find((it) => it.requires && it.requires.forestry && (!it.deadline || it.deadline >= TODAY));
+  assert.deepEqual(byId[v.id].requires, v.requires);
+  // auto EU consortium call gets the tag with its note as evidence
+  const ia = byId['eu-HORIZON-CL4-2027-01-DIGITAL-EMERGING-07'];
+  assert.equal(ia.singleApplicant, false);
+  assert.equal(ia.requires.consortium, true);
+  assert.match(ia.requiresEvidence.consortium, /konzorcium/);
+  // overlay with tags on an otherwise unknown code
+  const t = tenders.find((x) => x.code === 'GINOP_PLUSZ-9.9.9-26');
+  const o2 = await buildFeed({ tenders: [t], verifiedItems: [], apiVerified: { [t.code]: { requires: { employer: true }, requiresEvidence: { employer: 'min. 1 fő foglalkoztatott' }, sources: [] } }, euItems: [], today: TODAY });
+  assert.deepEqual(o2.grants[0].requires, { employer: true });
+});
+
+test('offline rebuild re-applies overlays and verified items to yesterday\'s feed', async () => {
+  const { rebuildOffline } = await import('./rebuild-offline.mjs');
+  const prevGrants = [
+    { id: 'pg-A', code: 'A', title: 'A', cat: 'KKV fejlesztés', deadline: '2026-12-31', url: 'https://x.hu/a', live: true, scope: 'hazai' },
+    { id: 'pg-B', code: 'B', title: 'B', cat: 'KKV fejlesztés', deadline: '2026-12-31', url: 'https://x.hu/b', live: true, scope: 'hazai' },
+    { id: 'pg-C', code: 'C', title: 'C', cat: 'KKV fejlesztés', deadline: '2026-09-01', url: 'https://x.hu/c', live: true, scope: 'hazai' },
+    { id: 'eu-X', code: 'X', auto: true, scope: 'eu', singleApplicant: false, note: 'Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.', deadline: '2026-11-01', title: 'x', cat: 'KKV fejlesztés', url: 'https://ec.europa.eu/x' },
+  ];
+  const apiVerified = { A: { note: 'új', requires: { bank_loan: true }, requiresEvidence: { bank_loan: 'MFB Pontokon' }, sources: ['https://x.hu/a'] }, B: { exclude: true, reason: 'technikai' } };
+  const out = await rebuildOffline({ prevGrants, verifiedItems: [{ id: 'v-1', title: 'V', cat: 'KKV fejlesztés', deadline: '2026-10-30', url: 'https://kth.hu/v', verifiedAt: TODAY, scope: 'hazai' }], apiVerified, monitor: null, today: TODAY });
+  assert.deepEqual(out.grants.map((g) => g.id), ['pg-A', 'v-1', 'eu-X']);
+  assert.equal(out.grants[0].note, 'új');
+  assert.deepEqual(out.grants[0].requires, { bank_loan: true });
+  assert.equal(out.grants[2].requires.consortium, true);
+  assert.deepEqual(out.excluded.map((e) => e.code), ['B']);
+});

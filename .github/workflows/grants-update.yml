@@ -30,7 +30,13 @@ jobs:
         run: node scripts/update-grants.mjs
 
       - name: Test the feed builder and monitor (offline)
-        run: node --test scripts/feed.test.mjs scripts/monitor/monitor.test.mjs scripts/match.test.mjs scripts/pages.test.mjs
+        run: node --test scripts/feed.test.mjs scripts/monitor/monitor.test.mjs scripts/match.test.mjs scripts/pages.test.mjs scripts/requires.test.mjs scripts/changes.test.mjs
+
+      # An expected call that has opened meanwhile must be moved to the
+      # verified list by hand — this warns instead of stopping the daily data.
+      - name: Check expected (announced, not yet open) calls
+        continue-on-error: true
+        run: node --test scripts/expected-calls.test.mjs
 
       # Re-checks every listed item on its official page, discovers new calls
       # on official listing pages, fact-checks them with quotes from the page.
@@ -56,7 +62,7 @@ jobs:
         run: |
           git config user.name "aipalyazo-bot"
           git config user.email "bot@aipalyazo.hu"
-          git add aipalyazo/grants-status.json aipalyazo/grants_live.json aipalyazo/grants-meta.json scripts/monitor/state.json scripts/monitor/flags.json scripts/monitor/auto-grants.json scripts/monitor/review-queue.json aipalyazo/summaries.json aipalyazo/palyazat aipalyazo/sitemap.xml robots.txt
+          git add aipalyazo/grants-status.json aipalyazo/grants_live.json aipalyazo/grants-meta.json aipalyazo/changes.json scripts/monitor/state.json scripts/monitor/flags.json scripts/monitor/auto-grants.json scripts/monitor/review-queue.json aipalyazo/summaries.json aipalyazo/palyazat aipalyazo/sitemap.xml robots.txt
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
