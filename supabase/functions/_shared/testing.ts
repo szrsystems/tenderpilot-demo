@@ -30,10 +30,11 @@ export function memStore(seed: Partial<MemLead>[] = [], clock: () => number = Da
     rows,
     async findDuplicate(email, grantId, s) {
       const r = rows.filter(since(s)).filter((x) => x.email === email && x.grant_id === grantId).at(-1);
-      return r ? { lead_ref: r.lead_ref } : null;
+      return r ? { lead_ref: r.lead_ref, user_id: r.user_id ?? null } : null;
     },
     async countByEmail(email, s) { return rows.filter(since(s)).filter((x) => x.email === email).length; },
     async countByIp(h, s) { return rows.filter(since(s)).filter((x) => x.ip_hash === h).length; },
+    async countSince(s) { return rows.filter(since(s)).length; },
     async insert(row: NewLead) {
       if (store.failInsert) throw new Error('db down: secret internals');
       return { ...add(row as Partial<MemLead>) };
@@ -56,6 +57,7 @@ export function memStore(seed: Partial<MemLead>[] = [], clock: () => number = Da
     async setStatusByRef(ref, status, note) {
       const r = rows.find((x) => x.lead_ref === ref);
       if (!r) return false;
+      if (r.status === 'paid') return 'locked';
       setStatus(r, status, note);
       return true;
     },

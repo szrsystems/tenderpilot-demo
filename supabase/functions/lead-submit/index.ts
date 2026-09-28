@@ -32,7 +32,8 @@ import { createGrantFeed, type GrantFeed } from '../_shared/grants.ts';
 import { type LeadStore, type MatchCheck, type MatchSnapshot, supabaseLeadStore } from '../_shared/lead-store.ts';
 import { type Mailer, notifyOperator, parseRecipients, PARTNER_NAME_DEFAULT, requesterEmail, resendMailer } from '../_shared/lead-mail.ts';
 
-export const LIMITS = { perEmail24h: 3, perIp1h: 10 };
+export const LIMITS = { perEmail24h: 3, perIp1h: 10, global1h: 60 };
+const IP_RE = /^[0-9A-Fa-f:.]{2,45}$/;
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 const CHECK_STATUSES = new Set(['ok', 'fail', 'unknown', 'warn', 'neutral']);
 const PROFILE_CAPS: Record<string, number> = { company: 200, employees: 40, site_region: 80, teaor: 20, years_operating: 20 };
@@ -118,9 +119,12 @@ export function validate(body: Record<string, unknown>): Clean {
 }
 
 export function clientIp(req: Request): string | null {
+  // Prefer headers the platform sets itself; the first X-Forwarded-For entry
+  // is client-controlled when a proxy appends. Anything that doesn't look like
+  // an IP is treated as "unknown" (a shared bucket), never as "no limit".
   const xff = req.headers.get('x-forwarded-for');
-  const ip = (xff ? xff.split(',')[0] : req.headers.get('cf-connecting-ip') ?? req.headers.get('x-real-ip') ?? '').trim();
-  return ip && ip.length <= 64 ? ip : null;
+  const ip = (req.headers.get('cf-connecting-ip') ?? req.headers.get('x-real-ip') ?? (xff ? xff.split(',')[0] : '')).trim();
+  return IP_RE.test(ip) ? ip : null;
 }
 
 async function verifyTurnstile(secret: string, token: string, ip: string | null, doFetch: typeof fetch): Promise<boolean> {
@@ -171,12 +175,11 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
     const store = deps.store ?? supabaseLeadStore(getAdmin());
 
     const day = new Date(now.getTime() - 24 * 3600e3).toISOString();
-    const dup = await store.findDuplicate(v.email, v.grantId, day);
-    if (dup) return reply({ ok: true, ref: dup.lead_ref, duplicate: true });
-
-    const ipHash = ip ? await sha256Hex(`${ip}|${env('LEAD_SALT') || 'nosalt'}`) : null;
-    if ((await store.countByEmail(v.email, day)) >= LIMITS.perEmail24h) return reply({ error: 'rate_limited' }, 429);
-    if (ipHash && (await store.countByIp(ipHash, new Date(now.getTime() - 3600e3).toISOString())) >= LIMITS.perIp1h) {
+    const hour = new Date(now.getTime() - 3600e3).toISOString();
+    const ipHash = await sha256Hex(`${ip ?? 'unknown'}|${env('LEAD_SALT') || 'nosalt'}`);
+    if ((await store.countByIp(ipHash, hour)) >= LIMITS.perIp1h) return reply({ error: 'rate_limited' }, 429);
+    if ((await store.countSince(hour)) >= LIMITS.global1h) {
+      console.error('[lead-submit] global hourly cap reached — possible flood');
       return reply({ error: 'rate_limited' }, 429);
     }
 
@@ -191,6 +194,13 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
       });
       try { userId = await getUserId(jwt); } catch { userId = null; }
     }
+
+    // Duplicate (same e-mail + call within 24 h): nothing new is stored or sent.
+    // The ref is only echoed to the signed-in owner, so knowing someone's
+    // e-mail doesn't reveal which calls they asked about.
+    const dup = await store.findDuplicate(v.email, v.grantId, day);
+    if (dup) return reply({ ok: true, duplicate: true, ...(userId && dup.user_id === userId ? { ref: dup.lead_ref } : {}) });
+    if ((await store.countByEmail(v.email, day)) >= LIMITS.perEmail24h) return reply({ error: 'rate_limited' }, 429);
 
     // Official grant data from the feed; the client title is only a fallback.
     const grants = deps.grants ?? createGrantFeed({ url: env('GRANTS_URL') || undefined, fetch: doFetch });

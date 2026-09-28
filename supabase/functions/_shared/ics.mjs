@@ -9,7 +9,7 @@ export const PORTAL_URL = 'https://aipalyazo.hu/aipalyazo/portal.html';
 
 /** Escape a TEXT value: backslash, semicolon, comma, newline. */
 export function icsEscape(s) {
-  return String(s ?? '').replace(/\\/g, '\\\\').replace(/[;,]/g, (m) => '\\' + m).replace(/\r?\n/g, '\\n');
+  return String(s ?? '').replace(/\\/g, '\\\\').replace(/[;,]/g, (m) => '\\' + m).replace(/\r\n|[\r\n\u0085\u2028\u2029]/g, '\\n').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, '');
 }
 
 const enc = new TextEncoder();

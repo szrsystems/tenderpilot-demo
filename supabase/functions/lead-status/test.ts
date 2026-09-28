@@ -60,3 +60,13 @@ Deno.test('input validation and configuration', async () => {
   assertEquals((await handler(post({}), { env: {}, store })).status, 503);
   assertEquals((await handler(new Request('http://x', { method: 'GET' }), { env, store })).status, 405);
 });
+
+Deno.test('a paid lead is final: old e-mailed links cannot overwrite it (409)', async () => {
+  const store = memStore([{ lead_ref: 'L-PAIDAA', status: 'paid', status_note: 'számla 2026/12' }]);
+  const t = await statusToken(SECRET, 'L-PAIDAA', 'spam');
+  const r = await handler(post({ ref: 'L-PAIDAA', s: 'spam', t, note: 'x' }), { env: { LEAD_STATUS_SECRET: SECRET }, store });
+  assertEquals(r.status, 409);
+  assertEquals(await r.json(), { error: 'locked' });
+  assertEquals(store.rows[0].status, 'paid');
+  assertEquals(store.rows[0].status_note, 'számla 2026/12');
+});

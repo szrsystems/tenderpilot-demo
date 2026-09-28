@@ -56,16 +56,18 @@ export type NotifyStore = {
 };
 
 export type LeadStore = NotifyStore & {
-  findDuplicate(email: string, grantId: string, sinceIso: string): Promise<{ lead_ref: string } | null>;
+  findDuplicate(email: string, grantId: string, sinceIso: string): Promise<{ lead_ref: string; user_id: string | null } | null>;
   countByEmail(email: string, sinceIso: string): Promise<number>;
   countByIp(ipHash: string, sinceIso: string): Promise<number>;
+  /** all leads created since — global flood guard */
+  countSince(sinceIso: string): Promise<number>;
   insert(row: NewLead): Promise<LeadRow>;
   /** notified_at null, attempts below max, oldest first */
   listUnnotified(maxAttempts: number, limit: number): Promise<LeadRow[]>;
   listCreatedSince(sinceIso: string): Promise<LeadRow[]>;
   listByStatus(statuses: LeadStatus[], limit: number): Promise<LeadRow[]>;
-  /** returns false when no lead has that ref */
-  setStatusByRef(ref: string, status: LeadStatus, note?: string | null): Promise<boolean>;
+  /** false when no lead has that ref; 'locked' when the lead is already paid (final) */
+  setStatusByRef(ref: string, status: LeadStatus, note?: string | null): Promise<boolean | 'locked'>;
   setStatusById(id: string, status: LeadStatus, note?: string | null): Promise<LeadRow | null>;
   page(opts: { limit: number; offset: number; status?: LeadStatus | null }): Promise<{ rows: LeadRow[]; total: number }>;
 };
@@ -82,7 +84,7 @@ export function supabaseLeadStore(admin: any): LeadStore {
   const leads = () => admin.from('leads');
   return {
     async findDuplicate(email, grantId, since) {
-      const rows = check(await leads().select('lead_ref').eq('email', email).eq('grant_id', grantId)
+      const rows = check(await leads().select('lead_ref, user_id').eq('email', email).eq('grant_id', grantId)
         .gte('created_at', since).order('created_at', { ascending: false }).limit(1)) as any[];
       return rows?.[0] ?? null;
     },
@@ -93,6 +95,11 @@ export function supabaseLeadStore(admin: any): LeadStore {
     },
     async countByIp(ipHash, since) {
       const r = await leads().select('id', { count: 'exact', head: true }).eq('ip_hash', ipHash).gte('created_at', since);
+      check(r);
+      return r.count ?? 0;
+    },
+    async countSince(since) {
+      const r = await leads().select('id', { count: 'exact', head: true }).gte('created_at', since);
       check(r);
       return r.count ?? 0;
     },
@@ -129,8 +136,11 @@ export function supabaseLeadStore(admin: any): LeadStore {
     async setStatusByRef(ref, status, note) {
       const patch: Record<string, unknown> = { status };
       if (note != null) patch.status_note = note;
-      const rows = check(await leads().update(patch).eq('lead_ref', ref).select('id')) as any[];
-      return (rows?.length ?? 0) > 0;
+      // 'paid' is final: an old e-mailed link must not overwrite commission state.
+      const rows = check(await leads().update(patch).eq('lead_ref', ref).neq('status', 'paid').select('id')) as any[];
+      if ((rows?.length ?? 0) > 0) return true;
+      const exists = check(await leads().select('id').eq('lead_ref', ref).limit(1)) as any[];
+      return (exists?.length ?? 0) > 0 ? 'locked' : false;
     },
     async setStatusById(id, status, note) {
       const patch: Record<string, unknown> = { status };

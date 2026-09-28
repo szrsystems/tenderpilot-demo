@@ -219,9 +219,11 @@ function factsRows(g) {
   if (g.regionNote) add('Régió megjegyzés', esc(g.regionNote));
   if (g.scope === 'eu' && g.singleApplicant === false) add('Konzorcium', 'Jellemzően több ország partnereivel közösen (konzorciumban) lehet pályázni');
   const url = safeUrl(g.url);
-  add('Hivatalos oldal', url ? `<a href="${esc(url)}" target="_blank" rel="noopener nofollow">${esc(g.source || new URL(url).hostname)} ↗</a>` : '');
+  add('Hivatalos oldal', url ? `<a href="${esc(url)}" target="_blank" rel="noopener nofollow">${esc(g.source || hostOf(url))} ↗</a>` : '');
   return `<table class="facts">${rows.join('')}</table>`;
 }
+
+function hostOf(u) { try { return new URL(u).hostname || u; } catch { return u; } }
 
 function summaryHtml(s) {
   if (!s || !Array.isArray(s.sections) || !s.sections.length) return '';

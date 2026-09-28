@@ -94,7 +94,8 @@
       var u = (await window.gp.client.auth.getUser()).data.user;
       if (!u) return;
       var prof = await window.gp.getUserProfile();
-      if (prof && (prof.display_name === '__DELETED__' || String(prof.email || '').indexOf('deleted-') === 0)) {
+      var del = window.gp.checkDeletedAccount ? await window.gp.checkDeletedAccount().catch(function () { return { deleted: false }; }) : { deleted: false };
+      if (del.deleted || (prof && (prof.display_name === '__DELETED__' || String(prof.email || '').indexOf('deleted-') === 0))) {
         try { await window.gp.client.auth.signOut({ scope: 'local' }); } catch (e) {}
         location.replace('login.html?signed_out=1');
         return;
@@ -104,6 +105,7 @@
         // The server profile is the source of truth for a signed-in user.
         var local = S.profile || {};
         S.profile = Object.assign({}, local, profileFromServer(prof));
+        if (!S.profile.phone && local.phone) S.profile.phone = local.phone; // view without phone (older schema)
         lsSet('grantpilot:profile', S.profile);
       } else if (hasProfile()) {
         // Filled before signing up (quick check / onboarding): push it up once.
@@ -193,7 +195,7 @@
     var r = parseHash();
     if (r.view === 'palyazat' && r.id) { if (S.view === 'palyazat' || !S.rendered) { S.view = 'palyazatok'; render(); } openDetail(r.id); return; }
     closeDetail(true);
-    S.view = VIEWS[r.view] ? r.view : 'attekintes';
+    S.view = Object.prototype.hasOwnProperty.call(VIEWS, r.view) ? r.view : 'attekintes';
     render();
   }
   function render() {
@@ -652,7 +654,7 @@
   }
 
   // ---------------------------------------------------------------- ics
-  function icsEscape(s) { return String(s || '').replace(/\\/g, '\\\\').replace(/[;,]/g, function (m) { return '\\' + m; }).replace(/\r?\n/g, '\\n'); }
+  function icsEscape(s) { return String(s || '').replace(/\\/g, '\\\\').replace(/[;,]/g, function (m) { return '\\' + m; }).replace(/\r\n|[\r\n\u0085\u2028\u2029]/g, '\\n').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, ''); }
   function icsFold(line) { var out = []; while (line.length > 73) { out.push(line.slice(0, 73)); line = ' ' + line.slice(73); } out.push(line); return out.join('\r\n'); }
   function downloadICS(list, filename) {
     var stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');

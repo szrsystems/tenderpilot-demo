@@ -121,16 +121,12 @@ if (_signedOutFlag) {
         if (!user) return { deleted: false };
         // Primary check: the persistent deleted_emails table. This catches
         // OAuth re-signups that create fresh profiles with the old email.
-        if (user.email) {
-            try {
-                const { data: del } = await client
-                    .from('deleted_emails')
-                    .select('email')
-                    .eq('email', user.email.toLowerCase())
-                    .maybeSingle();
-                if (del && del.email) return { deleted: true, reason: 'deleted_emails' };
-            } catch (e) { /* table might not exist yet — fall through */ }
-        }
+        // Server-side check via RPC: the table now stores only sha256 hashes,
+        // so an .eq('email', …) lookup can never match.
+        try {
+            const { data: blocked, error: rpcErr } = await client.rpc('is_email_deleted');
+            if (!rpcErr && blocked === true) return { deleted: true, reason: 'deleted_emails' };
+        } catch (e) { /* RPC not deployed yet — fall through to the sentinel */ }
         // Secondary check: profile sentinel (works for password accounts where
         // the cascade delete didn't run because the auth.users row is still there).
         const { data, error } = await client

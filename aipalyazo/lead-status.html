@@ -129,6 +129,7 @@
                 body: JSON.stringify(note ? { ref: ref, s: status, t: token, note: note } : { ref: ref, s: status, t: token })
             });
             if (r.status === 403 || r.status === 404) { show('step-bad'); return; }
+            if (r.status === 409) { msg('Ez a kérés már lezárult (kifizetve), az állapota ezzel a linkkel nem módosítható.', 'err'); return; }
             if (!r.ok) throw new Error('HTTP ' + r.status);
             show('step-done');
         } catch (e) {

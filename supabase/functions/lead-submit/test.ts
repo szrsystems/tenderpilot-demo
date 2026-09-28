@@ -136,14 +136,39 @@ Deno.test('long match reasons are truncated, not rejected', async () => {
   assertEquals(snap.checks![0].status, 'unknown');
 });
 
-Deno.test('duplicate (same e-mail + grant within 24h) returns existing ref and sends nothing', async () => {
+Deno.test('duplicate (same e-mail + grant within 24h) sends nothing and does not reveal the ref to strangers', async () => {
   const { store, mailer, deps } = setup();
-  const first = await (await handler(req(body()), deps)).json();
+  await (await handler(req(body()), deps)).json();
   const sentBefore = mailer.sent.length;
   const r = await handler(req(body({ email: 'ANNA@example.com' })), deps);
-  assertEquals(await r.json(), { ok: true, ref: first.ref, duplicate: true });
+  assertEquals(await r.json(), { ok: true, duplicate: true });
   assertEquals(mailer.sent.length, sentBefore);
   assertEquals(store.rows.length, 1);
+});
+
+Deno.test('duplicate: the signed-in owner gets the existing ref back', async () => {
+  const { deps } = setup();
+  const first = await (await handler(req(body(), { authorization: 'Bearer user-jwt' }), deps)).json();
+  const r = await handler(req(body(), { authorization: 'Bearer user-jwt' }), deps);
+  assertEquals(await r.json(), { ok: true, duplicate: true, ref: first.ref });
+});
+
+Deno.test('rate limits: junk / oversized forwarded IPs share one bucket instead of bypassing the limit', async () => {
+  const { deps } = setup();
+  for (let i = 0; i < LIMITS.perIp1h; i++) {
+    const junk = 'a'.repeat(70) + i + ', 1.2.3.4';
+    assertEquals((await handler(req(body({ email: `j${i}@example.com` }), { 'x-forwarded-for': junk }), deps)).status, 200);
+  }
+  assertEquals((await handler(req(body({ email: 'j-next@example.com' }), { 'x-forwarded-for': 'zzz' }), deps)).status, 429);
+});
+
+Deno.test('rate limits: global hourly cap stops floods from rotating IPs', async () => {
+  const { deps } = setup();
+  for (let i = 0; i < LIMITS.global1h; i++) {
+    const ip = `198.51.${Math.floor(i / 5)}.${i % 5}`;
+    assertEquals((await handler(req(body({ email: `f${i}@example.com` }), { 'x-forwarded-for': ip }), deps)).status, 200);
+  }
+  assertEquals((await handler(req(body({ email: 'late@example.com' }), { 'x-forwarded-for': '192.0.2.200' }), deps)).status, 429);
 });
 
 Deno.test('rate limits: per e-mail per day, per IP per hour', async () => {

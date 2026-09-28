@@ -18,7 +18,7 @@ create or replace view public.user_with_tier as
 select
   p.id, p.email, p.display_name, p.company, p.industry, p.industries, p.employees, p.revenue,
   p.location, p.site_region, p.years_operating, p.legal_form, p.public_debt_free, p.own_funds,
-  p.in_difficulty, p.teaor, p.categories, p.created_at, p.rnd, p.women_led
+  p.in_difficulty, p.teaor, p.categories, p.created_at, p.rnd, p.women_led, p.phone
 from public.profiles p;
 alter view public.user_with_tier set (security_invoker = on);
 revoke select on public.user_with_tier from anon;

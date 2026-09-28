@@ -64,3 +64,9 @@ Deno.test('portal.html buildICS and the shared module agree on event content', a
   const b = unfold(buildICS(list).text).split('\r\n').filter((l) => !l.startsWith('DTSTAMP') && !l.startsWith('X-WR-TIMEZONE') && !l.startsWith('TRANSP'));
   assertEquals(b, a);
 });
+
+Deno.test('icsEscape: bare CR, LS/PS and control chars cannot start a new property line', () => {
+  const out = icsEscape('A\rEND:VEVENT\rBEGIN:VEVENT\u2028SUMMARY:evil\u0000\u001b');
+  assertEquals(/[\r\n\u2028\u2029\u0000-\u001f]/.test(out), false);
+  assertEquals(out, 'A\\nEND:VEVENT\\nBEGIN:VEVENT\\nSUMMARY:evil');
+});

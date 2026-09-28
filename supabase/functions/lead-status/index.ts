@@ -55,6 +55,7 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
   try {
     const store = deps.store ?? supabaseLeadStore(createClient(env('SUPABASE_URL')!, env('SUPABASE_SERVICE_ROLE_KEY')!, { auth: { persistSession: false } }) as any);
     const found = await store.setStatusByRef(ref, s as LinkStatus, note);
+    if (found === 'locked') return reply({ error: 'locked' }, 409);
     if (!found) return reply({ error: 'not_found' }, 404);
     return reply({ ok: true, ref, status: s });
   } catch (e) {

@@ -347,6 +347,10 @@ fieldset.field{border:0;padding:0;margin:0 0 var(--s4)}fieldset legend{margin-bo
     try {
       var u = (await window.gp.client.auth.getUser()).data.user;
       if (!u) return;
+      if (window.gp.checkDeletedAccount) {
+        var del = await window.gp.checkDeletedAccount().catch(function () { return { deleted: false }; });
+        if (del.deleted) { try { await window.gp.client.auth.signOut({ scope: 'local' }); } catch (e) {} location.replace('login.html?signed_out=1'); return; }
+      }
       signedInUser = u;
       $('f_email_wrap').hidden = true; $('f_email').value = u.email || '';
       $('f_phone_req').hidden = false;
