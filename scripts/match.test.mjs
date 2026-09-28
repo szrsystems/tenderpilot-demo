@@ -35,7 +35,8 @@ test('ranking: topic match beats generic, grant beats loan, consortium is a warn
   const loan = M.match(g({ title: 'Ipari gyártókapacitás bővítése', type: 'loan' }), maker, TODAY).score;
   const consort = M.match(g({ title: 'Ipari gyártás', scope: 'eu', singleApplicant: false }), maker, TODAY);
   assert.ok(topic > generic && topic > loan, `${topic} ${generic} ${loan}`);
-  assert.ok(consort.checks.some((c) => c.key === 'applicant' && c.status === 'warn'));
+  assert.ok(consort.checks.some((c) => c.key === 'consortium' && c.status === 'warn'));
+  assert.equal(consort.group, 'consortium');
 });
 test('no profile: neutral, never claims APPLY', () => {
   const r = M.match(g({}), null, TODAY);
@@ -66,7 +67,7 @@ test('TEÁOR drives sector and exclusion checks', () => {
   assert.deepEqual(M.teaorIndustries('1071 Kenyérgyártás'), ['Manufacturing', 'Food']);
   const r = M.match(g({}), { ...maker, industries: [], teaor: '6820' }, TODAY);
   assert.ok(r.checks.some((c) => c.key === 'teaor' && c.status === 'warn'));
-  assert.deepEqual(M.missingFields({ employees: '1-5' }).map((f) => f.key), ['site_region', 'teaor', 'years_operating', 'public_debt_free', 'in_difficulty', 'own_funds']);
+  assert.deepEqual(M.missingFields({ employees: '1-5' }).map((f) => f.key), ['site_region', 'teaor', 'years_operating', 'public_debt_free', 'in_difficulty', 'own_funds', 'rnd']);
 });
 test('NAV queryTaxpayer: request signature and response parsing', async () => {
   const { buildQueryTaxpayerXml, parseTaxpayerResponse, normalizeTaxNumber } = await import('../supabase/functions/_shared/nav.mjs');
@@ -79,4 +80,45 @@ test('NAV queryTaxpayer: request signature and response parsing', async () => {
   assert.equal(ok.legalForm, 'Bt'); assert.equal(ok.postalCode, '6720');
   assert.equal(parseTaxpayerResponse('<x><funcCode>OK</funcCode><taxpayerValidity>false</taxpayerValidity></x>').found, false);
   assert.equal(parseTaxpayerResponse('<x><funcCode>ERROR</funcCode><errorCode>E</errorCode></x>').ok, false);
+});
+
+// ---- matching v2: eligibility tags ("requires") ------------------------------
+test('requires: consortium calls are never a top recommendation', () => {
+  const g = { id: 'x', title: 'Horizon test', cat: 'Kutatás-fejlesztés', type: 'grant', scope: 'eu', singleApplicant: false, deadline: '2027-01-01', requires: { consortium: true, rnd_project: true } };
+  const p = { company: 'A', industries: ['IT'], employees: '1-5', site_region: 'Budapest', years_operating: '3-5', rnd: 'igen' };
+  const m = M.match(g, p, '2026-09-28');
+  assert.equal(m.group, 'consortium');
+  assert.notEqual(m.verdict, 'APPLY');
+  assert.ok(m.checks.some((c) => c.key === 'consortium' && c.status === 'warn'));
+});
+test('requires: target groups fail for the wrong company and pass for the right one', () => {
+  const base = { id: 'y', title: 'T', cat: 'KKV fejlesztés', type: 'grant', scope: 'hazai', deadline: '2027-01-01' };
+  const it = { company: 'A', industries: ['IT'], employees: '1-5', site_region: 'Budapest', years_operating: '3-5', teaor: '6201' };
+  assert.equal(M.match({ ...base, requires: { farmer: true } }, it, '2026-09-28').eligible, false);
+  assert.equal(M.match({ ...base, requires: { jobseeker: true } }, it, '2026-09-28').eligible, false);
+  assert.equal(M.match({ ...base, requires: { startup_max_years: 2 } }, it, '2026-09-28').eligible, false);
+  assert.equal(M.match({ ...base, requires: { cluster_manager: true } }, it, '2026-09-28').eligible, false);
+  assert.equal(M.match({ ...base, requires: { women_led: true } }, { ...it, women_led: 'nem' }, '2026-09-28').eligible, false);
+  assert.equal(M.match({ ...base, requires: { women_led: true } }, { ...it, women_led: 'igen' }, '2026-09-28').eligible, true);
+  assert.equal(M.match({ ...base, requires: { rnd_project: true } }, { ...it, rnd: 'nem' }, '2026-09-28').eligible, false);
+  const farm = { company: 'F', industries: ['Agriculture'], employees: '1', site_region: 'Dél-Alföld', years_operating: '5+', teaor: '0111' };
+  assert.equal(M.match({ ...base, requires: { farmer: true } }, farm, '2026-09-28').eligible, true);
+  assert.equal(M.match({ ...base, requires: { fisheries: true } }, farm, '2026-09-28').eligible, false, 'crop farm is not a fish farm');
+  assert.equal(M.match({ ...base, requires: { min_revenue_huf: 100e6 } }, { ...it, revenue: '<50M' }, '2026-09-28').eligible, false);
+});
+test('requires: the four audit companies no longer get a consortium or target-group call on top', () => {
+  const feed = JSON.parse(readFileSync(new URL('../aipalyazo/grants_live.json', import.meta.url), 'utf8'));
+  const P = [
+    { company: 'x', industries: ['IT'], employees: '1-5', site_region: 'Budapest', years_operating: '3-5', public_debt_free: 'igen', in_difficulty: 'nem', own_funds: 'igen', teaor: '6201' },
+    { company: 'x', industries: ['Manufacturing'], employees: '26-50', site_region: 'Észak-Alföld', years_operating: '5+', public_debt_free: 'igen', in_difficulty: 'nem', own_funds: 'igen', teaor: '2562' },
+    { company: 'x', industries: ['Tourism', 'Restaurant'], employees: '1-5', site_region: 'Észak-Magyarország', years_operating: '5+', public_debt_free: 'igen', in_difficulty: 'nem', own_funds: 'igen', teaor: '5520' },
+    { company: 'x', industries: ['General'], employees: '1', site_region: 'Dél-Alföld', years_operating: '2', public_debt_free: 'igen', in_difficulty: 'nem', own_funds: 'nem', teaor: '9602' },
+  ];
+  for (const p of P) {
+    const top = feed.map((g) => ({ g, m: M.match(g, p, '2026-09-28') })).filter((x) => x.m.eligible).sort((a, b) => b.m.score - a.m.score).slice(0, 3);
+    for (const t of top) {
+      assert.notEqual(t.m.group, 'consortium', `${p.industries} got consortium call ${t.g.title}`);
+      assert.ok(!(t.g.requires && (t.g.requires.jobseeker || t.g.requires.research_led || t.g.requires.cluster_manager)), `${p.industries} got ${t.g.title}`);
+    }
+  }
 });

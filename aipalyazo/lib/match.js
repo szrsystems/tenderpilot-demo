@@ -172,8 +172,79 @@
     return null;
   }
 
+  // ---- eligibility tags on the call ("requires", from the official text) ----
+  var REV_MAX = { '<50M': 50e6, '50M-200M': 200e6, '200M-500M': 500e6, '500M-1Mrd': 1e9, '1Mrd-3Mrd': 3e9, '3Mrd-10Mrd': 10e9, '10Mrd+': Infinity };
+  var REV_MIN = { '<50M': 0, '50M-200M': 50e6, '200M-500M': 200e6, '500M-1Mrd': 500e6, '1Mrd-3Mrd': 1e9, '3Mrd-10Mrd': 3e9, '10Mrd+': 10e9 };
+  function isConsortium(g) { return !!((g.requires && g.requires.consortium) || (g.scope === 'eu' && g.singleApplicant === false)); }
+  function checkRequires(g, p) {
+    var r = g.requires || {};
+    var out = [];
+    var inds = industriesOf(p);
+    var known = inds.length > 0;
+    var have = p ? closedYears[p.years_operating] : undefined;
+    var div = teaorDivision(p && p.teaor);
+    var DIVS = { farmer: [1, 2, 3], fisheries: [3], forestry: [2] };
+    function sectorGate(key, label, need, reason) {
+      if (!r[key]) return;
+      if (!known) { out.push({ key: key, label: 'Célcsoport', status: 'unknown', reason: reason }); return; }
+      var hit = inds.some(function (x) { return need.indexOf(x) >= 0; });
+      // With a TEÁOR code we can tell a crop farm from a fish farm or a forestry.
+      if (hit && div !== null && DIVS[key]) hit = DIVS[key].indexOf(div) >= 0;
+      out.push(hit ? { key: key, label: 'Célcsoport', status: 'ok', reason: reason, bonus: 14 } : { key: key, label: 'Célcsoport', status: 'fail', reason: 'Csak ' + label + ' pályázhat.' });
+    }
+    if (isConsortium(g)) out.push({ key: 'consortium', label: 'Pályázói kör', status: 'warn', reason: 'Nemzetközi konzorcium kell (partnerek más országokból).' });
+    if (r.cluster_manager) out.push({ key: 'cluster_manager', label: 'Pályázói kör', status: 'fail', reason: 'Csak akkreditált klasztermenedzsment-szervezetek pályázhatnak.' });
+    if (r.research_led) out.push({ key: 'research_led', label: 'Pályázói kör', status: 'warn', reason: 'Kutatóhely (egyetem, kutatóintézet) a pályázó vagy a vezető partner.' });
+    if (r.jobseeker) {
+      out.push(have === undefined ? { key: 'jobseeker', label: 'Célcsoport', status: 'unknown', reason: 'Álláskeresők vállalkozásindítását támogatja.' }
+        : have >= 1 ? { key: 'jobseeker', label: 'Célcsoport', status: 'fail', reason: 'Álláskeresők új vállalkozására szól, működő cégnek nem.' }
+        : { key: 'jobseeker', label: 'Célcsoport', status: 'unknown', reason: 'Csak ha a vállalkozást álláskeresőként indítja.' });
+    }
+    if (typeof r.startup_max_years === 'number') {
+      out.push(have === undefined ? { key: 'startup', label: 'Cég kora', status: 'unknown', reason: 'Legfeljebb ' + r.startup_max_years + ' éves cégeknek.' }
+        : have <= r.startup_max_years ? { key: 'startup', label: 'Cég kora', status: 'ok', reason: 'Legfeljebb ' + r.startup_max_years + ' éves cégeknek — megfelel.' }
+        : { key: 'startup', label: 'Cég kora', status: 'fail', reason: 'Csak legfeljebb ' + r.startup_max_years + ' éves cégeknek.' });
+    }
+    if (r.women_led) {
+      var w = p && p.women_led;
+      out.push(w === 'igen' ? { key: 'women_led', label: 'Célcsoport', status: 'ok', reason: 'Nők által alapított / vezetett cégeknek — megfelel.' }
+        : w === 'nem' ? { key: 'women_led', label: 'Célcsoport', status: 'fail', reason: 'Csak nők által alapított / vezetett cégeknek.' }
+        : { key: 'women_led', label: 'Célcsoport', status: 'unknown', reason: 'Nők által alapított / vezetett cégeknek szól.' });
+    }
+    if (r.youth_founder) out.push({ key: 'youth_founder', label: 'Célcsoport', status: 'unknown', reason: 'Fiatal alapítóknak szól — ellenőrizze a korhatárt a felhívásban.' });
+    if (r.rnd_project || r.deeptech) {
+      var rd = p && p.rnd;
+      var what = r.deeptech ? 'Mélytechnológiai (deep-tech) innováció' : 'K+F / innovációs projekt';
+      out.push(rd === 'igen' ? { key: 'rnd', label: 'Projekt típusa', status: 'ok', reason: what + ' — Ön tervez ilyet.', bonus: 6 }
+        : rd === 'nem' ? { key: 'rnd', label: 'Projekt típusa', status: 'fail', reason: what + ' a támogatás tárgya; Ön nem tervez ilyet.' }
+        : { key: 'rnd', label: 'Projekt típusa', status: 'unknown', reason: what + ' a támogatás tárgya.' });
+    }
+    sectorGate('farmer', 'mezőgazdasági termelők', ['Agriculture'], 'Mezőgazdasági termelőknek (pl. őstermelő, agrárvállalkozás).');
+    sectorGate('fisheries', 'halászati / akvakultúra-vállalkozások', ['Agriculture'], 'Halászati / akvakultúra-vállalkozásoknak.');
+    sectorGate('forestry', 'erdőgazdálkodók', ['Agriculture'], 'Erdőgazdálkodóknak.');
+    sectorGate('tourism_ntak', 'NTAK-regisztrált turisztikai szolgáltatók', ['Tourism', 'Restaurant'], 'NTAK-regisztrált turisztikai szolgáltatóknak.');
+    sectorGate('restaurant', 'vendéglátóhelyek', ['Restaurant'], 'Vendéglátóhelyeknek (étterem, cukrászda).');
+    if (r.social_enterprise) out.push({ key: 'social_enterprise', label: 'Célcsoport', status: 'warn', reason: 'Társadalmi vállalkozásoknak szól.' });
+    if (r.employer) {
+      var e = p && p.employees;
+      out.push(!e ? { key: 'employer', label: 'Foglalkoztatás', status: 'unknown', reason: 'Alkalmazottakat foglalkoztató cégeknek.' }
+        : e === '1' ? { key: 'employer', label: 'Foglalkoztatás', status: 'warn', reason: 'Alkalmazott kell — egyszemélyes cégnek csak felvétel után.' }
+        : { key: 'employer', label: 'Foglalkoztatás', status: 'ok', reason: 'Van alkalmazottja.' });
+    }
+    if (r.hires_disadvantaged) out.push({ key: 'hires', label: 'Foglalkoztatás', status: 'neutral', reason: 'Célcsoportból (pl. fiatal, álláskereső) felvett munkavállaló bérére jár.' });
+    if (typeof r.min_revenue_huf === 'number') {
+      var rev = p && p.revenue;
+      var need = r.min_revenue_huf, fmt = need >= 1e9 ? (need / 1e9) + ' Mrd Ft' : Math.round(need / 1e6) + ' M Ft';
+      out.push(!(rev in REV_MAX) ? { key: 'revenue', label: 'Árbevétel', status: 'unknown', reason: 'Legalább ' + fmt + ' éves árbevétel kell.' }
+        : REV_MAX[rev] < need ? { key: 'revenue', label: 'Árbevétel', status: 'fail', reason: 'Legalább ' + fmt + ' éves árbevétel kell.' }
+        : REV_MIN[rev] >= need ? { key: 'revenue', label: 'Árbevétel', status: 'ok', reason: 'Megvan a legalább ' + fmt + ' árbevétel.' }
+        : { key: 'revenue', label: 'Árbevétel', status: 'unknown', reason: 'Legalább ' + fmt + ' árbevétel kell — határeset.' });
+    }
+    if (r.bank_loan) out.push({ key: 'bank', label: 'Igénylés', status: 'neutral', reason: 'Bankon / hitelközvetítőn keresztül igényelhető, hitelbírálattal.' });
+    return out;
+  }
+
   function checkApplicant(g) {
-    if (g.scope === 'eu' && g.singleApplicant === false) return { key: 'applicant', label: 'Pályázói kör', status: 'warn', reason: 'Nemzetközi konzorcium kell (partnerek más országokból).' };
     if (/csak minősített|kizárólag|csak .*szervezet|szűk kör|engedély szükséges|koncesszió|MGFÜ-regisztráció/i.test(g.note || '')) return { key: 'applicant', label: 'Pályázói kör', status: 'warn', reason: g.note };
     if (/nagyvállalat|1 Mrd Ft-os minimum|minimum miatt/i.test(g.note || '')) return { key: 'applicant', label: 'Pályázói kör', status: 'warn', reason: 'A gyakorlatban nagy projektekhez / nagyobb cégeknek.' };
     return null;
@@ -199,7 +270,13 @@
   function match(g, profile, today) {
     today = today || new Date().toISOString().slice(0, 10);
     var p = profile && (profile.company || profile.employees || industriesOf(profile).length) ? profile : null;
-    var checks = [checkSize(g, p), checkRegion(g, p), checkSector(g, p), checkTeaor(g, p), checkYears(g, p), checkBasics(g, p), checkApplicant(g), checkMoney(g, p), checkTiming(g, today)]
+    var req = checkRequires(g, p);
+    var covered = {}; req.forEach(function (c) { if (['farmer', 'fisheries', 'forestry', 'tourism_ntak', 'restaurant'].indexOf(c.key) >= 0) covered.sector = true; });
+    var sector = checkSector(g, p);
+    // A tag-based target-group check replaces the keyword sector guess when it
+    // decides the same question (and is more reliable).
+    if (covered.sector && sector && (sector.status === 'fail' || sector.status === 'unknown' || sector.status === 'warn')) sector = null;
+    var checks = [checkSize(g, p), checkRegion(g, p), sector, checkTeaor(g, p), checkYears(g, p), checkBasics(g, p)].concat(req, [checkApplicant(g), checkMoney(g, p), checkTiming(g, today)])
       .filter(Boolean);
     var fails = checks.filter(function (c) { return c.status === 'fail'; }).length;
     var warns = checks.filter(function (c) { return c.status === 'warn'; }).length;
@@ -213,7 +290,7 @@
       // Base + how well the topic fits (sector bonus) + what kind of money it is
       // (non-repayable ranks above loans) + domestic first + time to prepare,
       // minus hurdles. APPLY (≥75) in practice needs a topic match.
-      var typeB = { 'grant': 6, 'wage-subsidy': 6, 'loan+grant': 4, 'grant+equity': 4, 'in-kind': 2 }[g.type] || 0;
+      var typeB = { 'grant': 6, 'wage-subsidy': 2, 'loan+grant': 4, 'grant+equity': 4, 'in-kind': 2 }[g.type] || 0;
       if (g.type === 'equity') typeB = (closedYears[p.years_operating] <= 2 || industriesOf(p).indexOf('IT') >= 0) ? 3 : -3;
       var d = daysUntil(g.deadline, today);
       score = 60 + bonus + typeB + (g.scope !== 'eu' ? 4 : -4) + (d === null || d >= 21 ? 2 : 0) - warns * 9 - unknown * 3;
@@ -221,20 +298,23 @@
     }
     score = Math.max(5, Math.min(99, Math.round(score)));
     var verdict = !p ? 'REVIEW' : fails ? 'SKIP' : score >= 75 ? 'APPLY' : score >= 55 ? 'REVIEW' : 'SKIP';
-    return { score: score, verdict: verdict, eligible: !fails, personal: !!p, checks: checks };
+    var group = isConsortium(g) ? 'consortium' : g.scope === 'eu' ? 'eu' : 'hazai';
+    // A consortium call is never a top recommendation for a single company.
+    if (group === 'consortium' && verdict === 'APPLY') verdict = 'REVIEW';
+    return { score: score, verdict: verdict, eligible: !fails, personal: !!p, checks: checks, group: group };
   }
 
   // Profile fields the matching uses, and which are still empty.
   var NEEDED = [
     ['employees', 'Létszám'], ['site_region', 'Megvalósítás régiója'], ['teaor', 'TEÁOR főtevékenység'],
     ['years_operating', 'Lezárt üzleti évek'], ['public_debt_free', 'Köztartozásmentesség'],
-    ['in_difficulty', 'Nehéz helyzetű-e'], ['own_funds', 'Önerő'],
+    ['in_difficulty', 'Nehéz helyzetű-e'], ['own_funds', 'Önerő'], ['rnd', 'Tervez-e K+F / innovációs projektet'],
   ];
   function missingFields(p) {
     return NEEDED.filter(function (f) { return !p || !p[f[0]]; }).map(function (f) { return { key: f[0], label: f[1] }; });
   }
 
-  var api = { match: match, sizeTier: sizeTier, teaorIndustries: teaorIndustries, missingFields: missingFields, ALL_REGIONS: ALL_REGIONS };
+  var api = { match: match, sizeTier: sizeTier, teaorIndustries: teaorIndustries, missingFields: missingFields, isConsortium: isConsortium, ALL_REGIONS: ALL_REGIONS };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.AIPMatch = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

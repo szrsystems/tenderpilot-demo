@@ -43,7 +43,7 @@
    "rnd_project": true
   },
   "requiresEvidence": {
-   "rnd_project": "Korai fázisú kutatás-fejlesztési kockázati tőkeprogram (felhívás címe): innovatív vállalkozások K+F-alapú fejlesztése"
+   "rnd_project": "korai fázisú, innovatív vállalkozásoknak"
   }
  },
  {
@@ -95,10 +95,12 @@
    "preference": 85
   },
   "requires": {
-   "deeptech": true
+   "deeptech": true,
+   "rnd_project": true
   },
   "requiresEvidence": {
-   "deeptech": "Kockázati tőke deep-tech, hardveres innovációs KKV-knak; alapkezelőn keresztül."
+   "deeptech": "deep-tech, hardveres innovációs KKV-knak",
+   "rnd_project": "deep-tech, hardveres innovációs KKV-knak"
   }
  },
  {
@@ -146,6 +148,12 @@
    "industry": 85,
    "location": 78,
    "preference": 85
+  },
+  "requires": {
+   "rnd_project": true
+  },
+  "requiresEvidence": {
+   "rnd_project": "Kockázati tőke digitális (IKT) startupoknak"
   }
  },
  {

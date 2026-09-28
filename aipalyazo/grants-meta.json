@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-09-28T15:32:02.139Z",
+ "updatedAt": "2026-09-28T15:41:17.258Z",
  "counts": {
   "total": 184,
   "api": 17,
@@ -96,20 +96,9 @@
    "why": "Csak közintézmények, egyházak, nonprofitok; 2026-09-25-én zár."
   }
  ],
- "changes": [
-  {
-   "id": "v-tff-5-1-5-2026-kth-start-kiegeszito",
-   "type": "new",
-   "title": "Kiegészítő támogatás a KTH START beruházási vagy forgóeszköz kölcsönhöz („2=3 akció”)"
-  },
-  {
-   "id": "v-eitcc-innovation-projects-2026",
-   "type": "new",
-   "title": "EIT Culture & Creativity Innovation Projects 2026 (Kreatívipari innovációs projektek – divat, audiovizuális média, építészet)"
-  }
- ],
+ "changes": [],
  "offlineRebuild": {
   "at": "2026-09-28",
-  "apiDataFrom": "2026-09-24T22:08:34.100Z"
+  "apiDataFrom": "2026-09-28T15:32:02.139Z"
  }
 }

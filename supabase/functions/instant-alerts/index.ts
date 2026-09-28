@@ -92,7 +92,7 @@ export async function handler(req: Request, deps: { admin?: any; send?: (to: str
   });
 
   const { data: users, error } = await admin.from('notif_prefs')
-    .select('user_id, unsubscribe_token, recipient_email, profiles(email, display_name, company, industry, industries, categories, employees, site_region, years_operating, public_debt_free, in_difficulty, own_funds, teaor)')
+    .select('user_id, unsubscribe_token, recipient_email, profiles(email, display_name, company, industry, industries, categories, employees, site_region, years_operating, public_debt_free, in_difficulty, own_funds, teaor, revenue, rnd, women_led)')
     .eq('instant_enabled', true);
   if (error) return Response.json({ error: 'query_failed' }, { status: 500 });
 

@@ -163,7 +163,13 @@
    "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-5.1.4-26",
    "https://www.palyazas.hu/palyazatok/dimop-plusz-5-1-4-26"
   ],
-  "confidence": "medium"
+  "confidence": "medium",
+  "requires": {
+   "rnd_project": true
+  },
+  "requiresEvidence": {
+   "rnd_project": "Kockázati tőke digitális (IKT) startupoknak"
+  }
  },
  "DIMOP_PLUSZ-1.2.3/AB-1-24": {
   "exclude": true,
@@ -225,7 +231,7 @@
    "rnd_project": true
   },
   "requiresEvidence": {
-   "rnd_project": "Korai fázisú kutatás-fejlesztési kockázati tőkeprogram (felhívás címe): innovatív vállalkozások K+F-alapú fejlesztése"
+   "rnd_project": "korai fázisú, innovatív vállalkozásoknak"
   }
  },
  "MAHOP_PLUSZ-2.5.1-25": {
@@ -332,10 +338,12 @@
   ],
   "confidence": "medium",
   "requires": {
-   "deeptech": true
+   "deeptech": true,
+   "rnd_project": true
   },
   "requiresEvidence": {
-   "deeptech": "Kockázati tőke deep-tech, hardveres innovációs KKV-knak; alapkezelőn keresztül."
+   "deeptech": "deep-tech, hardveres innovációs KKV-knak",
+   "rnd_project": "deep-tech, hardveres innovációs KKV-knak"
   }
  },
  "DIMOP_PLUSZ-1.2.3/B-24": {
