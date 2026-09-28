@@ -63,14 +63,53 @@ function deadlineHu(g) {
 }
 const ft = (n) => (n >= 1e9 ? `${(n / 1e9).toFixed(1).replace('.', ',')} Mrd Ft` : `${Math.round(n / 1e6)} M Ft`);
 
+const MARK = '<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0a6b3d"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+// Page-specific styles on top of assets/site.css (the shared design system).
+const PAGE_CSS = `
+.crumbs{font:400 13px/1.4 var(--mono);color:var(--ink-3);margin:var(--s5) 0 var(--s4)}.crumbs a{color:var(--ink-3)}
+.call-head{padding-bottom:var(--s5);border-bottom:2px solid var(--ink);margin-bottom:var(--s5)}
+.call-head h1{font-size:clamp(26px,3.4vw,38px);letter-spacing:-.02em;margin:var(--s2) 0 var(--s3);overflow-wrap:anywhere;max-width:30ch}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--s3)}
+.call-grid{display:grid;gap:var(--s6);padding-bottom:var(--s7)}
+@media(min-width:1000px){.call-grid{grid-template-columns:minmax(0,1fr) 360px;gap:var(--s7)}.call-side{position:sticky;top:88px;align-self:start}}
+.call-main h2{font-size:21px;margin:var(--s6) 0 var(--s3)}.call-main h2:first-child{margin-top:0}
+.call-main p,.call-main li{color:var(--ink-2)}
+.facts{width:100%;border-collapse:collapse;font-size:15px}.facts th,.facts td{text-align:left;vertical-align:top;padding:10px 0;border-bottom:1px solid var(--line)}
+.facts th{width:42%;color:var(--ink-3);font-weight:500;padding-right:12px;font-size:14px}.facts td{overflow-wrap:anywhere}
+.side-box{border:1px solid var(--line);border-top:3px solid var(--brand);border-radius:var(--r-lg);padding:var(--s5);background:var(--surface);margin-top:var(--s5)}
+.side-box h2{font-size:19px;margin-bottom:var(--s2)}.side-box p{font-size:15px;color:var(--ink-2)}.side-box .btn{width:100%;margin-top:var(--s2)}
+.sum h3{font-size:16px;margin:var(--s4) 0 var(--s2)}.sum ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.sum li{padding:10px 0;border-bottom:1px solid var(--line);color:var(--ink)}
+.q{display:block;font:400 13px/1.5 var(--mono);color:var(--ink-3);margin-top:4px;overflow-wrap:anywhere}
+.req{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}.req li{padding:10px 0;border-bottom:1px solid var(--line);display:grid;gap:2px}
+.req b{color:var(--ink)}.req span{font-size:14px;color:var(--ink-3)}
+.log{list-style:none;margin:0;padding:0}.log li{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}
+.log time{font:400 13.5px/1.6 var(--mono);color:var(--ink-3)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:var(--s4) 0}
+.filters button{min-height:40px;padding:0 14px;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);border-radius:var(--r);font:500 14px/1 var(--sans);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+#q{width:100%;min-height:48px;padding:12px 14px;border:1px solid var(--line-strong);border-radius:var(--r);font:400 16px/1.4 var(--sans);background:var(--paper);color:var(--ink)}
+.hubs{margin:var(--s5) 0 var(--s6);display:grid;gap:var(--s4)}@media(min-width:900px){.hubs{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.hubs h2{font:500 13px/1.4 var(--mono);text-transform:uppercase;color:var(--ink-3);margin-bottom:var(--s2)}
+.hub-links{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:15px}.hub-links .n{font-family:var(--mono);color:var(--ink-3);font-size:13px}
+.list-head{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3);margin:var(--s6) 0 var(--s2)}
+.list-head h2{font-size:22px}.list-head .count{font:400 14px/1 var(--mono);color:var(--ink-3)}
+.page-intro{max-width:70ch;color:var(--ink-2);font-size:17px}
+.empty-note{padding:var(--s4) 0;color:var(--ink-3)}
+.back-link{margin:var(--s5) 0}.end-note{margin-bottom:var(--s7)}.side-box.narrow{max-width:640px;margin-bottom:var(--s7)}.disclaimer{margin-top:var(--s6)}
+.site-foot .brand-p{margin-top:var(--s3)}
+`;
+
 function shell({ title, description, canonical, noindex, body, jsonld, depth = 1 }) {
   const up = '../'.repeat(depth);
   return `<!DOCTYPE html>
 <html lang="hu">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; object-src 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://*.goatcounter.com; base-uri 'self'; object-src 'none'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canonical" href="${esc(canonical)}">`}
@@ -79,70 +118,101 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(canonical)}">
 <meta property="og:locale" content="hu_HU">
+<meta name="theme-color" content="#0e1a2b">
 <link rel="icon" type="image/svg+xml" href="${up}favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="${up}assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="${up}assets/site.css">
+<style>${PAGE_CSS}</style>
 ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, '\\u003c')}</script>` : ''}
-<style>
-:root{--g50:#f0fdf4;--g100:#dcfce7;--g200:#bbf7d0;--g600:#16a34a;--g700:#15803d;--g800:#166534;--gr50:#f9fafb;--gr100:#f3f4f6;--gr200:#e5e7eb;--gr400:#9ca3af;--gr500:#6b7280;--gr600:#4b5563;--gr700:#374151;--gr900:#111827;--am50:#fffbeb;--am600:#d97706;--red600:#dc2626}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--gr900);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.6}
-nav{border-bottom:1px solid var(--gr200);padding:14px 16px}
-.nav-in{max-width:880px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.logo{font-size:18px;font-weight:800;color:var(--gr900);text-decoration:none}.logo span{color:var(--g600)}
-.nav-cta{font-size:13px;font-weight:700;color:#fff;background:var(--g700);padding:8px 14px;border-radius:9px;text-decoration:none;white-space:nowrap}
-main{max-width:880px;margin:0 auto;padding:28px 16px 48px}
-.crumbs{font-size:12px;color:var(--gr500);margin-bottom:14px}.crumbs a{color:var(--gr500);text-decoration:none}
-h1{font-size:clamp(22px,4vw,30px);font-weight:800;letter-spacing:-.4px;line-height:1.25;margin-bottom:10px;overflow-wrap:anywhere}
-h2{font-size:17px;font-weight:700;margin:28px 0 10px}
-.badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
-.b{font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--gr100);color:var(--gr700)}.b.g{background:var(--g100);color:var(--g800)}.b.r{background:#fee2e2;color:var(--red600)}
-table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{text-align:left;padding:9px 0;border-bottom:1px solid var(--gr100);vertical-align:top}
-th{width:34%;color:var(--gr500);font-weight:600;font-size:13px;padding-right:12px}
-td{overflow-wrap:anywhere}
-a{color:var(--g700)}
-p{font-size:14.5px;color:var(--gr700);margin-bottom:10px}
-.sum h3{font-size:14px;font-weight:700;margin:16px 0 6px;color:var(--gr900)}
-.sum ul{list-style:none}.sum li{font-size:14px;color:var(--gr700);padding:4px 0 4px 16px;position:relative}
-.sum li:before{content:'';position:absolute;left:2px;top:12px;width:6px;height:6px;border-radius:50%;background:var(--g600)}
-.q{display:block;font-size:12px;color:var(--gr500);font-style:italic;margin-top:2px;overflow-wrap:anywhere}
-.cta{margin:30px 0;padding:22px;border-radius:14px;background:linear-gradient(135deg,var(--g50),#fff);border:1px solid var(--g200)}
-.cta h2{margin:0 0 6px}.cta p{margin-bottom:14px}
-.btn{display:inline-block;font-weight:700;font-size:14px;padding:11px 20px;border-radius:10px;text-decoration:none;margin:0 8px 8px 0}
-.btn.p{background:var(--g700);color:#fff}.btn.s{background:#fff;color:var(--g700);border:1px solid var(--g200)}
-.note{background:var(--am50);border-left:3px solid var(--am600);padding:12px 16px;border-radius:4px;font-size:13px;color:var(--gr700);margin:22px 0}
-.muted{font-size:12.5px;color:var(--gr500)}
-.list{list-style:none}.list li{border-bottom:1px solid var(--gr100);padding:12px 0}
-.list a{font-weight:600;color:var(--gr900);text-decoration:none;overflow-wrap:anywhere}.list a:hover{color:var(--g700)}
-.list .m{font-size:12.5px;color:var(--gr500);margin-top:2px}
-#q{width:100%;padding:11px 14px;border:1px solid var(--gr200);border-radius:10px;font:inherit;font-size:15px;margin:6px 0 10px}
-footer{border-top:1px solid var(--gr200);padding:22px 16px;text-align:center;font-size:12px;color:var(--gr400)}
-footer a{color:var(--gr500);margin:0 8px;text-decoration:none}
-</style>
 </head>
 <body>
-<nav><div class="nav-in"><a class="logo" href="${up}index.html">AI<span>pályázó</span></a><a class="nav-cta" href="${up}onboarding.html">Ingyenes illeszkedés-vizsgálat</a></div></nav>
-<main>
+<a class="skip" href="#main">Ugrás a tartalomra</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="${up}index.html" aria-label="AIpályázó főoldal">${MARK}<span><b>AI</b>pályázó</span></a>
+    <nav class="site-nav" aria-label="Fő navigáció"><a href="${up}palyazat/index.html" aria-current="page">Nyitott pályázatok</a><a href="${up}index.html#hogyan">Hogyan működik</a><a href="${up}miert-ingyenes.html">Miért ingyenes?</a></nav>
+    <div class="head-actions">
+      <a class="btn btn-quiet btn-sm hide-sm" href="${up}login.html" data-guest>Belépés</a>
+      <a class="btn btn-primary btn-sm" href="${up}signup.html" data-guest>Regisztráció</a>
+      <a class="btn btn-primary btn-sm" href="${up}portal.html" data-member hidden>Portál</a>
+      <button class="btn btn-ghost btn-sm head-menu" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+  <div class="wrap"><nav id="mobile-nav" class="mobile-nav" aria-label="Mobil navigáció"><a href="${up}palyazat/index.html">Nyitott pályázatok</a><a href="${up}index.html#hogyan">Hogyan működik</a><a href="${up}miert-ingyenes.html">Miért ingyenes?</a><a href="${up}login.html">Belépés</a></nav></div>
+</header>
+<main id="main"><div class="wrap">
 ${body}
-</main>
-<footer><a href="${up}impresszum.html">Impresszum</a><a href="${up}adatvedelem.html">Adatkezelés</a><a href="${up}aszf.html">ÁSZF</a><a href="${up}palyazat/index.html">Összes pályázat</a></footer>
+</div></main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="cols">
+      <div><a class="brand" href="${up}index.html">${MARK}<span><b>AI</b>pályázó</span></a><p class="brand-p">Ingyenes pályázatfigyelő magyar vállalkozásoknak. Tájékoztató szolgáltatás: beadás előtt mindig a hivatalos felhívás az irányadó.</p></div>
+      <div><h4>Pályázatok</h4><ul><li><a href="${up}palyazat/index.html">Nyitott felhívások</a></li><li><a href="${up}palyazat/index.html#temak">Témák és programok</a></li><li><a href="${up}portal.html">Portál</a></li></ul></div>
+      <div><h4>Rólunk</h4><ul><li><a href="${up}miert-ingyenes.html">Miért ingyenes?</a></li><li><a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a></li></ul></div>
+      <div><h4>Jogi</h4><ul><li><a href="${up}impresszum.html">Impresszum</a></li><li><a href="${up}adatvedelem.html">Adatkezelés</a></li><li><a href="${up}aszf.html">ÁSZF</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 AIpályázó · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
+  </div>
+</footer>
+<script src="${up}assets/site.js" defer></script>
+<script src="${up}assets/analytics.js" defer></script>
 </body>
 </html>
 `;
 }
 
+const TAG_HU = {
+  consortium: 'Nemzetközi konzorcium szükséges (partnerek más országokból)', women_led: 'Nők által alapított vagy vezetett cégeknek', youth_founder: 'Fiatal alapítóknak',
+  jobseeker: 'Álláskeresők vállalkozásindításához', research_led: 'Kutatóhely (egyetem, kutatóintézet) a pályázó vagy a vezető partner', rnd_project: 'K+F / innovációs projekt a támogatás tárgya',
+  deeptech: 'Mélytechnológiai (deep-tech) innováció', farmer: 'Mezőgazdasági termelőknek (pl. őstermelő, agrárvállalkozás)', fisheries: 'Halászati és akvakultúra-vállalkozásoknak', forestry: 'Erdőgazdálkodóknak',
+  tourism_ntak: 'NTAK-regisztrált turisztikai szolgáltatóknak', restaurant: 'Vendéglátóhelyeknek', social_enterprise: 'Társadalmi vállalkozásoknak', cluster_manager: 'Csak akkreditált klasztermenedzsment-szervezeteknek',
+  employer: 'Alkalmazottat foglalkoztató cégeknek', hires_disadvantaged: 'Célcsoportból (pl. fiatal, álláskereső) felvett munkavállaló bérére', bank_loan: 'Bankon vagy hitelközvetítőn keresztül, hitelbírálattal',
+};
+function requiresHtml(g) {
+  const r = g.requires || {}, ev = g.requiresEvidence || {};
+  const items = [];
+  for (const [k, v] of Object.entries(r)) {
+    let label = TAG_HU[k];
+    if (k === 'startup_max_years') label = `Legfeljebb ${Number(v)} éves cégeknek`;
+    if (k === 'min_revenue_huf') label = `Legalább ${Number(v) >= 1e9 ? Number(v) / 1e9 + ' Mrd' : Math.round(Number(v) / 1e6) + ' M'} Ft éves árbevétel`;
+    if (!label || v === false) continue;
+    items.push(`<li><b>${esc(label)}</b>${ev[k] ? `<span>„${esc(ev[k])}”</span>` : ''}</li>`);
+  }
+  if (g.scope === 'eu' && g.singleApplicant === false && !r.consortium) items.unshift(`<li><b>${esc(TAG_HU.consortium)}</b></li>`);
+  const size = (g.sizeClasses || []).length ? `<li><b>Cégméret: ${esc(g.sizeClasses.join(', '))}</b></li>` : '';
+  const region = (g.regions || []).length ? `<li><b>Csak ezekben a régiókban: ${esc(g.regions.join(', '))}</b></li>` : '';
+  const all = size + region + items.join('');
+  return all ? `<h2>Ki pályázhat?</h2><ul class="req">${all}</ul>` : '';
+}
+
+const CHANGE_HU = { new: 'Felkerült a listára', deadline: 'Határidő módosult', keret: 'A keretösszeg módosult', 'szabad-keret': 'A szabad keret változott', removed: 'Lekerült a listáról', page: 'A hivatalos oldal tartalma változott', 'deadline-official': 'Új határidő a hivatalos oldalon' };
+function changeValue(type, v) {
+  if (v == null || v === '') return '';
+  if (/keret/.test(type) && typeof v === 'number') return ft(v);
+  if (isDate(v)) return huDate(v);
+  return String(v);
+}
+function changesHtml(list) {
+  if (!Array.isArray(list) || !list.length) return '';
+  const rows = [...list].sort((a, b) => String(b.date).localeCompare(String(a.date))).slice(0, 12).map((c) => {
+    const what = CHANGE_HU[c.type] || 'Változás';
+    const detail = c.from != null || c.to != null ? `: ${esc(changeValue(c.type, c.from) || '—')} → ${esc(changeValue(c.type, c.to) || '—')}` : '';
+    return `<li><time datetime="${esc(c.date)}">${esc(huDate(c.date) || c.date)}</time><span>${esc(what)}${detail}</span></li>`;
+  }).join('');
+  return `<h2>Mi változott?</h2><ul class="log">${rows}</ul>`;
+}
+
 function factsRows(g) {
   const rows = [];
-  const add = (k, v) => { if (v) rows.push(`<tr><th>${k}</th><td>${v}</td></tr>`); };
+  const add = (k, v) => { if (v) rows.push(`<tr><th scope="row">${k}</th><td>${v}</td></tr>`); };
   add('Kiíró', esc(g.issuer));
-  add('Felhívás kódja', g.code ? esc(g.code) : '');
+  add('Felhívás kódja', g.code ? `<span class="mono">${esc(g.code)}</span>` : '');
   add('Támogatás formája', esc(TYPE_HU[g.type] || g.type || ''));
   add('Kategória', esc(g.cat));
   add('Összeg', esc(g.amount));
   add('Támogatási arány / feltétel', g.rate ? esc(g.rate) : '');
-  if (g.keret > 0) add('Teljes keret', esc(ft(g.keret)) + (g.remaining >= 0 && g.remaining != null ? ` · még szabad: <b>${esc(ft(g.remaining))}</b> (hivatalos adat)` : ''));
-  add('Beadási határidő', esc(deadlineHu(g)));
+  if (g.keret > 0) add('Teljes keret', `<span class="num">${esc(ft(g.keret))}</span>` + (g.remaining >= 0 && g.remaining != null ? ` · még szabad: <b class="num">${esc(ft(g.remaining))}</b> (hivatalos adat)` : ''));
+  add('Beadási határidő', `<b class="mono">${esc(deadlineHu(g))}</b>`);
   if (isDate(g.windowOpen)) add('Beadás kezdete', esc(huDate(g.windowOpen)));
   add('Cégméret', (g.sizeClasses || []).length ? esc(g.sizeClasses.join(', ')) : '');
   add('Régió', (g.regions || []).length ? esc(g.regions.join(', ')) : (g.scope === 'eu' ? 'EU-s program — magyar cégek is pályázhatnak' : 'Országos'));
@@ -150,14 +220,14 @@ function factsRows(g) {
   if (g.scope === 'eu' && g.singleApplicant === false) add('Konzorcium', 'Jellemzően több ország partnereivel közösen (konzorciumban) lehet pályázni');
   const url = safeUrl(g.url);
   add('Hivatalos oldal', url ? `<a href="${esc(url)}" target="_blank" rel="noopener nofollow">${esc(g.source || new URL(url).hostname)} ↗</a>` : '');
-  return `<table>${rows.join('')}</table>`;
+  return `<table class="facts">${rows.join('')}</table>`;
 }
 
 function summaryHtml(s) {
   if (!s || !Array.isArray(s.sections) || !s.sections.length) return '';
   return `<h2>A felhívás röviden</h2>
 <div class="sum">${s.sections.map((sec) => `<h3>${esc(sec.title)}</h3><ul>${(sec.items || []).map((it) => `<li>${esc(it.text)}<span class="q">„${esc(it.quote)}”</span></li>`).join('')}</ul>`).join('')}</div>
-<p class="muted">Az összefoglalót mesterséges intelligencia készítette a <a href="${esc(safeUrl(s.sourceUrl))}" target="_blank" rel="noopener nofollow">hivatalos szövegből</a>; minden pont mellett ott a szó szerinti idézet, amire épül. Készült: ${esc(s.generatedAt || '')}.</p>`;
+<p class="muted small">Az összefoglalót mesterséges intelligencia készítette a <a href="${esc(safeUrl(s.sourceUrl))}" target="_blank" rel="noopener nofollow">hivatalos szövegből</a>; minden pont alatt ott a szó szerinti idézet, amire épül. Készült: ${esc(s.generatedAt || '')}.</p>`;
 }
 
 export function metaDescription(g) {
@@ -166,14 +236,14 @@ export function metaDescription(g) {
   return t.length > 300 ? t.slice(0, 297) + '…' : t;
 }
 
-export function renderPage(g, slug, summary, { updatedAt } = {}) {
+export function renderPage(g, slug, summary, { updatedAt, changes } = {}) {
   const canonical = `${BASE}/palyazat/${slug}.html`;
   const portal = `../portal.html?grant=${encodeURIComponent(g.id)}`;
   const checked = g.lastChecked || g.verifiedAt || (g.modified ? String(g.modified).slice(0, 10) : '') || updatedAt || '';
-  const badges = [
-    `<span class="b g">${g.scope === 'eu' ? 'EU / nemzetközi' : 'Hazai'}</span>`,
-    `<span class="b">${esc(TYPE_HU[g.type] || g.type || 'Támogatás')}</span>`,
-    isDate(g.deadline) ? `<span class="b">Határidő: ${esc(huDate(g.deadline))}</span>` : '<span class="b">Folyamatos beadás</span>',
+  const tags = [
+    `<span class="tag brand">${g.scope === 'eu' ? 'EU / nemzetközi' : 'Hazai'}</span>`,
+    `<span class="tag">${esc(TYPE_HU[g.type] || g.type || 'Támogatás')}</span>`,
+    isDate(g.deadline) ? `<span class="tag signal">Határidő: ${esc(huDate(g.deadline))}</span>` : '<span class="tag">Folyamatos beadás</span>',
   ].join('');
   const jsonld = [
     {
@@ -189,30 +259,41 @@ export function renderPage(g, slug, summary, { updatedAt } = {}) {
       ],
     },
   ];
-  const body = `<div class="crumbs"><a href="../index.html">AIpályázó</a> › <a href="index.html">Pályázatok</a></div>
+  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">AIpályázó</a> / <a href="index.html">Pályázatok</a></nav>
+<header class="call-head">
+<p class="eyebrow">${esc(g.code || g.issuer || '')}</p>
 <h1>${esc(g.title)}</h1>
-<div class="badges">${badges}</div>
-${factsRows(g)}
+<div class="tags">${tags}</div>
+<span class="stamp">Forrás: <b>${esc(g.source || 'hivatalos oldal')}</b> · ellenőrizve: ${esc(checked)}</span>
+</header>
+<div class="call-grid">
+<div class="call-main">
 ${g.note ? `<h2>Röviden</h2><p>${esc(g.note)}</p>` : ''}
+${requiresHtml(g)}
 ${summaryHtml(summary)}
-<div class="cta">
-<h2>Jogosult erre a cége?</h2>
-<p>Adja meg cége adószámát, és pontonként megmutatjuk, megfelel-e a feltételeknek (méret, régió, TEÁOR, működési idő, köztartozás) — ingyen, regisztrációval. Kérésre a DFT-Hungária pályázatírói díjmentesen felveszik Önnel a kapcsolatot.</p>
-<a class="btn p" href="${esc(portal)}">Megnézem a portálon</a><a class="btn s" href="../onboarding.html">Cégprofil megadása</a>
+${changesHtml(changes)}
+<div class="notice warn disclaimer">Tájékoztató összefoglaló. Mindig a hivatalos felhívás és annak módosításai az irányadók — beadás előtt ellenőrizze a kiíró oldalán.</div>
 </div>
-<div class="note">Tájékoztató összefoglaló. Mindig a hivatalos felhívás és annak módosításai az irányadók — beadás előtt ellenőrizze a kiíró oldalán.</div>
-<p class="muted">Utolsó ellenőrzés: ${esc(checked)} · Az adatokat naponta frissítjük hivatalos forrásokból.</p>`;
+<aside class="call-side" aria-label="Alapadatok">
+${factsRows(g)}
+<div class="side-box">
+<h2>Jogosult erre a cége?</h2>
+<p>Pontonként összevetjük a feltételeket a cége adataival (méret, régió, TEÁOR, működési idő, köztartozás), és megmutatjuk, mi hiányzik. Ingyenes. Kérésre pályázatíró partnerünk díjmentesen felveszi Önnel a kapcsolatot.</p>
+<a class="btn btn-primary" href="${esc(portal)}">Megnézem a portálon</a>
+<a class="btn btn-ghost" href="../index.html#ellenorzes">Gyors ellenőrzés regisztráció nélkül</a>
+</div>
+</aside>
+</div>`;
   return shell({ title: `${g.title} — pályázat${isDate(g.deadline) ? `, határidő ${huDate(g.deadline)}` : ''} | AIpályázó`, description: metaDescription(g), canonical, noindex: false, body, jsonld });
 }
 
 export function renderClosed(m, slug) {
   const canonical = `${BASE}/palyazat/${slug}.html`;
-  const body = `<div class="crumbs"><a href="../index.html">AIpályázó</a> › <a href="index.html">Pályázatok</a></div>
-<h1>${esc(m.title)}</h1>
-<div class="badges"><span class="b r">Lezárult vagy már nem elérhető</span></div>
-<p>Ez a felhívás ${esc(m.closedAt || '')} óta nem szerepel a hivatalos forrásokban (lejárt, felfüggesztették vagy kimerült a kerete).</p>
-<div class="cta"><h2>Nézze meg, mire pályázhat most</h2><p>Naponta frissülő listánkban a cégére szabott, nyitott felhívásokat mutatjuk.</p>
-<a class="btn p" href="index.html">Nyitott pályázatok</a><a class="btn s" href="../onboarding.html">Ingyenes illeszkedés-vizsgálat</a></div>`;
+  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">AIpályázó</a> / <a href="index.html">Pályázatok</a></nav>
+<header class="call-head"><p class="eyebrow">Archív</p><h1>${esc(m.title)}</h1><div class="tags"><span class="tag danger">Lezárult vagy már nem elérhető</span></div></header>
+<p class="page-intro">Ez a felhívás ${esc(m.closedAt || '')} óta nem szerepel a hivatalos forrásokban (lejárt, felfüggesztették vagy kimerült a kerete).</p>
+<div class="side-box narrow"><h2>Nézze meg, mire pályázhat most</h2><p>Naponta frissülő listánkban a nyitott felhívásokat mutatjuk, a cége adataival pontonként összevetve.</p>
+<a class="btn btn-primary" href="index.html">Nyitott pályázatok</a><a class="btn btn-ghost" href="../index.html#ellenorzes">Gyors ellenőrzés</a></div>`;
   return shell({ title: `${m.title} — lezárult | AIpályázó`, description: `${m.title}: ez a felhívás lezárult. Nézze meg a nyitott pályázatokat.`, canonical, noindex: true, body });
 }
 
@@ -271,17 +352,22 @@ const byDeadline = (a, b) => {
   return da.localeCompare(db) || a.title.localeCompare(b.title, 'hu');
 };
 
+function regRow(g, href, withSearch) {
+  const soon = isDate(g.deadline) && (Date.parse(g.deadline) - Date.now()) / 864e5 <= 14;
+  const data = withSearch ? ` data-s="${esc(`${g.title} ${g.code || ''} ${g.issuer || ''} ${g.cat || ''}`.toLowerCase())}" data-scope="${g.scope === 'eu' ? 'eu' : 'hu'}" data-type="${esc(g.type || '')}"` : '';
+  return `<div class="register-row"${data}><div><a class="title" href="${esc(href)}">${esc(g.title)}</a><div class="register-meta">${esc(g.code || g.issuer || '')}${g.code && g.issuer ? ' · ' + esc(g.issuer) : ''}</div></div><div class="register-amount">${esc(g.amount || '')}</div><div class="register-deadline${soon ? ' soon' : ''}">${isDate(g.deadline) ? esc(huDate(g.deadline)) : 'folyamatos'}</div></div>`;
+}
+
 export function renderHub(hub, slugs, { updatedAt } = {}) {
   const canonical = `${BASE}/palyazat/tema/${hub.slug}.html`;
   const items = [...hub.items].sort(byDeadline);
-  const li = (g) => `<li><a href="../${esc(slugs.get(g.id))}.html">${esc(g.title)}</a><div class="m">${esc(g.issuer || '')}${g.amount ? ' · ' + esc(g.amount) : ''} · ${isDate(g.deadline) ? 'határidő: ' + esc(huDate(g.deadline)) : 'folyamatos'}</div></li>`;
+
   const intro = `${hub.intro} Jelenleg ${items.length} nyitott felhívás tartozik ide; a lista naponta frissül hivatalos forrásokból${updatedAt ? ` (utoljára: ${String(updatedAt).slice(0, 10)})` : ''}.`;
-  const body = `<div class="crumbs"><a href="../../index.html">AIpályázó</a> › <a href="../index.html">Pályázatok</a> › ${esc(hub.group)}</div>
-<h1>${esc(hub.h1)}</h1>
-<p class="intro">${esc(intro)}</p>
-<ul class="list hub-list">${items.map(li).join('')}</ul>
-<p class="back"><a href="../index.html">← Összes nyitott pályázat</a></p>
-<div class="note">Tájékoztató lista. Mindig a hivatalos felhívás és annak módosításai az irányadók.</div>`;
+  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../../index.html">AIpályázó</a> / <a href="../index.html">Pályázatok</a> / ${esc(hub.group)}</nav>
+<header class="call-head"><p class="eyebrow">${esc(hub.group)}</p><h1>${esc(hub.h1)}</h1><p class="page-intro intro">${esc(intro)}</p></header>
+<div class="register hub-list">${items.map((g) => regRow(g, '../' + slugs.get(g.id) + '.html')).join('')}</div>
+<p class="back-link"><a href="../index.html">← Összes nyitott pályázat</a></p>
+<div class="notice warn end-note">Tájékoztató lista. Mindig a hivatalos felhívás és annak módosításai az irányadók.</div>`;
   const jsonld = {
     '@context': 'https://schema.org', '@type': 'CollectionPage', name: hub.h1, url: canonical, description: hub.intro, inLanguage: 'hu',
     isPartOf: { '@type': 'WebSite', name: 'AIpályázó', url: `${BASE}/index.html` },
@@ -294,32 +380,44 @@ export function renderHub(hub, slugs, { updatedAt } = {}) {
 export function hubLinks(hubs) {
   if (!hubs || !hubs.length) return '';
   const groups = [...new Set(hubs.map((h) => h.group))];
-  return `<nav class="hubs" aria-label="Témák">${groups.map((gr) => `<h2>${esc(gr)}</h2><ul class="hub-links">${hubs.filter((h) => h.group === gr).map((h) => `<li><a href="tema/${esc(h.slug)}.html">${esc(h.name)}</a> <span class="n">(${h.items.length})</span></li>`).join('')}</ul>`).join('')}</nav>`;
+  return `<nav class="hubs" id="temak" aria-label="Témák">${groups.map((gr) => `<h2>${esc(gr)}</h2><ul class="hub-links">${hubs.filter((h) => h.group === gr).map((h) => `<li><a href="tema/${esc(h.slug)}.html">${esc(h.name)}</a> <span class="n">(${h.items.length})</span></li>`).join('')}</ul>`).join('')}</nav>`;
 }
 
 export function renderIndex(open, slugs, { updatedAt, hubs = [] } = {}) {
-  const sorted = [...open].sort((a, b) => {
-    const da = isDate(a.deadline) ? a.deadline : '9999', db = isDate(b.deadline) ? b.deadline : '9999';
-    return da.localeCompare(db) || a.title.localeCompare(b.title, 'hu');
-  });
-  const li = (g) => `<li data-s="${esc(`${g.title} ${g.code || ''} ${g.issuer || ''} ${g.cat || ''}`.toLowerCase())}"><a href="${esc(slugs.get(g.id))}.html">${esc(g.title)}</a><div class="m">${esc(g.issuer || '')} · ${esc(g.amount || '')} · ${isDate(g.deadline) ? 'határidő: ' + esc(huDate(g.deadline)) : 'folyamatos'}</div></li>`;
+  const sorted = [...open].sort(byDeadline);
   const hu = sorted.filter((g) => g.scope !== 'eu'), eu = sorted.filter((g) => g.scope === 'eu');
-  const body = `<div class="crumbs"><a href="../index.html">AIpályázó</a> › Pályázatok</div>
+  const row = (g) => regRow(g, slugs.get(g.id) + '.html', true);
+  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">AIpályázó</a> / Pályázatok</nav>
+<header class="call-head"><p class="eyebrow">Naponta frissítve${updatedAt ? ' · ' + esc(String(updatedAt).slice(0, 10)) : ''}</p>
 <h1>Nyitott pályázatok magyar vállalkozásoknak</h1>
-<p>${open.length} nyitott felhívás — ${hu.length} hazai és ${eu.length} EU-s / nemzetközi. Naponta frissítjük hivatalos forrásokból${updatedAt ? ` (utoljára: ${esc(String(updatedAt).slice(0, 10))})` : ''}.</p>
+<p class="page-intro">${open.length} nyitott felhívás — ${hu.length} hazai és ${eu.length} EU-s / nemzetközi. Csak olyan kiírások, amelyekre vállalkozás pályázhat, és amelyek határideje még nem járt le.</p></header>
+<label class="visually-hidden" for="q">Keresés a pályázatok között</label>
+<input id="q" type="search" placeholder="Keresés: GINOP, energia, Horizon, startup, turizmus…" autocomplete="off">
+<div class="filters" role="group" aria-label="Szűrés">
+<button type="button" data-f="all" aria-pressed="true">Mind</button>
+<button type="button" data-f="hu" aria-pressed="false">Hazai</button>
+<button type="button" data-f="eu" aria-pressed="false">EU-s</button>
+<button type="button" data-f="grant" aria-pressed="false">Vissza nem térítendő</button>
+<button type="button" data-f="loan" aria-pressed="false">Hitel</button>
+</div>
+<div class="list-head"><h2>Hazai pályázatok és hitelek</h2><span class="count" data-count="hu">${hu.length}</span></div>
+<div class="register list" data-list="hu">${hu.map(row).join('')}</div>
+<div class="list-head"><h2>EU-s és nemzetközi</h2><span class="count" data-count="eu">${eu.length}</span></div>
+<div class="register list" data-list="eu">${eu.map(row).join('')}</div>
+<p class="empty-note" id="empty" hidden>Nincs találat. Próbáljon rövidebb keresőszót.</p>
 ${hubLinks(hubs)}
-<input id="q" type="search" placeholder="Keresés (pl. GINOP, energia, Horizon, startup)…" aria-label="Keresés a pályázatok között">
-<h2>Hazai pályázatok és hitelek (${hu.length})</h2><ul class="list">${hu.map(li).join('')}</ul>
-<h2>EU-s és nemzetközi (${eu.length})</h2><ul class="list">${eu.map(li).join('')}</ul>
-<div class="cta"><h2>Melyikre jogosult a cége?</h2><p>A portál pontonként összeveti cége adatait minden felhívás feltételeivel — ingyen.</p><a class="btn p" href="../onboarding.html">Ingyenes illeszkedés-vizsgálat</a></div>
-<script>(function(){var q=document.getElementById('q');q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();document.querySelectorAll('.list li').forEach(function(li){li.style.display=!v||li.getAttribute('data-s').indexOf(v)>=0?'':'none';});});})();</script>`;
+<div class="side-box narrow"><h2>Melyikre jogosult a cége?</h2><p>Négy adat alapján azonnal megmutatjuk, regisztráció nélkül.</p><a class="btn btn-primary" href="../index.html#ellenorzes">Gyors ellenőrzés</a></div>
+<script>(function(){var q=document.getElementById('q'),f='all',btns=document.querySelectorAll('.filters button');
+function run(){var v=q.value.trim().toLowerCase(),n={hu:0,eu:0};document.querySelectorAll('.list .register-row').forEach(function(r){var ok=(!v||r.getAttribute('data-s').indexOf(v)>=0)&&(f==='all'||(f==='hu'&&r.dataset.scope==='hu')||(f==='eu'&&r.dataset.scope==='eu')||(f==='grant'&&/grant/.test(r.dataset.type))||(f==='loan'&&/loan/.test(r.dataset.type)));r.hidden=!ok;if(ok)n[r.dataset.scope]++;});
+document.querySelector('[data-count=hu]').textContent=n.hu;document.querySelector('[data-count=eu]').textContent=n.eu;document.getElementById('empty').hidden=(n.hu+n.eu)>0;}
+q.addEventListener('input',run);btns.forEach(function(b){b.addEventListener('click',function(){f=b.dataset.f;btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});run();});});})();</script>`;
   const jsonld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Nyitott pályázatok magyar vállalkozásoknak', url: `${BASE}/palyazat/index.html` };
   return shell({ title: 'Nyitott pályázatok vállalkozásoknak (hazai és EU) — naponta frissítve | AIpályázó', description: `${open.length} nyitott hazai és EU-s pályázat, hitel és tőkeprogram magyar cégeknek, naponta frissítve hivatalos forrásokból. Ingyenes illeszkedés-vizsgálat.`, canonical: `${BASE}/palyazat/index.html`, noindex: false, body, jsonld });
 }
 
 export const STATIC_PAGES = [
   ['index.html', '1.0', 'weekly'], ['palyazat/index.html', '0.9', 'daily'], ['onboarding.html', '0.8', 'monthly'],
-  ['signup.html', '0.7', 'monthly'], ['pricing.html', '0.6', 'monthly'],
+  ['signup.html', '0.7', 'monthly'], ['miert-ingyenes.html', '0.6', 'monthly'],
   ['impresszum.html', '0.2', 'yearly'], ['adatvedelem.html', '0.2', 'yearly'], ['aszf.html', '0.2', 'yearly'],
 ];
 export function buildSitemap(open, slugs, today, hubs = []) {
@@ -348,7 +446,7 @@ Sitemap: ${BASE}/sitemap.xml
 const daysBetween = (a, b) => Math.round((Date.parse(b) - Date.parse(a)) / 86400000);
 
 // Pure: returns { files: Map(relPath → content), manifest, removed: [relPath], stats }
-export function buildAll({ grants, summaries = {}, manifest = {}, today, updatedAt }) {
+export function buildAll({ grants, summaries = {}, manifest = {}, today, updatedAt, changes = {} }) {
   const open = grants.filter((g) => g && g.id && g.title && isOpen(g, today));
   const slugs = assignSlugs(open.map((g) => g.id), manifest);
   const files = new Map();
@@ -358,7 +456,7 @@ export function buildAll({ grants, summaries = {}, manifest = {}, today, updated
     const slug = slugs.get(g.id);
     const prev = manifest[slug];
     next[slug] = { id: g.id, title: g.title, firstSeen: (prev && prev.firstSeen) || today, lastSeen: today };
-    files.set(`palyazat/${slug}.html`, renderPage(g, slug, summaries[g.id], { updatedAt }));
+    files.set(`palyazat/${slug}.html`, renderPage(g, slug, summaries[g.id], { updatedAt, changes: changes[g.id] }));
   }
   const removed = [];
   let closed = 0;
@@ -388,8 +486,9 @@ function main() {
   const summaries = readJson(join(site, 'summaries.json'), {});
   const meta = readJson(join(site, 'grants-meta.json'), {});
   const manifest = readJson(join(site, 'palyazat', 'pages.json'), {});
+  const changes = readJson(join(site, 'changes.json'), {});
   const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Budapest' });
-  const { files, removed, stats } = buildAll({ grants, summaries, manifest, today, updatedAt: meta.updatedAt });
+  const { files, removed, stats } = buildAll({ grants, summaries, manifest, today, updatedAt: meta.updatedAt, changes });
   mkdirSync(join(site, 'palyazat', 'tema'), { recursive: true });
   for (const [rel, content] of files) writeFileSync(join(site, rel), content);
   for (const rel of removed) { const p = join(site, rel); if (existsSync(p)) unlinkSync(p); }

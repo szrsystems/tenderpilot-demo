@@ -1,350 +1,434 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <!-- Security headers (meta subset — GitHub Pages cannot send real HTTP
-         headers; X-Frame-Options / X-Content-Type-Options / Permissions-Policy
-         and CSP frame-ancestors require Cloudflare. See SECURITY-HEADERS.md). -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://kacnvchwfwvpkkyhyupb.supabase.co wss://kacnvchwfwvpkkyhyupb.supabase.co https://formspree.io; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIpályázó — AI Pályázatfigyelő Magyar KKV-knak</title>
-    <meta name="description" content="Napi frissítésű magyar pályázat-adatbázis, AI-pontozás a cégprofiljára, AI-alapú pályázat-vázlat, heti e-mail jelentés. Ingyenes regisztráció.">
-    <meta name="theme-color" content="#16a34a">
-    <link rel="canonical" href="https://aipalyazo.hu/aipalyazo/index.html">
-    <meta property="og:title" content="AIpályázó — Ne hagyjon ki egyetlen pályázatot sem">
-    <meta property="og:description" content="Napi frissítésű magyar pályázat-adatbázis, AI-pontozás cégprofilra, AI pályázat-vázlat. Ingyenes regisztráció.">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="hu_HU">
-    <meta property="og:site_name" content="AIpályázó">
-    <meta property="og:url" content="https://aipalyazo.hu/aipalyazo/index.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AIpályázó — AI Pályázatfigyelő Magyar KKV-knak">
-    <meta name="twitter:description" content="Napi frissítésű magyar pályázat-adatbázis, AI-pontozás, AI pályázat-vázlat. Ingyenes regisztráció.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --green-50: #f0fdf4; --green-100: #dcfce7; --green-200: #bbf7d0; --green-500: #22c55e; --green-600: #16a34a; --green-700: #15803d; --green-800: #166534; --green-900: #14532d;
-            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
-            --radius: 8px; --radius-lg: 12px; --radius-xl: 16px;
-        }
-        body { font-family: 'Inter', -apple-system, sans-serif; color: var(--gray-900); background: white; -webkit-font-smoothing: antialiased; }
-        a { color: var(--green-600); text-decoration: none; }
-        a:hover { text-decoration: underline; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://*.goatcounter.com; base-uri 'self'; object-src 'none'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>AIpályázó — melyik pályázatra jogosult a cége? Ingyenes, pontról pontra</title>
+<meta name="description" content="Nyitott hazai és EU-s pályázatok magyar vállalkozásoknak, hivatalos forrásból, naponta ellenőrizve. Pontról pontra megmutatjuk, mire jogosult a cége. Ingyenes.">
+<link rel="canonical" href="https://aipalyazo.hu/aipalyazo/index.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="hu_HU">
+<meta property="og:site_name" content="AIpályázó">
+<meta property="og:title" content="Melyik pályázatra jogosult a cége? — AIpályázó">
+<meta property="og:description" content="Nyitott pályázatok hivatalos forrásból, naponta ellenőrizve, a cége adataival pontról pontra összevetve. Ingyenes.">
+<meta property="og:url" content="https://aipalyazo.hu/aipalyazo/index.html">
+<meta name="theme-color" content="#0e1a2b">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"AIpályázó","url":"https://aipalyazo.hu/aipalyazo/index.html","inLanguage":"hu"}</script>
+<style>
+  .hero { padding: var(--s7) 0 var(--s7); }
+  .hero-grid { display: grid; gap: var(--s6); align-items: start; }
+  @media (min-width: 1000px) { .hero-grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: var(--s7); } .hero { padding: var(--s8) 0; } }
+  .hero h1 { margin: var(--s3) 0 var(--s4); max-width: 17ch; }
+  .hero .lede { margin-bottom: var(--s5); }
+  .hero .figures { margin-top: var(--s6); grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .hero .figure .v { font-size: 28px; }
+  .hero .figure:nth-child(3) { border-left: 0; padding-left: 0; }
+  .hero .figure:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: var(--s3); align-items: center; }
+  .asof { margin-top: var(--s3); font: 400 13px/1.4 var(--mono); color: var(--ink-3); }
 
-        /* NAV */
-        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--gray-200); }
-        .nav-inner { max-width: 1120px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-        .nav-logo { font-size: 20px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.5px; }
-        .nav-logo span { color: var(--green-600); }
-        .nav-links { display: flex; gap: 32px; align-items: center; }
-        .nav-links a { color: var(--gray-600); font-size: 14px; font-weight: 500; text-decoration: none; }
-        .nav-links a:hover { color: var(--gray-900); }
-        .nav-cta { background: var(--green-600); color: white !important; padding: 8px 20px; border-radius: var(--radius); font-weight: 600; font-size: 14px; }
-        .nav-cta:hover { background: var(--green-700); text-decoration: none !important; }
+  .check-panel { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--brand); border-radius: var(--r-lg); padding: var(--s5); }
+  .check-panel h2 { font-size: 21px; margin-bottom: 6px; }
+  .check-panel .grid { display: grid; gap: 0 var(--s4); grid-template-columns: 1fr; margin-top: var(--s4); }
+  @media (min-width: 560px) { .check-panel .grid { grid-template-columns: 1fr 1fr; } .check-panel .grid .full { grid-column: 1 / -1; } }
+  .results { margin-top: var(--s4); }
+  .results[hidden] { display: none; }
+  .result-sum { font-size: 16px; margin-bottom: var(--s3); }
+  .result-sum b { font-family: var(--mono); font-weight: 500; }
+  .result { display: block; padding: 12px 0; border-top: 1px solid var(--line); text-decoration: none; color: var(--ink); }
+  .result:hover .result-title { color: var(--brand); text-decoration: underline; }
+  .result-title { font-weight: 600; font-size: 15.5px; line-height: 1.35; }
+  .result-meta { font: 400 13px/1.5 var(--mono); color: var(--ink-3); margin-top: 3px; }
+  .result-marks { font: 500 13px/1.5 var(--mono); margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px 12px; }
+  .result-marks .ok { color: var(--brand); } .result-marks .fail { color: var(--danger); } .result-marks .unknown, .result-marks .warn { color: var(--signal); }
+  .results-foot { margin-top: var(--s4); display: grid; gap: var(--s3); }
 
-        /* HERO */
-        .hero { padding: 140px 24px 80px; text-align: center; background: linear-gradient(180deg, white 0%, var(--green-50) 100%); }
-        .hero-badge { display: inline-block; background: var(--green-100); color: var(--green-800); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 24px; }
-        .hero h1 { font-size: 52px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; max-width: 680px; margin: 0 auto 20px; color: var(--gray-900); }
-        .hero p { font-size: 19px; color: var(--gray-500); max-width: 540px; margin: 0 auto 36px; line-height: 1.6; }
-        .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: var(--radius); font-size: 15px; font-weight: 600; border: none; cursor: pointer; transition: all 0.15s; text-decoration: none; }
-        .btn-primary { background: var(--green-600); color: white; }
-        .btn-primary:hover { background: var(--green-700); text-decoration: none; }
-        .btn-secondary { background: white; color: var(--gray-700); border: 1px solid var(--gray-300); }
-        .btn-secondary:hover { background: var(--gray-50); border-color: var(--gray-400); text-decoration: none; }
-        .hero-note { margin-top: 16px; font-size: 13px; color: var(--gray-400); }
+  .example { display: grid; gap: var(--s5); }
+  @media (min-width: 1000px) { .example { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: var(--s7); } }
+  .example-card { border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s5); background: var(--paper); }
+  .example-card .eyebrow { margin-bottom: var(--s2); }
+  .example-card h3 { font-size: 18px; margin-bottom: 4px; }
+  .example-card .verdict { margin-top: var(--s4); display: flex; gap: var(--s3); align-items: baseline; flex-wrap: wrap; }
+  .score { font: 500 28px/1 var(--mono); }
 
-        /* LOGOS */
-        .logos { padding: 48px 24px; border-bottom: 1px solid var(--gray-200); text-align: center; }
-        .logos p { font-size: 13px; color: var(--gray-400); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 20px; }
-        .logos-row { display: flex; justify-content: center; gap: 40px; align-items: center; flex-wrap: wrap; opacity: 0.5; }
-        .logos-row span { font-size: 16px; font-weight: 700; color: var(--gray-500); }
+  .ruler-wrap { border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s4); background: var(--paper); overflow: hidden; }
+  .ruler { width: 100%; height: auto; display: block; }
+  .ruler text { font-family: var(--mono); font-size: 11px; fill: var(--ink-3); }
+  .ruler .tick { stroke: var(--line); }
+  .ruler .axis { stroke: var(--line-strong); }
+  .ruler .today { stroke: var(--ink); }
+  .ruler circle { fill: var(--signal); stroke: var(--paper); stroke-width: 1.5; cursor: pointer; }
+  .ruler circle.hu { fill: var(--brand); }
+  .ruler circle:focus { outline: none; stroke: var(--focus); stroke-width: 3; }
+  .ruler-tip { min-height: 48px; margin-top: var(--s3); font-size: 15px; }
+  .legend { display: flex; gap: var(--s4); flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-top: var(--s2); }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: 0; }
 
-        /* SECTION */
-        .section { max-width: 1120px; margin: 0 auto; padding: 80px 24px; }
-        .section-label { font-size: 13px; font-weight: 700; color: var(--green-600); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
-        .section-title { font-size: 36px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 16px; line-height: 1.2; }
-        .section-desc { font-size: 17px; color: var(--gray-500); max-width: 560px; line-height: 1.6; }
-        .section-header { text-align: center; margin-bottom: 48px; }
-        .section-header .section-desc { margin: 0 auto; }
+  .compare { width: 100%; border-collapse: collapse; font-size: 15.5px; }
+  .compare th, .compare td { text-align: left; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .compare thead th { font: 500 13px/1.3 var(--mono); text-transform: uppercase; color: var(--ink-3); border-bottom: 2px solid var(--ink); }
+  .compare td:nth-child(2) { font-weight: 600; }
+  .compare .y { color: var(--brand); } .compare .n { color: var(--ink-3); }
+  .table-scroll { overflow-x: auto; }
 
-        /* FEATURES */
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-        .feature-card { padding: 32px; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); transition: border-color 0.2s, box-shadow 0.2s; }
-        .feature-card:hover { border-color: var(--green-200); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
-        .feature-icon { width: 48px; height: 48px; background: var(--green-100); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-        .feature-icon svg { width: 24px; height: 24px; color: var(--green-600); }
-        .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-        .feature-card p { font-size: 14px; color: var(--gray-500); line-height: 1.6; }
-
-        /* HOW IT WORKS */
-        .steps-section { background: var(--gray-50); }
-        .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-        .step-card { text-align: center; padding: 24px 16px; }
-        .step-num { width: 40px; height: 40px; background: var(--green-600); color: white; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; margin-bottom: 16px; }
-        .step-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-        .step-card p { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
-        .step-arrow { display: none; }
-
-        /* PRICING */
-        .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 720px; margin: 0 auto; }
-        .price-card { border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 36px; position: relative; }
-        .price-card.popular { border: 2px solid var(--green-600); }
-        .price-card.popular::before { content: 'Legnépszerűbb'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--green-600); color: white; padding: 4px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; }
-        .price-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-        .price-card .price-desc { font-size: 14px; color: var(--gray-500); margin-bottom: 20px; }
-        .price-card .price { font-size: 48px; font-weight: 800; margin-bottom: 4px; letter-spacing: -1px; }
-        .price-card .price span { font-size: 16px; font-weight: 500; color: var(--gray-400); }
-        .price-card .price-period { font-size: 13px; color: var(--gray-400); margin-bottom: 24px; }
-        .price-card ul { list-style: none; margin-bottom: 28px; }
-        /* `<li>` uses padding-left for the check icon and an absolute ::before so
-           inline children (b + text) flow naturally on one line instead of being
-           split into separate flex items (which made "Mentett pályázatok" and
-           "(regisztráció után)" jump to opposite ends of the row). */
-        .price-card li { position: relative; padding: 10px 0 10px 28px; font-size: 14px; border-bottom: 1px solid var(--gray-100); line-height: 1.5; }
-        .price-card li:last-child { border-bottom: none; }
-        .price-card li::before {
-            content: ''; position: absolute; left: 0; top: 13px;
-            width: 18px; height: 18px; background: var(--green-100); border-radius: 50%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2316a34a'%3E%3Cpath fill-rule='evenodd' d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'/%3E%3C/svg%3E");
-            background-size: 14px; background-repeat: no-repeat; background-position: center;
-        }
-        .price-card .btn { width: 100%; justify-content: center; }
-
-        /* CTA */
-        .cta-section { background: var(--gray-900); color: white; padding: 80px 24px; text-align: center; }
-        .cta-section h2 { font-size: 36px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px; }
-        .cta-section p { font-size: 17px; color: var(--gray-400); max-width: 500px; margin: 0 auto 32px; }
-        .cta-section .btn-primary { background: white; color: var(--gray-900); }
-        .cta-section .btn-primary:hover { background: var(--gray-100); }
-
-        /* FOOTER */
-        footer { padding: 40px 24px; border-top: 1px solid var(--gray-200); }
-        .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .footer-inner p { font-size: 13px; color: var(--gray-400); }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 32px; }
-            .hero p { font-size: 16px; }
-            .features-grid { grid-template-columns: 1fr; }
-            .steps-grid { grid-template-columns: repeat(2, 1fr); }
-            .pricing-grid { grid-template-columns: 1fr; }
-            /* Phone: both nav actions stay visible — just tighter */
-            .nav-inner { padding: 0 16px; }
-            .nav-links { gap: 14px; }
-            .nav-links a { font-size: 13px; white-space: nowrap; }
-            .nav-cta { padding: 8px 14px; }
-            .footer-inner { flex-direction: column; gap: 8px; }
-        }
-    </style>
+  .free-grid { display: grid; gap: var(--s5); }
+  @media (min-width: 900px) { .free-grid { grid-template-columns: 1.2fr .8fr; gap: var(--s7); } }
+  .money-flow { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--brand); }
+  .money-flow li { position: relative; padding: 0 0 var(--s4) var(--s5); }
+  .money-flow li::before { content: ''; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--paper); border: 2px solid var(--brand); }
+  .money-flow b { display: block; }
+  .final { padding: var(--s8) 0; border-top: 1px solid var(--line); }
+  .final h2 { max-width: 22ch; margin-bottom: var(--s4); }
+</style>
 </head>
 <body>
+<a class="skip" href="#main">Ugrás a tartalomra</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="AIpályázó főoldal">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0a6b3d"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span><b>AI</b>pályázó</span>
+    </a>
+    <nav class="site-nav" aria-label="Fő navigáció">
+      <a href="palyazat/index.html">Nyitott pályázatok</a>
+      <a href="#hogyan">Hogyan működik</a>
+      <a href="miert-ingyenes.html">Miért ingyenes?</a>
+    </nav>
+    <div class="head-actions">
+      <a class="btn btn-quiet btn-sm hide-sm" href="login.html" data-guest>Belépés</a>
+      <a class="btn btn-primary btn-sm" href="signup.html" data-guest>Regisztráció</a>
+      <a class="btn btn-primary btn-sm" href="portal.html" data-member hidden>Portál</a>
+      <button class="btn btn-ghost btn-sm head-menu" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+  <div class="wrap">
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobil navigáció">
+      <a href="palyazat/index.html">Nyitott pályázatok</a>
+      <a href="#hogyan">Hogyan működik</a>
+      <a href="miert-ingyenes.html">Miért ingyenes?</a>
+      <a href="login.html">Belépés</a>
+    </nav>
+  </div>
+</header>
 
-<!-- NAV -->
-<nav>
-    <div class="nav-inner">
-        <div class="nav-logo"><span>AI</span>pályázó</div>
-        <div class="nav-links">
-            <a href="signup.html" class="nav-cta">Ingyenes regisztráció</a>
+<main id="main">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Pályázatfigyelő magyar vállalkozásoknak · ingyenes</p>
+        <h1 class="h-display">Melyik pályázatra jogosult a cége? Pontról pontra megmutatjuk.</h1>
+        <p class="lede">Csak nyitott, vállalkozásoknak szóló felhívások, hivatalos forrásból, naponta ellenőrizve. Minden feltételt összevetünk a cége adataival — méret, régió, tevékenység, működési idő —, és megmondjuk, mi hiányzik még.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#ellenorzes">Ellenőrzés 30 másodperc alatt</a>
+          <a class="btn btn-ghost" href="palyazat/index.html">Összes nyitott felhívás</a>
         </div>
-    </div>
-</nav>
+        <div class="figures" aria-live="polite">
+          <div class="figure"><div class="v num" data-fig="open">—</div><div class="k">nyitott felhívás</div></div>
+          <div class="figure"><div class="v num" data-fig="hu">—</div><div class="k">hazai forrás</div></div>
+          <div class="figure"><div class="v num" data-fig="soon">—</div><div class="k">határidő 30 napon belül</div></div>
+          <div class="figure"><div class="v num" data-fig="budget">—</div><div class="k">szabad hazai keret</div></div>
+        </div>
+        <p class="asof" data-asof>Adatok: palyazat.gov.hu, EU Funding &amp; Tenders, kiírói oldalak</p>
+      </div>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="hero-badge">AI-alapú pályázatfigyelés magyar vállalkozásoknak</div>
-    <h1>Találja meg a pályázatokat, mielőtt a versenytársai rátalálnak.</h1>
-    <p>Az AIpályázó közvetlenül a hivatalos pályázati adatbázisból frissül naponta — valós határidőkkel, élő keret-adatokkal —, és csak az Ön cégéhez illő kiírásokat mutatja meg, pontszámmal és ajánlással.</p>
-    <div class="hero-actions">
-        <a href="login.html" class="btn btn-primary">Belépés</a>
-        <a href="portal.html" class="btn btn-secondary">Pályázatok böngészése</a>
+      <div class="check-panel" id="ellenorzes">
+        <h2>Gyors ellenőrzés</h2>
+        <p class="muted small" style="margin:0">Négy adat, regisztráció nélkül. Az eredmény a böngészőjében készül, semmit nem küldünk el.</p>
+        <form id="quick" class="grid" novalidate>
+          <div class="field full">
+            <label for="q-sector">Fő tevékenység</label>
+            <select id="q-sector" required>
+              <option value="">Válasszon…</option>
+              <option value="IT">Informatika, szoftver, digitális szolgáltatás</option>
+              <option value="Manufacturing">Gyártás, ipar</option>
+              <option value="Construction">Építőipar</option>
+              <option value="HVAC">Épületgépészet, energetika</option>
+              <option value="Retail">Kereskedelem, webáruház</option>
+              <option value="Tourism">Szálláshely, turizmus</option>
+              <option value="Restaurant">Vendéglátás</option>
+              <option value="Agriculture">Mezőgazdaság, élelmiszer</option>
+              <option value="Healthcare">Egészségügy</option>
+              <option value="Education">Oktatás, képzés</option>
+              <option value="General">Egyéb szolgáltatás</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="q-emp">Létszám</label>
+            <select id="q-emp" required>
+              <option value="">Válasszon…</option>
+              <option value="1">1 fő (egyéni vállalkozó)</option>
+              <option value="1-5">2–5 fő</option>
+              <option value="6-10">6–10 fő</option>
+              <option value="11-25">11–25 fő</option>
+              <option value="26-50">26–50 fő</option>
+              <option value="51-100">51–100 fő</option>
+              <option value="100+">100 fő felett</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="q-years">Lezárt üzleti évek</label>
+            <select id="q-years" required>
+              <option value="">Válasszon…</option>
+              <option value="0">Még nincs (induló)</option>
+              <option value="1">1 év</option>
+              <option value="2">2 év</option>
+              <option value="3-5">3–5 év</option>
+              <option value="5+">5 évnél több</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="q-region">Hol valósítaná meg a fejlesztést?</label>
+            <select id="q-region" required>
+              <option value="">Válasszon…</option>
+              <option value="Budapest">Budapest</option>
+              <option value="Pest">Pest vármegye</option>
+              <option value="Közép-Dunántúl">Közép-Dunántúl (Fejér, Komárom-Esztergom, Veszprém)</option>
+              <option value="Nyugat-Dunántúl">Nyugat-Dunántúl (Győr-Moson-Sopron, Vas, Zala)</option>
+              <option value="Dél-Dunántúl">Dél-Dunántúl (Baranya, Somogy, Tolna)</option>
+              <option value="Észak-Magyarország">Észak-Magyarország (Borsod, Heves, Nógrád)</option>
+              <option value="Észak-Alföld">Észak-Alföld (Hajdú-Bihar, Jász-Nagykun-Szolnok, Szabolcs)</option>
+              <option value="Dél-Alföld">Dél-Alföld (Bács-Kiskun, Békés, Csongrád-Csanád)</option>
+            </select>
+          </div>
+          <div class="full">
+            <button class="btn btn-primary" type="submit" style="width:100%">Mire jogosult a cégem?</button>
+            <p class="form-error" id="q-err" role="alert" hidden>Kérjük, mind a négy mezőt töltse ki.</p>
+          </div>
+        </form>
+        <div class="results" id="results" hidden aria-live="polite"></div>
+      </div>
     </div>
-    <p class="hero-note">Pályázatok ingyen böngészhetők · Mentéshez és AI-funkciókhoz ingyenes regisztráció · Nincs előfizetés</p>
-</section>
+  </section>
 
-<!-- TRUST LOGOS -->
-<div class="logos">
-    <p>Pályázati forrásaink</p>
-    <div class="logos-row">
-        <span>palyazat.gov.hu</span>
-        <span>Széchenyi Plusz</span>
-        <span>GINOP Plusz</span>
-        <span>NKFI</span>
-        <span>Horizon Europe</span>
+  <section class="section" id="hogyan">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Hogyan működik</p>
+        <h2 class="h-1">Nem pontszámot adunk, hanem indoklást.</h2>
+        <p class="lede">Egy felhívás nem attól jó, hogy „98% egyezés”. Attól jó, hogy a cége megfelel a feltételeinek. Ezért minden feltételt külön megnézünk, és kiírjuk, mi teljesül, mi nem, és mit kell még megadnia.</p>
+      </div>
+      <div class="example">
+        <ol class="numbered grid-2" style="grid-template-columns:1fr">
+          <li><h3>Hivatalos forrásból, naponta</h3><p>A palyazat.gov.hu adatbázisából, az EU Funding &amp; Tenders portálról és a kiírók saját oldaláról dolgozunk. Minden felhívásnál látja a forrást és az utolsó ellenőrzés napját. A lezárt, felfüggesztett vagy nem vállalkozásoknak szóló kiírások nem kerülnek a listára.</p></li>
+          <li><h3>Pontról pontra</h3><p>Cégméret, megvalósítási régió, főtevékenység (TEÁOR), lezárt üzleti évek, köztartozás, önerő, célcsoport, konzorciumi követelmény, határidő. Az adószáma alapján a cégadatokat a NAV-tól töltjük ki.</p></li>
+          <li><h3>Értesítés, amikor számít</h3><p>Heti összefoglaló, és ha kéri, azonnali levél, amikor új, Önnek megfelelő felhívás jelenik meg, vagy egy mentett felhívás keretének nagy része elfogyott.</p></li>
+          <li><h3>Szakértő, amikor pályázna</h3><p>Ha pályázni szeretne, egy kattintással díjmentes konzultációt kérhet tapasztalt pályázatíró partnerünktől. Nem köteles szerződni.</p></li>
+        </ol>
+        <div class="example-card" aria-label="Példa egy ellenőrzésre">
+          <p class="eyebrow">Példa · 4 fős győri gépgyártó cég</p>
+          <h3>Mikro-, kis- és középvállalkozások digitalizációjának támogatása</h3>
+          <p class="register-meta" style="margin:0 0 var(--s4)">DIMOP Plusz-1.2.3/A-24 · 3–20 M Ft hitel, max. 50% vissza nem térítendő</p>
+          <ul class="checks">
+            <li class="ok"><span class="mark" aria-hidden="true">✓</span><span class="what">Cégméret</span><span class="why">Pályázhat mikrovállalkozásként.</span></li>
+            <li class="ok"><span class="mark" aria-hidden="true">✓</span><span class="what">Helyszín</span><span class="why">Országos felhívás.</span></li>
+            <li class="ok"><span class="mark" aria-hidden="true">✓</span><span class="what">Tevékenység</span><span class="why">Általános vállalkozásfejlesztési forrás — bármely ágazatnak.</span></li>
+            <li class="unknown"><span class="mark" aria-hidden="true">?</span><span class="what">Alapfeltételek</span><span class="why">Köztartozásmentesség és „nehéz helyzet” ellenőrizendő.</span></li>
+            <li class="neutral"><span class="mark" aria-hidden="true">·</span><span class="what">Igénylés</span><span class="why">Bankon / hitelközvetítőn keresztül, hitelbírálattal.</span></li>
+            <li class="ok"><span class="mark" aria-hidden="true">✓</span><span class="what">Határidő</span><span class="why">2027. június 30.</span></li>
+          </ul>
+          <div class="verdict"><span class="score">77</span><span><b>Érdemes pályázni.</b> <span class="muted">Egy adat még hiányzik.</span></span></div>
+        </div>
+      </div>
     </div>
-</div>
+  </section>
 
-<!-- FEATURES -->
-<section class="section" id="features">
-    <div class="section-header">
-        <div class="section-label">Funkciók</div>
-        <h2 class="section-title">Minden, amire szüksége van a pályázatokhoz</h2>
-        <p class="section-desc">Az AIpályázó átveszi a pályázatkeresés és előszűrés feladatát — Ön csak a releváns lehetőségekkel foglalkozik.</p>
+  <section class="section" id="hataridok">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Közelgő határidők</p>
+        <h2 class="h-1">A következő 90 nap</h2>
+        <p class="lede">Minden pont egy nyitott felhívás beadási határideje. Válasszon ki egyet a részletekhez.</p>
+      </div>
+      <div class="ruler-wrap">
+        <svg class="ruler" id="ruler" viewBox="0 0 1000 120" role="group" aria-label="Határidők a következő 90 napban"></svg>
+        <div class="legend"><span><i style="background:var(--brand)"></i>hazai felhívás</span><span><i style="background:var(--signal)"></i>EU-s / nemzetközi</span></div>
+        <div class="ruler-tip" id="ruler-tip" aria-live="polite"></div>
+      </div>
+      <div class="register" id="next-deadlines" style="margin-top:var(--s5)"></div>
     </div>
-    <div class="features-grid">
-        <div class="feature-card">
-            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg></div>
-            <h3>Hivatalos forrás, napi frissítés</h3>
-            <p>Az adatbázisunk naponta, közvetlenül a palyazat.gov.hu hivatalos rendszeréből frissül — valós felhívás-kódokkal és határidőkkel —, kiegészítve ellenőrzött kiírói forrásokkal (NKFI, KAVOSZ, MFB).</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg></div>
-            <h3>Jogosultság pontról pontra</h3>
-            <p>Minden pályázatnál megmutatjuk, hogy cégmérete, telephelye, tevékenysége és működési ideje alapján jogosult-e, és mi lehet akadály — indoklással, nem csak egy pontszámmal.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" /></svg></div>
-            <h3>Élő keret-figyelés</h3>
-            <p>Naponta követjük minden felhívás keretét a hivatalos adatok alapján: mennyi az igényelt és mennyi a még szabad összeg. Ha egy keret lekötésre került, azonnal jelezzük — nem pályázik feleslegesen.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15" /></svg></div>
-            <h3>Jogosultsági ellenőrzőlista</h3>
-            <p>Minden ajánlott pályázathoz generálunk egy ellenőrző listát: milyen dokumentumok kellenek, mi a jogosultsági feltétel, mi a határidő.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5" /></svg></div>
-            <h3>Heti összefoglaló</h3>
-            <p>Minden hétfőn reggel kap egy összefoglalót: hány pályázat jelent meg, hány releváns, hány közeledő határidő.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197" /></svg></div>
-            <h3>Pályázatíró partner hálózat</h3>
-            <p>Ha pályázni szeretne, összekötjük tapasztalt pályázatíró partnerünkkel. Ön dönt — mi csak ajánlunk.</p>
-        </div>
-    </div>
-</section>
+  </section>
 
-<!-- HOW IT WORKS -->
-<section class="steps-section" id="how">
-    <div class="section" style="padding-bottom: 40px;">
-        <div class="section-header">
-            <div class="section-label">Hogyan működik</div>
-            <h2 class="section-title">4 lépés a pályázati lehetőségekig</h2>
-        </div>
-        <div class="steps-grid">
-            <div class="step-card">
-                <div class="step-num">1</div>
-                <h3>Regisztráció</h3>
-                <p>Adja meg cége adatait: iparág, méret, lokáció, preferált kategóriák. 5 perc.</p>
-            </div>
-            <div class="step-card">
-                <div class="step-num">2</div>
-                <h3>AI elemzés</h3>
-                <p>A rendszer naponta átvizsgálja az összes forrást és pontoz minden pályázatot az Ön profiljához.</p>
-            </div>
-            <div class="step-card">
-                <div class="step-num">3</div>
-                <h3>Értesítés</h3>
-                <p>Hétfőnként személyre szabott e-mail riportot kap az új és sürgős pályázatokról, pontszámmal és ajánlással.</p>
-            </div>
-            <div class="step-card">
-                <div class="step-num">4</div>
-                <h3>Pályázzon</h3>
-                <p>Döntse el, melyikre pályázik. Szükség esetén pályázatíró partnerünket is ajánljuk.</p>
-            </div>
-        </div>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Összevetés</p>
+        <h2 class="h-1">Amit ingyen kap, és amit máshol fizetne</h2>
+      </div>
+      <div class="table-scroll">
+        <table class="compare">
+          <thead><tr><th scope="col">Szempont</th><th scope="col">AIpályázó</th><th scope="col">Tipikus fizetős pályázatfigyelő</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Ár</th><td>0 Ft</td><td class="n">évi kb. 23–50 ezer Ft</td></tr>
+            <tr><th scope="row">Csak nyitott, vállalkozásoknak szóló felhívás</th><td class="y">Igen — díjak, hirdetések, lezárt kiírások nélkül</td><td class="n">Gyakran vegyes lista</td></tr>
+            <tr><th scope="row">Jogosultság pontról pontra, indoklással</th><td class="y">Igen</td><td class="n">Szűrők vagy pontszám</td></tr>
+            <tr><th scope="row">Forrás és ellenőrzési dátum minden felhívásnál</th><td class="y">Igen</td><td class="n">Ritkán</td></tr>
+            <tr><th scope="row">Szabad keret (mennyi pénz van még)</th><td class="y">Igen, hivatalos adatból</td><td class="n">Ritkán</td></tr>
+            <tr><th scope="row">Hazai és EU-s felhívások egy helyen</th><td class="y">Igen</td><td class="n">Részben</td></tr>
+            <tr><th scope="row">Összefoglaló a hivatalos szövegből, idézettel</th><td class="y">Igen</td><td class="n">Nem</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- PRICING -->
-<section class="section" id="pricing">
-    <div class="section-header">
-        <div class="section-label">Ingyenes</div>
-        <h2 class="section-title">Minden funkció ingyenes</h2>
-        <p class="section-desc">Nincs Pro csomag, nincs előfizetés, nincs rejtett költség. A pályázatok regisztráció nélkül böngészhetők; az AI-funkciókhoz és a mentésekhez egyetlen ingyenes fiók kell.</p>
+  <section class="section" id="ingyenes">
+    <div class="wrap free-grid">
+      <div>
+        <p class="eyebrow">Miért ingyenes?</p>
+        <h2 class="h-1" style="margin:var(--s3) 0 var(--s4)">Mert a pályázatíró fizet, nem Ön.</h2>
+        <p class="lede">Ha Ön konzultációt kér és a partnerünkkel pályázik, a partner a sikeres pályázat után jutalékot fizet nekünk. Ettől a pályázatírás díja Önnek nem lesz magasabb, és a konzultáció után sem köteles szerződni.</p>
+        <p><a class="link-arrow" href="miert-ingyenes.html">Részletesen: hogyan működik, és mit kap a partner</a></p>
+      </div>
+      <ol class="money-flow">
+        <li><b>Ön ingyen használja</b><span class="muted">Keresés, jogosultság, értesítések, összefoglalók.</span></li>
+        <li><b>Konzultációt kér — ha akar</b><span class="muted">Adatait csak ekkor, az Ön kérésére adjuk át a partnernek.</span></li>
+        <li><b>Nyer, és a támogatás megérkezik</b><span class="muted">A partner ekkor fizet nekünk jutalékot — Ön nem.</span></li>
+      </ol>
     </div>
-    <div class="pricing-grid">
-        <div class="price-card popular">
-            <h3>Ingyenes</h3>
-            <p class="price-desc">Mindenkinek, aki pályázatot keres</p>
-            <div class="price">0 Ft</div>
-            <p class="price-period">Bankkártya nem szükséges · Minden funkció, korlátlan ideig</p>
-            <ul>
-                <li>Összes aktív magyar pályázat — böngészés, keresés, szűrés</li>
-                <li><b>Mentett pályázatok</b> (regisztráció után)</li>
-                <li><b>Jogosultság-ellenőrzés</b> — minden pályázat pontról pontra a cégprofilra szabva</li>
-                <li><b>AI Pályázat-vázlat</b> — kész tervezet 1 kattintásra</li>
-                <li><b>Mire van szüksége?</b> — AI igény-felmérő</li>
-                <li>Személyre szabott heti riport + sürgős határidő-riasztások</li>
-                <li>Exportálható dokumentumok (vezetői összefoglaló, ellenőrző-lista)</li>
-                <li>Konzultáció-igénylés pályázatíró partnertől</li>
-            </ul>
-            <a href="signup.html" class="btn btn-primary" style="width: 100%; justify-content: center;">Ingyenes regisztráció</a>
-        </div>
-    </div>
-</section>
+  </section>
 
-<!-- FAQ -->
-<section class="section" style="background: var(--gray-50);">
-    <div style="max-width: 720px; margin: 0 auto;">
-        <div class="section-header">
-            <div class="section-label">Kérdések</div>
-            <h2 class="section-title">Gyakran ismételt kérdések</h2>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 1px; background: var(--gray-200); border-radius: 16px; overflow: hidden;">
-            <details style="background: white; padding: 20px 24px;">
-                <summary style="font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between;">Mennyi idő a regisztráció?<span style="color: var(--gray-400);">+</span></summary>
-                <p style="margin-top: 12px; font-size: 14px; color: var(--gray-500); line-height: 1.6;">5 perc. Megadja a cégadatait, kiválasztja az érdeklődési területeket, és kész. A rendszer automatikusan elkezdi a keresést.</p>
-            </details>
-            <details style="background: white; padding: 20px 24px;">
-                <summary style="font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between;">Hogyan működik a pontozás?<span style="color: var(--gray-400);">+</span></summary>
-                <p style="margin-top: 12px; font-size: 14px; color: var(--gray-500); line-height: 1.6;">Minden pályázatot a cégprofiljához mérünk: cégméret, telephely régiója, tevékenység, lezárt üzleti évek, köztartozás, önerő és határidő. Egy 10 fős budapesti IT cég teljesen más listát kap, mint egy 50 fős debreceni gyártó — és mindkettő látja, miért.</p>
-            </details>
-            <details style="background: white; padding: 20px 24px;">
-                <summary style="font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between;">A rendszer megírja a pályázatot is?<span style="color: var(--gray-400);">+</span></summary>
-                <p style="margin-top: 12px; font-size: 14px; color: var(--gray-500); line-height: 1.6;">Az AIpályázó a pályázatkeresésre és előszűrésre specializálódott. Ha pályázni szeretne, összekötjük tapasztalt pályázatíró partnerünkkel, aki a teljes dokumentációt elkészíti. Így Ön a legjobb szaktudást kapja mindkét oldalon.</p>
-            </details>
-            <details style="background: white; padding: 20px 24px;">
-                <summary style="font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between;">Milyen pályázati forrásokat figyelnek?<span style="color: var(--gray-400);">+</span></summary>
-                <p style="margin-top: 12px; font-size: 14px; color: var(--gray-500); line-height: 1.6;">Az elsődleges forrás a palyazat.gov.hu hivatalos adatbázisa (Széchenyi Terv Plusz: GINOP, DIMOP, KEHOP, TOP Plusz stb.), kiegészítve ellenőrzött kiírói forrásokkal: NKFI, KAVOSZ (Széchenyi Kártya), MFB, MTÜ és EU-s programok. Az adatbázis naponta automatikusan frissül, a linkek működését is ellenőrizzük.</p>
-            </details>
-            <details style="background: white; padding: 20px 24px;">
-                <summary style="font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between;">Mennyibe kerül? Van Pro csomag?<span style="color: var(--gray-400);">+</span></summary>
-                <p style="margin-top: 12px; font-size: 14px; color: var(--gray-500); line-height: 1.6;">Semmibe — az AIpályázó teljesen ingyenes. Nincs Pro csomag és nincs előfizetés; minden funkció (AI-pontozás, AI-vázlat, igény-felmérő, heti riport) elérhető egy ingyenes regisztrációval. Bankkártya nem szükséges.</p>
-            </details>
-        </div>
+  <section class="section">
+    <div class="wrap" style="max-width:900px">
+      <div class="section-head"><p class="eyebrow">Kérdések</p><h2 class="h-1">Gyakori kérdések</h2></div>
+      <div class="faq">
+        <details><summary>Honnan tudják, hogy a felhívás még nyitott?</summary><div>Naponta lekérdezzük a palyazat.gov.hu hivatalos adatbázisát és az EU Funding &amp; Tenders portált, a többi felhívást pedig a kiíró oldalán ellenőrizzük újra. Ha egy felhívás lezárul, felfüggesztik vagy elfogy a kerete, lekerül a listáról. Minden felhívásnál kiírjuk a forrást és az ellenőrzés napját.</div></details>
+        <details><summary>Miért nincsenek a listán lakossági pályázatok?</summary><div>Az AIpályázó vállalkozásoknak készült. A lakossági programok (pl. napelem, otthonfelújítás), a civil, önkormányzati és iskolai felhívások nem szerepelnek, így a lista csak azt mutatja, amire cégként valóban pályázhat.</div></details>
+        <details><summary>Mennyire megbízható a „jogosult” eredmény?</summary><div>Az ellenőrzés a felhívás hivatalos feltételeiből és az Ön által megadott adatokból dolgozik, és minden pontnál kiírja az indoklást. Előszűrés, nem jogi vélemény: beadás előtt mindig a hivatalos felhívás az irányadó. Ha bizonytalan, kérjen díjmentes konzultációt.</div></details>
+        <details><summary>Mit kezdenek az adataimmal?</summary><div>A gyors ellenőrzés a böngészőjében fut, semmit nem küld el. Regisztráció után a cégprofilját arra használjuk, hogy megfelelő felhívásokat mutassunk és (ha kéri) értesítést küldjünk. Konzultációs kérés esetén az Ön kérésére átadjuk az adatait a pályázatíró partnernek. Részletek az <a href="adatvedelem.html">adatkezelési tájékoztatóban</a>.</div></details>
+        <details><summary>Megírják a pályázatot is?</summary><div>A pályázatot a partnerünk pályázatírói készítik el, ha Ön ezt kéri. Az AIpályázó a keresésben, az előszűrésben és a felkészülésben segít: összefoglalót, dokumentumlistát és egy kezdő vázlatot is ad.</div></details>
+      </div>
     </div>
-</section>
+  </section>
 
-<section class="cta-section">
-    <h2>Egy pályázat megnyerése mindent megváltoztat.</h2>
-    <p>Egy 10 millió Ft-os pályázat mindent megváltoztathat. Regisztráljon ingyen, állítsa be a cégprofilját, és azonnal látja a cégére szabott lehetőségeket.</p>
-    <a href="signup.html" class="btn btn-primary">Ingyenes regisztráció</a>
-</section>
-
-<!-- FOOTER -->
-<footer>
-    <div class="footer-inner">
-        <p>AIpályázó · Budapest, Magyarország</p>
-        <p>info@aipalyazo.hu · <a href="adatvedelem.html">Adatvédelem</a> · <a href="impresszum.html">Impresszum</a> · <a href="aszf.html">ÁSZF</a></p>
+  <section class="final">
+    <div class="wrap">
+      <h2 class="h-1">Nézze meg most, mire jogosult — regisztráció nélkül.</h2>
+      <div class="hero-actions"><a class="btn btn-primary" href="#ellenorzes">Gyors ellenőrzés</a><a class="btn btn-ghost" href="signup.html">Ingyenes regisztráció értesítésekhez</a></div>
     </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0a6b3d"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a>
+        <p style="margin-top:var(--s3)">Ingyenes pályázatfigyelő magyar vállalkozásoknak. Tájékoztató szolgáltatás: beadás előtt mindig a hivatalos felhívás az irányadó.</p>
+      </div>
+      <div><h4>Pályázatok</h4><ul><li><a href="palyazat/index.html">Nyitott felhívások</a></li><li><a href="palyazat/index.html#temak">Témák és programok</a></li><li><a href="portal.html">Portál</a></li></ul></div>
+      <div><h4>Rólunk</h4><ul><li><a href="miert-ingyenes.html">Miért ingyenes?</a></li><li><a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a></li></ul></div>
+      <div><h4>Jogi</h4><ul><li><a href="impresszum.html">Impresszum</a></li><li><a href="adatvedelem.html">Adatkezelés</a></li><li><a href="aszf.html">ÁSZF</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 AIpályázó · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
+  </div>
 </footer>
 
-<!-- COOKIE CONSENT -->
-<div id="gpcb" style="display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:2000;max-width:680px;margin:0 auto;background:#111827;color:#e5e7eb;border-radius:12px;padding:16px 20px;font-family:'Inter',-apple-system,sans-serif;font-size:13px;line-height:1.55;box-shadow:0 10px 30px rgba(0,0,0,0.25);">
-    <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;">
-        <div style="flex:1;min-width:240px;">
-            <b style="color:white;">Sütik használata</b><br>
-            Az AIpályázó a működéshez szükséges sütiket használ. Részletek az
-            <a href="adatvedelem.html" style="color:#86efac;">Adatkezelési tájékoztatóban</a>.
-        </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button onclick="gpcbAccept('necessary')" style="background:transparent;color:#e5e7eb;border:1px solid #374151;padding:8px 14px;border-radius:6px;font-weight:600;font-size:12px;cursor:pointer;font-family:inherit;">Csak szükségesek</button>
-            <button onclick="gpcbAccept('all')" style="background:#16a34a;color:white;border:none;padding:8px 14px;border-radius:6px;font-weight:700;font-size:12px;cursor:pointer;font-family:inherit;">Elfogadom mind</button>
-        </div>
-    </div>
-</div>
+<script src="assets/site.js" defer></script>
+<script src="assets/analytics.js" defer></script>
+<script src="lib/match.js"></script>
 <script>
-(function(){ try { if (!localStorage.getItem('gp_cookie_consent')) { document.getElementById('gpcb').style.display = 'block'; } } catch(e) {} })();
-function gpcbAccept(level){ try { localStorage.setItem('gp_cookie_consent', JSON.stringify({level:level,ts:Date.now()})); } catch(e) {} var el = document.getElementById('gpcb'); if (el) el.style.display = 'none'; }
-</script>
+(function () {
+  'use strict';
+  var TODAY = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Budapest' });
+  var FEED = [], SLUGS = {};
+  var $ = function (s) { return document.querySelector(s); };
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function days(d) { return /^\d{4}-\d{2}-\d{2}$/.test(d || '') ? Math.round((Date.parse(d) - Date.parse(TODAY)) / 864e5) : null; }
+  function huDate(d) { return /^\d{4}-\d{2}-\d{2}$/.test(d || '') ? d.slice(0, 4) + '. ' + d.slice(5, 7) + '. ' + d.slice(8, 10) + '.' : 'folyamatos'; }
+  function ft(n) { return n >= 1e9 ? (n / 1e9).toFixed(0) + ' Mrd Ft' : Math.round(n / 1e6) + ' M Ft'; }
+  function pageUrl(g) { return SLUGS[g.id] ? 'palyazat/' + encodeURIComponent(SLUGS[g.id]) + '.html' : 'portal.html?grant=' + encodeURIComponent(g.id); }
+  var TYPE = { grant: 'vissza nem térítendő', loan: 'hitel', 'loan+grant': 'hitel + támogatás', equity: 'tőkebefektetés', guarantee: 'garancia', 'wage-subsidy': 'bértámogatás', 'in-kind': 'szolgáltatás', 'grant+equity': 'támogatás + tőke' };
 
+  Promise.all([
+    fetch('grants_live.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : []; }),
+    fetch('grants-meta.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; }),
+    fetch('palyazat/pages.json').then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; })
+  ]).then(function (res) {
+    FEED = (Array.isArray(res[0]) ? res[0] : []).filter(function (g) { var d = days(g.deadline); return d === null || d >= 0; });
+    Object.keys(res[2] || {}).forEach(function (slug) { var m = res[2][slug]; if (m && m.id && !m.closedAt) SLUGS[m.id] = slug; });
+    figures(res[1] || {});
+    ruler();
+  }).catch(function () { $('[data-asof]').textContent = 'Az adatok most nem tölthetők be. Próbálja újra később.'; });
+
+  function figures(meta) {
+    var hu = FEED.filter(function (g) { return g.scope !== 'eu'; });
+    var soon = FEED.filter(function (g) { var d = days(g.deadline); return d !== null && d <= 30; });
+    var budget = hu.reduce(function (s, g) { return s + (typeof g.remaining === 'number' && g.remaining > 0 ? g.remaining : 0); }, 0);
+    $('[data-fig="open"]').textContent = FEED.length;
+    $('[data-fig="hu"]').textContent = hu.length;
+    $('[data-fig="soon"]').textContent = soon.length;
+    $('[data-fig="budget"]').textContent = budget ? ft(budget) : '—';
+    var at = meta.updatedAt ? new Date(meta.updatedAt).toLocaleString('hu-HU', { timeZone: 'Europe/Budapest', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) : '';
+    $('[data-asof]').textContent = 'Frissítve: ' + (at || TODAY) + ' · Forrás: palyazat.gov.hu, EU Funding & Tenders, kiírói oldalak';
+  }
+
+  // ---- quick check ----
+  $('#quick').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var p = { company: 'gyors-ellenorzes', industries: [$('#q-sector').value], employees: $('#q-emp').value, years_operating: $('#q-years').value, site_region: $('#q-region').value };
+    var err = $('#q-err');
+    if (!p.industries[0] || !p.employees || !p.years_operating || !p.site_region) { err.hidden = false; return; }
+    err.hidden = true;
+    if (!FEED.length || !window.AIPMatch) { $('#results').hidden = false; $('#results').innerHTML = '<p class="notice warn">Az adatok még töltődnek — próbálja újra pár másodperc múlva.</p>'; return; }
+    var rows = FEED.map(function (g) { return { g: g, m: AIPMatch.match(g, p, TODAY) }; }).filter(function (x) { return x.m.eligible; });
+    var rank = function (x) { return (x.m.verdict === 'APPLY' ? 1000 : 0) + (x.m.group === 'hazai' ? 100 : 0) + x.m.score; };
+    var single = rows.filter(function (x) { return x.m.group !== 'consortium'; }).sort(function (a, b) { return rank(b) - rank(a); });
+    var good = single.filter(function (x) { return x.m.verdict === 'APPLY'; });
+    var grants = good.filter(function (x) { return /grant|wage/.test(x.g.type) && x.g.type !== 'grant+equity' || x.g.type === 'loan+grant'; });
+    var consortium = rows.length - single.length;
+    try { localStorage.setItem('aip:quick', JSON.stringify(p)); } catch (e2) {}
+    if (window.aipTrack) aipTrack('quick-check');
+    var html = '<p class="result-sum"><b>' + good.length + '</b> felhívás illik jól a cégéhez' + (grants.length ? ', ebből <b>' + grants.length + '</b> vissza nem térítendő vagy kombinált' : '') + '.' + (consortium ? ' <span class="muted">További ' + consortium + ' nemzetközi konzorciumi felhívás külön listában.</span>' : '') + '</p>';
+    html += single.slice(0, 4).map(function (x) {
+      var marks = x.m.checks.filter(function (c) { return ['ok', 'fail', 'unknown', 'warn'].indexOf(c.status) >= 0; }).slice(0, 5).map(function (c) {
+        var sym = { ok: '✓', fail: '✗', unknown: '?', warn: '!' }[c.status];
+        return '<span class="' + c.status + '">' + sym + ' ' + esc(c.label) + '</span>';
+      }).join('');
+      return '<a class="result" href="' + pageUrl(x.g) + '"><div class="result-title">' + esc(x.g.title) + '</div><div class="result-meta">' + esc(TYPE[x.g.type] || x.g.type) + ' · ' + esc(x.g.amount || '') + ' · határidő: ' + esc(huDate(x.g.deadline)) + '</div><div class="result-marks">' + marks + '</div></a>';
+    }).join('');
+    html += '<div class="results-foot"><a class="btn btn-primary" href="signup.html?from=quick">Teljes lista, értesítések — ingyenes regisztráció</a><p class="tiny muted" style="margin:0">A „?” pontokat a teljes profilban tudja pontosítani (TEÁOR, köztartozás, önerő). Adószám alapján a cégadatokat kitöltjük.</p></div>';
+    var box = $('#results'); box.innerHTML = html; box.hidden = false;
+    box.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+  });
+
+  // ---- deadline ruler (next 90 days) ----
+  function ruler() {
+    var svg = $('#ruler'), W = 1000, L = 20, R = 980, Y = 70, SPAN = 90;
+    var items = FEED.filter(function (g) { var d = days(g.deadline); return d !== null && d >= 0 && d <= SPAN; })
+      .sort(function (a, b) { return a.deadline.localeCompare(b.deadline); });
+    var x = function (d) { return L + (R - L) * d / SPAN; };
+    var s = '<line class="axis" x1="' + L + '" x2="' + R + '" y1="' + Y + '" y2="' + Y + '"/>';
+    for (var d = 0; d <= SPAN; d += 14) {
+      var dt = new Date(Date.parse(TODAY) + d * 864e5).toISOString().slice(0, 10);
+      s += '<line class="tick" x1="' + x(d) + '" x2="' + x(d) + '" y1="' + (Y - 44) + '" y2="' + (Y + 6) + '"/><text x="' + x(d) + '" y="' + (Y + 24) + '" text-anchor="' + (d === 0 ? 'start' : 'middle') + '">' + (d === 0 ? 'ma' : dt.slice(5, 7) + '.' + dt.slice(8, 10)) + '</text>';
+    }
+    var stack = {};
+    items.forEach(function (g, i) {
+      var d = days(g.deadline), k = Math.round(x(d) / 12); stack[k] = (stack[k] || 0) + 1;
+      var cy = Y - 10 - (stack[k] - 1) * 13;
+      if (cy < 8) return;
+      s += '<circle tabindex="0" role="button" data-i="' + i + '" class="' + (g.scope === 'eu' ? 'eu' : 'hu') + '" cx="' + x(d).toFixed(1) + '" cy="' + cy + '" r="5.5" aria-label="' + esc(g.title + ', határidő ' + huDate(g.deadline)) + '"/>';
+    });
+    svg.innerHTML = s;
+    function show(i) { var g = items[i]; if (!g) return; var dd = days(g.deadline); $('#ruler-tip').innerHTML = '<a href="' + pageUrl(g) + '"><b>' + esc(g.title) + '</b></a><br><span class="register-meta">' + esc(huDate(g.deadline)) + ' · ' + dd + ' nap · ' + esc(g.amount || '') + '</span>'; }
+    svg.addEventListener('click', function (e) { var i = e.target.getAttribute('data-i'); if (i !== null) show(+i); });
+    svg.addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && e.target.getAttribute('data-i') !== null) { e.preventDefault(); show(+e.target.getAttribute('data-i')); } });
+    svg.addEventListener('focusin', function (e) { var i = e.target.getAttribute('data-i'); if (i !== null) show(+i); });
+    $('#ruler-tip').innerHTML = items.length ? '<span class="muted">' + items.length + ' határidő a következő 90 napban.</span>' : '<span class="muted">Nincs határidő a következő 90 napban.</span>';
+    var hu = items.filter(function (g) { return g.scope !== 'eu'; }).slice(0, 3).concat(items.filter(function (g) { return g.scope === 'eu' && !AIPMatch.isConsortium(g); }).slice(0, 2))
+      .sort(function (a, b) { return a.deadline.localeCompare(b.deadline); });
+    $('#next-deadlines').innerHTML = hu.map(function (g) {
+      var dd = days(g.deadline);
+      return '<div class="register-row"><div><a class="title" href="' + pageUrl(g) + '">' + esc(g.title) + '</a><div class="register-meta">' + esc(g.code || g.issuer || '') + '</div></div><div class="register-amount">' + esc(g.amount || '') + '</div><div class="register-deadline' + (dd <= 14 ? ' soon' : '') + '">' + esc(huDate(g.deadline)) + '<br><span class="muted">' + dd + ' nap</span></div></div>';
+    }).join('');
+  }
+})();
+</script>
 </body>
 </html>

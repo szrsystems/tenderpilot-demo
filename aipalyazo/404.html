@@ -1,42 +1,66 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <!-- Security headers (meta subset — GitHub Pages cannot send real HTTP
-         headers; X-Frame-Options / X-Content-Type-Options / Permissions-Policy
-         and CSP frame-ancestors require Cloudflare. See SECURITY-HEADERS.md). -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://kacnvchwfwvpkkyhyupb.supabase.co wss://kacnvchwfwvpkkyhyupb.supabase.co https://formspree.io; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Az oldal nem található — AIpályázó</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --green-600: #16a34a; --green-700: #15803d; --gray-500: #6b7280; --gray-700: #374151; --gray-900: #111827; }
-        body { font-family: 'Inter', -apple-system, sans-serif; color: var(--gray-900); background: linear-gradient(180deg, white 0%, #f0fdf4 100%); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; }
-        .logo { font-size: 24px; font-weight: 800; margin-bottom: 40px; color: var(--gray-900); text-decoration: none; }
-        .logo span { color: var(--green-600); }
-        .code { font-size: 96px; font-weight: 800; color: var(--green-600); letter-spacing: -3px; line-height: 1; margin-bottom: 12px; }
-        h1 { font-size: 28px; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.5px; }
-        p { font-size: 16px; color: var(--gray-500); max-width: 480px; line-height: 1.6; margin-bottom: 32px; }
-        .actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-        .btn { display: inline-block; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 14px; text-decoration: none; }
-        .btn-primary { background: var(--green-600); color: white; }
-        .btn-primary:hover { background: var(--green-700); }
-        .btn-secondary { background: white; color: var(--gray-700); border: 1px solid #d1d5db; }
-        .btn-secondary:hover { background: #f9fafb; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://*.goatcounter.com; base-uri 'self'; object-src 'none'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Az oldal nem található — AIpályázó</title>
+<meta name="description" content="Az oldal nem található.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0e1a2b">
+<link rel="icon" type="image/svg+xml" href="/aipalyazo/favicon.svg">
+<link rel="preload" href="/aipalyazo/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/aipalyazo/assets/site.css">
+
 </head>
 <body>
-    <a href="index.html" class="logo"><span>AI</span>pályázó</a>
-    <div class="code">404</div>
-    <h1>Az oldal nem található</h1>
-    <p>Lehet, hogy a link elavult, vagy elírás történt. Térjen vissza a főoldalra, vagy nézze meg az aktuális pályázatokat.</p>
-    <div class="actions">
-        <a href="index.html" class="btn btn-primary">← Főoldal</a>
-        <a href="portal.html" class="btn btn-secondary">Demo portál</a>
+<a class="skip" href="#main">Ugrás a tartalomra</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/aipalyazo/index.html" aria-label="AIpályázó főoldal"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0a6b3d"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a>
+    <nav class="site-nav" aria-label="Fő navigáció">
+      <a href="/aipalyazo/palyazat/index.html">Nyitott pályázatok</a>
+      <a href="/aipalyazo/index.html#hogyan">Hogyan működik</a>
+      <a href="/aipalyazo/miert-ingyenes.html">Miért ingyenes?</a>
+    </nav>
+    <div class="head-actions">
+      <a class="btn btn-quiet btn-sm hide-sm" href="/aipalyazo/login.html" data-guest>Belépés</a>
+      <a class="btn btn-primary btn-sm" href="/aipalyazo/signup.html" data-guest>Regisztráció</a>
+      <a class="btn btn-primary btn-sm" href="/aipalyazo/portal.html" data-member hidden>Portál</a>
+      <button class="btn btn-ghost btn-sm head-menu" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     </div>
+  </div>
+  <div class="wrap">
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobil navigáció">
+      <a href="/aipalyazo/palyazat/index.html">Nyitott pályázatok</a>
+      <a href="/aipalyazo/index.html#hogyan">Hogyan működik</a>
+      <a href="/aipalyazo/miert-ingyenes.html">Miért ingyenes?</a>
+      <a href="/aipalyazo/login.html">Belépés</a>
+    </nav>
+  </div>
+</header>
+<main id="main"><div class="wrap"><article class="doc">
+<p class="eyebrow">404</p>
+<h1 class="h-1">Ez az oldal nem található.</h1>
+<p class="lede">Lehet, hogy a felhívás lezárult, vagy a link elírás.</p>
+<p><a class="btn btn-primary" href="/aipalyazo/palyazat/index.html">Nyitott pályázatok</a> <a class="btn btn-ghost" href="/aipalyazo/index.html">Főoldal</a></p>
+</article></div></main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="/aipalyazo/index.html"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0a6b3d"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a>
+        <p style="margin-top:var(--s3)">Ingyenes pályázatfigyelő magyar vállalkozásoknak. Tájékoztató szolgáltatás: beadás előtt mindig a hivatalos felhívás az irányadó.</p>
+      </div>
+      <div><h4>Pályázatok</h4><ul><li><a href="/aipalyazo/palyazat/index.html">Nyitott felhívások</a></li><li><a href="/aipalyazo/palyazat/index.html#temak">Témák és programok</a></li><li><a href="/aipalyazo/portal.html">Portál</a></li></ul></div>
+      <div><h4>Rólunk</h4><ul><li><a href="/aipalyazo/miert-ingyenes.html">Miért ingyenes?</a></li><li><a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a></li></ul></div>
+      <div><h4>Jogi</h4><ul><li><a href="/aipalyazo/impresszum.html">Impresszum</a></li><li><a href="/aipalyazo/adatvedelem.html">Adatkezelés</a></li><li><a href="/aipalyazo/aszf.html">ÁSZF</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 AIpályázó · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
+  </div>
+</footer>
+<script src="/aipalyazo/assets/site.js" defer></script>
+<script src="/aipalyazo/assets/analytics.js" defer></script>
 </body>
 </html>

@@ -1,135 +1,110 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <!-- Security headers (meta subset — GitHub Pages cannot send real HTTP
-         headers; X-Frame-Options / X-Content-Type-Options / Permissions-Policy
-         and CSP frame-ancestors require Cloudflare. See SECURITY-HEADERS.md). -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://kacnvchwfwvpkkyhyupb.supabase.co wss://kacnvchwfwvpkkyhyupb.supabase.co https://formspree.io; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ÁSZF — Általános Szerződési Feltételek — AIpályázó</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --green-600: #16a34a; --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-400: #9ca3af; --gray-500: #6b7280; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
-            --amber-50: #fffbeb; --amber-600: #d97706;
-        }
-        body { font-family: 'Inter', -apple-system, sans-serif; color: var(--gray-900); background: white; -webkit-font-smoothing: antialiased; line-height: 1.65; }
-        nav { background: white; border-bottom: 1px solid var(--gray-200); padding: 16px 24px; }
-        .nav-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-        .nav-logo { font-size: 18px; font-weight: 800; color: var(--gray-900); text-decoration: none; }
-        .nav-logo span { color: var(--green-600); }
-        .back { font-size: 13px; color: var(--gray-500); text-decoration: none; }
-        .back:hover { color: var(--gray-900); }
-        .wrap { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
-        h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.6px; margin-bottom: 8px; }
-        .meta { font-size: 13px; color: var(--gray-500); margin-bottom: 32px; }
-        h2 { font-size: 18px; font-weight: 700; margin-top: 36px; margin-bottom: 12px; }
-        h3 { font-size: 14px; font-weight: 700; margin-top: 16px; margin-bottom: 6px; }
-        p { font-size: 14px; color: var(--gray-700); margin-bottom: 12px; }
-        ul { margin: 8px 0 16px 24px; }
-        li { font-size: 14px; color: var(--gray-700); margin-bottom: 6px; }
-        .note { background: var(--amber-50); border-left: 3px solid var(--amber-600); padding: 14px 18px; border-radius: 4px; font-size: 13px; color: var(--gray-700); margin: 24px 0; }
-        .note b { color: var(--gray-900); }
-        footer { border-top: 1px solid var(--gray-200); padding: 24px; text-align: center; font-size: 12px; color: var(--gray-400); }
-        footer a { color: var(--gray-500); margin: 0 8px; text-decoration: none; }
-        footer a:hover { color: var(--gray-900); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://*.goatcounter.com; base-uri 'self'; object-src 'none'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Általános Szerződési Feltételek — AIpályázó</title>
+<meta name="description" content="Az AIpályázó ingyenes szolgáltatás használatának feltételei.">
+<link rel="canonical" href="https://aipalyazo.hu/aipalyazo/aszf.html">
+<meta name="theme-color" content="#0e1a2b">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<style>.todo{background:var(--signal-tint);color:var(--signal);padding:0 4px;border-radius:3px;font-family:var(--mono);font-size:.9em}</style>
 </head>
 <body>
-
-<nav>
-    <div class="nav-inner">
-        <a href="index.html" class="nav-logo"><span>AI</span>pályázó</a>
-        <a href="portal.html" class="back">← Vissza az Áttekintésre</a>
+<a class="skip" href="#main">Ugrás a tartalomra</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="AIpályázó főoldal"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0a6b3d"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a>
+    <nav class="site-nav" aria-label="Fő navigáció">
+      <a href="palyazat/index.html">Nyitott pályázatok</a>
+      <a href="index.html#hogyan">Hogyan működik</a>
+      <a href="miert-ingyenes.html">Miért ingyenes?</a>
+    </nav>
+    <div class="head-actions">
+      <a class="btn btn-quiet btn-sm hide-sm" href="login.html" data-guest>Belépés</a>
+      <a class="btn btn-primary btn-sm" href="signup.html" data-guest>Regisztráció</a>
+      <a class="btn btn-primary btn-sm" href="portal.html" data-member hidden>Portál</a>
+      <button class="btn btn-ghost btn-sm head-menu" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     </div>
-</nav>
+  </div>
+  <div class="wrap">
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobil navigáció">
+      <a href="palyazat/index.html">Nyitott pályázatok</a>
+      <a href="index.html#hogyan">Hogyan működik</a>
+      <a href="miert-ingyenes.html">Miért ingyenes?</a>
+      <a href="login.html">Belépés</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="wrap"><article class="doc">
+<p class="eyebrow">Jogi információk</p>
+<h1 class="h-1">Általános Szerződési Feltételek</h1>
+<p class="muted">Hatályos: 2026. október 1-jétől · 3.0 verzió</p>
 
-<div class="wrap">
-    <h1>Általános Szerződési Feltételek (ÁSZF)</h1>
-    <div class="meta">Hatályos: 2026. július 6. · Verzió 2.1 (B2C, díjmentes)</div>
+<h2>1. Szolgáltató</h2>
+<p>Széphelyi Olivér Soma egyéni vállalkozó (székhely: 1025 Budapest, Cseppkő köz 5.; adószám: <span class="todo">[pótlandó]</span>; nyilvántartási szám: <span class="todo">[pótlandó]</span>; e-mail: <a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a>; telefon: +36 30 320 9742) — a továbbiakban: Szolgáltató.</p>
 
-    <div class="note">
-        <b>Fogyasztói tájékoztatás.</b> Ön mint <b>magánszemély fogyasztó</b> a 45/2014. (II. 26.) Korm. rendelet alapján 14 napos elállási jogot gyakorolhat indoklás nélkül. A jelen ÁSZF B2C (üzlet–fogyasztó) viszonyokra is alkalmazandó.
+<h2>2. A szolgáltatás</h2>
+<p>Az AIpályázó ingyenes online szolgáltatás, amely</p>
+<ul>
+<li>nyitott, vállalkozásoknak szóló hazai és EU-s pályázati felhívásokat gyűjt és rendszerez hivatalos forrásokból;</li>
+<li>a felhasználó által megadott cégadatok alapján pontonként ellenőrzi a felhívások feltételeit;</li>
+<li>összefoglalót, dokumentumlistát és AI-alapú kezdő vázlatot ad;</li>
+<li>kérésre e-mailes értesítést küld;</li>
+<li>kérésre továbbítja a felhasználó konzultációs igényét pályázatíró partnernek.</li>
+</ul>
+<p>A szolgáltatás <b>tájékoztató jellegű előszűrés</b>, nem jogi, pénzügyi vagy pályázatírói tanácsadás. A jogosultsági és elszámolhatósági feltételeket mindig a hivatalos felhívás és annak módosításai határozzák meg. A Szolgáltató pályázati eredményt nem ígér.</p>
+
+<h2>3. A szerződés létrejötte</h2>
+<p>A szerződés a regisztrációval, elektronikus úton jön létre, határozatlan időre. A felhasználó köteles valós adatokat megadni. A felhasználó a szerződést bármikor, indoklás nélkül megszüntetheti a fiókja törlésével.</p>
+
+<h2>4. Díjmentesség</h2>
+<p>A szolgáltatás minden funkciója díjmentes; a Szolgáltató fizetési adatot nem kér. A Szolgáltató bevétele a pályázatíró partnertől származik: ha a felhasználó a partnerrel szerződik és a támogatást folyósítják, a partner jutalékot fizet a Szolgáltatónak. Ez a felhasználó számára többletköltséggel nem jár, és a konzultáció nem kötelez szerződésre.</p>
+
+<h2>5. Konzultációs kérés</h2>
+<p>Konzultációt a felhívás oldalán lehet kérni. A Szolgáltató a kérést a felhasználó hozzájárulásával továbbítja a partnernek, amely a felhasználóval közvetlenül veszi fel a kapcsolatot. A pályázatírásra vonatkozó szerződés a felhasználó és a partner között jön létre, annak feltételeiért a partner felel.</p>
+
+<h2>6. Felelősség</h2>
+<ul>
+<li>A Szolgáltató a felhívások adatait gondosan, forrásmegjelöléssel és rendszeres ellenőrzéssel közli, de nem felel a kiírók által közölt adatok hibáiért, a kiírások utólagos módosításáért, valamint a pályázatok eredményéért.</li>
+<li>Az AI által készített összefoglalók és vázlatok hibát tartalmazhatnak; az összefoglalók minden pontjánál feltüntetjük a hivatalos szövegből vett idézetet, amelyen alapulnak.</li>
+<li>A Szolgáltató nem felel a harmadik felek (pl. tárhely- vagy e-mail-szolgáltató) által okozott üzemszünetért.</li>
+<li>A felelősség korlátozása nem érinti a fogyasztókat védő kógens jogszabályi rendelkezéseket.</li>
+</ul>
+
+<h2>7. Tiltott használat</h2>
+<p>Tilos a szolgáltatás automatizált tömeges lekérdezése, a konzultációs űrlap visszaélésszerű használata (pl. más személy adataival), valamint a biztonsági megoldások megkerülése. Ilyen esetben a Szolgáltató a hozzáférést felfüggesztheti.</p>
+
+<h2>8. Adatkezelés</h2>
+<p>A személyes adatok kezelését az <a href="adatvedelem.html">Adatkezelési tájékoztató</a> részletezi.</p>
+
+<h2>9. Módosítás</h2>
+<p>A Szolgáltató az ÁSZF-et módosíthatja; a lényeges változásokról a regisztrált felhasználókat a hatálybalépés előtt legalább 15 nappal e-mailben értesíti. Aki a módosítást nem fogadja el, fiókját díjmentesen törölheti.</p>
+
+<h2>10. Panaszkezelés, jogviták</h2>
+<p>Panaszát az <a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a> címen jelezheti, 30 napon belül érdemben válaszolunk. Fogyasztónak minősülő felhasználó a lakóhelye szerint illetékes békéltető testülethez (Budapesten: Budapesti Békéltető Testület, 1016 Budapest, Krisztina krt. 99.) vagy a fogyasztóvédelmi hatósághoz fordulhat. Irányadó jog a magyar jog.</p>
+</article></div>
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0a6b3d"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a>
+        <p style="margin-top:var(--s3)">Ingyenes pályázatfigyelő magyar vállalkozásoknak. Tájékoztató szolgáltatás: beadás előtt mindig a hivatalos felhívás az irányadó.</p>
+      </div>
+      <div><h4>Pályázatok</h4><ul><li><a href="palyazat/index.html">Nyitott felhívások</a></li><li><a href="palyazat/index.html#temak">Témák és programok</a></li><li><a href="portal.html">Portál</a></li></ul></div>
+      <div><h4>Rólunk</h4><ul><li><a href="miert-ingyenes.html">Miért ingyenes?</a></li><li><a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a></li></ul></div>
+      <div><h4>Jogi</h4><ul><li><a href="impresszum.html">Impresszum</a></li><li><a href="adatvedelem.html">Adatkezelés</a></li><li><a href="aszf.html">ÁSZF</a></li></ul></div>
     </div>
-
-    <h2>1. A Szolgáltató</h2>
-    <p>A jelen ÁSZF a Széphelyi Olivér Soma egyéni vállalkozó (székhely: 1025 Budapest, Cseppkő köz 5., adószám: <span style="background:#fef3c7;padding:0 4px;border-radius:3px;">[pótlandó]</span>, nyilvántartási szám: <span style="background:#fef3c7;padding:0 4px;border-radius:3px;">[pótlandó]</span>) — a továbbiakban „Szolgáltató" — által üzemeltetett <b>AIpályázó</b> online szolgáltatás használatára vonatkozó feltételeket tartalmazza. Kapcsolat: info@aipalyazo.hu.</p>
-
-    <h2>2. A Szolgáltatás</h2>
-    <p>Az AIpályázó egy online platform, amely magyar fogyasztók és vállalkozások számára nyújt:</p>
-    <ul>
-        <li>Aktuális hazai (és válogatottan EU-s) pályázati lehetőségek áttekinthető listáját</li>
-        <li>Cégprofil-alapú AI-illeszkedési pontozást</li>
-        <li>AI-alapú pályázat-vázlat generálást</li>
-        <li>Heti e-mail tájékoztatást — személyre szabott riporttal</li>
-        <li>Pályázatíró partnerhez történő opcionális konzultáció-közvetítést</li>
-    </ul>
-    <p>A Szolgáltatás <b>tájékoztató jellegű</b>. A pontos jogosultsági és elszámolhatósági feltételeket minden esetben a hivatalos pályázati felhívás határozza meg. A Szolgáltató pályázati eredményt nem garantál.</p>
-
-    <h2>3. Szerződéskötés</h2>
-    <p>A regisztrációval és a Szolgáltatás használatának megkezdésével a Felhasználó a jelen ÁSZF rendelkezéseit kifejezetten elfogadja. A szerződés a felek között elektronikus úton, ráutaló magatartással jön létre, és határozatlan időre szól. A Felhasználó a szerződést bármikor, ingyenesen megszüntetheti a fiók törlésével.</p>
-    <p>A Felhasználó a regisztráció során köteles valós adatokat megadni. A Szolgáltató a regisztrációt indoklás nélkül elutasíthatja.</p>
-
-    <h2>4. A szolgáltatás díjmentessége</h2>
-    <p>Az AIpályázó <b>teljesen díjmentes</b>. A Szolgáltatás összes funkciója — a pályázatok böngészése és mentése, a cégprofil-alapú AI-illeszkedési pontozás, az AI pályázat-vázlat, az AI igény-felmérő, a személyre szabott heti riport és a határidő-riasztások — ingyenesen, korlátlan ideig elérhető. Az AI-funkciók és a mentések eléréséhez ingyenes regisztráció szükséges.</p>
-    <p>A Szolgáltató <b>semmilyen díjat nem számít fel</b>, fizetési adatot (pl. bankkártyaszámot) nem kér és nem kezel; nincs előfizetés, automatikus megújulás, fizetés vagy számlázás.</p>
-    <p>Mivel a Szolgáltatás díjmentes, fizetéshez kötött elállási jog vagy visszatérítés nem értelmezhető. A Felhasználó a Szolgáltatás használatát bármikor, indoklás és bármilyen következmény nélkül megszüntetheti, és a fiókját a Beállítások menüben bármikor véglegesen törölheti.</p>
-
-    <h2>5. Felelősség korlátozása</h2>
-    <ul>
-        <li>A Szolgáltató <b>nem vállal felelősséget</b> a megjelenített pályázati információk teljességéért, naprakészségéért vagy a pályázatok elnyeréséért.</li>
-        <li>A pályázatírást és a pályázati eljárás lefolytatását a Felhasználó saját vagy harmadik fél (pl. pályázatíró partner) bevonásával végzi. A Szolgáltató csak ajánlást ad, jogi vagy pénzügyi tanácsadást nem.</li>
-        <li>Fogyasztó esetén a Szolgáltató felelősségét a Polgári Törvénykönyv és a fogyasztóvédelmi jog kógens szabályai határolják be. Ezen szabályok körén kívül a Szolgáltató kártérítési felelőssége a tárgyévi szolgáltatási díj erejéig korlátozott; kizárt: közvetett kár, elmaradt haszon, üzleti hírnév sérelme.</li>
-        <li>Vis maior, harmadik fél által okozott üzemkimaradás (pl. tárhely-szolgáltató vagy Supabase hibája) esetén a Szolgáltató felelőssége kizárt.</li>
-    </ul>
-
-    <h2>6. Adatkezelés</h2>
-    <p>A személyes adatok kezelésére a külön <a href="adatvedelem.html" style="color:var(--green-600);">Adatkezelési tájékoztató</a> rendelkezései az irányadók. A Szolgáltató adatfeldolgozói: Supabase (EU-Ireland), GitHub (hosting).</p>
-
-    <h2>7. Szellemi tulajdon</h2>
-    <p>Az AIpályázó platform — beleértve a forráskódot, a felhasználói felületet, a logókat, a pontozási algoritmust és a generált dokumentumok formátumát — a Szolgáltató szellemi tulajdonát képezi. A Felhasználó a Szolgáltatás használatára nem-kizárólagos, át nem ruházható, korlátozott felhasználási jogot kap a szerződés időtartamára.</p>
-
-    <h2>8. Szerződésszegés, felmondás</h2>
-    <p>A Szolgáltató jogosult a Szolgáltatás azonnali hatályú felfüggesztésére, ha a Felhasználó:</p>
-    <ul>
-        <li>a Szolgáltatást jogszabályba ütközően, vagy harmadik fél jogait sértve használja,</li>
-        <li>visszaél a hozzáféréssel (pl. automatizált scraping, bejelentkezési adatok megosztása).</li>
-    </ul>
-    <p>A Felhasználó a Szolgáltatás használatát bármikor megszüntetheti, és a fiókját saját elhatározásából a Beállítások / Fiók törlése menüpontban véglegesen törölheti.</p>
-
-    <h2>9. ÁSZF módosítása</h2>
-    <p>A Szolgáltató jogosult az ÁSZF egyoldalú módosítására. A lényegi változásokról a regisztrált Felhasználók legalább 30 nappal a hatálybalépés előtt e-mailben értesülnek. Az értesítést követő használat a módosított ÁSZF elfogadásának minősül; aki a változtatást nem fogadja el, a 30 napos időszakon belül díjmentesen felmondhat.</p>
-
-    <h2>10. Panaszkezelés és vitarendezés (fogyasztók)</h2>
-    <p>Panaszát az info@aipalyazo.hu címen jelezheti — a Szolgáltató 30 napon belül érdemi választ ad. Eredménytelen panasz esetén Ön mint fogyasztó az alábbi szervekhez fordulhat:</p>
-    <ul>
-        <li><b>Békéltető testület:</b> Budapesti Békéltető Testület (1016 Budapest, Krisztina krt. 99.), bekelteto.testulet@bkik.hu</li>
-        <li><b>Fogyasztóvédelmi hatóság:</b> illetékes járási hivatal fogyasztóvédelmi osztálya</li>
-        <li><b>Online vitarendezési platform (EU):</b> https://ec.europa.eu/consumers/odr</li>
-    </ul>
-
-    <h2>11. Vegyes rendelkezések</h2>
-    <ul>
-        <li>Irányadó jog: a magyar jog. EU/EGT fogyasztók esetén a hazájuk kógens fogyasztóvédelmi szabályai.</li>
-        <li>Jogvita esetén — fogyasztói perben — a fogyasztó lakóhelye szerinti bíróság is illetékes.</li>
-        <li>Ha bármely rendelkezés érvénytelennek bizonyulna, az nem érinti az ÁSZF többi rendelkezésének érvényességét.</li>
-    </ul>
-
-    <h2>12. Kapcsolat</h2>
-    <p>E-mail: info@aipalyazo.hu · Telefon: +36 30 320 9742 · Levelezési cím: 1025 Budapest, Cseppkő köz 5.</p>
-</div>
-
-<footer>
-    <a href="adatvedelem.html">Adatvédelem</a> ·
-    <a href="impresszum.html">Impresszum</a> ·
-    <a href="aszf.html">ÁSZF</a><br>
-    &copy; 2026 AIpályázó
+    <div class="legal"><span>© 2026 AIpályázó · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
+  </div>
 </footer>
-
+<script src="assets/site.js" defer></script>
+<script src="assets/analytics.js" defer></script>
 </body>
 </html>

@@ -299,8 +299,10 @@
     score = Math.max(5, Math.min(99, Math.round(score)));
     var verdict = !p ? 'REVIEW' : fails ? 'SKIP' : score >= 75 ? 'APPLY' : score >= 55 ? 'REVIEW' : 'SKIP';
     var group = isConsortium(g) ? 'consortium' : g.scope === 'eu' ? 'eu' : 'hazai';
-    // A consortium call is never a top recommendation for a single company.
-    if (group === 'consortium' && verdict === 'APPLY') verdict = 'REVIEW';
+    // A consortium call is never a top recommendation for a single company,
+    // and an R&D call only when the company said it plans R&D.
+    var rq = g.requires || {};
+    if (verdict === 'APPLY' && (group === 'consortium' || ((rq.rnd_project || rq.deeptech) && !(p && p.rnd === 'igen')))) verdict = 'REVIEW';
     return { score: score, verdict: verdict, eligible: !fails, personal: !!p, checks: checks, group: group };
   }
 
