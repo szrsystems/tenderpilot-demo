@@ -1,9 +1,17 @@
 {
- "updatedAt": "2026-09-28T12:32:45.920Z",
+ "updatedAt": "2026-09-29T11:55:00.816Z",
  "counts": {
   "total": 49,
   "api": 37,
   "curated": 12
  },
- "changes": []
+ "changes": [
+  {
+   "id": "pg-IKOP_PLUSZ-1.2.0-23",
+   "type": "szabad-keret",
+   "from": 133112871764,
+   "to": 119993906659,
+   "title": "Tiszta üzemű városi-elővárosi közlekedés erősítése a fővároson és a budapesti agglomeráción kívüli településeken"
+  }
+ ]
 }
