@@ -227,3 +227,4 @@ body.app-body { background: var(--surface); }
 @media (min-width: 1024px) { .app { background: linear-gradient(to right, #fff 247px, var(--line) 247px, var(--line) 248px, var(--surface) 248px); } }
 .call .fit .lbl { display: block; margin-top: 6px; font-size: 13.5px; }
 @media (min-width: 900px) { .call { grid-template-columns: minmax(0, 1fr) 180px 128px 130px 44px; } }
+@media (max-width: 899px) { .toolbar { grid-template-columns: 1fr 1fr; } .toolbar .field:last-child { grid-column: 1 / -1; } }

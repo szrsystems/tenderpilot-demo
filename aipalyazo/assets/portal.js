@@ -35,7 +35,7 @@
   var S = {
     feed: [], meta: {}, summaries: {}, changes: {}, expected: [], slugs: {}, feedFromCache: null, feedError: false,
     user: null, profile: lsGet('grantpilot:profile', null), bookmarks: new Set(lsGet('grantpilot:bookmarks', [])),
-    matchCache: new Map(), view: 'attekintes', list: { q: '', scope: 'all', type: 'all', onlyFit: true, sort: 'fit', page: 1, needIds: null, needQ: '' },
+    matchCache: new Map(), view: 'attekintes', list: { q: '', cat: '', scope: 'all', type: 'all', onlyFit: true, sort: 'fit', page: 1, needIds: null, needQ: '' },
     ready: false
   };
 
@@ -213,21 +213,24 @@
     if (!m) return '';
     return m.checks.filter(function (c) { return c.status !== 'neutral'; }).slice(0, n || 6).map(function (c) { return '<span class="' + esc(c.status) + '">' + SYM[c.status] + ' ' + esc(c.label) + '</span>'; }).join('');
   }
+  function isNewCall(g) { return (S.changes[g.id] || []).some(function (c) { return c.type === 'new' && days(c.date) !== null && days(c.date) >= -14; }); }
   function callRow(g, opts) {
     opts = opts || {};
-    var m = matchOf(g), d = days(g.deadline), personal = m && m.personal;
+    var m = matchOf(g), personal = m && m.personal, C = window.AIPCards;
     var v = m && personal ? VERDICT[m.verdict] : null;
-    var dl = '<div class="dl' + (d !== null && d <= 14 ? ' soon' : '') + '">' + esc(huDate(g.deadline)) + (d !== null ? '<small>' + d + ' nap</small>' : '') + '</div>';
-    var fit = v ? '<div class="fit ' + v[0] + '"><span class="sc">' + m.score + '</span><span class="lbl">' + esc(v[1]) + '</span></div>' : '<div class="fit"></div>';
     var saved = S.bookmarks.has(g.id);
-    return '<div class="call">' +
-      '<div><button type="button" class="t" data-open="' + esc(g.id) + '">' + esc(g.title) + '</button>' +
-      '<div class="meta">' + esc([g.code, TYPE_HU[g.type] || g.type, g.scope === 'eu' ? (m && m.group === 'consortium' ? 'EU · konzorcium' : 'EU') : 'hazai'].filter(Boolean).join(' · ')) + '</div></div>' +
-      '<div class="amt">' + esc(g.amount || '') + '</div>' + dl + fit +
+    var fit = v ? '<div class="gc-fit ' + v[0] + '"><span class="sc">' + m.score + '</span>' + esc(v[1]) + '</div>' : '';
+    return '<article class="gcard' + (v && v[0] === 'apply' ? ' apply' : '') + '">' +
+      '<div class="gc-head">' + C.srcTag(g) +
+        '<div class="gc-main"><button type="button" class="gc-title" data-open="' + esc(g.id) + '">' + esc(g.title) + '</button>' +
+        '<div class="gc-sub">' + esc([g.code, g.issuer].filter(Boolean).join(' · ')) + '</div>' +
+        '<div class="badges">' + C.badges(g, { today: TODAY, isNew: isNewCall(g), consortium: m && m.group === 'consortium' }) + '</div></div>' +
+        '<div class="gc-side"><div><div class="gc-amt-label">Támogatás</div><div class="gc-amt">' + esc(g.amount || '—') + '</div></div>' + fit + '</div>' +
+      '</div>' +
+      C.bars(g, { today: TODAY }) +
+      (personal && !opts.noMarks ? '<div class="marks">' + marksHtml(m, 7) + '</div>' : '') +
       '<button type="button" class="bm" data-bm="' + esc(g.id) + '" aria-pressed="' + (saved ? 'true' : 'false') + '" aria-label="' + (saved ? 'Mentve — eltávolítás' : 'Mentés') + '">' + ICON_BM + '</button>' +
-      (personal && !opts.noMarks ? '<div class="marks">' + marksHtml(m, 6) + '</div>' : '') +
-      '<div class="mobile-extra"><span class="register-meta">' + esc(huDate(g.deadline)) + (d !== null ? ' · ' + d + ' nap' : '') + '</span>' + (v ? '<span class="' + (v[0] === 'apply' ? 'y' : '') + '"><b>' + m.score + '</b> ' + esc(v[1]) + '</span>' : '') + '</div>' +
-      '</div>';
+      '</article>';
   }
   function head(eyebrow, title, right) {
     return '<header class="view-head"><div>' + (eyebrow ? '<p class="eyebrow">' + eyebrow + '</p>' : '') + '<h1>' + title + '</h1></div>' + (right || '') + '</header>';
@@ -273,8 +276,8 @@
       '<div class="figure"><div class="v num">' + soon.length + '</div><div class="k">határidő 30 napon belül' + (personal ? ' (Önnek)' : '') + '</div></div>' +
       '<div class="figure"><div class="v num">' + (budget ? ft(budget) : '—') + '</div><div class="k">szabad hazai keret</div></div></div>';
     var top = (personal ? fitting : S.feed.slice().sort(function (a, b) { return (a.scope === 'eu') - (b.scope === 'eu') || (a.deadline || '9').localeCompare(b.deadline || '9'); })).slice(0, 6);
-    h += '<div class="section-title"><h2>' + (personal ? 'Legjobb egyezések' : 'Nyitott felhívások') + '</h2><a href="#/palyazatok">Összes →</a></div><div class="calls">' + (top.map(function (g) { return callRow(g); }).join('') || '<p class="empty">Nincs megjeleníthető felhívás.</p>') + '</div>';
-    if (saved.length) h += '<div class="section-title"><h2>Mentett felhívások</h2><a href="#/mentett">Mind (' + saved.length + ') →</a></div><div class="calls">' + saved.slice(0, 4).map(function (g) { return callRow(g, { noMarks: true }); }).join('') + '</div>';
+    h += '<div class="section-title"><h2>' + (personal ? 'Legjobb egyezések' : 'Nyitott felhívások') + '</h2><a href="#/palyazatok">Összes →</a></div><div class="gcards">' + (top.map(function (g) { return callRow(g); }).join('') || '<p class="empty">Nincs megjeleníthető felhívás.</p>') + '</div>';
+    if (saved.length) h += '<div class="section-title"><h2>Mentett felhívások</h2><a href="#/mentett">Mind (' + saved.length + ') →</a></div><div class="gcards">' + saved.slice(0, 4).map(function (g) { return callRow(g, { noMarks: true }); }).join('') + '</div>';
     if (recentChanges.length) h += '<div class="section-title"><h2>Változások a mentett felhívásokban</h2></div><ul class="log">' + recentChanges.slice(0, 8).map(function (x) { return '<li><time>' + esc(huDate(x.c.date)) + '</time><span><button type="button" class="t" style="all:unset;cursor:pointer;color:var(--brand);text-decoration:underline" data-open="' + esc(x.g.id) + '">' + esc(x.g.title) + '</button> — ' + esc(changeText(x.c)) + '</span></li>'; }).join('') + '</ul>';
     if (consortium) h += '<p class="muted" style="margin-top:var(--s5)">További <b>' + consortium + '</b> nemzetközi, konzorciumban beadható EU-s felhívás: <a href="#/palyazatok" data-scope="consortium">megnézem</a>.</p>';
     return h;
@@ -284,11 +287,15 @@
     var L = S.list, personal = hasProfile();
     var counts = { all: 0, hu: 0, eu: 0, consortium: 0 };
     S.feed.forEach(function (g) { var m = matchOf(g); counts.all++; if (m.group === 'hazai') counts.hu++; else if (m.group === 'consortium') counts.consortium++; else counts.eu++; });
-    var h = head('Pályázatok', 'Nyitott felhívások', stampLine()) + freshness() + profileCallout();
-    h += '<div class="needs"><form id="needs-form"><label class="visually-hidden" for="needs-q">Mire keres forrást?</label><input id="needs-q" type="search" placeholder="Írja le, mire keres forrást — pl. „új CNC-gép”, „napelem a csarnokra”" value="' + esc(L.needQ) + '"><button class="btn btn-primary" type="submit">Keresés</button></form>' +
-      '<div class="chips">' + ['Gépet, eszközt vennék', 'Energetika, napelem', 'Weboldal, webáruház, szoftver', 'Telephely, csarnok', 'Munkatársak képzése', 'Külpiacra lépés', 'Új termék fejlesztése', 'Munkaerő felvétele'].map(function (c) { return '<button type="button" data-need="' + esc(c) + '">' + esc(c) + '</button>'; }).join('') + (L.needIds ? '<button type="button" data-need="">× Keresés törlése</button>' : '') + '</div></div>';
-    h += '<div class="seg" role="group" aria-label="Forrás">' + [['all', 'Mind', counts.all], ['hu', 'Hazai', counts.hu], ['eu', 'EU, egyedül is', counts.eu], ['consortium', 'EU, konzorciumban', counts.consortium]].map(function (x) { return '<button type="button" data-scope="' + x[0] + '" aria-pressed="' + (L.scope === x[0]) + '">' + x[1] + '<span class="n">' + x[2] + '</span></button>'; }).join('') + '</div>';
-    h += '<div class="toolbar"><div class="field"><label for="list-q">Szűrés szóra</label><input id="list-q" type="search" value="' + esc(L.q) + '" placeholder="pl. GINOP, turizmus, Horizon"></div>' +
+    var h = head('Pályázatok', 'Nyitott felhívások', stampLine()) + freshness();
+    h += '<div class="bigsearch"><h2>Mire keres támogatást?</h2><form id="needs-form" role="search"><div class="inp"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><label class="visually-hidden" for="needs-q">Mire keres támogatást?</label><input id="needs-q" type="search" autocomplete="off" placeholder="Pl. új CNC-gép, napelem a csarnokra, webáruház, GINOP…" value="' + esc(L.needQ || L.q) + '"></div><button class="btn btn-primary" type="submit">Keresés</button></form>' +
+      '<div class="chips">' + ['Gépet, eszközt vennék', 'Energetika, napelem', 'Weboldal, webáruház, szoftver', 'Telephely, csarnok', 'Munkatársak képzése', 'Külpiacra lépés', 'Új termék fejlesztése', 'Munkaerő felvétele'].map(function (c) { return '<button type="button" data-need="' + esc(c) + '">' + esc(c) + '</button>'; }).join('') + (L.needIds || L.q ? '<button type="button" data-need="">× Keresés törlése</button>' : '') + '</div>' +
+      '<p class="hint">Írja le saját szavaival, és a Keresés gomb megmutatja a legjobban illő felhívásokat. Gépelés közben a lista azonnal szűkül.</p></div>';
+    h += profileCallout();
+    var cats = {}; S.feed.forEach(function (g) { if (g.cat) cats[g.cat] = (cats[g.cat] || 0) + 1; });
+    var catList = Object.keys(cats).sort(function (a, b) { return cats[b] - cats[a]; });
+    h += '<div class="catpills" role="group" aria-label="Téma"><button type="button" data-cat="" aria-pressed="' + !L.cat + '">Mind<span class="n">' + S.feed.length + '</span></button>' + catList.map(function (c) { return '<button type="button" data-cat="' + esc(c) + '" aria-pressed="' + (L.cat === c) + '">' + esc(c) + '<span class="n">' + cats[c] + '</span></button>'; }).join('') + '</div>';
+    h += '<div class="toolbar"><div class="field"><label for="list-scope">Forrás</label><select id="list-scope">' + [['all', 'Mind (' + counts.all + ')'], ['hu', 'Hazai (' + counts.hu + ')'], ['eu', 'EU, egyedül is (' + counts.eu + ')'], ['consortium', 'EU, konzorciumban (' + counts.consortium + ')']].map(function (x) { return '<option value="' + x[0] + '"' + (L.scope === x[0] ? ' selected' : '') + '>' + x[1] + '</option>'; }).join('') + '</select></div>' +
       '<div class="field"><label for="list-type">Támogatás formája</label><select id="list-type">' + [['all', 'Mind'], ['grant', 'Vissza nem térítendő'], ['loan', 'Hitel'], ['equity', 'Tőke'], ['guarantee', 'Garancia'], ['other', 'Egyéb (bér, szolgáltatás)']].map(function (x) { return '<option value="' + x[0] + '"' + (L.type === x[0] ? ' selected' : '') + '>' + x[1] + '</option>'; }).join('') + '</select></div>' +
       '<div class="field"><label for="list-sort">Sorrend</label><select id="list-sort">' + [['fit', personal ? 'Illeszkedés' : 'Hazai először'], ['deadline', 'Határidő'], ['amount', 'Keret']].map(function (x) { return '<option value="' + x[0] + '"' + (L.sort === x[0] ? ' selected' : '') + '>' + x[1] + '</option>'; }).join('') + '</select></div></div>';
     if (personal) h += '<label class="switch-row" style="margin-bottom:var(--s3)"><input type="checkbox" id="only-fit"' + (L.onlyFit ? ' checked' : '') + ' style="width:20px;height:20px;accent-color:var(--brand)"> Csak amire a cége jogosult lehet</label>';
@@ -300,6 +307,7 @@
     var out = S.feed.filter(function (g) {
       var m = matchOf(g);
       if (L.needIds && L.needIds.indexOf(g.id) < 0) return false;
+      if (L.cat && g.cat !== L.cat) return false;
       if (L.scope === 'hu' && m.group !== 'hazai') return false;
       if (L.scope === 'eu' && m.group !== 'eu') return false;
       if (L.scope === 'consortium' && m.group !== 'consortium') return false;
@@ -323,17 +331,18 @@
     var items = listItems(), n = S.list.page * 30;
     var o = $('#list-out'); if (!o) return;
     o.innerHTML = '<p class="register-meta" style="margin:0 0 8px">' + items.length + ' találat' + (S.list.needIds ? ' a(z) „' + esc(S.list.needQ) + '” igényre' : '') + '</p>' +
-      (items.length ? '<div class="calls">' + items.slice(0, n).map(function (g) { return callRow(g); }).join('') + '</div>' : '<p class="empty">Nincs a szűrésnek megfelelő felhívás. ' + (hasProfile() && S.list.onlyFit ? 'Kapcsolja ki a „Csak amire a cége jogosult lehet” szűrőt, vagy ' : '') + 'próbáljon más szűrést.</p>') +
+      (items.length ? '<div class="gcards">' + items.slice(0, n).map(function (g) { return callRow(g); }).join('') + '</div>' : '<p class="empty">Nincs a szűrésnek megfelelő felhívás. ' + (hasProfile() && S.list.onlyFit ? 'Kapcsolja ki a „Csak amire a cége jogosult lehet” szűrőt, vagy ' : '') + 'próbáljon más szűrést.</p>') +
       (items.length > n ? '<div class="more"><button class="btn btn-ghost" type="button" data-more>Továbbiak (' + (items.length - n) + ')</button></div>' : '');
   }
   AFTER.palyazatok = function () {
     renderList();
     var deb;
-    $('#list-q').addEventListener('input', function (e) { clearTimeout(deb); deb = setTimeout(function () { S.list.q = e.target.value.trim(); S.list.page = 1; renderList(); }, 150); });
+    $('#needs-q').addEventListener('input', function (e) { clearTimeout(deb); deb = setTimeout(function () { S.list.needIds = null; S.list.needQ = ''; S.list.q = e.target.value.trim(); S.list.page = 1; renderList(); }, 150); });
+    $('#list-scope').addEventListener('change', function (e) { S.list.scope = e.target.value; S.list.page = 1; renderList(); });
     $('#list-type').addEventListener('change', function (e) { S.list.type = e.target.value; S.list.page = 1; renderList(); });
     $('#list-sort').addEventListener('change', function (e) { S.list.sort = e.target.value; renderList(); });
     var of = $('#only-fit'); if (of) of.addEventListener('change', function (e) { S.list.onlyFit = e.target.checked; S.list.page = 1; renderList(); });
-    $('#needs-form').addEventListener('submit', function (e) { e.preventDefault(); needsSearch($('#needs-q').value.trim()); });
+    $('#needs-form').addEventListener('submit', function (e) { e.preventDefault(); S.list.q = ''; needsSearch($('#needs-q').value.trim()); });
   };
 
   // needs finder: AI intent (signed-in) → categories/keywords; keyword fallback
@@ -388,7 +397,7 @@
     var gone = Array.from(S.bookmarks).filter(function (id) { return !byId(id); }).length;
     var h = head('Mentett', 'Mentett felhívások', saved.length ? '<button class="btn btn-ghost btn-sm" type="button" data-act="ics-saved">Naptárba (.ics)</button>' : '');
     if (!S.user) h += '<div class="callout"><p><b>A mentések most csak ebben a böngészőben vannak.</b> Regisztráljon, hogy más eszközön is elérje, és értesítést kapjon a változásokról.</p><a class="btn btn-primary" href="signup.html">Ingyenes regisztráció</a></div>';
-    h += saved.length ? '<div class="calls">' + saved.map(function (g) { return callRow(g); }).join('') + '</div>' : '<p class="empty">Még nincs mentett felhívás. A felhívások melletti könyvjelző gombbal mentheti őket.</p>';
+    h += saved.length ? '<div class="gcards">' + saved.map(function (g) { return callRow(g); }).join('') + '</div>' : '<p class="empty">Még nincs mentett felhívás. A felhívások melletti könyvjelző gombbal mentheti őket.</p>';
     if (gone) h += '<p class="muted">' + gone + ' korábban mentett felhívás időközben lezárult, ezért nem szerepel a listán.</p>';
     if (S.user) h += '<p class="muted small" style="margin-top:var(--s4)">Tipp: a <a href="#/beallitasok">Beállításokban</a> találja az önmagát frissítő naptár-linket is.</p>';
     return h;
@@ -675,14 +684,15 @@
 
   // ---------------------------------------------------------------- events
   document.addEventListener('click', async function (e) {
-    var t = e.target.closest('[data-open],[data-bm],[data-ics],[data-draft],[data-act],[data-scope],[data-need],[data-more],[data-draft-open],[data-draft-del]');
+    var t = e.target.closest('[data-open],[data-bm],[data-ics],[data-draft],[data-act],[data-scope],[data-cat],[data-need],[data-more],[data-draft-open],[data-draft-del]');
     if (!t) return;
     if (t.hasAttribute('data-open')) { e.preventDefault(); openDetail(t.getAttribute('data-open')); return; }
     if (t.hasAttribute('data-bm')) { e.preventDefault(); toggleBookmark(t.getAttribute('data-bm')); if (t.closest('.actions')) t.textContent = S.bookmarks.has(t.getAttribute('data-bm')) ? 'Mentve' : 'Mentés'; return; }
     if (t.hasAttribute('data-ics')) { var g = byId(t.getAttribute('data-ics')); if (g) downloadICS([g], 'aipalyazo-hatarido.ics'); return; }
     if (t.hasAttribute('data-draft')) { closeDetail(true); makeDraft(t.getAttribute('data-draft')); return; }
     if (t.hasAttribute('data-scope')) { e.preventDefault(); S.list.scope = t.getAttribute('data-scope'); S.list.page = 1; if (S.view !== 'palyazatok') { location.hash = '#/palyazatok'; } else render(); return; }
-    if (t.hasAttribute('data-need')) { var q = t.getAttribute('data-need'); var inp = $('#needs-q'); if (inp) inp.value = q; needsSearch(q); return; }
+    if (t.hasAttribute('data-cat')) { S.list.cat = t.getAttribute('data-cat'); S.list.page = 1; $$('.catpills button').forEach(function (b) { b.setAttribute('aria-pressed', String(b === t)); }); renderList(); return; }
+    if (t.hasAttribute('data-need')) { S.list.q = ''; var q = t.getAttribute('data-need'); var inp = $('#needs-q'); if (inp) inp.value = q; needsSearch(q); return; }
     if (t.hasAttribute('data-more')) { S.list.page++; renderList(); return; }
     if (t.hasAttribute('data-draft-open')) { currentDraft = lsGet(DRAFTS_KEY, []).filter(function (d) { return d.id === t.getAttribute('data-draft-open'); })[0] || null; render(); return; }
     if (t.hasAttribute('data-draft-del')) { if (confirm('Biztosan törli ezt a vázlatot?')) { lsSet(DRAFTS_KEY, lsGet(DRAFTS_KEY, []).filter(function (d) { return d.id !== t.getAttribute('data-draft-del'); })); render(); } return; }

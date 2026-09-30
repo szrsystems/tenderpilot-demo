@@ -31,7 +31,7 @@
   .center-head { text-align: center; margin: 0 auto var(--s6); max-width: 680px; display: grid; gap: var(--s3); }
   .center-head .lede { margin: 0 auto; }
 
-  .check-card { max-width: 760px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-lg); padding: var(--s6) var(--s5); }
+  .check-card { max-width: 860px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-lg); padding: var(--s6) var(--s5); }
   @media (min-width: 700px) { .check-card { padding: var(--s6); } }
   .check-card .grid { display: grid; gap: 0 var(--s4); grid-template-columns: 1fr; }
   @media (min-width: 560px) { .check-card .grid { grid-template-columns: 1fr 1fr; } .check-card .grid .full { grid-column: 1 / -1; } }
@@ -236,7 +236,7 @@
         <p class="eyebrow">Közelgő határidők</p>
         <h2 class="h-1">Ezek hamarosan lezárulnak</h2>
       </div>
-      <div class="register" id="next-deadlines" style="max-width:980px;margin:0 auto"></div>
+      <div class="gcards" id="next-deadlines" style="max-width:1000px;margin:0 auto"></div>
       <p style="text-align:center;margin-top:var(--s5)"><a class="btn btn-ghost" href="palyazat/index.html">Összes nyitott felhívás</a></p>
     </div>
   </section>
@@ -309,6 +309,7 @@
 <script src="assets/site.js" defer></script>
 <script src="assets/analytics.js" defer></script>
 <script src="lib/match.js"></script>
+<script src="lib/cards.js"></script>
 <script>
 (function () {
   'use strict';
@@ -321,6 +322,11 @@
   function ft(n) { return n >= 1e9 ? (n / 1e9).toFixed(0) + ' Mrd Ft' : Math.round(n / 1e6) + ' M Ft'; }
   function pageUrl(g) { return SLUGS[g.id] ? 'palyazat/' + encodeURIComponent(SLUGS[g.id]) + '.html' : 'portal.html?grant=' + encodeURIComponent(g.id); }
   var TYPE = { grant: 'vissza nem térítendő', loan: 'hitel', 'loan+grant': 'hitel + támogatás', equity: 'tőkebefektetés', guarantee: 'garancia', 'wage-subsidy': 'bértámogatás', 'in-kind': 'szolgáltatás', 'grant+equity': 'támogatás + tőke' };
+
+  function card(g, extra) {
+    var C = window.AIPCards;
+    return '<article class="gcard"><div class="gc-head">' + C.srcTag(g) + '<div class="gc-main"><a class="gc-title" href="' + pageUrl(g) + '">' + esc(g.title) + '</a><div class="gc-sub">' + esc([g.code, g.issuer].filter(Boolean).join(' · ')) + '</div><div class="badges">' + C.badges(g, { today: TODAY }) + '</div></div><div class="gc-side"><div><div class="gc-amt-label">Támogatás</div><div class="gc-amt">' + esc(g.amount || '—') + '</div></div></div></div>' + C.bars(g, { today: TODAY }) + (extra || '') + '</article>';
+  }
 
   Promise.all([
     fetch('grants_live.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : []; }),
@@ -362,13 +368,13 @@
     try { localStorage.setItem('aip:quick', JSON.stringify(p)); } catch (e2) {}
     if (window.aipTrack) aipTrack('quick-check');
     var html = '<p class="result-sum"><b>' + good.length + '</b> felhívás illik jól a cégéhez' + (grants.length ? ', ebből <b>' + grants.length + '</b> vissza nem térítendő vagy kombinált' : '') + '.' + (consortium ? ' <span class="muted">További ' + consortium + ' nemzetközi konzorciumi felhívás külön listában.</span>' : '') + '</p>';
-    html += single.slice(0, 4).map(function (x) {
-      var marks = x.m.checks.filter(function (c) { return ['ok', 'fail', 'unknown', 'warn'].indexOf(c.status) >= 0; }).slice(0, 5).map(function (c) {
+    html += '<div class="gcards">' + single.slice(0, 4).map(function (x) {
+      var marks = x.m.checks.filter(function (c) { return ['ok', 'fail', 'unknown', 'warn'].indexOf(c.status) >= 0; }).slice(0, 6).map(function (c) {
         var sym = { ok: '✓', fail: '✗', unknown: '?', warn: '!' }[c.status];
         return '<span class="' + c.status + '">' + sym + ' ' + esc(c.label) + '</span>';
       }).join('');
-      return '<a class="result" href="' + pageUrl(x.g) + '"><div class="result-title">' + esc(x.g.title) + '</div><div class="result-meta">' + esc(TYPE[x.g.type] || x.g.type) + ' · ' + esc(x.g.amount || '') + ' · határidő: ' + esc(huDate(x.g.deadline)) + '</div><div class="result-marks">' + marks + '</div></a>';
-    }).join('');
+      return card(x.g, '<div class="marks">' + marks + '</div>');
+    }).join('') + '</div>';
     html += '<div class="results-foot"><a class="btn btn-primary" href="signup.html?from=quick">Teljes lista, értesítések — ingyenes regisztráció</a><p class="tiny muted" style="margin:0">A „?” pontokat a teljes profilban tudja pontosítani (TEÁOR, köztartozás, önerő). Adószám alapján a cégadatokat kitöltjük.</p></div>';
     var box = $('#results'); box.innerHTML = html; box.hidden = false;
     box.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
@@ -380,10 +386,7 @@
       .sort(function (a, b) { return a.deadline.localeCompare(b.deadline); });
     var pick = items.filter(function (g) { return g.scope !== 'eu'; }).slice(0, 3).concat(items.filter(function (g) { return g.scope === 'eu'; }).slice(0, 2))
       .sort(function (a, b) { return a.deadline.localeCompare(b.deadline); });
-    $('#next-deadlines').innerHTML = pick.length ? pick.map(function (g) {
-      var dd = days(g.deadline);
-      return '<div class="register-row"><div><a class="title" href="' + pageUrl(g) + '">' + esc(g.title) + '</a><div class="register-meta">' + esc(g.code || g.issuer || '') + '</div></div><div class="register-amount">' + esc(g.amount || '') + '</div><div class="register-deadline' + (dd <= 14 ? ' soon' : '') + '">' + esc(huDate(g.deadline)) + '<br><span class="muted" style="font-weight:400">' + (dd === 0 ? 'ma jár le' : dd === 1 ? 'holnap jár le' : 'még ' + dd + ' nap') + '</span></div></div>';
-    }).join('') : '<p class="muted" style="text-align:center">Nincs határidő a következő 90 napban.</p>';
+    $('#next-deadlines').innerHTML = pick.length ? pick.map(function (g) { return card(g); }).join('') : '<p class="muted" style="text-align:center">Nincs határidő a következő 90 napban.</p>';
   }
 })();
 </script>

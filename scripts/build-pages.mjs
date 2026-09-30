@@ -16,6 +16,9 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, unlinkSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { createRequire } from 'node:module';
+const Cards = createRequire(import.meta.url)('../aipalyazo/lib/cards.js');
+const todayHU = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Budapest' });
 
 export const SITE = 'https://aipalyazo.hu';
 export const BASE = `${SITE}/aipalyazo`;
@@ -86,10 +89,9 @@ const PAGE_CSS = `
 .req b{color:var(--ink)}.req span{font-size:14px;color:var(--ink-3)}
 .log{list-style:none;margin:0;padding:0}.log li{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}
 .log time{font:400 13.5px/1.6 var(--mono);color:var(--ink-3)}
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin:var(--s4) 0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
 .filters button{min-height:40px;padding:0 14px;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);border-radius:999px;font:500 14px/1 var(--sans);cursor:pointer}
 .filters button[aria-pressed="true"]{background:var(--brand);color:#fff;border-color:var(--brand)}
-#q{width:100%;min-height:48px;padding:12px 14px;border:1px solid var(--line-strong);border-radius:var(--r);font:400 16px/1.4 var(--sans);background:var(--paper);color:var(--ink)}
 .hubs{margin:var(--s5) 0 var(--s6);display:grid;gap:var(--s4)}@media(min-width:900px){.hubs{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .hubs h2{font:500 13px/1.4 var(--mono);text-transform:uppercase;color:var(--ink-3);margin-bottom:var(--s2)}
 .hub-links{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:15px}.hub-links .n{font-family:var(--mono);color:var(--ink-3);font-size:13px}
@@ -355,9 +357,9 @@ const byDeadline = (a, b) => {
 };
 
 function regRow(g, href, withSearch) {
-  const soon = isDate(g.deadline) && (Date.parse(g.deadline) - Date.now()) / 864e5 <= 14;
   const data = withSearch ? ` data-s="${esc(`${g.title} ${g.code || ''} ${g.issuer || ''} ${g.cat || ''}`.toLowerCase())}" data-scope="${g.scope === 'eu' ? 'eu' : 'hu'}" data-type="${esc(g.type || '')}"` : '';
-  return `<div class="register-row"${data}><div><a class="title" href="${esc(href)}">${esc(g.title)}</a><div class="register-meta">${esc(g.code || g.issuer || '')}${g.code && g.issuer ? ' · ' + esc(g.issuer) : ''}</div></div><div class="register-amount">${esc(g.amount || '')}</div><div class="register-deadline${soon ? ' soon' : ''}">${isDate(g.deadline) ? esc(huDate(g.deadline)) : 'folyamatos'}</div></div>`;
+  const today = todayHU();
+  return `<article class="gcard"${data}><div class="gc-head">${Cards.srcTag(g)}<div class="gc-main"><a class="gc-title" href="${esc(href)}">${esc(g.title)}</a><div class="gc-sub">${esc([g.code, g.issuer].filter(Boolean).join(' · '))}</div><div class="badges">${Cards.badges(g, { today })}</div></div><div class="gc-side"><div><div class="gc-amt-label">Támogatás</div><div class="gc-amt">${esc(g.amount || '—')}</div></div></div></div>${Cards.bars(g, { today })}</article>`;
 }
 
 export function renderHub(hub, slugs, { updatedAt } = {}) {
@@ -367,7 +369,7 @@ export function renderHub(hub, slugs, { updatedAt } = {}) {
   const intro = `${hub.intro} Jelenleg ${items.length} nyitott felhívás tartozik ide; a lista naponta frissül hivatalos forrásokból${updatedAt ? ` (utoljára: ${String(updatedAt).slice(0, 10)})` : ''}.`;
   const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../../index.html">AIpályázó</a> / <a href="../index.html">Pályázatok</a> / ${esc(hub.group)}</nav>
 <header class="call-head"><p class="eyebrow">${esc(hub.group)}</p><h1>${esc(hub.h1)}</h1><p class="page-intro intro">${esc(intro)}</p></header>
-<div class="register hub-list">${items.map((g) => regRow(g, '../' + slugs.get(g.id) + '.html')).join('')}</div>
+<div class="gcards hub-list">${items.map((g) => regRow(g, '../' + slugs.get(g.id) + '.html')).join('')}</div>
 <p class="back-link"><a href="../index.html">← Összes nyitott pályázat</a></p>
 <div class="notice warn end-note">Tájékoztató lista. Mindig a hivatalos felhívás és annak módosításai az irányadók.</div>`;
   const jsonld = {
@@ -393,24 +395,24 @@ export function renderIndex(open, slugs, { updatedAt, hubs = [] } = {}) {
 <header class="call-head"><p class="eyebrow">Naponta frissítve${updatedAt ? ' · ' + esc(String(updatedAt).slice(0, 10)) : ''}</p>
 <h1>Nyitott pályázatok magyar vállalkozásoknak</h1>
 <p class="page-intro">${open.length} nyitott felhívás — ${hu.length} hazai és ${eu.length} EU-s / nemzetközi. Csak olyan kiírások, amelyekre vállalkozás pályázhat, és amelyek határideje még nem járt le.</p></header>
-<label class="visually-hidden" for="q">Keresés a pályázatok között</label>
-<input id="q" type="search" placeholder="Keresés: GINOP, energia, Horizon, startup, turizmus…" autocomplete="off">
+<div class="bigsearch"><h2>Mire keres támogatást?</h2><form onsubmit="return false" role="search"><div class="inp"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><label class="visually-hidden" for="q">Keresés a pályázatok között</label>
+<input id="q" type="search" placeholder="Pl. energia, gép, digitalizáció, GINOP, turizmus…" autocomplete="off"></div></form>
 <div class="filters" role="group" aria-label="Szűrés">
 <button type="button" data-f="all" aria-pressed="true">Mind</button>
 <button type="button" data-f="hu" aria-pressed="false">Hazai</button>
 <button type="button" data-f="eu" aria-pressed="false">EU-s</button>
 <button type="button" data-f="grant" aria-pressed="false">Vissza nem térítendő</button>
 <button type="button" data-f="loan" aria-pressed="false">Hitel</button>
-</div>
+</div></div>
 <div class="list-head"><h2>Hazai pályázatok és hitelek</h2><span class="count" data-count="hu">${hu.length}</span></div>
-<div class="register list" data-list="hu">${hu.map(row).join('')}</div>
+<div class="gcards list" data-list="hu">${hu.map(row).join('')}</div>
 <div class="list-head"><h2>EU-s és nemzetközi</h2><span class="count" data-count="eu">${eu.length}</span></div>
-<div class="register list" data-list="eu">${eu.map(row).join('')}</div>
+<div class="gcards list" data-list="eu">${eu.map(row).join('')}</div>
 <p class="empty-note" id="empty" hidden>Nincs találat. Próbáljon rövidebb keresőszót.</p>
 ${hubLinks(hubs)}
 <div class="side-box narrow"><h2>Melyikre jogosult a cége?</h2><p>Négy adat alapján azonnal megmutatjuk, regisztráció nélkül.</p><a class="btn btn-primary" href="../index.html#ellenorzes">Gyors ellenőrzés</a></div>
 <script>(function(){var q=document.getElementById('q'),f='all',btns=document.querySelectorAll('.filters button');
-function run(){var v=q.value.trim().toLowerCase(),n={hu:0,eu:0};document.querySelectorAll('.list .register-row').forEach(function(r){var ok=(!v||r.getAttribute('data-s').indexOf(v)>=0)&&(f==='all'||(f==='hu'&&r.dataset.scope==='hu')||(f==='eu'&&r.dataset.scope==='eu')||(f==='grant'&&/grant/.test(r.dataset.type))||(f==='loan'&&/loan/.test(r.dataset.type)));r.hidden=!ok;if(ok)n[r.dataset.scope]++;});
+function run(){var v=q.value.trim().toLowerCase(),n={hu:0,eu:0};document.querySelectorAll('.list .gcard').forEach(function(r){var ok=(!v||r.getAttribute('data-s').indexOf(v)>=0)&&(f==='all'||(f==='hu'&&r.dataset.scope==='hu')||(f==='eu'&&r.dataset.scope==='eu')||(f==='grant'&&/grant/.test(r.dataset.type))||(f==='loan'&&/loan/.test(r.dataset.type)));r.hidden=!ok;if(ok)n[r.dataset.scope]++;});
 document.querySelector('[data-count=hu]').textContent=n.hu;document.querySelector('[data-count=eu]').textContent=n.eu;document.getElementById('empty').hidden=(n.hu+n.eu)>0;}
 q.addEventListener('input',run);btns.forEach(function(b){b.addEventListener('click',function(){f=b.dataset.f;btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});run();});});})();</script>`;
   const jsonld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Nyitott pályázatok magyar vállalkozásoknak', url: `${BASE}/palyazat/index.html` };
