@@ -15,65 +15,46 @@
 @font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/ibm-plex-sans-latin-ext-600-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
 @font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/ibm-plex-sans-latin-700-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
 @font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/ibm-plex-sans-latin-ext-700-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
-@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
-@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/ibm-plex-mono-latin-ext-400-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
-@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/ibm-plex-mono-latin-500-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
-@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/ibm-plex-mono-latin-ext-500-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
 
 /* ---------- tokens ---------- */
+/* Light only: the site is a daily work tool, and a dark page on a Mac in
+   dark mode read as "heavy". Friendly green, soft grey surfaces, rounded cards. */
 :root {
   color-scheme: light;
   --paper: #ffffff;
-  --surface: #f3f5f7;
-  --surface-2: #e8ecf0;
-  --line: #d6dce3;
-  --line-strong: #9aa5b1;
-  --ink: #0e1a2b;          /* 16.9:1 on paper */
-  --ink-2: #394556;        /* 10.1:1 */
-  --ink-3: #56616f;        /* 6.3:1  */
-  --brand: #0a6b3d;        /* 6.7:1 on paper, white text on it 6.7:1 */
-  --brand-strong: #07552f;
-  --brand-tint: #e5f1ea;
+  --surface: #f6f8f7;
+  --surface-2: #eef2f0;
+  --line: #e3e8e5;
+  --line-strong: #c9d1cc;
+  --ink: #17202a;          /* 15.9:1 */
+  --ink-2: #4b5563;        /* 7.6:1 */
+  --ink-3: #5b6572;        /* 5.9:1 */
+  --brand: #12844a;        /* 4.75:1 on white; white text on it 4.75:1 */
+  --brand-strong: #0e6d3c;
+  --brand-tint: #e9f6ee;
+  --brand-soft: #f3faf6;
   --on-brand: #ffffff;
-  --signal: #9a4a06;       /* deadlines / warnings, 6.4:1 */
-  --signal-tint: #fcefe0;
-  --danger: #b42318;       /* 6.5:1 */
-  --danger-tint: #fdebe9;
-  --info: #1f4f99;
-  --info-tint: #e8eff9;
+  --signal: #b45309;       /* deadlines, 5.0:1 */
+  --signal-tint: #fff4e5;
+  --danger: #b42318;
+  --danger-tint: #fdecea;
+  --info: #1d5fb8;
+  --info-tint: #eaf2fc;
   --focus: #1d5fd1;
-  --rail: #0e1a2b;         /* dark band colour (portal sidebar, footer) */
-  --on-rail: #e9eef4;
-  --on-rail-2: #a8b4c2;
+  --rail: #ffffff;
+  --on-rail: #17202a;
+  --on-rail-2: #5b6572;
+  --shadow: 0 1px 2px rgba(23, 32, 42, .05), 0 1px 1px rgba(23, 32, 42, .03);
+  --shadow-lg: 0 8px 24px rgba(23, 32, 42, .08);
 
   --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-  --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  --mono: var(--sans);
 
-  --r: 4px;
-  --r-lg: 6px;
+  --r: 8px;
+  --r-lg: 12px;
   --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
   --wrap: 1180px;
   --ease: cubic-bezier(.2,.7,.2,1);
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --paper: #0c131b; --surface: #121b25; --surface-2: #192431; --line: #263342; --line-strong: #4a5a6c;
-    --ink: #e9eef3; --ink-2: #bcc6d1; --ink-3: #93a0ad;
-    --brand: #4cc58a; --brand-strong: #6fd6a3; --brand-tint: #0f2a1d; --on-brand: #05140c;
-    --signal: #f2a65a; --signal-tint: #2b1d0d; --danger: #f28b82; --danger-tint: #2d1413;
-    --info: #8db4f0; --info-tint: #13223a; --focus: #7fb0ff;
-    --rail: #070c12; --on-rail: #e9eef3; --on-rail-2: #93a0ad;
-  }
-}
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --paper: #0c131b; --surface: #121b25; --surface-2: #192431; --line: #263342; --line-strong: #4a5a6c;
-  --ink: #e9eef3; --ink-2: #bcc6d1; --ink-3: #93a0ad;
-  --brand: #4cc58a; --brand-strong: #6fd6a3; --brand-tint: #0f2a1d; --on-brand: #05140c;
-  --signal: #f2a65a; --signal-tint: #2b1d0d; --danger: #f28b82; --danger-tint: #2d1413;
-  --info: #8db4f0; --info-tint: #13223a; --focus: #7fb0ff;
-  --rail: #070c12; --on-rail: #e9eef3; --on-rail-2: #93a0ad;
 }
 
 /* ---------- base ---------- */
@@ -279,3 +260,69 @@ select { max-width: 100%; }
   .site-head .wrap:first-child { min-height: 56px; }
 }
 .register-amount { display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* =========================================================================
+   Friendly layer (2026-10b): the previous site's light, green, card-based
+   look, kept calm — no gradients, no emoji, one accent colour.
+   ========================================================================= */
+.mono, code, kbd { font-family: var(--sans); font-variant-numeric: tabular-nums; }
+.eyebrow { font: 600 13px/1.4 var(--sans); letter-spacing: .04em; color: var(--brand); text-transform: uppercase; }
+.h-display { font-weight: 700; letter-spacing: -0.03em; }
+.h-1, .h-2 { font-weight: 700; }
+.site-head { background: #fff; backdrop-filter: none; }
+.btn { border-radius: var(--r); }
+.btn-primary { box-shadow: 0 1px 2px rgba(18,132,74,.25); }
+.btn-ghost { border-color: var(--line-strong); background: #fff; }
+.tag { font: 500 13px/1.2 var(--sans); border-radius: 6px; padding: 4px 9px; border-color: transparent; background: var(--surface-2); color: var(--ink-2); }
+.tag.brand { background: var(--brand-tint); color: var(--brand-strong); border-color: transparent; }
+.tag.signal { background: var(--signal-tint); color: var(--signal); border-color: transparent; }
+.tag.danger { background: var(--danger-tint); color: var(--danger); border-color: transparent; }
+.notice { border: 1px solid var(--line); border-left-width: 4px; border-radius: var(--r); }
+.stamp { font: 400 13.5px/1.4 var(--sans); border: 0; background: var(--surface); padding: 6px 12px; }
+
+/* list of calls: cards instead of ruled rows */
+.register { border-top: 0; display: grid; gap: 12px; }
+.register-row { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s4) var(--s5); box-shadow: var(--shadow); transition: border-color .15s var(--ease), box-shadow .15s var(--ease); }
+.register-row:hover { border-color: color-mix(in srgb, var(--brand) 40%, var(--line)); box-shadow: var(--shadow-lg); }
+.register-meta { font: 400 14px/1.5 var(--sans); }
+.register-deadline { font: 600 14.5px/1.4 var(--sans); }
+
+/* eligibility checks: coloured round marks */
+.checks { border-top: 0; }
+.checks li { border-bottom: 1px solid var(--line); }
+.checks li:last-child { border-bottom: 0; }
+.checks .mark { display: inline-flex; width: 22px; height: 22px; border-radius: 50%; align-items: center; justify-content: center; font: 700 13px/1 var(--sans); background: var(--surface-2); color: var(--ink-3); }
+.checks .ok .mark { background: var(--brand-tint); color: var(--brand); }
+.checks .fail .mark { background: var(--danger-tint); color: var(--danger); }
+.checks .unknown .mark, .checks .warn .mark { background: var(--signal-tint); color: var(--signal); }
+
+/* sections */
+.section { border-top: 0; }
+.section.alt { background: var(--surface); }
+.numbered > li { border-top: 0; background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s5); }
+.numbered > li::before { content: counter(n); width: 34px; height: 34px; border-radius: 50%; background: var(--brand); color: #fff; font: 700 15px/34px var(--sans); text-align: center; margin-bottom: var(--s3); }
+
+/* figures: soft stat cards */
+.figures { border: 0; gap: 12px; }
+.figure, .figure + .figure { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s4) var(--s5); box-shadow: var(--shadow); }
+@media (max-width: 759px) { .figure:nth-child(3) { border-left: 1px solid var(--line); padding-left: var(--s5); } .figure:nth-child(n+3) { border-top: 1px solid var(--line); } }
+.figure .v { font: 700 clamp(26px, 3vw, 32px)/1.1 var(--sans); color: var(--ink); }
+.panel { background: #fff; box-shadow: var(--shadow); border-radius: var(--r-lg); }
+.faq { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 0 var(--s5); }
+.faq details:last-child { border-bottom: 0; }
+.faq summary::after { font: 400 22px/1 var(--sans); color: var(--brand); }
+
+/* light footer */
+.site-foot { background: var(--surface); color: var(--ink); border-top: 1px solid var(--line); }
+.site-foot a { color: var(--ink-2); text-decoration: none; }
+.site-foot a:hover { color: var(--brand); text-decoration: underline; }
+.site-foot h4 { font: 600 13px/1.4 var(--sans); color: var(--ink); letter-spacing: .02em; }
+.site-foot p, .site-foot .legal { color: var(--ink-3); }
+.site-foot .legal { border-top-color: var(--line); }
+.site-foot .brand { color: var(--ink); }
+.site-foot .brand b { color: var(--brand); }
+
+/* auth pages: the form sits on a card */
+.auth-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s6) var(--s5); box-shadow: var(--shadow-lg); justify-self: center; }
+.auth { background: var(--surface); }
+@media (max-width: 560px) { .figure .v { font-size: 22px; white-space: nowrap; } .figure, .figure + .figure { padding: var(--s3) var(--s4); } }

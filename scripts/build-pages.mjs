@@ -63,12 +63,12 @@ function deadlineHu(g) {
 }
 const ft = (n) => (n >= 1e9 ? `${(n / 1e9).toFixed(1).replace('.', ',')} Mrd Ft` : `${Math.round(n / 1e6)} M Ft`);
 
-const MARK = '<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0a6b3d"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const MARK = '<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#12844a"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
 // Page-specific styles on top of assets/site.css (the shared design system).
 const PAGE_CSS = `
 .crumbs{font:400 13px/1.4 var(--mono);color:var(--ink-3);margin:var(--s5) 0 var(--s4)}.crumbs a{color:var(--ink-3)}
-.call-head{padding-bottom:var(--s5);border-bottom:2px solid var(--ink);margin-bottom:var(--s5)}
+.call-head{padding-bottom:var(--s5);border-bottom:1px solid var(--line);margin-bottom:var(--s5)}
 .call-head h1{font-size:clamp(26px,3.4vw,38px);letter-spacing:-.02em;margin:var(--s2) 0 var(--s3);overflow-wrap:anywhere;max-width:30ch}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--s3)}
 .call-grid{display:grid;gap:var(--s6);padding-bottom:var(--s7)}
@@ -87,8 +87,8 @@ const PAGE_CSS = `
 .log{list-style:none;margin:0;padding:0}.log li{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}
 .log time{font:400 13.5px/1.6 var(--mono);color:var(--ink-3)}
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin:var(--s4) 0}
-.filters button{min-height:40px;padding:0 14px;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);border-radius:var(--r);font:500 14px/1 var(--sans);cursor:pointer}
-.filters button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.filters button{min-height:40px;padding:0 14px;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);border-radius:999px;font:500 14px/1 var(--sans);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--brand);color:#fff;border-color:var(--brand)}
 #q{width:100%;min-height:48px;padding:12px 14px;border:1px solid var(--line-strong);border-radius:var(--r);font:400 16px/1.4 var(--sans);background:var(--paper);color:var(--ink)}
 .hubs{margin:var(--s5) 0 var(--s6);display:grid;gap:var(--s4)}@media(min-width:900px){.hubs{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .hubs h2{font:500 13px/1.4 var(--mono);text-transform:uppercase;color:var(--ink-3);margin-bottom:var(--s2)}
@@ -118,7 +118,7 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(canonical)}">
 <meta property="og:locale" content="hu_HU">
-<meta name="theme-color" content="#0e1a2b">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/svg+xml" href="${up}favicon.svg">
 <link rel="preload" href="${up}assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${up}assets/site.css">
