@@ -61,8 +61,8 @@
     var h = '', b = budget(g);
     if (b) {
       var cls = b.left === 0 ? 'red' : b.pct <= 25 ? 'amber' : 'green';
-      h += '<div class="gbar"><div class="gbar-top"><span>Szabad keret</span><b class="' + cls + '">' + esc(ft(b.left)) + '<span class="of"> / ' + esc(ft(b.total)) + '</span></b></div>' +
-        '<div class="track" role="img" aria-label="Szabad keret: ' + b.pct + '%"><i class="' + cls + ' ' + w(b.left > 0 ? Math.max(b.pct, 5) : 0) + '"></i></div></div>';
+      h += '<div class="gbar"><div class="gbar-top"><span>Szabad keret</span><b class="' + cls + '">' + esc(ft(b.left)) + (b.left === 0 ? '<span class="of"> · keret lekötve</span>' : '<span class="of"> / ' + esc(ft(b.total)) + '</span>') + '</b></div>' +
+        '<div class="track" role="img" aria-label="Szabad keret: ' + b.pct + '%"><i class="' + cls + ' ' + w(b.left > 0 ? Math.max(b.pct, 5) : 100) + '"></i></div></div>';
     }
     if (isDate(g.deadline)) {
       var d = daysBetween(opts.today, g.deadline);

@@ -404,3 +404,15 @@ select { max-width: 100%; }
 
 .track i.p0{width:0%}.track i.p5{width:5%}.track i.p10{width:10%}.track i.p15{width:15%}.track i.p20{width:20%}.track i.p25{width:25%}.track i.p30{width:30%}.track i.p35{width:35%}.track i.p40{width:40%}.track i.p45{width:45%}.track i.p50{width:50%}.track i.p55{width:55%}.track i.p60{width:60%}.track i.p65{width:65%}.track i.p70{width:70%}.track i.p75{width:75%}.track i.p80{width:80%}.track i.p85{width:85%}.track i.p90{width:90%}.track i.p95{width:95%}.track i.p100{width:100%}
 @media (max-width: 560px) { .gcard { padding: 16px; } .gcard.apply { padding-left: 13px; } .gc-head { grid-template-columns: 40px minmax(0, 1fr); gap: 12px; } .src-tag { width: 40px; height: 40px; font-size: 12px; border-radius: 10px; } .gc-title { font-size: 16px; } }
+
+/* search panel: solid brand colour so it is the first thing the eye lands on */
+.bigsearch { background: var(--brand); border: 0; color: #fff; padding: 22px; box-shadow: 0 14px 34px rgba(18, 132, 74, .28); }
+.bigsearch h2 { color: #fff; font-size: 20px; }
+.bigsearch input { background: #fff; border: 2px solid #fff; color: var(--ink); }
+.bigsearch input:focus { outline: 3px solid rgba(255,255,255,.55); outline-offset: 2px; border-color: #fff; }
+.bigsearch .btn-primary, .bigsearch .btn { background: #0b5a31; color: #fff; box-shadow: none; }
+.bigsearch .btn:hover { background: #084726; color: #fff; }
+.bigsearch .chips button, .bigsearch .filters button { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.45); color: #fff; }
+.bigsearch .chips button:hover, .bigsearch .filters button:hover { background: rgba(255,255,255,.26); }
+.bigsearch .filters button[aria-pressed="true"] { background: #fff; color: var(--brand-strong); border-color: #fff; }
+.bigsearch .hint { color: rgba(255,255,255,.85); }
