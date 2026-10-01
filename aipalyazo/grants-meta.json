@@ -1,17 +1,27 @@
 {
- "updatedAt": "2026-09-30T11:42:17.987Z",
+ "updatedAt": "2026-10-01T12:11:11.328Z",
  "counts": {
-  "total": 49,
+  "total": 47,
   "api": 37,
-  "curated": 12
+  "curated": 10
  },
  "changes": [
   {
-   "id": "pg-IKOP_PLUSZ-1.2.0-23",
+   "id": "pg-GINOP_PLUSZ-1.1.6-25",
    "type": "szabad-keret",
-   "from": 119993906659,
-   "to": 108316915110,
-   "title": "Tiszta üzemű városi-elővárosi közlekedés erősítése a fővároson és a budapesti agglomeráción kívüli településeken"
+   "from": 5659919143,
+   "to": 5567249607,
+   "title": "Minősített klasztermenedzsment szervezetek támogatása"
+  },
+  {
+   "id": "G-128",
+   "type": "removed",
+   "title": "COSME / Single Market Programme — KKV nemzetközi piacra lépés"
+  },
+  {
+   "id": "G-222",
+   "type": "removed",
+   "title": "KAVOSZ Széchenyi Mikrohitel MAX+ — 0% kamatozású mikrohitel"
   }
  ]
 }
