@@ -1,27 +1,25 @@
 {
- "updatedAt": "2026-10-01T12:11:11.328Z",
+ "updatedAt": "2026-10-02T11:41:10.637Z",
  "counts": {
-  "total": 47,
+  "total": 44,
   "api": 37,
-  "curated": 10
+  "curated": 7
  },
  "changes": [
   {
-   "id": "pg-GINOP_PLUSZ-1.1.6-25",
-   "type": "szabad-keret",
-   "from": 5659919143,
-   "to": 5567249607,
-   "title": "Minősített klasztermenedzsment szervezetek támogatása"
+   "id": "G-138",
+   "type": "removed",
+   "title": "HEPA Beszállítói Program — magyar KKV-k beszállítóvá válása"
   },
   {
-   "id": "G-128",
+   "id": "G-161",
    "type": "removed",
-   "title": "COSME / Single Market Programme — KKV nemzetközi piacra lépés"
+   "title": "HEPA Külpiacra Lépés Mentorprogram — célpiac-elemzés és kapcsolatépítés"
   },
   {
-   "id": "G-222",
+   "id": "G-166",
    "type": "removed",
-   "title": "KAVOSZ Széchenyi Mikrohitel MAX+ — 0% kamatozású mikrohitel"
+   "title": "Erasmus+ KA2 — Innovációs partnerségek a felnőttképzésben"
   }
  ]
 }
