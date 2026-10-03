@@ -1,25 +1,20 @@
 {
- "updatedAt": "2026-10-02T11:41:10.637Z",
+ "updatedAt": "2026-10-03T10:55:01.643Z",
  "counts": {
-  "total": 44,
+  "total": 46,
   "api": 37,
-  "curated": 7
+  "curated": 9
  },
  "changes": [
   {
    "id": "G-138",
-   "type": "removed",
+   "type": "new",
    "title": "HEPA Beszállítói Program — magyar KKV-k beszállítóvá válása"
   },
   {
    "id": "G-161",
-   "type": "removed",
+   "type": "new",
    "title": "HEPA Külpiacra Lépés Mentorprogram — célpiac-elemzés és kapcsolatépítés"
-  },
-  {
-   "id": "G-166",
-   "type": "removed",
-   "title": "Erasmus+ KA2 — Innovációs partnerségek a felnőttképzésben"
   }
  ]
 }
