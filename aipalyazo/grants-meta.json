@@ -1,20 +1,9 @@
 {
- "updatedAt": "2026-10-03T10:55:01.643Z",
+ "updatedAt": "2026-10-04T11:37:07.445Z",
  "counts": {
   "total": 46,
   "api": 37,
   "curated": 9
  },
- "changes": [
-  {
-   "id": "G-138",
-   "type": "new",
-   "title": "HEPA Beszállítói Program — magyar KKV-k beszállítóvá válása"
-  },
-  {
-   "id": "G-161",
-   "type": "new",
-   "title": "HEPA Külpiacra Lépés Mentorprogram — célpiac-elemzés és kapcsolatépítés"
-  }
- ]
+ "changes": []
 }
