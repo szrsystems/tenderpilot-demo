@@ -6,6 +6,11 @@ import { budapestDateTime, esc, safeUrl } from './http.ts';
 import type { LeadRow, NotifyStore } from './lead-store.ts';
 import { LINK_STATUSES, type LinkStatus, STATUS_PAGE, statusLink } from './lead-token.ts';
 
+function sourceLabel(lead: { utm_source?: string | null; utm_campaign?: string | null; utm_medium?: string | null }): string {
+  if (!lead.utm_source) return 'közvetlen (nem kampányból)';
+  return [lead.utm_source, lead.utm_campaign, lead.utm_medium].filter(Boolean).join(' / ');
+}
+
 export const FROM = 'AIpályázó <noreply@aipalyazo.hu>';
 export const PARTNER_NAME_DEFAULT = 'DFT-Hungária';
 export const PRIVACY_URL = 'https://aipalyazo.hu/aipalyazo/adatvedelem.html';
@@ -102,6 +107,7 @@ export async function operatorEmail(lead: LeadRow, opts: { statusSecret?: string
     row('Kapcsolattartó', esc(lead.name)),
     row('E-mail', `<a href="mailto:${esc(lead.email)}" style="color:#15803d;">${esc(lead.email)}</a>`),
     row('Telefon', lead.phone ? `<a href="tel:${esc(lead.phone.replace(/[^0-9+]/g, ''))}" style="color:#15803d;">${esc(lead.phone)}</a>` : '—'),
+    row('Forrás', esc(sourceLabel(lead))),
   ].join('');
   const message = lead.message
     ? `<div style="margin:6px 0 0;padding:12px 14px;background:#f9fafb;border-radius:8px;font-size:14px;line-height:1.55;color:#111827;white-space:pre-wrap;">${esc(lead.message)}</div>`
@@ -150,6 +156,7 @@ ${statusBlock}
     `Kapcsolattartó: ${lead.name}`,
     `E-mail: ${lead.email}`,
     `Telefon: ${lead.phone || '—'}`,
+    `Forrás: ${sourceLabel(lead)}`,
     `Üzenet: ${lead.message || '—'}`,
     '',
     `Felhívás: ${title}${snap.titleFromClient ? ' (böngésző által küldött cím)' : ''}`,

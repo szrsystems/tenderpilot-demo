@@ -32,7 +32,11 @@ import { createGrantFeed, type GrantFeed } from '../_shared/grants.ts';
 import { type LeadStore, type MatchCheck, type MatchSnapshot, supabaseLeadStore } from '../_shared/lead-store.ts';
 import { type Mailer, notifyOperator, parseRecipients, PARTNER_NAME_DEFAULT, requesterEmail, resendMailer } from '../_shared/lead-mail.ts';
 
-export const LIMITS = { perEmail24h: 3, perIp1h: 10, global1h: 60 };
+// global1h is a flood brake, not a quota: a partner campaign can bring a burst
+// of real requests, so it is high and configurable (LEAD_GLOBAL_HOURLY_CAP).
+export const LIMITS = { perEmail24h: 3, perIp1h: 20, global1h: 300 };
+const TAG_RE = /^[a-z0-9._-]{1,60}$/;
+function tag(v: unknown): string | null { const s = typeof v === 'string' ? v.trim().toLowerCase() : ''; return TAG_RE.test(s) ? s : null; }
 const IP_RE = /^[0-9A-Fa-f:.]{2,45}$/;
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 const CHECK_STATUSES = new Set(['ok', 'fail', 'unknown', 'warn', 'neutral']);
@@ -52,6 +56,7 @@ export type Deps = {
 type Clean = {
   grantId: string; grantTitle: string; name: string; email: string; phone: string | null;
   company: string | null; message: string | null; turnstileToken: string; match: MatchSnapshot;
+  attribution: { source: string | null; campaign: string | null; medium: string | null };
 };
 
 class Invalid extends Error { constructor(public field: string) { super(field); } }
@@ -115,7 +120,11 @@ export function validate(body: Record<string, unknown>): Clean {
   const grantTitle = typeof body.grantTitle === 'string' ? cap(body.grantTitle, 300) : '';
   const t = body.turnstileToken;
   if (t != null && (typeof t !== 'string' || t.length > 2048)) throw new Invalid('turnstileToken');
-  return { grantId, grantTitle, name, email, phone, company, message, turnstileToken: (t as string) || '', match: cleanMatch(body.match) };
+  // Campaign tags are optional and never block a request: bad values are dropped.
+  const a = body.attribution && typeof body.attribution === 'object' ? body.attribution as Record<string, unknown> : {};
+  const attribution = { source: tag(a.source), campaign: tag(a.campaign), medium: tag(a.medium) };
+  if (!attribution.source) { attribution.campaign = null; attribution.medium = null; }
+  return { grantId, grantTitle, name, email, phone, company, message, turnstileToken: (t as string) || '', match: cleanMatch(body.match), attribution };
 }
 
 export function clientIp(req: Request): string | null {
@@ -178,7 +187,8 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
     const hour = new Date(now.getTime() - 3600e3).toISOString();
     const ipHash = await sha256Hex(`${ip ?? 'unknown'}|${env('LEAD_SALT') || 'nosalt'}`);
     if ((await store.countByIp(ipHash, hour)) >= LIMITS.perIp1h) return reply({ error: 'rate_limited' }, 429);
-    if ((await store.countSince(hour)) >= LIMITS.global1h) {
+    const globalCap = parseInt(env('LEAD_GLOBAL_HOURLY_CAP') ?? '', 10) > 0 ? parseInt(env('LEAD_GLOBAL_HOURLY_CAP')!, 10) : LIMITS.global1h;
+    if ((await store.countSince(hour)) >= globalCap) {
       console.error('[lead-submit] global hourly cap reached — possible flood');
       return reply({ error: 'rate_limited' }, 429);
     }
@@ -220,6 +230,7 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
     const lead = await store.insert({
       user_id: userId, grant_id: v.grantId, grant_title: title, name: v.name, email: v.email,
       phone: v.phone, company: v.company, message: v.message, match_snapshot: snapshot, ip_hash: ipHash,
+      utm_source: v.attribution.source, utm_campaign: v.attribution.campaign, utm_medium: v.attribution.medium,
     });
 
     const mailer = deps.mailer ?? resendMailer(env('RESEND_API_KEY') ?? '', doFetch);

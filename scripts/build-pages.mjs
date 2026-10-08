@@ -156,6 +156,7 @@ ${body}
     <div class="legal"><span>© 2026 AIpályázó · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
   </div>
 </footer>
+<script src="${up}lib/attribution.js"></script>
 <script src="${up}assets/site.js" defer></script>
 <script src="${up}assets/analytics.js" defer></script>
 </body>

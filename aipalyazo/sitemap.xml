@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://aipalyazo.hu/aipalyazo/index.html</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/index.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/index.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/onboarding.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/signup.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/miert-ingyenes.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -41,8 +41,6 @@
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/ginop-plusz-4-1-1-23.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/ginop-plusz-3-1-1-23.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/vallalkozova-valast-elosegito-tamogatas.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/kap-rd40-rd12-1-26.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/kap-rd35-1-25.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/kap-rd35-2-26.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/kap-rd38-rd39-1-25.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/kap-rd06-1-25.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
@@ -74,7 +72,6 @@
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/ngi-codesupply.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/nostradamus-oc1.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/euipo-sme-fund-2026.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/erasmus-2026-ka210-adu.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/horizon-cl4-2027-01-mat-prod-22.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/horizon-cl4-2027-01-mat-prod-02.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/horizon-cl4-2027-01-mat-prod-16.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
@@ -139,9 +136,6 @@
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/horizon-widera-2027-01-widening-01.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/horizon-widera-2027-04-widening-01.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/horizon-eic-2026-step.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/digital-2026-ai-data-10-compliance.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/digital-2026-skills-10-edtech.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/digital-2026-ai-piloting-10-screening.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/digital-eccc-2027-deploy-cyber-11-dualuse.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/digital-eccc-2027-deploy-cyber-11-euleg.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/eit-rib-hu-2027.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
@@ -158,7 +152,6 @@
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/eurohpc-aif-large-scale.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/eurohpc-aif-playground-fastlane.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/eurohpc-quantum-pilot.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/eurohpc-benchmark-2026.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tef-health-oc2.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/battleverse-oc1.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/dut-call-2026.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
@@ -168,7 +161,6 @@
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/eureka-eurogia2030-call31.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/eureka-itea-2026.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/eureka-xecs-call6.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/ivf-visegrad-grants-2026-10.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/horizon-ju-eurohpc-2026-qti-13.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/horizon-ju-eurohpc-2026-nqkd-12.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/eye-rolling.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
@@ -180,7 +172,6 @@
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/eib-raiffeisen-lizing.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/2025-1-2-2-eureka.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/2024-1-2-1-he-partnerseg.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/2025-1-2-5-eu-kp.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/kap-rd01a-rd12-2-25.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/kap-rd41-3-25.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/mfb-pvrk-forgoeszkoz-hitelprogram.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
@@ -190,30 +181,30 @@
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/perform-europe-2026-2028.html</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tff-5-1-5-2026-kth-start-kiegeszito.html</loc><lastmod>2026-09-28</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/eitcc-innovation-projects-2026.html</loc><lastmod>2026-09-28</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/ginop-plusz.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/dimop-plusz.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/kehop-plusz.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/mahop-plusz.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/kap.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/horizon-europe.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/eic.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/eu-egyeb-programok.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/szechenyi-kartya.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/egyeni-vallalkozo.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/mikrovallalkozas.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/kkv.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/startup.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/mezogazdasagi-termelo.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/turisztikai-vallalkozas.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/vissza-nem-teritendo.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/hitel.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/toke.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/garancia.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/regio-pest.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/regio-kozep-dunantul.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/regio-nyugat-dunantul.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/regio-del-dunantul.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/regio-eszak-magyarorszag.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/regio-eszak-alfold.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
-  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/regio-del-alfold.html</loc><lastmod>2026-09-30</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/ginop-plusz.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/dimop-plusz.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/kehop-plusz.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/mahop-plusz.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/kap.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/horizon-europe.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/eic.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/eu-egyeb-programok.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/szechenyi-kartya.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/egyeni-vallalkozo.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/mikrovallalkozas.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/kkv.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/startup.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/mezogazdasagi-termelo.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/turisztikai-vallalkozas.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/vissza-nem-teritendo.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/hitel.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/toke.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/garancia.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/regio-pest.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/regio-kozep-dunantul.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/regio-nyugat-dunantul.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/regio-del-dunantul.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/regio-eszak-magyarorszag.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/regio-eszak-alfold.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aipalyazo.hu/aipalyazo/palyazat/tema/regio-del-alfold.html</loc><lastmod>2026-10-08</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
 </urlset>

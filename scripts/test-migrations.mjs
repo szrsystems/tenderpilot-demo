@@ -246,3 +246,19 @@ test('global AI cap counts across users and is service-role only', async () => {
   await as('authenticated', { id: A, email: 'a@example.com' }, () =>
     rejects(db.query('select public.bump_ai_global(1000)'), /permission denied/));
 });
+
+test('attribution: user sets own campaign once (first touch kept); bad tags rejected; others untouchable', async () => {
+  await db.exec(sql('20260928000003_attribution.sql')); // idempotent
+  const prof = await db.query(`select id from public.profiles where id = '${A}'`);
+  assert.equal(prof.rows.length, 1, 'profile row exists (handle_new_user)');
+  await as('authenticated', { id: A, email: 'a@example.com' }, () =>
+    db.exec(`update public.profiles set acq_source = 'dft', acq_campaign = 'okt-2026', acq_at = now() + interval '5 days' where id = '${A}'`));
+  await as('authenticated', { id: A, email: 'a@example.com' }, () =>
+    db.exec(`update public.profiles set acq_source = 'google', acq_campaign = 'x' where id = '${A}'`));
+  const r = await db.query(`select acq_source, acq_campaign, acq_at <= now() as sane from public.profiles where id = '${A}'`);
+  assert.deepEqual([r.rows[0].acq_source, r.rows[0].acq_campaign, r.rows[0].sane], ['dft', 'okt-2026', true]);
+  await as('authenticated', { id: B, email: 'b@example.com' }, () =>
+    db.exec(`update public.profiles set acq_source = 'evil' where id = '${A}'`)); // RLS: affects 0 rows
+  assert.equal((await db.query(`select acq_source from public.profiles where id = '${A}'`)).rows[0].acq_source, 'dft');
+  await rejects(as('service_role', null, () => db.exec(`insert into public.leads (grant_id, name, email, utm_source) values ('g1', 'Kiss Anna', 'x@example.com', 'Bad Tag!')`)), /leads_utm_fmt/);
+});

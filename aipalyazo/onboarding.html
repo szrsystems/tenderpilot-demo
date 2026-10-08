@@ -209,6 +209,7 @@ fieldset.field{border:0;padding:0;margin:0 0 var(--s4)}fieldset legend{margin-bo
     <div class="legal"><span>© 2026 AIpályázó · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
   </div>
 </footer>
+<script src="lib/attribution.js"></script>
 <script src="assets/site.js" defer></script>
 <script src="assets/analytics.js" defer></script>
 <script src="lib/hu-geo.js"></script>
@@ -374,6 +375,7 @@ fieldset.field{border:0;padding:0;margin:0 0 var(--s4)}fieldset legend{margin-bo
     if (r.error) { console.warn('[gp] profile save failed', r.error); return false; }
     var v2 = {}; if (data.rnd) v2.rnd = data.rnd; if (data.women_led) v2.women_led = data.women_led;
     if (Object.keys(v2).length) { var r2 = await c.from('profiles').update(v2).eq('id', signedInUser.id); if (r2.error) console.info('[gp] v2 profile fields not saved (migration pending)'); }
+    var a = window.AIPAttr && AIPAttr.get(); if (a) { try { await c.from('profiles').update({ acq_source: a.source, acq_campaign: a.campaign, acq_medium: a.medium, acq_at: a.at }).eq('id', signedInUser.id); } catch (eA) {} } // first touch only; the database keeps the first value
     var np = await c.from('notif_prefs').upsert({ user_id: signedInUser.id, weekly_enabled: data.channels.indexOf('weekly') >= 0 }, { onConflict: 'user_id' });
     if (np.error) console.warn('[gp] notif_prefs save failed', np.error);
     var ni = await c.from('notif_prefs').update({ instant_enabled: data.channels.indexOf('instant') >= 0 }).eq('user_id', signedInUser.id);

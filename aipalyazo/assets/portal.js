@@ -111,6 +111,7 @@
         // Filled before signing up (quick check / onboarding): push it up once.
         await pushProfile(S.profile);
       }
+      pushAttribution();
       await syncBookmarks();
       resetMatches();
     } catch (e) { console.warn('[aip] auth resolve failed', e); }
@@ -123,6 +124,10 @@
     if (Object.keys(patch).length) { var r = await c.from('profiles').update(patch).eq('id', S.user.id); if (r.error) console.warn('[aip] profile push failed', r.error); }
     var v2 = {}; if (p.rnd) v2.rnd = p.rnd; if (p.women_led) v2.women_led = p.women_led;
     if (Object.keys(v2).length) await c.from('profiles').update(v2).eq('id', S.user.id);
+  }
+  async function pushAttribution() {
+    if (!S.user || !window.gp) return; var c = window.gp.client;
+    var a = window.AIPAttr && AIPAttr.get(); if (a) { try { await c.from('profiles').update({ acq_source: a.source, acq_campaign: a.campaign, acq_medium: a.medium, acq_at: a.at }).eq('id', S.user.id); } catch (eA) {} } // first touch only; the database keeps the first value
   }
   async function syncBookmarks() {
     if (!S.user) return;
@@ -634,7 +639,8 @@
     if (CFG.turnstileSiteKey && !tsToken) bad.push(['ts-box', 'Kérjük, igazolja, hogy nem robot.']);
     if (bad.length) { err.textContent = bad[0][1]; err.hidden = false; var el = $('#' + bad[0][0]); if (el && el.focus) el.focus(); return; }
     var m = matchOf(g), p = S.profile || {};
-    var body = { grantId: g.id, grantTitle: g.title, name: name, email: email, phone: phone, company: v('ld-company'), message: v('ld-msg'), consent: true, turnstileToken: tsToken || undefined,
+    var attr = window.AIPAttr && AIPAttr.get();
+    var body = { attribution: attr ? { source: attr.source, campaign: attr.campaign, medium: attr.medium } : undefined, grantId: g.id, grantTitle: g.title, name: name, email: email, phone: phone, company: v('ld-company'), message: v('ld-msg'), consent: true, turnstileToken: tsToken || undefined,
       match: m && m.personal ? { score: m.score, verdict: m.verdict, checks: m.checks.map(function (c) { return { key: c.key, status: c.status, reason: c.reason, label: c.label }; }), profile: { company: p.company, employees: p.employees, site_region: p.site_region, teaor: p.teaor, years_operating: p.years_operating } } : undefined };
     btn.disabled = true; btn.textContent = 'Küldés…';
     var res = null, status = 0;

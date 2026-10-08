@@ -34,6 +34,9 @@ export type LeadRow = {
   notified_at: string | null;
   notify_attempts: number;
   notify_error?: string | null;
+  utm_source?: string | null;
+  utm_campaign?: string | null;
+  utm_medium?: string | null;
 };
 
 export type NewLead = {
@@ -47,6 +50,9 @@ export type NewLead = {
   message: string | null;
   match_snapshot: MatchSnapshot;
   ip_hash: string | null;
+  utm_source?: string | null;
+  utm_campaign?: string | null;
+  utm_medium?: string | null;
 };
 
 export type NotifyStore = {
@@ -73,7 +79,7 @@ export type LeadStore = NotifyStore & {
 };
 
 export const LEAD_COLS =
-  'id, lead_ref, created_at, user_id, grant_id, grant_title, name, email, phone, company, message, match_snapshot, status, status_note, status_updated_at, notified_at, notify_attempts, notify_error';
+  'id, lead_ref, created_at, user_id, grant_id, grant_title, name, email, phone, company, message, match_snapshot, status, status_note, status_updated_at, notified_at, notify_attempts, notify_error, utm_source, utm_campaign, utm_medium';
 
 function check<T>(res: { data: T; error: any }): T {
   if (res.error) throw new Error(`db: ${res.error.code ?? ''} ${res.error.message ?? res.error}`.slice(0, 200));

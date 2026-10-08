@@ -246,3 +246,20 @@ Deno.test('CORS: unknown origin gets the default allow-origin, OPTIONS ok', asyn
   const r = await handler(new Request('http://x', { method: 'OPTIONS', headers: { origin: 'https://evil.example' } }), deps);
   assertEquals(r.headers.get('access-control-allow-origin'), 'https://aipalyazo.hu');
 });
+
+Deno.test('campaign tags: stored on the lead and shown to the partner; junk tags dropped, never blocking', async () => {
+  const { store, mailer, deps } = setup();
+  const r = await handler(req(body({ attribution: { source: 'DFT', campaign: 'okt-2026_hirlevel', medium: 'email' } })), deps);
+  assertEquals(r.status, 200);
+  assertEquals([store.rows[0].utm_source, store.rows[0].utm_campaign, store.rows[0].utm_medium], ['dft', 'okt-2026_hirlevel', 'email']);
+  assert(mailer.sent.some((m: any) => /Forrás[\s\S]*dft \/ okt-2026_hirlevel \/ email/.test(m.html || '') ));
+  const r2 = await handler(req(body({ email: 'b@example.com', attribution: { source: '<script>', campaign: 'x' } })), deps);
+  assertEquals(r2.status, 200);
+  assertEquals([store.rows[1].utm_source, store.rows[1].utm_campaign], [null, null]);
+});
+
+Deno.test('global hourly cap is configurable (LEAD_GLOBAL_HOURLY_CAP)', async () => {
+  const { deps } = setup({ ...ENV, LEAD_GLOBAL_HOURLY_CAP: '2' });
+  for (let i = 0; i < 2; i++) assertEquals((await handler(req(body({ email: `c${i}@example.com` }), { 'x-forwarded-for': `192.0.2.${i}` }), deps)).status, 200);
+  assertEquals((await handler(req(body({ email: 'c9@example.com' }), { 'x-forwarded-for': '192.0.2.99' }), deps)).status, 429);
+});
