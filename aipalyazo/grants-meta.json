@@ -1,19 +1,64 @@
 {
- "updatedAt": "2026-09-28T15:41:17.258Z",
+ "updatedAt": "2026-10-08T10:06:31.414Z",
  "counts": {
-  "total": 184,
+  "total": 173,
   "api": 17,
-  "verified": 167,
+  "verified": 156,
   "euAuto": 0,
-  "hazai": 56,
-  "eu": 128,
+  "hazai": 52,
+  "eu": 121,
   "excluded": 0
  },
  "note": "Rebuilt 2026-09-24 after a manual verification of every listed call. The next daily run adds EU calls from the official EU API.",
  "euApiFailed": false,
  "needsReview": [],
  "staleVerified": [],
- "droppedVerified": [],
+ "droppedVerified": [
+  {
+   "id": "v-kap-rd40-rd12-1-26",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-kap-rd35-1-25",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-erasmus-2026-ka210-adu",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-digital-2026-ai-data-10-compliance",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-digital-2026-skills-10-edtech",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-digital-2026-ai-piloting-10-screening",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-eurohpc-benchmark-2026",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-ivf-visegrad-grants-2026-10",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-2025-1-2-5-eu-kp",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-eitum-umx-2026",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-marc-impact-hu-2026",
+   "why": "lejárt"
+  }
+ ],
  "excluded": [
   {
    "code": "SSNS-NCC-HU-2026.KOMP",
@@ -96,9 +141,65 @@
    "why": "Csak közintézmények, egyházak, nonprofitok; 2026-09-25-én zár."
   }
  ],
- "changes": [],
+ "changes": [
+  {
+   "id": "v-kap-rd40-rd12-1-26",
+   "type": "removed",
+   "title": "Versenyképes erdőgazdálkodást szolgáló beruházások támogatása"
+  },
+  {
+   "id": "v-kap-rd35-1-25",
+   "type": "removed",
+   "title": "Erdő-környezetvédelmi többéves kötelezettségvállalások (EKV I.)"
+  },
+  {
+   "id": "v-erasmus-2026-ka210-adu",
+   "type": "removed",
+   "title": "Erasmus+ kisléptékű partnerségek a felnőttoktatásban (KA210-ADU)"
+  },
+  {
+   "id": "v-digital-2026-ai-data-10-compliance",
+   "type": "removed",
+   "title": "Digital solutions for regulatory compliance through data (Adatalapú digitális megoldások a szabályozási megfeleléshez)"
+  },
+  {
+   "id": "v-digital-2026-skills-10-edtech",
+   "type": "removed",
+   "title": "EdTech Accelerator (EdTech gyorsítóprogram)"
+  },
+  {
+   "id": "v-digital-2026-ai-piloting-10-screening",
+   "type": "removed",
+   "title": "Apply AI: Piloting AI-based image screening in medical centres (MI-alapú képi szűrés pilotja egészségügyi központokban)"
+  },
+  {
+   "id": "v-eurohpc-benchmark-2026",
+   "type": "removed",
+   "title": "EuroHPC Benchmark Access Call (Szuperszámítógépes benchmark-hozzáférés)"
+  },
+  {
+   "id": "v-ivf-visegrad-grants-2026-10",
+   "type": "removed",
+   "title": "Visegrad Grants – 1 October 2026 deadline (Visegrádi Alap – regionális együttműködési projektek támogatása)"
+  },
+  {
+   "id": "v-2025-1-2-5-eu-kp",
+   "type": "removed",
+   "title": "Az EU Horizont Európa programjában, valamint egyéb közös EU-s programokban való magyar részvétel ösztönzése"
+  },
+  {
+   "id": "v-eitum-umx-2026",
+   "type": "removed",
+   "title": "Urban Mobility Explained (UMX) Open Call – 2. cut-off"
+  },
+  {
+   "id": "v-marc-impact-hu-2026",
+   "type": "removed",
+   "title": "Marc Impact Programme – nemzetközi társadalmi vállalkozásfejlesztő program (2026/27)"
+  }
+ ],
  "offlineRebuild": {
-  "at": "2026-09-28",
-  "apiDataFrom": "2026-09-28T15:32:02.139Z"
+  "at": "2026-10-08",
+  "apiDataFrom": "2026-09-28T15:41:17.258Z"
  }
 }
