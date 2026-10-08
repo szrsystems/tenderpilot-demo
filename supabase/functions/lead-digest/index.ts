@@ -108,7 +108,7 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
   const getAdmin = () => admin ??= createClient(env('SUPABASE_URL')!, env('SUPABASE_SERVICE_ROLE_KEY')!, { auth: { persistSession: false } });
   const store = deps.store ?? supabaseLeadStore(getAdmin());
   const mailer = deps.mailer ?? resendMailer(env('RESEND_API_KEY') ?? '');
-  const recipients = parseRecipients(env('LEAD_NOTIFY_TO'));
+  const recipients = parseRecipients(env('LEAD_NOTIFY_TO') || 'info@aipalyazo.hu');
   const statusSecret = env('LEAD_STATUS_SECRET');
   const out: Record<string, unknown> = { ok: true };
 

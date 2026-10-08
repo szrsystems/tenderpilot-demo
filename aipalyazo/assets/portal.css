@@ -228,3 +228,18 @@ body.app-body { background: var(--surface); }
 .call .fit .lbl { display: block; margin-top: 6px; font-size: 13.5px; }
 @media (min-width: 900px) { .call { grid-template-columns: minmax(0, 1fr) 180px 128px 130px 44px; } }
 @media (max-width: 899px) { .toolbar { grid-template-columns: 1fr 1fr; } .toolbar .field:last-child { grid-column: 1 / -1; } }
+.del-list { margin: 0 0 0 1.2em; padding: 0; color: var(--ink-2); } .del-list li { margin: 4px 0; }
+
+/* news */
+.news-ann { display: grid; gap: 12px; margin-bottom: var(--s5); }
+.news-ann .card h2 { margin: 4px 0 6px; }
+.news-ann .card p:last-child { margin-bottom: 0; }
+.news-days { display: grid; gap: 14px; }
+.news-day { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 14px 18px; box-shadow: var(--shadow); }
+.news-day h3 { font-size: 14px; color: var(--ink-3); margin: 0 0 8px; font-weight: 600; }
+.news-day ul { list-style: none; margin: 0; padding: 0; }
+.news-day li { padding: 8px 0; border-top: 1px solid var(--line); font-size: 15px; line-height: 1.5; }
+.news-day li:first-child { border-top: 0; }
+.news-day .badge { margin-right: 6px; vertical-align: 1px; }
+.news-link { all: unset; cursor: pointer; font-weight: 600; color: var(--ink); }
+.news-link:hover, .news-link:focus-visible { color: var(--brand); text-decoration: underline; }

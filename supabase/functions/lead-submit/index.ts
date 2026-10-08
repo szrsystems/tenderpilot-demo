@@ -24,6 +24,8 @@
 // =========================================================================
 // deno-lint-ignore-file no-explicit-any
 
+import '../_shared/phone.js';
+const normalizePhone: (s: string) => string | null = (globalThis as any).AIPPhone.normalizePhone;
 import { createClient } from 'jsr:@supabase/supabase-js@2';
 import {
   bearer, CONTROL_CHARS, CONTROL_OR_NEWLINE, corsHeaders, jsonResponse, makeEnv, readJsonObject, sha256Hex,
@@ -112,8 +114,10 @@ export function validate(body: Record<string, unknown>): Clean {
   const name = str(body, 'name', { min: 2, max: 120, required: true })!;
   const email = str(body, 'email', { max: 254, required: true })!.toLowerCase();
   if (!EMAIL_RE.test(email)) throw new Invalid('email');
-  const phone = str(body, 'phone', { max: 40 });
-  if (phone && !/\d/.test(phone)) throw new Invalid('phone');
+  const rawPhone = str(body, 'phone', { max: 40 });
+  // A real Hungarian (or international +..) number, stored in one format.
+  const phone = rawPhone ? normalizePhone(rawPhone) : null;
+  if (rawPhone && !phone) throw new Invalid('phone');
   const company = str(body, 'company', { max: 200 });
   const message = str(body, 'message', { max: 2000, multiline: true });
   // Only a fallback when the id is not in the feed → truncate, don't reject.
@@ -239,7 +243,7 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
       console.error('[lead-submit] RESEND_API_KEY not set — lead stored, no e-mail sent', lead.lead_ref);
     } else {
       await notifyOperator(lead, {
-        store, mailer, recipients: parseRecipients(env('LEAD_NOTIFY_TO')),
+        store, mailer, recipients: parseRecipients(env('LEAD_NOTIFY_TO') || 'info@aipalyazo.hu'),
         statusSecret: env('LEAD_STATUS_SECRET'),
       });
       try {

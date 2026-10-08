@@ -93,6 +93,15 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
   try { user = await getUser(jwt); } catch { user = null; }
   if (!user) return reply({ error: 'unauthorized' }, 401);
 
+  // Deliberate confirmation: the body must repeat the word TÖRLÉS and the
+  // account's own e-mail address (the portal collects both in a multi-step flow).
+  let confirmBody: Record<string, unknown> = {};
+  try { confirmBody = await req.json(); } catch { confirmBody = {}; }
+  const typedEmail = typeof confirmBody.email === 'string' ? confirmBody.email.trim().toLowerCase() : '';
+  if (confirmBody.confirm !== 'TÖRLÉS' || (user.email && typedEmail !== user.email.toLowerCase())) {
+    return reply({ error: 'confirmation_required' }, 400);
+  }
+
   const ops = deps.ops ?? supabaseOps(getAdmin());
   const email = user.email ?? null;
   let step: 'block' | 'leads' | 'data' | 'account' = 'block';

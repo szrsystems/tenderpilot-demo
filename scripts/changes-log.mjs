@@ -31,6 +31,8 @@ export function mergeChanges(prev, changes, today) {
     const e = { date: today, type: c.type };
     if (c.from !== undefined && c.from !== null) e.from = c.from;
     if (c.to !== undefined && c.to !== null) e.to = c.to;
+    // Titles let the portal's news page name calls that are no longer in the feed.
+    if ((c.type === 'new' || c.type === 'removed') && typeof c.title === 'string' && c.title) e.title = c.title.slice(0, 200);
     // The monitor re-reports an official deadline every day until the
     // verified list is updated — log each distinct move once.
     if (c.type === 'deadline-official' && (out[c.id] || []).some((x) => x.type === e.type && x.from === e.from && x.to === e.to)) continue;

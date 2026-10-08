@@ -15,8 +15,8 @@ test('feed diff → dated log entries, merged with the previous file', () => {
     { date: '2026-09-28', type: 'deadline', from: '2026-10-01', to: '2026-10-15' },
     { date: '2026-09-28', type: 'szabad-keret', from: 50, to: 20 },
   ]);
-  assert.deepEqual(log.b, [{ date: '2026-09-28', type: 'removed' }]);
-  assert.deepEqual(log.c, [{ date: '2026-09-28', type: 'new' }]);
+  assert.deepEqual(log.b, [{ date: '2026-09-28', type: 'removed', title: 'B' }]);
+  assert.deepEqual(log.c, [{ date: '2026-09-28', type: 'new', title: 'C' }]);
 });
 
 test('idempotent when run twice on the same day', () => {

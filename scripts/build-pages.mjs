@@ -132,7 +132,7 @@ ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(
 <header class="site-head">
   <div class="wrap">
     <a class="brand" href="${up}index.html" aria-label="AIpályázó főoldal">${MARK}<span><b>AI</b>pályázó</span></a>
-    <nav class="site-nav" aria-label="Fő navigáció"><a href="${up}palyazat/index.html" aria-current="page">Nyitott pályázatok</a><a href="${up}index.html#hogyan">Hogyan működik</a><a href="${up}miert-ingyenes.html">Miért ingyenes?</a></nav>
+    <nav class="site-nav" aria-label="Fő navigáció"><a href="${up}palyazat/index.html" aria-current="page">Nyitott pályázatok</a><a href="${up}index.html#hogyan">Hogyan működik</a></nav>
     <div class="head-actions">
       <a class="btn btn-quiet btn-sm hide-sm" href="${up}login.html" data-guest>Belépés</a>
       <a class="btn btn-primary btn-sm" href="${up}signup.html" data-guest>Regisztráció</a>
@@ -140,7 +140,7 @@ ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(
       <button class="btn btn-ghost btn-sm head-menu" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     </div>
   </div>
-  <div class="wrap"><nav id="mobile-nav" class="mobile-nav" aria-label="Mobil navigáció"><a href="${up}palyazat/index.html">Nyitott pályázatok</a><a href="${up}index.html#hogyan">Hogyan működik</a><a href="${up}miert-ingyenes.html">Miért ingyenes?</a><a href="${up}login.html">Belépés</a></nav></div>
+  <div class="wrap"><nav id="mobile-nav" class="mobile-nav" aria-label="Mobil navigáció"><a href="${up}palyazat/index.html">Nyitott pályázatok</a><a href="${up}index.html#hogyan">Hogyan működik</a><a href="${up}login.html">Belépés</a></nav></div>
 </header>
 <main id="main"><div class="wrap">
 ${body}
@@ -150,7 +150,7 @@ ${body}
     <div class="cols">
       <div><a class="brand" href="${up}index.html">${MARK}<span><b>AI</b>pályázó</span></a><p class="brand-p">Ingyenes pályázatfigyelő magyar vállalkozásoknak. Tájékoztató szolgáltatás: beadás előtt mindig a hivatalos felhívás az irányadó.</p></div>
       <div><h4>Pályázatok</h4><ul><li><a href="${up}palyazat/index.html">Nyitott felhívások</a></li><li><a href="${up}palyazat/index.html#temak">Témák és programok</a></li><li><a href="${up}portal.html">Portál</a></li></ul></div>
-      <div><h4>Rólunk</h4><ul><li><a href="${up}miert-ingyenes.html">Miért ingyenes?</a></li><li><a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a></li></ul></div>
+      <div><h4>Rólunk</h4><ul><li></li><li><a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a></li></ul></div>
       <div><h4>Jogi</h4><ul><li><a href="${up}impresszum.html">Impresszum</a></li><li><a href="${up}adatvedelem.html">Adatkezelés</a></li><li><a href="${up}aszf.html">ÁSZF</a></li></ul></div>
     </div>
     <div class="legal"><span>© 2026 AIpályázó · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
@@ -358,7 +358,7 @@ const byDeadline = (a, b) => {
 };
 
 function regRow(g, href, withSearch) {
-  const data = withSearch ? ` data-s="${esc(`${g.title} ${g.code || ''} ${g.issuer || ''} ${g.cat || ''}`.toLowerCase())}" data-scope="${g.scope === 'eu' ? 'eu' : 'hu'}" data-type="${esc(g.type || '')}"` : '';
+  const data = withSearch ? ` data-s="${esc(`${g.title} ${g.code || ''} ${g.issuer || ''} ${g.cat || ''} ${g.note || ''} ${g.amount || ''} ${(g.regions || []).join(' ')}`.toLowerCase())}" data-scope="${g.scope === 'eu' ? 'eu' : 'hu'}" data-type="${esc(g.type || '')}"` : '';
   const today = todayHU();
   return `<article class="gcard"${data}><div class="gc-head">${Cards.srcTag(g)}<div class="gc-main"><a class="gc-title" href="${esc(href)}">${esc(g.title)}</a><div class="gc-sub">${esc([g.code, g.issuer].filter(Boolean).join(' · '))}</div><div class="badges">${Cards.badges(g, { today })}</div></div><div class="gc-side"><div><div class="gc-amt-label">Támogatás</div><div class="gc-amt">${esc(g.amount || '—')}</div></div></div></div>${Cards.bars(g, { today })}</article>`;
 }
@@ -412,8 +412,9 @@ export function renderIndex(open, slugs, { updatedAt, hubs = [] } = {}) {
 <p class="empty-note" id="empty" hidden>Nincs találat. Próbáljon rövidebb keresőszót.</p>
 ${hubLinks(hubs)}
 <div class="side-box narrow"><h2>Melyikre jogosult a cége?</h2><p>Négy adat alapján azonnal megmutatjuk, regisztráció nélkül.</p><a class="btn btn-primary" href="../index.html#ellenorzes">Gyors ellenőrzés</a></div>
+<script src="../lib/search.js"></script>
 <script>(function(){var q=document.getElementById('q'),f='all',btns=document.querySelectorAll('.filters button');
-function run(){var v=q.value.trim().toLowerCase(),n={hu:0,eu:0};document.querySelectorAll('.list .gcard').forEach(function(r){var ok=(!v||r.getAttribute('data-s').indexOf(v)>=0)&&(f==='all'||(f==='hu'&&r.dataset.scope==='hu')||(f==='eu'&&r.dataset.scope==='eu')||(f==='grant'&&/grant/.test(r.dataset.type))||(f==='loan'&&/loan/.test(r.dataset.type)));r.hidden=!ok;if(ok)n[r.dataset.scope]++;});
+function run(){var v=q.value.trim().toLowerCase(),n={hu:0,eu:0};document.querySelectorAll('.list .gcard').forEach(function(r){var ok=(!v||(window.AIPSearch?AIPSearch.matchText(v,r.getAttribute('data-s')):r.getAttribute('data-s').indexOf(v)>=0))&&(f==='all'||(f==='hu'&&r.dataset.scope==='hu')||(f==='eu'&&r.dataset.scope==='eu')||(f==='grant'&&/grant/.test(r.dataset.type))||(f==='loan'&&/loan/.test(r.dataset.type)));r.hidden=!ok;if(ok)n[r.dataset.scope]++;});
 document.querySelector('[data-count=hu]').textContent=n.hu;document.querySelector('[data-count=eu]').textContent=n.eu;document.getElementById('empty').hidden=(n.hu+n.eu)>0;}
 q.addEventListener('input',run);btns.forEach(function(b){b.addEventListener('click',function(){f=b.dataset.f;btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});run();});});})();</script>`;
   const jsonld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Nyitott pályázatok magyar vállalkozásoknak', url: `${BASE}/palyazat/index.html` };
@@ -422,7 +423,7 @@ q.addEventListener('input',run);btns.forEach(function(b){b.addEventListener('cli
 
 export const STATIC_PAGES = [
   ['index.html', '1.0', 'weekly'], ['palyazat/index.html', '0.9', 'daily'], ['onboarding.html', '0.8', 'monthly'],
-  ['signup.html', '0.7', 'monthly'], ['miert-ingyenes.html', '0.6', 'monthly'],
+  ['signup.html', '0.7', 'monthly'],
   ['impresszum.html', '0.2', 'yearly'], ['adatvedelem.html', '0.2', 'yearly'], ['aszf.html', '0.2', 'yearly'],
 ];
 export function buildSitemap(open, slugs, today, hubs = []) {

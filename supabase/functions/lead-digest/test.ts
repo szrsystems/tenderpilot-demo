@@ -58,14 +58,11 @@ Deno.test('retries unnotified leads once each, respects attempt cap, never re-se
   assertEquals(mailer.sent.length, 1);
 });
 
-Deno.test('no LEAD_NOTIFY_TO: no retry, no weekly', async () => {
+Deno.test('no LEAD_NOTIFY_TO: the digest still goes to info@aipalyazo.hu', async () => {
   const store = memStore([{ created_at: '2026-09-28T06:00:00Z' }]);
   const mailer = memMailer();
-  const j = await (await call({ env: { ...ENV, LEAD_NOTIFY_TO: '' }, store, mailer, now: () => MONDAY, purge: async () => 0 })).json();
-  assertEquals(j.retry, 'no_recipients');
-  assertEquals(j.weekly, 'no_recipients');
-  assertEquals(mailer.sent.length, 0);
-  assertEquals(store.rows[0].notify_attempts, 0);
+  await (await call({ env: { ...ENV, LEAD_NOTIFY_TO: '' }, store, mailer, now: () => MONDAY, purge: async () => 0 })).json();
+  assert(mailer.sent.every((m: any) => JSON.stringify(m.to).includes('info@aipalyazo.hu')));
 });
 
 Deno.test('Monday weekly summary: recent leads + flagged overdue with status links', async () => {

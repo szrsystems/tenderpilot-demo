@@ -219,12 +219,11 @@ Deno.test('partner mail failure: lead kept, error recorded, not marked notified'
   assertEquals(mailer.sent.length, 1, 'confirmation still sent');
 });
 
-Deno.test('no LEAD_NOTIFY_TO → partner mail skipped, notified_at null, attempts untouched', async () => {
+Deno.test('no LEAD_NOTIFY_TO → the lead goes to info@aipalyazo.hu', async () => {
   const { store, mailer, deps } = setup({ ...ENV, LEAD_NOTIFY_TO: undefined });
   assertEquals((await handler(req(body()), deps)).status, 200);
-  assertEquals(store.rows[0].notified_at, null);
-  assertEquals(store.rows[0].notify_attempts, 0);
-  assertEquals(mailer.sent.length, 1);
+  assert(mailer.sent.some((m: any) => JSON.stringify(m.to).includes('info@aipalyazo.hu')));
+  assert(store.rows[0].notified_at);
 });
 
 Deno.test('no status secret → no status links', async () => {
@@ -262,4 +261,13 @@ Deno.test('global hourly cap is configurable (LEAD_GLOBAL_HOURLY_CAP)', async ()
   const { deps } = setup({ ...ENV, LEAD_GLOBAL_HOURLY_CAP: '2' });
   for (let i = 0; i < 2; i++) assertEquals((await handler(req(body({ email: `c${i}@example.com` }), { 'x-forwarded-for': `192.0.2.${i}` }), deps)).status, 200);
   assertEquals((await handler(req(body({ email: 'c9@example.com' }), { 'x-forwarded-for': '192.0.2.99' }), deps)).status, 429);
+});
+
+Deno.test('phone: only real numbers; stored in one format', async () => {
+  const { store, deps } = setup();
+  const bad = await handler(req(body({ phone: '12345' })), deps);
+  assertEquals(bad.status, 400);
+  assertEquals(await bad.json(), { error: 'invalid', field: 'phone' });
+  assertEquals((await handler(req(body({ phone: '06-30/123-4567' })), deps)).status, 200);
+  assertEquals(store.rows[0].phone, '+36 30 123 4567');
 });

@@ -2,79 +2,92 @@
  "v-2025-1-2-5-eu-kp": [
   {
    "date": "2026-10-08",
-   "type": "removed"
+   "type": "removed",
+   "title": "Az EU Horizont Európa programjában, valamint egyéb közös EU-s programokban való magyar részvétel ösztönzése"
   }
  ],
  "v-digital-2026-ai-data-10-compliance": [
   {
    "date": "2026-10-08",
-   "type": "removed"
+   "type": "removed",
+   "title": "Digital solutions for regulatory compliance through data (Adatalapú digitális megoldások a szabályozási megfeleléshez)"
   }
  ],
  "v-digital-2026-ai-piloting-10-screening": [
   {
    "date": "2026-10-08",
-   "type": "removed"
+   "type": "removed",
+   "title": "Apply AI: Piloting AI-based image screening in medical centres (MI-alapú képi szűrés pilotja egészségügyi központokban)"
   }
  ],
  "v-digital-2026-skills-10-edtech": [
   {
    "date": "2026-10-08",
-   "type": "removed"
+   "type": "removed",
+   "title": "EdTech Accelerator (EdTech gyorsítóprogram)"
   }
  ],
  "v-eitcc-innovation-projects-2026": [
   {
    "date": "2026-09-28",
-   "type": "new"
+   "type": "new",
+   "title": "EIT Culture & Creativity Innovation Projects 2026 (Kreatívipari innovációs projektek – divat, audiovizuális média, építészet)"
   }
  ],
  "v-eitum-umx-2026": [
   {
    "date": "2026-10-08",
-   "type": "removed"
+   "type": "removed",
+   "title": "Urban Mobility Explained (UMX) Open Call – 2. cut-off"
   }
  ],
  "v-erasmus-2026-ka210-adu": [
   {
    "date": "2026-10-08",
-   "type": "removed"
+   "type": "removed",
+   "title": "Erasmus+ kisléptékű partnerségek a felnőttoktatásban (KA210-ADU)"
   }
  ],
  "v-eurohpc-benchmark-2026": [
   {
    "date": "2026-10-08",
-   "type": "removed"
+   "type": "removed",
+   "title": "EuroHPC Benchmark Access Call (Szuperszámítógépes benchmark-hozzáférés)"
   }
  ],
  "v-ivf-visegrad-grants-2026-10": [
   {
    "date": "2026-10-08",
-   "type": "removed"
+   "type": "removed",
+   "title": "Visegrad Grants – 1 October 2026 deadline (Visegrádi Alap – regionális együttműködési projektek támogatása)"
   }
  ],
  "v-kap-rd35-1-25": [
   {
    "date": "2026-10-08",
-   "type": "removed"
+   "type": "removed",
+   "title": "Erdő-környezetvédelmi többéves kötelezettségvállalások (EKV I.)"
   }
  ],
  "v-kap-rd40-rd12-1-26": [
   {
    "date": "2026-10-08",
-   "type": "removed"
+   "type": "removed",
+   "title": "Versenyképes erdőgazdálkodást szolgáló beruházások támogatása"
   }
  ],
  "v-marc-impact-hu-2026": [
   {
    "date": "2026-10-08",
-   "type": "removed"
+   "type": "removed",
+   "title": "Marc Impact Programme – nemzetközi társadalmi vállalkozásfejlesztő program (2026/27)"
   }
  ],
  "v-tff-5-1-5-2026-kth-start-kiegeszito": [
   {
    "date": "2026-09-28",
-   "type": "new"
+   "type": "new",
+   "title": "Kiegészítő támogatás a KTH START beruházási vagy forgóeszköz kölcsönhöz („2=3 akció”)"
   }
  ]
 }

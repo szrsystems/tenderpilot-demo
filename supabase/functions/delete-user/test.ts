@@ -11,7 +11,7 @@ function fakeOps(failAt?: keyof Ops) {
   const ops: Ops = { blockEmail: step('blockEmail'), anonymizeLeads: step('anonymizeLeads'), deleteUserData: step('deleteUserData'), deleteAuthUser: step('deleteAuthUser') };
   return { ops, calls };
 }
-const req = (jwt?: string) => new Request('http://x/delete-user', { method: 'POST', headers: jwt ? { authorization: `Bearer ${jwt}` } : {} });
+const req = (jwt?: string, b: unknown = { confirm: 'TÖRLÉS', email: 'kiss.anna@example.com' }) => new Request('http://x/delete-user', { method: 'POST', headers: jwt ? { authorization: `Bearer ${jwt}` } : {}, body: JSON.stringify(b) });
 const deps = (ops: Ops) => ({ env: {}, ops, getUser: async (t: string) => (t === 'good' ? USER : null) });
 
 Deno.test('success runs every step in order and blocks the hashed address', async () => {
@@ -46,4 +46,13 @@ Deno.test('auth required', async () => {
   assertEquals((await handler(req('bad'), deps(ops))).status, 401);
   assertEquals((await handler(new Request('http://x', { method: 'GET' }), deps(ops))).status, 405);
   assertEquals(calls.length, 0);
+});
+
+Deno.test('nothing is deleted without the typed confirmation (word + own e-mail)', async () => {
+  for (const b of [{}, { confirm: 'torles', email: 'kiss.anna@example.com' }, { confirm: 'TÖRLÉS', email: 'other@example.com' }]) {
+    const { ops, calls } = fakeOps();
+    const r = await handler(req('good', b), deps(ops));
+    assertEquals(r.status, 400);
+    assertEquals(calls.length, 0);
+  }
 });

@@ -33,7 +33,7 @@
 
   // ---------------------------------------------------------------- state
   var S = {
-    feed: [], meta: {}, summaries: {}, changes: {}, expected: [], slugs: {}, feedFromCache: null, feedError: false,
+    feed: [], news: [], meta: {}, summaries: {}, changes: {}, expected: [], slugs: {}, feedFromCache: null, feedError: false,
     user: null, profile: lsGet('grantpilot:profile', null), bookmarks: new Set(lsGet('grantpilot:bookmarks', [])),
     matchCache: new Map(), view: 'attekintes', list: { q: '', cat: '', scope: 'all', type: 'all', onlyFit: true, sort: 'fit', page: 1, needIds: null, needQ: '' },
     ready: false
@@ -68,10 +68,12 @@
       getJSON('summaries.json').catch(function () { return {}; }),
       getJSON('changes.json').catch(function () { return {}; }),
       getJSON('expected-calls.json').catch(function () { return []; }),
-      getJSON('palyazat/pages.json').catch(function () { return {}; })
+      getJSON('palyazat/pages.json').catch(function () { return {}; }),
+      getJSON('news.json').catch(function () { return []; })
     ]).then(function (r) {
       S.feed = r[0].filter(function (g) { return g && g.id && g.title && (!isDate(g.deadline) || g.deadline >= TODAY); });
       S.meta = r[1] || {}; S.summaries = r[2] || {}; S.changes = r[3] || {}; S.expected = Array.isArray(r[4]) ? r[4] : [];
+      S.news = Array.isArray(r[6]) ? r[6] : [];
       Object.keys(r[5] || {}).forEach(function (slug) { var m = r[5][slug]; if (m && m.id && !m.closedAt) S.slugs[m.id] = slug; });
       resetMatches();
     });
@@ -104,8 +106,13 @@
       if (prof && (prof.company || prof.employees || (prof.industries && prof.industries.length))) {
         // The server profile is the source of truth for a signed-in user.
         var local = S.profile || {};
-        S.profile = Object.assign({}, local, profileFromServer(prof));
-        if (!S.profile.phone && local.phone) S.profile.phone = local.phone; // view without phone (older schema)
+        // Server values win, but an empty server field never wipes an answer saved in
+        // this browser (e.g. K+F / women-led before the v2 columns exist on the server).
+        var srv = profileFromServer(prof);
+        Object.keys(srv).forEach(function (k) { var v = srv[k]; if (v === '' || v == null || (Array.isArray(v) && !v.length)) delete srv[k]; });
+        S.profile = Object.assign({}, local, srv);
+        var v2fix = {}; if (local.rnd && !prof.rnd) v2fix.rnd = local.rnd; if (local.women_led && !prof.women_led) v2fix.women_led = local.women_led;
+        if (Object.keys(v2fix).length) window.gp.client.from('profiles').update(v2fix).eq('id', u.id).then(function () {}, function () {});
         lsSet('grantpilot:profile', S.profile);
       } else if (hasProfile()) {
         // Filled before signing up (quick check / onboarding): push it up once.
@@ -183,6 +190,7 @@
     $('#count-all').textContent = S.feed.length || '';
     var saved = S.feed.filter(function (g) { return S.bookmarks.has(g.id); }).length;
     $('#count-saved').textContent = saved || '';
+    var nc = $('#count-news'); if (nc) nc.textContent = newsCount() || '';
   }
   function setRail(open) {
     $('#rail').classList.toggle('open', open);
@@ -322,10 +330,14 @@
       if (L.type === 'guarantee' && g.type !== 'guarantee') return false;
       if (L.type === 'other' && /grant|loan|equity|guarantee/.test(g.type || '')) return false;
       if (personal && L.onlyFit && !m.eligible) return false;
-      if (q && (g.title + ' ' + (g.code || '') + ' ' + (g.issuer || '') + ' ' + (g.cat || '') + ' ' + (g.note || '')).toLowerCase().indexOf(q) < 0) return false;
       return true;
     });
     var amount = function (g) { return g.keret || (window.parseAmount ? parseAmount(g.amount || '') : 0); };
+    if (L.q && window.AIPSearch) {
+      var ranked = AIPSearch.rank(L.q, out, summaryText);
+      out = ranked.map(function (x) { return x.g; });
+      if (L.sort === 'fit') return out; // best text match first
+    }
     if (L.needIds && L.sort === 'fit') out.sort(function (a, b) { return L.needIds.indexOf(a.id) - L.needIds.indexOf(b.id); });
     else if (L.sort === 'deadline') out.sort(function (a, b) { return (isDate(a.deadline) ? a.deadline : '9999').localeCompare(isDate(b.deadline) ? b.deadline : '9999'); });
     else if (L.sort === 'amount') out.sort(function (a, b) { return amount(b) - amount(a); });
@@ -350,29 +362,9 @@
     $('#needs-form').addEventListener('submit', function (e) { e.preventDefault(); S.list.q = ''; needsSearch($('#needs-q').value.trim()); });
   };
 
-  // needs finder: AI intent (signed-in) → categories/keywords; keyword fallback
-  var NEED_CONCEPTS = [
-    { q: /gép|eszköz|berendezés|csomagol|gyárt|technológ|beruház|vásárol|vennék|cnc|szerszám|jármű|targonca/, g: /eszközbe|gépbe|gépbeszerz|beruház|kapacit|gyárt|technológi|lízing|hitel/i },
-    { q: /napelem|energia|energetik|áram|fűt|hőszivattyú|szigetel|korszerűsít|megújul|rezsi/, g: /energ|napelem|megújul|hőszivat|szigetel|geoterm|zöld/i },
-    { q: /web|honlap|online|webshop|webáruház|digital|szoftver|rendszer|automatizál|mesterséges|\bai\b|crm|erp|adat/, g: /digit|szoftver|informatik|adat|automat|innov|\bAI\b|kiberbiztons/i },
-    { q: /telephely|csarnok|ingatlan|épít|üzem|raktár|bővít|felújít|iroda|műhely/, g: /telephely|ingatlan|csarnok|raktár|felújít|beruház|kapacit/i },
-    { q: /képz|oktat|tanf|tréning|betanít|tudás|kompetencia/, g: /képz|oktat|skill|training/i },
-    { q: /export|külföld|külpiac|nemzetközi|piacra|kivitel/, g: /export|külpiac|nemzetközi|piacra|eureka|horizon|eic/i },
-    { q: /kutat|fejleszt|innovác|prototípus|új termék|szabadalom|k\+f|labor/, g: /kutat|innov|k\+f|fejleszt|szellemi|eic|horizon/i },
-    { q: /munkaerő|alkalmazott|munkatárs|felvétel|\bbér|foglalkoztat|munkahely|dolgozó/, g: /foglalkoztat|munkahely|bér|munkaerő/i },
-    { q: /mezőgazda|gazda|traktor|állat|növény|föld|borász|élelmiszer|kertész|agrár/, g: /mező|agrár|gazda|élelmiszer|termelő|erdő|hal/i },
-    { q: /szálloda|panzió|vendég|étterem|turisztik|szálláshely|kemping|gasztro/, g: /turiz|szálláshely|vendég|étterm|kth/i }
-  ];
-  function needsLocal(q) {
-    var t = q.toLowerCase(), conc = NEED_CONCEPTS.filter(function (c) { return c.q.test(t); });
-    var words = t.split(/[^a-záéíóöőúüű0-9]+/i).filter(function (w) { return w.length >= 4; });
-    return S.feed.map(function (g) {
-      var txt = (g.title + ' ' + (g.cat || '') + ' ' + (g.note || '')).toLowerCase(), s = 0;
-      conc.forEach(function (c) { if (c.g.test(g.title)) s += 12; else if (c.g.test(txt)) s += 7; });
-      words.forEach(function (w) { if (txt.indexOf(w) >= 0) s += 3; });
-      return s > 0 ? { g: g, s: s + rank(g) / 400 } : null;
-    }).filter(Boolean).sort(function (a, b) { return b.s - a.s; }).slice(0, 40).map(function (x) { return x.g.id; });
-  }
+  // needs finder: AI intent (signed-in) → categories/keywords; otherwise the local search
+  function summaryText(g) { var sm = S.summaries[g.id]; return sm && sm.sections ? sm.sections.map(function (x) { return (x.items || []).map(function (i) { return i.text; }).join(' '); }).join(' ') : ''; }
+  function needsLocal(q) { return window.AIPSearch ? AIPSearch.rank(q, S.feed, summaryText).slice(0, 60).map(function (x) { return x.g.id; }) : []; }
   async function needsSearch(q) {
     S.list.needQ = q; S.list.page = 1;
     if (!q) { S.list.needIds = null; render(); return; }
@@ -396,6 +388,40 @@
     track('needs-search');
     render();
   }
+
+  // ---- news: announcements (news.json) + what changed in the calls (changes.json)
+  function newsItems(daysBack) {
+    var out = [];
+    Object.keys(S.changes).forEach(function (id) {
+      (S.changes[id] || []).forEach(function (c) {
+        var d = days(c.date); if (d === null || d < -daysBack || c.type === 'page') return;
+        var g = byId(id), title = (g && g.title) || c.title; if (!title) return;
+        out.push({ date: c.date, type: c.type, id: g ? id : null, title: title, c: c });
+      });
+    });
+    return out.sort(function (a, b) { return b.date.localeCompare(a.date) || a.type.localeCompare(b.type); });
+  }
+  function newsCount() { return newsItems(7).length + S.news.filter(function (n) { var d = days(n.date); return d !== null && d >= -7; }).length; }
+  var NEWS_LABEL = { new: ['Új felhívás', 'green'], removed: ['Lezárult / lekerült', 'gray'], deadline: ['Határidő módosult', 'amber'], 'deadline-official': ['Új határidő a hivatalos oldalon', 'amber'], keret: ['Keretösszeg módosult', 'blue'], 'szabad-keret': ['Szabad keret változott', 'blue'] };
+  VIEWS.hirek = function () {
+    var h = head('Hírek', 'Hírek és változások', stampLine());
+    var ann = S.news.slice().sort(function (a, b) { return String(b.date).localeCompare(String(a.date)); }).slice(0, 5);
+    if (ann.length) h += '<div class="news-ann">' + ann.map(function (n) { return '<article class="card"><p class="eyebrow">' + esc(huDate(n.date)) + '</p><h2>' + esc(n.title) + '</h2>' + (n.body ? '<p>' + esc(n.body) + '</p>' : '') + (safeUrl(n.link) ? '<p><a href="' + esc(safeUrl(n.link)) + '" target="_blank" rel="noopener">Részletek</a></p>' : '') + '</article>'; }).join('') + '</div>';
+    var soon = S.feed.filter(function (g) { var d = days(g.deadline); return d !== null && d >= 0 && d <= 14; }).sort(function (a, b) { return a.deadline.localeCompare(b.deadline); });
+    if (soon.length) h += '<div class="section-title"><h2>Hamarosan lezárul</h2><span class="muted small">' + soon.length + ' felhívás 14 napon belül</span></div><div class="gcards">' + soon.slice(0, 5).map(function (g) { return callRow(g, { noMarks: true }); }).join('') + '</div>';
+    var items = newsItems(45), byDay = {};
+    items.forEach(function (x) { (byDay[x.date] = byDay[x.date] || []).push(x); });
+    h += '<div class="section-title"><h2>Változások a felhívásokban</h2><span class="muted small">elmúlt 45 nap</span></div>';
+    h += items.length ? '<div class="news-days">' + Object.keys(byDay).sort().reverse().map(function (day) {
+      return '<section class="news-day"><h3>' + esc(huDate(day)) + '</h3><ul>' + byDay[day].map(function (x) {
+        var L = NEWS_LABEL[x.type] || ['Változás', 'gray'];
+        var detail = (x.c.from != null || x.c.to != null) ? ' <span class="muted">' + esc(changeText(x.c).replace(/^[^:]*:\s*/, '')) + '</span>' : '';
+        var t = x.id ? '<button type="button" class="news-link" data-open="' + esc(x.id) + '">' + esc(x.title) + '</button>' : '<span>' + esc(x.title) + '</span>';
+        return '<li><span class="badge ' + L[1] + '">' + esc(L[0]) + '</span> ' + t + detail + '</li>';
+      }).join('') + '</ul></section>';
+    }).join('') + '</div>' : '<p class="empty">Az elmúlt 45 napban nem volt változás.</p>';
+    return h;
+  };
 
   VIEWS.mentett = function () {
     var saved = S.feed.filter(function (g) { return S.bookmarks.has(g.id); }).sort(function (a, b) { return (isDate(a.deadline) ? a.deadline : '9').localeCompare(isDate(b.deadline) ? b.deadline : '9'); });
@@ -448,62 +474,12 @@
     }).join('') + '</div>' + (S.user ? '' : '<p class="muted small" style="margin-top:var(--s4)">Bejelentkezve a kérései állapotát is látja.</p>');
   };
 
-  // ---- drafts
-  var DRAFTS_KEY = 'grantpilot:drafts';
-  var currentDraft = null;
-  VIEWS.vazlat = function () {
-    var h = head('AI-eszköz', 'Pályázat-vázlat');
-    if (currentDraft) {
-      var g = byId(currentDraft.grantId) || { title: currentDraft.grantTitle || '(lezárult felhívás)' };
-      h += '<div class="actions no-print"><button class="btn btn-ghost btn-sm" type="button" data-act="draft-back">← Vázlatok</button><button class="btn btn-ghost btn-sm" type="button" data-act="draft-print">Nyomtatás / PDF</button><button class="btn btn-primary btn-sm" type="button" data-act="draft-save">Mentés</button></div>';
-      h += '<article class="doc-sheet"><p class="eyebrow">' + (currentDraft.ai ? 'AI-vázlat' : 'Sablon alapú vázlat') + ' · ' + esc(new Date(currentDraft.ts).toLocaleString('hu-HU')) + '</p><h2>' + esc(g.title) + '</h2>' +
-        '<div class="notice warn" style="margin:var(--s3) 0 var(--s4)">Kezdő vázlat, nem beadható pályázat. A végleges szöveget, költségvetést és indikátorokat a hivatalos felhívás alapján, pályázatíróval kell véglegesíteni. A szöveg szerkeszthető.</div>' +
-        currentDraft.sections.map(function (s, i) { return '<section class="sec"><h3>' + (i + 1) + '. ' + esc(s.title) + '</h3><div contenteditable="true" data-sec="' + i + '">' + s.body + '</div></section>'; }).join('') + '</article>';
-      return h;
-    }
-    var drafts = lsGet(DRAFTS_KEY, []).slice().reverse();
-    var opts = S.feed.slice().sort(function (a, b) { return rank(b) - rank(a); }).map(function (g) { return '<option value="' + esc(g.id) + '">' + esc(g.title.length > 110 ? g.title.slice(0, 107) + '…' : g.title) + '</option>'; }).join('');
-    h += '<div class="card" style="margin-bottom:var(--s5)"><h2>Új vázlat</h2><p class="muted">Válasszon felhívást: a cégprofilja alapján elkészítjük a magyar pályázati szerkezetű első vázlatot (9 fejezet, költségvetés-javaslat, indikátorok). ' + (S.user ? '' : 'Bejelentkezve mesterséges intelligencia írja; enélkül sablonból készül.') + '</p>' +
-      '<div class="field"><label for="draft-pick">Felhívás</label><select id="draft-pick"><option value="">Válasszon…</option>' + opts + '</select></div><button class="btn btn-primary" type="button" data-act="draft-make">Vázlat készítése</button></div>';
-    h += '<div class="section-title"><h2>Mentett vázlatok</h2></div>';
-    h += drafts.length ? '<div class="calls">' + drafts.map(function (d) { var g = byId(d.grantId); return '<div class="call" style="grid-template-columns:minmax(0,1fr) auto auto"><div><span class="t" style="cursor:default">' + esc(g ? g.title : d.grantTitle || '(lezárult felhívás)') + '</span><div class="meta">' + esc(new Date(d.ts).toLocaleString('hu-HU')) + '</div></div><button class="btn btn-ghost btn-sm" type="button" data-draft-open="' + esc(d.id) + '">Megnyitás</button><button class="btn btn-quiet btn-sm" type="button" data-draft-del="' + esc(d.id) + '">Törlés</button></div>'; }).join('') + '</div>' : '<p class="empty">Még nincs mentett vázlat.</p>';
-    return h;
-  };
-  function escObj(o) { var r = {}; Object.keys(o || {}).forEach(function (k) { var v = o[k]; r[k] = typeof v === 'string' ? esc(v) : Array.isArray(v) ? v.map(function (x) { return typeof x === 'string' ? esc(x) : x; }) : v; }); return r; }
-  function textToHtml(t) { return String(t || '').split(/\n\s*\n+/).map(function (p) { return '<p>' + esc(p.trim()).replace(/\n/g, '<br>') + '</p>'; }).join('') || '<p></p>'; }
-  async function aiCall(task, payload) {
-    if (!window.gp || !window.gp.client || !S.user) throw new Error('anon');
-    var r = await window.gp.client.functions.invoke('ai-generate', { body: { task: task, payload: payload } });
-    if (r.error) throw r.error;
-    if (r.data && r.data.error) throw new Error(r.data.error);
-    return r.data;
-  }
-  async function makeDraft(grantId) {
-    var g = byId(grantId); if (!g) return;
-    S.view = 'vazlat'; location.hash = '#/vazlat';
-    $('#view').innerHTML = head('AI-eszköz', 'Pályázat-vázlat') + '<p class="muted">A vázlat készül… ez 10–20 másodperc lehet.</p>';
-    var p = S.profile || {}, sections = null, viaAI = false;
-    try {
-      var out = await aiCall('draft', { grant: { id: g.id, title: g.title, code: g.code || '', cat: g.cat, amount: g.amount, deadline: g.deadline, source: g.source, issuer: g.issuer || '', type: g.type || '', rate: g.rate || '', note: g.note || '', url: g.url || '' },
-        profile: { company: p.company, industry: (p.industries || [])[0] || p.industry, employees: p.employees, revenue: window.revenueLabel ? revenueLabel(p.revenue) : p.revenue, location: p.location, years_operating: p.years_operating, legal_form: p.legal_form } });
-      if (out && Array.isArray(out.sections) && out.sections.length >= 5) { sections = out.sections.map(function (s) { return { title: String(s.title || ''), body: textToHtml(s.body) }; }); viaAI = true; }
-    } catch (e) {}
-    if (!sections) {
-      var eg = escObj(g), ep = escObj(p);
-      sections = [['Projekt összefoglaló', dr_section_summary], ['Pályázó bemutatása', dr_section_applicant], ['Projekt célja és indokoltsága', dr_section_goals], ['Tervezett tevékenységek', dr_section_activities], ['Indikátorok és vállalások', dr_section_indicators], ['Költségvetés-tervezet', dr_section_budget], ['Megvalósítási ütemterv', dr_section_timeline], ['Fenntarthatósági terv', dr_section_sustainability], ['Kockázatok és kezelésük', dr_section_risks]]
-        .map(function (x) { var body = ''; try { body = x[1](eg, ep); } catch (e) { body = '<p></p>'; } return { title: x[0], body: body }; });
-    }
-    currentDraft = { id: 'D-' + Date.now().toString(36), grantId: g.id, grantTitle: g.title, ts: Date.now(), sections: sections, ai: viaAI };
-    track('draft');
-    render();
-  }
-
-  // ---- settings
   VIEWS.beallitasok = function () {
+    DEL.step = 0; clearInterval(DEL.timer);
     var h = head('Fiók', 'Beállítások');
     var p = S.profile || {};
     h += '<div class="set-grid">';
-    h += '<section class="card"><h2>Cégprofil</h2>' + (hasProfile() ? '<table class="facts">' + [['Cégnév', p.company], ['Tevékenység', (p.industries || []).map(function (c) { return typeof dr_industryLabel === 'function' ? dr_industryLabel(c) : c; }).join(', ')], ['Létszám', p.employees], ['Régió', p.site_region], ['TEÁOR', p.teaor], ['Lezárt üzleti évek', p.years_operating]].map(function (r) { return '<tr><th>' + r[0] + '</th><td>' + esc(r[1] || '—') + '</td></tr>'; }).join('') + '</table>' : '<p class="muted">Még nincs cégprofil.</p>') + '<p style="margin-top:var(--s4)"><a class="btn btn-primary" href="onboarding.html">' + (hasProfile() ? 'Profil szerkesztése' : 'Cégprofil megadása') + '</a></p></section>';
+    h += '<section class="card"><h2>Cégprofil</h2>' + (hasProfile() ? '<table class="facts">' + [['Cégnév', p.company], ['Tevékenység', (p.industries || []).map(function (c) { return industryLabel(c); }).join(', ')], ['Létszám', p.employees], ['Régió', p.site_region], ['TEÁOR', p.teaor], ['Lezárt üzleti évek', p.years_operating]].map(function (r) { return '<tr><th>' + r[0] + '</th><td>' + esc(r[1] || '—') + '</td></tr>'; }).join('') + '</table>' : '<p class="muted">Még nincs cégprofil.</p>') + '<p style="margin-top:var(--s4)"><a class="btn btn-primary" href="onboarding.html">' + (hasProfile() ? 'Profil szerkesztése' : 'Cégprofil megadása') + '</a></p></section>';
     if (S.user) {
       h += '<section class="card"><h2>Értesítések</h2><p class="muted small">A leveleket ide küldjük: <b>' + esc(S.user.email) + '</b></p>' +
         '<label class="toggle"><input type="checkbox" id="n-weekly"><span><b>Heti összefoglaló</b><span>Új, Önnek illő felhívások és közelgő határidők.</span></span></label>' +
@@ -511,8 +487,8 @@
         '<label class="toggle"><input type="checkbox" id="n-instant"><span><b>Azonnali értesítés</b><span>Ha új, jól illeszkedő felhívás jelenik meg, vagy egy mentett felhívás keretének 80%-a elfogyott. Legfeljebb napi egy levél.</span></span></label>' +
         '<p class="small" id="n-msg" role="status" style="min-height:1.5em;margin:8px 0 0"></p></section>';
       h += '<section class="card"><h2>Naptár</h2><p class="muted">A mentett felhívások határidői egy önmagát frissítő naptárban (Google, Outlook, Apple). A linket ne ossza meg — aki ismeri, látja a mentett határidőit.</p><div class="copy-row"><input id="cal-url" readonly value="Betöltés…" aria-label="Naptár-link"><button class="btn btn-ghost btn-sm" type="button" data-act="cal-copy">Másolás</button></div><p class="small" style="margin-top:8px"><button class="btn btn-quiet btn-sm" type="button" data-act="cal-rotate">Új link (a régi megszűnik)</button></p></section>';
-      h += '<section class="card"><h2>Adatok</h2><p class="muted">Letöltheti a böngészőben tárolt adatait (profil, mentések, vázlatok).</p><button class="btn btn-ghost" type="button" data-act="export">Adataim letöltése (JSON)</button><p style="margin-top:var(--s4)"><button class="btn btn-ghost" type="button" data-act="signout">Kijelentkezés</button></p></section>';
-      h += '<section class="card danger-zone"><h2>Fiók törlése</h2><p class="muted">Törli a fiókját, a profilját, a mentéseit és a vázlatait. A konzultációs kérések személyes adatait anonimizáljuk (az állapotukat a partnerrel való elszámolás miatt megőrizzük). Nem visszavonható.</p><button class="btn btn-danger" type="button" data-act="delete-account">Fiók végleges törlése</button><p class="small" id="del-msg" role="alert" style="margin-top:8px"></p></section>';
+      h += '<section class="card"><h2>Adatok</h2><p class="muted">Letöltheti a böngészőben tárolt adatait (profil, mentések).</p><button class="btn btn-ghost" type="button" data-act="export">Adataim letöltése (JSON)</button><p style="margin-top:var(--s4)"><button class="btn btn-ghost" type="button" data-act="signout">Kijelentkezés</button></p></section>';
+      h += '<section class="card danger-zone" id="del-card">' + delCard() + '</section>';
     } else {
       h += '<section class="card"><h2>Értesítések és fiók</h2><p class="muted">Értesítésekhez, naptár-linkhez és a mentések szinkronizálásához ingyenes fiók kell.</p><a class="btn btn-primary" href="signup.html">Ingyenes regisztráció</a> <a class="btn btn-ghost" href="login.html">Belépés</a></section>';
     }
@@ -569,7 +545,6 @@
     h += '<div class="actions"><button class="btn btn-ghost btn-sm" type="button" data-bm="' + esc(g.id) + '" aria-pressed="' + saved + '">' + (saved ? 'Mentve' : 'Mentés') + '</button>' +
       (isDate(g.deadline) ? '<button class="btn btn-ghost btn-sm" type="button" data-ics="' + esc(g.id) + '">Naptárba</button>' : '') +
       (url ? '<a class="btn btn-ghost btn-sm" href="' + esc(url) + '" target="_blank" rel="noopener">Hivatalos oldal ↗</a>' : '') +
-      '<button class="btn btn-ghost btn-sm" type="button" data-draft="' + esc(g.id) + '">Pályázat-vázlat</button>' +
       (pub ? '<a class="btn btn-quiet btn-sm" href="' + esc(pub) + '" target="_blank" rel="noopener">Megosztható oldal</a>' : '') + '</div>';
     // facts
     var rows = [['Kiíró', g.issuer], ['Felhívás kódja', g.code], ['Összeg', g.amount], ['Támogatási arány', g.rate], ['Teljes keret', g.keret > 0 ? ft(g.keret) + (typeof g.remaining === 'number' ? ' · még szabad: ' + ft(Math.max(0, g.remaining)) : '') : ''], ['Beadási határidő', huDate(g.deadline)], ['Beadás kezdete', isDate(g.windowOpen) ? huDate(g.windowOpen) : ''], ['Cégméret', (g.sizeClasses || []).join(', ')], ['Régió', (g.regions || []).length ? g.regions.join(', ') : g.scope === 'eu' ? 'EU-s program' : 'Országos']];
@@ -611,7 +586,7 @@
       '<div class="row2"><div class="field"><label for="ld-name">Név <span class="req" style="color:var(--danger)">*</span></label><input id="ld-name" autocomplete="name" value="' + esc(p.contact_name || (S.user && S.user.name) || '') + '"></div>' +
       '<div class="field"><label for="ld-company">Cégnév</label><input id="ld-company" autocomplete="organization" value="' + esc(p.company || '') + '"></div></div>' +
       '<div class="row2"><div class="field"><label for="ld-email">E-mail <span style="color:var(--danger)">*</span></label><input id="ld-email" type="email" autocomplete="email" value="' + esc((S.user && S.user.email) || p.email || '') + '"></div>' +
-      '<div class="field"><label for="ld-phone">Telefon <span style="color:var(--danger)">*</span></label><input id="ld-phone" type="tel" autocomplete="tel" value="' + esc(p.phone || '') + '"></div></div>' +
+      '<div class="field"><label for="ld-phone">Telefon <span style="color:var(--danger)">*</span></label><input id="ld-phone" type="tel" inputmode="tel" placeholder="+36 30 123 4567" autocomplete="tel" value="' + esc(p.phone || '') + '"></div></div>' +
       '<div class="field"><label for="ld-msg">Röviden a tervezett projektről <span class="muted">(nem kötelező)</span></label><textarea id="ld-msg" maxlength="2000" placeholder="Pl. új gyártósor, kb. 40 M Ft, jövő tavasszal indulna.">' + esc(p.notes || '') + '</textarea></div>' +
       '<label class="check" style="margin-bottom:var(--s4)"><input type="checkbox" id="ld-consent"><span>Hozzájárulok, hogy az AIpályázó a fenti adataimat és a jogosultsági ellenőrzés eredményét továbbítsa a pályázatíró partnernek a kapcsolatfelvétel céljából. <a href="adatvedelem.html" target="_blank" rel="noopener">Részletek</a></span></label>' +
       '<div id="ts-box" style="margin-bottom:var(--s3)"></div>' +
@@ -634,7 +609,10 @@
     var bad = [];
     if (name.length < 2) bad.push(['ld-name', 'Adja meg a nevét.']);
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) bad.push(['ld-email', 'Adjon meg egy érvényes e-mail-címet.']);
-    if (phone.replace(/\D/g, '').length < 6) bad.push(['ld-phone', 'Adja meg a telefonszámát — ezen keresi Önt a pályázatíró.']);
+    var np = window.AIPPhone ? AIPPhone.normalizePhone(phone) : phone;
+    if (!phone) bad.push(['ld-phone', 'Adja meg a telefonszámát — ezen keresi Önt a pályázatíró.']);
+    else if (!np) bad.push(['ld-phone', 'Érvénytelen telefonszám. Például: +36 30 123 4567 vagy 06 1 234 5678.']);
+    else { phone = np; $('#ld-phone').value = np; }
     if (!$('#ld-consent').checked) bad.push(['ld-consent', 'A továbbításhoz a hozzájárulása szükséges.']);
     if (CFG.turnstileSiteKey && !tsToken) bad.push(['ts-box', 'Kérjük, igazolja, hogy nem robot.']);
     if (bad.length) { err.textContent = bad[0][1]; err.hidden = false; var el = $('#' + bad[0][0]); if (el && el.focus) el.focus(); return; }
@@ -690,28 +668,24 @@
 
   // ---------------------------------------------------------------- events
   document.addEventListener('click', async function (e) {
-    var t = e.target.closest('[data-open],[data-bm],[data-ics],[data-draft],[data-act],[data-scope],[data-cat],[data-need],[data-more],[data-draft-open],[data-draft-del]');
+    var t = e.target.closest('[data-open],[data-bm],[data-ics],[data-act],[data-scope],[data-cat],[data-need],[data-more]');
     if (!t) return;
     if (t.hasAttribute('data-open')) { e.preventDefault(); openDetail(t.getAttribute('data-open')); return; }
     if (t.hasAttribute('data-bm')) { e.preventDefault(); toggleBookmark(t.getAttribute('data-bm')); if (t.closest('.actions')) t.textContent = S.bookmarks.has(t.getAttribute('data-bm')) ? 'Mentve' : 'Mentés'; return; }
     if (t.hasAttribute('data-ics')) { var g = byId(t.getAttribute('data-ics')); if (g) downloadICS([g], 'aipalyazo-hatarido.ics'); return; }
-    if (t.hasAttribute('data-draft')) { closeDetail(true); makeDraft(t.getAttribute('data-draft')); return; }
     if (t.hasAttribute('data-scope')) { e.preventDefault(); S.list.scope = t.getAttribute('data-scope'); S.list.page = 1; if (S.view !== 'palyazatok') { location.hash = '#/palyazatok'; } else render(); return; }
     if (t.hasAttribute('data-cat')) { S.list.cat = t.getAttribute('data-cat'); S.list.page = 1; $$('.catpills button').forEach(function (b) { b.setAttribute('aria-pressed', String(b === t)); }); renderList(); return; }
     if (t.hasAttribute('data-need')) { S.list.q = ''; var q = t.getAttribute('data-need'); var inp = $('#needs-q'); if (inp) inp.value = q; needsSearch(q); return; }
     if (t.hasAttribute('data-more')) { S.list.page++; renderList(); return; }
-    if (t.hasAttribute('data-draft-open')) { currentDraft = lsGet(DRAFTS_KEY, []).filter(function (d) { return d.id === t.getAttribute('data-draft-open'); })[0] || null; render(); return; }
-    if (t.hasAttribute('data-draft-del')) { if (confirm('Biztosan törli ezt a vázlatot?')) { lsSet(DRAFTS_KEY, lsGet(DRAFTS_KEY, []).filter(function (d) { return d.id !== t.getAttribute('data-draft-del'); })); render(); } return; }
     var act = t.getAttribute('data-act');
     if (act === 'signout') return signOut();
     if (act === 'ics-saved') return downloadICS(S.feed.filter(function (g) { return S.bookmarks.has(g.id); }), 'aipalyazo-mentett-hataridok.ics');
-    if (act === 'draft-make') { var id = $('#draft-pick').value; if (!id) { toast('Válasszon felhívást.'); return; } return makeDraft(id); }
-    if (act === 'draft-back') { currentDraft = null; return render(); }
-    if (act === 'draft-print') return window.print();
-    if (act === 'draft-save') { $$('[data-sec]').forEach(function (el) { currentDraft.sections[+el.getAttribute('data-sec')].body = el.innerHTML; }); var ds = lsGet(DRAFTS_KEY, []).filter(function (d) { return d.id !== currentDraft.id; }); currentDraft.ts = Date.now(); ds.push(currentDraft); lsSet(DRAFTS_KEY, ds); toast('Vázlat mentve ebben a böngészőben.'); return; }
     if (act === 'cal-copy') { var ci = $('#cal-url'); ci.select(); try { await navigator.clipboard.writeText(ci.value); toast('Link másolva.'); } catch (x) { document.execCommand('copy'); } return; }
     if (act === 'cal-rotate') { if (!confirm('Új naptár-linket kér? A régi link azonnal megszűnik.')) return; try { var rr = await window.gp.client.rpc('rotate_calendar_token'); if (rr.error) throw rr.error; render(); toast('Új naptár-link elkészült.'); } catch (x) { toast('Most nem sikerült új linket kérni.'); } return; }
-    if (act === 'export') { var data = { exportedAt: new Date().toISOString(), profile: S.profile, bookmarks: Array.from(S.bookmarks), drafts: lsGet(DRAFTS_KEY, []), leads: lsGet('grantpilot:leads', []) }; var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })); a.download = 'aipalyazo-adataim.json'; document.body.appendChild(a); a.click(); a.remove(); return; }
+    if (act === 'export') { var data = { exportedAt: new Date().toISOString(), profile: S.profile, bookmarks: Array.from(S.bookmarks), leads: lsGet('grantpilot:leads', []) }; var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })); a.download = 'aipalyazo-adataim.json'; document.body.appendChild(a); a.click(); a.remove(); return; }
+    if (act === 'del-1') { DEL.step = 1; return delRender(); }
+    if (act === 'del-2') { DEL.step = 2; delRender(); var f = $('#del-reason'); if (f) f.focus(); return; }
+    if (act === 'del-cancel') { DEL.step = 0; clearInterval(DEL.timer); return delRender(); }
     if (act === 'delete-account') return deleteAccount();
   });
   document.addEventListener('submit', function (e) { if (e.target && e.target.id === 'lead-form') { e.preventDefault(); submitLead(e.target); } });
@@ -730,14 +704,45 @@
   window.addEventListener('hashchange', route);
   window.addEventListener('popstate', function () { if (location.hash.indexOf('#/palyazat/') !== 0) closeDetail(true); });
 
+  // Account deletion: three deliberate steps, then a server-checked confirmation.
+  var DEL = { step: 0, timer: null };
+  function delCard() {
+    var email = (S.user && S.user.email) || '';
+    if (DEL.step === 0) return '<h2>Fiók törlése</h2><p class="muted">A fiók törlésével minden mentett felhívás, a cégprofil és az értesítések is elvesznek.</p><button class="btn btn-ghost" type="button" data-act="del-1">Fiók törlése…</button>';
+    if (DEL.step === 1) return '<h2>Biztosan törölni szeretné?</h2><p>A törléssel véglegesen elveszik:</p><ul class="del-list"><li>a cégprofilja és a jogosultsági beállítások,</li><li>az összes mentett felhívás és naptár-link,</li><li>a heti összefoglaló és az azonnali értesítések,</li><li>a konzultációs kérései személyes adatai (anonimizáljuk).</li></ul>' +
+      '<div class="notice info" style="margin:var(--s4) 0">Csak a leveleket kapcsolná ki? Ezt az <b>Értesítések</b> résznél egy kattintással megteheti, a fiók törlése nélkül.</div>' +
+      '<div class="row"><button class="btn btn-ghost" type="button" data-act="del-cancel">Mégsem</button><button class="btn btn-ghost" type="button" data-act="del-2" style="color:var(--danger);border-color:var(--danger)">Tovább a törléshez</button></div>';
+    return '<h2>Végleges törlés megerősítése</h2><p class="muted">Ez nem visszavonható. A folytatáshoz töltse ki mindhárom mezőt.</p>' +
+      '<div class="field"><label for="del-reason">Miért törli a fiókját?</label><select id="del-reason"><option value="">Válasszon…</option><option>Nem találtam megfelelő pályázatot</option><option>Túl sok e-mailt kaptam</option><option>Más szolgáltatást használok</option><option>Adatvédelmi okból</option><option>Egyéb</option></select></div>' +
+      '<div class="field"><label for="del-email">Írja be a fiókja e-mail-címét' + (email ? ' (' + esc(email) + ')' : '') + '</label><input id="del-email" type="email" autocomplete="off"></div>' +
+      '<div class="field"><label for="del-word">Írja be nagybetűvel: <b>TÖRLÉS</b></label><input id="del-word" type="text" autocomplete="off" autocapitalize="characters"></div>' +
+      '<label class="check" style="margin-bottom:var(--s4)"><input type="checkbox" id="del-ok"><span>Megértettem, hogy a fiókom és az adataim véglegesen törlődnek, és ez nem vonható vissza.</span></label>' +
+      '<div class="row"><button class="btn btn-ghost" type="button" data-act="del-cancel">Mégsem</button><button class="btn btn-danger" type="button" data-act="delete-account" id="del-go" disabled>Fiók végleges törlése</button></div><p class="small" id="del-msg" role="alert" style="margin-top:8px"></p>';
+  }
+  function delRender() { var c = $('#del-card'); if (c) c.innerHTML = delCard(); if (DEL.step === 2) delWire(); }
+  function delValid() {
+    var email = ((S.user && S.user.email) || '').toLowerCase();
+    return $('#del-reason').value && $('#del-email').value.trim().toLowerCase() === email && $('#del-word').value.trim() === 'TÖRLÉS' && $('#del-ok').checked;
+  }
+  function delWire() {
+    var go = $('#del-go'), wait = 0;
+    var check = function () {
+      clearInterval(DEL.timer);
+      if (!delValid()) { go.disabled = true; go.textContent = 'Fiók végleges törlése'; return; }
+      wait = 10; go.disabled = true; go.textContent = 'Várjon ' + wait + ' mp…';
+      DEL.timer = setInterval(function () { wait--; if (!delValid()) return check(); if (wait <= 0) { clearInterval(DEL.timer); go.disabled = false; go.textContent = 'Fiók végleges törlése'; } else go.textContent = 'Várjon ' + wait + ' mp…'; }, 1000);
+    };
+    ['#del-reason', '#del-email', '#del-word', '#del-ok'].forEach(function (sel) { $(sel).addEventListener('input', check); $(sel).addEventListener('change', check); });
+  }
   async function deleteAccount() {
     var msg = $('#del-msg');
-    if (!confirm('Biztosan véglegesen törli a fiókját? Ez nem visszavonható.')) return;
-    msg.textContent = 'Törlés folyamatban…';
+    if (!delValid()) { msg.textContent = 'Töltse ki mindhárom mezőt.'; return; }
+    if (!confirm('Utolsó lépés: a fiókja és minden adata most véglegesen törlődik. Folytatja?')) return;
+    msg.textContent = 'Törlés folyamatban…'; $('#del-go').disabled = true;
     var res = null, status = 0;
     try {
       var s = (await window.gp.client.auth.getSession()).data.session;
-      var r = await fetch(CFG.functionsUrl + '/delete-user', { method: 'POST', headers: { Authorization: 'Bearer ' + s.access_token, apikey: typeof SUPABASE_ANON_KEY !== 'undefined' ? SUPABASE_ANON_KEY : '', 'Content-Type': 'application/json' } });
+      var r = await fetch(CFG.functionsUrl + '/delete-user', { method: 'POST', headers: { Authorization: 'Bearer ' + s.access_token, apikey: typeof SUPABASE_ANON_KEY !== 'undefined' ? SUPABASE_ANON_KEY : '', 'Content-Type': 'application/json' }, body: JSON.stringify({ confirm: 'TÖRLÉS', email: $('#del-email').value.trim(), reason: $('#del-reason').value }) });
       status = r.status; res = await r.json().catch(function () { return {}; });
     } catch (e) { status = 0; }
     if (status === 200 && res && res.ok) {
@@ -746,7 +751,8 @@
     } else if (status === 500 && res && res.dataDeleted) {
       msg.textContent = 'Személyes adatait töröltük, de a bejelentkezési fiók törlése nem sikerült. Kérjük, próbálja újra később, vagy írjon az info@aipalyazo.hu címre.';
     } else {
-      msg.textContent = 'A fiók törlése nem sikerült, adatai nem törlődtek teljesen. Kérjük, próbálja újra, vagy írjon az info@aipalyazo.hu címre.';
+      $('#del-go').disabled = false;
+      msg.textContent = 'A fiók törlése nem sikerült, adatai nem törlődtek. Kérjük, próbálja újra, vagy írjon az info@aipalyazo.hu címre.';
     }
   }
 
