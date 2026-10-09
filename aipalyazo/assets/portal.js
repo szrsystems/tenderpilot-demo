@@ -396,12 +396,13 @@
       (S.changes[id] || []).forEach(function (c) {
         var d = days(c.date); if (d === null || d < -daysBack || c.type === 'page') return;
         var g = byId(id), title = (g && g.title) || c.title; if (!title) return;
-        out.push({ date: c.date, type: c.type, id: g ? id : null, title: title, c: c });
+        out.push({ date: c.date, type: c.type, id: g ? id : null, title: title, c: c, auto: /^eu-/.test(id) });
       });
     });
     return out.sort(function (a, b) { return b.date.localeCompare(a.date) || a.type.localeCompare(b.type); });
   }
-  function newsCount() { return newsItems(7).length + S.news.filter(function (n) { var d = days(n.date); return d !== null && d >= -7; }).length; }
+  // Badge: only domestic and hand-checked changes; the automatic EU import can add hundreds at once.
+  function newsCount() { return newsItems(7).filter(function (x) { return !x.auto; }).length + S.news.filter(function (n) { var d = days(n.date); return d !== null && d >= -7; }).length; }
   var NEWS_LABEL = { new: ['Új felhívás', 'green'], removed: ['Lezárult / lekerült', 'gray'], deadline: ['Határidő módosult', 'amber'], 'deadline-official': ['Új határidő a hivatalos oldalon', 'amber'], keret: ['Keretösszeg módosult', 'blue'], 'szabad-keret': ['Szabad keret változott', 'blue'] };
   VIEWS.hirek = function () {
     var h = head('Hírek', 'Hírek és változások', stampLine());
@@ -413,7 +414,10 @@
     items.forEach(function (x) { (byDay[x.date] = byDay[x.date] || []).push(x); });
     h += '<div class="section-title"><h2>Változások a felhívásokban</h2><span class="muted small">elmúlt 45 nap</span></div>';
     h += items.length ? '<div class="news-days">' + Object.keys(byDay).sort().reverse().map(function (day) {
-      return '<section class="news-day"><h3>' + esc(huDate(day)) + '</h3><ul>' + byDay[day].map(function (x) {
+      var list = byDay[day], autoNew = list.filter(function (x) { return x.auto && x.type === 'new'; });
+      if (autoNew.length > 8) list = list.filter(function (x) { return !(x.auto && x.type === 'new'); });
+      var bulk = autoNew.length > 8 ? '<li><span class="badge blue">Új EU-felhívások</span> ' + autoNew.length + ' új felhívás került be az EU pályázati portálról. <a href="#/palyazatok" data-scope="all">Megnézem</a></li>' : '';
+      return '<section class="news-day"><h3>' + esc(huDate(day)) + '</h3><ul>' + bulk + list.map(function (x) {
         var L = NEWS_LABEL[x.type] || ['Változás', 'gray'];
         var detail = (x.c.from != null || x.c.to != null) ? ' <span class="muted">' + esc(changeText(x.c).replace(/^[^:]*:\s*/, '')) + '</span>' : '';
         var t = x.id ? '<button type="button" class="news-link" data-open="' + esc(x.id) + '">' + esc(x.title) + '</button>' : '<span>' + esc(x.title) + '</span>';

@@ -32,7 +32,7 @@
 // =========================================================================
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { fetchEuCalls } from './fetch-eu-calls.mjs';
+import { fetchEuCalls, isForIndividuals } from './fetch-eu-calls.mjs';
 import { withConsortiumTag } from './requires.mjs';
 import { mergeChanges } from './changes-log.mjs';
 
@@ -289,7 +289,11 @@ export async function buildFeed({ tenders, verifiedItems, apiVerified, euItems, 
 
   // Eligibility tags: EU calls that need a consortium are tagged even when
   // nobody hand-tagged them (auto EU items, new verified items).
-  const grants = [...apiGrants, ...verified, ...euAuto].map(withConsortiumTag);
+  // Applicants must be organisations: drop calls for private persons from every
+  // source (the API's beneficiary filter and the verified list catch most).
+  const all = [...apiGrants, ...verified, ...euAuto];
+  for (const g of all) if (isForIndividuals(g.title, g.code)) excluded.push({ code: g.code || g.id, why: 'magánszemélyeknek szól' });
+  const grants = all.filter((g) => !isForIndividuals(g.title, g.code)).map(withConsortiumTag);
   return { grants, apiGrants, verified, euAuto, excluded, stale, dropped, euFailed };
 }
 

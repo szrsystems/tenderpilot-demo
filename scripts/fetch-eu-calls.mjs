@@ -74,6 +74,16 @@ function amountFrom(meta) {
   return '';
 }
 
+// Calls whose applicant is a private person, not an organisation: fellowships,
+// scholarships, individual researcher grants, natural-person prizes. Every
+// call an organisation can apply for stays in — consortium and large-company
+// calls included.
+export const INDIVIDUAL_RE = /\b(fellowships?|scholarships?|postdoctoral|doctoral (networks?|candidates?)|phd (students?|candidates?|positions?)|individual (researchers?|applicants?|artists?|grants?)|for individuals|natural persons?|ösztöndíj\w*|magánszemély\w*|lakossági)\b/i;
+export const INDIVIDUAL_ID_RE = /^(HORIZON-MSCA|HORIZON-ERC|ERC-|MSCA-)|-PF-|-ERC-/i;
+export function isForIndividuals(title, identifier = '') {
+  return INDIVIDUAL_ID_RE.test(identifier || '') || INDIVIDUAL_RE.test(title || '');
+}
+
 // Map one search hit → portal grant, or null when it should not be shown.
 export function mapEuHit(hit, today) {
   const m = hit.metadata || {};
@@ -83,6 +93,7 @@ export function mapEuHit(hit, today) {
   // Titles come from a third-party API and end up in HTML: strip markup.
   const title = (one(m, 'title') || hit.title || hit.summary || '').replace(/[<>"]/g, '').trim();
   if (!identifier || !title) return null;
+  if (isForIndividuals(title, identifier)) return null;
 
   const isCascade = type === '8';
   if (!isCascade && !PROGRAMMES[fp]) return null;
