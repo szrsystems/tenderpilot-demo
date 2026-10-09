@@ -16,21 +16,13 @@
 // Run: node scripts/rebuild-offline.mjs [--today YYYY-MM-DD]
 // =========================================================================
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { buildFeed, applyOverlay, diff } from './fetch-live-grants.mjs';
+import { buildFeed, prevApiItems, diff } from './fetch-live-grants.mjs';
 import { mergeChanges } from './changes-log.mjs';
 
 const readJson = (f, d) => { try { return JSON.parse(readFileSync(f, 'utf8')); } catch { return d; } };
 
 export function rebuildOffline({ prevGrants, verifiedItems, apiVerified, monitor, today }) {
-  const excluded = [];
-  const prebuiltApi = [];
-  for (const g0 of prevGrants.filter((g) => String(g.id).startsWith('pg-'))) {
-    const ov = apiVerified[g0.code];
-    if (ov && ov.exclude) { excluded.push({ code: g0.code, why: ov.reason }); continue; }
-    const g = applyOverlay({ ...g0 }, ov);
-    if (!ov) { delete g.requires; delete g.requiresEvidence; }
-    prebuiltApi.push(g);
-  }
+  const { items: prebuiltApi, excluded } = prevApiItems(prevGrants, apiVerified, today);
   const euItems = prevGrants.filter((g) => g.auto && g.scope === 'eu' && g.deadline >= today);
   return buildFeed({ tenders: [], verifiedItems, apiVerified, euItems, prevGrants, today, monitor, prebuiltApi })
     .then((out) => ({ ...out, excluded: [...excluded, ...out.excluded] }));
@@ -56,6 +48,14 @@ async function main() {
     ...prevMeta,
     updatedAt: new Date().toISOString(),
     offlineRebuild: { at: today, apiDataFrom: prevMeta.updatedAt || null },
+    // Source status is carried over from the last live run (no API called).
+    sourcesOk: prevMeta.sourcesOk ?? !(prevMeta.apiFailed || prevMeta.euApiFailed),
+    apiFailed: !!prevMeta.apiFailed,
+    euApiFailed: !!prevMeta.euApiFailed,
+    sources: prevMeta.sources || {
+      palyazatApi: { ok: !prevMeta.apiFailed, items: out.apiGrants.length, lastOk: prevMeta.apiFailed ? null : prevMeta.updatedAt || null },
+      euApi: { ok: !prevMeta.euApiFailed, items: out.euAuto.length, lastOk: prevMeta.euApiFailed ? null : prevMeta.updatedAt || null },
+    },
     counts: {
       total: grants.length, api: out.apiGrants.length, verified: out.verified.length, euAuto: out.euAuto.length,
       hazai: grants.filter((g) => g.scope !== 'eu').length, eu: grants.filter((g) => g.scope === 'eu').length,

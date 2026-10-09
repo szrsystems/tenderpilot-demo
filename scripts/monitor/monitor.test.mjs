@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { datesIn, parseRobots, htmlToText, extractLinks } from './lib.mjs';
 import { validate, grounded } from './extract.mjs';
-import { runMonitor, euTopicFacts, CODE_RE } from './run.mjs';
+import { runMonitor, euTopicFacts, euDeadlineDate, CODE_RE } from './run.mjs';
 import { applyMonitor } from '../fetch-live-grants.mjs';
 
 const TODAY = '2026-09-24';
@@ -45,6 +45,29 @@ test('EU topicDetails: next deadline and closed detection', () => {
   assert.deepEqual(euTopicFacts(open, TODAY), { next: '2026-11-04', closed: false });
   const past = { TopicDetails: { actions: [{ status: { abbreviation: 'Closed' }, deadlineDates: [Date.UTC(2026, 8, 2)] }] } };
   assert.equal(euTopicFacts(past, TODAY).closed, true);
+});
+
+test('EU topicDetails: deadlines given as strings (epoch ms as string, ISO) are parsed — not read as "closed"', () => {
+  // live format (2026-10): "1793145600000" = 2026-10-28
+  const live = { TopicDetails: { actions: [{ status: { abbreviation: 'Forthcoming' }, deadlineDates: ['1793145600000'] }] } };
+  assert.deepEqual(euTopicFacts(live, TODAY), { next: '2026-10-28', closed: false });
+  const multi = { TopicDetails: { actions: [{ status: { abbreviation: 'Open' }, deadlineDates: [String(Date.UTC(2026, 8, 2, 15)), String(Date.UTC(2027, 0, 14, 16))] }] } };
+  assert.deepEqual(euTopicFacts(multi, TODAY), { next: '2027-01-14', closed: false });
+  const iso = { TopicDetails: { actions: [{ status: { abbreviation: 'Open' }, deadlineDates: ['2026-11-04T17:00:00.000+0100'] }] } };
+  assert.deepEqual(euTopicFacts(iso, TODAY), { next: '2026-11-04', closed: false });
+  // Brussels calendar day: 23:00 UTC on 3 Nov = 4 Nov 00:00 in Brussels
+  assert.equal(euDeadlineDate(String(Date.UTC(2026, 10, 3, 23))), '2026-11-04');
+  assert.equal(euDeadlineDate('garbage'), null);
+  const pastStr = { TopicDetails: { actions: [{ status: { abbreviation: 'Closed' }, deadlineDates: [String(Date.UTC(2026, 8, 2))] }] } };
+  assert.equal(euTopicFacts(pastStr, TODAY).closed, true);
+});
+
+test('withdrawn verified items are not re-checked by the monitor and stay hidden in the feed', async () => {
+  const { fetchImpl, calls } = fakeWeb({});
+  const items = [{ id: 'v-step', title: 'STEP', deadline: '2026-11-25', url: 'https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eic-2026-step', withdrawn: 'cut-off törölve' }];
+  const r = await runMonitor({ items, sources: [], officialDomains: ['europa.eu'], fetchImpl, today: TODAY, delayMs: 0, state: {} });
+  assert.equal(calls.length, 0);
+  assert.ok(applyMonitor(items, { flags: r.flags }).hidden.some((h) => h.id === 'v-step'));
 });
 
 // ---- a small fake internet ----------------------------------------------

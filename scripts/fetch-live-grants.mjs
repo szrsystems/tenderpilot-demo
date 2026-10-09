@@ -20,7 +20,10 @@
 //
 // Output:
 //   aipalyazo/grants_live.json  — portal-schema grant list
-//   aipalyazo/grants-meta.json  — updatedAt, counts, keret/deadline changes
+//   aipalyazo/grants-meta.json  — updatedAt, counts, keret/deadline changes,
+//                                 sourcesOk / apiFailed / euApiFailed and
+//                                 per-source status (a failed source keeps
+//                                 yesterday's items; the UI notes stale data)
 //   aipalyazo/changes.json      — per-call change history, 12 months
 //                                 (scripts/changes-log.mjs)
 // Eligibility tags (requires/requiresEvidence, scripts/requires.mjs) come
@@ -32,7 +35,7 @@
 // =========================================================================
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { fetchEuCalls, isForIndividuals } from './fetch-eu-calls.mjs';
+import { fetchEuCalls, isForIndividuals, normalizeEuItem } from './fetch-eu-calls.mjs';
 import { withConsortiumTag } from './requires.mjs';
 import { mergeChanges } from './changes-log.mjs';
 
@@ -53,11 +56,14 @@ const VERIFIED = 'scripts/verified-grants.json';
 const STALE_DAYS = 45;   // verified item not re-checked for this long → flagged
 const EXPIRE_DAYS = 90;  // …and hidden after this long
 
-// Business beneficiaries → this is a KKV product; keep calls a company can apply to.
+// Business beneficiaries: keep every call a company can apply to — large
+// companies included (owner policy: drop only non-business applicants).
 const BUSINESS_BENEF = [
   'vállalkozás', 'mikrovállalkozás', 'kisvállalkozás', 'középvállalkozás',
   'egyéb vállalkozás', 'mikrovállalkozás természetes személy', 'Mikrovállalkozás',
+  'nagyvállalkozás', 'Nagyvállalkozás', 'nagyvállalat', 'Nagyvállalat',
 ];
+export const isBusinessBeneficiary = (b) => BUSINESS_BENEF.includes(b);
 
 // Official domains allowed from the curated set (aggregators/consultants dropped).
 const OFFICIAL_DOMAINS = [
@@ -121,7 +127,10 @@ export function budapestDate(iso) {
 
 // Calls a company cannot apply to directly. Catches NEW codes of the kinds
 // the 2026-09 audit found (the known ones are listed in api-verified.json).
-const NON_SME_NAME = /technikai|költségtérítés|alapkezel|hitelkeret|kombinált keret|közvetítő|tagsági jogviszony|minősítés\b|kármentesítés/i;
+// Only fund-manager / financial-intermediary wording: "hitelkeret" and
+// "kombinált keret" alone also name real business loan products, so they
+// are NOT reasons to drop (the fund-manager lines say "technikai felhívás").
+const NON_SME_NAME = /technikai felhívás|költségtérítés|alapkezel|pénzügyi közvetítő|\bközvetítők|tagsági jogviszony|minősítés\b|kármentesítés/i;
 const NON_SME_OP = new Set(['IKOP_PLUSZ']);
 export function autoExclude(t) {
   if (NON_SME_OP.has(t.operationalProgram)) return 'közlekedési infrastruktúra, kijelölt kedvezményezett';
@@ -179,7 +188,7 @@ function mapTender(t, overlay) {
     // The API's `categories` are facet tags, not eligibility: every call
     // carried the same six regions. Regions come ONLY from verified data.
     regions: [],
-    sizeClasses: (t.beneficiaries || []).filter((b) => BUSINESS_BENEF.includes(b)),
+    sizeClasses: (t.beneficiaries || []).filter(isBusinessBeneficiary),
     rate: t.rateOfSupport ? `${t.rateOfSupport}% támogatási intenzitás` : null,
     modified: t.modificationTime || '',
     live: true,
@@ -223,8 +232,67 @@ export function selectVerified(items, today) {
 }
 
 // Code key for de-duplication across sources: "GINOP Plusz-1.4.3-24/A" and
-// "GINOP_PLUSZ-1.4.3-24" → "ginoppluszi1.4.3-24"-style normal form.
-export const codeKey = (c) => String(c || '').toLowerCase().replace(/plusz/g, '').replace(/[^a-z0-9]/g, '').replace(/(\d)[a-z]$/, '$1');
+// "GINOP_PLUSZ-1.4.3-24/A" → the same key. The variant letter is KEPT: /A
+// and /B are different calls. baseCodeKey drops a trailing variant letter.
+export const codeKey = (c) => String(c || '').toLowerCase().replace(/plusz/g, '').replace(/[^a-z0-9]/g, '');
+export const baseCodeKey = (c) => codeKey(c).replace(/(\d)[a-z]$/, '$1');
+
+// Set of call codes with variant-aware matching: an exact key match first;
+// only when there is none, a code WITH a variant letter matches its plain
+// base code and vice versa ("…-24/A" ↔ "…-24"). Two different variants
+// ("…-24/A" vs "…-24/B") never match.
+export function codeIndex(codes = []) {
+  const exact = new Set(), variantBases = new Set();
+  const idx = {
+    add(c) {
+      const k = codeKey(c); if (!k) return idx;
+      exact.add(k);
+      const b = baseCodeKey(c); if (b !== k) variantBases.add(b);
+      return idx;
+    },
+    has(c) {
+      const k = codeKey(c); if (!k) return false;
+      if (exact.has(k)) return true;
+      const b = baseCodeKey(c);
+      return b !== k ? exact.has(b) : variantBases.has(k);
+    },
+  };
+  for (const c of codes) idx.add(c);
+  return idx;
+}
+
+// Same-call matching across sources/ids: normalised URL (scheme, www,
+// trailing slash, #hash and case ignored; query kept — palyazat.gov.hu
+// redirect links differ only in it) and normalised title + deadline.
+export const normUrl = (u) => String(u || '').trim().toLowerCase().replace(/#.*$/, '').replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/+(\?|$)/, '$1');
+export const titleKey = (g) => {
+  const t = String(g.title || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  return t && g.deadline ? `${t}|${g.deadline}` : '';
+};
+
+// palyazat.gov.hu calls whose keret is fully requested (remaining ≤ 0 or
+// requested > keret): still listed — a waiting list is sometimes possible —
+// but flagged budgetExhausted for the UI.
+export function markBudget(g) {
+  const keret = g.keret || 0, req = g.requested || 0;
+  if (keret > 0 && (req >= keret || (typeof g.remaining === 'number' && g.remaining <= 0))) g.budgetExhausted = true;
+  else delete g.budgetExhausted;
+  return g;
+}
+
+// Yesterday's API items with today's api-verified.json re-applied — used by
+// the offline rebuild and when the palyazat.gov.hu API fails.
+export function prevApiItems(prevGrants, apiVerified, today) {
+  const excluded = [], items = [];
+  for (const g0 of (prevGrants || []).filter((g) => String(g.id).startsWith('pg-'))) {
+    const ov = apiVerified[g0.code];
+    if (ov && ov.exclude) { excluded.push({ code: g0.code, why: ov.reason }); continue; }
+    const g = applyOverlay({ ...g0 }, ov);
+    if (!ov) { delete g.requires; delete g.requiresEvidence; }
+    items.push(g);
+  }
+  return { items, excluded };
+}
 
 // Apply the daily monitor's results: hide items whose official page is gone
 // or says closed (2 checks in a row), take over re-checked deadlines, and
@@ -235,14 +303,15 @@ export function applyMonitor(items, monitor) {
   const hidden = [];
   const out = [];
   for (const it of items) {
+    if (it.withdrawn) { hidden.push({ id: it.id, why: 'visszavonva: ' + it.withdrawn }); continue; }
     if (hide[it.id]) { hidden.push({ id: it.id, why: hide[it.id] }); continue; }
     const o = ov[it.id];
     out.push(o ? { ...it, ...(o.deadline ? { deadline: o.deadline } : {}), ...(o.lastChecked ? { lastChecked: o.lastChecked } : {}) } : it);
   }
-  const have = new Set(out.map((g) => codeKey(g.code)).filter(Boolean));
-  const urls = new Set(out.map((g) => g.url));
+  const have = codeIndex(out.map((g) => g.code));
+  const urls = new Set(out.flatMap((g) => [g.url, ...(g.altUrls || [])]).filter(Boolean).map(normUrl));
   for (const a of auto) {
-    if (hide[a.id] || urls.has(a.url) || (a.code && have.has(codeKey(a.code)))) continue;
+    if (hide[a.id] || urls.has(normUrl(a.url)) || (a.code && have.has(a.code))) continue;
     out.push(a);
   }
   return { items: out, hidden };
@@ -252,13 +321,22 @@ export async function buildFeed({ tenders, verifiedItems, apiVerified, euItems, 
   // ---- 1) Official API feed ---------------------------------------------
   // (prebuiltApi: already-mapped API items — the offline rebuild passes
   // yesterday's items with the overlay re-applied instead of raw tenders.)
-  const now = new Date(today + 'T00:00:00Z').getTime();
+  // tenders not an array = the palyazat.gov.hu API failed this run: keep
+  // yesterday's API items (overlays re-applied) and report apiFailed.
   const excluded = [];
+  let apiFailed = false;
+  if (!prebuiltApi && !Array.isArray(tenders)) {
+    apiFailed = true;
+    const p = prevApiItems(prevGrants, apiVerified, today);
+    prebuiltApi = p.items; excluded.push(...p.excluded);
+  }
   const apiGrants = prebuiltApi ? prebuiltApi.filter((g) => !g.deadline || g.deadline >= today) : [];
   for (const t of prebuiltApi ? [] : tenders) {
     if (t.status !== 'Aktív') continue;
-    if (!t.endTime || new Date(t.endTime).getTime() < now) continue;
-    if (!(t.beneficiaries || []).some((b) => BUSINESS_BENEF.includes(b))) continue;
+    // Budapest calendar date: a call closing today (endTime 22:00/23:00 UTC
+    // the evening before) is still open today.
+    if (!t.endTime || budapestDate(t.endTime) < today) continue;
+    if (!(t.beneficiaries || []).some(isBusinessBeneficiary)) continue;
     const ov = apiVerified[t.code];
     if (ov && ov.exclude) { excluded.push({ code: t.code, why: ov.reason }); continue; }
     const auto = !ov && autoExclude(t);
@@ -268,15 +346,25 @@ export async function buildFeed({ tenders, verifiedItems, apiVerified, euItems, 
     apiGrants.push(g);
   }
 
+  for (const g of apiGrants) markBudget(g);
+
   // ---- 2) Hand-verified items (not already carried by the API) -----------
-  const apiKeys = new Set(apiGrants.map((g) => codeKey(g.code)).filter(Boolean));
+  const apiKeys = codeIndex(apiGrants.map((g) => g.code));
   const mon = applyMonitor(verifiedItems, monitor);
   const { kept, stale, dropped } = selectVerified(mon.items, today);
   dropped.push(...mon.hidden.map((h) => ({ id: h.id, why: 'monitor: ' + h.why })));
-  const verified = kept.filter((g) => !(g.code && apiKeys.has(codeKey(g.code))));
+  const verified = kept.filter((g) => !(g.code && apiKeys.has(g.code)));
 
   // ---- 3) EU API (auto) — skip what is already hand-verified -------------
-  const haveKeys = new Set([...apiKeys, ...verified.map((g) => codeKey(g.code))].filter(Boolean));
+  // A verified item replaces its auto twin when the code matches, when the
+  // auto URL is the verified URL or one of its altUrls (e.g. the portal's
+  // cascade page of a call the verified item links on the project's own
+  // site), or when title + deadline match. Withdrawn verified items (e.g. a
+  // cancelled cut-off) block their auto twin too.
+  const withdrawn = verifiedItems.filter((g) => g.withdrawn);
+  const haveKeys = codeIndex([...apiGrants, ...verified, ...withdrawn].map((g) => g.code));
+  const vUrls = new Set([...verified, ...withdrawn].flatMap((g) => [g.url, ...(g.altUrls || [])]).filter(Boolean).map(normUrl));
+  const vTitles = new Set([...verified, ...withdrawn].map(titleKey).filter(Boolean));
   let euFailed = false;
   let eu = euItems;
   if (!Array.isArray(eu)) {
@@ -285,7 +373,15 @@ export async function buildFeed({ tenders, verifiedItems, apiVerified, euItems, 
     euFailed = true;
     eu = prevGrants.filter((g) => g.auto && g.scope === 'eu' && g.deadline >= today);
   }
-  const euAuto = eu.filter((g) => !haveKeys.has(codeKey(g.code))).map((g) => ({ ...g, live: true, days: 0, score: 0, factors: factorsFor(g) }));
+  const seenEu = new Set();
+  const euAuto = eu.map(normalizeEuItem).filter((g) => {
+    if (!g || seenEu.has(g.id)) return false;
+    seenEu.add(g.id);
+    if (g.code && haveKeys.has(g.code)) return false;
+    if (vUrls.has(normUrl(g.url))) return false;
+    const tk = titleKey(g);
+    return !(tk && vTitles.has(tk));
+  }).map((g) => ({ ...g, live: true, days: 0, score: 0, factors: factorsFor(g) }));
 
   // Eligibility tags: EU calls that need a consortium are tagged even when
   // nobody hand-tagged them (auto EU items, new verified items).
@@ -294,43 +390,90 @@ export async function buildFeed({ tenders, verifiedItems, apiVerified, euItems, 
   const all = [...apiGrants, ...verified, ...euAuto];
   for (const g of all) if (isForIndividuals(g.title, g.code)) excluded.push({ code: g.code || g.id, why: 'magánszemélyeknek szól' });
   const grants = all.filter((g) => !isForIndividuals(g.title, g.code)).map(withConsortiumTag);
-  return { grants, apiGrants, verified, euAuto, excluded, stale, dropped, euFailed };
+  return { grants, apiGrants, verified, euAuto, excluded, stale, dropped, euFailed, apiFailed };
 }
 
+// Day-to-day changes. When an item's id changes but it is the same call
+// (a verified item replacing its auto twin or vice versa, a cascade getting
+// its own id) — same normalised URL or same title + deadline — it is NOT a
+// removed+new pair; real deadline/keret moves are still reported (new id).
 export function diff(prevList, grants) {
   const changes = [];
   const prev = Object.fromEntries(prevList.map((g) => [g.id, g]));
+  const nowIds = new Set(grants.map((g) => g.id));
+  const gone = prevList.filter((p) => !nowIds.has(p.id));
+  const byUrl = new Map(), byTitle = new Map();
+  for (const p of gone) {
+    const u = normUrl(p.url), t = titleKey(p);
+    if (u && !byUrl.has(u)) byUrl.set(u, p);
+    if (t && !byTitle.has(t)) byTitle.set(t, p);
+  }
+  const matched = new Set();
   for (const g of grants) {
-    const p = prev[g.id];
-    if (!p) { changes.push({ id: g.id, type: 'new', title: g.title }); continue; }
+    let p = prev[g.id];
+    if (!p) {
+      const cand = [byUrl.get(normUrl(g.url)), byTitle.get(titleKey(g))].find((x) => x && !matched.has(x.id));
+      if (!cand) { changes.push({ id: g.id, type: 'new', title: g.title }); continue; }
+      matched.add(cand.id);
+      p = cand;
+    }
     if (p.deadline !== g.deadline) changes.push({ id: g.id, type: 'deadline', from: p.deadline, to: g.deadline, title: g.title });
     if ((p.keret || 0) !== (g.keret || 0)) changes.push({ id: g.id, type: 'keret', from: p.keret, to: g.keret, title: g.title });
     if ((p.remaining ?? -1) !== (g.remaining ?? -1)) changes.push({ id: g.id, type: 'szabad-keret', from: p.remaining, to: g.remaining, title: g.title });
   }
-  for (const id of Object.keys(prev)) if (!grants.some((g) => g.id === id)) changes.push({ id, type: 'removed', title: prev[id].title });
+  for (const p of gone) if (!matched.has(p.id)) changes.push({ id: p.id, type: 'removed', title: p.title });
   return changes;
+}
+
+// Per-source freshness for grants-meta.json: the UI shows a stale-data note
+// when a source failed and yesterday's items were kept (dataFrom = when that
+// source last answered).
+export function sourceStatus({ apiFailed = false, apiError = null, apiCount = 0, euFailed = false, euError = null, euCount = 0, prevMeta = {}, now = new Date().toISOString() }) {
+  const prevSrc = (prevMeta && prevMeta.sources) || {};
+  const one = (failed, error, items, prev) => {
+    if (!failed) return { ok: true, items, lastOk: now };
+    const lastOk = (prev && prev.lastOk) || (prevMeta && prevMeta.updatedAt) || null;
+    return { ok: false, error: error || 'failed', items, dataFrom: lastOk, lastOk };
+  };
+  return {
+    sourcesOk: !apiFailed && !euFailed,
+    apiFailed: !!apiFailed,
+    euApiFailed: !!euFailed,
+    sources: {
+      palyazatApi: one(apiFailed, apiError, apiCount, prevSrc.palyazatApi),
+      euApi: one(euFailed, euError, euCount, prevSrc.euApi),
+    },
+  };
 }
 
 async function main() {
   const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Budapest' });
 
-  const res = await fetch(API, {
-    method: 'POST', headers: API_HEADERS,
-    body: JSON.stringify({ pagination: { pageSize: 5000, pageIndex: 0 }, filtering: { exactFilters: [] }, sort: { direction: 'desc', field: 'endTime' } }),
-  });
-  if (!res.ok) throw new Error(`API ${res.status}`);
-  const { tenders } = await res.json();
-  // A broken/empty response must never wipe the published feed.
-  if (!Array.isArray(tenders) || tenders.length < 50) throw new Error(`API returned only ${tenders && tenders.length} tenders — refusing to publish`);
-  console.log(`API: ${tenders.length} tenders total`);
+  // A failed/empty palyazat.gov.hu response must never wipe the published
+  // feed: keep yesterday's API items (like the EU fallback), mark apiFailed.
+  let tenders = null, apiError = null;
+  try {
+    const res = await fetch(API, {
+      method: 'POST', headers: API_HEADERS,
+      body: JSON.stringify({ pagination: { pageSize: 5000, pageIndex: 0 }, filtering: { exactFilters: [] }, sort: { direction: 'desc', field: 'endTime' } }),
+    });
+    if (!res.ok) throw new Error(`API ${res.status}`);
+    const body = await res.json();
+    if (!Array.isArray(body.tenders) || body.tenders.length < 50) throw new Error(`API returned only ${body.tenders && body.tenders.length} tenders`);
+    tenders = body.tenders;
+    console.log(`API: ${tenders.length} tenders total`);
+  } catch (e) {
+    apiError = String(e.message || e);
+    console.log(`::warning::palyazat.gov.hu API failed (${apiError}) — keeping yesterday's API items`);
+  }
 
   const apiVerified = JSON.parse(readFileSync(API_VERIFIED, 'utf8'));
   const verifiedItems = JSON.parse(readFileSync(VERIFIED, 'utf8')).items;
   const prevGrants = existsSync(OUT_GRANTS) ? JSON.parse(readFileSync(OUT_GRANTS, 'utf8')) : [];
 
-  let euItems = null;
+  let euItems = null, euError = null;
   try { euItems = await fetchEuCalls({ today }); console.log(`EU: ${euItems.length} open/forthcoming calls kept`); }
-  catch (e) { console.warn(`EU API failed (${e.message}) — keeping yesterday's EU items`); }
+  catch (e) { euError = String(e.message || e); console.warn(`EU API failed (${euError}) — keeping yesterday's EU items`); }
 
   const readOpt = (f, d) => { try { return JSON.parse(readFileSync(f, 'utf8')); } catch { return d; } };
   const monitor = { flags: readOpt('scripts/monitor/flags.json', {}), auto: readOpt('scripts/monitor/auto-grants.json', []) };
@@ -358,14 +501,16 @@ async function main() {
   // entries that scripts/monitor/run.mjs already wrote to the same file today.
   const prevLog = existsSync(OUT_CHANGES) ? JSON.parse(readFileSync(OUT_CHANGES, 'utf8')) : {};
   writeFileSync(OUT_CHANGES, JSON.stringify(mergeChanges(prevLog, changes, today), null, 1));
+  const prevMeta = existsSync(OUT_META) ? JSON.parse(readFileSync(OUT_META, 'utf8')) : {};
+  const nowIso = new Date().toISOString();
   writeFileSync(OUT_META, JSON.stringify({
-    updatedAt: new Date().toISOString(),
+    updatedAt: nowIso,
+    ...sourceStatus({ apiFailed: out.apiFailed, apiError, apiCount: out.apiGrants.length, euFailed: out.euFailed, euError, euCount: out.euAuto.length, prevMeta, now: nowIso }),
     counts: {
       total: grants.length, api: out.apiGrants.length, verified: out.verified.length, euAuto: out.euAuto.length,
       hazai: grants.filter((g) => g.scope !== 'eu').length, eu: grants.filter((g) => g.scope === 'eu').length,
       excluded: out.excluded.length,
     },
-    euApiFailed: out.euFailed,
     needsReview,          // new API codes nobody has checked yet → verify + add to api-verified.json
     staleVerified: out.stale,
     droppedVerified: out.dropped,
