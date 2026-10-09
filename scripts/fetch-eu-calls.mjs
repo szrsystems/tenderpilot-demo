@@ -11,8 +11,16 @@
 // ignored, so deadlines are always checked here, client-side.
 //
 // Only programmes a Hungarian company can realistically use are kept (see
-// PROGRAMMES), and Horizon Europe only for EIC and Innovation Actions — plain
-// research topics would bury the domestic calls.
+// PROGRAMMES). Owner policy: every call an organisation can apply for stays —
+// research (RIA), innovation (IA), EIC, large-company and consortium calls
+// included. Dropped: calls for private persons (isForIndividuals), calls
+// closed to everyone but named beneficiaries / public bodies / civil society
+// (NON_BUSINESS_ID_RE), cancelled topics, and in Horizon Europe the
+// coordination & support actions (CSA) that are not SME-targeted plus
+// Programme Cofund actions (applicants are national funding bodies).
+// Cascade (type 8) calls get their own id from their portal URL
+// (competitive-calls-cs/<n>): the identifier is the PARENT topic, shared by
+// several cascades and by hand-verified items.
 // =========================================================================
 
 const ENDPOINT = 'https://api.tech.ec.europa.eu/search-api/prod/rest/search';
@@ -84,6 +92,45 @@ export function isForIndividuals(title, identifier = '') {
   return INDIVIDUAL_ID_RE.test(identifier || '') || INDIVIDUAL_RE.test(title || '');
 }
 
+// Calls a business cannot apply to, by identifier: cancelled topics; -IBA
+// (identified beneficiary actions, e.g. EIT KIC business plans); -SGA
+// (specific grant agreement for a named FPA consortium); EEN-01 (Enterprise
+// Europe Network host organisations); -NCC- (national coordination centres);
+// CERV- (citizens, equality, rights & values — civil society). Horizon
+// INFRA, WIDERA and Digital Europe education calls stay (companies can be
+// partners).
+export const NON_BUSINESS_ID_RE = /CANCELLED|-IBA(?:-|$)|-SGA(?:-|$)|-EEN-01|-NCC(?:-|$)|^CERV-/i;
+export const isNonBusinessId = (identifier) => NON_BUSINESS_ID_RE.test(String(identifier || ''));
+
+// Horizon Europe action types. Kept: RIA, IA, EIC, PCP/PPI, lump sum — any
+// call an organisation can join. Dropped only: coordination & support actions
+// (networking/support services, not funding for a company's own project)
+// unless SME-targeted, and Programme Cofund actions (national funders apply).
+const SME_TARGET_RE = /\bSMEs?\b|SME's|start-?ups?|scale-?ups?|small and medium|\bKKV/i;
+export function horizonActionDropped(actions, title = '', identifier = '') {
+  const a = `${actions || ''} ${title || ''}`;
+  if (/Programme Cofund|\bCOFUND\b/i.test(a)) return 'cofund';
+  if (/Coordination and Support|\bCSA\b/i.test(a) && !SME_TARGET_RE.test(`${title} ${identifier}`)) return 'csa';
+  return null;
+}
+
+const CS_RE = /\/competitive-calls-cs\/(\d+)/i;
+// Cascade id from its own portal URL; null when the URL has no cs number.
+export const cascadeId = (url) => { const m = String(url || '').match(CS_RE); return m ? 'eu-cs-' + m[1] : null; };
+
+// Re-apply today's rules to an already-mapped EU item (yesterday's feed when
+// the EU API is down, or the offline rebuild): drop non-business/cancelled
+// identifiers and give old-style cascade items their own id.
+export function normalizeEuItem(g) {
+  if (!g) return null;
+  const ident = g.parentTopic || g.code || '';
+  if (isNonBusinessId(ident) || isNonBusinessId(g.id)) return null;
+  if (isForIndividuals(g.title, ident)) return null;
+  const cs = cascadeId(g.url);
+  if (cs && g.id !== cs) return { ...g, id: cs, code: null, parentTopic: g.parentTopic || g.code || null };
+  return g;
+}
+
 // Map one search hit → portal grant, or null when it should not be shown.
 export function mapEuHit(hit, today) {
   const m = hit.metadata || {};
@@ -94,12 +141,13 @@ export function mapEuHit(hit, today) {
   const title = (one(m, 'title') || hit.title || hit.summary || '').replace(/[<>"]/g, '').trim();
   if (!identifier || !title) return null;
   if (isForIndividuals(title, identifier)) return null;
+  if (isNonBusinessId(identifier)) return null;
 
   const isCascade = type === '8';
   if (!isCascade && !PROGRAMMES[fp]) return null;
   const actions = many(m, 'typesOfAction').join(' ');
   const isEic = /EIC/i.test(identifier);
-  if (fp === '43108390' && !isCascade && !isEic && !/\bIA\b|Innovation Action/i.test(actions)) return null;
+  if (fp === '43108390' && !isCascade && !isEic && horizonActionDropped(actions, title, identifier)) return null;
 
   // First deadline on/after today (multi-cut-off topics list several).
   const deadlines = many(m, 'deadlineDate').map(euDate).filter(Boolean).sort();
@@ -112,10 +160,13 @@ export function mapEuHit(hit, today) {
   const single = isCascade || /ACCELERATOR|PATHFINDER|WOMENTECH/i.test(identifier);
   const url = one(m, 'url') || hit.url || (isCascade ? '' : TOPIC_URL + identifier.toLowerCase());
   if (!/^https:\/\//.test(url)) return null;
+  // A cascade's identifier is its PARENT topic: use the cascade's own URL.
+  const cs = isCascade ? cascadeId(url) : null;
 
   return {
-    id: 'eu-' + identifier.replace(/[^A-Za-z0-9._-]+/g, '-').slice(0, 80),
-    code: identifier,
+    id: cs || 'eu-' + identifier.replace(/[^A-Za-z0-9._-]+/g, '-').slice(0, 80),
+    code: isCascade ? null : identifier,
+    ...(isCascade ? { parentTopic: identifier } : {}),
     title,
     issuer: isCascade ? 'EU kaszkád (FSTP) felhívás' : `Európai Bizottság — ${PROGRAMMES[fp] || 'EU'}`,
     cat,

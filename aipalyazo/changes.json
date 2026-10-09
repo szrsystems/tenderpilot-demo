@@ -4,12 +4,22 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Call for proposals for civil society organisations active on protecting and promoting Union values: call to intermediaries (giving financial support to third parties)"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
+   "title": "Call for proposals for civil society organisations active on protecting and promoting Union values: call to intermediaries (giving financial support to third parties)"
   }
  ],
  "eu-CERV-2025-DAPHNE": [
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Call for proposals to prevent and combat gender-based violence and violence against children"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
    "title": "Call for proposals to prevent and combat gender-based violence and violence against children"
   }
  ],
@@ -38,6 +48,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Perform EU"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
    "title": "Perform EU"
   }
  ],
@@ -186,6 +201,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Deploying The Network of National Coordination Centres with Member States"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
+   "title": "Deploying The Network of National Coordination Centres with Member States"
   }
  ],
  "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-AI4SME": [
@@ -228,6 +248,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Enhancing the NCC Network"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
+   "title": "Enhancing the NCC Network"
   }
  ],
  "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-REGCABH": [
@@ -269,6 +294,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Euratom-Adhoc-2021-2027"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
    "title": "Euratom-Adhoc-2021-2027"
   }
  ],
@@ -781,6 +811,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Industrial leadership in AI, Data and Robotics – advanced human robot interaction (AI Data and Robotics Partnership) (IA)"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
+   "title": "Industrial leadership in AI, Data and Robotics – advanced human robot interaction (AI Data and Robotics Partnership) (IA)"
   }
  ],
  "eu-HORIZON-CL4-2024-RESILIENCE-01-41": [
@@ -794,6 +829,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Open Internet Stack: development of technological commons/open-source 3C building blocks (RIA)"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
    "title": "Open Internet Stack: development of technological commons/open-source 3C building blocks (RIA)"
   }
  ],
@@ -1004,6 +1044,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Co-Funded Partnership: Driving Urban Transitions to a sustainable future (DUT)"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
    "title": "Co-Funded Partnership: Driving Urban Transitions to a sustainable future (DUT)"
   }
  ],
@@ -1370,6 +1415,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "European Partnership Water Security for the Planet (Water4All)"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
+   "title": "European Partnership Water Security for the Planet (Water4All)"
   }
  ],
  "eu-HORIZON-CL6-2022-GOVERNANCE-01-02": [
@@ -1383,6 +1433,11 @@
   {
    "date": "2026-10-09",
    "type": "new",
+   "title": "Open source solutions for edge, cloud and mixed model applications to strengthen production and administrative capacities in agriculture"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
    "title": "Open source solutions for edge, cloud and mixed model applications to strengthen production and administrative capacities in agriculture"
   }
  ],
@@ -1699,12 +1754,22 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Cooperation with EEN"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
+   "title": "Cooperation with EEN"
   }
  ],
  "eu-HORIZON-EIC-2025-WOMENTECH": [
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Women Tech.EU initiative"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
    "title": "Women Tech.EU initiative"
   }
  ],
@@ -1755,6 +1820,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "European Partnership on Innovative SMEs"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
+   "title": "European Partnership on Innovative SMEs"
   }
  ],
  "eu-HORIZON-EIE-2023-CONNECT-03-01": [
@@ -1769,12 +1839,22 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "EITCULTURE Business Plan 2026"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
+   "title": "EITCULTURE Business Plan 2026"
   }
  ],
  "eu-HORIZON-EIT-2025-KIC-IBA-H": [
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "EITHEALTH Business Plan 2026"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
    "title": "EITHEALTH Business Plan 2026"
   }
  ],
@@ -1783,12 +1863,22 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Cross KIC EIT Innovation & Business Creation Business Plan 2026"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
+   "title": "Cross KIC EIT Innovation & Business Creation Business Plan 2026"
   }
  ],
  "eu-HORIZON-EIT-2025-KIC-IBA-RM": [
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "EITRAWMATERIALS Business Plan 2026"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
    "title": "EITRAWMATERIALS Business Plan 2026"
   }
  ],
@@ -1797,6 +1887,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Cross-KIC EIT Regional Innovation & Internationalisation Business Plan 2026"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
+   "title": "Cross-KIC EIT Regional Innovation & Internationalisation Business Plan 2026"
   }
  ],
  "eu-HORIZON-EIT-2025-KIC-IBA-UM": [
@@ -1804,12 +1899,22 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "EITURBANMOBILITY Business Plan 2026"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
+   "title": "EITURBANMOBILITY Business Plan 2026"
   }
  ],
  "eu-HORIZON-EIT-2025-MOC-IBA": [
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "2026-2027 MOC Activities"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
    "title": "2026-2027 MOC Activities"
   }
  ],
@@ -2091,6 +2196,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Specific Grant Agreement to the FPA to reinforce the operations of the Climate-Neutral and Smart Cities Mission Platform"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
    "title": "Specific Grant Agreement to the FPA to reinforce the operations of the Climate-Neutral and Smart Cities Mission Platform"
   }
  ],
@@ -2484,6 +2594,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Revitalising neighbourhoods around existing railway and motorway corridors"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "removed",
    "title": "Revitalising neighbourhoods around existing railway and motorway corridors"
   }
  ],
@@ -3140,6 +3255,12 @@
    "date": "2026-10-09",
    "type": "removed",
    "title": "Development of innovative antimicrobials against pathogens resistant to antimicrobials (RIA) (Innovatív antimikrobiális szerek rezisztens kórokozók ellen)"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "deadline",
+   "from": "2027-02-17",
+   "to": "2027-04-13"
   }
  ],
  "v-horizon-hlth-2027-01-ind-01": [
@@ -3147,6 +3268,12 @@
    "date": "2026-10-09",
    "type": "removed",
    "title": "Development of cell-free protein synthesis platforms for discovery and/or production of biologicals (RIA) (Sejtmentes fehérjeszintézis-platformok biológiai gyógyszerekhez)"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "deadline",
+   "from": "2027-02-17",
+   "to": "2027-04-13"
   }
  ],
  "v-horizon-hlth-2027-02-ind-02-two-stage": [
@@ -3154,6 +3281,12 @@
    "date": "2026-10-09",
    "type": "removed",
    "title": "Portable and versatile Point-of-care diagnostics (IA, two-stage) (Hordozható, sokoldalú helyszíni diagnosztika – kétfordulós)"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "deadline",
+   "from": "2027-02-17",
+   "to": "2027-04-13"
   }
  ],
  "v-horizon-hlth-2027-03-tool-04": [
@@ -3161,6 +3294,12 @@
    "date": "2026-10-09",
    "type": "removed",
    "title": "Virtual Human Twins for integrated clinical decision support in prevention and diagnosis (RIA) (Virtuális emberi ikrek klinikai döntéstámogatáshoz)"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "deadline",
+   "from": "2027-09-16",
+   "to": "2027-09-22"
   }
  ],
  "v-horizon-miss-2027-03-ocean-04": [
@@ -3210,12 +3349,22 @@
    "date": "2026-10-09",
    "type": "removed",
    "title": "EIC Pre-accelerator – Widening (EIC Pre-akcelerátor a felzárkózó országok startupjainak)"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "new",
+   "title": "EIC Pre-accelerator – Widening (EIC Pre-akcelerátor a felzárkózó országok startupjainak)"
   }
  ],
  "v-horizon-widera-2027-04-widening-01": [
   {
    "date": "2026-10-09",
    "type": "removed",
+   "title": "Excellence Hubs (Kiválósági innovációs központok)"
+  },
+  {
+   "date": "2026-10-09",
+   "type": "new",
    "title": "Excellence Hubs (Kiválósági innovációs központok)"
   }
  ],

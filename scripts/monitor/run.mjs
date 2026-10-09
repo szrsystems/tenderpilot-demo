@@ -25,6 +25,7 @@ import { makeFetcher, extractLinks, hash, pool, todayBudapest } from './lib.mjs'
 import { extractFacts, llmFromEnv } from './extract.mjs';
 import { updateSummaries } from './summarize.mjs';
 import { mergeChanges } from '../changes-log.mjs';
+import { codeIndex } from '../fetch-live-grants.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const P = (f) => join(HERE, f);
@@ -34,14 +35,32 @@ const slug = (s) => String(s).normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerC
 const EU_TOPIC = /\/topic-details\/([a-z0-9._-]+)/i;
 const topicJsonUrl = (id) => `https://ec.europa.eu/info/funding-tenders/opportunities/data/topicDetails/${id.toLowerCase()}.json`;
 
+// One topicDetails deadline → "YYYY-MM-DD" (Brussels calendar day), or null.
+// The live JSON gives epoch milliseconds as a STRING ("1793145600000"); older
+// payloads used numbers or ISO strings ("2026-11-04T17:00:00.000+0100").
+// Treating the numeric string as text ("17931…".slice(0,10)) made every
+// verified EU topic look closed (2026-10 audit: 83 items wrongly hidden).
+export function euDeadlineDate(d) {
+  if (d == null || d === '') return null;
+  let ms = null;
+  if (typeof d === 'number') ms = d;
+  else if (/^\s*-?\d{9,}\s*$/.test(String(d))) ms = Number(String(d).trim());
+  if (ms != null) {
+    if (!Number.isFinite(ms)) return null;
+    return new Date(ms).toLocaleDateString('sv-SE', { timeZone: 'Europe/Brussels' });
+  }
+  const m = String(d).match(/^(\d{4}-\d{2}-\d{2})/);
+  return m ? m[1] : null;
+}
+
 // Next deadline + status from the EU portal's topicDetails JSON.
 export function euTopicFacts(json, today) {
   const t = json && (json.TopicDetails || json.topicDetails || json);
   if (!t) return null;
   const dates = [];
   for (const a of t.actions || []) for (const d of a.deadlineDates || []) {
-    const iso = typeof d === 'number' ? new Date(d).toISOString().slice(0, 10) : String(d).slice(0, 10);
-    if (/^\d{4}-\d{2}-\d{2}$/.test(iso)) dates.push(iso);
+    const iso = euDeadlineDate(d);
+    if (iso) dates.push(iso);
   }
   dates.sort();
   const next = dates.find((d) => d >= today) || null;
@@ -52,7 +71,6 @@ export function euTopicFacts(json, today) {
 // Official call codes as written on Hungarian pages (GINOP Plusz-1.4.3-24,
 // KAP-RD40-RD12-1-26, 2025-1.1.1-BAY_VOUCHER …).
 export const CODE_RE = /\b(?:(?:GINOP|DIMOP|KEHOP|TOP|VINOP|EFOP|MAHOP|IKOP)[ _]?PLUSZ[ -]?\d+(?:\.\d+)+(?:\/[A-Z0-9]+)?-\d{2}|KAP-RD[0-9A-Za-z]+(?:-[0-9A-Za-z]+)*|20\d\d-\d\.\d\.\d-[A-Z_]{2,})\b/gi;
-const ckey = (c) => String(c || '').toLowerCase().replace(/plusz/g, '').replace(/[^a-z0-9]/g, '').replace(/(\d)[a-z]$/, '$1');
 
 export async function runMonitor({
   benchmarks = [], knownCodes = [],
@@ -71,7 +89,8 @@ export async function runMonitor({
   const official = (url) => { try { const h = new URL(url).hostname; return officialDomains.some((d) => h === d || h.endsWith('.' + d)); } catch { return false; } };
 
   // ---------------------------------------------------------------- 1) re-check
-  const checkable = items.filter((g) => g.url && !String(g.id).startsWith('pg-') && !g.auto);
+  // (withdrawn: hand-marked as cancelled — not re-checked, stays hidden)
+  const checkable = items.filter((g) => g.url && !String(g.id).startsWith('pg-') && !g.auto && !g.withdrawn);
   const results = await pool(checkable, 8, async (g) => {
     const st = state.pages[g.url] || (state.pages[g.url] = {});
     const m = g.url.match(EU_TOPIC);
@@ -170,7 +189,7 @@ export async function runMonitor({
   // ------------------------------------------------ 3) coverage cross-check
   // Other grant sites are read ONLY to spot what we might be missing: call
   // codes we don't list, and item pages that appeared since yesterday.
-  const ours = new Set([...knownCodes, ...items.map((g) => g.code)].map(ckey).filter(Boolean));
+  const ours = codeIndex([...knownCodes, ...items.map((g) => g.code)]);
   state.bench = state.bench || {};
   for (const b of benchmarks) {
     const re = new RegExp(b.linkPattern);
@@ -184,7 +203,7 @@ export async function runMonitor({
     }
     const prev = new Set(state.bench[b.id] || []);
     const firstRun = !state.bench[b.id];
-    const missingCodes = [...codes].filter((c) => !ours.has(ckey(c)));
+    const missingCodes = [...codes].filter((c) => !ours.has(c));
     const newLinks = firstRun ? [] : [...links].filter((l) => !prev.has(l));
     for (const c of missingCodes) review.push({ kind: 'benchmark-code', source: b.id, title: c, url: b.list[0], detail: `a(z) ${b.name} listáján szerepel, nálunk nincs — ellenőrizd a hivatalos oldalon` });
     for (const l of newLinks) review.push({ kind: 'benchmark-new', source: b.id, title: decodeURIComponent(l.split('/').pop()).replace(/-/g, ' '), url: l, detail: `új tétel a(z) ${b.name} oldalon` });

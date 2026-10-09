@@ -58,13 +58,15 @@
   "id": "eu-CERV-2024-CITIZENS-VALUES",
   "title": "Call for proposals for civil society organisations active on protecting and promoting Union values: call to intermediaries (giving financial support to third parties)",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "cerv-2025-daphne": {
   "id": "eu-CERV-2025-DAPHNE",
   "title": "Call for proposals to prevent and combat gender-based violence and violence against children",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "cetp-jc2026": {
   "id": "v-cetp-jc2026",
@@ -77,25 +79,29 @@
   "id": "eu-CREA-CULT-2024-PLAT",
   "title": "European Platforms for the promotion of emerging artists",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "crea-cult-2025-coop-ua-1": {
   "id": "eu-CREA-CULT-2025-COOP-UA-1",
   "title": "Supporting Ukrainian artists and cultural organisations to co-create/showcase",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "crea-cult-2025-coop-ua-2": {
   "id": "eu-CREA-CULT-2025-COOP-UA-2",
   "title": "Fostering Ukrainians’ access to culture and cultural heritage",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "crea-cult-2026-perform-eu": {
   "id": "eu-CREA-CULT-2026-PERFORM-EU",
   "title": "Perform EU",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "crea-cult-2027-lit": {
   "id": "eu-CREA-CULT-2027-LIT",
@@ -169,47 +175,234 @@
   "firstSeen": "2026-10-08",
   "lastSeen": "2026-10-09"
  },
+ "cs-43966258": {
+  "id": "eu-cs-43966258",
+  "title": "European partnership rescuing biodiversity to safeguard life on Earth",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-43977648": {
+  "id": "eu-cs-43977648",
+  "title": "Specialised education programmes in key capacity areas",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-44092120": {
+  "id": "eu-cs-44092120",
+  "title": "European Partnership for a climate neutral, sustainable and productive Blue Economy",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-45114064": {
+  "id": "eu-cs-45114064",
+  "title": "Specialised education programmes or modules in key capacity areas",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-45640341": {
+  "id": "eu-cs-45640341",
+  "title": "Excellence Hubs",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-45656490": {
+  "id": "eu-cs-45656490",
+  "title": "Climate-smart use of wood in the construction sector to support the New European Bauhaus",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-45659376": {
+  "id": "eu-cs-45659376",
+  "title": "Implementing co-funded action plans for connected regional innovation valleys",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-45705096": {
+  "id": "eu-cs-45705096",
+  "title": "'Innovate to transform' support for SME's sustainability transition (CSA)",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-45962345": {
+  "id": "eu-cs-45962345",
+  "title": "EU-wide network of pilot plants and testing facilities, improving SMEs and start-ups' access to scale-up",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-46014469": {
+  "id": "eu-cs-46014469",
+  "title": "Boosting Digital Skills of young pupils, in particular girls",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-46039280": {
+  "id": "eu-cs-46039280",
+  "title": "Interregional Innovation Investments Strand 2a",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-46041400": {
+  "id": "eu-cs-46041400",
+  "title": "Designing space-based downstream applications with international partners",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-46214053": {
+  "id": "eu-cs-46214053",
+  "title": "Specialised education programmes in key capacity areas",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-46238629": {
+  "id": "eu-cs-46238629",
+  "title": "European Platforms for the promotion of emerging artists",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-46597762": {
+  "id": "eu-cs-46597762",
+  "title": "Co-creating solutions for soil health in Living Labs",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-46813062": {
+  "id": "eu-cs-46813062",
+  "title": "Specialised Education Programmes in Key Capacity Areas",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-46830380": {
+  "id": "eu-cs-46830380",
+  "title": "Interregional Innovation Investments Strand 1",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-46905650": {
+  "id": "eu-cs-46905650",
+  "title": "Methods for bridging reality gaps",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-46939903": {
+  "id": "eu-cs-46939903",
+  "title": "Community-led actions to restore our ocean, seas and waters",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-46945037": {
+  "id": "eu-cs-46945037",
+  "title": "Experimental local action for EU missions: knowledge institutions as focal points of transdisciplinary research and innovation activities with European outreach",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-47038289": {
+  "id": "eu-cs-47038289",
+  "title": "Support to the implementation of Multi-Country Projects (MCPs)",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-47039365": {
+  "id": "eu-cs-47039365",
+  "title": "Preparedness Support and Mutual Assistance, Targeting Larger Industrial Operations and Installations",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-47108154": {
+  "id": "eu-cs-47108154",
+  "title": "Joint Cluster Initiatives (EUROCLUSTERS) for Europe’s recovery",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-47365856": {
+  "id": "eu-cs-47365856",
+  "title": "Supporting Ukrainian artists and cultural organisations to co-create/showcase",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-47365875": {
+  "id": "eu-cs-47365875",
+  "title": "Fostering Ukrainians’ access to culture and cultural heritage",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-48165818": {
+  "id": "eu-cs-48165818",
+  "title": "European Network of Factcheckers",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-48213468": {
+  "id": "eu-cs-48213468",
+  "title": "European partnership: Forests and Forestry for a Sustainable Future",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-48351428": {
+  "id": "eu-cs-48351428",
+  "title": "Support for R&I policy making in the EU enlargement countries",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-48400564": {
+  "id": "eu-cs-48400564",
+  "title": "EU Co-funded Partnership on raw materials for the green and digital transition (Co-funded partnership Raw Materials for the Green and Digital Transition)",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "cs-48401785": {
+  "id": "eu-cs-48401785",
+  "title": "Drive the evolution of the internet towards open and interoperable Web 4.0 and Virtual Worlds: building blocks in priority areas (RIA) (Virtual Worlds Partnership)",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
  "digital-2021-skills-01-specialised": {
   "id": "eu-DIGITAL-2021-SKILLS-01-SPECIALISED",
   "title": "Specialised education programmes in key capacity areas",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "digital-2022-skills-03-specialised-edu": {
   "id": "eu-DIGITAL-2022-SKILLS-03-SPECIALISED-EDU",
   "title": "Specialised education programmes or modules in key capacity areas",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "digital-2023-skills-04-boostingdigit": {
   "id": "eu-DIGITAL-2023-SKILLS-04-BOOSTINGDIGIT",
   "title": "Boosting Digital Skills of young pupils, in particular girls",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "digital-2023-skills-05-specialedu": {
   "id": "eu-DIGITAL-2023-SKILLS-05-SPECIALEDU",
   "title": "Specialised education programmes in key capacity areas",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "digital-2024-advanced-digital-07-keycapacity": {
   "id": "eu-DIGITAL-2024-ADVANCED-DIGITAL-07-KEYCAPACITY",
   "title": "Specialised Education Programmes in Key Capacity Areas",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "digital-2024-bestuse-07-multicountry": {
   "id": "eu-DIGITAL-2024-BESTUSE-07-MULTICOUNTRY",
   "title": "Support to the implementation of Multi-Country Projects (MCPs)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "digital-2025-bestuse-08-factcheckers": {
   "id": "eu-DIGITAL-2025-BESTUSE-08-FACTCHECKERS",
   "title": "European Network of Factcheckers",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "digital-2026-ai-data-10-compliance": {
   "id": "v-digital-2026-ai-data-10-compliance",
@@ -236,26 +429,28 @@
   "id": "eu-DIGITAL-ECCC-2024-DEPLOY-CYBER-07-LARGEOPER",
   "title": "Preparedness Support and Mutual Assistance, Targeting Larger Industrial Operations and Installations",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "digital-eccc-2024-deploy-ncc-06-ms-coordination": {
   "id": "eu-DIGITAL-ECCC-2024-DEPLOY-NCC-06-MS-COORDINATION",
   "title": "Deploying The Network of National Coordination Centres with Member States",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "digital-eccc-2027-deploy-cyber-11-ai4sme": {
   "id": "v-digital-eccc-2027-deploy-cyber-11-ai4sme",
   "title": "Strengthening cybersecurity capacities of European SMEs with cybersecure AI-powered solutions (KKV-k kiberbiztonsága MI-alapú megoldásokkal)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "digital-eccc-2027-deploy-cyber-11-ai4sme-2": {
   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-AI4SME",
   "title": "Strengthening cybersecurity capacities of European SMEs  with cybersecure AI-powered solutions",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "digital-eccc-2027-deploy-cyber-11-coordprep": {
   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-COORDPREP",
@@ -273,33 +468,34 @@
   "id": "v-digital-eccc-2027-deploy-cyber-11-dualuse",
   "title": "Dual-use technologies (Kettős felhasználású kiberbiztonsági technológiák)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "digital-eccc-2027-deploy-cyber-11-dualuse-2": {
   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-DUALUSE",
   "title": "Dual-use technologies",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "digital-eccc-2027-deploy-cyber-11-euleg": {
   "id": "v-digital-eccc-2027-deploy-cyber-11-euleg",
   "title": "Strengthening EU cybersecurity capacities and capabilities in line with legislative requirements (Kiberbiztonsági képességek erősítése az uniós jogszabályi követelményekhez – pl. NIS2, CRA)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "digital-eccc-2027-deploy-cyber-11-euleg-2": {
   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-EULEG",
   "title": "Strengthening EU cybersecurity capacities & capabilities in line with legislative requirements",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "digital-eccc-2027-deploy-cyber-11-ncc": {
   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-NCC",
   "title": "Enhancing the NCC Network",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "digital-eccc-2027-deploy-cyber-11-regcabh": {
   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-REGCABH",
@@ -353,7 +549,8 @@
   "id": "eu-EDF-2024-RA-SIMTRAIN-BRG-STEP",
   "title": "Methods for bridging reality gaps",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "eib-raiffeisen-lizing": {
   "id": "v-eib-raiffeisen-lizing",
@@ -475,7 +672,8 @@
   "id": "eu-EURATOM-2021-ADHOC-IBA",
   "title": "Euratom-Adhoc-2021-2027",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "eureka-celticnext-aut2026": {
   "id": "v-eureka-celticnext-aut2026",
@@ -830,14 +1028,14 @@
   "id": "v-horizon-cl3-2026-01-bm-01",
   "title": "Advanced border surveillance and situational awareness (IA) (Fejlett határfelügyelet és helyzetfelismerés)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl3-2026-01-bm-01-2": {
   "id": "eu-HORIZON-CL3-2026-01-BM-01",
   "title": "Advanced border surveillance and situational awareness",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl3-2026-01-bm-02": {
   "id": "eu-HORIZON-CL3-2026-01-BM-02",
@@ -855,40 +1053,40 @@
   "id": "v-horizon-cl3-2026-01-drs-02",
   "title": "Multi-hazard approach and cumulative / cascading impacts (IA) (Többveszélyes megközelítés és kaszkádhatások kezelése)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl3-2026-01-drs-02-2": {
   "id": "eu-HORIZON-CL3-2026-01-DRS-02",
   "title": "Multi-hazard approach and cumulative / cascading impacts",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl3-2026-01-drs-03": {
   "id": "v-horizon-cl3-2026-01-drs-03",
   "title": "Innovative tools, processes, equipment and technologies for search and rescue in hazardous conditions (IA) (Innovatív kutató-mentő eszközök veszélyes körülményekhez)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl3-2026-01-drs-03-2": {
   "id": "eu-HORIZON-CL3-2026-01-DRS-03",
   "title": "Development of innovative tools, processes, equipment and technologies through responses to disasters and emergencies for search and rescue in hazardous conditions",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl3-2026-01-drs-04": {
   "id": "v-horizon-cl3-2026-01-drs-04",
   "title": "Open topic on driving innovation uptake of disaster risk solutions (IA) (Katasztrófakockázati megoldások piaci bevezetése – nyitott téma)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl3-2026-01-drs-04-2": {
   "id": "eu-HORIZON-CL3-2026-01-DRS-04",
   "title": "Open topic on driving innovation uptake of disaster risk solutions",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl3-2026-01-drs-05": {
   "id": "eu-HORIZON-CL3-2026-01-DRS-05",
@@ -936,14 +1134,14 @@
   "id": "v-horizon-cl3-2026-01-infra-01",
   "title": "Tools and processes to support stress tests of critical infrastructure (IA) (Kritikus infrastruktúra stressztesztjét támogató eszközök)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl3-2026-01-infra-01-2": {
   "id": "eu-HORIZON-CL3-2026-01-INFRA-01",
   "title": "Tools and processes to support stress tests of critical infrastructure",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl3-2026-01-infra-02": {
   "id": "eu-HORIZON-CL3-2026-01-INFRA-02",
@@ -955,14 +1153,14 @@
   "id": "v-horizon-cl3-2026-01-infra-03",
   "title": "Targeted innovative capabilities for the resilience of critical entities to natural and human-induced disasters (IA) (Kritikus szervezetek rezilienciáját növelő innovatív képességek)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl3-2026-01-infra-03-2": {
   "id": "eu-HORIZON-CL3-2026-01-INFRA-03",
   "title": "Targeted innovative capabilities for the resilience of critical entities to natural and human-induced disasters, including hybrid scenarios",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl3-2026-01-ssri-01": {
   "id": "eu-HORIZON-CL3-2026-01-SSRI-01",
@@ -974,14 +1172,14 @@
   "id": "v-horizon-cl3-2026-01-ssri-04",
   "title": "Ecosystem and next-generation capabilities for a secured European Critical Communication System (IA) (Biztonságos európai kritikus kommunikációs rendszer)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl3-2026-01-ssri-04-2": {
   "id": "eu-HORIZON-CL3-2026-01-SSRI-04",
   "title": "Development of ecosystem and next-generation capabilities for a secured European Critical Communication System in civil security",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl3-2027-01-bm-01": {
   "id": "eu-HORIZON-CL3-2027-01-BM-01",
@@ -1005,14 +1203,14 @@
   "id": "v-horizon-cl3-2027-01-drs-01",
   "title": "Advanced protective gear for CBRN-E environments and smart protective equipment for disaster responders (IA) (CBRN-E védőfelszerelések és okos védőeszközök)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl3-2027-01-drs-01-2": {
   "id": "eu-HORIZON-CL3-2027-01-DRS-01",
   "title": "Open Topic on advanced protective gear optimized for CBRN-E (Chemical, Biological, Radiological, Nuclear, Explosives) environments and new generation of smart protective equipment for disaster responders",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl3-2027-01-drs-02": {
   "id": "eu-HORIZON-CL3-2027-01-DRS-02",
@@ -1024,14 +1222,14 @@
   "id": "v-horizon-cl3-2027-01-drs-03",
   "title": "Enhancing decision support systems for disaster crises using emerging technologies (IA) (Döntéstámogató rendszerek katasztrófahelyzetekre)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl3-2027-01-drs-03-2": {
   "id": "eu-HORIZON-CL3-2027-01-DRS-03",
   "title": "Enhancing decision support system for disaster crises: leveraging emerging technologies for improved civil preparedness and crisis management",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl3-2027-01-drs-04": {
   "id": "eu-HORIZON-CL3-2027-01-DRS-04",
@@ -1073,14 +1271,14 @@
   "id": "v-horizon-cl3-2027-01-infra-01",
   "title": "Enhancing physical protection of critical infrastructures (IA) (Kritikus infrastruktúrák fizikai védelme)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl3-2027-01-infra-01-2": {
   "id": "eu-HORIZON-CL3-2027-01-INFRA-01",
   "title": "Enhancing physical protection of critical infrastructures",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl3-2027-01-infra-02": {
   "id": "eu-HORIZON-CL3-2027-01-INFRA-02",
@@ -1092,14 +1290,14 @@
   "id": "v-horizon-cl3-2027-01-ssri-01",
   "title": "Accelerating uptake through open proposals for advanced SME innovation (IA) (KKV-innováció gyorsított bevezetése a biztonsági piacon – nyitott téma)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl3-2027-01-ssri-01-2": {
   "id": "eu-HORIZON-CL3-2027-01-SSRI-01",
   "title": "Accelerating uptake through open proposals for advanced SME innovation",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl3-2027-02-cs-eccc-01": {
   "id": "eu-HORIZON-CL3-2027-02-CS-ECCC-01",
@@ -1129,38 +1327,42 @@
   "id": "eu-HORIZON-CL4-2023-DIGITAL-EMERGING-01-02",
   "title": "Industrial leadership in AI, Data and Robotics – advanced human robot interaction (AI Data and Robotics Partnership) (IA)",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2024-resilience-01-41": {
   "id": "eu-HORIZON-CL4-2024-RESILIENCE-01-41",
   "title": "'Innovate to transform' support for SME's sustainability transition (CSA)",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2025-03-data-11": {
   "id": "eu-HORIZON-CL4-2025-03-DATA-11",
   "title": "Open Internet Stack: development of technological commons/open-source 3C building blocks (RIA)",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2025-03-human-16": {
   "id": "eu-HORIZON-CL4-2025-03-HUMAN-16",
   "title": "Drive the evolution of the internet towards open and interoperable Web 4.0 and Virtual Worlds: building blocks in priority areas (RIA) (Virtual Worlds Partnership)",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2027-01-mat-prod-02": {
   "id": "v-horizon-cl4-2027-01-mat-prod-02",
   "title": "Advanced manufacturing for key products (IA) (Fejlett gyártás kulcstermékekhez – Made in Europe)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl4-2027-01-mat-prod-02-2": {
   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-02",
   "title": "Advanced manufacturing for key products (IA) (Made in Europe partnership)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2027-01-mat-prod-03": {
   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-03",
@@ -1178,79 +1380,79 @@
   "id": "v-horizon-cl4-2027-01-mat-prod-08",
   "title": "Textile circularity through advanced processing and manufacturing technologies (Textilkörforgás fejlett gyártástechnológiákkal)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl4-2027-01-mat-prod-08-2": {
   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-08",
   "title": "Textile circularity through advanced processing and manufacturing technologies and system approaches (IA) (Textiles for the Future partnership)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2027-01-mat-prod-16": {
   "id": "v-horizon-cl4-2027-01-mat-prod-16",
   "title": "Technologies for innovative processing of raw materials (IA) (Nyersanyag-feldolgozási innovatív technológiák)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl4-2027-01-mat-prod-16-2": {
   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-16",
   "title": "Technologies for innovative processing of raw materials (IA)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2027-01-mat-prod-22": {
   "id": "v-horizon-cl4-2027-01-mat-prod-22",
   "title": "Innovative advanced materials and new production processes – reducing dependencies on Critical and Strategic Raw Materials (IA) (Innovatív anyagok és gyártási eljárások a kritikus nyersanyagfüggőség csökkentésére)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl4-2027-01-mat-prod-22-2": {
   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-22",
   "title": "Innovative advanced materials and new production processes – reducing dependencies on Critical and Strategic Raw Materials (IA) (Innovative Advanced Materials for the EU and Processes4Planet partnerships)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2027-01-mat-prod-49": {
   "id": "v-horizon-cl4-2027-01-mat-prod-49",
   "title": "'Proof of market' to improve valorisation and commercialisation of Horizon generated R&I results (Piacigazolás korábbi Horizon-eredmények hasznosítására)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl4-2027-01-mat-prod-49-2": {
   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-49",
   "title": "‘Proof of market’ to improve valorisation and commercialisation of Horizon generated R&I results (IA)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2027-01-mat-prod-61": {
   "id": "v-horizon-cl4-2027-01-mat-prod-61",
   "title": "Fast Track to Research and Innovation for breakthroughs in industrial technologies (Gyorsított K+F+I ipari technológiai áttörésekhez)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl4-2027-01-mat-prod-61-2": {
   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-61",
   "title": "Fast Track to Research and Innovation for breakthroughs in industrial technologies (Research and Innovation Action)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2027-01-mat-prod-62": {
   "id": "v-horizon-cl4-2027-01-mat-prod-62",
   "title": "Fast Track to Innovation for breakthroughs in the Chemical Industry Action Plan (Gyorsított innováció a vegyipari akcióterv áttöréseihez)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl4-2027-01-mat-prod-62-2": {
   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-62",
   "title": "Fast Track to Innovation for breakthroughs in the Chemical Industry Action Plan  (Research and Innovation Action)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2027-02-digital-emerging-52-two-stage": {
   "id": "eu-HORIZON-CL4-2027-02-DIGITAL-EMERGING-52-two-stage",
@@ -1262,14 +1464,14 @@
   "id": "v-horizon-cl4-2027-02-mat-prod-32-two-stage",
   "title": "Efficient energy input from renewable sources and energy management in the process industries (IA, two-stage) (Megújuló energia és energiamenedzsment a feldolgozóiparban – kétfordulós)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl4-2027-02-mat-prod-32-two-stage-2": {
   "id": "eu-HORIZON-CL4-2027-02-MAT-PROD-32-two-stage",
   "title": "Efficient energy input from renewable sources and energy management in the process industries (IA) (Processes4Planet and Innovative Advanced Materials for the EU partnerships)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2027-04-data-03": {
   "id": "eu-HORIZON-CL4-2027-04-DATA-03",
@@ -1281,66 +1483,66 @@
   "id": "v-horizon-cl4-2027-04-data-08",
   "title": "Demand-side 3C pilot demonstrators on converged Telco Edge Cloud Infrastructure (IA) (Telco edge-felhő keresleti oldali pilot demonstrátorok)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl4-2027-04-data-08-2": {
   "id": "eu-HORIZON-CL4-2027-04-DATA-08",
   "title": "Demand-side 3C pilot demonstrators on converged Telco Edge Cloud Infrastructure (IA)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2027-04-data-09": {
   "id": "v-horizon-cl4-2027-04-data-09",
   "title": "Energy efficiency and sustainability of AI data processing in Data Centres (IA) (MI-adatfeldolgozás energiahatékonysága adatközpontokban)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl4-2027-04-data-09-2": {
   "id": "eu-HORIZON-CL4-2027-04-DATA-09",
   "title": "Energy efficiency and sustainability of AI data processing in Data Centres (IA)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2027-04-digital-emerging-04": {
   "id": "v-horizon-cl4-2027-04-digital-emerging-04",
   "title": "Apply AI: Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (Kihívásalapú MI-innovációs gyorsító)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl4-2027-04-digital-emerging-04-2": {
   "id": "eu-HORIZON-CL4-2027-04-DIGITAL-EMERGING-04",
   "title": "Apply AI: Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (RIA) (Partnership in AI, Data and Robotics)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2027-04-digital-emerging-05": {
   "id": "v-horizon-cl4-2027-04-digital-emerging-05",
   "title": "Apply AI: AI-Driven Robotics for Industry: Enabling System Integration and Adoption (MI-alapú ipari robotika bevezetése)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl4-2027-04-digital-emerging-05-2": {
   "id": "eu-HORIZON-CL4-2027-04-DIGITAL-EMERGING-05",
   "title": "Apply AI: AI-Driven Robotics for Industry: Enabling System Integration and Adoption (IA) (Partnership in AI, Data and Robotics)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2027-04-digital-emerging-06": {
   "id": "v-horizon-cl4-2027-04-digital-emerging-06",
   "title": "International cooperation in AI (IA) (Nemzetközi együttműködés a mesterséges intelligenciában)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl4-2027-04-digital-emerging-06-2": {
   "id": "eu-HORIZON-CL4-2027-04-DIGITAL-EMERGING-06",
   "title": "International cooperation in AI (IA)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2027-04-digital-emerging-11": {
   "id": "eu-HORIZON-CL4-2027-04-DIGITAL-EMERGING-11",
@@ -1364,14 +1566,14 @@
   "id": "v-horizon-cl4-2027-space-03-12",
   "title": "Digital solutions for autonomy for space transportation systems, design and simulation tools (IA) (Digitális megoldások űrszállítási rendszerek autonómiájához)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl4-2027-space-03-12-2": {
   "id": "eu-HORIZON-CL4-2027-SPACE-03-12",
   "title": "Digital solutions for autonomy for space transportation systems, design and simulation tools - Digital enablers and building blocks (Space Partnership)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2027-space-03-21": {
   "id": "eu-HORIZON-CL4-2027-SPACE-03-21",
@@ -1389,14 +1591,14 @@
   "id": "v-horizon-cl4-2027-space-03-34",
   "title": "Preparing demonstration missions for collaborative Earth Observation and Satellite telecommunication (IA) (Földmegfigyelési és műholdas távközlési demonstrációs missziók előkészítése)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl4-2027-space-03-34-2": {
   "id": "eu-HORIZON-CL4-2027-SPACE-03-34",
   "title": "Preparing demonstration missions for collaborative Earth Observation and Satellite telecommunication for Space solutions (Space Partnership)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl4-2027-space-03-71": {
   "id": "eu-HORIZON-CL4-2027-SPACE-03-71",
@@ -1420,13 +1622,15 @@
   "id": "eu-HORIZON-CL4-INDUSTRY-2025-01-MATERIALS-64",
   "title": "EU Co-funded Partnership on raw materials for the green and digital transition (Co-funded partnership Raw Materials for the Green and Digital Transition)",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2021-d2-01-16": {
   "id": "eu-HORIZON-CL5-2021-D2-01-16",
   "title": "Co-Funded Partnership: Driving Urban Transitions to a sustainable future (DUT)",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2026-10-d2-03": {
   "id": "v-horizon-cl5-2026-10-d2-03",
@@ -1481,14 +1685,14 @@
   "id": "v-horizon-cl5-2026-11-d3-05",
   "title": "Demonstration of solid biofuel supply and conversion to high efficiency CHP from sustainable regional value chains (IA) (Szilárd bioüzemanyag-ellátás és nagy hatásfokú kapcsolt energiatermelés demonstrációja)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2026-11-d3-05-2": {
   "id": "eu-HORIZON-CL5-2026-11-D3-05",
   "title": "Demonstration of solid biofuel supply and conversion to high efficiency CHP from fully sustainable regional value chains",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2026-11-d3-06": {
   "id": "eu-HORIZON-CL5-2026-11-D3-06",
@@ -1500,27 +1704,27 @@
   "id": "v-horizon-cl5-2026-11-d3-14",
   "title": "Improved system design for innovative PV applications (IA) (Innovatív napelemes alkalmazások rendszertervezése)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2026-11-d3-14-2": {
   "id": "eu-HORIZON-CL5-2026-11-D3-14",
   "title": "Improved system design for innovative PV applications (EUPI-PV Partnership)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2026-11-d3-23": {
   "id": "v-horizon-cl5-2026-11-d3-23",
   "title": "Data sharing to support the training and development of AI foundation models in the energy sector (IA) (Adatmegosztás energetikai MI-alapmodellek fejlesztéséhez)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2026-11-d3-23-2": {
   "id": "eu-HORIZON-CL5-2026-11-D3-23",
   "title": "Data sharing to support the training and development of AI foundation models in the energy sector",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2027-01-d1-07": {
   "id": "eu-HORIZON-CL5-2027-01-D1-07",
@@ -1562,40 +1766,40 @@
   "id": "v-horizon-cl5-2027-02-d2-05",
   "title": "Improvement of Adaptability, Flexibility and Efficiency of Existing Battery Recycling Processes (IA) (Akkumulátor-újrahasznosítási eljárások hatékonyságának javítása)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2027-02-d2-05-2": {
   "id": "eu-HORIZON-CL5-2027-02-D2-05",
   "title": "Improvement of Adaptability, Flexibility and Efficiency of Existing Recycling Processes (BATT4EU Partnership)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2027-02-d2-06": {
   "id": "v-horizon-cl5-2027-02-d2-06",
   "title": "Sustainable and Competitive Cell Production Techniques for Lithium-ion and Sodium-ion Batteries (IA) (Fenntartható Li-ion és Na-ion cellagyártási technikák)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2027-02-d2-06-2": {
   "id": "eu-HORIZON-CL5-2027-02-D2-06",
   "title": "Sustainable and Competitive Cell Production Techniques for Lithium-ion And Sodium-ion Batteries (BATT4EU Partnership)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2027-02-d3-07": {
   "id": "v-horizon-cl5-2027-02-d3-07",
   "title": "Concentrated solar thermal systems for decarbonising industrial processes (IA) (Koncentrált napenergia ipari folyamatok dekarbonizációjára)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2027-02-d3-07-2": {
   "id": "eu-HORIZON-CL5-2027-02-D3-07",
   "title": "Concentrated solar thermal systems for decarbonising industrial processes",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2027-02-d3-09": {
   "id": "eu-HORIZON-CL5-2027-02-D3-09",
@@ -1613,40 +1817,40 @@
   "id": "v-horizon-cl5-2027-02-d3-15",
   "title": "Production technologies for solar photovoltaics beyond the state-of-the-art (IA) (Élvonalbeli napelemgyártási technológiák)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2027-02-d3-15-2": {
   "id": "eu-HORIZON-CL5-2027-02-D3-15",
   "title": "Production technologies for solar photovoltaics beyond the state-of-the-art (EUPI-PV Partnership)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2027-02-d3-24": {
   "id": "v-horizon-cl5-2027-02-d3-24",
   "title": "Large scale operational validation and upscaling of (Generative) AI tools powering a next generation digital energy system (IA) (Generatív MI-eszközök nagyléptékű validálása az energiarendszerben)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2027-02-d3-24-2": {
   "id": "eu-HORIZON-CL5-2027-02-D3-24",
   "title": "Large scale operational validation and upscaling of state-of-the-art (Generative) AI tools and models powering a next generation digital energy system",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2027-02-d3-30": {
   "id": "v-horizon-cl5-2027-02-d3-30",
   "title": "Advancements in Direct Air Capture (IA) (Közvetlen légköri szén-dioxid-leválasztás fejlesztése)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2027-02-d3-30-2": {
   "id": "eu-HORIZON-CL5-2027-02-D3-30",
   "title": "Advancements in Direct Air Capture",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2027-03-d5-03": {
   "id": "eu-HORIZON-CL5-2027-03-D5-03",
@@ -1658,27 +1862,27 @@
   "id": "v-horizon-cl5-2027-03-d5-04",
   "title": "Demonstration of zero emission coaches and buses in long distance operations (IA) (Zéró emissziós távolsági buszok demonstrációja)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2027-03-d5-04-2": {
   "id": "eu-HORIZON-CL5-2027-03-D5-04",
   "title": "Demonstration of zero emission coaches and buses in long distance operations (2ZERO Partnership)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2027-03-d5-05": {
   "id": "v-horizon-cl5-2027-03-d5-05",
   "title": "Higher Voltage, Megawatt Charging System compatible, modular powertrain for Heavy Duty Vehicles (IA) (MCS-kompatibilis moduláris hajtáslánc nehézgépjárművekhez)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2027-03-d5-05-2": {
   "id": "eu-HORIZON-CL5-2027-03-D5-05",
   "title": "Higher Voltage, Megawatt Charging System compatible, modular powertrain for Heavy Duty Vehicles (HDV) (2ZERO Partnership)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2027-03-d5-06": {
   "id": "eu-HORIZON-CL5-2027-03-D5-06",
@@ -1738,40 +1942,40 @@
   "id": "v-horizon-cl5-2027-05-d2-08",
   "title": "Demonstration for Long-duration Battery Energy Storage Systems (IA) (Hosszú időtartamú akkumulátoros energiatárolás demonstrációja)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2027-05-d2-08-2": {
   "id": "eu-HORIZON-CL5-2027-05-D2-08",
   "title": "Demonstration for Long-duration Battery Energy Storage Systems (BATT4EU Partnership)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2027-05-d4-05": {
   "id": "v-horizon-cl5-2027-05-d4-05",
   "title": "On-site robotic and automated techniques for building renovation and new construction (Robotizált építés és felújítás)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2027-05-d4-05-2": {
   "id": "eu-HORIZON-CL5-2027-05-D4-05",
   "title": "On-site robotic and automated techniques for building renovation and new construction",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2027-05-d4-06": {
   "id": "v-horizon-cl5-2027-05-d4-06",
   "title": "Thermal energy optimisation and waste heat recovery of high energy demand IT rooms in buildings or small edge data centres (IA) (Szerverterem/edge adatközpont hulladékhő-hasznosítás)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2027-05-d4-06-2": {
   "id": "eu-HORIZON-CL5-2027-05-D4-06",
   "title": "Thermal energy optimisation and waste heat recovery of high energy demand IT rooms in buildings or small edge data centres",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2027-05-d4-07": {
   "id": "eu-HORIZON-CL5-2027-05-D4-07",
@@ -1783,14 +1987,14 @@
   "id": "v-horizon-cl5-2027-05-d4-09",
   "title": "Demonstration of industrial excess/waste heat conversion to mechanical or electrical power (IA) (Ipari hulladékhő villamos/mechanikai energiává alakítása)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2027-05-d4-09-2": {
   "id": "eu-HORIZON-CL5-2027-05-D4-09",
   "title": "Demonstration of industrial excess/waste heat conversion to mechanical or electrical power",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2027-06-d6-04": {
   "id": "eu-HORIZON-CL5-2027-06-D6-04",
@@ -1826,14 +2030,14 @@
   "id": "v-horizon-cl5-2027-07-d3-17",
   "title": "PV based electrification of the economy: PV systems supporting industrial electrification and electricity market participation (IA) (Napelemes rendszerek ipari villamosításhoz és piaci részvételhez)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2027-07-d3-17-2": {
   "id": "eu-HORIZON-CL5-2027-07-D3-17",
   "title": "PV based electrification of the economy: Designing & optimising PV systems supporting industrial electrification and promoting participation in electricity markets (EUPI-PV Partnership)",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2027-07-d3-25": {
   "id": "eu-HORIZON-CL5-2027-07-D3-25",
@@ -1845,27 +2049,27 @@
   "id": "v-horizon-cl5-2027-07-d3-26",
   "title": "Advanced Distribution Management Systems for more efficient and flexible distribution grids (IA) (Fejlett elosztóhálózat-irányítási rendszerek)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2027-07-d3-26-2": {
   "id": "eu-HORIZON-CL5-2027-07-D3-26",
   "title": "Advanced Distribution Management Systems (ADSM) for more efficient and flexible distribution grids",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2027-07-d3-27": {
   "id": "v-horizon-cl5-2027-07-d3-27",
   "title": "Integrated Approaches for Retrofitting Infrastructures with Innovative Energy Storage Technologies (IA) (Infrastruktúrák utólagos felszerelése innovatív energiatárolással)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl5-2027-07-d3-27-2": {
   "id": "eu-HORIZON-CL5-2027-07-D3-27",
   "title": "Integrated Approaches for Retrofitting Infrastructures with Innovative Energy Storage Technologies",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl5-2027-07-d3-32": {
   "id": "eu-HORIZON-CL5-2027-07-D3-32",
@@ -1877,37 +2081,43 @@
   "id": "eu-HORIZON-CL6-2021-BIODIV-02-01",
   "title": "European partnership rescuing biodiversity to safeguard life on Earth",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2021-climate-01-02": {
   "id": "eu-HORIZON-CL6-2021-CLIMATE-01-02",
   "title": "European Partnership Water Security for the Planet (Water4All)",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2022-governance-01-02": {
   "id": "eu-HORIZON-CL6-2022-GOVERNANCE-01-02",
   "title": "European Partnership for a climate neutral, sustainable and productive Blue Economy",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2023-governance-01-13": {
   "id": "eu-HORIZON-CL6-2023-GOVERNANCE-01-13",
   "title": "Open source solutions for edge, cloud and mixed model applications to strengthen production and administrative capacities in agriculture",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2024-climate-01-5": {
   "id": "eu-HORIZON-CL6-2024-CLIMATE-01-5",
   "title": "Climate-smart use of wood in the construction sector to support the New European Bauhaus",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2025-01-circbio-15": {
   "id": "eu-HORIZON-CL6-2025-01-CIRCBIO-15",
   "title": "European partnership: Forests and Forestry for a Sustainable Future",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2027-01-biodiv-01": {
   "id": "eu-HORIZON-CL6-2027-01-BIODIV-01",
@@ -1919,14 +2129,14 @@
   "id": "v-horizon-cl6-2027-01-biodiv-03",
   "title": "Technical innovation to protect ecosystems and to scale up their restoration (IA) (Műszaki innováció az ökoszisztémák védelmére és helyreállítására)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl6-2027-01-biodiv-03-2": {
   "id": "eu-HORIZON-CL6-2027-01-BIODIV-03",
   "title": "Technical innovation to protect ecosystems and to scale up their restoration",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2027-01-biodiv-04": {
   "id": "eu-HORIZON-CL6-2027-01-BIODIV-04",
@@ -1968,14 +2178,14 @@
   "id": "v-horizon-cl6-2027-01-circbio-01",
   "title": "Enhancing ecodesign and circularity of consumer electronics (IA) (Fogyasztói elektronika ökodizájnja és körforgásossága)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl6-2027-01-circbio-01-2": {
   "id": "eu-HORIZON-CL6-2027-01-CIRCBIO-01",
   "title": "Enhancing ecodesign and circularity of consumer electronics",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2027-01-circbio-01-two-stage": {
   "id": "eu-HORIZON-CL6-2027-01-CIRCBIO-01-two-stage",
@@ -1987,14 +2197,14 @@
   "id": "v-horizon-cl6-2027-01-circbio-02",
   "title": "Enhancing ecodesign and circularity of construction products (IA) (Építőipari termékek ökodizájnja és körforgásossága)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl6-2027-01-circbio-02-2": {
   "id": "eu-HORIZON-CL6-2027-01-CIRCBIO-02",
   "title": "Enhancing ecodesign and circularity of construction products",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2027-01-circbio-02-two-stage": {
   "id": "eu-HORIZON-CL6-2027-01-CIRCBIO-02-two-stage",
@@ -2030,40 +2240,40 @@
   "id": "v-horizon-cl6-2027-01-circbio-07",
   "title": "Improving biomass flows for a sustainable and circular bioeconomy (IA) (Biomassza-áramok javítása a körforgásos biogazdaságban)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl6-2027-01-circbio-07-2": {
   "id": "eu-HORIZON-CL6-2027-01-CIRCBIO-07",
   "title": "Improving biomass flows for a sustainable and circular bioeconomy",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2027-01-circbio-08": {
   "id": "v-horizon-cl6-2027-01-circbio-08",
   "title": "Biotechnology application for CCU (IA) (Biotechnológia a szén-dioxid-hasznosításban)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl6-2027-01-circbio-08-2": {
   "id": "eu-HORIZON-CL6-2027-01-CIRCBIO-08",
   "title": "Biotechnology application for CCU",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2027-01-circbio-09": {
   "id": "v-horizon-cl6-2027-01-circbio-09",
   "title": "Increasing the circularity of bio-based sector: upcycling and recycling for higher value (IA) (Bioalapú szektor körforgásossága: upcycling és újrahasznosítás)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl6-2027-01-circbio-09-2": {
   "id": "eu-HORIZON-CL6-2027-01-CIRCBIO-09",
   "title": "Increasing the circularity of bio-based sector: upcycling and recycling for higher value and environmental benefits",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2027-01-circbio-10": {
   "id": "eu-HORIZON-CL6-2027-01-CIRCBIO-10",
@@ -2129,14 +2339,14 @@
   "id": "v-horizon-cl6-2027-02-communities-02",
   "title": "Empowering local urban food systems entrepreneurship and innovation (Helyi városi élelmiszer-vállalkozások támogatása)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl6-2027-02-communities-02-2": {
   "id": "eu-HORIZON-CL6-2027-02-COMMUNITIES-02",
   "title": "Empowering local urban food systems entrepreneurship and innovation",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2027-02-farm2fork-01": {
   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-01",
@@ -2154,14 +2364,14 @@
   "id": "v-horizon-cl6-2027-02-farm2fork-02",
   "title": "Increasing mitigation of GHG emissions and feed efficiency through feed additives (IA) (Takarmány-adalékok az üvegházgáz-kibocsátás csökkentésére)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl6-2027-02-farm2fork-02-2": {
   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-02",
   "title": "Increasing mitigation of GHG emissions and feed efficiency through feed additives",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2027-02-farm2fork-02-two-stage": {
   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-02-two-stage",
@@ -2179,40 +2389,40 @@
   "id": "v-horizon-cl6-2027-02-farm2fork-05",
   "title": "Enhancing farmer's profitability and resilience through innovations for diversified crops and value chains (Gazdák jövedelmezősége diverzifikált növénykultúrákkal)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl6-2027-02-farm2fork-05-2": {
   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-05",
   "title": "Enhancing farmer's profitability and resilience through innovations for diversified crops and value chains",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2027-02-farm2fork-06": {
   "id": "v-horizon-cl6-2027-02-farm2fork-06",
   "title": "Unleashing the potential of sustainable small-scale aquatic food production and recreational fisheries (IA) (Fenntartható kisléptékű akvakultúra és horgászturizmus)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl6-2027-02-farm2fork-06-2": {
   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-06",
   "title": "Unleashing the potential of sustainable small-scale aquatic food production and recreational fisheries for prosperous local communities",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2027-02-farm2fork-07": {
   "id": "v-horizon-cl6-2027-02-farm2fork-07",
   "title": "Towards commercialization of food systems microbiome solutions (IA) (Élelmiszer-rendszerek mikrobiom-megoldásainak piacra vitele)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-cl6-2027-02-farm2fork-07-2": {
   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-07",
   "title": "Towards commercialization of food systems microbiome solutions",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-cl6-2027-02-farm2fork-08": {
   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-08",
@@ -2242,13 +2452,15 @@
   "id": "eu-HORIZON-EIC-2021-EEN-01-01",
   "title": "Cooperation with EEN",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-eic-2025-womentech": {
   "id": "eu-HORIZON-EIC-2025-WOMENTECH",
   "title": "Women Tech.EU initiative",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-eic-2026-accelerator-01": {
   "id": "v-horizon-eic-2026-accelerator-01",
@@ -2266,40 +2478,40 @@
   "id": "v-horizon-eic-2026-pathfinderchallenges-01-01",
   "title": "EIC Pathfinder Challenge: Advanced Materials for Miniaturised Energy Harvesting Systems (Fejlett anyagok miniatűr energiabetakarításhoz)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-eic-2026-pathfinderchallenges-01-01-2": {
   "id": "eu-HORIZON-EIC-2026-PATHFINDERCHALLENGES-01-01",
   "title": "Advanced Materials for Miniaturised Energy Harvesting Systems",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-eic-2026-pathfinderchallenges-01-02": {
   "id": "v-horizon-eic-2026-pathfinderchallenges-01-02",
   "title": "EIC Pathfinder Challenge: Biotechnology for Healthy Ageing (Biotechnológia az egészséges időskorért)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-eic-2026-pathfinderchallenges-01-02-2": {
   "id": "eu-HORIZON-EIC-2026-PATHFINDERCHALLENGES-01-02",
   "title": "Biotechnology for Healthy Ageing",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-eic-2026-pathfinderchallenges-01-03": {
   "id": "v-horizon-eic-2026-pathfinderchallenges-01-03",
   "title": "EIC Pathfinder Challenge: DeepRAP: Deep Reasoning, Abstraction & Planning towards trustworthy Cognitive AI Systems (Megbízható kognitív MI-rendszerek)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-eic-2026-pathfinderchallenges-01-03-2": {
   "id": "eu-HORIZON-EIC-2026-PATHFINDERCHALLENGES-01-03",
   "title": "DeepRAP: Deep Reasoning, Abstraction & Planning towards trustworthy Cognitive AI Systems",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-eic-2026-prize-wip": {
   "id": "eu-HORIZON-EIC-2026-PRIZE-WIP",
@@ -2324,13 +2536,15 @@
   "id": "eu-HORIZON-EIE-2021-INNOVSMES-01-01",
   "title": "European Partnership on Innovative SMEs",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-eie-2023-connect-03-01": {
   "id": "eu-HORIZON-EIE-2023-CONNECT-03-01",
   "title": "Implementing co-funded action plans for connected regional innovation valleys",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-eie-womentecheu-2": {
   "id": "v-horizon-eie-womentecheu-2",
@@ -2342,49 +2556,57 @@
   "id": "eu-HORIZON-EIT-2025-KIC-IBA-CC",
   "title": "EITCULTURE Business Plan 2026",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-eit-2025-kic-iba-h": {
   "id": "eu-HORIZON-EIT-2025-KIC-IBA-H",
   "title": "EITHEALTH Business Plan 2026",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-eit-2025-kic-iba-inbc": {
   "id": "eu-HORIZON-EIT-2025-KIC-IBA-INBC",
   "title": "Cross KIC EIT Innovation & Business Creation Business Plan 2026",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-eit-2025-kic-iba-reginnovint": {
   "id": "eu-HORIZON-EIT-2025-KIC-IBA-RegInnovInt",
   "title": "Cross-KIC EIT Regional Innovation & Internationalisation Business Plan 2026",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-eit-2025-kic-iba-rm": {
   "id": "eu-HORIZON-EIT-2025-KIC-IBA-RM",
   "title": "EITRAWMATERIALS Business Plan 2026",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-eit-2025-kic-iba-um": {
   "id": "eu-HORIZON-EIT-2025-KIC-IBA-UM",
   "title": "EITURBANMOBILITY Business Plan 2026",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-eit-2025-moc-iba": {
   "id": "eu-HORIZON-EIT-2025-MOC-IBA",
   "title": "2026-2027 MOC Activities",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-euspa-2023-space-01-46": {
   "id": "eu-HORIZON-EUSPA-2023-SPACE-01-46",
   "title": "Designing space-based downstream applications with international partners",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-hlth-2027-01-care-02": {
   "id": "eu-HORIZON-HLTH-2027-01-CARE-02",
@@ -2414,14 +2636,14 @@
   "id": "v-horizon-hlth-2027-01-disease-08",
   "title": "Development of innovative antimicrobials against pathogens resistant to antimicrobials (RIA) (Innovatív antimikrobiális szerek rezisztens kórokozók ellen)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-hlth-2027-01-disease-08-2": {
   "id": "eu-HORIZON-HLTH-2027-01-DISEASE-08",
   "title": "Development of innovative antimicrobials against pathogens resistant to antimicrobials",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-hlth-2027-01-disease-10": {
   "id": "eu-HORIZON-HLTH-2027-01-DISEASE-10",
@@ -2439,14 +2661,14 @@
   "id": "v-horizon-hlth-2027-01-ind-01",
   "title": "Development of cell-free protein synthesis platforms for discovery and/or production of biologicals (RIA) (Sejtmentes fehérjeszintézis-platformok biológiai gyógyszerekhez)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-hlth-2027-01-ind-01-2": {
   "id": "eu-HORIZON-HLTH-2027-01-IND-01",
   "title": "Development of cell-free protein synthesis platforms for discovery and/or production of biologicals",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-hlth-2027-01-stayhlth-01": {
   "id": "eu-HORIZON-HLTH-2027-01-STAYHLTH-01",
@@ -2470,14 +2692,14 @@
   "id": "v-horizon-hlth-2027-02-ind-02-two-stage",
   "title": "Portable and versatile Point-of-care diagnostics (IA, two-stage) (Hordozható, sokoldalú helyszíni diagnosztika – kétfordulós)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-hlth-2027-02-ind-02-two-stage-2": {
   "id": "eu-HORIZON-HLTH-2027-02-IND-02-two-stage",
   "title": "Portable and versatile Point-of-care diagnostics",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-hlth-2027-02-tool-01-two-stage": {
   "id": "eu-HORIZON-HLTH-2027-02-TOOL-01-two-stage",
@@ -2495,14 +2717,14 @@
   "id": "v-horizon-hlth-2027-03-tool-04",
   "title": "Virtual Human Twins for integrated clinical decision support in prevention and diagnosis (RIA) (Virtuális emberi ikrek klinikai döntéstámogatáshoz)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-hlth-2027-03-tool-04-2": {
   "id": "eu-HORIZON-HLTH-2027-03-TOOL-04",
   "title": "Virtual Human Twins (VHTs) for integrated clinical decision support in prevention and diagnosis",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-infra-2027-dev-01-02": {
   "id": "eu-HORIZON-INFRA-2027-DEV-01-02",
@@ -2550,7 +2772,8 @@
   "id": "eu-HORIZON-JU-CBE-2023-S-01",
   "title": "EU-wide network of pilot plants and testing facilities, improving SMEs and start-ups' access to scale-up",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-ju-eurohpc-2026-napt-11-01": {
   "id": "eu-HORIZON-JU-EUROHPC-2026-NAPT-11-01",
@@ -2631,25 +2854,29 @@
   "id": "eu-HORIZON-MISS-2024-CROSS-02-01",
   "title": "Experimental local action for EU missions: knowledge institutions as focal points of transdisciplinary research and innovation activities with European outreach",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-miss-2024-ocean-02-01": {
   "id": "eu-HORIZON-MISS-2024-OCEAN-02-01",
   "title": "Community-led actions to restore our ocean, seas and waters",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-miss-2024-soil-01-01": {
   "id": "eu-HORIZON-MISS-2024-SOIL-01-01",
   "title": "Co-creating solutions for soil health in Living Labs",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-miss-2025-cit-sga": {
   "id": "eu-HORIZON-MISS-2025-CIT-SGA",
   "title": "Specific Grant Agreement to the FPA to reinforce the operations of the Climate-Neutral and Smart Cities Mission Platform",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-miss-2026-04-cit-01": {
   "id": "eu-HORIZON-MISS-2026-04-CIT-01",
@@ -2736,14 +2963,14 @@
   "id": "v-horizon-miss-2027-03-ocean-04",
   "title": "Towards community-driven business models: coastal and freshwaters sustainable tourism (IA) (Közösségi üzleti modellek a tengerparti és édesvízi fenntartható turizmusban)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-miss-2027-03-ocean-04-2": {
   "id": "eu-HORIZON-MISS-2027-03-OCEAN-04",
   "title": "Towards community-driven business models: coastal and freshwaters sustainable tourism",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-miss-2027-03-ocean-05": {
   "id": "eu-HORIZON-MISS-2027-03-OCEAN-05",
@@ -2755,14 +2982,14 @@
   "id": "v-horizon-miss-2027-04-cit-01",
   "title": "Innovative microgrids for improved energy system integration and efficiency in urban contexts (IA) (Innovatív városi mikrohálózatok)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-miss-2027-04-cit-01-2": {
   "id": "eu-HORIZON-MISS-2027-04-CIT-01",
   "title": "Innovative microgrids for improved energy system integration and efficiency in urban contexts",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-miss-2027-04-cit-03": {
   "id": "eu-HORIZON-MISS-2027-04-CIT-03",
@@ -2774,14 +3001,14 @@
   "id": "v-horizon-miss-2027-04-cit-ccri-04",
   "title": "Advancing circular logistics solutions in cities (IA) (Körforgásos városi logisztikai megoldások)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-miss-2027-04-cit-ccri-04-2": {
   "id": "eu-HORIZON-MISS-2027-04-CIT-CCRI-04",
   "title": "Advancing circular logistics solutions in cities",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-miss-2027-05-soil-01-two-stage": {
   "id": "eu-HORIZON-MISS-2027-05-SOIL-01-two-stage",
@@ -2811,14 +3038,14 @@
   "id": "v-horizon-miss-2027-05-soil-05-two-stage",
   "title": "Innovative biotechnologies to restore soil health and improve agricultural competitiveness (IA, two-stage) (Innovatív biotechnológiák a talajegészségért – kétfordulós)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-miss-2027-05-soil-05-two-stage-2": {
   "id": "eu-HORIZON-MISS-2027-05-SOIL-05-two-stage",
   "title": "Innovative biotechnologies to restore soil health and improve agricultural competitiveness and resilience",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-miss-2027-05-soil-06-two-stage": {
   "id": "eu-HORIZON-MISS-2027-05-SOIL-06-two-stage",
@@ -2836,14 +3063,14 @@
   "id": "v-horizon-miss-2027-07-clima-cit-ccri-02",
   "title": "Deploying innovative wastewater management, treatment and valorisation solutions in cities and regions (IA) (Innovatív szennyvízkezelési és -hasznosítási megoldások)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-miss-2027-07-clima-cit-ccri-02-2": {
   "id": "eu-HORIZON-MISS-2027-07-CLIMA-CIT-CCRI-02",
   "title": "Deploying innovative wastewater management, treatment and valorisation solutions in European cities and regions in the context of climate change",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-miss-2027-07-clima-cit-neb-01": {
   "id": "eu-HORIZON-MISS-2027-07-CLIMA-CIT-NEB-01",
@@ -2945,14 +3172,14 @@
   "id": "v-horizon-neb-2026-01-regen-01",
   "title": "Sustainable, inclusive, affordable and beautiful solutions for thermal comfort in buildings (Megfizethető hőkomfort-megoldások épületekben – NEB)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-neb-2026-01-regen-01-2": {
   "id": "eu-HORIZON-NEB-2026-01-REGEN-01",
   "title": "Sustainable, inclusive, affordable and beautiful solutions for thermal comfort in buildings",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-neb-2026-01-regen-02": {
   "id": "eu-HORIZON-NEB-2026-01-REGEN-02",
@@ -3018,7 +3245,8 @@
   "id": "eu-HORIZON-NEB-2027-01-REGEN-03-CANCELLED",
   "title": "Revitalising neighbourhoods around existing railway and motorway corridors",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-neb-2027-01-regen-04": {
   "id": "eu-HORIZON-NEB-2027-01-REGEN-04",
@@ -3048,27 +3276,27 @@
   "id": "eu-HORIZON-WIDERA-2023-ACCESS-07-01",
   "title": "Excellence Hubs",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-widera-2025-04-access-01": {
   "id": "eu-HORIZON-WIDERA-2025-04-ACCESS-01",
   "title": "Support for R&I policy making in the EU enlargement countries",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "horizon-widera-2027-01-widening-01": {
   "id": "v-horizon-widera-2027-01-widening-01",
   "title": "EIC Pre-accelerator – Widening (EIC Pre-akcelerátor a felzárkózó országok startupjainak)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-widera-2027-04-widening-01": {
   "id": "v-horizon-widera-2027-04-widening-01",
   "title": "Excellence Hubs (Kiválósági innovációs központok)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "horizon-widera-2027-05-era-05": {
   "id": "eu-HORIZON-WIDERA-2027-05-ERA-05",
@@ -3080,39 +3308,41 @@
   "id": "eu-I3-2023-INV2a",
   "title": "Interregional Innovation Investments Strand 2a",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "i3-2024-inv1": {
   "id": "eu-I3-2024-INV1",
   "title": "Interregional Innovation Investments Strand 1",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "i3-2026-inv1": {
   "id": "v-i3-2026-inv1",
   "title": "Interregional Innovation Investments Strand 1 (Interregionális innovációs beruházások – 1. ág)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "i3-2026-inv1-2": {
   "id": "eu-I3-2026-INV1",
   "title": "I3-2026-INV1 - Interregional Innovation Investments Strand 1",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "i3-2026-inv2a": {
   "id": "v-i3-2026-inv2a",
   "title": "Interregional Innovation Investments Strand 2a (Interregionális innovációs beruházások – 2a ág, kevésbé fejlett régiók)",
   "firstSeen": "2026-09-25",
-  "lastSeen": "2026-10-08",
-  "closedAt": "2026-10-09"
+  "lastSeen": "2026-10-09"
  },
  "i3-2026-inv2a-2": {
   "id": "eu-I3-2026-INV2a",
   "title": "I3-2026-INV2a - Interregional Innovation Investments Strand 2a",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "innowwide-call5-2026": {
   "id": "v-innowwide-call5-2026",
@@ -3297,7 +3527,8 @@
   "id": "eu-SMP-COSME-2024-CLUSTER-01",
   "title": "Joint Cluster Initiatives (EUROCLUSTERS) for Europe’s recovery",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-09"
+  "lastSeen": "2026-10-09",
+  "closedAt": "2026-10-09"
  },
  "smp-food-2026-fw-stakeholders-pj": {
   "id": "eu-SMP-FOOD-2026-FW-STAKEHOLDERS-PJ",

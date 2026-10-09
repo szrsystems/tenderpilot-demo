@@ -1308,7 +1308,10 @@
    "requiresEvidence": {
     "women_led": "Nő által vezetett korai fázisú mélytech startup",
     "deeptech": "Nő által vezetett korai fázisú mélytech startup"
-   }
+   },
+   "altUrls": [
+    "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/48106227"
+   ]
   },
   {
    "id": "v-digital-eccc-2027-deploy-cyber-11-ai4sme",
@@ -1519,7 +1522,10 @@
    },
    "requiresEvidence": {
     "consortium": "Kis konzorcium (OC2.1: min. 3, OC2.2: min. 2 szervezet), legalább egy KKV-val"
-   }
+   },
+   "altUrls": [
+    "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/45634882"
+   ]
   },
   {
    "id": "v-ngi-restack",
@@ -1545,7 +1551,10 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": true
+   "singleApplicant": true,
+   "altUrls": [
+    "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/48400841"
+   ]
   },
   {
    "id": "v-ngi-codesupply",
@@ -1597,7 +1606,10 @@
    "verifiedAt": "2026-09-24",
    "confidence": "medium",
    "scope": "eu",
-   "singleApplicant": true
+   "singleApplicant": true,
+   "altUrls": [
+    "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/45657640"
+   ]
   },
   {
    "id": "v-euipo-sme-fund-2026",
@@ -3763,7 +3775,8 @@
    },
    "requiresEvidence": {
     "deeptech": "EIC STEP Scale Up: tőkebefektetés kritikus (mély)technológiákban működő scale-upokba"
-   }
+   },
+   "withdrawn": "A 2026. november 25-i EIC STEP Scale Up beadási határidőt az EU törölte (2026-10 ellenőrzés)."
   },
   {
    "id": "v-digital-2026-ai-data-10-compliance",
@@ -4428,7 +4441,10 @@
    "requiresEvidence": {
     "consortium": "cégek is pályázhatnak min. 3 ország 3 partneréből álló konzorciumban, amelyben önkormányzat is van (2 lépcsős, teljes pályázat 2027.04.15).",
     "rnd_project": "Európai partnerség (Horizon Europe társfinanszírozás, NKFIH): nemzetközi K+F+I projekt"
-   }
+   },
+   "altUrls": [
+    "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/44121492"
+   ]
   },
   {
    "id": "v-cetp-jc2026",
@@ -4495,7 +4511,10 @@
    "requiresEvidence": {
     "consortium": "3–7 partneres, min. 3 országos konzorcium (előpályázat 2026.11.10., teljes pályázat 2027.04.06.)",
     "rnd_project": "Európai partnerség (Horizon Europe társfinanszírozás): nemzetközi K+F+I projekt"
-   }
+   },
+   "altUrls": [
+    "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/44093037"
+   ]
   },
   {
    "id": "v-eureka-celticnext-aut2026",
@@ -5303,7 +5322,10 @@
    "verifiedAt": "2026-09-24",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": true
+   "singleApplicant": true,
+   "altUrls": [
+    "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/44087099"
+   ]
   },
   {
    "id": "v-eic-wip-2027",
@@ -5376,7 +5398,10 @@
    },
    "requiresEvidence": {
     "consortium": "Consortium of at least 3 partners from different Creative Europe countries (Hungary eligible), each an organisation or professional in the performing arts."
-   }
+   },
+   "altUrls": [
+    "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/49521170"
+   ]
   },
   {
    "id": "v-tff-5-1-5-2026-kth-start-kiegeszito",

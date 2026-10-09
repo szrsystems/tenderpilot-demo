@@ -75,5 +75,38 @@
   "source": "https://euraxess.ec.europa.eu/worldwide/south-korea/news/pathfinder-and-transition-what-know-about-eic-grant-schemes-being",
   "sourceNote": "EURAXESS (2026.08.05.): a 2027-es EIC munkaprogram-tervezet szerint az EIC Transition határideje 2027.09.16.; a tervezet az elfogadásig változhat.",
   "addedAt": "2026-09-28"
+ },
+ {
+  "id": "exp-innovation-fund-if26",
+  "title": "Innovation Fund IF26 – Net-Zero, KKV és tengeri (Maritime) felhívások",
+  "programme": "EU Innovációs Alap (Innovation Fund)",
+  "expectedWindow": "Várhatóan 2026 vége (megnyitás)",
+  "audience": "Nettó zéró technológiákat gyártó vagy telepítő vállalkozások – nagyvállalatok és KKV-k, egyedül vagy konzorciumban; tengeri ágazati projektek",
+  "amountHint": "Keret és határidők a felhívás megnyitásakor jelennek meg",
+  "source": "https://climate.ec.europa.eu/eu-action/eu-funding-climate-action/innovation-fund_en",
+  "sourceNote": "Az Európai Bizottság bejelentette az IF26 felhíváscsomagot (Net-Zero, KKV, Maritime); a megnyitás várhatóan 2026 végén lesz, pontos dátum még nincs.",
+  "addedAt": "2026-10-09"
+ },
+ {
+  "id": "exp-life-2027",
+  "title": "LIFE program – 2027-es pályázati felhívások",
+  "programme": "LIFE (környezet- és klímavédelem)",
+  "expectedWindow": "Várhatóan 2027 tavasza",
+  "audience": "Vállalkozások, nonprofit szervezetek és közintézmények környezet-, természet- és klímavédelmi, valamint tisztaenergia-átállási projektjei",
+  "amountHint": "Keret és határidők a 2027-es felhívás megjelenésekor",
+  "source": "https://cinea.ec.europa.eu/programmes/life/life-calls-proposals_en",
+  "sourceNote": "A LIFE felhívásai évente, jellemzően tavasszal nyílnak (CINEA); a 2027-es kör várhatóan 2027 tavaszán indul, pontos dátum még nincs.",
+  "addedAt": "2026-10-09"
+ },
+ {
+  "id": "exp-eit-manufacturing-2027",
+  "title": "EIT Manufacturing – 2027-es pályázati felhívások",
+  "programme": "EIT Manufacturing (Európai Innovációs és Technológiai Intézet)",
+  "expectedWindow": "Várhatóan 2026 vége – 2027 eleje",
+  "audience": "Gyártó vállalatok, KKV-k, startupok, kutatóhelyek és egyetemek – gyártási innovációs és képzési projektek",
+  "amountHint": "Keret és határidők a felhívások megjelenésekor",
+  "source": "https://www.eitmanufacturing.eu/",
+  "sourceNote": "Az EIT Manufacturing a következő évi felhívásait jellemzően az év végén / év elején hirdeti meg; a 2027-es kör várhatóan 2026 végén – 2027 elején nyílik.",
+  "addedAt": "2026-10-09"
  }
 ]
