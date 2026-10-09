@@ -47,10 +47,18 @@
     Object.keys(FIELD_IDS).forEach(function (k) { var el = $(FIELD_IDS[k]); if (el) el.classList.remove('need-fill'); });
     var box = $('missing-box');
     if (!missing.length) { box.hidden = true; return; }
-    if (highlight) missing.forEach(function (f) { var el = $(FIELD_IDS[f.key]); if (el) el.classList.add('need-fill'); });
     box.innerHTML = '<b>A pontos ellenőrzéshez még hiányzik:</b><ul>' + missing.map(function (f) { return '<li>' + esc(f.label) + '</li>'; }).join('') + '</ul>';
     box.hidden = false;
   }
+  // a field marked red after "Tovább" turns normal again as soon as it is filled
+  function clearInvalid(e) {
+    var el = e.target; if (!el || !el.classList) return;
+    if (el.classList.contains('invalid') && (el.value || '').trim()) el.classList.remove('invalid');
+    var chips = el.closest && el.closest('.chips.invalid');
+    if (chips && chips.querySelector('input:checked')) chips.classList.remove('invalid');
+  }
+  document.addEventListener('input', clearInvalid);
+  document.addEventListener('change', clearInvalid);
   document.addEventListener('input', schedule);
   document.addEventListener('change', schedule);
 
