@@ -47,7 +47,18 @@
     return m;
   }
   function resetMatches() { S.matchCache = new Map(); }
-  function rank(g) { var m = matchOf(g); if (!m) return 0; return (m.verdict === 'APPLY' ? 1000 : m.verdict === 'REVIEW' ? 500 : 0) + (m.group === 'hazai' ? 100 : m.group === 'eu' ? 50 : 0) + m.score; }
+  // Verdict first, then the match score decides; domestic calls win only a tie
+  // (+3). Consortium calls sit lower for micro / small firms (or unknown size),
+  // not for medium and large companies, which join consortia routinely.
+  function rank(g) {
+    var m = matchOf(g); if (!m) return 0;
+    var tier = hasProfile() && window.AIPMatch ? AIPMatch.sizeTier(S.profile.employees) : null;
+    return (m.verdict === 'APPLY' ? 1000 : m.verdict === 'REVIEW' ? 500 : 0) + (m.group === 'hazai' ? 3 : 0)
+      - (m.group === 'consortium' && tier !== 'large' && tier !== 'mid' ? 10 : 0) + m.score;
+  }
+  // Profile employee-count option → label ('100+' is the old top option: ask to refine it).
+  var EMP_LABEL = { '1': '1 fő (egyéni vállalkozó)', '1-5': '2–5 fő', '6-10': '6–10 fő', '11-25': '11–25 fő', '26-50': '26–50 fő', '51-100': '51–100 fő', '101-249': '101–249 fő', '250+': '250 fő felett', '100+': '100 fő felett — kérjük, pontosítsa' };
+  function empLabel(v) { return v ? (EMP_LABEL[v] || v) : ''; }
   function byId(id) { for (var i = 0; i < S.feed.length; i++) if (S.feed[i].id === id) return S.feed[i]; return null; }
   function publicUrl(g) { return S.slugs[g.id] ? 'palyazat/' + encodeURIComponent(S.slugs[g.id]) + '.html' : ''; }
 
@@ -483,7 +494,7 @@
     var h = head('Fiók', 'Beállítások');
     var p = S.profile || {};
     h += '<div class="set-grid">';
-    h += '<section class="card"><h2>Cégprofil</h2>' + (hasProfile() ? '<table class="facts">' + [['Cégnév', p.company], ['Tevékenység', (p.industries || []).map(function (c) { return industryLabel(c); }).join(', ')], ['Létszám', p.employees], ['Régió', p.site_region], ['TEÁOR', p.teaor], ['Lezárt üzleti évek', p.years_operating]].map(function (r) { return '<tr><th>' + r[0] + '</th><td>' + esc(r[1] || '—') + '</td></tr>'; }).join('') + '</table>' : '<p class="muted">Még nincs cégprofil.</p>') + '<p style="margin-top:var(--s4)"><a class="btn btn-primary" href="onboarding.html">' + (hasProfile() ? 'Profil szerkesztése' : 'Cégprofil megadása') + '</a></p></section>';
+    h += '<section class="card"><h2>Cégprofil</h2>' + (hasProfile() ? '<table class="facts">' + [['Cégnév', p.company], ['Tevékenység', (p.industries || []).map(function (c) { return industryLabel(c); }).join(', ')], ['Létszám', empLabel(p.employees)], ['Régió', p.site_region], ['TEÁOR', p.teaor], ['Lezárt üzleti évek', p.years_operating]].map(function (r) { return '<tr><th>' + r[0] + '</th><td>' + esc(r[1] || '—') + '</td></tr>'; }).join('') + '</table>' : '<p class="muted">Még nincs cégprofil.</p>') + '<p style="margin-top:var(--s4)"><a class="btn btn-primary" href="onboarding.html">' + (hasProfile() ? 'Profil szerkesztése' : 'Cégprofil megadása') + '</a></p></section>';
     if (S.user) {
       h += '<section class="card"><h2>Értesítések</h2><p class="muted small">A leveleket ide küldjük: <b>' + esc(S.user.email) + '</b></p>' +
         '<label class="toggle"><input type="checkbox" id="n-weekly"><span><b>Heti összefoglaló</b><span>Új, Önnek illő felhívások és közelgő határidők.</span></span></label>' +

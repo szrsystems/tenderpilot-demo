@@ -157,7 +157,8 @@
               <option value="11-25">11–25 fő</option>
               <option value="26-50">26–50 fő</option>
               <option value="51-100">51–100 fő</option>
-              <option value="100+">100 fő felett</option>
+              <option value="101-249">101–249 fő</option>
+              <option value="250+">250 fő felett</option>
             </select>
           </div>
           <div class="field">
@@ -356,7 +357,8 @@
     err.hidden = true;
     if (!FEED.length || !window.AIPMatch) { $('#results').hidden = false; $('#results').innerHTML = '<p class="notice warn">Az adatok még töltődnek — próbálja újra pár másodperc múlva.</p>'; return; }
     var rows = FEED.map(function (g) { return { g: g, m: AIPMatch.match(g, p, TODAY) }; }).filter(function (x) { return x.m.eligible; });
-    var rank = function (x) { return (x.m.verdict === 'APPLY' ? 1000 : 0) + (x.m.group === 'hazai' ? 100 : 0) + x.m.score; };
+    // Verdict first, then score; a domestic call wins only a tie (+3).
+    var rank = function (x) { return (x.m.verdict === 'APPLY' ? 1000 : 0) + (x.m.group === 'hazai' ? 3 : 0) + x.m.score; };
     var single = rows.filter(function (x) { return x.m.group !== 'consortium'; }).sort(function (a, b) { return rank(b) - rank(a); });
     var good = single.filter(function (x) { return x.m.verdict === 'APPLY'; });
     var grants = good.filter(function (x) { return /grant|wage/.test(x.g.type) && x.g.type !== 'grant+equity' || x.g.type === 'loan+grant'; });
