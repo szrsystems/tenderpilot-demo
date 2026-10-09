@@ -333,7 +333,8 @@
       return true;
     });
     var amount = function (g) { return g.keret || (window.parseAmount ? parseAmount(g.amount || '') : 0); };
-    if (L.q && window.AIPSearch) {
+    // a query with no usable words (e.g. only "pályázat") is not a search: keep the normal order
+    if (L.q && window.AIPSearch && (!AIPSearch.active || AIPSearch.active(L.q))) {
       var ranked = AIPSearch.rank(L.q, out, summaryText);
       out = ranked.map(function (x) { return x.g; });
       if (L.sort === 'fit') return out; // best text match first
@@ -364,7 +365,13 @@
 
   // needs finder: AI intent (signed-in) → categories/keywords; otherwise the local search
   function summaryText(g) { var sm = S.summaries[g.id]; return sm && sm.sections ? sm.sections.map(function (x) { return (x.items || []).map(function (i) { return i.text; }).join(' '); }).join(' ') : ''; }
-  function needsLocal(q) { return window.AIPSearch ? AIPSearch.rank(q, S.feed, summaryText).slice(0, 60).map(function (x) { return x.g.id; }) : []; }
+  // local needs search: keeps every hit that scores at least a fifth of the best one (no fixed top-N cut);
+  // null when the query has no usable words, so the full list is shown in its normal order
+  function needsLocal(q) {
+    if (!window.AIPSearch || (AIPSearch.active && !AIPSearch.active(q))) return null;
+    var ranked = AIPSearch.rank(q, S.feed, summaryText);
+    return (AIPSearch.relevant ? AIPSearch.relevant(ranked, 0.2) : ranked.slice(0, 60)).map(function (x) { return x.g.id; });
+  }
   async function needsSearch(q) {
     S.list.needQ = q; S.list.page = 1;
     if (!q) { S.list.needIds = null; render(); return; }
