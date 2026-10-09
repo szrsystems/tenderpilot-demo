@@ -3,7 +3,7 @@ window.AIP_CONFIG = {
   // Cloudflare Turnstile SITE key for the consultation form (public). Empty =
   // no captcha widget; the server then skips verification unless
   // TURNSTILE_SECRET is set (set both together).
-  turnstileSiteKey: '',
+  turnstileSiteKey: '0x4AAAAAAFSVV-_PRMUNBXxk',
   // Name the partner in the UI once they have agreed to it publicly.
   partnerPublic: false,
   partnerName: 'DFT-Hungária',

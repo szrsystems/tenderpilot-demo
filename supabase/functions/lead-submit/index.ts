@@ -166,7 +166,8 @@ async function verifyTurnstile(secret: string, token: string, ip: string | null,
     });
     if (!r.ok) return false;
     const j = await r.json();
-    return j?.success === true;
+    // the token must come from our own site (a key reused elsewhere is rejected)
+    return j?.success === true && (!j.hostname || /(^|\.)aipalyazo\.hu$/.test(String(j.hostname)));
   } catch (e) {
     console.error('[lead-submit] turnstile unreachable', String(e).slice(0, 120));
     return false; // fail closed

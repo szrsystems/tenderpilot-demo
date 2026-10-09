@@ -205,6 +205,11 @@ Deno.test('turnstile: enforced only when TURNSTILE_SECRET is set, fails closed',
     if (status === 403) assertEquals(await r.json(), { error: 'captcha_failed' });
   }
   assertEquals(calls.includes('tok'), true);
+  const hostFetch = (hostname: string) => (async () => new Response(JSON.stringify({ success: true, hostname }), { status: 200 })) as typeof fetch;
+  for (const [h, status] of [['aipalyazo.hu', 200], ['www.aipalyazo.hu', 200], ['evil.example', 403], ['aipalyazo.hu.evil.example', 403]] as const) {
+    const { deps: d2 } = setup({ ...ENV, TURNSTILE_SECRET: 'ts' });
+    assertEquals((await handler(req(body({ turnstileToken: 'tok' })), { ...d2, fetch: hostFetch(h) })).status, status, h);
+  }
   const { deps } = setup();
   assertEquals((await handler(req(body()), { ...deps, fetch: fakeFetch(false) })).status, 200, 'no secret → no captcha');
 });

@@ -622,7 +622,7 @@
   function mountTurnstile() {
     tsToken = '';
     if (!CFG.turnstileSiteKey || !$('#ts-box')) return;
-    var render = function () { try { window.turnstile.render('#ts-box', { sitekey: CFG.turnstileSiteKey, language: 'hu', callback: function (t) { tsToken = t; } }); } catch (e) {} };
+    var render = function () { try { window.turnstile.render('#ts-box', { sitekey: CFG.turnstileSiteKey, language: 'hu', callback: function (t) { tsToken = t; }, 'expired-callback': function () { tsToken = ''; }, 'error-callback': function () { tsToken = ''; } }); } catch (e) {} };
     if (window.turnstile) return render();
     if (!document.getElementById('ts-script')) { var s = document.createElement('script'); s.id = 'ts-script'; s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'; s.async = true; s.onload = render; document.head.appendChild(s); }
   }
