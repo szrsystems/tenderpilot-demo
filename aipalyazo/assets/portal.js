@@ -192,7 +192,7 @@
       sub.textContent = S.user.email;
       su.outerHTML = '<button class="btn btn-ghost btn-sm" type="button" data-act="signout" id="rail-signup">Kijelentkezés</button>';
     } else {
-      who.textContent = hasProfile() ? (S.profile.company || 'Vendég') : 'Vendég';
+      who.textContent = hasProfile() && S.profile.company && S.profile.company !== 'gyors-ellenorzes' ? S.profile.company : 'Vendég';
       sub.textContent = 'Regisztráció nélkül böngészik';
     }
     updateCounts();

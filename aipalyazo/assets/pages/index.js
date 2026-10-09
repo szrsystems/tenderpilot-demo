@@ -54,7 +54,7 @@
     var good = single.filter(function (x) { return x.m.verdict === 'APPLY'; });
     var grants = good.filter(function (x) { return /grant|wage/.test(x.g.type) && x.g.type !== 'grant+equity' || x.g.type === 'loan+grant'; });
     var consortium = rows.length - single.length;
-    try { localStorage.setItem('aip:quick', JSON.stringify(p)); } catch (e2) {}
+    try { localStorage.setItem('aip:quick', JSON.stringify(Object.assign({}, p, { company: '' }))); } catch (e2) {}
     if (window.aipTrack) aipTrack('quick-check');
     var html = '<p class="result-sum"><b>' + good.length + '</b> felhívás illik jól a cégéhez' + (grants.length ? ', ebből <b>' + grants.length + '</b> vissza nem térítendő vagy kombinált' : '') + '.' + (consortium ? ' <span class="muted">További ' + consortium + ' nemzetközi konzorciumi felhívás külön listában.</span>' : '') + '</p>';
     html += '<div class="gcards">' + single.slice(0, 4).map(function (x) {

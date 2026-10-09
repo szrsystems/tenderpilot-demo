@@ -4,6 +4,7 @@
   var TODAY = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Budapest' });
   var FEED = [];
   var $ = function (id) { return document.getElementById(id); };
+  var TAX_ON = !!(window.AIP_CONFIG && window.AIP_CONFIG.taxLookup);
   var val = function (id) { var el = $(id); return el ? (el.value || '').trim() : ''; };
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   var FIELD_IDS = { employees: 'f_employees', site_region: 'f_site_region', teaor: 'f_teaor', years_operating: 'f_years', public_debt_free: 'f_public_debt', in_difficulty: 'f_difficulty', own_funds: 'f_own_funds', rnd: 'f_rnd' };
@@ -62,6 +63,8 @@
   });
 
   // ---------- tax number lookup ----------
+  // shown only when the NAV lookup is configured (config.js taxLookup)
+  if (TAX_ON && $('taxbox')) $('taxbox').hidden = false;
   function markFromNav(id) {
     var el = $(id); var label = el && el.closest('.field') && el.closest('.field').querySelector('label');
     if (label && !label.querySelector('.from-nav')) label.insertAdjacentHTML('beforeend', ' <span class="tag brand from-nav">NAV</span>');
@@ -76,7 +79,13 @@
     try {
       var r = await window.gp.client.functions.invoke('company-lookup', { body: { taxNumber: digits } });
       var data = r.data;
-      if (r.error || !data) throw new Error('lookup');
+      if (r.error || !data) {
+        var st = r.error && r.error.context && r.error.context.status;
+        if (st === 503) { $('taxbox').hidden = true; return; } // not configured on the server
+        if (st === 401) { msg.innerHTML = 'A munkamenete lejárt. <a href="login.html">Jelentkezzen be újra</a>, vagy töltse ki kézzel.'; msg.className = 'hint error'; return; }
+        if (st === 429) { msg.textContent = 'Ma már túl sok keresést indított. Kérjük, töltse ki az adatokat kézzel.'; msg.className = 'hint error'; return; }
+        throw new Error('lookup');
+      }
       if (!data.found) { msg.textContent = 'Ezzel az adószámmal nem találtunk érvényes adózót a NAV nyilvántartásában. Ellenőrizze a számot, vagy töltse ki kézzel.'; msg.className = 'hint error'; return; }
       var set = function (id, v) { var el = $(id); if (el && v) { el.value = v; markFromNav(id); } };
       set('f_company', data.name);
@@ -93,7 +102,7 @@
   });
 
   // ---------- steps ----------
-  var LABELS = { 1: ['Mutassa be a cégét', 'Ezekből dől el, mely felhívásokra jogosult. Adószám alapján a NAV-tól kitöltjük, amit lehet — a többit Ön adja meg.'], 2: ['Pontosítsa a feltételeket', 'Minél több pontot tud, annál kevesebb „?” marad az ellenőrzésben.'], 3: ['Hogyan értesítsük?', 'Csak akkor írunk, ha Ön kéri.'] };
+  var LABELS = { 1: ['Mutassa be a cégét', 'Ezekből dől el, mely felhívásokra jogosult.' + (TAX_ON ? ' Adószám alapján a NAV-tól kitöltjük, amit lehet — a többit Ön adja meg.' : '')], 2: ['Pontosítsa a feltételeket', 'Minél több pontot tud, annál kevesebb „?” marad az ellenőrzésben.'], 3: ['Hogyan értesítsük?', 'Csak akkor írunk, ha Ön kéri.'] };
   function go(n) {
     if (n === 2 && !$('step-1').hidden) {
       var ok = val('f_company') && checked('#f_industries').length && val('f_employees');
@@ -112,7 +121,7 @@
   function fill(p) {
     if (!p) return;
     var setv = function (id, v) { var el = $(id); if (el && v != null && v !== '' && !el.value) el.value = v; };
-    setv('f_company', p.company); setv('f_employees', p.employees); setv('f_years', p.years_operating); setv('f_site_region', p.site_region);
+    setv('f_company', p.company === 'gyors-ellenorzes' ? '' : p.company); setv('f_employees', p.employees); setv('f_years', p.years_operating); setv('f_site_region', p.site_region);
     setv('f_teaor', p.teaor); setv('f_public_debt', p.public_debt_free); setv('f_difficulty', p.in_difficulty); setv('f_own_funds', p.own_funds);
     setv('f_rnd', p.rnd); setv('f_women_led', p.women_led); setv('f_revenue', p.revenue); setv('f_legal', p.legal_form); setv('f_location', p.location);
     setv('f_name', p.contact_name || p.display_name); setv('f_email', p.email); setv('f_phone', p.phone); setv('f_notes', p.notes); setv('f_past', p.past_grants);

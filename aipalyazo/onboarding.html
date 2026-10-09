@@ -74,13 +74,13 @@ fieldset.field{border:0;padding:0;margin:0 0 var(--s4)}fieldset legend{margin-bo
 <div class="ob-main">
   <p class="eyebrow">Cégprofil · <span id="step-label">1 / 3</span></p>
   <h1 class="h-1" id="ob-title">Mutassa be a cégét</h1>
-  <p class="lede" id="ob-lede">Ezekből dől el, mely felhívásokra jogosult. Adószám alapján a NAV-tól kitöltjük, amit lehet — a többit Ön adja meg.</p>
+  <p class="lede" id="ob-lede">Ezekből dől el, mely felhívásokra jogosult.</p>
   <ol class="stepper" aria-label="Lépések"><li class="active" id="prog-1">Cégadatok</li><li id="prog-2">Pontosítás</li><li id="prog-3">Értesítés</li></ol>
 
   <!-- STEP 1 -->
   <section class="step active" id="step-1" aria-labelledby="s1h">
     <h2 class="visually-hidden" id="s1h">Cégadatok</h2>
-    <div class="taxbox">
+    <div class="taxbox" id="taxbox" hidden>
       <label for="f_taxnumber">Gyorskitöltés adószámmal</label>
       <div class="taxbox-row">
         <input type="text" id="f_taxnumber" inputmode="numeric" autocomplete="off" placeholder="12345678-1-12" aria-describedby="taxbox-msg">
@@ -214,6 +214,7 @@ fieldset.field{border:0;padding:0;margin:0 0 var(--s4)}fieldset legend{margin-bo
 <script src="lib/hu-geo.js"></script>
 <script src="lib/match.js"></script>
 <script src="lib/supabase.js" defer></script>
+<script src="assets/config.js"></script>
 <script src="assets/pages/onboarding.js"></script>
 </body>
 </html>
