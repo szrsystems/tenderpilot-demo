@@ -1768,7 +1768,7 @@
  },
  {
   "id": "v-agrar-szk-max",
-  "code": "AGRAR-SZK-MAX",
+  "code": null,
   "title": "Agrár Széchenyi Kártya MAX+",
   "issuer": "KAVOSZ Zrt. / Széchenyi Kártya Program (partnerbankok)",
   "cat": "Mezőgazdaság",
@@ -2696,7 +2696,7 @@
  },
  {
   "id": "v-ngi-restack",
-  "code": "NGI-RESTACK",
+  "code": null,
   "title": "NLnet Restack – Open Internet Stack fund (Nyílt internetes technológiai verem – NGI)",
   "issuer": "Horizon Europe – NGI cascade (FSTP)",
   "cat": "Digitális átalakulás",
@@ -2734,7 +2734,7 @@
  },
  {
   "id": "v-ngi-codesupply",
-  "code": "NGI-CODESUPPLY",
+  "code": null,
   "title": "NLnet CodeSupply – software supply chain security (Szoftver-ellátási lánc biztonsága)",
   "issuer": "Horizon Europe – NGI cascade (FSTP)",
   "cat": "Digitális átalakulás",
@@ -5516,7 +5516,7 @@
  },
  {
   "id": "v-eitum-founder-catalyst",
-  "code": "EITUM-FOUNDER-CATALYST",
+  "code": null,
   "title": "Techstars x EIT Urban Mobility Founder Catalyst (Pre-akcelerációs program mobilitási startupoknak)",
   "issuer": "EIT Urban Mobility",
   "cat": "KKV fejlesztés",
@@ -5790,7 +5790,7 @@
  },
  {
   "id": "v-esa-ba-ssidbt-contest",
-  "code": "ESA-BA-SSIDBT-CONTEST",
+  "code": null,
   "title": "Space for Sustainable Industry and Digital Business Transformation Contest (Űrtechnológia a fenntartható ipar és digitális átállás szolgálatában – verseny)",
   "issuer": "ESA",
   "cat": "Digitális átalakulás",
@@ -5826,7 +5826,7 @@
  },
  {
   "id": "v-eurohpc-aif-large-scale",
-  "code": "EUROHPC-AIF-LARGE-SCALE",
+  "code": null,
   "title": "Large Scale Access to AI Factories (Nagy léptékű GPU-hozzáférés az EU MI-gyárakban)",
   "issuer": "EuroHPC JU (Digital Europe/Horizon)",
   "cat": "Digitális átalakulás",
@@ -5863,7 +5863,7 @@
  },
  {
   "id": "v-eurohpc-aif-playground-fastlane",
-  "code": "EUROHPC-AIF-PLAYGROUND-FASTLANE",
+  "code": null,
   "title": "Playground & Fast Lane Access to AI Factories (Gyors GPU-hozzáférés MI-startupoknak és KKV-knak)",
   "issuer": "EuroHPC JU (Digital Europe/Horizon)",
   "cat": "Digitális átalakulás",
@@ -5900,7 +5900,7 @@
  },
  {
   "id": "v-eurohpc-quantum-pilot",
-  "code": "EUROHPC-QUANTUM-PILOT",
+  "code": null,
   "title": "EuroHPC Quantum Computers – Pilot Access Call (Ingyenes hozzáférés az EuroHPC kvantumszámítógépekhez)",
   "issuer": "EuroHPC JU",
   "cat": "Kutatás-fejlesztés",
@@ -6359,9 +6359,9 @@
  },
  {
   "id": "v-eye-rolling",
-  "code": "EYE-ROLLING",
+  "code": null,
   "title": "Erasmus for Young Entrepreneurs (Erasmus fiatal vállalkozóknak – külföldi tapasztalatszerzés tapasztalt vállalkozónál)",
-  "issuer": "Erasmus for Young Entrepreneurs (EU, SMP/COSME)",
+  "issuer": "Erasmus Fiatal Vállalkozóknak (EU)",
   "cat": "Oktatás",
   "type": "grant",
   "amount": "A fogadó országtól függő havi átalány utazásra és megélhetésre, legfeljebb 6 hónapra",
@@ -6396,9 +6396,9 @@
  },
  {
   "id": "v-eif-investeu-unicredit-hu",
-  "code": "EIF-INVESTEU-UNICREDIT-HU",
+  "code": null,
   "title": "EIF InvestEU Garancia – UniCredit Bank (EIF InvestEU garanciával fedezett vállalati hitel: általános, innovációs-digitalizációs és fenntarthatósági)",
-  "issuer": "InvestEU – European Investment Fund guarantee via UniCredit Bank Hungary",
+  "issuer": "UniCredit Bank (InvestEU – Európai Beruházási Alap garancia)",
   "cat": "KKV fejlesztés",
   "type": "guarantee",
   "amount": "Hitel max. 8 250 000 EUR (2 821 725 000 Ft), 50% EIF-garancia",
@@ -6437,9 +6437,9 @@
  },
  {
   "id": "v-eif-sustainability-kh-hu",
-  "code": "EIF-SUSTAINABILITY-KH-HU",
+  "code": null,
   "title": "Európai Befektetési Alap (EIF) Fenntarthatósági Garanciaprogram – K&H Bank (EIF-garanciával fedezett vállalati hitelek)",
-  "issuer": "InvestEU / EIF Sustainability Guarantee via K&H Bank",
+  "issuer": "K&H Bank (InvestEU – EIF fenntarthatósági garancia)",
   "cat": "Környezetvédelem",
   "type": "guarantee",
   "amount": "70% garancia (budapesti ügyfél) vagy 80% (vidéki ügyfél), a hitelösszeg a banki szerződés szerint",
@@ -6477,9 +6477,9 @@
  },
  {
   "id": "v-garantiqa-investeu",
-  "code": "GARANTIQA-INVESTEU",
+  "code": null,
   "title": "Garantiqa InvestEU Garanciaprogram (Az Európai Bizottság viszontgaranciájával működő KKV-hitelgarancia)",
-  "issuer": "InvestEU – European Commission counter-guarantee via Garantiqa Hitelgarancia Zrt.",
+  "issuer": "Garantiqa Hitelgarancia Zrt. (InvestEU viszontgarancia)",
   "cat": "KKV fejlesztés",
   "type": "guarantee",
   "amount": "274 M EUR EU-viszontgarancia (95%), összesen kb. 600 Mrd Ft hitel 2028-ig; vidéki vállalkozásoknak akár 3 M EUR finanszírozás",
@@ -6518,7 +6518,7 @@
  },
  {
   "id": "v-garantiqa-kezesseg",
-  "code": "GARANTIQA-KEZESSEG",
+  "code": null,
   "title": "Garantiqa készfizető kezességvállalás (de minimis, csoportmentességi, Gazdaság Újjáépítési és piaci díjas kezesség banki hitelekhez)",
   "issuer": "Garantiqa Hitelgarancia Zrt.",
   "cat": "KKV fejlesztés",
@@ -6559,7 +6559,7 @@
  },
  {
   "id": "v-avhga-kezesseg",
-  "code": "AVHGA-KEZESSEG",
+  "code": null,
   "title": "AVHGA intézményi kezességvállalás (Agrár-Vállalkozási Hitelgarancia Alapítvány – InvestEU-val is támogatott agrár- és vidéki KKV-garancia)",
   "issuer": "Agrár-Vállalkozási Hitelgarancia Alapítvány (AVHGA), részben InvestEU-viszontgaranciával",
   "cat": "Mezőgazdaság",
@@ -6600,9 +6600,9 @@
  },
  {
   "id": "v-eib-raiffeisen-lizing",
-  "code": "EIB-RAIFFEISEN-LIZING",
+  "code": null,
   "title": "EIB refinanszírozott lízing – Raiffeisen Lízing (Európai Beruházási Bank forrásából kedvezményes gép- és járműlízing)",
-  "issuer": "European Investment Bank credit line via Raiffeisen Lízing",
+  "issuer": "Raiffeisen Lízing (Európai Beruházási Bank forrásából)",
   "cat": "KKV fejlesztés",
   "type": "loan",
   "amount": "Ügyletenként legfeljebb 12,5 M EUR, EUR vagy HUF, 24–72 hónap",

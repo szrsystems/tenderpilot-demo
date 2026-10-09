@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-09T13:53:40.085Z",
+ "updatedAt": "2026-10-09T14:23:29.600Z",
  "counts": {
   "total": 426,
   "api": 17,
@@ -168,26 +168,10 @@
    "why": "Klaszter minősítés — nem ad pénzt."
   }
  ],
- "changes": [
-  {
-   "id": "v-exim-jovo-exportorei-beruhazasi-hitel",
-   "type": "new",
-   "title": "EXIM Jövő Exportőrei Beruházási Hitel (Demján Sándor Program)"
-  },
-  {
-   "id": "v-exim-zold-beruhazasi-hitel",
-   "type": "new",
-   "title": "EXIM Zöld Beruházási Hitel (Demján Sándor Program)"
-  },
-  {
-   "id": "v-interreg-huhr-b-light-2-call1",
-   "type": "new",
-   "title": "Interreg Magyarország–Horvátország B Light 2 – 1. felhívás KKV-k határon átnyúló együttműködésére"
-  }
- ],
+ "changes": [],
  "offlineRebuild": {
   "at": "2026-10-09",
-  "apiDataFrom": "2026-10-09T13:15:13.467Z"
+  "apiDataFrom": "2026-10-09T14:23:08.555Z"
  },
  "sourcesOk": true,
  "apiFailed": false,
