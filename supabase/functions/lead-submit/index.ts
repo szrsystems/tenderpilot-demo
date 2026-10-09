@@ -14,7 +14,7 @@
 //   200 {ok:true, ref, duplicate:true}   same e-mail + grant in the last 24 h; nothing sent
 //   400 {error:'invalid', field}
 //   403 {error:'captcha_failed'}         only when TURNSTILE_SECRET is set
-//   429 {error:'rate_limited'}           3 / e-mail / 24 h, 10 / IP / hour
+//   429 {error:'rate_limited'}           5 / e-mail / 24 h, 30 / IP / hour, global caps (see LIMITS)
 //   500 {error:'server'}
 //
 // Deploy:  supabase functions deploy lead-submit --no-verify-jwt --project-ref kacnvchwfwvpkkyhyupb
@@ -34,9 +34,17 @@ import { createGrantFeed, type GrantFeed } from '../_shared/grants.ts';
 import { type LeadStore, type MatchCheck, type MatchSnapshot, supabaseLeadStore } from '../_shared/lead-store.ts';
 import { type Mailer, notifyOperator, parseRecipients, PARTNER_NAME_DEFAULT, requesterEmail, resendMailer } from '../_shared/lead-mail.ts';
 
-// global1h is a flood brake, not a quota: a partner campaign can bring a burst
-// of real requests, so it is high and configurable (LEAD_GLOBAL_HOURLY_CAP).
-export const LIMITS = { perEmail24h: 3, perIp1h: 20, global1h: 300 };
+// Per-person limits stop one sender from spamming; the global caps are flood
+// brakes (rotating IPs past Turnstile) that also protect the e-mail quota —
+// each lead sends 2 e-mails. Global caps are configurable without a deploy:
+// LEAD_GLOBAL_HOURLY_CAP, LEAD_GLOBAL_DAILY_CAP (Supabase secrets).
+// perIp1h is generous because offices and mobile networks share one IP.
+export const LIMITS = { perEmail24h: 5, perIp1h: 30, global1h: 600, global24h: 5000 };
+const CAP_MAX = 100000;
+function capFrom(raw: string | undefined, fallback: number): number {
+  const n = parseInt(raw ?? '', 10);
+  return n > 0 && n <= CAP_MAX ? n : fallback;
+}
 const TAG_RE = /^[a-z0-9._-]{1,60}$/;
 function tag(v: unknown): string | null { const s = typeof v === 'string' ? v.trim().toLowerCase() : ''; return TAG_RE.test(s) ? s : null; }
 const IP_RE = /^[0-9A-Fa-f:.]{2,45}$/;
@@ -208,9 +216,24 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
     const hour = new Date(now.getTime() - 3600e3).toISOString();
     const ipHash = await sha256Hex(`${ip ?? 'unknown'}|${env('LEAD_SALT') || env('SUPABASE_SERVICE_ROLE_KEY') || 'nosalt'}`);
     if ((await store.countByIp(ipHash, hour)) >= LIMITS.perIp1h) return reply({ error: 'rate_limited' }, 429);
-    const globalCap = parseInt(env('LEAD_GLOBAL_HOURLY_CAP') ?? '', 10) > 0 ? parseInt(env('LEAD_GLOBAL_HOURLY_CAP')!, 10) : LIMITS.global1h;
-    if ((await store.countSince(hour)) >= globalCap) {
-      console.error('[lead-submit] global hourly cap reached — possible flood');
+    const hourCap = capFrom(env('LEAD_GLOBAL_HOURLY_CAP'), LIMITS.global1h);
+    const dayCap = capFrom(env('LEAD_GLOBAL_DAILY_CAP'), LIMITS.global24h);
+    const capHit = (await store.countSince(hour)) >= hourCap ? 'hourly' : (await store.countSince(day)) >= dayCap ? 'daily' : null;
+    if (capHit) {
+      console.error(`[lead-submit] global ${capHit} cap reached — possible flood`);
+      // tell the operator once per hour (Resend dedupes on the idempotency key)
+      const alertMailer = deps.mailer ?? (env('RESEND_API_KEY') ? resendMailer(env('RESEND_API_KEY')!, doFetch) : null);
+      if (alertMailer) {
+        const stamp = now.toISOString().slice(0, 13);
+        try {
+          await alertMailer({
+            to: parseRecipients(env('LEAD_NOTIFY_TO') || 'info@aipalyazo.hu'),
+            subject: `[AIpályázó] Konzultációs kérések korlátja elérve (${capHit === 'hourly' ? 'óránkénti ' + hourCap : 'napi ' + dayCap})`,
+            html: `<p>A konzultációs űrlap ${capHit === 'hourly' ? 'óránkénti' : 'napi'} összesített korlátja (${capHit === 'hourly' ? hourCap : dayCap}) betelt, az új kéréseket a rendszer átmenetileg elutasítja.</p><p>Ha ez valós forgalom (pl. kampány), emelje a korlátot a <code>${capHit === 'hourly' ? 'LEAD_GLOBAL_HOURLY_CAP' : 'LEAD_GLOBAL_DAILY_CAP'}</code> Supabase secrettel. Ha támadás, nem kell tennie semmit: a korlát véd.</p>`,
+            idempotencyKey: `lead-cap-${capHit}-${stamp}`,
+          });
+        } catch (e) { console.error('[lead-submit] cap alert failed', String(e).slice(0, 120)); }
+      }
       return reply({ error: 'rate_limited' }, 429);
     }
 

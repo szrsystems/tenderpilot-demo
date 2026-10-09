@@ -271,6 +271,19 @@ Deno.test('global hourly cap is configurable (LEAD_GLOBAL_HOURLY_CAP)', async ()
   assertEquals((await handler(req(body({ email: 'c9@example.com' }), { 'x-forwarded-for': '192.0.2.99' }), deps)).status, 429);
 });
 
+Deno.test('global daily cap is configurable and alerts the operator once per hour', async () => {
+  const { deps } = setup({ ...ENV, LEAD_GLOBAL_DAILY_CAP: '2' });
+  const sent: any[] = [];
+  const d2 = { ...deps, mailer: async (m: any) => { sent.push(m); } };
+  for (let i = 0; i < 2; i++) assertEquals((await handler(req(body({ email: `d${i}@example.com` }), { 'x-forwarded-for': `198.51.100.${i}` }), d2)).status, 200);
+  sent.length = 0;
+  assertEquals((await handler(req(body({ email: 'd9@example.com' }), { 'x-forwarded-for': '198.51.100.99' }), d2)).status, 429);
+  assertEquals(sent.length, 1);
+  assertEquals(sent[0].idempotencyKey.startsWith('lead-cap-daily-'), true);
+  const { deps: d3 } = setup({ ...ENV, LEAD_GLOBAL_DAILY_CAP: 'nonsense' });
+  assertEquals((await handler(req(body({ email: 'x1@example.com' })), d3)).status, 200, 'bad value falls back to the default');
+});
+
 Deno.test('phone: only real numbers; stored in one format', async () => {
   const { store, deps } = setup();
   const bad = await handler(req(body({ phone: '12345' })), deps);
