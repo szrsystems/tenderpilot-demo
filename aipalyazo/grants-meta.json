@@ -1,12 +1,12 @@
 {
- "updatedAt": "2026-10-08T12:39:47.700Z",
+ "updatedAt": "2026-10-09T12:31:40.530Z",
  "counts": {
-  "total": 453,
+  "total": 444,
   "api": 17,
-  "verified": 156,
-  "euAuto": 280,
-  "hazai": 52,
-  "eu": 401,
+  "verified": 74,
+  "euAuto": 353,
+  "hazai": 51,
+  "eu": 393,
   "excluded": 20
  },
  "euApiFailed": false,
@@ -22,23 +22,19 @@
    "why": "lejárt"
   },
   {
+   "id": "v-kap-rd35-2-26",
+   "why": "lejárt"
+  },
+  {
    "id": "v-erasmus-2026-ka210-adu",
    "why": "lejárt"
   },
   {
-   "id": "v-digital-2026-ai-data-10-compliance",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-digital-2026-skills-10-edtech",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-digital-2026-ai-piloting-10-screening",
-   "why": "lejárt"
-  },
-  {
    "id": "v-eurohpc-benchmark-2026",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-cetp-jc2026",
    "why": "lejárt"
   },
   {
@@ -56,6 +52,338 @@
   {
    "id": "v-marc-impact-hu-2026",
    "why": "lejárt"
+  },
+  {
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-01",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-02",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-03",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl4-2027-01-mat-prod-49",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl4-2027-01-mat-prod-08",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl4-2027-04-digital-emerging-04",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl4-2027-04-digital-emerging-05",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2027-05-d4-05",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl6-2027-02-farm2fork-05",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl6-2027-02-communities-02",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-neb-2026-01-regen-01",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-digital-eccc-2027-deploy-cyber-11-ai4sme",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-i3-2026-inv1",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-i3-2026-inv2a",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl4-2027-01-mat-prod-22",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl4-2027-01-mat-prod-02",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl4-2027-01-mat-prod-16",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl4-2027-01-mat-prod-61",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl4-2027-01-mat-prod-62",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl4-2027-02-mat-prod-32-two-stage",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl4-2027-04-data-08",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl4-2027-04-data-09",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl4-2027-04-digital-emerging-06",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl4-2027-space-03-12",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl4-2027-space-03-34",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2026-10-d2-03",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2026-10-d6-06",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2026-10-d6-09",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2026-10-d6-10",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2026-11-d3-05",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2026-11-d3-14",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2026-11-d3-23",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2027-02-d2-05",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2027-02-d2-06",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2027-02-d3-07",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2027-02-d3-15",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2027-02-d3-24",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2027-02-d3-30",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2027-03-d5-04",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2027-03-d5-05",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2027-05-d2-08",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2027-05-d4-06",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2027-05-d4-09",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2027-07-d3-17",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2027-07-d3-26",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2027-07-d3-27",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl6-2027-01-circbio-01",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl6-2027-01-circbio-02",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl6-2027-01-circbio-07",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl6-2027-01-circbio-08",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl6-2027-01-circbio-09",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl6-2027-01-biodiv-03",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl6-2027-02-farm2fork-02",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl6-2027-02-farm2fork-06",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl6-2027-02-farm2fork-07",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-hlth-2027-02-ind-02-two-stage",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-hlth-2027-01-ind-01",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-hlth-2027-01-disease-08",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-hlth-2027-03-tool-04",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2026-01-drs-02",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2026-01-drs-03",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2026-01-drs-04",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2026-01-infra-01",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2026-01-infra-03",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2026-01-ssri-04",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2026-01-bm-01",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2027-01-ssri-01",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2027-01-drs-01",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2027-01-drs-03",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2027-01-infra-01",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-miss-2027-04-cit-01",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-miss-2027-04-cit-ccri-04",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-miss-2027-05-soil-05-two-stage",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-miss-2027-07-clima-cit-ccri-02",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-miss-2027-03-ocean-04",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-widera-2027-01-widening-01",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-widera-2027-04-widening-01",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-eic-2026-step",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-digital-2026-ai-data-10-compliance",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-digital-2026-skills-10-edtech",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-digital-2026-ai-piloting-10-screening",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-digital-eccc-2027-deploy-cyber-11-dualuse",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-digital-eccc-2027-deploy-cyber-11-euleg",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   }
  ],
  "excluded": [
@@ -68,6 +396,14 @@
    "why": "Pénzügyi eszköz keret alapkezelőnek."
   },
   {
+   "code": "IKOP_PLUSZ-2.2.0-23",
+   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "IKOP_PLUSZ-1.1.0-23",
+   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
+  },
+  {
    "code": "DIMOP_PLUSZ-1.2.3/A1-24",
    "why": "Alapkezelői technikai felhívás."
   },
@@ -76,36 +412,28 @@
    "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
   },
   {
-   "code": "IKOP_PLUSZ-2.1.0-23",
-   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
-  },
-  {
    "code": "IKOP_PLUSZ-1.2.0-23",
    "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.1.0-23",
+   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/A2-24",
    "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
   },
   {
-   "code": "IKOP_PLUSZ-1.1.0-23",
-   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
+   "code": "DIMOP_PLUSZ-5.1.4-2-26",
+   "why": "Alapkezelői kezelési költségtérítés."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
    "why": "Alapkezelői/bank költségtérítés."
   },
   {
-   "code": "DIMOP_PLUSZ-5.1.4-2-26",
-   "why": "Alapkezelői kezelési költségtérítés."
-  },
-  {
    "code": "GINOP_PLUSZ-2.5.4-25",
    "why": "Alapkezelői költségtérítés."
-  },
-  {
-   "code": "IKOP_PLUSZ-2.2.0-23",
-   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/B1-24",
@@ -116,16 +444,16 @@
    "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
   },
   {
+   "code": "GINOP_PLUSZ-1.4.7-24",
+   "why": "Alapkezelői/közvetítői költségtérítés."
+  },
+  {
    "code": "KEHOP_PLUSZ-3.1.12-25",
    "why": "Közszféra kármentesítési felhívás."
   },
   {
    "code": "GINOP_PLUSZ-1.4.6-24",
    "why": "Hitelkeret alapkezelőnek (Budapest)."
-  },
-  {
-   "code": "GINOP_PLUSZ-1.4.7-24",
-   "why": "Alapkezelői/közvetítői költségtérítés."
   },
   {
    "code": "2025-3.1.1-ED",
@@ -142,506 +470,504 @@
  ],
  "changes": [
   {
-   "id": "pg-GINOP_PLUSZ-1.1.6-25",
-   "type": "szabad-keret",
-   "from": 5767306554,
-   "to": 5567249607,
-   "title": "Minősített klasztermenedzsment szervezetek támogatása"
+   "id": "eu-HORIZON-EIC-2026-PATHFINDERCHALLENGES-01-03",
+   "type": "new",
+   "title": "DeepRAP: Deep Reasoning, Abstraction & Planning towards trustworthy Cognitive AI Systems"
   },
   {
-   "id": "eu-DIGITAL-2023-SKILLS-05-SPECIALEDU",
+   "id": "eu-HORIZON-EIC-2026-PATHFINDERCHALLENGES-01-01",
    "type": "new",
-   "title": "Specialised education programmes in key capacity areas"
+   "title": "Advanced Materials for Miniaturised Energy Harvesting Systems"
   },
   {
-   "id": "eu-DIGITAL-2022-SKILLS-03-SPECIALISED-EDU",
+   "id": "eu-HORIZON-EIC-2026-PATHFINDERCHALLENGES-01-02",
    "type": "new",
-   "title": "Specialised education programmes or modules in key capacity areas"
+   "title": "Biotechnology for Healthy Ageing"
   },
   {
-   "id": "eu-CERV-2024-CITIZENS-VALUES",
+   "id": "eu-HORIZON-CL3-2026-01-SSRI-04",
    "type": "new",
-   "title": "Call for proposals for civil society organisations active on protecting and promoting Union values: call to intermediaries (giving financial support to third parties)"
+   "title": "Development of ecosystem and next-generation capabilities for a secured European Critical Communication System in civil security"
   },
   {
-   "id": "eu-SMP-COSME-2024-CLUSTER-01",
+   "id": "eu-HORIZON-CL3-2026-01-BM-01",
    "type": "new",
-   "title": "Joint Cluster Initiatives (EUROCLUSTERS) for Europe’s recovery"
+   "title": "Advanced border surveillance and situational awareness"
   },
   {
-   "id": "eu-HORIZON-EIT-2025-KIC-IBA-UM",
+   "id": "eu-HORIZON-CL3-2026-01-DRS-04",
    "type": "new",
-   "title": "EITURBANMOBILITY Business Plan 2026"
+   "title": "Open topic on driving innovation uptake of disaster risk solutions"
   },
   {
-   "id": "eu-DIGITAL-2021-SKILLS-01-SPECIALISED",
+   "id": "eu-HORIZON-CL3-2026-01-DRS-03",
    "type": "new",
-   "title": "Specialised education programmes in key capacity areas"
+   "title": "Development of innovative tools, processes, equipment and technologies through responses to disasters and emergencies for search and rescue in hazardous conditions"
   },
   {
-   "id": "eu-HORIZON-EIT-2025-MOC-IBA",
+   "id": "eu-HORIZON-CL3-2026-01-INFRA-01",
    "type": "new",
-   "title": "2026-2027 MOC Activities"
+   "title": "Tools and processes to support stress tests of critical infrastructure"
   },
   {
-   "id": "eu-CREA-CULT-2025-COOP-UA-1",
+   "id": "eu-HORIZON-CL3-2026-01-DRS-02",
    "type": "new",
-   "title": "Supporting Ukrainian artists and cultural organisations to co-create/showcase"
+   "title": "Multi-hazard approach and cumulative / cascading impacts"
   },
   {
-   "id": "eu-HORIZON-EIC-2025-WOMENTECH",
+   "id": "eu-HORIZON-CL3-2026-01-INFRA-03",
    "type": "new",
-   "title": "Women Tech.EU initiative"
+   "title": "Targeted innovative capabilities for the resilience of critical entities to natural and human-induced disasters, including hybrid scenarios"
   },
   {
-   "id": "eu-HORIZON-CL4-INDUSTRY-2025-01-MATERIALS-64",
+   "id": "eu-I3-2026-INV2a",
    "type": "new",
-   "title": "EU Co-funded Partnership on raw materials for the green and digital transition (Co-funded partnership Raw Materials for the Green and Digital Transition)"
+   "title": "I3-2026-INV2a - Interregional Innovation Investments Strand 2a"
   },
   {
-   "id": "eu-HORIZON-CL5-2026-10-D6-02",
+   "id": "eu-I3-2026-INV1",
    "type": "new",
-   "title": "Geopolitical competition and socioeconomic resilience in CCAM: an innovation and policy roadmap for EU leadership (CCAM Partnership)"
+   "title": "I3-2026-INV1 - Interregional Innovation Investments Strand 1"
   },
   {
-   "id": "eu-HORIZON-CL5-2026-10-D6-03",
+   "id": "eu-DIGITAL-2024-BESTUSE-07-MULTICOUNTRY",
    "type": "new",
-   "title": "Generative AI for smarter CCAM: enhancing perception, decision-making, and validation (CCAM Partnership)"
+   "title": "Support to the implementation of Multi-Country Projects (MCPs)"
   },
   {
-   "id": "eu-HORIZON-CL5-2026-10-D6-01",
+   "id": "eu-HORIZON-MISS-2024-CROSS-02-01",
    "type": "new",
-   "title": "Flagship-pilot: large-scale demonstrations of CCAM (CCAM Partnership)"
+   "title": "Experimental local action for EU missions: knowledge institutions as focal points of transdisciplinary research and innovation activities with European outreach"
   },
   {
-   "id": "eu-HORIZON-MISS-2026-04-CIT-02",
+   "id": "eu-HORIZON-CL5-2026-11-D3-14",
    "type": "new",
-   "title": "Transition to low-temperature heating solutions in multi-apartment buildings"
+   "title": "Improved system design for innovative PV applications (EUPI-PV Partnership)"
   },
   {
-   "id": "eu-HORIZON-MISS-2026-04-CIT-01",
+   "id": "eu-HORIZON-CL5-2026-11-D3-23",
    "type": "new",
-   "title": "Energy efficient urban and sub-urban public transport, complemented by shared mobility"
+   "title": "Data sharing to support the training and development of AI foundation models in the energy sector"
   },
   {
-   "id": "eu-HORIZON-MISS-2026-04-CIT-NEB-B4P-CCRI-03",
+   "id": "eu-HORIZON-CL5-2026-11-D3-05",
    "type": "new",
-   "title": "Introducing circular economy models in the construction sector, from buildings to city scale"
+   "title": "Demonstration of solid biofuel supply and conversion to high efficiency CHP from fully sustainable regional value chains"
   },
   {
-   "id": "eu-HORIZON-JU-IHI-2026-13-two-stage-02",
+   "id": "eu-HORIZON-NEB-2026-01-REGEN-01",
    "type": "new",
-   "title": "An AI Foundation Toxicology Model and Framework to Support Waiving a Second Species in Drug Safety Studies"
+   "title": "Sustainable, inclusive, affordable and beautiful solutions for thermal comfort in buildings"
   },
   {
-   "id": "eu-HORIZON-JU-IHI-2026-13-two-stage-03",
+   "id": "eu-HORIZON-CL6-2023-GOVERNANCE-01-13",
    "type": "new",
-   "title": "Decode the Immunoscience of age-related diseases"
+   "title": "Open source solutions for edge, cloud and mixed model applications to strengthen production and administrative capacities in agriculture"
   },
   {
-   "id": "eu-HORIZON-JU-IHI-2026-13-two-stage-01",
+   "id": "eu-HORIZON-MISS-2024-OCEAN-02-01",
    "type": "new",
-   "title": "IHI European HealthCare Incubator Network"
+   "title": "Community-led actions to restore our ocean, seas and waters"
   },
   {
-   "id": "eu-HORIZON-JU-CBE-2023-S-01",
+   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-AI4SME",
    "type": "new",
-   "title": "EU-wide network of pilot plants and testing facilities, improving SMEs and start-ups' access to scale-up"
+   "title": "Strengthening cybersecurity capacities of European SMEs  with cybersecure AI-powered solutions"
   },
   {
-   "id": "eu-HORIZON-EIT-2025-KIC-IBA-CC",
+   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-EULEG",
    "type": "new",
-   "title": "EITCULTURE Business Plan 2026"
+   "title": "Strengthening EU cybersecurity capacities & capabilities in line with legislative requirements"
   },
   {
-   "id": "eu-SMP-FOOD-2026-FW-STAKEHOLDERS-PJ",
+   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-DUALUSE",
    "type": "new",
-   "title": "EU support to Stakeholders to improve measurement of food waste and help implement food waste prevention in their operations and organisation - 2026-2027"
+   "title": "Dual-use technologies"
   },
   {
-   "id": "eu-HORIZON-EIT-2025-KIC-IBA-RegInnovInt",
+   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-16",
    "type": "new",
-   "title": "Cross-KIC EIT Regional Innovation & Internationalisation Business Plan 2026"
+   "title": "Technologies for innovative processing of raw materials (IA)"
   },
   {
-   "id": "eu-HORIZON-EIT-2025-KIC-IBA-RM",
+   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-08",
    "type": "new",
-   "title": "EITRAWMATERIALS Business Plan 2026"
+   "title": "Textile circularity through advanced processing and manufacturing technologies and system approaches (IA) (Textiles for the Future partnership)"
   },
   {
-   "id": "eu-HORIZON-EUSPA-2023-SPACE-01-46",
+   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-49",
    "type": "new",
-   "title": "Designing space-based downstream applications with international partners"
+   "title": "‘Proof of market’ to improve valorisation and commercialisation of Horizon generated R&I results (IA)"
   },
   {
-   "id": "eu-DIGITAL-2023-SKILLS-04-BOOSTINGDIGIT",
+   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-61",
    "type": "new",
-   "title": "Boosting Digital Skills of young pupils, in particular girls"
+   "title": "Fast Track to Research and Innovation for breakthroughs in industrial technologies (Research and Innovation Action)"
   },
   {
-   "id": "eu-DIGITAL-ECCC-2024-DEPLOY-NCC-06-MS-COORDINATION",
+   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-22",
    "type": "new",
-   "title": "Deploying The Network of National Coordination Centres with Member States"
+   "title": "Innovative advanced materials and new production processes – reducing dependencies on Critical and Strategic Raw Materials (IA) (Innovative Advanced Materials for the EU and Processes4Planet partnerships)"
   },
   {
-   "id": "eu-HORIZON-EIT-2025-KIC-IBA-INBC",
+   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-62",
    "type": "new",
-   "title": "Cross KIC EIT Innovation & Business Creation Business Plan 2026"
+   "title": "Fast Track to Innovation for breakthroughs in the Chemical Industry Action Plan  (Research and Innovation Action)"
   },
   {
-   "id": "eu-CREA-CULT-2026-PERFORM-EU",
+   "id": "eu-HORIZON-CL4-2027-02-MAT-PROD-32-two-stage",
    "type": "new",
-   "title": "Perform EU"
+   "title": "Efficient energy input from renewable sources and energy management in the process industries (IA) (Processes4Planet and Innovative Advanced Materials for the EU partnerships)"
   },
   {
-   "id": "eu-DIGITAL-JU-CHIPS-2026-AI-GFP",
+   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-02",
    "type": "new",
-   "title": "AI compute evaluation and deployment platform for EU infrastructure"
+   "title": "Advanced manufacturing for key products (IA) (Made in Europe partnership)"
   },
   {
-   "id": "eu-DIGITAL-JU-CHIPS-2026-AI1-SG",
+   "id": "eu-HORIZON-HLTH-2027-01-IND-01",
    "type": "new",
-   "title": "AI chip demonstrators for EU compute infrastructure"
+   "title": "Development of cell-free protein synthesis platforms for discovery and/or production of biologicals"
   },
   {
-   "id": "eu-HORIZON-WIDERA-2023-ACCESS-07-01",
+   "id": "eu-HORIZON-HLTH-2027-02-IND-02-two-stage",
    "type": "new",
-   "title": "Excellence Hubs"
+   "title": "Portable and versatile Point-of-care diagnostics"
   },
   {
-   "id": "eu-HORIZON-EIC-2026-DEFENCE-01",
+   "id": "eu-HORIZON-HLTH-2027-01-DISEASE-08",
    "type": "new",
-   "title": "EIC defence call"
+   "title": "Development of innovative antimicrobials against pathogens resistant to antimicrobials"
   },
   {
-   "id": "eu-DIGITAL-ECCC-2024-DEPLOY-CYBER-07-LARGEOPER",
+   "id": "eu-HORIZON-CL4-2027-04-DIGITAL-EMERGING-06",
    "type": "new",
-   "title": "Preparedness Support and Mutual Assistance, Targeting Larger Industrial Operations and Installations"
+   "title": "International cooperation in AI (IA)"
   },
   {
-   "id": "eu-HORIZON-EIT-2025-KIC-IBA-H",
+   "id": "eu-HORIZON-CL4-2027-04-DIGITAL-EMERGING-05",
    "type": "new",
-   "title": "EITHEALTH Business Plan 2026"
+   "title": "Apply AI: AI-Driven Robotics for Industry: Enabling System Integration and Adoption (IA) (Partnership in AI, Data and Robotics)"
   },
   {
-   "id": "eu-HORIZON-CL4-2025-03-HUMAN-16",
+   "id": "eu-HORIZON-CL4-2027-04-DATA-08",
    "type": "new",
-   "title": "Drive the evolution of the internet towards open and interoperable Web 4.0 and Virtual Worlds: building blocks in priority areas (RIA) (Virtual Worlds Partnership)"
+   "title": "Demand-side 3C pilot demonstrators on converged Telco Edge Cloud Infrastructure (IA)"
   },
   {
-   "id": "eu-HORIZON-CL4-2025-03-DATA-11",
+   "id": "eu-HORIZON-CL4-2027-04-DIGITAL-EMERGING-04",
    "type": "new",
-   "title": "Open Internet Stack: development of technological commons/open-source 3C building blocks (RIA)"
+   "title": "Apply AI: Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (RIA) (Partnership in AI, Data and Robotics)"
   },
   {
-   "id": "eu-CREA-CULT-2024-PLAT",
+   "id": "eu-HORIZON-CL4-2027-04-DATA-09",
    "type": "new",
-   "title": "European Platforms for the promotion of emerging artists"
+   "title": "Energy efficiency and sustainability of AI data processing in Data Centres (IA)"
   },
   {
-   "id": "eu-HORIZON-CL4-2023-DIGITAL-EMERGING-01-02",
+   "id": "eu-HORIZON-CL5-2027-02-D3-30",
    "type": "new",
-   "title": "Industrial leadership in AI, Data and Robotics – advanced human robot interaction (AI Data and Robotics Partnership) (IA)"
+   "title": "Advancements in Direct Air Capture"
   },
   {
-   "id": "eu-HORIZON-CL3-2026-01-SSRI-01",
+   "id": "eu-HORIZON-CL5-2027-02-D3-24",
    "type": "new",
-   "title": "Open topic on supporting disruptive technological innovations for civil security"
+   "title": "Large scale operational validation and upscaling of state-of-the-art (Generative) AI tools and models powering a next generation digital energy system"
   },
   {
-   "id": "eu-HORIZON-CL3-2026-01-FCT-02",
+   "id": "eu-HORIZON-CL5-2027-02-D3-15",
    "type": "new",
-   "title": "Open topic on preventing and countering the misuse of emerging technologies for criminal purposes, including issues related to lawful access to data"
+   "title": "Production technologies for solar photovoltaics beyond the state-of-the-art (EUPI-PV Partnership)"
   },
   {
-   "id": "eu-HORIZON-CL3-2026-01-FCT-01",
+   "id": "eu-HORIZON-CL5-2027-02-D2-05",
    "type": "new",
-   "title": "Improving capabilities of law enforcement to counter climate-related challenges"
+   "title": "Improvement of Adaptability, Flexibility and Efficiency of Existing Recycling Processes (BATT4EU Partnership)"
   },
   {
-   "id": "eu-HORIZON-CL3-2026-01-BM-02",
+   "id": "eu-HORIZON-CL5-2027-02-D2-06",
    "type": "new",
-   "title": "Accessible and available travel facilitation"
+   "title": "Sustainable and Competitive Cell Production Techniques for Lithium-ion And Sodium-ion Batteries (BATT4EU Partnership)"
   },
   {
-   "id": "eu-HORIZON-CL3-2026-01-FCT-06",
+   "id": "eu-HORIZON-CL5-2027-02-D3-07",
    "type": "new",
-   "title": "Prevention and mitigation of misuse of synthetic biology for bioterrorism purposes"
+   "title": "Concentrated solar thermal systems for decarbonising industrial processes"
   },
   {
-   "id": "eu-HORIZON-CL3-2026-01-DRS-05",
+   "id": "eu-HORIZON-MISS-2027-05-SOIL-05-two-stage",
    "type": "new",
-   "title": "Climate security and civil preparedness – new ways to develop pre- and post-crisis climate-change related scenarios for a more resilient Europe"
+   "title": "Innovative biotechnologies to restore soil health and improve agricultural competitiveness and resilience"
   },
   {
-   "id": "eu-HORIZON-CL3-2026-01-INFRA-02",
+   "id": "eu-HORIZON-CL5-2027-03-D5-04",
    "type": "new",
-   "title": "Security challenges of the green transition in urban und peri urban areas"
+   "title": "Demonstration of zero emission coaches and buses in long distance operations (2ZERO Partnership)"
   },
   {
-   "id": "eu-HORIZON-CL3-2026-01-FCT-03",
+   "id": "eu-HORIZON-CL5-2027-03-D5-05",
    "type": "new",
-   "title": "Missing persons: prevention and investigation"
+   "title": "Higher Voltage, Megawatt Charging System compatible, modular powertrain for Heavy Duty Vehicles (HDV) (2ZERO Partnership)"
   },
   {
-   "id": "eu-HORIZON-CL3-2026-01-FCT-05",
+   "id": "eu-HORIZON-CL4-2027-SPACE-03-34",
    "type": "new",
-   "title": "Enhancing the security of citizens against terrorism and lone-actor violence in confined spaces such as schools"
+   "title": "Preparing demonstration missions for collaborative Earth Observation and Satellite telecommunication for Space solutions (Space Partnership)"
   },
   {
-   "id": "eu-HORIZON-CL3-2026-01-DRS-01",
+   "id": "eu-HORIZON-CL4-2027-SPACE-03-12",
    "type": "new",
-   "title": "Designing new ways of risk awareness and enhanced disaster preparedness"
+   "title": "Digital solutions for autonomy for space transportation systems, design and simulation tools - Digital enablers and building blocks (Space Partnership)"
   },
   {
-   "id": "eu-HORIZON-CL3-2026-01-FCT-04",
+   "id": "eu-HORIZON-CL5-2027-05-D4-06",
    "type": "new",
-   "title": "Crime prevention approaches, online and off-line, tackling the nexus between addictions and crime"
+   "title": "Thermal energy optimisation and waste heat recovery of high energy demand IT rooms in buildings or small edge data centres"
   },
   {
-   "id": "eu-HORIZON-CL4-2024-RESILIENCE-01-41",
+   "id": "eu-HORIZON-CL5-2027-05-D2-08",
    "type": "new",
-   "title": "'Innovate to transform' support for SME's sustainability transition (CSA)"
+   "title": "Demonstration for Long-duration Battery Energy Storage Systems (BATT4EU Partnership)"
   },
   {
-   "id": "eu-I3-2023-INV2a",
+   "id": "eu-HORIZON-CL5-2027-05-D4-05",
    "type": "new",
-   "title": "Interregional Innovation Investments Strand 2a"
+   "title": "On-site robotic and automated techniques for building renovation and new construction"
   },
   {
-   "id": "eu-HORIZON-CL6-2021-BIODIV-02-01",
+   "id": "eu-HORIZON-CL5-2027-05-D4-09",
    "type": "new",
-   "title": "European partnership rescuing biodiversity to safeguard life on Earth"
+   "title": "Demonstration of industrial excess/waste heat conversion to mechanical or electrical power"
   },
   {
-   "id": "eu-CREA-CULT-2025-COOP-UA-2",
+   "id": "eu-HORIZON-HLTH-2027-03-TOOL-04",
    "type": "new",
-   "title": "Fostering Ukrainians’ access to culture and cultural heritage"
+   "title": "Virtual Human Twins (VHTs) for integrated clinical decision support in prevention and diagnosis"
   },
   {
-   "id": "eu-HORIZON-CL6-2021-CLIMATE-01-02",
+   "id": "eu-HORIZON-MISS-2027-03-OCEAN-04",
    "type": "new",
-   "title": "European Partnership Water Security for the Planet (Water4All)"
+   "title": "Towards community-driven business models: coastal and freshwaters sustainable tourism"
   },
   {
-   "id": "eu-I3-2024-INV1",
+   "id": "eu-HORIZON-CL6-2027-01-CIRCBIO-08",
    "type": "new",
-   "title": "Interregional Innovation Investments Strand 1"
+   "title": "Biotechnology application for CCU"
   },
   {
-   "id": "eu-HORIZON-WIDERA-2025-04-ACCESS-01",
+   "id": "eu-HORIZON-CL6-2027-01-CIRCBIO-09",
    "type": "new",
-   "title": "Support for R&I policy making in the EU enlargement countries"
+   "title": "Increasing the circularity of bio-based sector: upcycling and recycling for higher value and environmental benefits"
   },
   {
-   "id": "eu-HORIZON-CL6-2022-GOVERNANCE-01-02",
+   "id": "eu-HORIZON-CL6-2027-01-CIRCBIO-02",
    "type": "new",
-   "title": "European Partnership for a climate neutral, sustainable and productive Blue Economy"
+   "title": "Enhancing ecodesign and circularity of construction products"
   },
   {
-   "id": "eu-EDF-2024-RA-SIMTRAIN-BRG-STEP",
+   "id": "eu-HORIZON-CL6-2027-01-CIRCBIO-07",
    "type": "new",
-   "title": "Methods for bridging reality gaps"
+   "title": "Improving biomass flows for a sustainable and circular bioeconomy"
   },
   {
-   "id": "eu-HORIZON-EIE-2023-CONNECT-03-01",
+   "id": "eu-HORIZON-CL6-2027-01-CIRCBIO-01",
    "type": "new",
-   "title": "Implementing co-funded action plans for connected regional innovation valleys"
+   "title": "Enhancing ecodesign and circularity of consumer electronics"
   },
   {
-   "id": "eu-HORIZON-JU-EUROHPC-2026-NAPT-11-01",
+   "id": "eu-HORIZON-CL6-2027-01-BIODIV-03",
    "type": "new",
-   "title": "Neutral-Atom Platform Technologies"
+   "title": "Technical innovation to protect ecosystems and to scale up their restoration"
   },
   {
-   "id": "eu-HORIZON-JU-EUROHPC-2026-NQKD-12-01",
+   "id": "eu-HORIZON-MISS-2027-07-CLIMA-CIT-CCRI-02",
    "type": "new",
-   "title": "Next-Generation QKD Systems"
+   "title": "Deploying innovative wastewater management, treatment and valorisation solutions in European cities and regions in the context of climate change"
   },
   {
-   "id": "eu-HORIZON-JU-EUROHPC-2026-QEXP-14-01",
+   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-07",
    "type": "new",
-   "title": "Quantum Experimental Pilot Lines for Quantum Technologies"
+   "title": "Persons with disabilities: opportunities for labour inclusion and social protection through the life course"
   },
   {
-   "id": "eu-HORIZON-JU-EUROHPC-2026-SPT-10-01",
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-02",
    "type": "new",
-   "title": "Superconducting Platform Technologies"
+   "title": "Women’s, LGBTIQ and minority rights in a context of autocracy, conflict and geopolitical shifts"
   },
   {
-   "id": "eu-HORIZON-JU-EUROHPC-2026-TIPT-09-01",
+   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-03",
    "type": "new",
-   "title": "Trapped-Ion Platform Technologies"
+   "title": "Rethinking sustainable competitiveness beyond traditional perspectives: role and contribution of the Social Economy"
   },
   {
-   "id": "eu-HORIZON-JU-EUROHPC-2026-QTI-13-01",
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-06",
    "type": "new",
-   "title": "Quantum-Testing Infrastructure for Quantum Technologies"
+   "title": "Identifying user-focused solutions to support news media freedom"
   },
   {
-   "id": "eu-HORIZON-CL5-2021-D2-01-16",
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-07",
    "type": "new",
-   "title": "Co-Funded Partnership: Driving Urban Transitions to a sustainable future (DUT)"
+   "title": "Societal impact of cultural heritage"
   },
   {
-   "id": "eu-DIGITAL-2024-ADVANCED-DIGITAL-07-KEYCAPACITY",
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-05",
    "type": "new",
-   "title": "Specialised Education Programmes in Key Capacity Areas"
+   "title": "Enhancing farmer's profitability and resilience through innovations for diversified crops and value chains"
   },
   {
-   "id": "eu-HORIZON-MISS-2024-SOIL-01-01",
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-07",
    "type": "new",
-   "title": "Co-creating solutions for soil health in Living Labs"
+   "title": "Towards commercialization of food systems microbiome solutions"
   },
   {
-   "id": "eu-CERV-2025-DAPHNE",
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-06",
    "type": "new",
-   "title": "Call for proposals to prevent and combat gender-based violence and violence against children"
+   "title": "Unleashing the potential of sustainable small-scale aquatic food production and recreational fisheries for prosperous local communities"
   },
   {
-   "id": "eu-HORIZON-NEB-2026-01-BUSINESS-02",
+   "id": "eu-HORIZON-CL6-2027-02-COMMUNITIES-02",
    "type": "new",
-   "title": "Understanding capital market dynamics for increased investment in New European Bauhaus projects in neighbourhoods"
+   "title": "Empowering local urban food systems entrepreneurship and innovation"
   },
   {
-   "id": "eu-HORIZON-EIC-2026-PRIZE-WIP",
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-02",
    "type": "new",
-   "title": "The European Prize for Women Innovators"
+   "title": "Increasing mitigation of GHG emissions and feed efficiency through feed additives"
   },
   {
-   "id": "eu-HORIZON-EIC-2026-PRIZE-WIP-RisingInnovators",
+   "id": "eu-HORIZON-MISS-2027-04-CIT-CCRI-04",
    "type": "new",
-   "title": "Rising Innovators category"
+   "title": "Advancing circular logistics solutions in cities"
   },
   {
-   "id": "eu-HORIZON-NEB-2026-01-REGEN-02",
+   "id": "eu-HORIZON-MISS-2027-04-CIT-01",
    "type": "new",
-   "title": "Advancing sustainable maintenance and repair measures for existing buildings"
+   "title": "Innovative microgrids for improved energy system integration and efficiency in urban contexts"
   },
   {
-   "id": "eu-HORIZON-NEB-2026-01-REGEN-03",
+   "id": "eu-HORIZON-CL3-2027-01-DRS-03",
    "type": "new",
-   "title": "Innovative solutions for the sustainable and beautiful use of vertical space"
+   "title": "Enhancing decision support system for disaster crises: leveraging emerging technologies for improved civil preparedness and crisis management"
   },
   {
-   "id": "eu-HORIZON-NEB-2026-01-PARTICIPATION-01",
+   "id": "eu-HORIZON-CL3-2027-01-SSRI-01",
    "type": "new",
-   "title": "Addressing homelessness through housing-led approaches aligned with the New European Bauhaus"
+   "title": "Accelerating uptake through open proposals for advanced SME innovation"
   },
   {
-   "id": "eu-HORIZON-NEB-2026-01-BUSINESS-03",
+   "id": "eu-HORIZON-CL3-2027-01-INFRA-01",
    "type": "new",
-   "title": "Approaches to reuse vacant, obsolete or underutilised spaces"
+   "title": "Enhancing physical protection of critical infrastructures"
   },
   {
-   "id": "eu-HORIZON-NEB-2026-01-BUSINESS-01",
+   "id": "eu-HORIZON-CL3-2027-01-DRS-01",
    "type": "new",
-   "title": "Structurally addressing homelessness through coordinated social infrastructure and services in neighbourhoods"
+   "title": "Open Topic on advanced protective gear optimized for CBRN-E (Chemical, Biological, Radiological, Nuclear, Explosives) environments and new generation of smart protective equipment for disaster responders"
   },
   {
-   "id": "eu-HORIZON-NEB-2026-01-PARTICIPATION-02",
+   "id": "eu-HORIZON-CL5-2027-07-D3-17",
    "type": "new",
-   "title": "Innovative approaches for the spatial design of neighbourhoods"
+   "title": "PV based electrification of the economy: Designing & optimising PV systems supporting industrial electrification and promoting participation in electricity markets (EUPI-PV Partnership)"
   },
   {
-   "id": "eu-HORIZON-CL5-2026-11-D3-06",
+   "id": "eu-HORIZON-CL5-2027-07-D3-27",
    "type": "new",
-   "title": "Resource assessment for deep sedimentary and basement reservoirs"
+   "title": "Integrated Approaches for Retrofitting Infrastructures with Innovative Energy Storage Technologies"
   },
   {
-   "id": "eu-HORIZON-NEB-2026-01-PARTICIPATION-03",
+   "id": "eu-HORIZON-CL5-2027-07-D3-26",
    "type": "new",
-   "title": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being"
+   "title": "Advanced Distribution Management Systems (ADSM) for more efficient and flexible distribution grids"
   },
   {
-   "id": "eu-CREA-MEDIA-2027-DEVSLATE",
-   "type": "new",
-   "title": "European slate development"
+   "id": "v-kap-rd35-2-26",
+   "type": "removed",
+   "title": "Erdő-környezetvédelmi többéves kötelezettségvállalások (EKV II.)"
   },
   {
-   "id": "eu-HORIZON-EIE-2021-INNOVSMES-01-01",
-   "type": "new",
-   "title": "European Partnership on Innovative SMEs"
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-01",
+   "type": "removed",
+   "title": "EIC Pathfinder Challenge: Advanced Materials for Miniaturised Energy Harvesting Systems (Fejlett anyagok miniatűr energiabetakarításhoz)"
   },
   {
-   "id": "eu-HORIZON-CL6-2025-01-CIRCBIO-15",
-   "type": "new",
-   "title": "European partnership: Forests and Forestry for a Sustainable Future"
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-02",
+   "type": "removed",
+   "title": "EIC Pathfinder Challenge: Biotechnology for Healthy Ageing (Biotechnológia az egészséges időskorért)"
   },
   {
-   "id": "eu-HORIZON-MISS-2025-CIT-SGA",
-   "type": "new",
-   "title": "Specific Grant Agreement to the FPA to reinforce the operations of the Climate-Neutral and Smart Cities Mission Platform"
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-03",
+   "type": "removed",
+   "title": "EIC Pathfinder Challenge: DeepRAP: Deep Reasoning, Abstraction & Planning towards trustworthy Cognitive AI Systems (Megbízható kognitív MI-rendszerek)"
   },
   {
-   "id": "eu-DIGITAL-JU-CHIPS-2026-SG-JAPAN",
-   "type": "new",
-   "title": "International collaboration EU and Japan on semiconductors"
+   "id": "v-horizon-cl4-2027-01-mat-prod-49",
+   "type": "removed",
+   "title": "'Proof of market' to improve valorisation and commercialisation of Horizon generated R&I results (Piacigazolás korábbi Horizon-eredmények hasznosítására)"
   },
   {
-   "id": "eu-HORIZON-CL6-2024-CLIMATE-01-5",
-   "type": "new",
-   "title": "Climate-smart use of wood in the construction sector to support the New European Bauhaus"
+   "id": "v-horizon-cl4-2027-01-mat-prod-08",
+   "type": "removed",
+   "title": "Textile circularity through advanced processing and manufacturing technologies (Textilkörforgás fejlett gyártástechnológiákkal)"
   },
   {
-   "id": "eu-EURATOM-2021-ADHOC-IBA",
-   "type": "new",
-   "title": "Euratom-Adhoc-2021-2027"
+   "id": "v-horizon-cl4-2027-04-digital-emerging-04",
+   "type": "removed",
+   "title": "Apply AI: Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (Kihívásalapú MI-innovációs gyorsító)"
   },
   {
-   "id": "eu-HORIZON-MISS-2026-07-CROSS-04",
-   "type": "new",
-   "title": "Demonstrating place-based experimentation and innovation spaces as enabling environments for scaling EU Missions"
+   "id": "v-horizon-cl4-2027-04-digital-emerging-05",
+   "type": "removed",
+   "title": "Apply AI: AI-Driven Robotics for Industry: Enabling System Integration and Adoption (MI-alapú ipari robotika bevezetése)"
   },
   {
-   "id": "eu-CREA-MEDIA-2027-INNOVBUSMOD",
-   "type": "new",
-   "title": "Innovative tools and business models"
+   "id": "v-horizon-cl5-2027-05-d4-05",
+   "type": "removed",
+   "title": "On-site robotic and automated techniques for building renovation and new construction (Robotizált építés és felújítás)"
   },
   {
-   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-NCC",
-   "type": "new",
-   "title": "Enhancing the NCC Network"
+   "id": "v-horizon-cl6-2027-02-farm2fork-05",
+   "type": "removed",
+   "title": "Enhancing farmer's profitability and resilience through innovations for diversified crops and value chains (Gazdák jövedelmezősége diverzifikált növénykultúrákkal)"
   },
   {
-   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-REGCABH",
-   "type": "new",
-   "title": "Regional Cable Hubs"
+   "id": "v-horizon-cl6-2027-02-communities-02",
+   "type": "removed",
+   "title": "Empowering local urban food systems entrepreneurship and innovation (Helyi városi élelmiszer-vállalkozások támogatása)"
   },
   {
-   "id": "eu-HORIZON-NATURE-2027-01-02",
-   "type": "new",
-   "title": "Better understanding, anticipating and addressing the biodiversity benefits and impacts of the clean and digital industries"
+   "id": "v-horizon-neb-2026-01-regen-01",
+   "type": "removed",
+   "title": "Sustainable, inclusive, affordable and beautiful solutions for thermal comfort in buildings (Megfizethető hőkomfort-megoldások épületekben – NEB)"
   },
   {
-   "id": "eu-HORIZON-NATURE-2027-01-01",
-   "type": "new",
-   "title": "Understanding the nature and the extent of the effects of PFAS on biodiversity and ecosystem services"
+   "id": "v-digital-eccc-2027-deploy-cyber-11-ai4sme",
+   "type": "removed",
+   "title": "Strengthening cybersecurity capacities of European SMEs with cybersecure AI-powered solutions (KKV-k kiberbiztonsága MI-alapú megoldásokkal)"
   },
   {
-   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-CYBERAI",
-   "type": "new",
-   "title": "Cybersecure tools, technologies and services relying on AI"
+   "id": "v-i3-2026-inv1",
+   "type": "removed",
+   "title": "Interregional Innovation Investments Strand 1 (Interregionális innovációs beruházások – 1. ág)"
   },
   {
-   "id": "eu-HORIZON-NATURE-2027-01-03",
-   "type": "new",
-   "title": "Systemic approaches to accelerate transformative change for biodiversity"
+   "id": "v-i3-2026-inv2a",
+   "type": "removed",
+   "title": "Interregional Innovation Investments Strand 2a (Interregionális innovációs beruházások – 2a ág, kevésbé fejlett régiók)"
   },
   {
-   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-COORDPREP",
-   "type": "new",
-   "title": "Coordinated preparedness testing and other preparedness actions"
+   "id": "v-horizon-cl4-2027-01-mat-prod-22",
+   "type": "removed",
+   "title": "Innovative advanced materials and new production processes – reducing dependencies on Critical and Strategic Raw Materials (IA) (Innovatív anyagok és gyártási eljárások a kritikus nyersanyagfüggőség csökkentésére)"
   },
   {
-   "id": "eu-HORIZON-NATURE-2027-02-01",
-   "type": "new",
-   "title": "Assessing direct and indirect drivers of biodiversity decline of invertebrates"
+   "id": "v-horizon-cl4-2027-01-mat-prod-02",
+   "type": "removed",
+   "title": "Advanced manufacturing for key products (IA) (Fejlett gyártás kulcstermékekhez – Made in Europe)"
   },
   {
-   "id": "eu-HORIZON-NATURE-2027-02-02",
-   "type": "new",
-   "title": "Living labs co-creating solutions for the restoration of ecosystems addressing implementation bottlenecks and improving resilience to risks"
+   "id": "v-horizon-cl4-2027-01-mat-prod-16",
+   "type": "removed",
+   "title": "Technologies for innovative processing of raw materials (IA) (Nyersanyag-feldolgozási innovatív technológiák)"
   }
  ]
 }
