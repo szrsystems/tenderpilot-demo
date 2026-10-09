@@ -44,3 +44,11 @@ test('public API unchanged', () => {
   for (const k of ['esc', 'srcTag', 'badges', 'bars', 'budget', 'ft', 'TYPE_HU']) assert.ok(C[k], k);
   assert.equal(C.esc('<a>'), '&lt;a&gt;');
 });
+test('budgetExhausted without figures: red badge and full red budget bar', () => {
+  const g = { id: 'x', title: 't', deadline: plus(50), budgetExhausted: true, type: 'grant' };
+  assert.match(C.badges(g, { today }), /badge red">Keret lekötve/);
+  const h = C.bars(g, { today });
+  assert.match(h, /Kimerült/);
+  assert.match(h, /<i class="red p100">/);
+  assert.doesNotMatch(h, /gbars one/);
+});

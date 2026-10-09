@@ -137,7 +137,23 @@ export function clientIp(req: Request): string | null {
   // an IP is treated as "unknown" (a shared bucket), never as "no limit".
   const xff = req.headers.get('x-forwarded-for');
   const ip = (req.headers.get('cf-connecting-ip') ?? req.headers.get('x-real-ip') ?? (xff ? xff.split(',')[0] : '')).trim();
-  return IP_RE.test(ip) ? ip : null;
+  if (!IP_RE.test(ip)) return null;
+  // IPv6: one subscriber usually owns a whole /64, so rate-limit per /64 prefix.
+  if (ip.includes(':')) return ipv6Prefix64(ip);
+  return ip;
+}
+
+export function randomRef(): string {
+  const A = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567', b = crypto.getRandomValues(new Uint8Array(6));
+  return 'L-' + [...b].map((x) => A[x % 32]).join('');
+}
+
+export function ipv6Prefix64(ip: string): string {
+  const [head, tail] = ip.toLowerCase().split('::');
+  const h = head ? head.split(':') : [];
+  const t = tail !== undefined ? (tail ? tail.split(':') : []) : [];
+  const full = tail !== undefined ? [...h, ...Array(Math.max(0, 8 - h.length - t.length)).fill('0'), ...t] : h;
+  return full.slice(0, 4).map((x) => (x || '0').replace(/^0+(?=.)/, '')).join(':') + '::/64';
 }
 
 async function verifyTurnstile(secret: string, token: string, ip: string | null, doFetch: typeof fetch): Promise<boolean> {
@@ -189,7 +205,7 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
 
     const day = new Date(now.getTime() - 24 * 3600e3).toISOString();
     const hour = new Date(now.getTime() - 3600e3).toISOString();
-    const ipHash = await sha256Hex(`${ip ?? 'unknown'}|${env('LEAD_SALT') || 'nosalt'}`);
+    const ipHash = await sha256Hex(`${ip ?? 'unknown'}|${env('LEAD_SALT') || env('SUPABASE_SERVICE_ROLE_KEY') || 'nosalt'}`);
     if ((await store.countByIp(ipHash, hour)) >= LIMITS.perIp1h) return reply({ error: 'rate_limited' }, 429);
     const globalCap = parseInt(env('LEAD_GLOBAL_HOURLY_CAP') ?? '', 10) > 0 ? parseInt(env('LEAD_GLOBAL_HOURLY_CAP')!, 10) : LIMITS.global1h;
     if ((await store.countSince(hour)) >= globalCap) {
@@ -213,7 +229,14 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
     // The ref is only echoed to the signed-in owner, so knowing someone's
     // e-mail doesn't reveal which calls they asked about.
     const dup = await store.findDuplicate(v.email, v.grantId, day);
-    if (dup) return reply({ ok: true, duplicate: true, ...(userId && dup.user_id === userId ? { ref: dup.lead_ref } : {}) });
+    // Same answer shape for everyone, so the reply doesn't reveal who asked about what;
+    // the signed-in owner of the earlier request still gets its reference.
+    if (dup) {
+      if (userId && dup.user_id === userId) return reply({ ok: true, ref: dup.lead_ref, duplicate: true });
+      // Strangers get a reply indistinguishable from a fresh request (a random,
+      // unused reference), so the form can't be used to probe who asked about what.
+      return reply({ ok: true, ref: randomRef() });
+    }
     if ((await store.countByEmail(v.email, day)) >= LIMITS.perEmail24h) return reply({ error: 'rate_limited' }, 429);
 
     // Official grant data from the feed; the client title is only a fallback.

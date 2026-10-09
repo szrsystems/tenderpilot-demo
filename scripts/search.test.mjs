@@ -88,7 +88,7 @@ test('call codes keep their digits and stay inside the programme', () => {
 });
 test('"vissza nem térítendő" is a type filter', () => {
   const r = live('vissza nem térítendő');
-  assert.ok(r.length >= 400);
+  assert.equal(r.length, FEED.filter((g) => /^(grant|wage-subsidy|loan\+grant|grant\+equity)$/.test(g.type) && !/nem vissza nem t/i.test(g.note || '')).length);
   assert.ok(r.every((x) => /^(grant|wage-subsidy|loan\+grant|grant\+equity)$/.test(x.g.type)));
   assert.ok(live('vissza nem térítendő napelem').every((x) => /grant|wage/.test(x.g.type)));
 });

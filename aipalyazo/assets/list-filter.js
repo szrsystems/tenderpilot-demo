@@ -1,0 +1,6 @@
+/* AIpályázó — client-side filter for the generated grant list (palyazat/index.html).
+   Kept as an external file so the generated pages can use a CSP without 'unsafe-inline' scripts. */
+(function(){var q=document.getElementById('q');if(!q)return;var fm=document.querySelector('form[data-nosubmit]');if(fm)fm.addEventListener('submit',function(e){e.preventDefault();});var f='all',btns=document.querySelectorAll('.filters button');
+function run(){var v=q.value.trim().toLowerCase(),n={hu:0,eu:0};document.querySelectorAll('.list .gcard').forEach(function(r){var ok=(!v||(window.AIPSearch?AIPSearch.matchText(v,r.getAttribute('data-s')):r.getAttribute('data-s').indexOf(v)>=0))&&(f==='all'||(f==='hu'&&r.dataset.scope==='hu')||(f==='eu'&&r.dataset.scope==='eu')||(f==='grant'&&/grant/.test(r.dataset.type))||(f==='loan'&&/loan/.test(r.dataset.type)));r.hidden=!ok;if(ok)n[r.dataset.scope]++;});
+document.querySelector('[data-count=hu]').textContent=n.hu;document.querySelector('[data-count=eu]').textContent=n.eu;document.getElementById('empty').hidden=(n.hu+n.eu)>0;}
+q.addEventListener('input',run);btns.forEach(function(b){b.addEventListener('click',function(){f=b.dataset.f;btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});run();});});})();

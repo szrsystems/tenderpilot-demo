@@ -242,7 +242,7 @@ fieldset.field{border:0;padding:0;margin:0 0 var(--s4)}fieldset legend{margin-bo
     if (!FEED.length || !window.AIPMatch) return;
     if (!p.industries.length && !p.employees) { $('pv-count').textContent = '—'; $('pv-list').innerHTML = '<p class="muted small">Adja meg a tevékenységet és a létszámot, és itt azonnal látja, mi illik a cégéhez.</p>'; return; }
     var rows = FEED.map(function (g) { return { g: g, m: AIPMatch.match(g, p, TODAY) }; }).filter(function (x) { return x.m.eligible && x.m.group !== 'consortium'; });
-    var rank = function (x) { return (x.m.verdict === 'APPLY' ? 1000 : 0) + (x.m.group === 'hazai' ? 100 : 0) + x.m.score; };
+    var rank = function (x) { return (x.m.verdict === 'APPLY' ? 1000 : 0) + (x.m.group === 'hazai' ? 3 : 0) + x.m.score; };
     rows.sort(function (a, b) { return rank(b) - rank(a); });
     var good = rows.filter(function (x) { return x.m.verdict === 'APPLY'; });
     $('pv-count').textContent = good.length;

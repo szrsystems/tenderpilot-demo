@@ -32,7 +32,7 @@ const NAV = {
 };
 const DAILY_LIMIT = 150; // shared per-user daily AI/lookup counter
 
-const ALLOWED_ORIGINS = ['https://aipalyazo.hu', 'https://www.aipalyazo.hu', 'https://szrsystems.github.io', 'https://tenderpilot.onrender.com'];
+const ALLOWED_ORIGINS = ['https://aipalyazo.hu', 'https://www.aipalyazo.hu'];
 function cors(origin: string | null) {
   return {
     'Access-Control-Allow-Origin': origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0],

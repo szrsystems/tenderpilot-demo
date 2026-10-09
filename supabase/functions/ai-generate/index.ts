@@ -2,7 +2,7 @@
 // AIpályázó — AI generation proxy (Supabase Edge Function)
 // =========================================================================
 // Tasks:
-//   task:"draft"   → Hungarian grant-draft (9 sections). Any signed-in user.
+//   task:"draft"   → removed (returns unknown_task).
 //   task:"needs"   → free-text need → categories + keywords. Any signed-in user.
 //   task:"extract" → cron only (x-cron-secret): scraped page → grant record.
 //
@@ -288,7 +288,8 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
     try { userId = await getUserId(jwt); } catch { userId = null; }
     if (!userId) return reply({ error: 'unauthorized' }, 401);
 
-    if (task !== 'draft' && task !== 'needs') return reply({ error: 'unknown_task' }, 400);
+    // The grant-draft feature was removed from the portal; only the needs finder remains.
+    if (task !== 'needs') return reply({ error: 'unknown_task' }, 400);
 
     // 2. Limits — fail CLOSED: any error counts as "over the limit".
     const bumpUser = deps.bumpUser ?? (async (u: string, limit: number) => {
@@ -304,7 +305,7 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
     const capEnv = parseInt(env('AI_GLOBAL_DAILY_CAP') ?? '', 10);
     const globalCap = capEnv > 0 ? capEnv : 500;
     try {
-      if (!(await bumpUser(userId, task === 'draft' ? LIMIT_DRAFT : LIMIT_NEEDS))) return reply({ error: 'rate_limited' }, 429);
+      if (!(await bumpUser(userId, LIMIT_NEEDS))) return reply({ error: 'rate_limited' }, 429);
       if (!(await bumpGlobal(globalCap))) {
         console.warn('[ai-generate] global daily cap reached', globalCap);
         return reply({ error: 'rate_limited' }, 429);
@@ -312,14 +313,6 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
     } catch (e) {
       console.error('[ai-generate] usage limiter unavailable — refusing', String(e).slice(0, 160));
       return reply({ error: 'rate_limited' }, 429);
-    }
-
-    if (task === 'draft') {
-      const feed = deps.grants ?? createGrantFeed({ url: env('GRANTS_URL') || undefined });
-      const { grant } = await resolveGrant(payload.grant, feed);
-      const out = await generate(draftPrompt(grant, cleanProfile(payload.profile)), DRAFT_SCHEMA);
-      const sections = Array.isArray(out?.sections) ? out.sections.slice(0, 9).map((s: any) => ({ title: capStr(s?.title, 200), body: capStr(s?.body, 20000) })) : [];
-      return reply({ sections });
     }
 
     // task === 'needs'

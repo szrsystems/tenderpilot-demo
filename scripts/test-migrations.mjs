@@ -262,3 +262,35 @@ test('attribution: user sets own campaign once (first touch kept); bad tags reje
   assert.equal((await db.query(`select acq_source from public.profiles where id = '${A}'`)).rows[0].acq_source, 'dft');
   await rejects(as('service_role', null, () => db.exec(`insert into public.leads (grant_id, name, email, utm_source) values ('g1', 'Kiss Anna', 'x@example.com', 'Bad Tag!')`)), /leads_utm_fmt/);
 });
+
+test('retention: ip_hash cleared after 90 days, leads anonymised after 5 years', async () => {
+  await db.exec(sql('20261009000001_retention_and_limits.sql')); // idempotent
+  await as('service_role', null, () => db.exec(`
+    insert into public.leads (grant_id, name, email, phone, message, ip_hash, created_at) values
+      ('g-ret-old', 'Régi Ügyfél', 'old5@example.com', '+36 30 123 4567', 'szia', 'h1', now() - interval '5 years 2 days'),
+      ('g-ret-mid', 'Közép Ügyfél', 'mid@example.com', null, null, 'h2', now() - interval '100 days'),
+      ('g-ret-new', 'Új Ügyfél', 'new@example.com', null, null, 'h3', now() - interval '2 days')`));
+  await as('service_role', null, () => db.query('select public.purge_deleted_emails()'));
+  const r = await db.query(`select grant_id, name, email, phone, message, ip_hash, lead_ref from public.leads where grant_id like 'g-ret-%' order by grant_id`);
+  const by = Object.fromEntries(r.rows.map((x) => [x.grant_id, x]));
+  assert.equal(by['g-ret-old'].name, 'Anonimizált');
+  assert.equal(by['g-ret-old'].email, 'anonim+' + by['g-ret-old'].lead_ref + '@invalid.aipalyazo.hu');
+  assert.equal(by['g-ret-old'].phone, null);
+  assert.equal(by['g-ret-old'].message, null);
+  assert.equal(by['g-ret-mid'].ip_hash, null);
+  assert.equal(by['g-ret-mid'].name, 'Közép Ügyfél');
+  assert.equal(by['g-ret-new'].ip_hash, 'h3');
+});
+
+test('limits: oversized profile/bookmark text rejected; drafts closed; deleted marker sticky', async () => {
+  await as('authenticated', { id: B, email: 'b@example.com' }, () =>
+    rejects(db.exec(`update public.profiles set company = repeat('x', 201) where id = '${B}'`), /profiles_company_len/));
+  await as('authenticated', { id: B, email: 'b@example.com' }, () =>
+    rejects(db.exec(`insert into public.bookmarks (user_id, grant_id, note) values ('${B}', 'g1', repeat('x', 2001))`), /bookmarks_note_len/));
+  await as('authenticated', { id: B, email: 'b@example.com' }, () =>
+    rejects(db.query(`select * from public.drafts`), /permission denied/));
+  await db.exec(`update public.profiles set display_name = '__DELETED__' where id = '${B}'`);
+  await as('authenticated', { id: B, email: 'b@example.com' }, () =>
+    db.exec(`update public.profiles set display_name = 'Visszajöttem' where id = '${B}'`));
+  assert.equal((await db.query(`select display_name from public.profiles where id = '${B}'`)).rows[0].display_name, '__DELETED__');
+});

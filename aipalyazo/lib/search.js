@@ -98,7 +98,14 @@
     for (var k = 0; k < f.words.length; k++) if (f.words[k].indexOf(e) === 0) return true;
     return false;
   }
-  function expand(t) { var out = []; CONCEPTS.forEach(function (c) { if (c[0].test(t)) out = out.concat(c[1]); }); return out; }
+  function expand0(t) { var out = []; CONCEPTS.forEach(function (c) { if (c[0].test(t)) out = out.concat(c[1]); }); return out; }
+  // a misspelt everyday word ("napelm") still gets the concept of the word it was meant to be
+  function expand(t) {
+    var out = expand0(t);
+    if (out.length || t.length < 5) return out;
+    for (var i = 0; i < KNOWN.length; i++) { var k = KNOWN[i]; if (within1(t, k) || within1(t, k.slice(0, t.length))) { out = expand0(k); if (out.length) return out; } }
+    return out;
+  }
   function isCodeTok(t) { return /\d/.test(t) || PROG[t] === 1; }
 
   // fields: [[text, weight, kind?], ...]; kind 'code' = code field

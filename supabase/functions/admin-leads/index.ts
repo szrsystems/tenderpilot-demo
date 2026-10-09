@@ -76,8 +76,13 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
   let user: AdminUser | null = null;
   try { user = await getUser(jwt); } catch { user = null; }
   if (!user) return reply({ error: 'unauthorized' }, 401);
+  // ADMIN_USER_IDS (comma list of auth user UUIDs) is the strong check: an e-mail
+  // address alone can be claimed by whoever registers it first. When set, both
+  // must match; the e-mail list alone is kept only as a fallback.
   const allowed = adminEmails(env('ADMIN_EMAILS'));
+  const ids = new Set(String(env('ADMIN_USER_IDS') ?? '').split(',').map((s) => s.trim().toLowerCase()).filter(Boolean));
   if (!user.email_confirmed_at || !user.email || !allowed.has(user.email.toLowerCase())) return reply({ error: 'forbidden' }, 403);
+  if (ids.size && !ids.has(String(user.id).toLowerCase())) return reply({ error: 'forbidden' }, 403);
 
   try {
     const store = deps.store ?? Object.assign(supabaseLeadStore(getAdmin()), {

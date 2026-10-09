@@ -110,7 +110,7 @@ function shell({ title, description, canonical, noindex, body, jsonld, depth = 1
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://*.goatcounter.com; base-uri 'self'; object-src 'none'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://*.goatcounter.com; base-uri 'self'; object-src 'none'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
@@ -396,7 +396,7 @@ export function renderIndex(open, slugs, { updatedAt, hubs = [] } = {}) {
 <header class="call-head"><p class="eyebrow">Naponta frissítve${updatedAt ? ' · ' + esc(String(updatedAt).slice(0, 10)) : ''}</p>
 <h1>Nyitott pályázatok magyar vállalkozásoknak</h1>
 <p class="page-intro">${open.length} nyitott felhívás — ${hu.length} hazai és ${eu.length} EU-s / nemzetközi. Csak olyan kiírások, amelyekre vállalkozás pályázhat, és amelyek határideje még nem járt le.</p></header>
-<div class="bigsearch"><h2>Mire keres támogatást?</h2><form onsubmit="return false" role="search"><div class="inp"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><label class="visually-hidden" for="q">Keresés a pályázatok között</label>
+<div class="bigsearch"><h2>Mire keres támogatást?</h2><form role="search" data-nosubmit><div class="inp"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><label class="visually-hidden" for="q">Keresés a pályázatok között</label>
 <input id="q" type="search" placeholder="Pl. energia, gép, digitalizáció, GINOP, turizmus…" autocomplete="off"></div></form>
 <div class="filters" role="group" aria-label="Szűrés">
 <button type="button" data-f="all" aria-pressed="true">Mind</button>
@@ -413,10 +413,7 @@ export function renderIndex(open, slugs, { updatedAt, hubs = [] } = {}) {
 ${hubLinks(hubs)}
 <div class="side-box narrow"><h2>Melyikre jogosult a cége?</h2><p>Négy adat alapján azonnal megmutatjuk, regisztráció nélkül.</p><a class="btn btn-primary" href="../index.html#ellenorzes">Gyors ellenőrzés</a></div>
 <script src="../lib/search.js"></script>
-<script>(function(){var q=document.getElementById('q'),f='all',btns=document.querySelectorAll('.filters button');
-function run(){var v=q.value.trim().toLowerCase(),n={hu:0,eu:0};document.querySelectorAll('.list .gcard').forEach(function(r){var ok=(!v||(window.AIPSearch?AIPSearch.matchText(v,r.getAttribute('data-s')):r.getAttribute('data-s').indexOf(v)>=0))&&(f==='all'||(f==='hu'&&r.dataset.scope==='hu')||(f==='eu'&&r.dataset.scope==='eu')||(f==='grant'&&/grant/.test(r.dataset.type))||(f==='loan'&&/loan/.test(r.dataset.type)));r.hidden=!ok;if(ok)n[r.dataset.scope]++;});
-document.querySelector('[data-count=hu]').textContent=n.hu;document.querySelector('[data-count=eu]').textContent=n.eu;document.getElementById('empty').hidden=(n.hu+n.eu)>0;}
-q.addEventListener('input',run);btns.forEach(function(b){b.addEventListener('click',function(){f=b.dataset.f;btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});run();});});})();</script>`;
+<script src="../assets/list-filter.js" defer></script>`;
   const jsonld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Nyitott pályázatok magyar vállalkozásoknak', url: `${BASE}/palyazat/index.html` };
   return shell({ title: 'Nyitott pályázatok vállalkozásoknak (hazai és EU) — naponta frissítve | AIpályázó', description: `${open.length} nyitott hazai és EU-s pályázat, hitel és tőkeprogram magyar cégeknek, naponta frissítve hivatalos forrásokból. Ingyenes illeszkedés-vizsgálat.`, canonical: `${BASE}/palyazat/index.html`, noindex: false, body, jsonld });
 }

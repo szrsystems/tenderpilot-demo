@@ -15,6 +15,7 @@
 // =========================================================================
 import { createClient } from 'jsr:@supabase/supabase-js@2';
 import '../_shared/match.js';
+import { timingSafeEqual } from '../_shared/lead-token.ts';
 const AIPMatch = (globalThis as any).AIPMatch;
 
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
@@ -69,7 +70,7 @@ function emailHtml(name: string, fresh: any[], budget: any[], token: string) {
 
 export async function handler(req: Request, deps: { admin?: any; send?: (to: string, subject: string, html: string, token: string) => Promise<void>; today?: string } = {}) {
   if (req.method !== 'POST') return new Response('method_not_allowed', { status: 405 });
-  if (!CRON_SECRET || req.headers.get('x-cron-secret') !== CRON_SECRET) return new Response('forbidden', { status: 403 });
+  if (!CRON_SECRET || !timingSafeEqual(req.headers.get('x-cron-secret') ?? '', CRON_SECRET)) return new Response('forbidden', { status: 403 });
   let body: any;
   try { body = await req.json(); } catch { return new Response('bad_json', { status: 400 }); }
   const grants: any[] = Array.isArray(body?.grants) ? body.grants : [];

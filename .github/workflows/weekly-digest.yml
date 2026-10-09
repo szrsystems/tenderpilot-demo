@@ -9,6 +9,8 @@ on:
     - cron: '0 7 * * 1'
   workflow_dispatch: {} # also runnable manually from the Actions tab
 
+permissions: {}
+
 jobs:
   send:
     runs-on: ubuntu-latest
@@ -18,9 +20,11 @@ jobs:
           ANON: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImthY252Y2h3Znd2cGtreWh5dXBiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzQwNDEsImV4cCI6MjA5NjE1MDA0MX0.ajkwWvyPP-ENAnOXmokvBQ-1PP0So-qoZg4DJmsPob0'
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
-          curl -fsS -X POST "https://kacnvchwfwvpkkyhyupb.supabase.co/functions/v1/weekly-digest" \
+          CODE=$(curl -sS -o /dev/null -w '%{http_code}' -X POST "https://kacnvchwfwvpkkyhyupb.supabase.co/functions/v1/weekly-digest" \
             -H "Authorization: Bearer $ANON" \
             -H "apikey: $ANON" \
             -H "x-cron-secret: $CRON_SECRET" \
             -H "Content-Type: application/json" \
-            -d '{}'
+            -d '{}')
+          echo "weekly-digest HTTP $CODE"
+          case "$CODE" in 2*) ;; *) exit 1 ;; esac

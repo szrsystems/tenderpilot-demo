@@ -3,8 +3,6 @@
 export const SITE_ORIGINS = [
   'https://aipalyazo.hu',
   'https://www.aipalyazo.hu',
-  'https://szrsystems.github.io',
-  'https://tenderpilot.onrender.com',
 ];
 
 export type Env = (key: string) => string | undefined;

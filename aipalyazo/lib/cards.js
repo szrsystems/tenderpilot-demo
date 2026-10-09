@@ -53,7 +53,7 @@
     if (notOpen(g, opts)) out.push('<span class="badge blue">Nyílik: ' + esc(huDate(g.windowOpen)) + '</span>');
     else if (d !== null && d <= 14) out.push('<span class="badge red">' + (d <= 0 ? 'Ma jár le' : d === 1 ? 'Holnap jár le' : 'Sürgős · ' + d + ' nap') + '</span>');
     else if (d !== null && d <= 30) out.push('<span class="badge amber">Hamarosan lejár · ' + d + ' nap</span>');
-    if (b && b.left === 0) out.push('<span class="badge red">Keret lekötve</span>');
+    if ((b && b.left === 0) || (!b && g.budgetExhausted)) out.push('<span class="badge red">Keret lekötve</span>');
     else if (b && b.pct <= 25) out.push('<span class="badge amber">Keret fogyóban</span>');
     if (TYPE_HU[g.type]) out.push('<span class="badge ' + (/grant|wage/.test(g.type) && !/equity/.test(g.type) ? 'green' : 'gray') + '">' + esc(TYPE_HU[g.type]) + '</span>');
     if (g.cat) out.push('<span class="badge gray">' + esc(g.cat) + '</span>');
@@ -69,6 +69,11 @@
       var cls = b.left === 0 ? 'red' : b.pct <= 25 ? 'amber' : 'green';
       h += '<div class="gbar"><div class="gbar-top"><span>Szabad keret</span><b class="' + cls + '">' + esc(ft(b.left)) + (b.left === 0 ? '<span class="of"> · keret lekötve</span>' : '<span class="of"> / ' + esc(ft(b.total)) + '</span>') + '</b></div>' +
         '<div class="track" role="img" aria-label="Szabad keret: ' + b.pct + '%"><i class="' + cls + ' ' + w(b.left > 0 ? Math.max(b.pct, 5) : 100) + '"></i></div></div>';
+    }
+    else if (g.budgetExhausted) {
+      // the source says the budget is used up but gives no figures: full red bar, no numbers
+      h += '<div class="gbar"><div class="gbar-top"><span>Szabad keret</span><b class="red">Kimerült<span class="of"> · a kiíró szerint a keret lekötve</span></b></div>' +
+        '<div class="track" role="img" aria-label="Szabad keret: kimerült"><i class="red p100"></i></div></div>';
     }
     if (notOpen(g, opts)) {
       var o = daysBetween(opts.today, g.windowOpen);
@@ -86,7 +91,7 @@
     } else {
       h += '<div class="gbar"><div class="gbar-top"><span>Beadási határidő</span><b class="green">Nincs fix határidő<span class="of"> · folyamatos, a keret kimerüléséig</span></b></div><div class="track"><i class="soft p100"></i></div></div>';
     }
-    return '<div class="gbars' + (b ? '' : ' one') + '">' + h + '</div>';
+    return '<div class="gbars' + (b || g.budgetExhausted ? '' : ' one') + '">' + h + '</div>';
   }
 
   var api = { esc: esc, srcTag: srcTag, badges: badges, bars: bars, budget: budget, ft: ft, TYPE_HU: TYPE_HU };

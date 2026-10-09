@@ -262,6 +262,9 @@
   function freshness() {
     if (S.feedError) return '<div class="notice err" role="alert">A pályázati adatokat most nem sikerült betölteni. Kérjük, frissítse az oldalt később.</div>';
     if (S.feedFromCache) return '<div class="notice warn" role="status">Az adatok most nem frissíthetők; a ' + esc(S.feedFromCache.slice(0, 10)) + '-i mentett változatot látja.</div>';
+    var m = S.meta || {}, age = m.updatedAt ? (Date.now() - Date.parse(m.updatedAt)) / 864e5 : 0;
+    if (age > 3) return '<div class="notice warn" role="status">Az adatok utolsó frissítése ' + esc(String(m.updatedAt).slice(0, 10)) + '-i. A határidőket a felhívás hivatalos oldalán is ellenőrizze.</div>';
+    if (m.apiFailed || m.euApiFailed || m.sourcesOk === false) return '<div class="notice warn" role="status">A mai frissítéskor egyes hivatalos források nem voltak elérhetők; ezeknél az előző napi adatot mutatjuk.</div>';
     return '';
   }
   function stampLine() {
@@ -509,7 +512,7 @@
         '<label class="toggle"><input type="checkbox" id="n-instant"><span><b>Azonnali értesítés</b><span>Ha új, jól illeszkedő felhívás jelenik meg, vagy egy mentett felhívás keretének 80%-a elfogyott. Legfeljebb napi egy levél.</span></span></label>' +
         '<p class="small" id="n-msg" role="status" style="min-height:1.5em;margin:8px 0 0"></p></section>';
       h += '<section class="card"><h2>Naptár</h2><p class="muted">A mentett felhívások határidői egy önmagát frissítő naptárban (Google, Outlook, Apple). A linket ne ossza meg — aki ismeri, látja a mentett határidőit.</p><div class="copy-row"><input id="cal-url" readonly value="Betöltés…" aria-label="Naptár-link"><button class="btn btn-ghost btn-sm" type="button" data-act="cal-copy">Másolás</button></div><p class="small" style="margin-top:8px"><button class="btn btn-quiet btn-sm" type="button" data-act="cal-rotate">Új link (a régi megszűnik)</button></p></section>';
-      h += '<section class="card"><h2>Adatok</h2><p class="muted">Letöltheti a böngészőben tárolt adatait (profil, mentések).</p><button class="btn btn-ghost" type="button" data-act="export">Adataim letöltése (JSON)</button><p style="margin-top:var(--s4)"><button class="btn btn-ghost" type="button" data-act="signout">Kijelentkezés</button></p></section>';
+      h += '<section class="card"><h2>Adatok</h2><p class="muted">Letöltheti az összes Önről tárolt adatot (fiók, cégprofil, mentések, konzultációs kérések, értesítési beállítások).</p><button class="btn btn-ghost" type="button" data-act="export">Adataim letöltése (JSON)</button><p style="margin-top:var(--s4)"><button class="btn btn-ghost" type="button" data-act="signout">Kijelentkezés</button></p></section>';
       h += '<section class="card danger-zone" id="del-card">' + delCard() + '</section>';
     } else {
       h += '<section class="card"><h2>Értesítések és fiók</h2><p class="muted">Értesítésekhez, naptár-linkhez és a mentések szinkronizálásához ingyenes fiók kell.</p><a class="btn btn-primary" href="signup.html">Ingyenes regisztráció</a> <a class="btn btn-ghost" href="login.html">Belépés</a></section>';
@@ -704,7 +707,7 @@
     if (act === 'ics-saved') return downloadICS(S.feed.filter(function (g) { return S.bookmarks.has(g.id); }), 'aipalyazo-mentett-hataridok.ics');
     if (act === 'cal-copy') { var ci = $('#cal-url'); ci.select(); try { await navigator.clipboard.writeText(ci.value); toast('Link másolva.'); } catch (x) { document.execCommand('copy'); } return; }
     if (act === 'cal-rotate') { if (!confirm('Új naptár-linket kér? A régi link azonnal megszűnik.')) return; try { var rr = await window.gp.client.rpc('rotate_calendar_token'); if (rr.error) throw rr.error; render(); toast('Új naptár-link elkészült.'); } catch (x) { toast('Most nem sikerült új linket kérni.'); } return; }
-    if (act === 'export') { var data = { exportedAt: new Date().toISOString(), profile: S.profile, bookmarks: Array.from(S.bookmarks), leads: lsGet('grantpilot:leads', []) }; var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })); a.download = 'aipalyazo-adataim.json'; document.body.appendChild(a); a.click(); a.remove(); return; }
+    if (act === 'export') { exportData(); return; }
     if (act === 'del-1') { DEL.step = 1; return delRender(); }
     if (act === 'del-2') { DEL.step = 2; delRender(); var f = $('#del-reason'); if (f) f.focus(); return; }
     if (act === 'del-cancel') { DEL.step = 0; clearInterval(DEL.timer); return delRender(); }
@@ -728,6 +731,24 @@
 
   // Account deletion: three deliberate steps, then a server-checked confirmation.
   var DEL = { step: 0, timer: null };
+  // GDPR export: everything stored about the user — server tables when signed in, plus this browser's copy.
+  async function exportData() {
+    var data = { exportedAt: new Date().toISOString(), browser: { profile: S.profile, bookmarks: Array.from(S.bookmarks), leads: lsGet('grantpilot:leads', []) } };
+    if (S.user && window.gp) {
+      var c = window.gp.client, strip = function (o, keys) { if (o) keys.forEach(function (k) { delete o[k]; }); return o; };
+      try {
+        var r = await Promise.all([
+          c.from('user_with_tier').select('*').eq('id', S.user.id).maybeSingle(),
+          c.from('bookmarks').select('grant_id, note, created_at').eq('user_id', S.user.id),
+          c.from('leads').select('lead_ref, grant_id, grant_title, name, email, phone, company, message, status, created_at, gdpr_consent_at').eq('user_id', S.user.id),
+          c.from('notif_prefs').select('*').eq('user_id', S.user.id).maybeSingle()
+        ]);
+        data.account = { email: S.user.email, profile: r[0].data || null, bookmarks: r[1].data || [], leads: r[2].data || [], notifications: strip(r[3].data || null, ['unsubscribe_token', 'calendar_token']) };
+      } catch (e) { data.accountError = 'A szerveren tárolt adatok most nem tölthetők le, próbálja újra később.'; }
+    }
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })); a.download = 'aipalyazo-adataim.json'; document.body.appendChild(a); a.click(); a.remove();
+  }
+
   function delCard() {
     var email = (S.user && S.user.email) || '';
     if (DEL.step === 0) return '<h2>Fiók törlése</h2><p class="muted">A fiók törlésével minden mentett felhívás, a cégprofil és az értesítések is elvesznek.</p><button class="btn btn-ghost" type="button" data-act="del-1">Fiók törlése…</button>';

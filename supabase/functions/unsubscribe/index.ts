@@ -31,8 +31,6 @@ const SERVICE_ROLE = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 const ALLOWED_ORIGINS = [
   'https://aipalyazo.hu',
   'https://www.aipalyazo.hu',
-  'https://szrsystems.github.io',
-  'https://tenderpilot.onrender.com',
 ];
 function corsHeaders(origin: string | null) {
   const allow = origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];

@@ -19,6 +19,7 @@
 import { createClient } from 'jsr:@supabase/supabase-js@2';
 // Same point-by-point matcher as the portal (byte-identical copy, test-enforced).
 import '../_shared/match.js';
+import { timingSafeEqual } from '../_shared/lead-token.ts';
 const AIPMatch = (globalThis as any).AIPMatch;
 
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
@@ -126,7 +127,7 @@ async function sendEmail(to: string, subject: string, html: string, token: strin
 
 Deno.serve(async (req) => {
   if (req.method !== 'POST') return new Response('method_not_allowed', { status: 405 });
-  if (!CRON_SECRET || req.headers.get('x-cron-secret') !== CRON_SECRET) {
+  if (!CRON_SECRET || !timingSafeEqual(req.headers.get('x-cron-secret') ?? '', CRON_SECRET)) {
     return new Response('forbidden', { status: 403 });
   }
   if (!RESEND_API_KEY) return new Response(JSON.stringify({ error: 'email_not_configured' }), { status: 503 });

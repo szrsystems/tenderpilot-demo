@@ -141,7 +141,10 @@ Deno.test('duplicate (same e-mail + grant within 24h) sends nothing and does not
   await (await handler(req(body()), deps)).json();
   const sentBefore = mailer.sent.length;
   const r = await handler(req(body({ email: 'ANNA@example.com' })), deps);
-  assertEquals(await r.json(), { ok: true, duplicate: true });
+  const j = await r.json();
+  assertEquals(j.ok, true);
+  assertEquals(j.duplicate, undefined);
+  assert(/^L-[A-Z2-7]{6}$/.test(j.ref) && j.ref !== store.rows[0].lead_ref);
   assertEquals(mailer.sent.length, sentBefore);
   assertEquals(store.rows.length, 1);
 });
@@ -270,4 +273,14 @@ Deno.test('phone: only real numbers; stored in one format', async () => {
   assertEquals(await bad.json(), { error: 'invalid', field: 'phone' });
   assertEquals((await handler(req(body({ phone: '06-30/123-4567' })), deps)).status, 200);
   assertEquals(store.rows[0].phone, '+36 30 123 4567');
+});
+
+import { clientIp, ipv6Prefix64 } from './index.ts';
+Deno.test('IPv6 clients are rate-limited per /64', () => {
+  assertEquals(ipv6Prefix64('2001:db8:abcd:12:1:2:3:4'), '2001:db8:abcd:12::/64');
+  assertEquals(ipv6Prefix64('2001:db8::1'), '2001:db8:0:0::/64');
+  const a = clientIp(new Request('http://x', { headers: { 'cf-connecting-ip': '2001:db8:abcd:12::9' } }));
+  const b = clientIp(new Request('http://x', { headers: { 'cf-connecting-ip': '2001:db8:abcd:12:ffff::1' } }));
+  assertEquals(a, b);
+  assertEquals(clientIp(new Request('http://x', { headers: { 'cf-connecting-ip': '203.0.113.5' } })), '203.0.113.5');
 });
