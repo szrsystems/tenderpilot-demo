@@ -730,6 +730,18 @@
   "firstSeen": "2026-09-25",
   "lastSeen": "2026-10-09"
  },
+ "exim-jovo-exportorei-beruhazasi-hitel": {
+  "id": "v-exim-jovo-exportorei-beruhazasi-hitel",
+  "title": "EXIM Jövő Exportőrei Beruházási Hitel (Demján Sándor Program)",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
+ "exim-zold-beruhazasi-hitel": {
+  "id": "v-exim-zold-beruhazasi-hitel",
+  "title": "EXIM Zöld Beruházási Hitel (Demján Sándor Program)",
+  "firstSeen": "2026-10-09",
+  "lastSeen": "2026-10-09"
+ },
  "eye-rolling": {
   "id": "v-eye-rolling",
   "title": "Erasmus for Young Entrepreneurs (Erasmus fiatal vállalkozóknak – külföldi tapasztalatszerzés tapasztalt vállalkozónál)",
@@ -3348,6 +3360,12 @@
   "id": "v-innowwide-call5-2026",
   "title": "Innowwide 5. felhívás – piaci megvalósíthatósági projektek EU-n kívüli piacokra (Autumn 2026)",
   "firstSeen": "2026-09-25",
+  "lastSeen": "2026-10-09"
+ },
+ "interreg-huhr-b-light-2-call1": {
+  "id": "v-interreg-huhr-b-light-2-call1",
+  "title": "Interreg Magyarország–Horvátország B Light 2 – 1. felhívás KKV-k határon átnyúló együttműködésére",
+  "firstSeen": "2026-10-09",
   "lastSeen": "2026-10-09"
  },
  "ivf-visegrad-grants-2026-10": {

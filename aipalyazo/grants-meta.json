@@ -1,12 +1,12 @@
 {
- "updatedAt": "2026-10-09T13:15:13.467Z",
+ "updatedAt": "2026-10-09T13:53:40.085Z",
  "counts": {
-  "total": 423,
+  "total": 426,
   "api": 17,
-  "verified": 149,
+  "verified": 152,
   "euAuto": 257,
-  "hazai": 51,
-  "eu": 372,
+  "hazai": 53,
+  "eu": 373,
   "excluded": 0
  },
  "euApiFailed": false,
@@ -170,162 +170,24 @@
  ],
  "changes": [
   {
-   "id": "v-horizon-hlth-2027-02-ind-02-two-stage",
-   "type": "deadline",
-   "from": "2027-02-17",
-   "to": "2027-04-13",
-   "title": "Portable and versatile Point-of-care diagnostics (IA, two-stage) (Hordozható, sokoldalú helyszíni diagnosztika – kétfordulós)"
-  },
-  {
-   "id": "v-horizon-hlth-2027-01-ind-01",
-   "type": "deadline",
-   "from": "2027-02-17",
-   "to": "2027-04-13",
-   "title": "Development of cell-free protein synthesis platforms for discovery and/or production of biologicals (RIA) (Sejtmentes fehérjeszintézis-platformok biológiai gyógyszerekhez)"
-  },
-  {
-   "id": "v-horizon-hlth-2027-01-disease-08",
-   "type": "deadline",
-   "from": "2027-02-17",
-   "to": "2027-04-13",
-   "title": "Development of innovative antimicrobials against pathogens resistant to antimicrobials (RIA) (Innovatív antimikrobiális szerek rezisztens kórokozók ellen)"
-  },
-  {
-   "id": "v-horizon-hlth-2027-03-tool-04",
-   "type": "deadline",
-   "from": "2027-09-16",
-   "to": "2027-09-22",
-   "title": "Virtual Human Twins for integrated clinical decision support in prevention and diagnosis (RIA) (Virtuális emberi ikrek klinikai döntéstámogatáshoz)"
-  },
-  {
-   "id": "v-horizon-widera-2027-01-widening-01",
+   "id": "v-exim-jovo-exportorei-beruhazasi-hitel",
    "type": "new",
-   "title": "EIC Pre-accelerator – Widening (EIC Pre-akcelerátor a felzárkózó országok startupjainak)"
+   "title": "EXIM Jövő Exportőrei Beruházási Hitel (Demján Sándor Program)"
   },
   {
-   "id": "v-horizon-widera-2027-04-widening-01",
+   "id": "v-exim-zold-beruhazasi-hitel",
    "type": "new",
-   "title": "Excellence Hubs (Kiválósági innovációs központok)"
+   "title": "EXIM Zöld Beruházási Hitel (Demján Sándor Program)"
   },
   {
-   "id": "eu-CERV-2024-CITIZENS-VALUES",
-   "type": "removed",
-   "title": "Call for proposals for civil society organisations active on protecting and promoting Union values: call to intermediaries (giving financial support to third parties)"
-  },
-  {
-   "id": "eu-HORIZON-EIT-2025-KIC-IBA-UM",
-   "type": "removed",
-   "title": "EITURBANMOBILITY Business Plan 2026"
-  },
-  {
-   "id": "eu-HORIZON-EIT-2025-MOC-IBA",
-   "type": "removed",
-   "title": "2026-2027 MOC Activities"
-  },
-  {
-   "id": "eu-HORIZON-EIC-2025-WOMENTECH",
-   "type": "removed",
-   "title": "Women Tech.EU initiative"
-  },
-  {
-   "id": "eu-HORIZON-EIT-2025-KIC-IBA-CC",
-   "type": "removed",
-   "title": "EITCULTURE Business Plan 2026"
-  },
-  {
-   "id": "eu-HORIZON-EIT-2025-KIC-IBA-RegInnovInt",
-   "type": "removed",
-   "title": "Cross-KIC EIT Regional Innovation & Internationalisation Business Plan 2026"
-  },
-  {
-   "id": "eu-HORIZON-EIT-2025-KIC-IBA-RM",
-   "type": "removed",
-   "title": "EITRAWMATERIALS Business Plan 2026"
-  },
-  {
-   "id": "eu-DIGITAL-ECCC-2024-DEPLOY-NCC-06-MS-COORDINATION",
-   "type": "removed",
-   "title": "Deploying The Network of National Coordination Centres with Member States"
-  },
-  {
-   "id": "eu-HORIZON-EIT-2025-KIC-IBA-INBC",
-   "type": "removed",
-   "title": "Cross KIC EIT Innovation & Business Creation Business Plan 2026"
-  },
-  {
-   "id": "eu-CREA-CULT-2026-PERFORM-EU",
-   "type": "removed",
-   "title": "Perform EU"
-  },
-  {
-   "id": "eu-HORIZON-EIT-2025-KIC-IBA-H",
-   "type": "removed",
-   "title": "EITHEALTH Business Plan 2026"
-  },
-  {
-   "id": "eu-HORIZON-CL4-2025-03-DATA-11",
-   "type": "removed",
-   "title": "Open Internet Stack: development of technological commons/open-source 3C building blocks (RIA)"
-  },
-  {
-   "id": "eu-HORIZON-CL4-2023-DIGITAL-EMERGING-01-02",
-   "type": "removed",
-   "title": "Industrial leadership in AI, Data and Robotics – advanced human robot interaction (AI Data and Robotics Partnership) (IA)"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2021-CLIMATE-01-02",
-   "type": "removed",
-   "title": "European Partnership Water Security for the Planet (Water4All)"
-  },
-  {
-   "id": "eu-HORIZON-CL5-2021-D2-01-16",
-   "type": "removed",
-   "title": "Co-Funded Partnership: Driving Urban Transitions to a sustainable future (DUT)"
-  },
-  {
-   "id": "eu-CERV-2025-DAPHNE",
-   "type": "removed",
-   "title": "Call for proposals to prevent and combat gender-based violence and violence against children"
-  },
-  {
-   "id": "eu-HORIZON-EIE-2021-INNOVSMES-01-01",
-   "type": "removed",
-   "title": "European Partnership on Innovative SMEs"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2023-GOVERNANCE-01-13",
-   "type": "removed",
-   "title": "Open source solutions for edge, cloud and mixed model applications to strengthen production and administrative capacities in agriculture"
-  },
-  {
-   "id": "eu-HORIZON-MISS-2025-CIT-SGA",
-   "type": "removed",
-   "title": "Specific Grant Agreement to the FPA to reinforce the operations of the Climate-Neutral and Smart Cities Mission Platform"
-  },
-  {
-   "id": "eu-EURATOM-2021-ADHOC-IBA",
-   "type": "removed",
-   "title": "Euratom-Adhoc-2021-2027"
-  },
-  {
-   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-NCC",
-   "type": "removed",
-   "title": "Enhancing the NCC Network"
-  },
-  {
-   "id": "eu-HORIZON-EIC-2021-EEN-01-01",
-   "type": "removed",
-   "title": "Cooperation with EEN"
-  },
-  {
-   "id": "eu-HORIZON-NEB-2027-01-REGEN-03-CANCELLED",
-   "type": "removed",
-   "title": "Revitalising neighbourhoods around existing railway and motorway corridors"
+   "id": "v-interreg-huhr-b-light-2-call1",
+   "type": "new",
+   "title": "Interreg Magyarország–Horvátország B Light 2 – 1. felhívás KKV-k határon átnyúló együttműködésére"
   }
  ],
  "offlineRebuild": {
   "at": "2026-10-09",
-  "apiDataFrom": "2026-10-09T12:31:40.530Z"
+  "apiDataFrom": "2026-10-09T13:15:13.467Z"
  },
  "sourcesOk": true,
  "apiFailed": false,

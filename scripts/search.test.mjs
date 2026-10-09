@@ -50,7 +50,7 @@ test('code field only boosts programme names and numbers', () => {
 });
 test('narrow, lower-weight concept expansion', () => {
   assert.ok(pos('CNC', /Akvakult|Kockázati Tőke/i) < 0, 'no aquaculture / VC fund for CNC');
-  assert.ok(live('CNC').length < 20);
+  assert.ok(live('CNC').length < 25); // machine-purchase loans and grants only
   assert.ok(live('traktor').slice(0, 3).every((x) => /agr[aá]r/i.test(x.g.title)));
   const kap = pos('napelem', /KAP-RD06/);
   assert.ok(kap < 0 || kap > 10);

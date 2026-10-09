@@ -280,6 +280,7 @@ test('sources.json: every listing is on an official domain and its pattern match
     eismea: 'https://eismea.ec.europa.eu/funding-opportunities/calls-proposals/unite-project-2nd-open-call-interregional-innovation-proposals-areas-digital-health_en',
     eitcc: 'https://eit-culture-creativity.eu/your-opportunities/calls-funding/innovation-projects',
     eit: 'https://www.eit.europa.eu/our-activities/opportunities/ai-entrepreneurs-lab',
+    hepa: 'https://hepa.hu/palyazatok/nemzeti-exportvedelmi-program/Kulpiacra-jutasi-Tamogatas',
   };
   const ids = new Set();
   for (const s of cfg.sources) {

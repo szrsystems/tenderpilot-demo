@@ -2797,6 +2797,20 @@
    "title": "EuroHPC Benchmark Access Call (Szuperszámítógépes benchmark-hozzáférés)"
   }
  ],
+ "v-exim-jovo-exportorei-beruhazasi-hitel": [
+  {
+   "date": "2026-10-09",
+   "type": "new",
+   "title": "EXIM Jövő Exportőrei Beruházási Hitel (Demján Sándor Program)"
+  }
+ ],
+ "v-exim-zold-beruhazasi-hitel": [
+  {
+   "date": "2026-10-09",
+   "type": "new",
+   "title": "EXIM Zöld Beruházási Hitel (Demján Sándor Program)"
+  }
+ ],
  "v-garantiqa-investeu": [
   {
    "date": "2026-10-09",
@@ -3380,6 +3394,13 @@
    "date": "2026-10-09",
    "type": "removed",
    "title": "Interregional Innovation Investments Strand 2a (Interregionális innovációs beruházások – 2a ág, kevésbé fejlett régiók)"
+  }
+ ],
+ "v-interreg-huhr-b-light-2-call1": [
+  {
+   "date": "2026-10-09",
+   "type": "new",
+   "title": "Interreg Magyarország–Horvátország B Light 2 – 1. felhívás KKV-k határon átnyúló együttműködésére"
   }
  ],
  "v-ivf-visegrad-grants-2026-10": [

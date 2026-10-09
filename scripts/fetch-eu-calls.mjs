@@ -167,7 +167,8 @@ export function mapEuHit(hit, today) {
     id: cs || 'eu-' + identifier.replace(/[^A-Za-z0-9._-]+/g, '-').slice(0, 80),
     code: isCascade ? null : identifier,
     ...(isCascade ? { parentTopic: identifier } : {}),
-    title,
+    // cascade calls often reuse the parent programme's name: mark them so they don't look like a duplicate of it
+    title: isCascade && !/kaszkád|cascade|open call/i.test(title) ? `${title} — kaszkád (FSTP) nyílt felhívás` : title,
     issuer: isCascade ? 'EU kaszkád (FSTP) felhívás' : `Európai Bizottság — ${PROGRAMMES[fp] || 'EU'}`,
     cat,
     type: 'grant',

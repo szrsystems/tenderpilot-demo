@@ -4410,13 +4410,13 @@
   "windowOpen": "2027-02-10",
   "sizeClasses": [],
   "regions": [],
-  "note": "Kétfordulós; nemzetközi konzorcium (min. 3 ország); orvostechnikai KKV-k kulcsszereplők lehetnek.",
+  "note": "Kétfordulós (1. forduló: 2027.04.13., 2. forduló: 2027.09.22.); nemzetközi konzorcium (min. 3 ország); orvostechnikai KKV-k kulcsszereplők lehetnek.",
   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2027-02-ind-02-two-stage",
   "source": "ec.europa.eu",
   "sources": [
    "https://ec.europa.eu/info/funding-tenders/opportunities/data/topicDetails/horizon-hlth-2027-02-ind-02-two-stage.json"
   ],
-  "verifiedAt": "2026-09-24",
+  "verifiedAt": "2026-10-09",
   "confidence": "high",
   "scope": "eu",
   "singleApplicant": false,
@@ -4458,7 +4458,7 @@
   "sources": [
    "https://ec.europa.eu/info/funding-tenders/opportunities/data/topicDetails/horizon-hlth-2027-01-ind-01.json"
   ],
-  "verifiedAt": "2026-09-24",
+  "verifiedAt": "2026-10-09",
   "confidence": "high",
   "scope": "eu",
   "singleApplicant": false,
@@ -4500,7 +4500,7 @@
   "sources": [
    "https://ec.europa.eu/info/funding-tenders/opportunities/data/topicDetails/horizon-hlth-2027-01-disease-08.json"
   ],
-  "verifiedAt": "2026-09-24",
+  "verifiedAt": "2026-10-09",
   "confidence": "high",
   "scope": "eu",
   "singleApplicant": false,
@@ -4542,7 +4542,7 @@
   "sources": [
    "https://ec.europa.eu/info/funding-tenders/opportunities/data/topicDetails/horizon-hlth-2027-03-tool-04.json"
   ],
-  "verifiedAt": "2026-09-24",
+  "verifiedAt": "2026-10-09",
   "confidence": "high",
   "scope": "eu",
   "singleApplicant": false,
@@ -7158,6 +7158,133 @@
    "industry": 85,
    "location": 95,
    "preference": 72
+  }
+ },
+ {
+  "id": "v-exim-jovo-exportorei-beruhazasi-hitel",
+  "code": null,
+  "title": "EXIM Jövő Exportőrei Beruházási Hitel (Demján Sándor Program)",
+  "issuer": "EXIM (Magyar Export-Import Bank), számlavezető bankokon keresztül",
+  "cat": "Beruházás",
+  "type": "loan",
+  "amount": "max. 6 Mrd Ft vagy 15 M EUR",
+  "rate": "a teljes futamidőre rögzített, államilag támogatott fix kamat",
+  "deadline": "Folyamatos",
+  "rolling": true,
+  "windowOpen": null,
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "note": "Magyarországi székhelyű vagy telephelyű KKV-k és nagyvállalatok hazai beruházásaira (kapacitásbővítés, új termék, gép, technológia, immateriális javak), exportáló és nem exportáló cégeknek is. Futamidő legfeljebb 15 év. A számlavezető banknál igényelhető, visszavonásig.",
+  "url": "https://exim.hu/demjan-sandor-program/",
+  "source": "exim.hu",
+  "sources": [
+   "https://exim.hu/demjan-sandor-program/",
+   "https://www.unicreditbank.hu/content/dam/cee2020-pws-hu/Kisvallalatok/Finanszirozas/2026/Ugyfeltajekoztato%20Exim%20Demjan%20JEA_magyar%2020260205.pdf",
+   "https://privatbankar.hu/cikkek/makro/kimerult-a-keret-a-demjan-sandor-programban.html"
+  ],
+  "verifiedAt": "2026-10-09",
+  "confidence": "medium",
+  "scope": "hazai",
+  "live": false,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 95,
+   "preference": 85
+  }
+ },
+ {
+  "id": "v-exim-zold-beruhazasi-hitel",
+  "code": null,
+  "title": "EXIM Zöld Beruházási Hitel (Demján Sándor Program)",
+  "issuer": "EXIM (Magyar Export-Import Bank), számlavezető bankokon keresztül",
+  "cat": "Környezetvédelem",
+  "type": "loan",
+  "amount": "max. 6 Mrd Ft vagy 15 M EUR",
+  "rate": "a teljes futamidőre rögzített, államilag támogatott fix kamat",
+  "deadline": "Folyamatos",
+  "rolling": true,
+  "windowOpen": null,
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "note": "Energiahatékonysági, megújulóenergia-termelő és más zöld beruházásokra, KKV-knak és nagyvállalatoknak (támogatási kategóriától függően). Futamidő legfeljebb 15 év. A számlavezető banknál igényelhető, visszavonásig.",
+  "url": "https://exim.hu/demjan-sandor-program/",
+  "source": "exim.hu",
+  "sources": [
+   "https://exim.hu/demjan-sandor-program/",
+   "https://www.unicreditbank.hu/content/dam/cee2020-pws-hu/Kisvallalatok/Finanszirozas/2026/Ugyfeltajekoztato%20Exim%20Demjan%20JEA_magyar%2020260205.pdf",
+   "https://privatbankar.hu/cikkek/makro/kimerult-a-keret-a-demjan-sandor-programban.html"
+  ],
+  "verifiedAt": "2026-10-09",
+  "confidence": "medium",
+  "scope": "hazai",
+  "live": false,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 95,
+   "preference": 85
+  }
+ },
+ {
+  "id": "v-interreg-huhr-b-light-2-call1",
+  "code": "HUHR/2402/B-light2",
+  "title": "Interreg Magyarország–Horvátország B Light 2 – 1. felhívás KKV-k határon átnyúló együttműködésére",
+  "issuer": "Interreg VI-A Magyarország–Horvátország (B Light 2; Baranya Vármegyei Fejlesztési Ügynökség)",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "max. 300 000 EUR EU-támogatás / projekt (keret: 3,75 M EUR)",
+  "rate": "az elszámolható költség legfeljebb 80%-a, de minimis",
+  "deadline": "2026-11-23",
+  "rolling": false,
+  "windowOpen": null,
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás"
+  ],
+  "regions": [],
+  "regionNote": "Csak Zala, Somogy vagy Baranya vármegyében bejegyzett KKV pályázhat (horvát oldalon a határ menti megyék).",
+  "note": "Legalább egy magyar és egy horvát KKV közös projektje (2–4 partner): közös termék-, szolgáltatás- és technológiafejlesztés, piacra lépés, eszköz- és IT-beszerzés, külső szakértő. Online projektplatformon kell beadni.",
+  "url": "https://investinbaranya.hu/en/b-light/",
+  "source": "investinbaranya.hu",
+  "sources": [
+   "https://czposijek.hr/odrzana-pocetna-konferencija-projekta-b-light-2-otvoren-prvi-poziv-za-poduzetnike/",
+   "https://piacesprofit.hu/cikkek/gazdasag/unios-milliok-nyilnak-meg-a-magyarhorvat-vallalkozasok-elott.html",
+   "https://investinbaranya.hu/en/b-light/"
+  ],
+  "verifiedAt": "2026-10-09",
+  "confidence": "medium",
+  "scope": "eu",
+  "singleApplicant": false,
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "Legalább egy magyar és egy horvát KKV partner (2–4 partner)."
+  },
+  "live": false,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
   }
  },
  {

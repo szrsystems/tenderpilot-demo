@@ -111,6 +111,15 @@
    ],
    "pattern": "^https://eit-culture-creativity\\.eu/your-opportunities/calls-funding/[^/?#]+$",
    "scope": "eu"
+  },
+  {
+   "id": "hepa",
+   "name": "HEPA Magyar Exportfejlesztési Ügynökség — pályázatok",
+   "list": [
+    "https://hepa.hu/palyazatok"
+   ],
+   "pattern": "^https://hepa\\.hu/palyazatok/[^?#]+$",
+   "scope": "hazai"
   }
  ],
  "officialDomains": [
@@ -133,7 +142,9 @@
   "kth.hu",
   "kisfaludyprogram.hu",
   "eit-culture-creativity.eu",
-  "eitfood.eu"
+  "eitfood.eu",
+  "hepa.hu",
+  "cbchb.eu"
  ],
  "benchmarks": [
   {
