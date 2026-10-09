@@ -52,3 +52,8 @@ test('budgetExhausted without figures: red badge and full red budget bar', () =>
   assert.match(h, /<i class="red p100">/);
   assert.doesNotMatch(h, /gbars one/);
 });
+test('brief: one plain sentence about what the call is', () => {
+  assert.equal(C.brief({ type: 'loan', cat: 'Digitális átalakulás', amount: '20–200 M Ft', rate: '0% fix kamat', deadline: '2027-06-30' }),
+    'Kedvezményes hitel digitális fejlesztésre: 20–200 M Ft, 0% fix kamat. Határidő: 2027. június 30.');
+  assert.match(C.brief({ type: 'grant', cat: 'Kutatás-fejlesztés', scope: 'eu', singleApplicant: false, amount: '€6–8M', deadline: null, rolling: true }), /nemzetközi együttműködésben: €6–8M\. Folyamatosan/);
+});

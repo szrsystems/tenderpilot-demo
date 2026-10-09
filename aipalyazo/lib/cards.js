@@ -94,7 +94,27 @@
     return '<div class="gbars' + (b || g.budgetExhausted ? '' : ' one') + '">' + h + '</div>';
   }
 
-  var api = { esc: esc, srcTag: srcTag, badges: badges, bars: bars, budget: budget, ft: ft, TYPE_HU: TYPE_HU };
+  // One-sentence plain summary of WHAT the call is (kind, purpose, amount, deadline),
+  // built from the feed; eligibility details live elsewhere on the page.
+  var KIND = { grant: 'Vissza nem térítendő támogatás', loan: 'Kedvezményes hitel', 'loan+grant': 'Hitel és vissza nem térítendő támogatás együtt', equity: 'Tőkebefektetés', guarantee: 'Hitelgarancia (kezesség)', 'wage-subsidy': 'Bértámogatás', 'in-kind': 'Díjmentes szolgáltatás, szakmai támogatás', 'grant+equity': 'Támogatás és tőkebefektetés' };
+  var PURPOSE = { 'Digitális átalakulás': 'digitális fejlesztésre', 'Kutatás-fejlesztés': 'kutatás-fejlesztésre és innovációra', 'Mezőgazdaság': 'mezőgazdasági és élelmiszer-ipari fejlesztésre', 'Energiahatékonyság': 'energiahatékonysági és megújulóenergia-beruházásra', 'KKV fejlesztés': 'vállalkozásfejlesztésre és beruházásra', 'Környezetvédelem': 'környezetvédelmi és zöld fejlesztésre', 'Turizmus': 'turisztikai fejlesztésre', 'Munkahelyteremtés': 'foglalkoztatásra és munkahelyteremtésre', 'Export': 'exportra és külpiacra lépésre', 'Oktatás': 'képzésre', 'Beruházás': 'beruházásra' };
+  var MONTHS = ['január', 'február', 'március', 'április', 'május', 'június', 'július', 'augusztus', 'szeptember', 'október', 'november', 'december'];
+  function brief(g) {
+    var kind = KIND[g.type] || 'Támogatás';
+    if (g.type === 'loan' && !/kamat/i.test(g.rate || '') ) kind = 'Hitel';
+    var s = kind + (PURPOSE[g.cat] ? ' ' + PURPOSE[g.cat] : '');
+    if (g.scope === 'eu' && g.singleApplicant === false) s += ', nemzetközi együttműködésben';
+    var money = [g.amount, g.rate && !/^\s*$/.test(g.rate) ? g.rate : ''].filter(Boolean).join(', ');
+    if (money.length > 110) money = g.amount && g.amount.length <= 110 ? g.amount : '';
+    if (/^[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]/.test(money)) money = money.charAt(0).toLowerCase() + money.slice(1);
+    if (money) s += ': ' + money.replace(/\.$/, '');
+    s += '.';
+    if (isDate(g.deadline)) s += ' Határidő: ' + g.deadline.slice(0, 4) + '. ' + MONTHS[+g.deadline.slice(5, 7) - 1] + ' ' + (+g.deadline.slice(8, 10)) + '.';
+    else if (g.rolling || !g.deadline) s += ' Folyamatosan igényelhető, amíg van keret.';
+    return s;
+  }
+
+  var api = { brief: brief, esc: esc, srcTag: srcTag, badges: badges, bars: bars, budget: budget, ft: ft, TYPE_HU: TYPE_HU };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.AIPCards = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

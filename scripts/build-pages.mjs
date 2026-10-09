@@ -273,7 +273,8 @@ export function renderPage(g, slug, summary, { updatedAt, changes } = {}) {
 </header>
 <div class="call-grid">
 <div class="call-main">
-${g.note ? `<h2>Röviden</h2><p>${esc(g.note)}</p>` : ''}
+<h2>Röviden</h2><p>${esc(Cards.brief(g))}</p>
+${g.note ? `<h2>Kinek szól?</h2><p>${esc(g.note)}</p>` : ''}
 ${requiresHtml(g)}
 ${summaryHtml(summary)}
 ${changesHtml(changes)}

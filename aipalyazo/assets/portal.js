@@ -574,13 +574,15 @@
     // facts
     var rows = [['Kiíró', g.issuer], ['Felhívás kódja', g.code], ['Összeg', g.amount], ['Támogatási arány', g.rate], ['Teljes keret', g.keret > 0 ? ft(g.keret) + (typeof g.remaining === 'number' ? ' · még szabad: ' + ft(Math.max(0, g.remaining)) : '') : ''], ['Beadási határidő', huDate(g.deadline)], ['Beadás kezdete', isDate(g.windowOpen) ? huDate(g.windowOpen) : ''], ['Cégméret', (g.sizeClasses || []).join(', ')], ['Régió', (g.regions || []).length ? g.regions.join(', ') : g.scope === 'eu' ? 'EU-s program' : 'Országos']];
     h += '<h3>Alapadatok</h3><table class="facts">' + rows.filter(function (r) { return r[1]; }).map(function (r) { return '<tr><th scope="row">' + r[0] + '</th><td>' + esc(r[1]) + '</td></tr>'; }).join('') + '</table>';
-    if (g.note) h += '<h3>Röviden</h3><p>' + esc(g.note) + '</p>';
+    // Röviden = what the call is: the AI summary's "what it pays for" lines when there is one, else a one-liner from the data
+    var what = sum && Array.isArray(sum.sections) ? (sum.sections.filter(function (s) { return s.key === 'what' || /Mire fordítható/.test(s.title || ''); })[0] || {}).items || [] : [];
+    h += '<h3>Röviden</h3><p>' + esc(what.length ? what.slice(0, 2).map(function (i) { return i.text; }).join(' ') : AIPCards.brief(g)) + '</p>';
     var req = g.requires || {}, ev = g.requiresEvidence || {};
     var reqItems = Object.keys(req).filter(function (k) { return req[k] !== false && (TAG_HU[k] || k === 'startup_max_years' || k === 'min_revenue_huf'); }).map(function (k) {
       var label = k === 'startup_max_years' ? 'Legfeljebb ' + Number(req[k]) + ' éves cégeknek' : k === 'min_revenue_huf' ? 'Legalább ' + ft(Number(req[k])) + ' árbevétel' : TAG_HU[k];
       return '<li><b>' + esc(label) + '</b>' + (ev[k] ? '<span class="q">„' + esc(ev[k]) + '”</span>' : '') + '</li>';
     });
-    if (reqItems.length) h += '<h3>Ki pályázhat?</h3><ul class="req">' + reqItems.join('') + '</ul>';
+    if (reqItems.length || g.note) h += '<h3>Kinek szól?</h3>' + (g.note ? '<p>' + esc(g.note) + '</p>' : '') + (reqItems.length ? '<ul class="req">' + reqItems.join('') + '</ul>' : '');
     if (sum && Array.isArray(sum.sections) && sum.sections.length) {
       h += '<h3>A felhívás röviden</h3><div class="sum">' + sum.sections.map(function (s) { return '<h4>' + esc(s.title) + '</h4><ul>' + (s.items || []).map(function (it) { return '<li>' + esc(it.text) + '<span class="q">„' + esc(it.quote) + '”</span></li>'; }).join('') + '</ul>'; }).join('') + '</div><p class="muted small">AI-összefoglaló a <a href="' + esc(safeUrl(sum.sourceUrl)) + '" target="_blank" rel="noopener">hivatalos szövegből</a>; minden pont alatt a szó szerinti idézet.</p>';
     }
