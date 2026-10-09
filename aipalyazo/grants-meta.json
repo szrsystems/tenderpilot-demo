@@ -1,12 +1,12 @@
 {
- "updatedAt": "2026-10-09T14:23:29.600Z",
+ "updatedAt": "2026-10-09T15:11:15.257Z",
  "counts": {
-  "total": 426,
+  "total": 425,
   "api": 17,
   "verified": 152,
-  "euAuto": 257,
+  "euAuto": 256,
   "hazai": 53,
-  "eu": 373,
+  "eu": 372,
   "excluded": 0
  },
  "euApiFailed": false,
@@ -171,7 +171,7 @@
  "changes": [],
  "offlineRebuild": {
   "at": "2026-10-09",
-  "apiDataFrom": "2026-10-09T14:23:08.555Z"
+  "apiDataFrom": "2026-10-09T14:23:29.600Z"
  },
  "sourcesOk": true,
  "apiFailed": false,

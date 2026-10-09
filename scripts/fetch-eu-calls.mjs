@@ -86,9 +86,13 @@ function amountFrom(meta) {
 // scholarships, individual researcher grants, natural-person prizes. Every
 // call an organisation can apply for stays in — consortium and large-company
 // calls included.
-export const INDIVIDUAL_RE = /\b(fellowships?|scholarships?|postdoctoral|doctoral (networks?|candidates?)|phd (students?|candidates?|positions?)|individual (researchers?|applicants?|artists?|grants?)|for individuals|natural persons?|ösztöndíj\w*|magánszemély\w*|lakossági)\b/i;
+export const INDIVIDUAL_RE = /\b(fellowships?|scholarships?|postdoctoral|doctoral candidates?|phd (students?|candidates?|positions?)|individual (researchers?|applicants?|artists?|grants?)|for individuals|natural persons?|ösztöndíj\w*|magánszemély\w*|lakossági)\b/i;
 export const INDIVIDUAL_ID_RE = /^(HORIZON-MSCA|HORIZON-ERC|ERC-|MSCA-)|-PF-|-ERC-/i;
+// MSCA Doctoral Networks and Staff Exchanges are applied for by organisations
+// (companies included), so they stay even though the programme is MSCA.
+const MSCA_ORG_ID_RE = /MSCA-\d{4}-(DN|SE)-/i;
 export function isForIndividuals(title, identifier = '') {
+  if (MSCA_ORG_ID_RE.test(identifier || '')) return false;
   return INDIVIDUAL_ID_RE.test(identifier || '') || INDIVIDUAL_RE.test(title || '');
 }
 

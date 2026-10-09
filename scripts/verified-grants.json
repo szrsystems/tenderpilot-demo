@@ -5329,7 +5329,7 @@
   },
   {
    "id": "v-eic-wip-2027",
-   "code": "EIC-WIP-2027",
+   "code": "HORIZON-EIC-2026-PRIZE-WIP",
    "title": "2027 European Prize for Women Innovators (Európai díj női innovátoroknak 2027 – női alapítók díja)",
    "issuer": "European Commission – EIC / EISMEA, with EIT",
    "cat": "KKV fejlesztés",
@@ -5361,7 +5361,11 @@
    },
    "requiresEvidence": {
     "women_led": "Women founders or co-founders of innovative companies"
-   }
+   },
+   "altUrls": [
+    "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-EIC-2026-PRIZE-WIP",
+    "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eic-2026-prize-wip"
+   ]
   },
   {
    "id": "v-perform-europe-2026-2028",

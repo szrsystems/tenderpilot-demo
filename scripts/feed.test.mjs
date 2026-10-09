@@ -315,8 +315,8 @@ test('offline rebuild re-applies overlays and verified items to yesterday\'s fee
 
 import { isForIndividuals } from './fetch-eu-calls.mjs';
 test('calls for private persons are dropped; organisation and large-company calls stay', () => {
-  for (const [t, id] of [['MSCA Postdoctoral Fellowships 2026', 'HORIZON-MSCA-2026-PF-01'], ['ERC Advanced Grant', 'ERC-2026-ADG'], ['Lakossági napelem program', ''], ['Doctoral Networks', '']])
+  for (const [t, id] of [['MSCA Postdoctoral Fellowships 2026', 'HORIZON-MSCA-2026-PF-01'], ['ERC Advanced Grant', 'ERC-2026-ADG'], ['Lakossági napelem program', ''], ['PhD candidates mobility', '']])
     assert.equal(isForIndividuals(t, id), true, t);
-  for (const [t, id] of [['Joint Cluster Initiatives (EUROCLUSTERS)', 'SMP-COSME-2026-CLUSTER'], ['Large-scale battery manufacturing (IA)', 'HORIZON-CL5-2026-D2-01'], ['Student and family engagement for civic participation', 'HORIZON-CL2-2027-01-DEMOCRACY-03'], ['EIC Accelerator', 'HORIZON-EIC-2026-ACCELERATOR']])
+  for (const [t, id] of [['Joint Cluster Initiatives (EUROCLUSTERS)', 'SMP-COSME-2026-CLUSTER'], ['Large-scale battery manufacturing (IA)', 'HORIZON-CL5-2026-D2-01'], ['Student and family engagement for civic participation', 'HORIZON-CL2-2027-01-DEMOCRACY-03'], ['EIC Accelerator', 'HORIZON-EIC-2026-ACCELERATOR'], ['MSCA Doctoral Networks 2026', 'HORIZON-MSCA-2026-DN-01-01'], ['MSCA Staff Exchanges 2026', 'HORIZON-MSCA-2026-SE-01-01']])
     assert.equal(isForIndividuals(t, id), false, t);
 });

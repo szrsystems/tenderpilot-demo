@@ -6973,7 +6973,7 @@
  },
  {
   "id": "v-eic-wip-2027",
-  "code": "EIC-WIP-2027",
+  "code": "HORIZON-EIC-2026-PRIZE-WIP",
   "title": "2027 European Prize for Women Innovators (Európai díj női innovátoroknak 2027 – női alapítók díja)",
   "issuer": "European Commission – EIC / EISMEA, with EIT",
   "cat": "KKV fejlesztés",
@@ -7006,6 +7006,10 @@
   "requiresEvidence": {
    "women_led": "Women founders or co-founders of innovative companies"
   },
+  "altUrls": [
+   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-EIC-2026-PRIZE-WIP",
+   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eic-2026-prize-wip"
+  ],
   "lastChecked": "2026-10-09",
   "live": false,
   "days": 0,
@@ -9062,41 +9066,6 @@
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-NEB-2026-01-BUSINESS-03",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  }
- },
- {
-  "id": "eu-HORIZON-EIC-2026-PRIZE-WIP",
-  "code": "HORIZON-EIC-2026-PRIZE-WIP",
-  "title": "The European Prize for Women Innovators",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Kutatás-fejlesztés",
-  "type": "grant",
-  "amount": "€20k–€100k",
-  "deadline": "2026-12-01",
-  "rolling": false,
-  "windowOpen": null,
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-EIC-2026-PRIZE-WIP",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
