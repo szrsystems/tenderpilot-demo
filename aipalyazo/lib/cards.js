@@ -40,12 +40,18 @@
     return { total: total, left: Math.min(left, total), pct: Math.round(Math.min(left, total) / total * 100) };
   }
 
+  // the submission window opens later than today
+  function notOpen(g, opts) { return isDate(g.windowOpen) && isDate(opts.today) && g.windowOpen > opts.today; }
+  var SCALE = 90; // deadline bar without a known window: fixed 90-day scale (full bar = 90+ days left)
+
   // opts: { today: 'YYYY-MM-DD', isNew: bool, consortium: bool }
   function badges(g, opts) {
     opts = opts || {};
     var out = [], d = isDate(g.deadline) ? daysBetween(opts.today, g.deadline) : null, b = budget(g);
     if (opts.isNew) out.push('<span class="badge new">Új</span>');
-    if (d !== null && d <= 14) out.push('<span class="badge red">' + (d <= 0 ? 'Ma jár le' : d === 1 ? 'Holnap jár le' : 'Sürgős · ' + d + ' nap') + '</span>');
+    // not open yet: show the opening date instead of any "expires soon" warning
+    if (notOpen(g, opts)) out.push('<span class="badge blue">Nyílik: ' + esc(huDate(g.windowOpen)) + '</span>');
+    else if (d !== null && d <= 14) out.push('<span class="badge red">' + (d <= 0 ? 'Ma jár le' : d === 1 ? 'Holnap jár le' : 'Sürgős · ' + d + ' nap') + '</span>');
     else if (d !== null && d <= 30) out.push('<span class="badge amber">Hamarosan lejár · ' + d + ' nap</span>');
     if (b && b.left === 0) out.push('<span class="badge red">Keret lekötve</span>');
     else if (b && b.pct <= 25) out.push('<span class="badge amber">Keret fogyóban</span>');
@@ -64,13 +70,19 @@
       h += '<div class="gbar"><div class="gbar-top"><span>Szabad keret</span><b class="' + cls + '">' + esc(ft(b.left)) + (b.left === 0 ? '<span class="of"> · keret lekötve</span>' : '<span class="of"> / ' + esc(ft(b.total)) + '</span>') + '</b></div>' +
         '<div class="track" role="img" aria-label="Szabad keret: ' + b.pct + '%"><i class="' + cls + ' ' + w(b.left > 0 ? Math.max(b.pct, 5) : 100) + '"></i></div></div>';
     }
-    if (isDate(g.deadline)) {
-      var d = daysBetween(opts.today, g.deadline);
-      var span = isDate(g.windowOpen) ? Math.max(1, daysBetween(g.windowOpen, g.deadline)) : Math.max(d, 180);
-      var pct = Math.max(3, Math.min(100, Math.round(d / span * 100)));
+    if (notOpen(g, opts)) {
+      var o = daysBetween(opts.today, g.windowOpen);
+      h += '<div class="gbar"><div class="gbar-top"><span>Beadás kezdete</span><b>' + esc(huDate(g.windowOpen)) + '<span class="of"> · még nem nyílt meg' + (isDate(g.deadline) ? ', határidő ' + esc(huDate(g.deadline)) : '') + '</span></b></div>' +
+        '<div class="track" role="img" aria-label="Még nem nyílt meg, ' + o + ' nap múlva nyílik"><i class="soft p0"></i></div></div>';
+    } else if (isDate(g.deadline)) {
+      var d = daysBetween(opts.today, g.deadline), win = isDate(g.windowOpen);
+      // with a known window: share of the window still left; otherwise a fixed, labelled 90-day scale
+      var span = win ? Math.max(1, daysBetween(g.windowOpen, g.deadline)) : SCALE;
+      var pct = Math.max(0, Math.min(100, Math.round(d / span * 100)));
       var c2 = d <= 14 ? 'red' : d <= 30 ? 'amber' : 'green';
-      h += '<div class="gbar"><div class="gbar-top"><span>Beadási határidő</span><b class="' + c2 + '">' + esc(huDate(g.deadline)) + '<span class="of"> · ' + (d <= 0 ? 'ma' : d === 1 ? 'holnap' : 'még ' + d + ' nap') + '</span></b></div>' +
-        '<div class="track" role="img" aria-label="Hátralévő idő: ' + d + ' nap"><i class="' + c2 + ' ' + w(Math.max(pct, 5)) + '"></i></div></div>';
+      var scaleNote = win ? 'a beadási időszakból' : '90 napos skálán';
+      h += '<div class="gbar"><div class="gbar-top"><span>Beadási határidő' + (win ? '' : '<span class="of"> · 90 napos skála</span>') + '</span><b class="' + c2 + '">' + esc(huDate(g.deadline)) + '<span class="of"> · ' + (d <= 0 ? 'ma' : d === 1 ? 'holnap' : 'még ' + d + ' nap') + '</span></b></div>' +
+        '<div class="track" role="img" aria-label="Hátralévő idő: ' + d + ' nap (' + scaleNote + ')"><i class="' + c2 + ' ' + w(Math.max(pct, 5)) + '"></i></div></div>';
     } else {
       h += '<div class="gbar"><div class="gbar-top"><span>Beadási határidő</span><b class="green">Nincs fix határidő<span class="of"> · folyamatos, a keret kimerüléséig</span></b></div><div class="track"><i class="soft p100"></i></div></div>';
     }
