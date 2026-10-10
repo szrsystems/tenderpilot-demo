@@ -1,218 +1,473 @@
 {
- "updatedAt": "2026-10-09",
- "hide": {
-  "v-horizon-eic-2026-step": "withdrawn: a 2026-11-25-i STEP Scale Up cut-off-ot törölték (verified-grants.json: withdrawn)"
- },
+ "updatedAt": "2026-10-10",
+ "hide": {},
  "overrides": {
   "v-mfb-zold-lendulet-hitelprogram": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-mfb-agrar-forgoeszkoz-hitelprogram-2025": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-szechenyi-kartya-folyoszamlahitel-max": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-szechenyi-likviditasi-hitel-max": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-szechenyi-turisztikai-kartya-max": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-szechenyi-beruhazasi-hitel-max": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-szechenyi-mikrohitel-max": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-szechenyi-lizing-max": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-agrar-szechenyi-beruhazasi-hitel-max": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-kth-start-beruhazasi-kolcson": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-kth-start-forgoeszkoz-kolcson": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-2025-1-1-1-iparjog": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-ginop-plusz-4-1-1-23": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-ginop-plusz-3-1-1-23": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-vallalkozova-valast-elosegito-tamogatas": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-kap-rd40-rd12-1-26": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-kap-rd35-1-25": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-kap-rd35-2-26": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-kap-rd38-rd39-1-25": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-kap-rd06-1-25": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-kap-rd44-1-26": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-kap-rd01a-rd01c-rd01d-rd01e-rd02-rd04a-rd04b-rd12-1-25": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-agrar-szk-max": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-horizon-eic-2026-accelerator-01": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-eic-2026-pathfinderchallenges-01-01": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-eic-2026-pathfinderchallenges-01-02": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-eic-2026-pathfinderchallenges-01-03": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl4-2027-01-mat-prod-49": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl4-2027-01-mat-prod-08": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl4-2027-04-digital-emerging-04": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl4-2027-04-digital-emerging-05": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2027-05-d4-05": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl6-2027-02-farm2fork-05": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl6-2027-02-communities-02": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-neb-2026-01-regen-01": {
+   "lastChecked": "2026-10-10"
   },
   "v-eurostars-3-call-12": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-horizon-eie-womentecheu-2": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
+  },
+  "v-digital-eccc-2027-deploy-cyber-11-ai4sme": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-i3-2026-inv1": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-i3-2026-inv2a": {
+   "lastChecked": "2026-10-10"
   },
   "v-grappa-cutoff-2": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-fierce-oc2": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
+  },
+  "v-ngi-restack": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-ngi-codesupply": {
+   "lastChecked": "2026-10-10"
   },
   "v-nostradamus-oc1": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-euipo-sme-fund-2026": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-erasmus-2026-ka210-adu": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl4-2027-01-mat-prod-22": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl4-2027-01-mat-prod-02": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl4-2027-01-mat-prod-16": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl4-2027-01-mat-prod-61": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl4-2027-01-mat-prod-62": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl4-2027-02-mat-prod-32-two-stage": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl4-2027-04-data-08": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl4-2027-04-data-09": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl4-2027-04-digital-emerging-06": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl4-2027-space-03-12": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl4-2027-space-03-34": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2026-11-d3-05": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2026-11-d3-14": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2026-11-d3-23": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2027-02-d2-05": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2027-02-d2-06": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2027-02-d3-07": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2027-02-d3-15": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2027-02-d3-24": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2027-02-d3-30": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2027-03-d5-04": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2027-03-d5-05": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2027-05-d2-08": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2027-05-d4-06": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2027-05-d4-09": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2027-07-d3-17": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2027-07-d3-26": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl5-2027-07-d3-27": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl6-2027-01-circbio-01": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl6-2027-01-circbio-02": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl6-2027-01-circbio-07": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl6-2027-01-circbio-08": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl6-2027-01-circbio-09": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl6-2027-01-biodiv-03": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl6-2027-02-farm2fork-02": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl6-2027-02-farm2fork-06": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl6-2027-02-farm2fork-07": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-hlth-2027-02-ind-02-two-stage": {
+   "deadline": "2027-02-17",
+   "lastChecked": "2026-10-10",
+   "note": "EU portál: 2027-04-13 → 2027-02-17"
+  },
+  "v-horizon-hlth-2027-01-ind-01": {
+   "deadline": "2027-02-17",
+   "lastChecked": "2026-10-10",
+   "note": "EU portál: 2027-04-13 → 2027-02-17"
+  },
+  "v-horizon-hlth-2027-01-disease-08": {
+   "deadline": "2027-02-17",
+   "lastChecked": "2026-10-10",
+   "note": "EU portál: 2027-04-13 → 2027-02-17"
+  },
+  "v-horizon-hlth-2027-03-tool-04": {
+   "deadline": "2027-09-16",
+   "lastChecked": "2026-10-10",
+   "note": "EU portál: 2027-09-22 → 2027-09-16"
+  },
+  "v-horizon-cl3-2026-01-drs-02": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl3-2026-01-drs-03": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl3-2026-01-drs-04": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl3-2026-01-infra-01": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl3-2026-01-infra-03": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl3-2026-01-ssri-04": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl3-2026-01-bm-01": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl3-2027-01-ssri-01": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl3-2027-01-drs-01": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl3-2027-01-drs-03": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-cl3-2027-01-infra-01": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-miss-2027-04-cit-01": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-miss-2027-04-cit-ccri-04": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-miss-2027-05-soil-05-two-stage": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-miss-2027-07-clima-cit-ccri-02": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-miss-2027-03-ocean-04": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-widera-2027-01-widening-01": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-horizon-widera-2027-04-widening-01": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-digital-eccc-2027-deploy-cyber-11-dualuse": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-digital-eccc-2027-deploy-cyber-11-euleg": {
+   "lastChecked": "2026-10-10"
   },
   "v-eit-rib-hu-2027": {
-   "lastChecked": "2026-10-09"
-  },
-  "v-eitcc-shape-scale-2027": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-eitum-fsts-2026-c4": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-eitum-founder-catalyst": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
+  },
+  "v-eitum-sioc-2027-01": {
+   "lastChecked": "2026-10-10"
   },
   "v-eitrm-kava14-ris": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-eitrm-kava14-upscaling": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
+  },
+  "v-eitfood-poc-cofin-2026": {
+   "lastChecked": "2026-10-10"
   },
   "v-eit-ai-entrepreneurs-lab-2026": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-esa-ba-kickstart-2026-10": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-esa-ba-ssidbt-contest": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-eurohpc-aif-large-scale": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-eurohpc-aif-playground-fastlane": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-eurohpc-quantum-pilot": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-eurohpc-benchmark-2026": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-tef-health-oc2": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-battleverse-oc1": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-dut-call-2026": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-cetp-jc2026": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
+  },
+  "v-water4all-jtc-2026": {
+   "lastChecked": "2026-10-10"
   },
   "v-eureka-celticnext-aut2026": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-eureka-eurogia2030-call31": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-eureka-itea-2026": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-eureka-xecs-call6": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-ivf-visegrad-grants-2026-10": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-horizon-ju-eurohpc-2026-qti-13": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-horizon-ju-eurohpc-2026-nqkd-12": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-eye-rolling": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
+  },
+  "v-garantiqa-investeu": {
+   "lastChecked": "2026-10-10"
+  },
+  "v-garantiqa-kezesseg": {
+   "lastChecked": "2026-10-10"
   },
   "v-eib-raiffeisen-lizing": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-2025-1-2-2-eureka": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-2024-1-2-1-he-partnerseg": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-2025-1-2-5-eu-kp": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-kap-rd01a-rd12-2-25": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-kap-rd41-3-25": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-mfb-pvrk-forgoeszkoz-hitelprogram": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
+  },
+  "v-top-plusz-3-1-1-21": {
+   "lastChecked": "2026-10-10"
   },
   "v-eitum-umx-2026": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-innowwide-call5-2026": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-eic-wip-2027": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-perform-europe-2026-2028": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-tff-5-1-5-2026-kth-start-kiegeszito": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
   },
   "v-eitcc-innovation-projects-2026": {
-   "lastChecked": "2026-10-09"
+   "lastChecked": "2026-10-10"
+  },
+  "v-exim-zold-beruhazasi-hitel": {
+   "lastChecked": "2026-10-10"
   }
  }
 }

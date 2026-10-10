@@ -1,15 +1,29 @@
 {
- "updatedAt": "2026-10-09T15:11:15.257Z",
+ "updatedAt": "2026-10-10T11:50:06.317Z",
+ "sourcesOk": true,
+ "apiFailed": false,
+ "euApiFailed": false,
+ "sources": {
+  "palyazatApi": {
+   "ok": true,
+   "items": 17,
+   "lastOk": "2026-10-10T11:50:06.317Z"
+  },
+  "euApi": {
+   "ok": true,
+   "items": 268,
+   "lastOk": "2026-10-10T11:50:06.317Z"
+  }
+ },
  "counts": {
-  "total": 425,
+  "total": 437,
   "api": 17,
   "verified": 152,
-  "euAuto": 256,
+  "euAuto": 268,
   "hazai": 53,
-  "eu": 372,
-  "excluded": 0
+  "eu": 384,
+  "excluded": 20
  },
- "euApiFailed": false,
  "needsReview": [],
  "staleVerified": [],
  "droppedVerified": [
@@ -112,16 +126,20 @@
    "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
   },
   {
-   "code": "IKOP_PLUSZ-1.2.0-23",
-   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
+   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
   },
   {
    "code": "IKOP_PLUSZ-2.1.0-23",
    "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
+   "code": "IKOP_PLUSZ-1.2.0-23",
+   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "GINOP_PLUSZ-2.5.4-25",
+   "why": "Alapkezelői költségtérítés."
   },
   {
    "code": "DIMOP_PLUSZ-5.1.4-2-26",
@@ -132,20 +150,16 @@
    "why": "Alapkezelői/bank költségtérítés."
   },
   {
-   "code": "GINOP_PLUSZ-2.5.4-25",
-   "why": "Alapkezelői költségtérítés."
-  },
-  {
    "code": "DIMOP_PLUSZ-1.2.3/B1-24",
    "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
   },
   {
-   "code": "KEHOP_PLUSZ-3.1.11-25",
-   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
-  },
-  {
    "code": "GINOP_PLUSZ-1.4.7-24",
    "why": "Alapkezelői/közvetítői költségtérítés."
+  },
+  {
+   "code": "KEHOP_PLUSZ-3.1.11-25",
+   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
   },
   {
    "code": "KEHOP_PLUSZ-3.1.12-25",
@@ -168,23 +182,134 @@
    "why": "Klaszter minősítés — nem ad pénzt."
   }
  ],
- "changes": [],
- "offlineRebuild": {
-  "at": "2026-10-09",
-  "apiDataFrom": "2026-10-09T14:23:29.600Z"
- },
- "sourcesOk": true,
- "apiFailed": false,
- "sources": {
-  "palyazatApi": {
-   "ok": true,
-   "items": 17,
-   "lastOk": "2026-10-09T12:31:40.530Z"
+ "changes": [
+  {
+   "id": "v-horizon-hlth-2027-02-ind-02-two-stage",
+   "type": "deadline",
+   "from": "2027-04-13",
+   "to": "2027-02-17",
+   "title": "Portable and versatile Point-of-care diagnostics (IA, two-stage) (Hordozható, sokoldalú helyszíni diagnosztika – kétfordulós)"
   },
-  "euApi": {
-   "ok": true,
-   "items": 257,
-   "lastOk": "2026-10-09T12:31:40.530Z"
+  {
+   "id": "v-horizon-hlth-2027-01-ind-01",
+   "type": "deadline",
+   "from": "2027-04-13",
+   "to": "2027-02-17",
+   "title": "Development of cell-free protein synthesis platforms for discovery and/or production of biologicals (RIA) (Sejtmentes fehérjeszintézis-platformok biológiai gyógyszerekhez)"
+  },
+  {
+   "id": "v-horizon-hlth-2027-01-disease-08",
+   "type": "deadline",
+   "from": "2027-04-13",
+   "to": "2027-02-17",
+   "title": "Development of innovative antimicrobials against pathogens resistant to antimicrobials (RIA) (Innovatív antimikrobiális szerek rezisztens kórokozók ellen)"
+  },
+  {
+   "id": "v-horizon-hlth-2027-03-tool-04",
+   "type": "deadline",
+   "from": "2027-09-22",
+   "to": "2027-09-16",
+   "title": "Virtual Human Twins for integrated clinical decision support in prevention and diagnosis (RIA) (Virtuális emberi ikrek klinikai döntéstámogatáshoz)"
+  },
+  {
+   "id": "eu-HORIZON-CL3-2026-01-SSRI-02",
+   "type": "new",
+   "title": "Demand-led innovation in security"
+  },
+  {
+   "id": "eu-HORIZON-CL3-2026-01-SSRI-03",
+   "type": "new",
+   "title": "Public procurement of innovation for security"
+  },
+  {
+   "id": "eu-HORIZON-RAISE-2026-01-03",
+   "type": "new",
+   "title": "RAISE Doctoral Networks for AI in Science (RAISE pilot)"
+  },
+  {
+   "id": "eu-HORIZON-MSCA-2026-DN-01-01",
+   "type": "new",
+   "title": "MSCA Doctoral Networks 2026"
+  },
+  {
+   "id": "eu-HORIZON-CL5-2026-11-D3-04",
+   "type": "new",
+   "title": "De-risking renewable fuel technologies through transnational pre-commercial procurement of renewable fuel industrial value chains"
+  },
+  {
+   "id": "eu-HORIZON-EIT-2026-PRIZE-WIP-LEADERSHIP",
+   "type": "new",
+   "title": "Women Leadership Category"
+  },
+  {
+   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-42",
+   "type": "new",
+   "title": "Unlocking the potential of academic intellectual assets for industry, SMEs and startups (CSA)"
+  },
+  {
+   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-47",
+   "type": "new",
+   "title": "Pilot access schemes to Technology Infrastructures for European startups, scaleups and innovative SMEs (CSA)"
+  },
+  {
+   "id": "eu-HORIZON-HLTH-2027-01-ENVHLTH-MISSCLIMA-03",
+   "type": "new",
+   "title": "Tools and technologies to support health adaptation to climate change"
+  },
+  {
+   "id": "eu-HORIZON-BRIDGING-2027-05-01",
+   "type": "new",
+   "title": "Skills for innovative SMEs"
+  },
+  {
+   "id": "eu-HORIZON-MSCA-2027-SE-01-01",
+   "type": "new",
+   "title": "MSCA Staff Exchanges 2027"
+  },
+  {
+   "id": "eu-HORIZON-EIE-2027-01-CONNECT-02",
+   "type": "new",
+   "title": "Reinforcing synergies between experimentation spaces and innovation procurement"
+  },
+  {
+   "id": "eu-HORIZON-MISS-2027-02-CANCER-05",
+   "type": "new",
+   "title": "Pre-commercial procurement of affordable solutions for healthcare systems in the areas of cancer technologies, cancer medical devices, or cancer medicines"
+  },
+  {
+   "id": "eu-HORIZON-MISS-2027-04-CIT-05",
+   "type": "new",
+   "title": "Boosting the transformation towards climate-neutral cities, the net-zero economy and open strategic autonomy through Pre-Commercial Procurement (PCP)"
+  },
+  {
+   "id": "eu-HORIZON-CL3-2027-01-SSRI-03",
+   "type": "new",
+   "title": "Demand-led innovation in security"
+  },
+  {
+   "id": "eu-HORIZON-MSCA-2027-DN-01-01",
+   "type": "new",
+   "title": "MSCA Doctoral Networks 2027"
+  },
+  {
+   "id": "eu-HORIZON-NEB-2026-01-PARTICIPATION-03",
+   "type": "removed",
+   "title": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-06",
+   "type": "removed",
+   "title": "Identifying user-focused solutions to support news media freedom"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-07",
+   "type": "removed",
+   "title": "Societal impact of cultural heritage"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-06",
+   "type": "removed",
+   "title": "Closing the learning gap: uncovering causes and effective policy interventions for declining youth skills in mathematics, reading, and science"
   }
- }
+ ]
 }

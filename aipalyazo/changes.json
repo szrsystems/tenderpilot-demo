@@ -358,6 +358,13 @@
    "title": "Detection, monitoring, modelling, and attribution capabilities for Solar Radiation Modification (SRM) activities and assessing their impacts on Earth's climate and ecosystems"
   }
  ],
+ "eu-HORIZON-BRIDGING-2027-05-01": [
+  {
+   "date": "2026-10-10",
+   "type": "new",
+   "title": "Skills for innovative SMEs"
+  }
+ ],
  "eu-HORIZON-BRIDGING-2027-06-02": [
   {
    "date": "2026-10-08",
@@ -412,6 +419,11 @@
    "date": "2026-10-09",
    "type": "new",
    "title": "Identifying user-focused solutions to support news media freedom"
+  },
+  {
+   "date": "2026-10-10",
+   "type": "removed",
+   "title": "Identifying user-focused solutions to support news media freedom"
   }
  ],
  "eu-HORIZON-CL2-2027-01-DEMOCRACY-07": [
@@ -461,6 +473,11 @@
    "date": "2026-10-09",
    "type": "new",
    "title": "Societal impact of cultural heritage"
+  },
+  {
+   "date": "2026-10-10",
+   "type": "removed",
+   "title": "Societal impact of cultural heritage"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-08": [
@@ -509,6 +526,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Closing the learning gap: uncovering causes and effective policy interventions for declining youth skills in mathematics, reading, and science"
+  },
+  {
+   "date": "2026-10-10",
+   "type": "removed",
    "title": "Closing the learning gap: uncovering causes and effective policy interventions for declining youth skills in mathematics, reading, and science"
   }
  ],
@@ -666,6 +688,20 @@
    "title": "Open topic on supporting disruptive technological innovations for civil security"
   }
  ],
+ "eu-HORIZON-CL3-2026-01-SSRI-02": [
+  {
+   "date": "2026-10-10",
+   "type": "new",
+   "title": "Demand-led innovation in security"
+  }
+ ],
+ "eu-HORIZON-CL3-2026-01-SSRI-03": [
+  {
+   "date": "2026-10-10",
+   "type": "new",
+   "title": "Public procurement of innovation for security"
+  }
+ ],
  "eu-HORIZON-CL3-2026-01-SSRI-04": [
   {
    "date": "2026-10-09",
@@ -778,6 +814,13 @@
    "title": "Accelerating uptake through open proposals for advanced SME innovation"
   }
  ],
+ "eu-HORIZON-CL3-2027-01-SSRI-03": [
+  {
+   "date": "2026-10-10",
+   "type": "new",
+   "title": "Demand-led innovation in security"
+  }
+ ],
  "eu-HORIZON-CL3-2027-02-CS-ECCC-01": [
   {
    "date": "2026-10-08",
@@ -884,6 +927,20 @@
    "date": "2026-10-09",
    "type": "new",
    "title": "Innovative advanced materials and new production processes – reducing dependencies on Critical and Strategic Raw Materials (IA) (Innovative Advanced Materials for the EU and Processes4Planet partnersh"
+  }
+ ],
+ "eu-HORIZON-CL4-2027-01-MAT-PROD-42": [
+  {
+   "date": "2026-10-10",
+   "type": "new",
+   "title": "Unlocking the potential of academic intellectual assets for industry, SMEs and startups (CSA)"
+  }
+ ],
+ "eu-HORIZON-CL4-2027-01-MAT-PROD-47": [
+  {
+   "date": "2026-10-10",
+   "type": "new",
+   "title": "Pilot access schemes to Technology Infrastructures for European startups, scaleups and innovative SMEs (CSA)"
   }
  ],
  "eu-HORIZON-CL4-2027-01-MAT-PROD-49": [
@@ -1086,6 +1143,13 @@
    "date": "2026-10-09",
    "type": "removed",
    "title": "Generative AI for smarter CCAM: enhancing perception, decision-making, and validation (CCAM Partnership)"
+  }
+ ],
+ "eu-HORIZON-CL5-2026-11-D3-04": [
+  {
+   "date": "2026-10-10",
+   "type": "new",
+   "title": "De-risking renewable fuel technologies through transnational pre-commercial procurement of renewable fuel industrial value chains"
   }
  ],
  "eu-HORIZON-CL5-2026-11-D3-05": [
@@ -1834,6 +1898,13 @@
    "title": "Implementing co-funded action plans for connected regional innovation valleys"
   }
  ],
+ "eu-HORIZON-EIE-2027-01-CONNECT-02": [
+  {
+   "date": "2026-10-10",
+   "type": "new",
+   "title": "Reinforcing synergies between experimentation spaces and innovation procurement"
+  }
+ ],
  "eu-HORIZON-EIT-2025-KIC-IBA-CC": [
   {
    "date": "2026-10-08",
@@ -1918,6 +1989,13 @@
    "title": "2026-2027 MOC Activities"
   }
  ],
+ "eu-HORIZON-EIT-2026-PRIZE-WIP-LEADERSHIP": [
+  {
+   "date": "2026-10-10",
+   "type": "new",
+   "title": "Women Leadership Category"
+  }
+ ],
  "eu-HORIZON-EUSPA-2023-SPACE-01-46": [
   {
    "date": "2026-10-08",
@@ -1972,6 +2050,13 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Integrating climate-related exposures into the human exposome and characterising its changes in response to climate change"
+  }
+ ],
+ "eu-HORIZON-HLTH-2027-01-ENVHLTH-MISSCLIMA-03": [
+  {
+   "date": "2026-10-10",
+   "type": "new",
+   "title": "Tools and technologies to support health adaptation to climate change"
   }
  ],
  "eu-HORIZON-HLTH-2027-01-IND-01": [
@@ -2289,6 +2374,13 @@
    "title": "Improving equitable health outcomes and added value for and with cancer patients through health-economics research, health systems research and outcomes research"
   }
  ],
+ "eu-HORIZON-MISS-2027-02-CANCER-05": [
+  {
+   "date": "2026-10-10",
+   "type": "new",
+   "title": "Pre-commercial procurement of affordable solutions for healthcare systems in the areas of cancer technologies, cancer medical devices, or cancer medicines"
+  }
+ ],
  "eu-HORIZON-MISS-2027-03-OCEAN-01": [
   {
    "date": "2026-10-08",
@@ -2336,6 +2428,13 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Inclusive and climate resilient multimodal passenger hubs enhancing modal shift towards sustainable transport and shared mobility"
+  }
+ ],
+ "eu-HORIZON-MISS-2027-04-CIT-05": [
+  {
+   "date": "2026-10-10",
+   "type": "new",
+   "title": "Boosting the transformation towards climate-neutral cities, the net-zero economy and open strategic autonomy through Pre-Commercial Procurement (PCP)"
   }
  ],
  "eu-HORIZON-MISS-2027-04-CIT-CCRI-04": [
@@ -2406,6 +2505,27 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Urban nature: supporting restoration of urban ecosystems, along urban transport networks and in the built environment"
+  }
+ ],
+ "eu-HORIZON-MSCA-2026-DN-01-01": [
+  {
+   "date": "2026-10-10",
+   "type": "new",
+   "title": "MSCA Doctoral Networks 2026"
+  }
+ ],
+ "eu-HORIZON-MSCA-2027-DN-01-01": [
+  {
+   "date": "2026-10-10",
+   "type": "new",
+   "title": "MSCA Doctoral Networks 2027"
+  }
+ ],
+ "eu-HORIZON-MSCA-2027-SE-01-01": [
+  {
+   "date": "2026-10-10",
+   "type": "new",
+   "title": "MSCA Staff Exchanges 2027"
   }
  ],
  "eu-HORIZON-NATURE-2027-01-01": [
@@ -2511,6 +2631,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being"
+  },
+  {
+   "date": "2026-10-10",
+   "type": "removed",
+   "title": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being"
   }
  ],
  "eu-HORIZON-NEB-2026-01-REGEN-01": [
@@ -2614,6 +2739,13 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Reducing soil sealing through sustainable urban and territorial design in the New European Bauhaus"
+  }
+ ],
+ "eu-HORIZON-RAISE-2026-01-03": [
+  {
+   "date": "2026-10-10",
+   "type": "new",
+   "title": "RAISE Doctoral Networks for AI in Science (RAISE pilot)"
   }
  ],
  "eu-HORIZON-RAISE-2027-01-01": [
@@ -2762,6 +2894,12 @@
    "date": "2026-09-28",
    "type": "new",
    "title": "EIT Culture & Creativity Innovation Projects 2026 (Kreatívipari innovációs projektek – divat, audiovizuális média, építészet)"
+  }
+ ],
+ "v-eitcc-shape-scale-2027": [
+  {
+   "date": "2026-10-10",
+   "type": "page"
   }
  ],
  "v-eitfood-poc-cofin-2026": [
@@ -3275,6 +3413,18 @@
    "type": "deadline",
    "from": "2027-02-17",
    "to": "2027-04-13"
+  },
+  {
+   "date": "2026-10-10",
+   "type": "deadline-official",
+   "from": "2027-04-13",
+   "to": "2027-02-17"
+  },
+  {
+   "date": "2026-10-10",
+   "type": "deadline",
+   "from": "2027-04-13",
+   "to": "2027-02-17"
   }
  ],
  "v-horizon-hlth-2027-01-ind-01": [
@@ -3288,6 +3438,18 @@
    "type": "deadline",
    "from": "2027-02-17",
    "to": "2027-04-13"
+  },
+  {
+   "date": "2026-10-10",
+   "type": "deadline-official",
+   "from": "2027-04-13",
+   "to": "2027-02-17"
+  },
+  {
+   "date": "2026-10-10",
+   "type": "deadline",
+   "from": "2027-04-13",
+   "to": "2027-02-17"
   }
  ],
  "v-horizon-hlth-2027-02-ind-02-two-stage": [
@@ -3301,6 +3463,18 @@
    "type": "deadline",
    "from": "2027-02-17",
    "to": "2027-04-13"
+  },
+  {
+   "date": "2026-10-10",
+   "type": "deadline-official",
+   "from": "2027-04-13",
+   "to": "2027-02-17"
+  },
+  {
+   "date": "2026-10-10",
+   "type": "deadline",
+   "from": "2027-04-13",
+   "to": "2027-02-17"
   }
  ],
  "v-horizon-hlth-2027-03-tool-04": [
@@ -3314,6 +3488,18 @@
    "type": "deadline",
    "from": "2027-09-16",
    "to": "2027-09-22"
+  },
+  {
+   "date": "2026-10-10",
+   "type": "deadline-official",
+   "from": "2027-09-22",
+   "to": "2027-09-16"
+  },
+  {
+   "date": "2026-10-10",
+   "type": "deadline",
+   "from": "2027-09-22",
+   "to": "2027-09-16"
   }
  ],
  "v-horizon-miss-2027-03-ocean-04": [
@@ -3439,6 +3625,10 @@
   },
   {
    "date": "2026-10-09",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-10",
    "type": "page"
   }
  ],

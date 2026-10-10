@@ -1,67 +1,99 @@
 {
- "updatedAt": "2026-10-09",
+ "updatedAt": "2026-10-10",
  "items": [
   {
    "kind": "recheck",
-   "id": "v-ngi-restack",
-   "title": "NLnet Restack – Open Internet Stack fund (Nyílt internetes technológiai verem – NGI)",
-   "url": "https://nlnet.nl/restack/",
-   "outcome": "changed-unchecked",
-   "detail": "az oldal megváltozott, LLM nélkül nem ellenőrizhető"
+   "id": "v-horizon-cl5-2026-10-d2-03",
+   "title": "Integrated Production and Product Development for Next-Generation Lithium-based Batteries for Mobility (IA) (Következő generációs lítium-akkumulátorok integrált gyártásfejlesztése)",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-10-d2-03",
+   "outcome": "closed",
+   "detail": "EU portál: nincs jövőbeli határidő"
   },
   {
    "kind": "recheck",
-   "id": "v-ngi-codesupply",
-   "title": "NLnet CodeSupply – software supply chain security (Szoftver-ellátási lánc biztonsága)",
-   "url": "https://nlnet.nl/codesupply/",
-   "outcome": "changed-unchecked",
-   "detail": "az oldal megváltozott, LLM nélkül nem ellenőrizhető"
+   "id": "v-horizon-cl5-2026-10-d6-06",
+   "title": "Increasing competitiveness and resilience of multimodal freight transport and logistics (IA) (Multimodális áruszállítás és logisztika versenyképessége)",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-10-d6-06",
+   "outcome": "closed",
+   "detail": "EU portál: nincs jövőbeli határidő"
   },
   {
    "kind": "recheck",
-   "id": "v-eitum-sioc-2027-01",
-   "title": "Strategic Innovation Open Call – cut-off 28 Jan 2027 (Stratégiai innovációs felhívás városi mobilitásra)",
-   "url": "https://www.eiturbanmobility.eu/call-for-proposals/strategic-innovation-open-call/",
-   "outcome": "changed-unchecked",
-   "detail": "az oldal megváltozott, LLM nélkül nem ellenőrizhető"
+   "id": "v-horizon-cl5-2026-10-d6-09",
+   "title": "Road Safety and resilience of rural areas (IA) (Közúti biztonság és vidéki térségek rezilienciája)",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-10-d6-09",
+   "outcome": "closed",
+   "detail": "EU portál: nincs jövőbeli határidő"
   },
   {
    "kind": "recheck",
-   "id": "v-eitfood-poc-cofin-2026",
-   "title": "Proof-of-Concept Co-Financing Instrument (Agrárélelmiszer-startupok pilot projektjeinek társfinanszírozása)",
-   "url": "https://www.eitfood.eu/open-calls/proof-of-concept-co-financing-instrument-2",
-   "outcome": "changed-unchecked",
-   "detail": "az oldal megváltozott, LLM nélkül nem ellenőrizhető"
+   "id": "v-horizon-cl5-2026-10-d6-10",
+   "title": "Enhanced resilience in multimodal passenger transport through digital technologies and AI (IA) (Multimodális személyszállítás rezilienciája digitális és MI-eszközökkel)",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-10-d6-10",
+   "outcome": "closed",
+   "detail": "EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "kind": "deadline-changed",
+   "id": "v-horizon-hlth-2027-02-ind-02-two-stage",
+   "title": "Portable and versatile Point-of-care diagnostics (IA, two-stage) (Hordozható, sokoldalú helyszíni diagnosztika – kétfordulós)",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2027-02-ind-02-two-stage",
+   "outcome": "auto-fixed",
+   "detail": "EU portál: 2027-04-13 → 2027-02-17"
+  },
+  {
+   "kind": "deadline-changed",
+   "id": "v-horizon-hlth-2027-01-ind-01",
+   "title": "Development of cell-free protein synthesis platforms for discovery and/or production of biologicals (RIA) (Sejtmentes fehérjeszintézis-platformok biológiai gyógyszerekhez)",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2027-01-ind-01",
+   "outcome": "auto-fixed",
+   "detail": "EU portál: 2027-04-13 → 2027-02-17"
+  },
+  {
+   "kind": "deadline-changed",
+   "id": "v-horizon-hlth-2027-01-disease-08",
+   "title": "Development of innovative antimicrobials against pathogens resistant to antimicrobials (RIA) (Innovatív antimikrobiális szerek rezisztens kórokozók ellen)",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2027-01-disease-08",
+   "outcome": "auto-fixed",
+   "detail": "EU portál: 2027-04-13 → 2027-02-17"
+  },
+  {
+   "kind": "deadline-changed",
+   "id": "v-horizon-hlth-2027-03-tool-04",
+   "title": "Virtual Human Twins for integrated clinical decision support in prevention and diagnosis (RIA) (Virtuális emberi ikrek klinikai döntéstámogatáshoz)",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2027-03-tool-04",
+   "outcome": "auto-fixed",
+   "detail": "EU portál: 2027-09-22 → 2027-09-16"
   },
   {
    "kind": "recheck",
-   "id": "v-water4all-jtc-2026",
-   "title": "Water4All 2026 Joint Transnational Call (Vízbiztonsági partnerség – 2026-os közös felhívás)",
-   "url": "https://www.water4all-partnership.eu/joint-activities/water4all-2026-joint-transnational-call",
-   "outcome": "changed-unchecked",
-   "detail": "az oldal megváltozott, LLM nélkül nem ellenőrizhető"
+   "id": "v-digital-2026-ai-data-10-compliance",
+   "title": "Digital solutions for regulatory compliance through data (Adatalapú digitális megoldások a szabályozási megfeleléshez)",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/digital-2026-ai-data-10-compliance",
+   "outcome": "closed",
+   "detail": "EU portál: nincs jövőbeli határidő"
   },
   {
    "kind": "recheck",
-   "id": "v-garantiqa-investeu",
-   "title": "Garantiqa InvestEU Garanciaprogram (Az Európai Bizottság viszontgaranciájával működő KKV-hitelgarancia)",
-   "url": "https://garantiqa.hu/garantiqa-investeu-garanciaprogram/",
-   "outcome": "changed-unchecked",
-   "detail": "az oldal megváltozott, LLM nélkül nem ellenőrizhető"
+   "id": "v-digital-2026-skills-10-edtech",
+   "title": "EdTech Accelerator (EdTech gyorsítóprogram)",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/digital-2026-skills-10-edtech",
+   "outcome": "closed",
+   "detail": "EU portál: nincs jövőbeli határidő"
   },
   {
    "kind": "recheck",
-   "id": "v-garantiqa-kezesseg",
-   "title": "Garantiqa készfizető kezességvállalás (de minimis, csoportmentességi, Gazdaság Újjáépítési és piaci díjas kezesség banki hitelekhez)",
-   "url": "https://garantiqa.hu/kezessegvallalas/kezessegvallalasi-formak/",
-   "outcome": "changed-unchecked",
-   "detail": "az oldal megváltozott, LLM nélkül nem ellenőrizhető"
+   "id": "v-digital-2026-ai-piloting-10-screening",
+   "title": "Apply AI: Piloting AI-based image screening in medical centres (MI-alapú képi szűrés pilotja egészségügyi központokban)",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/digital-2026-ai-piloting-10-screening",
+   "outcome": "closed",
+   "detail": "EU portál: nincs jövőbeli határidő"
   },
   {
    "kind": "recheck",
-   "id": "v-top-plusz-3-1-1-21",
-   "title": "Vármegyei foglalkoztatási paktum – bértámogatás hátrányos helyzetű álláskeresők felvételéhez",
-   "url": "https://nfsz.munka.hu/cikk/3150/TOP_PLUSZ_Tamogatasok",
+   "id": "v-eitcc-shape-scale-2027",
+   "title": "Financial Support to Startups and Scaleups – Shape Acceleration & Scale Post-Acceleration (Kreatívipari startupok és scale-upok támogatása)",
+   "url": "https://eit-culture-creativity.eu/your-opportunities/calls-funding/financial-support-startups-and-scaleups-shape-acceleration-scale",
    "outcome": "changed-unchecked",
    "detail": "az oldal megváltozott, LLM nélkül nem ellenőrizhető"
   },
@@ -75,68 +107,8 @@
   },
   {
    "kind": "new",
-   "source": "eureka",
-   "url": "https://www.eurekanetwork.org/programmes-and-calls/network-projects/eureka-call-for-disaster-resilience-response-and-recovery-projects-2026",
-   "detail": "új oldal — LLM kulcs nélkül kézi ellenőrzés kell"
-  },
-  {
-   "kind": "new",
-   "source": "eureka",
-   "url": "https://www.eurekanetwork.org/programmes-and-calls/investment-readiness/online-session-with-siemens-healthineers",
-   "detail": "új oldal — LLM kulcs nélkül kézi ellenőrzés kell"
-  },
-  {
-   "kind": "new",
-   "source": "eureka",
-   "url": "https://www.eurekanetwork.org/programmes-and-calls/eureka-clusters/xecs-call-on-quantum-2026",
-   "detail": "új oldal — LLM kulcs nélkül kézi ellenőrzés kell"
-  },
-  {
-   "kind": "new",
-   "source": "nlnet",
-   "url": "https://nlnet.nl/press",
-   "detail": "új oldal — LLM kulcs nélkül kézi ellenőrzés kell"
-  },
-  {
-   "kind": "new",
-   "source": "nlnet",
-   "url": "https://nlnet.nl/contact",
-   "detail": "új oldal — LLM kulcs nélkül kézi ellenőrzés kell"
-  },
-  {
-   "kind": "new",
-   "source": "nlnet",
-   "url": "https://nlnet.nl/propose",
-   "detail": "új oldal — LLM kulcs nélkül kézi ellenőrzés kell"
-  },
-  {
-   "kind": "new",
-   "source": "nlnet",
-   "url": "https://nlnet.nl/opensocial",
-   "detail": "új oldal — LLM kulcs nélkül kézi ellenőrzés kell"
-  },
-  {
-   "kind": "new",
-   "source": "nlnet",
-   "url": "https://nlnet.nl/nren",
-   "detail": "új oldal — LLM kulcs nélkül kézi ellenőrzés kell"
-  },
-  {
-   "kind": "new",
-   "source": "nlnet",
-   "url": "https://nlnet.nl/bluehatsprize",
-   "detail": "új oldal — LLM kulcs nélkül kézi ellenőrzés kell"
-  },
-  {
-   "kind": "new",
-   "source": "nlnet",
-   "url": "https://nlnet.nl/privacy",
-   "detail": "új oldal — LLM kulcs nélkül kézi ellenőrzés kell"
-  },
-  {
-   "kind": "new",
-   "source": "nlnet",
-   "url": "https://nlnet.nl/project",
+   "source": "eit",
+   "url": "https://www.eit.europa.eu/our-activities/opportunities/sme-market-expansion-open-call-2027",
    "detail": "új oldal — LLM kulcs nélkül kézi ellenőrzés kell"
   },
   {
@@ -159,6 +131,20 @@
    "title": "2024-1.2.1-HE_PARTNERS",
    "url": "https://pafi.hu/palyazatok/vallalkozasok",
    "detail": "a(z) pafi.hu — vállalkozások listáján szerepel, nálunk nincs — ellenőrizd a hivatalos oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "haziorvosi es fogorvosi letelepedesi valamint a haziorvosi es fogorvosi praxisjog vasarlasi palyazat",
+   "url": "https://pafi.hu/p/haziorvosi-es-fogorvosi-letelepedesi-valamint-a-haziorvosi-es-fogorvosi-praxisjog-vasarlasi-palyazat",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "legjobb noi munkahely 2025",
+   "url": "https://pafi.hu/p/legjobb-noi-munkahely-2025",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]
 }
