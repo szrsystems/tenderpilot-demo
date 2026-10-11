@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-10T11:50:06.317Z",
+ "updatedAt": "2026-10-11T12:03:22.326Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,21 +7,21 @@
   "palyazatApi": {
    "ok": true,
    "items": 17,
-   "lastOk": "2026-10-10T11:50:06.317Z"
+   "lastOk": "2026-10-11T12:03:22.326Z"
   },
   "euApi": {
    "ok": true,
-   "items": 268,
-   "lastOk": "2026-10-10T11:50:06.317Z"
+   "items": 263,
+   "lastOk": "2026-10-11T12:03:22.326Z"
   }
  },
  "counts": {
-  "total": 437,
+  "total": 432,
   "api": 17,
   "verified": 152,
-  "euAuto": 268,
+  "euAuto": 263,
   "hazai": 53,
-  "eu": 384,
+  "eu": 379,
   "excluded": 20
  },
  "needsReview": [],
@@ -41,34 +41,6 @@
   },
   {
    "id": "v-erasmus-2026-ka210-adu",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-horizon-cl5-2026-10-d2-03",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-horizon-cl5-2026-10-d6-06",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-horizon-cl5-2026-10-d6-09",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-horizon-cl5-2026-10-d6-10",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-digital-2026-ai-data-10-compliance",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-digital-2026-skills-10-edtech",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-digital-2026-ai-piloting-10-screening",
    "why": "lejárt"
   },
   {
@@ -96,8 +68,36 @@
    "why": "lejárt"
   },
   {
+   "id": "v-horizon-cl5-2026-10-d2-03",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2026-10-d6-06",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2026-10-d6-09",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl5-2026-10-d6-10",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
    "id": "v-horizon-eic-2026-step",
    "why": "monitor: visszavonva: A 2026. november 25-i EIC STEP Scale Up beadási határidőt az EU törölte (2026-10 ellenőrzés)."
+  },
+  {
+   "id": "v-digital-2026-ai-data-10-compliance",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-digital-2026-skills-10-edtech",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-digital-2026-ai-piloting-10-screening",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   }
  ],
  "excluded": [
@@ -130,20 +130,20 @@
    "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
   },
   {
-   "code": "IKOP_PLUSZ-2.1.0-23",
-   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
-  },
-  {
    "code": "IKOP_PLUSZ-1.2.0-23",
    "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
   },
   {
-   "code": "GINOP_PLUSZ-2.5.4-25",
-   "why": "Alapkezelői költségtérítés."
+   "code": "IKOP_PLUSZ-2.1.0-23",
+   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
   },
   {
    "code": "DIMOP_PLUSZ-5.1.4-2-26",
    "why": "Alapkezelői kezelési költségtérítés."
+  },
+  {
+   "code": "GINOP_PLUSZ-2.5.4-25",
+   "why": "Alapkezelői költségtérítés."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
@@ -152,10 +152,6 @@
   {
    "code": "DIMOP_PLUSZ-1.2.3/B1-24",
    "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
-  },
-  {
-   "code": "GINOP_PLUSZ-1.4.7-24",
-   "why": "Alapkezelői/közvetítői költségtérítés."
   },
   {
    "code": "KEHOP_PLUSZ-3.1.11-25",
@@ -168,6 +164,10 @@
   {
    "code": "GINOP_PLUSZ-1.4.6-24",
    "why": "Hitelkeret alapkezelőnek (Budapest)."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.7-24",
+   "why": "Alapkezelői/közvetítői költségtérítés."
   },
   {
    "code": "2025-3.1.1-ED",
@@ -184,132 +184,69 @@
  ],
  "changes": [
   {
-   "id": "v-horizon-hlth-2027-02-ind-02-two-stage",
-   "type": "deadline",
-   "from": "2027-04-13",
-   "to": "2027-02-17",
-   "title": "Portable and versatile Point-of-care diagnostics (IA, two-stage) (Hordozható, sokoldalú helyszíni diagnosztika – kétfordulós)"
-  },
-  {
-   "id": "v-horizon-hlth-2027-01-ind-01",
-   "type": "deadline",
-   "from": "2027-04-13",
-   "to": "2027-02-17",
-   "title": "Development of cell-free protein synthesis platforms for discovery and/or production of biologicals (RIA) (Sejtmentes fehérjeszintézis-platformok biológiai gyógyszerekhez)"
-  },
-  {
-   "id": "v-horizon-hlth-2027-01-disease-08",
-   "type": "deadline",
-   "from": "2027-04-13",
-   "to": "2027-02-17",
-   "title": "Development of innovative antimicrobials against pathogens resistant to antimicrobials (RIA) (Innovatív antimikrobiális szerek rezisztens kórokozók ellen)"
-  },
-  {
-   "id": "v-horizon-hlth-2027-03-tool-04",
-   "type": "deadline",
-   "from": "2027-09-22",
-   "to": "2027-09-16",
-   "title": "Virtual Human Twins for integrated clinical decision support in prevention and diagnosis (RIA) (Virtuális emberi ikrek klinikai döntéstámogatáshoz)"
-  },
-  {
-   "id": "eu-HORIZON-CL3-2026-01-SSRI-02",
-   "type": "new",
-   "title": "Demand-led innovation in security"
-  },
-  {
-   "id": "eu-HORIZON-CL3-2026-01-SSRI-03",
-   "type": "new",
-   "title": "Public procurement of innovation for security"
-  },
-  {
-   "id": "eu-HORIZON-RAISE-2026-01-03",
-   "type": "new",
-   "title": "RAISE Doctoral Networks for AI in Science (RAISE pilot)"
-  },
-  {
-   "id": "eu-HORIZON-MSCA-2026-DN-01-01",
-   "type": "new",
-   "title": "MSCA Doctoral Networks 2026"
-  },
-  {
-   "id": "eu-HORIZON-CL5-2026-11-D3-04",
-   "type": "new",
-   "title": "De-risking renewable fuel technologies through transnational pre-commercial procurement of renewable fuel industrial value chains"
-  },
-  {
-   "id": "eu-HORIZON-EIT-2026-PRIZE-WIP-LEADERSHIP",
-   "type": "new",
-   "title": "Women Leadership Category"
-  },
-  {
-   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-42",
-   "type": "new",
-   "title": "Unlocking the potential of academic intellectual assets for industry, SMEs and startups (CSA)"
-  },
-  {
-   "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-47",
-   "type": "new",
-   "title": "Pilot access schemes to Technology Infrastructures for European startups, scaleups and innovative SMEs (CSA)"
-  },
-  {
-   "id": "eu-HORIZON-HLTH-2027-01-ENVHLTH-MISSCLIMA-03",
-   "type": "new",
-   "title": "Tools and technologies to support health adaptation to climate change"
-  },
-  {
-   "id": "eu-HORIZON-BRIDGING-2027-05-01",
-   "type": "new",
-   "title": "Skills for innovative SMEs"
-  },
-  {
-   "id": "eu-HORIZON-MSCA-2027-SE-01-01",
-   "type": "new",
-   "title": "MSCA Staff Exchanges 2027"
-  },
-  {
-   "id": "eu-HORIZON-EIE-2027-01-CONNECT-02",
-   "type": "new",
-   "title": "Reinforcing synergies between experimentation spaces and innovation procurement"
-  },
-  {
-   "id": "eu-HORIZON-MISS-2027-02-CANCER-05",
-   "type": "new",
-   "title": "Pre-commercial procurement of affordable solutions for healthcare systems in the areas of cancer technologies, cancer medical devices, or cancer medicines"
-  },
-  {
-   "id": "eu-HORIZON-MISS-2027-04-CIT-05",
-   "type": "new",
-   "title": "Boosting the transformation towards climate-neutral cities, the net-zero economy and open strategic autonomy through Pre-Commercial Procurement (PCP)"
-  },
-  {
-   "id": "eu-HORIZON-CL3-2027-01-SSRI-03",
-   "type": "new",
-   "title": "Demand-led innovation in security"
-  },
-  {
-   "id": "eu-HORIZON-MSCA-2027-DN-01-01",
-   "type": "new",
-   "title": "MSCA Doctoral Networks 2027"
-  },
-  {
    "id": "eu-HORIZON-NEB-2026-01-PARTICIPATION-03",
-   "type": "removed",
+   "type": "new",
    "title": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being"
   },
   {
    "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-06",
-   "type": "removed",
+   "type": "new",
    "title": "Identifying user-focused solutions to support news media freedom"
   },
   {
    "id": "eu-HORIZON-CL2-2027-01-HERITAGE-07",
-   "type": "removed",
+   "type": "new",
    "title": "Societal impact of cultural heritage"
   },
   {
    "id": "eu-HORIZON-CL2-2027-01-TRANSFO-06",
-   "type": "removed",
+   "type": "new",
    "title": "Closing the learning gap: uncovering causes and effective policy interventions for declining youth skills in mathematics, reading, and science"
+  },
+  {
+   "id": "eu-cs-45962345",
+   "type": "removed",
+   "title": "EU-wide network of pilot plants and testing facilities, improving SMEs and start-ups' access to scale-up — kaszkád (FSTP) nyílt felhívás"
+  },
+  {
+   "id": "eu-HORIZON-HLTH-2027-01-STAYHLTH-01",
+   "type": "removed",
+   "title": "Addressing disabilities through the life course to support independent living and inclusion"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-08",
+   "type": "removed",
+   "title": "Global Human Rights and EU values"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-04",
+   "type": "removed",
+   "title": "Culture, heritage and creative industries for health and well-being"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-06",
+   "type": "removed",
+   "title": "Future-proofing sustainable cultural tourism"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-08",
+   "type": "removed",
+   "title": "Safeguarding & transmission of intangible cultural heritage"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-05",
+   "type": "removed",
+   "title": "Development aid and democratic governance"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-05",
+   "type": "removed",
+   "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-05",
+   "type": "removed",
+   "title": "The effective use of artificial intelligence in learning environments in pre-primary and primary education"
   }
  ]
 }

@@ -1,38 +1,6 @@
 {
- "updatedAt": "2026-10-10",
+ "updatedAt": "2026-10-11",
  "items": [
-  {
-   "kind": "recheck",
-   "id": "v-horizon-cl5-2026-10-d2-03",
-   "title": "Integrated Production and Product Development for Next-Generation Lithium-based Batteries for Mobility (IA) (Következő generációs lítium-akkumulátorok integrált gyártásfejlesztése)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-10-d2-03",
-   "outcome": "closed",
-   "detail": "EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-horizon-cl5-2026-10-d6-06",
-   "title": "Increasing competitiveness and resilience of multimodal freight transport and logistics (IA) (Multimodális áruszállítás és logisztika versenyképessége)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-10-d6-06",
-   "outcome": "closed",
-   "detail": "EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-horizon-cl5-2026-10-d6-09",
-   "title": "Road Safety and resilience of rural areas (IA) (Közúti biztonság és vidéki térségek rezilienciája)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-10-d6-09",
-   "outcome": "closed",
-   "detail": "EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-horizon-cl5-2026-10-d6-10",
-   "title": "Enhanced resilience in multimodal passenger transport through digital technologies and AI (IA) (Multimodális személyszállítás rezilienciája digitális és MI-eszközökkel)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-10-d6-10",
-   "outcome": "closed",
-   "detail": "EU portál: nincs jövőbeli határidő"
-  },
   {
    "kind": "deadline-changed",
    "id": "v-horizon-hlth-2027-02-ind-02-two-stage",
@@ -67,33 +35,9 @@
   },
   {
    "kind": "recheck",
-   "id": "v-digital-2026-ai-data-10-compliance",
-   "title": "Digital solutions for regulatory compliance through data (Adatalapú digitális megoldások a szabályozási megfeleléshez)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/digital-2026-ai-data-10-compliance",
-   "outcome": "closed",
-   "detail": "EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-digital-2026-skills-10-edtech",
-   "title": "EdTech Accelerator (EdTech gyorsítóprogram)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/digital-2026-skills-10-edtech",
-   "outcome": "closed",
-   "detail": "EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-digital-2026-ai-piloting-10-screening",
-   "title": "Apply AI: Piloting AI-based image screening in medical centres (MI-alapú képi szűrés pilotja egészségügyi központokban)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/digital-2026-ai-piloting-10-screening",
-   "outcome": "closed",
-   "detail": "EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-eitcc-shape-scale-2027",
-   "title": "Financial Support to Startups and Scaleups – Shape Acceleration & Scale Post-Acceleration (Kreatívipari startupok és scale-upok támogatása)",
-   "url": "https://eit-culture-creativity.eu/your-opportunities/calls-funding/financial-support-startups-and-scaleups-shape-acceleration-scale",
+   "id": "v-eitfood-poc-cofin-2026",
+   "title": "Proof-of-Concept Co-Financing Instrument (Agrárélelmiszer-startupok pilot projektjeinek társfinanszírozása)",
+   "url": "https://www.eitfood.eu/open-calls/proof-of-concept-co-financing-instrument-2",
    "outcome": "changed-unchecked",
    "detail": "az oldal megváltozott, LLM nélkül nem ellenőrizhető"
   },
@@ -106,10 +50,12 @@
    "detail": "az oldal megváltozott, LLM nélkül nem ellenőrizhető"
   },
   {
-   "kind": "new",
-   "source": "eit",
-   "url": "https://www.eit.europa.eu/our-activities/opportunities/sme-market-expansion-open-call-2027",
-   "detail": "új oldal — LLM kulcs nélkül kézi ellenőrzés kell"
+   "kind": "recheck",
+   "id": "v-interreg-huhr-b-light-2-call1",
+   "title": "Interreg Magyarország–Horvátország B Light 2 – 1. felhívás KKV-k határon átnyúló együttműködésére",
+   "url": "https://investinbaranya.hu/en/b-light/",
+   "outcome": "changed-unchecked",
+   "detail": "az oldal megváltozott, LLM nélkül nem ellenőrizhető"
   },
   {
    "kind": "benchmark-code",
@@ -135,15 +81,15 @@
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "haziorvosi es fogorvosi letelepedesi valamint a haziorvosi es fogorvosi praxisjog vasarlasi palyazat",
-   "url": "https://pafi.hu/p/haziorvosi-es-fogorvosi-letelepedesi-valamint-a-haziorvosi-es-fogorvosi-praxisjog-vasarlasi-palyazat",
+   "title": "kutatoi osztondijak 2",
+   "url": "https://pafi.hu/p/kutatoi-osztondijak-2",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "legjobb noi munkahely 2025",
-   "url": "https://pafi.hu/p/legjobb-noi-munkahely-2025",
+   "title": "fulbright oktatoi osztondijak",
+   "url": "https://pafi.hu/p/fulbright-oktatoi-osztondijak",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]

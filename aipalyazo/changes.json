@@ -412,6 +412,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Development aid and democratic governance"
+  },
+  {
+   "date": "2026-10-11",
+   "type": "removed",
+   "title": "Development aid and democratic governance"
   }
  ],
  "eu-HORIZON-CL2-2027-01-DEMOCRACY-06": [
@@ -423,6 +428,11 @@
   {
    "date": "2026-10-10",
    "type": "removed",
+   "title": "Identifying user-focused solutions to support news media freedom"
+  },
+  {
+   "date": "2026-10-11",
+   "type": "new",
    "title": "Identifying user-focused solutions to support news media freedom"
   }
  ],
@@ -438,6 +448,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Global Human Rights and EU values"
+  },
+  {
+   "date": "2026-10-11",
+   "type": "removed",
+   "title": "Global Human Rights and EU values"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-03": [
@@ -452,6 +467,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Culture, heritage and creative industries for health and well-being"
+  },
+  {
+   "date": "2026-10-11",
+   "type": "removed",
+   "title": "Culture, heritage and creative industries for health and well-being"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-05": [
@@ -459,12 +479,22 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
+  },
+  {
+   "date": "2026-10-11",
+   "type": "removed",
+   "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-06": [
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Future-proofing sustainable cultural tourism"
+  },
+  {
+   "date": "2026-10-11",
+   "type": "removed",
    "title": "Future-proofing sustainable cultural tourism"
   }
  ],
@@ -478,12 +508,22 @@
    "date": "2026-10-10",
    "type": "removed",
    "title": "Societal impact of cultural heritage"
+  },
+  {
+   "date": "2026-10-11",
+   "type": "new",
+   "title": "Societal impact of cultural heritage"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-08": [
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Safeguarding & transmission of intangible cultural heritage"
+  },
+  {
+   "date": "2026-10-11",
+   "type": "removed",
    "title": "Safeguarding & transmission of intangible cultural heritage"
   }
  ],
@@ -520,6 +560,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "The effective use of artificial intelligence in learning environments in pre-primary and primary education"
+  },
+  {
+   "date": "2026-10-11",
+   "type": "removed",
+   "title": "The effective use of artificial intelligence in learning environments in pre-primary and primary education"
   }
  ],
  "eu-HORIZON-CL2-2027-01-TRANSFO-06": [
@@ -531,6 +576,11 @@
   {
    "date": "2026-10-10",
    "type": "removed",
+   "title": "Closing the learning gap: uncovering causes and effective policy interventions for declining youth skills in mathematics, reading, and science"
+  },
+  {
+   "date": "2026-10-11",
+   "type": "new",
    "title": "Closing the learning gap: uncovering causes and effective policy interventions for declining youth skills in mathematics, reading, and science"
   }
  ],
@@ -2071,6 +2121,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Addressing disabilities through the life course to support independent living and inclusion"
+  },
+  {
+   "date": "2026-10-11",
+   "type": "removed",
+   "title": "Addressing disabilities through the life course to support independent living and inclusion"
   }
  ],
  "eu-HORIZON-HLTH-2027-02-DISEASE-01-two-stage": [
@@ -2636,6 +2691,11 @@
    "date": "2026-10-10",
    "type": "removed",
    "title": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being"
+  },
+  {
+   "date": "2026-10-11",
+   "type": "new",
+   "title": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being"
   }
  ],
  "eu-HORIZON-NEB-2026-01-REGEN-01": [
@@ -2825,6 +2885,13 @@
    "title": "EU support to Stakeholders to improve measurement of food waste and help implement food waste prevention in their operations and organisation - 2026-2027"
   }
  ],
+ "eu-cs-45962345": [
+  {
+   "date": "2026-10-11",
+   "type": "removed",
+   "title": "EU-wide network of pilot plants and testing facilities, improving SMEs and start-ups' access to scale-up — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
  "pg-GINOP_PLUSZ-1.1.6-25": [
   {
    "date": "2026-10-08",
@@ -2905,6 +2972,10 @@
  "v-eitfood-poc-cofin-2026": [
   {
    "date": "2026-10-09",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-11",
    "type": "page"
   }
  ],
@@ -3587,6 +3658,10 @@
    "date": "2026-10-09",
    "type": "new",
    "title": "Interreg Magyarország–Horvátország B Light 2 – 1. felhívás KKV-k határon átnyúló együttműködésére"
+  },
+  {
+   "date": "2026-10-11",
+   "type": "page"
   }
  ],
  "v-ivf-visegrad-grants-2026-10": [
@@ -3629,6 +3704,10 @@
   },
   {
    "date": "2026-10-10",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-11",
    "type": "page"
   }
  ],
