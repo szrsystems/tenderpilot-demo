@@ -417,6 +417,11 @@
    "date": "2026-10-11",
    "type": "removed",
    "title": "Development aid and democratic governance"
+  },
+  {
+   "date": "2026-10-12",
+   "type": "new",
+   "title": "Development aid and democratic governance"
   }
  ],
  "eu-HORIZON-CL2-2027-01-DEMOCRACY-06": [
@@ -453,6 +458,11 @@
    "date": "2026-10-11",
    "type": "removed",
    "title": "Global Human Rights and EU values"
+  },
+  {
+   "date": "2026-10-12",
+   "type": "new",
+   "title": "Global Human Rights and EU values"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-03": [
@@ -472,6 +482,11 @@
    "date": "2026-10-11",
    "type": "removed",
    "title": "Culture, heritage and creative industries for health and well-being"
+  },
+  {
+   "date": "2026-10-12",
+   "type": "new",
+   "title": "Culture, heritage and creative industries for health and well-being"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-05": [
@@ -484,6 +499,11 @@
    "date": "2026-10-11",
    "type": "removed",
    "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
+  },
+  {
+   "date": "2026-10-12",
+   "type": "new",
+   "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-06": [
@@ -495,6 +515,11 @@
   {
    "date": "2026-10-11",
    "type": "removed",
+   "title": "Future-proofing sustainable cultural tourism"
+  },
+  {
+   "date": "2026-10-12",
+   "type": "new",
    "title": "Future-proofing sustainable cultural tourism"
   }
  ],
@@ -524,6 +549,11 @@
   {
    "date": "2026-10-11",
    "type": "removed",
+   "title": "Safeguarding & transmission of intangible cultural heritage"
+  },
+  {
+   "date": "2026-10-12",
+   "type": "new",
    "title": "Safeguarding & transmission of intangible cultural heritage"
   }
  ],
@@ -564,6 +594,11 @@
   {
    "date": "2026-10-11",
    "type": "removed",
+   "title": "The effective use of artificial intelligence in learning environments in pre-primary and primary education"
+  },
+  {
+   "date": "2026-10-12",
+   "type": "new",
    "title": "The effective use of artificial intelligence in learning environments in pre-primary and primary education"
   }
  ],
@@ -2126,6 +2161,11 @@
    "date": "2026-10-11",
    "type": "removed",
    "title": "Addressing disabilities through the life course to support independent living and inclusion"
+  },
+  {
+   "date": "2026-10-12",
+   "type": "new",
+   "title": "Addressing disabilities through the life course to support independent living and inclusion"
   }
  ],
  "eu-HORIZON-HLTH-2027-02-DISEASE-01-two-stage": [
@@ -2961,6 +3001,10 @@
    "date": "2026-09-28",
    "type": "new",
    "title": "EIT Culture & Creativity Innovation Projects 2026 (Kreatívipari innovációs projektek – divat, audiovizuális média, építészet)"
+  },
+  {
+   "date": "2026-10-12",
+   "type": "page"
   }
  ],
  "v-eitcc-shape-scale-2027": [
@@ -2976,6 +3020,10 @@
   },
   {
    "date": "2026-10-11",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-12",
    "type": "page"
   }
  ],
@@ -3018,6 +3066,12 @@
    "date": "2026-10-09",
    "type": "new",
    "title": "EXIM Zöld Beruházási Hitel (Demján Sándor Program)"
+  }
+ ],
+ "v-fierce-oc2": [
+  {
+   "date": "2026-10-12",
+   "type": "page"
   }
  ],
  "v-garantiqa-investeu": [
@@ -3708,6 +3762,22 @@
   },
   {
    "date": "2026-10-11",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-12",
+   "type": "page"
+  }
+ ],
+ "v-mfb-agrar-forgoeszkoz-hitelprogram-2025": [
+  {
+   "date": "2026-10-12",
+   "type": "page"
+  }
+ ],
+ "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025": [
+  {
+   "date": "2026-10-12",
    "type": "page"
   }
  ],

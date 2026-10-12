@@ -1,6 +1,30 @@
 {
- "updatedAt": "2026-10-11",
+ "updatedAt": "2026-10-12",
  "items": [
+  {
+   "kind": "recheck",
+   "id": "v-mfb-agrar-forgoeszkoz-hitelprogram-2025",
+   "title": "MFB Agrár Forgóeszköz Hitelprogram 2025",
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-agrar-forgoeszkoz-hitelprogram-2025-t266-masolat-t266-p267",
+   "outcome": "changed-unchecked",
+   "detail": "az oldal megváltozott, LLM nélkül nem ellenőrizhető"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025",
+   "title": "MFB Élelmiszeripari Forgóeszköz Hitelprogram 2025",
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025-t259-masolat-t259-p260",
+   "outcome": "changed-unchecked",
+   "detail": "az oldal megváltozott, LLM nélkül nem ellenőrizhető"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-fierce-oc2",
+   "title": "FIERCE 2nd Open Call – space-enabled green solutions (Űradat-alapú zöld megoldások KKV-knak)",
+   "url": "https://2nd-financing.project-fierce.eu/",
+   "outcome": "changed-unchecked",
+   "detail": "az oldal megváltozott, LLM nélkül nem ellenőrizhető"
+  },
   {
    "kind": "deadline-changed",
    "id": "v-horizon-hlth-2027-02-ind-02-two-stage",
@@ -51,11 +75,17 @@
   },
   {
    "kind": "recheck",
-   "id": "v-interreg-huhr-b-light-2-call1",
-   "title": "Interreg Magyarország–Horvátország B Light 2 – 1. felhívás KKV-k határon átnyúló együttműködésére",
-   "url": "https://investinbaranya.hu/en/b-light/",
+   "id": "v-eitcc-innovation-projects-2026",
+   "title": "EIT Culture & Creativity Innovation Projects 2026 (Kreatívipari innovációs projektek – divat, audiovizuális média, építészet)",
+   "url": "https://eit-culture-creativity.eu/your-opportunities/calls-funding/innovation-projects",
    "outcome": "changed-unchecked",
    "detail": "az oldal megváltozott, LLM nélkül nem ellenőrizhető"
+  },
+  {
+   "kind": "new",
+   "source": "eit",
+   "url": "https://www.eit.europa.eu/our-activities/opportunities/girls-go-stem-teacher-awards-2026",
+   "detail": "új oldal — LLM kulcs nélkül kézi ellenőrzés kell"
   },
   {
    "kind": "benchmark-code",
@@ -81,15 +111,15 @@
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "kutatoi osztondijak 2",
-   "url": "https://pafi.hu/p/kutatoi-osztondijak-2",
+   "title": "kisprojekt alap palyazati felhivas husk spf 2601",
+   "url": "https://pafi.hu/p/kisprojekt-alap-palyazati-felhivas-husk-spf-2601",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "fulbright oktatoi osztondijak",
-   "url": "https://pafi.hu/p/fulbright-oktatoi-osztondijak",
+   "title": "parklab dugattyus studioido",
+   "url": "https://pafi.hu/p/parklab-dugattyus-studioido",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]
