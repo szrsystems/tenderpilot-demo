@@ -22,17 +22,6 @@
   "addedAt": "2026-09-28"
  },
  {
-  "id": "exp-kap-fiatal-erdok-allomanynevelese-2",
-  "title": "Fiatal erdők állománynevelésének támogatása (2. kör)",
-  "programme": "KAP Stratégiai Terv (vidékfejlesztés)",
-  "expectedWindow": "2026 Q4",
-  "audience": "Erdőgazdálkodók",
-  "amountHint": "Tervezett keret: 2 Mrd Ft",
-  "source": "https://kap.gov.hu/palyazatiutemterv",
-  "sourceNote": "A KAP pályázati menetrend (hatályos 2026.09.09-től) szerint a második kör meghirdetése 2026. III–IV. negyedévre tervezett; kedvezményezett: erdőgazdálkodók.",
-  "addedAt": "2026-09-28"
- },
- {
   "id": "exp-kap-erdokarok-megelozese-2",
   "title": "Erdőkárok megelőzésének támogatása (2. kör)",
   "programme": "KAP Stratégiai Terv (vidékfejlesztés)",

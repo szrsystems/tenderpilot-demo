@@ -138,3 +138,43 @@ test('IndexNow: today\'s pages + daily pages; llms.txt lists hubs', () => {
   assert.match(t, /^# AIpályázó/);
   assert.match(t, /tema\/kkv\.html\): 2 nyitott/);
 });
+
+import { GUIDES, renderGuide, renderGuidesIndex, guidesFor } from './build-pages.mjs';
+test('guides: valid content, JSON-LD, hub links only to existing hubs, in sitemap and llms.txt', () => {
+  const slugs = new Set();
+  for (const x of GUIDES) {
+    assert.match(x.slug, /^[a-z0-9-]+$/); assert.ok(!slugs.has(x.slug)); slugs.add(x.slug);
+    assert.match(x.updated, /^\d{4}-\d{2}-\d{2}$/);
+    assert.ok(x.description.length <= 160 && x.description.length >= 80, x.slug + ' description length');
+    assert.ok((x.seoTitle || x.title).length <= 60, x.slug + ' title length');
+    assert.ok(x.sources.length >= 1 && x.sources.every(([, u]) => /^https:\/\//.test(u)));
+    assert.ok(x.faq.length >= 2);
+  }
+  const open = [
+    { id: 'a', title: 'A', scope: 'hu', type: 'grant', sizeClasses: ['mikrovállalkozás'], deadline: '2099-01-01' },
+    { id: 'b', title: 'B', scope: 'eu', type: 'grant', singleApplicant: true },
+  ];
+  const hubs = [{ slug: 'kkv', items: [] }];
+  for (const x of GUIDES) {
+    const html = renderGuide(x, { open, hubs, today: '2026-10-13' });
+    const blocks = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map((m) => JSON.parse(m[1]));
+    const types = blocks.flat().map((b) => b['@type']);
+    assert.deepEqual(types, ['Article', 'FAQPage', 'BreadcrumbList']);
+    assert.match(html, new RegExp(`<link rel="canonical" href="https://aipalyazo.hu/aipalyazo/utmutato/${x.slug}.html">`));
+    // only hubs that exist are linked
+    for (const m of html.matchAll(/palyazat\/tema\/([a-z0-9-]+)\.html/g)) assert.equal(m[1], 'kkv');
+    assert.ok(!/undefined|NaN/.test(html), x.slug + ' has no undefined');
+  }
+  assert.match(renderGuidesIndex(), /CollectionPage/);
+  // grant pages link 1–3 guides, EU calls get the EU guide
+  assert.ok(guidesFor(open[1]).some((x) => x.slug === 'eu-palyazatok-magyar-cegeknek'));
+  assert.ok(guidesFor(open[0]).some((x) => x.slug === 'kkv-minosites'));
+  assert.ok(guidesFor({ type: 'loan', scope: 'hu' }).some((x) => x.slug === 'vissza-nem-teritendo-vagy-hitel'));
+  const grants = Array.from({ length: 3 }, (_, i) => ({ id: 'g' + i, title: 'G' + i, scope: 'hu', type: 'grant', deadline: '2099-01-01' }));
+  const { files } = buildAll({ grants, today: '2026-10-13' });
+  for (const x of GUIDES) assert.ok(files.has(`utmutato/${x.slug}.html`));
+  assert.ok(files.has('utmutato/index.html'));
+  assert.match(files.get('sitemap.xml'), /utmutato\/hogyan-palyazzunk\.html/);
+  assert.match(files.get(`palyazat/${[...files.keys()].find((k) => /^palyazat\/g0/.test(k)).slice(9)}`), /\.\.\/utmutato\/hogyan-palyazzunk\.html/);
+  assert.match(buildLlmsTxt({ open: 3, hubs: [], today: '2026-10-13' }), /## Útmutatók[\s\S]*utmutato\/kkv-minosites\.html/);
+});

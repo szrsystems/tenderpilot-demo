@@ -56,6 +56,9 @@
 .site-foot .brand-p{margin-top:var(--s3)}
 .faq-list{margin:0;border-top:1px solid var(--line)}.faq-list dt{font-weight:600;color:var(--ink);padding-top:12px}.faq-list dd{margin:4px 0 0;padding-bottom:12px;border-bottom:1px solid var(--line);color:var(--ink-2);overflow-wrap:anywhere}
 .related{margin:0;padding-left:18px}.related li{margin:6px 0}
+.guide{max-width:760px}.guide h2{margin-top:var(--s6)}.guide .lead{font-size:18px;color:var(--ink)}.guide .live{margin:var(--s4) 0}.guide section ul,.guide section ol{padding-left:20px}.guide section li{margin:6px 0}.guide .facts th{width:38%}
+.sources{padding-left:18px;overflow-wrap:anywhere}.sources li{margin:6px 0}
+.guide-list{list-style:none;padding:0;margin:var(--s5) 0;max-width:760px}.guide-list li{padding:var(--s4) 0;border-bottom:1px solid var(--line)}.guide-list a{font-weight:600;font-size:18px}.guide-list p{margin:6px 0 0;color:var(--ink-2)}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"KAP Stratégiai Terv pályázatok (agrár és vidékfejlesztés)","url":"https://aipalyazo.hu/aipalyazo/palyazat/tema/kap.html","description":"A Közös Agrárpolitika (KAP) Stratégiai Terv vidékfejlesztési felhívásait a KAP Nemzeti Irányító Hatóság hirdeti meg a kap.gov.hu oldalon.","inLanguage":"hu","isPartOf":{"@type":"WebSite","name":"AIpályázó","url":"https://aipalyazo.hu/aipalyazo/index.html"},"mainEntity":{"@type":"ItemList","numberOfItems":11,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://aipalyazo.hu/aipalyazo/palyazat/kap-rd06-1-25.html","name":"Generációs megújulás gazdaságátvevő támogatásával"},{"@type":"ListItem","position":2,"url":"https://aipalyazo.hu/aipalyazo/palyazat/a-kap-rd46-1-25.html","name":"Működő minőségrendszerhez történő csatlakozás támogatása"},{"@type":"ListItem","position":3,"url":"https://aipalyazo.hu/aipalyazo/palyazat/a-kap-rd42a-1-26.html","name":"Vidéki infrastruktúra fejlesztés zártkerti területeken"},{"@type":"ListItem","position":4,"url":"https://aipalyazo.hu/aipalyazo/palyazat/kap-rd38-rd39-1-25.html","name":"Erdőtelepítés és fásítás támogatása"},{"@type":"ListItem","position":5,"url":"https://aipalyazo.hu/aipalyazo/palyazat/kap-rd44-1-26.html","name":"Termelői csoportok, termelői szervezetek támogatása"},{"@type":"ListItem","position":6,"url":"https://aipalyazo.hu/aipalyazo/palyazat/kap-rd01a-rd12-2-25.html","name":"Fagykárt szenvedett ültetvények cseréjének támogatása"},{"@type":"ListItem","position":7,"url":"https://aipalyazo.hu/aipalyazo/palyazat/kap-rd41-3-25.html","name":"Az erdei ökoszisztémák klímarezilienciájának, alkalmazkodóképességének és környezeti értékének növelése"},{"@type":"ListItem","position":8,"url":"https://aipalyazo.hu/aipalyazo/palyazat/a-kap-rd09a-2-26.html","name":"Mezőgazdasági kisüzemek beruházási támogatása"},{"@type":"ListItem","position":9,"url":"https://aipalyazo.hu/aipalyazo/palyazat/a-kap-rd40-2-26.html","name":"Fiatal erdők állománynevelésének támogatása"},{"@type":"ListItem","position":10,"url":"https://aipalyazo.hu/aipalyazo/palyazat/a-kap-rd41-4-26.html","name":"Az erdőpotenciált veszélyeztető biotikus és abiotikus károk megelőzése"},{"@type":"ListItem","position":11,"url":"https://aipalyazo.hu/aipalyazo/palyazat/kap-rd01a-rd01c-rd01d-rd01e-rd02-rd04a-rd04b-rd12-1-25.html","name":"A KAP Stratégiai Terv felhívásai alapján támogatott beruházások megvalósításához kapcsolódóan kamat és intézményi kezességvállalási díj támogatása"}]}}</script>
 </head>
@@ -64,7 +67,7 @@
 <header class="site-head">
   <div class="wrap">
     <a class="brand" href="../../index.html" aria-label="AIpályázó főoldal"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#12844a"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a>
-    <nav class="site-nav" aria-label="Fő navigáció"><a href="../../palyazat/index.html" aria-current="page">Nyitott pályázatok</a><a href="../../index.html#hogyan">Hogyan működik</a></nav>
+    <nav class="site-nav" aria-label="Fő navigáció"><a href="../../palyazat/index.html" aria-current="page">Nyitott pályázatok</a><a href="../../utmutato/index.html">Útmutatók</a><a href="../../index.html#hogyan">Hogyan működik</a></nav>
     <div class="head-actions">
       <a class="btn btn-quiet btn-sm hide-sm" href="../../login.html" data-guest>Belépés</a>
       <a class="btn btn-primary btn-sm" href="../../signup.html" data-guest>Regisztráció</a>
@@ -72,7 +75,7 @@
       <button class="btn btn-ghost btn-sm head-menu" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     </div>
   </div>
-  <div class="wrap"><nav id="mobile-nav" class="mobile-nav" aria-label="Mobil navigáció"><a href="../../palyazat/index.html">Nyitott pályázatok</a><a href="../../index.html#hogyan">Hogyan működik</a><a href="../../login.html">Belépés</a></nav></div>
+  <div class="wrap"><nav id="mobile-nav" class="mobile-nav" aria-label="Mobil navigáció"><a href="../../palyazat/index.html">Nyitott pályázatok</a><a href="../../utmutato/index.html">Útmutatók</a><a href="../../index.html#hogyan">Hogyan működik</a><a href="../../login.html">Belépés</a></nav></div>
 </header>
 <main id="main"><div class="wrap">
 <nav class="crumbs" aria-label="Morzsamenü"><a href="../../index.html">AIpályázó</a> / <a href="../index.html">Pályázatok</a> / Programok</nav>
@@ -85,7 +88,7 @@
   <div class="wrap">
     <div class="cols">
       <div><a class="brand" href="../../index.html"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#12844a"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a><p class="brand-p">Ingyenes pályázatfigyelő magyar vállalkozásoknak. Tájékoztató szolgáltatás: beadás előtt mindig a hivatalos felhívás az irányadó.</p></div>
-      <div><h4>Pályázatok</h4><ul><li><a href="../../palyazat/index.html">Nyitott felhívások</a></li><li><a href="../../palyazat/index.html#temak">Témák és programok</a></li><li><a href="../../portal.html">Portál</a></li></ul></div>
+      <div><h4>Pályázatok</h4><ul><li><a href="../../palyazat/index.html">Nyitott felhívások</a></li><li><a href="../../palyazat/index.html#temak">Témák és programok</a></li><li><a href="../../utmutato/index.html">Útmutatók</a></li><li><a href="../../portal.html">Portál</a></li></ul></div>
       <div><h4>Rólunk</h4><ul><li><a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a></li></ul></div>
       <div><h4>Jogi</h4><ul><li><a href="../../impresszum.html">Impresszum</a></li><li><a href="../../adatvedelem.html">Adatkezelés</a></li><li><a href="../../aszf.html">ÁSZF</a></li></ul></div>
     </div>

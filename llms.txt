@@ -13,6 +13,13 @@
 - [Gyors jogosultság-ellenőrzés](https://aipalyazo.hu/aipalyazo/index.html#ellenorzes): 4 adat alapján, regisztráció nélkül
 - [Oldaltérkép](https://aipalyazo.hu/aipalyazo/sitemap.xml)
 
+## Útmutatók (forrásokkal)
+- [Mikro-, kis- vagy középvállalkozás? A KKV-minősítés határai](https://aipalyazo.hu/aipalyazo/utmutato/kkv-minosites.html): Mikrovállalkozás: 10 főnél kevesebb, legfeljebb 2 millió euró árbevétel vagy mérlegfőösszeg. A kis- és középvállalkozás határai, kapcsolt cégek.
+- [Mi az a de minimis támogatás? 300 000 eurós keret három év alatt](https://aipalyazo.hu/aipalyazo/utmutato/de-minimis-tamogatas.html): A de minimis támogatás felső határa 2024 óta 300 000 euró vállalkozásonként, bármely három év alatt. Kire vonatkozik, mi a kivétel.
+- [Vissza nem térítendő támogatás vagy kedvezményes hitel? A különbség](https://aipalyazo.hu/aipalyazo/utmutato/vissza-nem-teritendo-vagy-hitel.html): A vissza nem térítendő támogatást nem kell visszafizetni, a kedvezményes hitelt igen, de olcsóbban. Mikor melyik éri meg?
+- [Hogyan pályázzunk? A pályázás lépései vállalkozásoknak](https://aipalyazo.hu/aipalyazo/utmutato/hogyan-palyazzunk.html): A pályázás lépései: felhívás, jogosultság, költségvetés, elektronikus beadás a palyazat.gov.hu-n, hiánypótlás, döntés, elszámolás.
+- [EU-s pályázatok magyar cégeknek: Horizon Europe, EIC, konzorcium](https://aipalyazo.hu/aipalyazo/utmutato/eu-palyazatok-magyar-cegeknek.html): EU-s pályázatok (Horizon Europe, EIC, LIFE) a Funding & Tenders portálon, többnyire konzorciumban. Kinek érdemes, hogyan induljon.
+
 ## Témák, programok, cégtípusok és régiók
 - [GINOP Plusz pályázatok és hitelek](https://aipalyazo.hu/aipalyazo/palyazat/tema/ginop-plusz.html): 8 nyitott felhívás
 - [DIMOP Plusz pályázatok és hitelek](https://aipalyazo.hu/aipalyazo/palyazat/tema/dimop-plusz.html): 3 nyitott felhívás

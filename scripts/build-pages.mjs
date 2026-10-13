@@ -17,6 +17,7 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync, unlinkSync, exists
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { createRequire } from 'node:module';
+import { GUIDES } from './guides.mjs';
 const Cards = createRequire(import.meta.url)('../aipalyazo/lib/cards.js');
 const todayHU = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Budapest' });
 
@@ -103,9 +104,12 @@ const PAGE_CSS = `
 .site-foot .brand-p{margin-top:var(--s3)}
 .faq-list{margin:0;border-top:1px solid var(--line)}.faq-list dt{font-weight:600;color:var(--ink);padding-top:12px}.faq-list dd{margin:4px 0 0;padding-bottom:12px;border-bottom:1px solid var(--line);color:var(--ink-2);overflow-wrap:anywhere}
 .related{margin:0;padding-left:18px}.related li{margin:6px 0}
+.guide{max-width:760px}.guide h2{margin-top:var(--s6)}.guide .lead{font-size:18px;color:var(--ink)}.guide .live{margin:var(--s4) 0}.guide section ul,.guide section ol{padding-left:20px}.guide section li{margin:6px 0}.guide .facts th{width:38%}
+.sources{padding-left:18px;overflow-wrap:anywhere}.sources li{margin:6px 0}
+.guide-list{list-style:none;padding:0;margin:var(--s5) 0;max-width:760px}.guide-list li{padding:var(--s4) 0;border-bottom:1px solid var(--line)}.guide-list a{font-weight:600;font-size:18px}.guide-list p{margin:6px 0 0;color:var(--ink-2)}
 `;
 
-function shell({ title, description, canonical, noindex, body, jsonld, depth = 1 }) {
+function shell({ title, description, canonical, noindex, body, jsonld, depth = 1, current = 'palyazat', ogType = 'website' }) {
   const up = '../'.repeat(depth);
   return `<!DOCTYPE html>
 <html lang="hu">
@@ -117,7 +121,7 @@ function shell({ title, description, canonical, noindex, body, jsonld, depth = 1
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canonical" href="${esc(canonical)}">`}
-<meta property="og:type" content="website">
+<meta property="og:type" content="${ogType}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(canonical)}">
@@ -139,7 +143,7 @@ ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(
 <header class="site-head">
   <div class="wrap">
     <a class="brand" href="${up}index.html" aria-label="AIpályázó főoldal">${MARK}<span><b>AI</b>pályázó</span></a>
-    <nav class="site-nav" aria-label="Fő navigáció"><a href="${up}palyazat/index.html" aria-current="page">Nyitott pályázatok</a><a href="${up}index.html#hogyan">Hogyan működik</a></nav>
+    <nav class="site-nav" aria-label="Fő navigáció"><a href="${up}palyazat/index.html"${current === 'palyazat' ? ' aria-current="page"' : ''}>Nyitott pályázatok</a><a href="${up}utmutato/index.html"${current === 'utmutato' ? ' aria-current="page"' : ''}>Útmutatók</a><a href="${up}index.html#hogyan">Hogyan működik</a></nav>
     <div class="head-actions">
       <a class="btn btn-quiet btn-sm hide-sm" href="${up}login.html" data-guest>Belépés</a>
       <a class="btn btn-primary btn-sm" href="${up}signup.html" data-guest>Regisztráció</a>
@@ -147,7 +151,7 @@ ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(
       <button class="btn btn-ghost btn-sm head-menu" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     </div>
   </div>
-  <div class="wrap"><nav id="mobile-nav" class="mobile-nav" aria-label="Mobil navigáció"><a href="${up}palyazat/index.html">Nyitott pályázatok</a><a href="${up}index.html#hogyan">Hogyan működik</a><a href="${up}login.html">Belépés</a></nav></div>
+  <div class="wrap"><nav id="mobile-nav" class="mobile-nav" aria-label="Mobil navigáció"><a href="${up}palyazat/index.html">Nyitott pályázatok</a><a href="${up}utmutato/index.html">Útmutatók</a><a href="${up}index.html#hogyan">Hogyan működik</a><a href="${up}login.html">Belépés</a></nav></div>
 </header>
 <main id="main"><div class="wrap">
 ${body}
@@ -156,7 +160,7 @@ ${body}
   <div class="wrap">
     <div class="cols">
       <div><a class="brand" href="${up}index.html">${MARK}<span><b>AI</b>pályázó</span></a><p class="brand-p">Ingyenes pályázatfigyelő magyar vállalkozásoknak. Tájékoztató szolgáltatás: beadás előtt mindig a hivatalos felhívás az irányadó.</p></div>
-      <div><h4>Pályázatok</h4><ul><li><a href="${up}palyazat/index.html">Nyitott felhívások</a></li><li><a href="${up}palyazat/index.html#temak">Témák és programok</a></li><li><a href="${up}portal.html">Portál</a></li></ul></div>
+      <div><h4>Pályázatok</h4><ul><li><a href="${up}palyazat/index.html">Nyitott felhívások</a></li><li><a href="${up}palyazat/index.html#temak">Témák és programok</a></li><li><a href="${up}utmutato/index.html">Útmutatók</a></li><li><a href="${up}portal.html">Portál</a></li></ul></div>
       <div><h4>Rólunk</h4><ul><li><a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a></li></ul></div>
       <div><h4>Jogi</h4><ul><li><a href="${up}impresszum.html">Impresszum</a></li><li><a href="${up}adatvedelem.html">Adatkezelés</a></li><li><a href="${up}aszf.html">ÁSZF</a></li></ul></div>
     </div>
@@ -326,6 +330,7 @@ ${summaryHtml(summary)}
 ${changesHtml(changes)}
 ${faqHtml(faqItems(g))}
 ${relatedHtml(related)}
+${guideLinksHtml(guidesFor(g), '../utmutato/')}
 <div class="notice warn disclaimer">Tájékoztató összefoglaló. Mindig a hivatalos felhívás és annak módosításai az irányadók — beadás előtt ellenőrizze a kiíró oldalán.</div>
 </div>
 <aside class="call-side" aria-label="Alapadatok">
@@ -480,6 +485,82 @@ ${hubLinks(hubs)}
   return shell({ title: 'Nyitott pályázatok vállalkozásoknak (hazai és EU) — naponta frissítve | AIpályázó', description: `${open.length} nyitott hazai és EU-s pályázat, hitel és tőkeprogram magyar cégeknek, naponta frissítve hivatalos forrásokból. Ingyenes illeszkedés-vizsgálat.`, canonical: `${BASE}/palyazat/index.html`, noindex: false, body, jsonld });
 }
 
+// ---- evergreen guides (utmutato/) -----------------------------------------
+export { GUIDES };
+const GUIDE_BY_SLUG = new Map(GUIDES.map((x) => [x.slug, x]));
+// 2–3 guides that fit a call: how-to always, then size / EU / loan / de minimis.
+export function guidesFor(g) {
+  const out = ['hogyan-palyazzunk'];
+  if (g.scope === 'eu') out.push('eu-palyazatok-magyar-cegeknek');
+  else if ((g.sizeClasses || []).length) out.push('kkv-minosites');
+  if (/loan|guarantee/.test(g.type || '')) out.push('vissza-nem-teritendo-vagy-hitel');
+  else if (g.scope !== 'eu' && /de minimis/i.test(`${g.rate || ''} ${g.note || ''} ${g.amount || ''}`)) out.push('de-minimis-tamogatas');
+  return out.filter((s) => GUIDE_BY_SLUG.has(s)).slice(0, 3).map((s) => GUIDE_BY_SLUG.get(s));
+}
+export function guideLinksHtml(list, prefix = '') {
+  if (!list || !list.length) return '';
+  return `<h2>Hasznos útmutatók</h2><ul class="related">${list.map((x) => `<li><a href="${esc(prefix + x.slug)}.html">${esc(x.title)}</a></li>`).join('')}</ul>`;
+}
+
+export function renderGuide(guide, { open = [], hubs = [], today } = {}) {
+  const canonical = `${BASE}/utmutato/${guide.slug}.html`;
+  const hubSet = new Set(hubs.map((h) => h.slug));
+  const link = (slug, text) => (hubSet.has(slug) ? `<a href="../palyazat/tema/${esc(slug)}.html">${esc(text)}</a>` : esc(text));
+  let live = '';
+  try { live = guide.live ? guide.live(open, link) : ''; } catch { live = ''; }
+  const others = GUIDES.filter((x) => x.slug !== guide.slug);
+  const jsonld = [
+    {
+      '@context': 'https://schema.org', '@type': 'Article', headline: guide.title, description: guide.description,
+      url: canonical, mainEntityOfPage: canonical, inLanguage: 'hu', datePublished: guide.updated, dateModified: guide.updated,
+      image: `${BASE}/assets/og.png`,
+      author: { '@type': 'Organization', name: 'AIpályázó', url: `${BASE}/index.html` },
+      publisher: { '@type': 'Organization', name: 'AIpályázó', url: `${BASE}/index.html`, logo: { '@type': 'ImageObject', url: `${BASE}/assets/og.png` } },
+      citation: guide.sources.map(([name, url]) => ({ '@type': 'CreativeWork', name, url })),
+    },
+    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: guide.faq.map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })) },
+    {
+      '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'AIpályázó', item: `${BASE}/index.html` },
+        { '@type': 'ListItem', position: 2, name: 'Útmutatók', item: `${BASE}/utmutato/index.html` },
+        { '@type': 'ListItem', position: 3, name: guide.title, item: canonical },
+      ],
+    },
+  ];
+  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">AIpályázó</a> / <a href="index.html">Útmutatók</a></nav>
+<article class="guide">
+<header class="call-head"><p class="eyebrow">Útmutató · Frissítve: <time datetime="${esc(guide.updated)}">${esc(longDate(guide.updated))}</time></p>
+<h1>${esc(guide.title)}</h1>
+<p class="page-intro lead">${esc(guide.lead)}</p></header>
+${live ? `<div class="notice ok live"><b>Mai adatok${today ? ` (${esc(longDate(today))})` : ''}:</b> ${live}</div>` : ''}
+${guide.sections.map((x) => `<section><h2>${esc(x.h)}</h2>${x.html}</section>`).join('\n')}
+${faqHtml(guide.faq)}
+<h2>Források</h2><ul class="sources">${guide.sources.map(([name, url]) => `<li><a href="${esc(safeUrl(url))}" target="_blank" rel="noopener">${esc(name)} ↗</a></li>`).join('')}</ul>
+<div class="side-box narrow"><h2>Melyik felhívásra jogosult a cége?</h2><p>Négy adat alapján azonnal megmutatjuk a nyitott felhívások közül, regisztráció nélkül.</p><a class="btn btn-primary" href="../index.html#ellenorzes">Gyors ellenőrzés</a> <a class="btn btn-ghost" href="../palyazat/index.html">Összes nyitott pályázat</a></div>
+${guideLinksHtml(others).replace('Hasznos útmutatók', 'További útmutatók')}
+<p class="notice warn disclaimer">Általános tájékoztatás, nem jogi vagy pénzügyi tanácsadás. Egy adott pályázatnál mindig a hivatalos felhívás és a hatályos jogszabályok az irányadók.</p>
+</article>`;
+  return shell({ title: `${guide.seoTitle || clip(guide.title, 58)} | AIpályázó`, description: clip(guide.description, 160), canonical, noindex: false, body, jsonld, current: 'utmutato', ogType: 'article' });
+}
+
+export function renderGuidesIndex() {
+  const canonical = `${BASE}/utmutato/index.html`;
+  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">AIpályázó</a> / Útmutatók</nav>
+<header class="call-head"><p class="eyebrow">Útmutatók</p><h1>Pályázati útmutatók vállalkozásoknak</h1>
+<p class="page-intro">Rövid, forrásokkal ellátott válaszok a leggyakoribb kérdésekre: cégméret, de minimis, támogatás vagy hitel, a beadás lépései és az EU-s pályázatok.</p></header>
+<ul class="guide-list">${GUIDES.map((x) => `<li><a href="${esc(x.slug)}.html">${esc(x.title)}</a><p>${esc(x.description)}</p></li>`).join('')}</ul>
+<div class="side-box narrow"><h2>Melyik felhívásra jogosult a cége?</h2><p>Négy adat alapján azonnal megmutatjuk, regisztráció nélkül.</p><a class="btn btn-primary" href="../index.html#ellenorzes">Gyors ellenőrzés</a></div>`;
+  const jsonld = [
+    { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Pályázati útmutatók vállalkozásoknak', url: canonical, inLanguage: 'hu',
+      hasPart: GUIDES.map((x) => ({ '@type': 'Article', headline: x.title, url: `${BASE}/utmutato/${x.slug}.html` })) },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'AIpályázó', item: `${BASE}/index.html` },
+      { '@type': 'ListItem', position: 2, name: 'Útmutatók', item: canonical },
+    ] },
+  ];
+  return shell({ title: 'Pályázati útmutatók: KKV, de minimis, hitel, beadás, EU | AIpályázó', description: 'Rövid, forrásokkal ellátott útmutatók magyar vállalkozásoknak: KKV-minősítés, de minimis keret, támogatás vagy hitel, a pályázás lépései, EU-s pályázatok.', canonical, noindex: false, body, jsonld, current: 'utmutato' });
+}
+
 export const STATIC_PAGES = [
   ['index.html', '1.0', 'weekly'], ['palyazat/index.html', '0.9', 'daily'], ['onboarding.html', '0.8', 'monthly'],
   ['signup.html', '0.7', 'monthly'],
@@ -493,6 +574,9 @@ export function buildSitemap(open, slugs, today, hubs = []) {
     lines.push(url(`${BASE}/palyazat/${slugs.get(g.id)}.html`, '0.7', 'weekly', lm || ''));
   }
   for (const h of hubs) lines.push(url(`${BASE}/palyazat/tema/${h.slug}.html`, '0.6', 'daily', today));
+  const newest = GUIDES.map((x) => x.updated).filter(isDate).sort().pop();
+  lines.push(url(`${BASE}/utmutato/index.html`, '0.6', 'monthly', newest || ''));
+  for (const x of GUIDES) lines.push(url(`${BASE}/utmutato/${x.slug}.html`, '0.6', 'monthly', isDate(x.updated) ? x.updated : ''));
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${lines.join('\n')}\n</urlset>\n`;
 }
 
@@ -513,6 +597,9 @@ export function buildLlmsTxt({ open, hubs = [], today }) {
 - [Nyitott pályázatok listája](${BASE}/palyazat/index.html): minden nyitott felhívás határidő szerint, hazai és EU-s bontásban
 - [Gyors jogosultság-ellenőrzés](${BASE}/index.html#ellenorzes): 4 adat alapján, regisztráció nélkül
 - [Oldaltérkép](${BASE}/sitemap.xml)
+
+## Útmutatók (forrásokkal)
+${GUIDES.map((x) => `- [${x.title}](${BASE}/utmutato/${x.slug}.html): ${x.description}`).join('\n')}
 
 ## Témák, programok, cégtípusok és régiók
 ${hubs.map(hub).join('\n')}
@@ -567,10 +654,12 @@ export function buildAll({ grants, summaries = {}, manifest = {}, today, updated
   const hubs = selectHubs(open);
   for (const h of hubs) files.set(`palyazat/tema/${h.slug}.html`, renderHub(h, slugs, { updatedAt }));
   files.set('palyazat/index.html', renderIndex(open, slugs, { updatedAt, hubs }));
+  for (const x of GUIDES) files.set(`utmutato/${x.slug}.html`, renderGuide(x, { open, hubs, today }));
+  files.set('utmutato/index.html', renderGuidesIndex());
   files.set('sitemap.xml', buildSitemap(open, slugs, today, hubs));
   const sortedManifest = Object.fromEntries(Object.entries(next).sort(([a], [b]) => a.localeCompare(b)));
   files.set('palyazat/pages.json', JSON.stringify(sortedManifest, null, 1) + '\n');
-  return { files, manifest: sortedManifest, removed, stats: { open: open.length, hubs: hubs.length, closed, removed: removed.length, withSummary: open.filter((g) => summaries[g.id]).length } };
+  return { files, manifest: sortedManifest, removed, stats: { open: open.length, hubs: hubs.length, guides: GUIDES.length, closed, removed: removed.length, withSummary: open.filter((g) => summaries[g.id]).length } };
 }
 
 function main() {
@@ -586,6 +675,7 @@ function main() {
   const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Budapest' });
   const { files, removed, stats } = buildAll({ grants, summaries, manifest, today, updatedAt: meta.updatedAt, changes });
   mkdirSync(join(site, 'palyazat', 'tema'), { recursive: true });
+  mkdirSync(join(site, 'utmutato'), { recursive: true });
   for (const [rel, content] of files) writeFileSync(join(site, rel), content);
   for (const rel of removed) { const p = join(site, rel); if (existsSync(p)) unlinkSync(p); }
   // Stray html files not in the manifest (e.g. hand-deleted manifest) are removed.
@@ -593,9 +683,10 @@ function main() {
   for (const f of readdirSync(join(site, 'palyazat'))) if (f.endsWith('.html') && !keep.has(f)) unlinkSync(join(site, 'palyazat', f));
   // Hubs that fell under the threshold today are removed (regenerated when back).
   for (const f of readdirSync(join(site, 'palyazat', 'tema'))) if (f.endsWith('.html') && !files.has(`palyazat/tema/${f}`)) unlinkSync(join(site, 'palyazat', 'tema', f));
+  for (const f of readdirSync(join(site, 'utmutato'))) if (f.endsWith('.html') && !files.has(`utmutato/${f}`)) unlinkSync(join(site, 'utmutato', f));
   writeFileSync(join(root, 'robots.txt'), ROBOTS);
   writeFileSync(join(root, 'llms.txt'), buildLlmsTxt({ open: stats.open, hubs: selectHubs(grants.filter((g) => g && g.id && g.title && isOpen(g, today))), today }));
-  console.log(`build-pages: ${stats.open} open pages (${stats.withSummary} with summary), ${stats.hubs} topic hubs, ${stats.closed} closed kept, ${stats.removed} removed`);
+  console.log(`build-pages: ${stats.open} open pages (${stats.withSummary} with summary), ${stats.hubs} topic hubs, ${stats.guides} guides, ${stats.closed} closed kept, ${stats.removed} removed`);
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) main();
