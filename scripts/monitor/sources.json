@@ -9,7 +9,7 @@
     "https://kap.gov.hu/tags/842?page=1",
     "https://kap.gov.hu/tags/842?page=2"
    ],
-   "pattern": "^https://kap\\.gov\\.hu/tamogatas/[a-z0-9-]+$",
+   "pattern": "^https://kap\\.gov\\.hu/(tamogatas/[a-z0-9-]+|node/\\d+)$",
    "scope": "hazai"
   },
   {
@@ -119,7 +119,9 @@
     "https://hepa.hu/palyazatok"
    ],
    "pattern": "^https://hepa\\.hu/palyazatok/[^?#]+$",
-   "scope": "hazai"
+   "scope": "hazai",
+   "mayBeEmpty": true,
+   "_comment": "HEPA lists calls only while one is open (none as of 2026-10-13)."
   }
  ],
  "officialDomains": [

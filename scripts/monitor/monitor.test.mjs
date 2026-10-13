@@ -281,6 +281,7 @@ test('sources.json: every listing is on an official domain and its pattern match
     eitcc: 'https://eit-culture-creativity.eu/your-opportunities/calls-funding/innovation-projects',
     eit: 'https://www.eit.europa.eu/our-activities/opportunities/ai-entrepreneurs-lab',
     hepa: 'https://hepa.hu/palyazatok/nemzeti-exportvedelmi-program/Kulpiacra-jutasi-Tamogatas',
+    kap: 'https://kap.gov.hu/node/3867',
   };
   const ids = new Set();
   for (const s of cfg.sources) {

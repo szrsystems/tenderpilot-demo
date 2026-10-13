@@ -70,7 +70,7 @@ export function euTopicFacts(json, today) {
 
 // Official call codes as written on Hungarian pages (GINOP Plusz-1.4.3-24,
 // KAP-RD40-RD12-1-26, 2025-1.1.1-BAY_VOUCHER …).
-export const CODE_RE = /\b(?:(?:GINOP|DIMOP|KEHOP|TOP|VINOP|EFOP|MAHOP|IKOP)[ _]?PLUSZ[ -]?\d+(?:\.\d+)+(?:\/[A-Z0-9]+)?-\d{2}|KAP-RD[0-9A-Za-z]+(?:-[0-9A-Za-z]+)*|20\d\d-\d\.\d\.\d-[A-Z_]{2,})\b/gi;
+export const CODE_RE = /\b(?:(?:GINOP|DIMOP|KEHOP|TOP|VINOP|EFOP|MAHOP|IKOP)[ _]?PLUSZ[ -]?\d+(?:\.\d+)+(?:\/[A-Z0-9]+)?-\d{2}|KAP-RD[0-9A-Za-z]+(?:-[0-9A-Za-z]+)*|20\d\d-\d\.\d\.\d-[A-ZÁÉÍÓÖŐÚÜŰ_]{2,})(?![A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű])/gi;
 
 export async function runMonitor({
   benchmarks = [], knownCodes = [],
@@ -148,6 +148,8 @@ export async function runMonitor({
 
   // --------------------------------------------------------------- 2) discover
   const knownUrls = new Set(items.map((g) => String(g.url || '').replace(/\/$/, '')));
+  // a listed call reached through another URL (e.g. kap.gov.hu/node/123 vs /tamogatas/…) is not new
+  const knownCodeIdx = codeIndex([...knownCodes, ...items.map((g) => g.code)]);
   const auto = new Map(prevAuto.filter((g) => !g.deadline || g.deadline === 'Folyamatos' || g.deadline >= today).map((g) => [g.id, g]));
   for (const src of sources) {
     const re = new RegExp(src.pattern);
@@ -159,7 +161,7 @@ export async function runMonitor({
     }
     const seen = new Set(state.seen[src.id] || []);
     const fresh = [...links].filter((l) => !seen.has(l) && !knownUrls.has(l));
-    log.push(`Source ${src.id}: ${ok}/${src.list.length} list pages, ${links.size} call links, ${fresh.length} new${links.size === 0 && ok ? ' — ⚠ 0 matches: check the pattern' : ''}${ok === 0 ? ' — ⚠ list pages unreachable' : ''}`);
+    log.push(`Source ${src.id}: ${ok}/${src.list.length} list pages, ${links.size} call links, ${fresh.length} new${links.size === 0 && ok && !src.mayBeEmpty ? ' — ⚠ 0 matches: check the pattern' : ''}${ok === 0 ? ' — ⚠ list pages unreachable' : ''}`);
     for (const l of fresh.slice(0, maxNewPerSource)) {
       const r = await fetchPage(l);
       if (r.status !== 200) continue; // try again tomorrow (not marked seen)
@@ -168,6 +170,7 @@ export async function runMonitor({
       llmCalls++;
       const v = await extractFacts(r, { llm, today }).catch((e) => ({ ok: false, problems: [String(e.message || e)] }));
       const f = v.facts || {};
+      if (f.code && knownCodeIdx.has(f.code)) continue; // already listed under another URL
       if (v.ok && official(l)) {
         const id = 'a-' + slug(f.code || f.title);
         auto.set(id, {
