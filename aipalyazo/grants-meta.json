@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-13T11:44:50.355Z",
+ "updatedAt": "2026-10-13T12:01:32.423Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -22,7 +22,7 @@
   "euAuto": 265,
   "hazai": 53,
   "eu": 380,
-  "excluded": 20
+  "excluded": 0
  },
  "needsReview": [],
  "staleVerified": [],
@@ -186,48 +186,9 @@
    "why": "Klaszter minősítés — nem ad pénzt."
   }
  ],
- "changes": [
-  {
-   "id": "v-eitfood-poc-cofin-2026",
-   "type": "deadline",
-   "from": "2026-10-30",
-   "to": "2026-11-30",
-   "title": "Proof-of-Concept Co-Financing Instrument (Agrárélelmiszer-startupok pilot projektjeinek társfinanszírozása)"
-  },
-  {
-   "id": "v-eitcc-shape-scale-2027",
-   "type": "removed",
-   "title": "Financial Support to Startups and Scaleups – Shape Acceleration & Scale Post-Acceleration (Kreatívipari startupok és scale-upok támogatása)"
-  },
-  {
-   "id": "eu-HORIZON-CL5-2026-11-D3-04",
-   "type": "removed",
-   "title": "De-risking renewable fuel technologies through transnational pre-commercial procurement of renewable fuel industrial value chains"
-  },
-  {
-   "id": "eu-HORIZON-CL5-2026-11-D3-06",
-   "type": "removed",
-   "title": "Resource assessment for deep sedimentary and basement reservoirs"
-  },
-  {
-   "id": "eu-HORIZON-NEB-2026-01-PARTICIPATION-03",
-   "type": "removed",
-   "title": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-06",
-   "type": "removed",
-   "title": "Identifying user-focused solutions to support news media freedom"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-07",
-   "type": "removed",
-   "title": "Societal impact of cultural heritage"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-06",
-   "type": "removed",
-   "title": "Closing the learning gap: uncovering causes and effective policy interventions for declining youth skills in mathematics, reading, and science"
-  }
- ]
+ "changes": [],
+ "offlineRebuild": {
+  "at": "2026-10-13",
+  "apiDataFrom": "2026-10-13T11:44:50.355Z"
+ }
 }
