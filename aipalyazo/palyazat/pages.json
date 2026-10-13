@@ -54,6 +54,12 @@
   "firstSeen": "2026-10-13",
   "lastSeen": "2026-10-13"
  },
+ "a-kap-rd46-1-25": {
+  "id": "a-kap-rd46-1-25",
+  "title": "Működő minőségrendszerhez történő csatlakozás támogatása",
+  "firstSeen": "2026-10-13",
+  "lastSeen": "2026-10-13"
+ },
  "agrar-szechenyi-beruhazasi-hitel-max": {
   "id": "v-agrar-szechenyi-beruhazasi-hitel-max",
   "title": "Agrár Széchenyi Beruházási Hitel MAX+",
@@ -946,14 +952,14 @@
   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-05",
   "title": "Development aid and democratic governance",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-13"
+  "lastSeen": "2026-10-13",
+  "closedAt": "2026-10-13"
  },
  "horizon-cl2-2027-01-democracy-06": {
   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-06",
   "title": "Identifying user-focused solutions to support news media freedom",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-12",
-  "closedAt": "2026-10-13"
+  "lastSeen": "2026-10-13"
  },
  "horizon-cl2-2027-01-democracy-07": {
   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-07",
@@ -965,7 +971,8 @@
   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-08",
   "title": "Global Human Rights and EU values",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-13"
+  "lastSeen": "2026-10-13",
+  "closedAt": "2026-10-13"
  },
  "horizon-cl2-2027-01-heritage-03": {
   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-03",
@@ -977,32 +984,35 @@
   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-04",
   "title": "Culture, heritage and creative industries for health and well-being",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-13"
+  "lastSeen": "2026-10-13",
+  "closedAt": "2026-10-13"
  },
  "horizon-cl2-2027-01-heritage-05": {
   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-05",
   "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-13"
+  "lastSeen": "2026-10-13",
+  "closedAt": "2026-10-13"
  },
  "horizon-cl2-2027-01-heritage-06": {
   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-06",
   "title": "Future-proofing sustainable cultural tourism",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-13"
+  "lastSeen": "2026-10-13",
+  "closedAt": "2026-10-13"
  },
  "horizon-cl2-2027-01-heritage-07": {
   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-07",
   "title": "Societal impact of cultural heritage",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-12",
-  "closedAt": "2026-10-13"
+  "lastSeen": "2026-10-13"
  },
  "horizon-cl2-2027-01-heritage-08": {
   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-08",
   "title": "Safeguarding & transmission of intangible cultural heritage",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-13"
+  "lastSeen": "2026-10-13",
+  "closedAt": "2026-10-13"
  },
  "horizon-cl2-2027-01-transfo-01": {
   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-01",
@@ -1020,8 +1030,7 @@
   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-03",
   "title": "Rethinking sustainable competitiveness beyond traditional perspectives: role and contribution of the Social Economy",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-13",
-  "closedAt": "2026-10-13"
+  "lastSeen": "2026-10-13"
  },
  "horizon-cl2-2027-01-transfo-04": {
   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-04",
@@ -1039,8 +1048,7 @@
   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-06",
   "title": "Closing the learning gap: uncovering causes and effective policy interventions for declining youth skills in mathematics, reading, and science",
   "firstSeen": "2026-10-08",
-  "lastSeen": "2026-10-12",
-  "closedAt": "2026-10-13"
+  "lastSeen": "2026-10-13"
  },
  "horizon-cl2-2027-01-transfo-07": {
   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-07",

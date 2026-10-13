@@ -270,16 +270,16 @@
    "lastOk": "2026-10-13"
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-10-d2-03": {
-   "closedHits": 5
+   "closedHits": 6
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-10-d6-06": {
-   "closedHits": 5
+   "closedHits": 6
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-10-d6-09": {
-   "closedHits": 5
+   "closedHits": 6
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-10-d6-10": {
-   "closedHits": 5
+   "closedHits": 6
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-11-d3-05": {
    "closedHits": 0,
@@ -477,13 +477,13 @@
    "closedHits": 2
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/digital-2026-ai-data-10-compliance": {
-   "closedHits": 5
+   "closedHits": 6
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/digital-2026-skills-10-edtech": {
-   "closedHits": 5
+   "closedHits": 6
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/digital-2026-ai-piloting-10-screening": {
-   "closedHits": 5
+   "closedHits": 6
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/digital-eccc-2027-deploy-cyber-11-dualuse": {
    "closedHits": 0,
@@ -690,7 +690,8 @@
   "https://hu.marc-impactprogramme.net/": {
    "goneHits": 0,
    "hash": "2f2688466b0579e5",
-   "closedHits": 2
+   "closedHits": 2,
+   "lastOk": "2026-10-13"
   },
   "https://www.eurekanetwork.org/programmes-and-calls/innowwide/5th-innowwide-call-for-market-feasibility-projects-autumn-2026/": {
    "goneHits": 0,
@@ -726,6 +727,30 @@
    "goneHits": 0,
    "hash": "0b0168b273530add",
    "lastOk": "2026-10-13"
+  },
+  "https://kap.gov.hu/node/3867": {
+   "goneHits": 0,
+   "hash": "e1c91ecc3f846378",
+   "closedHits": 0,
+   "lastOk": "2026-10-13"
+  },
+  "https://kap.gov.hu/node/3864": {
+   "goneHits": 0,
+   "hash": "869abed0926be214",
+   "closedHits": 0,
+   "lastOk": "2026-10-13"
+  },
+  "https://kap.gov.hu/node/3573": {
+   "goneHits": 0,
+   "hash": "02ac7792eb92492f",
+   "closedHits": 0,
+   "lastOk": "2026-10-13"
+  },
+  "https://kap.gov.hu/node/3569": {
+   "goneHits": 0,
+   "hash": "1393e537075b2501",
+   "closedHits": 0,
+   "lastOk": "2026-10-13"
   }
  },
  "seen": {
@@ -744,7 +769,22 @@
    "https://kap.gov.hu/node/3528",
    "https://kap.gov.hu/node/3465",
    "https://kap.gov.hu/node/3456",
-   "https://kap.gov.hu/node/3433"
+   "https://kap.gov.hu/node/3433",
+   "https://kap.gov.hu/node/3423",
+   "https://kap.gov.hu/node/3361",
+   "https://kap.gov.hu/node/3282",
+   "https://kap.gov.hu/node/3251",
+   "https://kap.gov.hu/node/3241",
+   "https://kap.gov.hu/node/3212",
+   "https://kap.gov.hu/node/3009",
+   "https://kap.gov.hu/node/3005",
+   "https://kap.gov.hu/node/2980",
+   "https://kap.gov.hu/node/2943",
+   "https://kap.gov.hu/node/2936",
+   "https://kap.gov.hu/node/2926",
+   "https://kap.gov.hu/node/2873",
+   "https://kap.gov.hu/node/2859",
+   "https://kap.gov.hu/node/2849"
   ],
   "mfb": [
    "https://www.mfb.hu/vallalkozasok/mukodo/hitel/kehop-plusz--425-25-foldho-hasznositasi-kedvezmenyes-hitelkonstrukcio-t276-p277",

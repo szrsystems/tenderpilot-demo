@@ -166,5 +166,43 @@
   "requiresEvidence": {
    "farmer": "Mezőgazdasági kisüzemek beruházási támogatása"
   }
+ },
+ {
+  "id": "a-kap-rd46-1-25",
+  "code": "KAP-RD46-1-25",
+  "title": "Működő minőségrendszerhez történő csatlakozás támogatása",
+  "issuer": "KAP Stratégiai Terv (kap.gov.hu)",
+  "cat": "Mezőgazdaság",
+  "type": "grant",
+  "amount": "1,6 milliárd Ft",
+  "rate": null,
+  "deadline": "2026-10-28",
+  "rolling": false,
+  "windowOpen": "2026-03-05",
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "regionNote": null,
+  "note": "A támogatási kérelmek benyújtására 2026. március 5. - 2026. október 28. között van lehetőség.",
+  "url": "https://kap.gov.hu/node/3423",
+  "source": "kap.gov.hu",
+  "sources": [
+   "https://kap.gov.hu/node/3423"
+  ],
+  "verifiedAt": "2026-10-13",
+  "confidence": "auto",
+  "autoVerified": true,
+  "scope": "hazai",
+  "evidence": {
+   "title": "Megjelent a „Működő minőségrendszerhez történő csatlakozás támogatása” című (KAP-RD46-1-25 kódszámú) pályázati felhívás",
+   "status": "A támogatási kérelmek benyújtására 2026. március 5. - 2026. október 28. között van lehetőség.",
+   "deadline": "2026. március 5. - 2026. október 28. között van lehetőség.",
+   "amount": "A felhívás meghirdetésekor a támogatásra rendelkezésre álló tervezett keretösszeg 1,6 milliárd Ft.",
+   "eligibility": null
+  }
  }
 ]

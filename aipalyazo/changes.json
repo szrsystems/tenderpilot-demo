@@ -27,6 +27,13 @@
    "title": "Vidéki infrastruktúra fejlesztés zártkerti területeken"
   }
  ],
+ "a-kap-rd46-1-25": [
+  {
+   "date": "2026-10-13",
+   "type": "new",
+   "title": "Működő minőségrendszerhez történő csatlakozás támogatása"
+  }
+ ],
  "eu-CERV-2024-CITIZENS-VALUES": [
   {
    "date": "2026-10-08",
@@ -450,6 +457,11 @@
    "date": "2026-10-12",
    "type": "new",
    "title": "Development aid and democratic governance"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "removed",
+   "title": "Development aid and democratic governance"
   }
  ],
  "eu-HORIZON-CL2-2027-01-DEMOCRACY-06": [
@@ -471,6 +483,11 @@
   {
    "date": "2026-10-13",
    "type": "removed",
+   "title": "Identifying user-focused solutions to support news media freedom"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "new",
    "title": "Identifying user-focused solutions to support news media freedom"
   }
  ],
@@ -496,6 +513,11 @@
    "date": "2026-10-12",
    "type": "new",
    "title": "Global Human Rights and EU values"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "removed",
+   "title": "Global Human Rights and EU values"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-03": [
@@ -520,6 +542,11 @@
    "date": "2026-10-12",
    "type": "new",
    "title": "Culture, heritage and creative industries for health and well-being"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "removed",
+   "title": "Culture, heritage and creative industries for health and well-being"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-05": [
@@ -537,6 +564,11 @@
    "date": "2026-10-12",
    "type": "new",
    "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "removed",
+   "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-06": [
@@ -553,6 +585,11 @@
   {
    "date": "2026-10-12",
    "type": "new",
+   "title": "Future-proofing sustainable cultural tourism"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "removed",
    "title": "Future-proofing sustainable cultural tourism"
   }
  ],
@@ -576,6 +613,11 @@
    "date": "2026-10-13",
    "type": "removed",
    "title": "Societal impact of cultural heritage"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "new",
+   "title": "Societal impact of cultural heritage"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-08": [
@@ -592,6 +634,11 @@
   {
    "date": "2026-10-12",
    "type": "new",
+   "title": "Safeguarding & transmission of intangible cultural heritage"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "removed",
    "title": "Safeguarding & transmission of intangible cultural heritage"
   }
  ],
@@ -618,6 +665,11 @@
   {
    "date": "2026-10-13",
    "type": "removed",
+   "title": "Rethinking sustainable competitiveness beyond traditional perspectives: role and contribution of the Social Economy"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "new",
    "title": "Rethinking sustainable competitiveness beyond traditional perspectives: role and contribution of the Social Economy"
   }
  ],
@@ -664,6 +716,11 @@
   {
    "date": "2026-10-13",
    "type": "removed",
+   "title": "Closing the learning gap: uncovering causes and effective policy interventions for declining youth skills in mathematics, reading, and science"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "new",
    "title": "Closing the learning gap: uncovering causes and effective policy interventions for declining youth skills in mathematics, reading, and science"
   }
  ],

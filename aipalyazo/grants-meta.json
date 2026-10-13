@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-13T13:16:03.489Z",
+ "updatedAt": "2026-10-13T13:28:14.151Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,21 +7,21 @@
   "palyazatApi": {
    "ok": true,
    "items": 17,
-   "lastOk": "2026-10-13T13:16:03.489Z"
+   "lastOk": "2026-10-13T13:28:14.151Z"
   },
   "euApi": {
    "ok": true,
-   "items": 264,
-   "lastOk": "2026-10-13T13:16:03.489Z"
+   "items": 262,
+   "lastOk": "2026-10-13T13:28:14.151Z"
   }
  },
  "counts": {
-  "total": 436,
+  "total": 435,
   "api": 17,
-  "verified": 155,
-  "euAuto": 264,
-  "hazai": 57,
-  "eu": 379,
+  "verified": 156,
+  "euAuto": 262,
+  "hazai": 58,
+  "eu": 377,
   "excluded": 20
  },
  "needsReview": [],
@@ -68,6 +68,10 @@
    "why": "lejárt"
   },
   {
+   "id": "v-marc-impact-hu-2026",
+   "why": "lejárt"
+  },
+  {
    "id": "v-horizon-cl5-2026-10-d2-03",
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   },
@@ -98,10 +102,6 @@
   {
    "id": "v-digital-2026-ai-piloting-10-screening",
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "id": "v-marc-impact-hu-2026",
-   "why": "monitor: closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
   }
  ],
  "excluded": [
@@ -112,6 +112,34 @@
   {
    "code": "GINOP_PLUSZ-1.4.8-24",
    "why": "Pénzügyi eszköz keret alapkezelőnek."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.2.0-23",
+   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A1-24",
+   "why": "Alapkezelői technikai felhívás."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
+  },
+  {
+   "code": "IKOP_PLUSZ-1.2.0-23",
+   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "IKOP_PLUSZ-1.1.0-23",
+   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.1.0-23",
+   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
@@ -126,34 +154,6 @@
    "why": "Alapkezelői költségtérítés."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/A1-24",
-   "why": "Alapkezelői technikai felhívás."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
-  },
-  {
-   "code": "IKOP_PLUSZ-2.1.0-23",
-   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
-  },
-  {
-   "code": "IKOP_PLUSZ-1.2.0-23",
-   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
-  },
-  {
-   "code": "IKOP_PLUSZ-1.1.0-23",
-   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
-  },
-  {
-   "code": "IKOP_PLUSZ-2.2.0-23",
-   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
-  },
-  {
    "code": "DIMOP_PLUSZ-1.2.3/B1-24",
    "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
   },
@@ -162,12 +162,12 @@
    "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
   },
   {
-   "code": "GINOP_PLUSZ-1.4.6-24",
-   "why": "Hitelkeret alapkezelőnek (Budapest)."
-  },
-  {
    "code": "KEHOP_PLUSZ-3.1.12-25",
    "why": "Közszféra kármentesítési felhívás."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.6-24",
+   "why": "Hitelkeret alapkezelőnek (Budapest)."
   },
   {
    "code": "GINOP_PLUSZ-1.4.7-24",
@@ -188,43 +188,59 @@
  ],
  "changes": [
   {
-   "id": "v-eitfood-poc-cofin-2026",
-   "type": "deadline",
-   "from": "2026-11-30",
-   "to": "2026-10-30",
-   "title": "Proof-of-Concept Co-Financing Instrument (Agrárélelmiszer-startupok pilot projektjeinek társfinanszírozása)"
-  },
-  {
-   "id": "a-kap-rd40-2-26",
+   "id": "a-kap-rd46-1-25",
    "type": "new",
-   "title": "Fiatal erdők állománynevelésének támogatása"
-  },
-  {
-   "id": "a-kap-rd41-4-26",
-   "type": "new",
-   "title": "Az erdőpotenciált veszélyeztető biotikus és abiotikus károk megelőzése"
-  },
-  {
-   "id": "a-kap-rd42a-1-26",
-   "type": "new",
-   "title": "Vidéki infrastruktúra fejlesztés zártkerti területeken"
-  },
-  {
-   "id": "a-kap-rd09a-2-26",
-   "type": "new",
-   "title": "Mezőgazdasági kisüzemek beruházási támogatása"
-  },
-  {
-   "id": "eu-cs-47365875",
-   "type": "deadline",
-   "from": "2026-11-10",
-   "to": "2026-10-26",
-   "title": "Fostering Ukrainians’ access to culture and cultural heritage — kaszkád (FSTP) nyílt felhívás"
+   "title": "Működő minőségrendszerhez történő csatlakozás támogatása"
   },
   {
    "id": "eu-HORIZON-CL2-2027-01-TRANSFO-03",
-   "type": "removed",
+   "type": "new",
    "title": "Rethinking sustainable competitiveness beyond traditional perspectives: role and contribution of the Social Economy"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-06",
+   "type": "new",
+   "title": "Identifying user-focused solutions to support news media freedom"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-07",
+   "type": "new",
+   "title": "Societal impact of cultural heritage"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-06",
+   "type": "new",
+   "title": "Closing the learning gap: uncovering causes and effective policy interventions for declining youth skills in mathematics, reading, and science"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-08",
+   "type": "removed",
+   "title": "Global Human Rights and EU values"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-04",
+   "type": "removed",
+   "title": "Culture, heritage and creative industries for health and well-being"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-06",
+   "type": "removed",
+   "title": "Future-proofing sustainable cultural tourism"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-08",
+   "type": "removed",
+   "title": "Safeguarding & transmission of intangible cultural heritage"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-05",
+   "type": "removed",
+   "title": "Development aid and democratic governance"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-05",
+   "type": "removed",
+   "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
   }
  ]
 }

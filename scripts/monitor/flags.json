@@ -7,11 +7,13 @@
   "v-horizon-cl5-2026-10-d6-10": "closed: EU portál: nincs jövőbeli határidő",
   "v-digital-2026-ai-data-10-compliance": "closed: EU portál: nincs jövőbeli határidő",
   "v-digital-2026-skills-10-edtech": "closed: EU portál: nincs jövőbeli határidő",
-  "v-digital-2026-ai-piloting-10-screening": "closed: EU portál: nincs jövőbeli határidő",
-  "v-marc-impact-hu-2026": "closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
+  "v-digital-2026-ai-piloting-10-screening": "closed: EU portál: nincs jövőbeli határidő"
  },
  "overrides": {
   "v-mfb-zold-lendulet-hitelprogram": {
+   "lastChecked": "2026-10-13"
+  },
+  "v-mfb-agrar-forgoeszkoz-hitelprogram-2025": {
    "lastChecked": "2026-10-13"
   },
   "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025": {
@@ -42,9 +44,6 @@
    "lastChecked": "2026-10-13"
   },
   "v-kth-start-forgoeszkoz-kolcson": {
-   "lastChecked": "2026-10-13"
-  },
-  "v-2025-1-1-1-iparjog": {
    "lastChecked": "2026-10-13"
   },
   "v-ginop-plusz-4-1-1-23": {
@@ -428,15 +427,6 @@
   "v-eib-raiffeisen-lizing": {
    "lastChecked": "2026-10-13"
   },
-  "v-2025-1-2-2-eureka": {
-   "lastChecked": "2026-10-13"
-  },
-  "v-2024-1-2-1-he-partnerseg": {
-   "lastChecked": "2026-10-13"
-  },
-  "v-2025-1-2-5-eu-kp": {
-   "lastChecked": "2026-10-13"
-  },
   "v-kap-rd01a-rd12-2-25": {
    "lastChecked": "2026-10-13"
   },
@@ -450,6 +440,9 @@
    "lastChecked": "2026-10-13"
   },
   "v-eitum-umx-2026": {
+   "lastChecked": "2026-10-13"
+  },
+  "v-marc-impact-hu-2026": {
    "lastChecked": "2026-10-13"
   },
   "v-innowwide-call5-2026": {
@@ -474,6 +467,18 @@
    "lastChecked": "2026-10-13"
   },
   "v-interreg-huhr-b-light-2-call1": {
+   "lastChecked": "2026-10-13"
+  },
+  "a-kap-rd40-2-26": {
+   "lastChecked": "2026-10-13"
+  },
+  "a-kap-rd41-4-26": {
+   "lastChecked": "2026-10-13"
+  },
+  "a-kap-rd42a-1-26": {
+   "lastChecked": "2026-10-13"
+  },
+  "a-kap-rd09a-2-26": {
    "lastChecked": "2026-10-13"
   }
  }
