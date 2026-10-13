@@ -1,30 +1,28 @@
 {
- "updatedAt": "2026-10-12T14:14:59.393Z",
- "sourcesOk": false,
- "apiFailed": true,
+ "updatedAt": "2026-10-13T11:44:50.355Z",
+ "sourcesOk": true,
+ "apiFailed": false,
  "euApiFailed": false,
  "sources": {
   "palyazatApi": {
-   "ok": false,
-   "error": "fetch failed",
+   "ok": true,
    "items": 17,
-   "dataFrom": "2026-10-11T12:03:22.326Z",
-   "lastOk": "2026-10-11T12:03:22.326Z"
+   "lastOk": "2026-10-13T11:44:50.355Z"
   },
   "euApi": {
    "ok": true,
-   "items": 271,
-   "lastOk": "2026-10-12T14:14:59.393Z"
+   "items": 265,
+   "lastOk": "2026-10-13T11:44:50.355Z"
   }
  },
  "counts": {
-  "total": 440,
+  "total": 433,
   "api": 17,
-  "verified": 152,
-  "euAuto": 271,
+  "verified": 151,
+  "euAuto": 265,
   "hazai": 53,
-  "eu": 387,
-  "excluded": 0
+  "eu": 380,
+  "excluded": 20
  },
  "needsReview": [],
  "staleVerified": [],
@@ -43,6 +41,10 @@
   },
   {
    "id": "v-erasmus-2026-ka210-adu",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-eitcc-shape-scale-2027",
    "why": "lejárt"
   },
   {
@@ -102,47 +104,130 @@
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   }
  ],
- "excluded": [],
+ "excluded": [
+  {
+   "code": "SSNS-NCC-HU-2026.KOMP",
+   "why": "Kiberbiztonsági kompetenciaközösségi tagság — nem pénzbeli, nem pályázat."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.8-24",
+   "why": "Pénzügyi eszköz keret alapkezelőnek."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.2.0-23",
+   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A1-24",
+   "why": "Alapkezelői technikai felhívás."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.1.0-23",
+   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
+  },
+  {
+   "code": "IKOP_PLUSZ-1.2.0-23",
+   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "IKOP_PLUSZ-1.1.0-23",
+   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
+  },
+  {
+   "code": "GINOP_PLUSZ-2.5.4-25",
+   "why": "Alapkezelői költségtérítés."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
+   "why": "Alapkezelői/bank költségtérítés."
+  },
+  {
+   "code": "DIMOP_PLUSZ-5.1.4-2-26",
+   "why": "Alapkezelői kezelési költségtérítés."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
+   "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.7-24",
+   "why": "Alapkezelői/közvetítői költségtérítés."
+  },
+  {
+   "code": "KEHOP_PLUSZ-3.1.11-25",
+   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.6-24",
+   "why": "Hitelkeret alapkezelőnek (Budapest)."
+  },
+  {
+   "code": "KEHOP_PLUSZ-3.1.12-25",
+   "why": "Közszféra kármentesítési felhívás."
+  },
+  {
+   "code": "2025-3.1.1-ED",
+   "why": "Egyedi döntésű NKFI kérelem, nem nyílt felhívás."
+  },
+  {
+   "code": "EFOP_PLUSZ-TEF-3.1.3/TEF-25",
+   "why": "Csak közintézmények, egyházak, nonprofitok; 2026-09-25-én zár."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.1.5-24",
+   "why": "Klaszter minősítés — nem ad pénzt."
+  }
+ ],
  "changes": [
   {
-   "id": "eu-HORIZON-HLTH-2027-01-STAYHLTH-01",
-   "type": "new",
-   "title": "Addressing disabilities through the life course to support independent living and inclusion"
+   "id": "v-eitfood-poc-cofin-2026",
+   "type": "deadline",
+   "from": "2026-10-30",
+   "to": "2026-11-30",
+   "title": "Proof-of-Concept Co-Financing Instrument (Agrárélelmiszer-startupok pilot projektjeinek társfinanszírozása)"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-08",
-   "type": "new",
-   "title": "Global Human Rights and EU values"
+   "id": "v-eitcc-shape-scale-2027",
+   "type": "removed",
+   "title": "Financial Support to Startups and Scaleups – Shape Acceleration & Scale Post-Acceleration (Kreatívipari startupok és scale-upok támogatása)"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-04",
-   "type": "new",
-   "title": "Culture, heritage and creative industries for health and well-being"
+   "id": "eu-HORIZON-CL5-2026-11-D3-04",
+   "type": "removed",
+   "title": "De-risking renewable fuel technologies through transnational pre-commercial procurement of renewable fuel industrial value chains"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-06",
-   "type": "new",
-   "title": "Future-proofing sustainable cultural tourism"
+   "id": "eu-HORIZON-CL5-2026-11-D3-06",
+   "type": "removed",
+   "title": "Resource assessment for deep sedimentary and basement reservoirs"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-08",
-   "type": "new",
-   "title": "Safeguarding & transmission of intangible cultural heritage"
+   "id": "eu-HORIZON-NEB-2026-01-PARTICIPATION-03",
+   "type": "removed",
+   "title": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-05",
-   "type": "new",
-   "title": "Development aid and democratic governance"
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-06",
+   "type": "removed",
+   "title": "Identifying user-focused solutions to support news media freedom"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-05",
-   "type": "new",
-   "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-07",
+   "type": "removed",
+   "title": "Societal impact of cultural heritage"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-05",
-   "type": "new",
-   "title": "The effective use of artificial intelligence in learning environments in pre-primary and primary education"
+   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-06",
+   "type": "removed",
+   "title": "Closing the learning gap: uncovering causes and effective policy interventions for declining youth skills in mathematics, reading, and science"
   }
  ]
 }

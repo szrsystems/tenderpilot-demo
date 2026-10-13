@@ -439,6 +439,11 @@
    "date": "2026-10-11",
    "type": "new",
    "title": "Identifying user-focused solutions to support news media freedom"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "removed",
+   "title": "Identifying user-focused solutions to support news media freedom"
   }
  ],
  "eu-HORIZON-CL2-2027-01-DEMOCRACY-07": [
@@ -538,6 +543,11 @@
    "date": "2026-10-11",
    "type": "new",
    "title": "Societal impact of cultural heritage"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "removed",
+   "title": "Societal impact of cultural heritage"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-08": [
@@ -616,6 +626,11 @@
   {
    "date": "2026-10-11",
    "type": "new",
+   "title": "Closing the learning gap: uncovering causes and effective policy interventions for declining youth skills in mathematics, reading, and science"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "removed",
    "title": "Closing the learning gap: uncovering causes and effective policy interventions for declining youth skills in mathematics, reading, and science"
   }
  ],
@@ -1235,6 +1250,11 @@
    "date": "2026-10-10",
    "type": "new",
    "title": "De-risking renewable fuel technologies through transnational pre-commercial procurement of renewable fuel industrial value chains"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "removed",
+   "title": "De-risking renewable fuel technologies through transnational pre-commercial procurement of renewable fuel industrial value chains"
   }
  ],
  "eu-HORIZON-CL5-2026-11-D3-05": [
@@ -1248,6 +1268,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Resource assessment for deep sedimentary and basement reservoirs"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "removed",
    "title": "Resource assessment for deep sedimentary and basement reservoirs"
   }
  ],
@@ -2736,6 +2761,11 @@
    "date": "2026-10-11",
    "type": "new",
    "title": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "removed",
+   "title": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being"
   }
  ],
  "eu-HORIZON-NEB-2026-01-REGEN-01": [
@@ -3011,6 +3041,11 @@
   {
    "date": "2026-10-10",
    "type": "page"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "removed",
+   "title": "Financial Support to Startups and Scaleups – Shape Acceleration & Scale Post-Acceleration (Kreatívipari startupok és scale-upok támogatása)"
   }
  ],
  "v-eitfood-poc-cofin-2026": [
@@ -3025,6 +3060,22 @@
   {
    "date": "2026-10-12",
    "type": "page"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "deadline-official",
+   "from": "2026-10-30",
+   "to": "2026-11-30"
+  },
+  {
+   "date": "2026-10-13",
+   "type": "deadline",
+   "from": "2026-10-30",
+   "to": "2026-11-30"
   }
  ],
  "v-eitum-sioc-2027-01": [
@@ -3071,6 +3122,10 @@
  "v-fierce-oc2": [
   {
    "date": "2026-10-12",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-13",
    "type": "page"
   }
  ],
@@ -3766,6 +3821,10 @@
   },
   {
    "date": "2026-10-12",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-13",
    "type": "page"
   }
  ],
