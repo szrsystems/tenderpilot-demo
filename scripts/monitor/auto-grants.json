@@ -1,1 +1,170 @@
-[]
+[
+ {
+  "id": "a-kap-rd40-2-26",
+  "code": "KAP-RD40-2-26",
+  "title": "Fiatal erdők állománynevelésének támogatása",
+  "issuer": "KAP Stratégiai Terv (kap.gov.hu)",
+  "cat": "Mezőgazdaság",
+  "type": "grant",
+  "amount": "2 milliárd Ft",
+  "rate": null,
+  "deadline": "2027-04-30",
+  "rolling": false,
+  "windowOpen": "2026-11-11",
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "regionNote": null,
+  "note": "A támogatásra a Közös Agrárpolitika keretében van lehetőség.",
+  "url": "https://kap.gov.hu/node/3867",
+  "source": "kap.gov.hu",
+  "sources": [
+   "https://kap.gov.hu/node/3867"
+  ],
+  "verifiedAt": "2026-10-13",
+  "confidence": "auto",
+  "autoVerified": true,
+  "scope": "hazai",
+  "evidence": {
+   "title": "Megjelent a „Fiatal erdők állománynevelésének támogatása” című (KAP-RD40-2-26 kódszámú) pályázati felhívás",
+   "status": "Megjelent a „Fiatal erdők állománynevelésének támogatása” című (KAP-RD40-2-26 kódszámú) pályázati felhívás",
+   "deadline": "A támogatási kérelmek benyújtására 2026. november 11. és 2027. április 30. között van lehetőség.",
+   "amount": "A felhívás meghirdetésekor a támogatásra rendelkezésre álló tervezett keretösszeg 2 milliárd Ft.",
+   "eligibility": "A Közös Agrárpolitika Nemzeti Irányító Hatósága a Közös Agrárpolitikából és a nemzeti költségvetésből biztosított agrártámogatások felhasználásának rendjéről"
+  },
+  "requires": {
+   "forestry": true
+  },
+  "requiresEvidence": {
+   "forestry": "Megjelent a „Fiatal erdők állománynevelésének támogatása” című (KAP-RD40-2-26 kódszámú) pályázati felhívás"
+  }
+ },
+ {
+  "id": "a-kap-rd41-4-26",
+  "code": "KAP-RD41-4-26",
+  "title": "Az erdőpotenciált veszélyeztető biotikus és abiotikus károk megelőzése",
+  "issuer": "KAP Stratégiai Terv (kap.gov.hu)",
+  "cat": "Mezőgazdaság",
+  "type": "grant",
+  "amount": "3 milliárd Ft",
+  "rate": null,
+  "deadline": "2027-09-29",
+  "rolling": false,
+  "windowOpen": "2026-10-14",
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "regionNote": null,
+  "note": "Erdőpotenciált veszélyeztető károk megelőzésére vonatkozó támogatási felhívás.",
+  "url": "https://kap.gov.hu/node/3864",
+  "source": "kap.gov.hu",
+  "sources": [
+   "https://kap.gov.hu/node/3864"
+  ],
+  "verifiedAt": "2026-10-13",
+  "confidence": "auto",
+  "autoVerified": true,
+  "scope": "hazai",
+  "evidence": {
+   "title": "Megjelent „Az erdőpotenciált veszélyeztető biotikus és abiotikus károk megelőzése” című (KAP-RD41-4-26 kódszámú) pályázati felhívás",
+   "status": "A támogatási kérelmek benyújtására 2026. október 14. és 2027. szeptember 29. között van lehetőség.",
+   "deadline": "2027. szeptember 29.",
+   "amount": "3 milliárd Ft",
+   "eligibility": "A támogatási kérelmek benyújtására 2026. október 14. és 2027. szeptember 29. között van lehetőség."
+  },
+  "requires": {
+   "forestry": true
+  },
+  "requiresEvidence": {
+   "forestry": "Az erdőpotenciált veszélyeztető biotikus és abiotikus károk megelőzése"
+  }
+ },
+ {
+  "id": "a-kap-rd42a-1-26",
+  "code": "KAP-RD42a-1-26",
+  "title": "Vidéki infrastruktúra fejlesztés zártkerti területeken",
+  "issuer": "KAP Stratégiai Terv (kap.gov.hu)",
+  "cat": "Mezőgazdaság",
+  "type": "grant",
+  "amount": "2 milliárd Ft",
+  "rate": null,
+  "deadline": "2026-10-28",
+  "rolling": false,
+  "windowOpen": "2026-07-02",
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "regionNote": null,
+  "note": "A támogatási kérelmek benyújtására 2026. július 2. és 2026. október 28. között van lehetőség.",
+  "url": "https://kap.gov.hu/node/3573",
+  "source": "kap.gov.hu",
+  "sources": [
+   "https://kap.gov.hu/node/3573"
+  ],
+  "verifiedAt": "2026-10-13",
+  "confidence": "auto",
+  "autoVerified": true,
+  "scope": "hazai",
+  "evidence": {
+   "title": "Megjelent a „Vidéki infrastruktúra fejlesztés zártkerti területeken” című (KAP-RD42a-1-26 kódszámú) pályázati felhívás",
+   "status": "A támogatási kérelmek benyújtására 2026. július 2. és 2026. október 28. között van lehetőség.",
+   "deadline": "2026. október 28.",
+   "amount": "2 milliárd Ft",
+   "eligibility": null
+  }
+ },
+ {
+  "id": "a-kap-rd09a-2-26",
+  "code": "KAP-RD09a-2-26",
+  "title": "Mezőgazdasági kisüzemek beruházási támogatása",
+  "issuer": "KAP Stratégiai Terv (kap.gov.hu)",
+  "cat": "Mezőgazdaság",
+  "type": "grant",
+  "amount": "15 milliárd Ft",
+  "rate": null,
+  "deadline": "2027-04-28",
+  "rolling": false,
+  "windowOpen": "2026-06-18",
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás"
+  ],
+  "regions": [],
+  "regionNote": null,
+  "note": "Mezőgazdasági kisüzemek számára szóló beruházási támogatási felhívás.",
+  "url": "https://kap.gov.hu/node/3569",
+  "source": "kap.gov.hu",
+  "sources": [
+   "https://kap.gov.hu/node/3569"
+  ],
+  "verifiedAt": "2026-10-13",
+  "confidence": "auto",
+  "autoVerified": true,
+  "scope": "hazai",
+  "evidence": {
+   "title": "Megjelent a „Mezőgazdasági kisüzemek beruházási támogatása” című (KAP-RD09a-2-26 kódszámú) pályázati felhívás",
+   "status": "A támogatási kérelmek benyújtására 2026. június 18. és 2027. április 28. között van lehetőség.",
+   "deadline": "2027. április 28.",
+   "amount": "15 milliárd Ft",
+   "eligibility": "Mezőgazdasági kisüzemek beruházási támogatása"
+  },
+  "requires": {
+   "farmer": true
+  },
+  "requiresEvidence": {
+   "farmer": "Mezőgazdasági kisüzemek beruházási támogatása"
+  }
+ }
+]

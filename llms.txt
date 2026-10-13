@@ -2,7 +2,7 @@
 
 > Ingyenes, naponta frissülő pályázatfigyelő magyar vállalkozásoknak: nyitott hazai (Széchenyi Terv Plusz, KAP, MFB, NKFIH, Széchenyi Kártya) és EU-s (Horizon Europe, EIC, LIFE, Digital Europe stb.) felhívások hivatalos forrásból, a cég adataival pontról pontra összevetve.
 
-- Állapot: 2026-10-13 — 433 nyitott felhívás, amelyre vállalkozás pályázhat.
+- Állapot: 2026-10-13 — 436 nyitott felhívás, amelyre vállalkozás pályázhat.
 - Forrás: palyazat.gov.hu API, EU Funding & Tenders Portal, a kiírók hivatalos oldalai; minden felhívásnál feltüntetjük a forrást és az ellenőrzés napját.
 - Lakossági, civil, önkormányzati és magánszemélyeknek szóló felhívások nem szerepelnek.
 - Az adatok tájékoztató jellegűek; mindig a hivatalos felhívás az irányadó.
@@ -18,18 +18,18 @@
 - [DIMOP Plusz pályázatok és hitelek](https://aipalyazo.hu/aipalyazo/palyazat/tema/dimop-plusz.html): 3 nyitott felhívás
 - [KEHOP Plusz pályázatok és hitelek vállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/kehop-plusz.html): 4 nyitott felhívás
 - [MAHOP Plusz halászati és akvakultúra pályázatok](https://aipalyazo.hu/aipalyazo/palyazat/tema/mahop-plusz.html): 3 nyitott felhívás
-- [KAP Stratégiai Terv pályázatok (agrár és vidékfejlesztés)](https://aipalyazo.hu/aipalyazo/palyazat/tema/kap.html): 6 nyitott felhívás
-- [Horizon Europe felhívások magyar vállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/horizon-europe.html): 294 nyitott felhívás
+- [KAP Stratégiai Terv pályázatok (agrár és vidékfejlesztés)](https://aipalyazo.hu/aipalyazo/palyazat/tema/kap.html): 10 nyitott felhívás
+- [Horizon Europe felhívások magyar vállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/horizon-europe.html): 293 nyitott felhívás
 - [Európai Innovációs Tanács (EIC) felhívások](https://aipalyazo.hu/aipalyazo/palyazat/tema/eic.html): 9 nyitott felhívás
 - [Erasmus+, Digital Europe, EIT és egyéb EU-s felhívások](https://aipalyazo.hu/aipalyazo/palyazat/tema/eu-egyeb-programok.html): 77 nyitott felhívás
 - [Széchenyi Kártya Program hitelei](https://aipalyazo.hu/aipalyazo/palyazat/tema/szechenyi-kartya.html): 8 nyitott felhívás
 - [Pályázatok és hitelek egyéni vállalkozóknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/egyeni-vallalkozo.html): 9 nyitott felhívás
-- [Pályázatok és hitelek mikrovállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/mikrovallalkozas.html): 46 nyitott felhívás
-- [Pályázatok és hitelek kis- és középvállalkozásoknak (KKV)](https://aipalyazo.hu/aipalyazo/palyazat/tema/kkv.html): 51 nyitott felhívás
+- [Pályázatok és hitelek mikrovállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/mikrovallalkozas.html): 50 nyitott felhívás
+- [Pályázatok és hitelek kis- és középvállalkozásoknak (KKV)](https://aipalyazo.hu/aipalyazo/palyazat/tema/kkv.html): 55 nyitott felhívás
 - [Pályázatok, tőke és hitel induló vállalkozásoknak és startupoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/startup.html): 17 nyitott felhívás
-- [Pályázatok és hitelek mezőgazdasági termelőknek](https://aipalyazo.hu/aipalyazo/palyazat/tema/mezogazdasagi-termelo.html): 11 nyitott felhívás
+- [Pályázatok és hitelek mezőgazdasági termelőknek](https://aipalyazo.hu/aipalyazo/palyazat/tema/mezogazdasagi-termelo.html): 13 nyitott felhívás
 - [Pályázatok és hitelek turisztikai és vendéglátó vállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/turisztikai-vallalkozas.html): 4 nyitott felhívás
-- [Vissza nem térítendő támogatások vállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/vissza-nem-teritendo.html): 393 nyitott felhívás
+- [Vissza nem térítendő támogatások vállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/vissza-nem-teritendo.html): 396 nyitott felhívás
 - [Kedvezményes hitelek és lízing vállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/hitel.html): 25 nyitott felhívás
 - [Kockázati tőke és tőkebefektetési programok](https://aipalyazo.hu/aipalyazo/palyazat/tema/toke.html): 6 nyitott felhívás
 - [Hitelgarancia és kezességvállalás vállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/garancia.html): 5 nyitott felhívás

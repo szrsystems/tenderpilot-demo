@@ -7,8 +7,9 @@
   },
   "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-agrar-forgoeszkoz-hitelprogram-2025-t266-masolat-t266-p267": {
    "goneHits": 0,
-   "hash": "252e6e6e45d49068",
-   "lastOk": "2026-10-13"
+   "hash": "4d2ea3b920b2e88c",
+   "lastOk": "2026-10-13",
+   "closedHits": 0
   },
   "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025-t259-masolat-t259-p260": {
    "goneHits": 0,
@@ -269,16 +270,16 @@
    "lastOk": "2026-10-13"
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-10-d2-03": {
-   "closedHits": 4
+   "closedHits": 5
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-10-d6-06": {
-   "closedHits": 4
+   "closedHits": 5
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-10-d6-09": {
-   "closedHits": 4
+   "closedHits": 5
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-10-d6-10": {
-   "closedHits": 4
+   "closedHits": 5
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-11-d3-05": {
    "closedHits": 0,
@@ -476,13 +477,13 @@
    "closedHits": 2
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/digital-2026-ai-data-10-compliance": {
-   "closedHits": 4
+   "closedHits": 5
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/digital-2026-skills-10-edtech": {
-   "closedHits": 4
+   "closedHits": 5
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/digital-2026-ai-piloting-10-screening": {
-   "closedHits": 4
+   "closedHits": 5
   },
   "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/digital-eccc-2027-deploy-cyber-11-dualuse": {
    "closedHits": 0,
@@ -688,8 +689,8 @@
   },
   "https://hu.marc-impactprogramme.net/": {
    "goneHits": 0,
-   "hash": "a7669b8018f4982c",
-   "closedHits": 1
+   "hash": "2f2688466b0579e5",
+   "closedHits": 2
   },
   "https://www.eurekanetwork.org/programmes-and-calls/innowwide/5th-innowwide-call-for-market-feasibility-projects-autumn-2026/": {
    "goneHits": 0,
@@ -728,7 +729,23 @@
   }
  },
  "seen": {
-  "kap": [],
+  "kap": [
+   "https://kap.gov.hu/node/1450",
+   "https://kap.gov.hu/node/1420",
+   "https://kap.gov.hu/node/1421",
+   "https://kap.gov.hu/node/1422",
+   "https://kap.gov.hu/node/3867",
+   "https://kap.gov.hu/node/3864",
+   "https://kap.gov.hu/node/3619",
+   "https://kap.gov.hu/node/3573",
+   "https://kap.gov.hu/node/3569",
+   "https://kap.gov.hu/node/3565",
+   "https://kap.gov.hu/node/3534",
+   "https://kap.gov.hu/node/3528",
+   "https://kap.gov.hu/node/3465",
+   "https://kap.gov.hu/node/3456",
+   "https://kap.gov.hu/node/3433"
+  ],
   "mfb": [
    "https://www.mfb.hu/vallalkozasok/mukodo/hitel/kehop-plusz--425-25-foldho-hasznositasi-kedvezmenyes-hitelkonstrukcio-t276-p277",
    "https://www.mfb.hu/vallalkozasok/mukodo/hitel/kehop-plusz--416-25-vallalkozasok-energiahatekonysagi-fejleszteseit-elosegito-hitelkonstrukcio-t269-p270",

@@ -7,13 +7,11 @@
   "v-horizon-cl5-2026-10-d6-10": "closed: EU portál: nincs jövőbeli határidő",
   "v-digital-2026-ai-data-10-compliance": "closed: EU portál: nincs jövőbeli határidő",
   "v-digital-2026-skills-10-edtech": "closed: EU portál: nincs jövőbeli határidő",
-  "v-digital-2026-ai-piloting-10-screening": "closed: EU portál: nincs jövőbeli határidő"
+  "v-digital-2026-ai-piloting-10-screening": "closed: EU portál: nincs jövőbeli határidő",
+  "v-marc-impact-hu-2026": "closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
  },
  "overrides": {
   "v-mfb-zold-lendulet-hitelprogram": {
-   "lastChecked": "2026-10-13"
-  },
-  "v-mfb-agrar-forgoeszkoz-hitelprogram-2025": {
    "lastChecked": "2026-10-13"
   },
   "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025": {
@@ -266,24 +264,16 @@
    "lastChecked": "2026-10-13"
   },
   "v-horizon-hlth-2027-02-ind-02-two-stage": {
-   "deadline": "2027-02-17",
-   "lastChecked": "2026-10-13",
-   "note": "EU portál: 2027-04-13 → 2027-02-17"
+   "lastChecked": "2026-10-13"
   },
   "v-horizon-hlth-2027-01-ind-01": {
-   "deadline": "2027-02-17",
-   "lastChecked": "2026-10-13",
-   "note": "EU portál: 2027-04-13 → 2027-02-17"
+   "lastChecked": "2026-10-13"
   },
   "v-horizon-hlth-2027-01-disease-08": {
-   "deadline": "2027-02-17",
-   "lastChecked": "2026-10-13",
-   "note": "EU portál: 2027-04-13 → 2027-02-17"
+   "lastChecked": "2026-10-13"
   },
   "v-horizon-hlth-2027-03-tool-04": {
-   "deadline": "2027-09-16",
-   "lastChecked": "2026-10-13",
-   "note": "EU portál: 2027-09-22 → 2027-09-16"
+   "lastChecked": "2026-10-13"
   },
   "v-horizon-cl3-2026-01-drs-02": {
    "lastChecked": "2026-10-13"
@@ -367,9 +357,7 @@
    "lastChecked": "2026-10-13"
   },
   "v-eitfood-poc-cofin-2026": {
-   "deadline": "2026-11-30",
-   "lastChecked": "2026-10-13",
-   "note": "oldal szerint: „Deadline: 30 November 2026”"
+   "lastChecked": "2026-10-13"
   },
   "v-eit-ai-entrepreneurs-lab-2026": {
    "lastChecked": "2026-10-13"

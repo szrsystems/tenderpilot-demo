@@ -30,6 +30,30 @@
   "lastSeen": "2026-09-30",
   "closedAt": "2026-10-08"
  },
+ "a-kap-rd09a-2-26": {
+  "id": "a-kap-rd09a-2-26",
+  "title": "Mezőgazdasági kisüzemek beruházási támogatása",
+  "firstSeen": "2026-10-13",
+  "lastSeen": "2026-10-13"
+ },
+ "a-kap-rd40-2-26": {
+  "id": "a-kap-rd40-2-26",
+  "title": "Fiatal erdők állománynevelésének támogatása",
+  "firstSeen": "2026-10-13",
+  "lastSeen": "2026-10-13"
+ },
+ "a-kap-rd41-4-26": {
+  "id": "a-kap-rd41-4-26",
+  "title": "Az erdőpotenciált veszélyeztető biotikus és abiotikus károk megelőzése",
+  "firstSeen": "2026-10-13",
+  "lastSeen": "2026-10-13"
+ },
+ "a-kap-rd42a-1-26": {
+  "id": "a-kap-rd42a-1-26",
+  "title": "Vidéki infrastruktúra fejlesztés zártkerti területeken",
+  "firstSeen": "2026-10-13",
+  "lastSeen": "2026-10-13"
+ },
  "agrar-szechenyi-beruhazasi-hitel-max": {
   "id": "v-agrar-szechenyi-beruhazasi-hitel-max",
   "title": "Agrár Széchenyi Beruházási Hitel MAX+",
@@ -996,7 +1020,8 @@
   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-03",
   "title": "Rethinking sustainable competitiveness beyond traditional perspectives: role and contribution of the Social Economy",
   "firstSeen": "2026-10-09",
-  "lastSeen": "2026-10-13"
+  "lastSeen": "2026-10-13",
+  "closedAt": "2026-10-13"
  },
  "horizon-cl2-2027-01-transfo-04": {
   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-04",

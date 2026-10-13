@@ -2,52 +2,33 @@
  "updatedAt": "2026-10-13",
  "items": [
   {
-   "kind": "deadline-changed",
-   "id": "v-horizon-hlth-2027-02-ind-02-two-stage",
-   "title": "Portable and versatile Point-of-care diagnostics (IA, two-stage) (Hordozható, sokoldalú helyszíni diagnosztika – kétfordulós)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2027-02-ind-02-two-stage",
-   "outcome": "auto-fixed",
-   "detail": "EU portál: 2027-04-13 → 2027-02-17"
-  },
-  {
-   "kind": "deadline-changed",
-   "id": "v-horizon-hlth-2027-01-ind-01",
-   "title": "Development of cell-free protein synthesis platforms for discovery and/or production of biologicals (RIA) (Sejtmentes fehérjeszintézis-platformok biológiai gyógyszerekhez)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2027-01-ind-01",
-   "outcome": "auto-fixed",
-   "detail": "EU portál: 2027-04-13 → 2027-02-17"
-  },
-  {
-   "kind": "deadline-changed",
-   "id": "v-horizon-hlth-2027-01-disease-08",
-   "title": "Development of innovative antimicrobials against pathogens resistant to antimicrobials (RIA) (Innovatív antimikrobiális szerek rezisztens kórokozók ellen)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2027-01-disease-08",
-   "outcome": "auto-fixed",
-   "detail": "EU portál: 2027-04-13 → 2027-02-17"
-  },
-  {
-   "kind": "deadline-changed",
-   "id": "v-horizon-hlth-2027-03-tool-04",
-   "title": "Virtual Human Twins for integrated clinical decision support in prevention and diagnosis (RIA) (Virtuális emberi ikrek klinikai döntéstámogatáshoz)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2027-03-tool-04",
-   "outcome": "auto-fixed",
-   "detail": "EU portál: 2027-09-22 → 2027-09-16"
-  },
-  {
-   "kind": "deadline-changed",
-   "id": "v-eitfood-poc-cofin-2026",
-   "title": "Proof-of-Concept Co-Financing Instrument (Agrárélelmiszer-startupok pilot projektjeinek társfinanszírozása)",
-   "url": "https://www.eitfood.eu/open-calls/proof-of-concept-co-financing-instrument-2",
-   "outcome": "auto-fixed",
-   "detail": "oldal szerint: „Deadline: 30 November 2026”"
-  },
-  {
    "kind": "recheck",
-   "id": "v-marc-impact-hu-2026",
-   "title": "Marc Impact Programme – nemzetközi társadalmi vállalkozásfejlesztő program (2026/27)",
-   "url": "https://hu.marc-impactprogramme.net/",
-   "outcome": "closed",
-   "detail": "az oldal szerint: „Jelentkezési határidő (23:59)”"
+   "id": "v-mfb-agrar-forgoeszkoz-hitelprogram-2025",
+   "title": "MFB Agrár Forgóeszköz Hitelprogram 2025",
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-agrar-forgoeszkoz-hitelprogram-2025-t266-masolat-t266-p267",
+   "outcome": "changed-unverified",
+   "detail": "status not on page; amount quote not on page"
+  },
+  {
+   "kind": "new",
+   "source": "kap",
+   "url": "https://kap.gov.hu/node/3565",
+   "title": "Agrárszakképzési centrumok beruházásainak támogatása",
+   "detail": "deadline passed; businesses cannot apply; status closed"
+  },
+  {
+   "kind": "new",
+   "source": "kap",
+   "url": "https://kap.gov.hu/node/3465",
+   "title": "Természetközeli és vizes élőhelyek kialakítását elősegítő beruházások és azok fenntartása",
+   "detail": "deadline passed; eligibility unclear; status closed"
+  },
+  {
+   "kind": "new",
+   "source": "kap",
+   "url": "https://kap.gov.hu/node/3433",
+   "title": "Növényi genetikai erőforrások és mikroorganizmusok ex situ megőrzése",
+   "detail": "deadline passed; eligibility unclear; status closed"
   },
   {
    "kind": "benchmark-code",
@@ -66,23 +47,16 @@
   {
    "kind": "benchmark-code",
    "source": "pafi",
-   "title": "2024-1.2.1-HE_PARTNERS",
+   "title": "MAHOP Plusz-2.1.1-20",
    "url": "https://pafi.hu/palyazatok/vallalkozasok",
    "detail": "a(z) pafi.hu — vállalkozások listáján szerepel, nálunk nincs — ellenőrizd a hivatalos oldalon"
   },
   {
-   "kind": "benchmark-new",
+   "kind": "benchmark-code",
    "source": "pafi",
-   "title": "eave slate 2027",
-   "url": "https://pafi.hu/p/eave-slate-2027",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "innovation projects eit culture creativity",
-   "url": "https://pafi.hu/p/innovation-projects-eit-culture-creativity",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+   "title": "MAHOP Plusz-2.5.1-20",
+   "url": "https://pafi.hu/palyazatok/vallalkozasok",
+   "detail": "a(z) pafi.hu — vállalkozások listáján szerepel, nálunk nincs — ellenőrizd a hivatalos oldalon"
   }
  ]
 }
