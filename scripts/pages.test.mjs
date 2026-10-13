@@ -178,3 +178,39 @@ test('guides: valid content, JSON-LD, hub links only to existing hubs, in sitema
   assert.match(files.get(`palyazat/${[...files.keys()].find((k) => /^palyazat\/g0/.test(k)).slice(9)}`), /\.\.\/utmutato\/hogyan-palyazzunk\.html/);
   assert.match(buildLlmsTxt({ open: 3, hubs: [], today: '2026-10-13' }), /## Útmutatók[\s\S]*utmutato\/kkv-minosites\.html/);
 });
+
+import { weekRange, mondayOf, newsWeeks, weekEntries, NEWS_START } from './build-pages.mjs';
+test('weekly news: week maths, re-added calls and undone moves are not news, pages + RSS + sitemap', () => {
+  assert.equal(mondayOf('2026-10-18'), '2026-10-12');
+  assert.equal(mondayOf('2026-10-12'), '2026-10-12');
+  assert.equal(weekRange('2026-10-12'), '2026. október 12–18.');
+  assert.equal(weekRange('2026-10-26'), '2026. október 26. – november 1.');
+  assert.equal(weekRange('2026-12-28'), '2026. december 28. – 2027. január 3.');
+  assert.deepEqual(newsWeeks('2026-10-20'), ['2026-10-19', '2026-10-12']);
+  assert.equal(NEWS_START, '2026-10-12');
+  const changes = {
+    fresh: [{ date: '2026-10-13', type: 'new', title: 'Fresh' }],
+    back: [{ date: '2026-10-08', type: 'new' }, { date: '2026-10-09', type: 'removed' }, { date: '2026-10-13', type: 'new' }],
+    flap: [{ date: '2026-10-13', type: 'deadline', from: '2026-10-30', to: '2026-11-30' }, { date: '2026-10-13', type: 'deadline', from: '2026-11-30', to: '2026-10-30' }],
+    moved: [{ date: '2026-10-14', type: 'deadline', from: '2026-11-10', to: '2026-10-26' }, { date: '2026-10-14', type: 'deadline-official', from: 'x', to: 'y' }],
+    old: [{ date: '2026-10-10', type: 'new' }],
+  };
+  const e = weekEntries(changes, '2026-10-12');
+  assert.deepEqual(e.map((x) => x.id + ':' + x.type).sort(), ['fresh:new', 'moved:deadline']);
+  const grants = [
+    { id: 'fresh', title: 'Fresh call', scope: 'hu', type: 'grant', deadline: '2099-01-01', issuer: 'X' },
+    { id: 'moved', title: 'Moved call', scope: 'eu', type: 'grant', deadline: '2026-10-26' },
+    { id: 'z', title: 'Z', scope: 'hu', type: 'grant', deadline: '2099-01-01' },
+  ];
+  const { files } = buildAll({ grants, changes, today: '2026-10-14' });
+  const wk = files.get('hirek/het-2026-10-12.html');
+  assert.match(wk, /1 új felhívás került fel a listánkra \(1 hazai\), 1 felhívás határideje módosult/);
+  assert.match(wk, /"@type":"NewsArticle"/);
+  assert.match(wk, /Hamarosan lejár/);
+  assert.match(wk, /google\.com\/preferences\/source\?q=aipalyazo\.hu/);
+  assert.ok(files.has('hirek/index.html'));
+  const rss = files.get('hirek/rss.xml');
+  assert.match(rss, /<item><title>Fresh call<\/title>/);
+  assert.ok(!/Moved call/.test(rss));
+  assert.match(files.get('sitemap.xml'), /hirek\/het-2026-10-12\.html<\/loc><lastmod>2026-10-14<\/lastmod><changefreq>daily/);
+});

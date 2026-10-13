@@ -10,6 +10,7 @@
 
 ## Fő oldalak
 - [Nyitott pályázatok listája](https://aipalyazo.hu/aipalyazo/palyazat/index.html): minden nyitott felhívás határidő szerint, hazai és EU-s bontásban
+- [Heti pályázati hírek](https://aipalyazo.hu/aipalyazo/hirek/index.html): új felhívások, határidő- és keretváltozások hétről hétre (RSS: https://aipalyazo.hu/aipalyazo/hirek/rss.xml)
 - [Gyors jogosultság-ellenőrzés](https://aipalyazo.hu/aipalyazo/index.html#ellenorzes): 4 adat alapján, regisztráció nélkül
 - [Oldaltérkép](https://aipalyazo.hu/aipalyazo/sitemap.xml)
 

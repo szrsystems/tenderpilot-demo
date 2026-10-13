@@ -105,6 +105,7 @@ const PAGE_CSS = `
 .faq-list{margin:0;border-top:1px solid var(--line)}.faq-list dt{font-weight:600;color:var(--ink);padding-top:12px}.faq-list dd{margin:4px 0 0;padding-bottom:12px;border-bottom:1px solid var(--line);color:var(--ink-2);overflow-wrap:anywhere}
 .related{margin:0;padding-left:18px}.related li{margin:6px 0}
 .guide{max-width:760px}.guide h2{margin-top:var(--s6)}.guide .lead{font-size:18px;color:var(--ink)}.guide .live{margin:var(--s4) 0}.guide section ul,.guide section ol{padding-left:20px}.guide section li{margin:6px 0}.guide .facts th{width:38%}
+.news-list{list-style:none;padding:0;margin:0}.news-list li{padding:10px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.news-list a{font-weight:600}.news h2 .count{font-size:14px;color:var(--ink-3);font-weight:500}
 .sources{padding-left:18px;overflow-wrap:anywhere}.sources li{margin:6px 0}
 .guide-list{list-style:none;padding:0;margin:var(--s5) 0;max-width:760px}.guide-list li{padding:var(--s4) 0;border-bottom:1px solid var(--line)}.guide-list a{font-weight:600;font-size:18px}.guide-list p{margin:6px 0 0;color:var(--ink-2)}
 `;
@@ -133,6 +134,7 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/svg+xml" href="${up}favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="AIpályázó – új pályázatok" href="${BASE}/hirek/rss.xml">
 <link rel="preload" href="${up}assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${up}assets/site.css">
 <style>${PAGE_CSS}</style>
@@ -160,7 +162,7 @@ ${body}
   <div class="wrap">
     <div class="cols">
       <div><a class="brand" href="${up}index.html">${MARK}<span><b>AI</b>pályázó</span></a><p class="brand-p">Ingyenes pályázatfigyelő magyar vállalkozásoknak. Tájékoztató szolgáltatás: beadás előtt mindig a hivatalos felhívás az irányadó.</p></div>
-      <div><h4>Pályázatok</h4><ul><li><a href="${up}palyazat/index.html">Nyitott felhívások</a></li><li><a href="${up}palyazat/index.html#temak">Témák és programok</a></li><li><a href="${up}utmutato/index.html">Útmutatók</a></li><li><a href="${up}portal.html">Portál</a></li></ul></div>
+      <div><h4>Pályázatok</h4><ul><li><a href="${up}palyazat/index.html">Nyitott felhívások</a></li><li><a href="${up}palyazat/index.html#temak">Témák és programok</a></li><li><a href="${up}utmutato/index.html">Útmutatók</a></li><li><a href="${up}hirek/index.html">Heti hírek</a></li><li><a href="${up}portal.html">Portál</a></li></ul></div>
       <div><h4>Rólunk</h4><ul><li><a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a></li></ul></div>
       <div><h4>Jogi</h4><ul><li><a href="${up}impresszum.html">Impresszum</a></li><li><a href="${up}adatvedelem.html">Adatkezelés</a></li><li><a href="${up}aszf.html">ÁSZF</a></li></ul></div>
     </div>
@@ -462,7 +464,7 @@ export function renderIndex(open, slugs, { updatedAt, hubs = [] } = {}) {
   const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">AIpályázó</a> / Pályázatok</nav>
 <header class="call-head"><p class="eyebrow">Naponta frissítve${updatedAt ? ' · ' + esc(String(updatedAt).slice(0, 10)) : ''}</p>
 <h1>Nyitott pályázatok magyar vállalkozásoknak</h1>
-<p class="page-intro">${open.length} nyitott felhívás — ${hu.length} hazai és ${eu.length} EU-s / nemzetközi. Csak olyan kiírások, amelyekre vállalkozás pályázhat, és amelyek határideje még nem járt le.</p></header>
+<p class="page-intro">${open.length} nyitott felhívás — ${hu.length} hazai és ${eu.length} EU-s / nemzetközi. Csak olyan kiírások, amelyekre vállalkozás pályázhat, és amelyek határideje még nem járt le. Mi változott a héten? <a href="../hirek/index.html">Heti összefoglaló</a>.</p></header>
 <div class="bigsearch"><h2>Mire keres támogatást?</h2><form role="search" data-nosubmit><div class="inp"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><label class="visually-hidden" for="q">Keresés a pályázatok között</label>
 <input id="q" type="search" placeholder="Pl. energia, gép, digitalizáció, GINOP, turizmus…" autocomplete="off"></div></form>
 <div class="filters" role="group" aria-label="Szűrés">
@@ -561,12 +563,172 @@ export function renderGuidesIndex() {
   return shell({ title: 'Pályázati útmutatók: KKV, de minimis, hitel, beadás, EU | AIpályázó', description: 'Rövid, forrásokkal ellátott útmutatók magyar vállalkozásoknak: KKV-minősítés, de minimis keret, támogatás vagy hitel, a pályázás lépései, EU-s pályázatok.', canonical, noindex: false, body, jsonld, current: 'utmutato' });
 }
 
+// ---- weekly news (hirek/) ---------------------------------------------------
+// Built only from changes.json (kept 12 months), so every week page can be
+// regenerated any day. Starts on NEWS_START: earlier "new" entries are the
+// initial import and source clean-ups, not real news.
+export const NEWS_START = '2026-10-12';
+export const PREFERRED_SOURCE_URL = 'https://www.google.com/preferences/source?q=aipalyazo.hu';
+const NEWS_TYPES = new Set(['new', 'deadline', 'keret', 'szabad-keret']); // deadline-official is an internal review flag, not news
+const addDays = (d, n) => new Date(Date.parse(d + 'T00:00:00Z') + n * 86400000).toISOString().slice(0, 10);
+export const mondayOf = (d) => addDays(d, -((new Date(d + 'T00:00:00Z').getUTCDay() + 6) % 7));
+export function weekRange(mon) {
+  const sun = addDays(mon, 6);
+  const [y1, m1, d1] = [mon.slice(0, 4), +mon.slice(5, 7), +mon.slice(8, 10)];
+  const [y2, m2, d2] = [sun.slice(0, 4), +sun.slice(5, 7), +sun.slice(8, 10)];
+  if (y1 !== y2) return `${y1}. ${HU_MONTHS[m1 - 1]} ${d1}. – ${y2}. ${HU_MONTHS[m2 - 1]} ${d2}.`;
+  if (m1 !== m2) return `${y1}. ${HU_MONTHS[m1 - 1]} ${d1}. – ${HU_MONTHS[m2 - 1]} ${d2}.`;
+  return `${y1}. ${HU_MONTHS[m1 - 1]} ${d1}–${d2}.`;
+}
+export function newsWeeks(today) {
+  const out = [];
+  const cutoff = addDays(today, -364);
+  for (let m = mondayOf(NEWS_START); m <= today; m = addDays(m, 7)) if (addDays(m, 6) >= cutoff) out.push(m);
+  return out.reverse();
+}
+// Entries of one week: [{ id, date, type, from, to, title }]
+export function weekEntries(changes, mon) {
+  const sun = addDays(mon, 6), out = [];
+  for (const [id, list] of Object.entries(changes || {})) {
+    if (!Array.isArray(list)) continue;
+    const first = list.reduce((m, e) => (e && e.date && (!m || e.date < m) ? e.date : m), '');
+    for (const e of list) {
+      if (!e || !NEWS_TYPES.has(e.type) || e.date < mon || e.date > sun || e.date < NEWS_START) continue;
+      // A call that drops out and comes back (source outage) is not news.
+      if (e.type === 'new' && e.date > first) continue;
+      out.push({ id, ...e });
+    }
+  }
+  // Several moves of one value in a week (or a move and its undo) → one net change.
+  const net = new Map();
+  for (const e of out) {
+    if (e.type === 'new') continue;
+    const k = e.id + '|' + e.type, prev = net.get(k);
+    net.set(k, prev ? { ...prev, from: (prev.date <= e.date ? prev : e).from, to: (prev.date <= e.date ? e : prev).to, date: prev.date > e.date ? prev.date : e.date } : e);
+  }
+  return [...out.filter((e) => e.type === 'new'), ...[...net.values()].filter((e) => String(e.from) !== String(e.to))].sort((a, b) => b.date.localeCompare(a.date) || String(a.id).localeCompare(String(b.id)));
+}
+const n0 = (n, word) => `${n} ${word}`;
+function newsRow(e, ctx, prefix) {
+  const g = ctx.byId.get(e.id) || {};
+  const title = g.title || e.title || e.id;
+  const slug = ctx.idToSlug.get(e.id);
+  const name = slug ? `<a href="${prefix}palyazat/${esc(slug)}.html">${esc(title)}</a>` : esc(title);
+  const meta = [g.issuer, isDate(g.deadline) ? `határidő: ${longDate(g.deadline)}` : (g.id ? 'folyamatos beadás' : ''), ctx.openIds.has(e.id) ? '' : 'azóta lezárult vagy lekerült'].filter(Boolean).map(esc).join(' · ');
+  let what = '';
+  if (e.type !== 'new') what = `${esc(CHANGE_HU[e.type] || 'Változás')}${e.from != null || e.to != null ? `: ${esc(changeValue(e.type, e.from) || '—')} → ${esc(changeValue(e.type, e.to) || '—')}` : ''}`;
+  return `<li>${name}${what ? `<br><span>${what}</span>` : ''}${meta ? `<br><span class="muted">${meta}</span>` : ''}</li>`;
+}
+function weekStats(entries, byId) {
+  const fresh = entries.filter((e) => e.type === 'new');
+  const eu = fresh.filter((e) => (byId.get(e.id) || {}).scope === 'eu').length;
+  return { fresh, hu: fresh.length - eu, eu, deadlines: entries.filter((e) => /deadline/.test(e.type)).length, keret: entries.filter((e) => /keret/.test(e.type)).length };
+}
+const prefBtn = (prefix) => `<div class="side-box narrow"><h2>Kövesse a változásokat</h2><p>Minden héten összefoglaljuk, mely felhívások kerültek fel, és mi módosult. Ha a Google-ben előnyben részesített forrásként jelöli meg az AIpályázó-t, a keresőben gyakrabban látja a híreinket.</p><a class="btn btn-primary" href="${PREFERRED_SOURCE_URL}" target="_blank" rel="noopener">Hozzáadás a Google-ben ↗</a> <a class="btn btn-ghost" href="${prefix}hirek/rss.xml">RSS-hírcsatorna</a></div>`;
+
+export function renderWeek(mon, { changes, byId, idToSlug, openIds, open = [], today }) {
+  const sun = addDays(mon, 6), current = today >= mon && today <= sun;
+  const canonical = `${BASE}/hirek/het-${mon}.html`;
+  const entries = weekEntries(changes, mon);
+  const st = weekStats(entries, byId);
+  const ctx = { byId, idToSlug, openIds };
+  const range = weekRange(mon);
+  const until = current ? ` (${longDate(today).replace(/\.$/, '')}-i állapot)` : '';
+  const lead = st.fresh.length || st.deadlines || st.keret
+    ? `${range} között ${st.fresh.length} új felhívás került fel a listánkra (${[st.hu && `${st.hu} hazai`, st.eu && `${st.eu} EU-s / nemzetközi`].filter(Boolean).join(', ')})${st.deadlines ? `, ${st.deadlines} felhívás határideje módosult` : ''}${st.keret ? `, ${st.keret} felhívás kerete változott` : ''}.${until}`
+    : `${range} között nem került fel új felhívás, és nem módosult határidő.${until}`;
+  const list = (h, arr) => (arr.length ? `<h2>${h} <span class="count">${arr.length}</span></h2><ul class="news-list">${arr.map((e) => newsRow(e, ctx, '../')).join('')}</ul>` : '');
+  const huNew = st.fresh.filter((e) => (byId.get(e.id) || {}).scope !== 'eu');
+  const euNew = st.fresh.filter((e) => (byId.get(e.id) || {}).scope === 'eu');
+  const soon = current ? open.filter((g) => isDate(g.deadline) && g.deadline >= today && g.deadline <= addDays(today, 14)).sort(byDeadline) : [];
+  const soonHtml = soon.length ? `<h2>Hamarosan lejár (14 napon belül) <span class="count">${soon.length}</span></h2><ul class="news-list">${soon.map((g) => `<li><a href="../palyazat/${esc(idToSlug.get(g.id))}.html">${esc(g.title)}</a><br><span class="muted">${esc([g.issuer, 'határidő: ' + longDate(g.deadline)].filter(Boolean).join(' · '))}</span></li>`).join('')}</ul>` : '';
+  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">AIpályázó</a> / <a href="index.html">Heti hírek</a></nav>
+<article class="guide news">
+<header class="call-head"><p class="eyebrow">Heti összefoglaló${current ? ' · folyamatosan frissül' : ''}</p>
+<h1>Új pályázatok és változások: ${esc(range)}</h1>
+<p class="page-intro lead">${esc(lead)}</p></header>
+${list('Új hazai felhívások és hitelek', huNew)}
+${list('Új EU-s és nemzetközi felhívások', euNew)}
+${list('Határidő-módosítások', entries.filter((e) => /deadline/.test(e.type)))}
+${list('Keretváltozások', entries.filter((e) => /keret/.test(e.type)))}
+${soonHtml}
+<p class="muted">Az „új” azt jelenti, hogy a felhívás ezen a héten került fel a listánkra; korábban is megjelenhetett a kiíró oldalán. Mindig a hivatalos felhívás az irányadó.</p>
+${prefBtn('../')}
+<p><a href="index.html">← Összes heti összefoglaló</a> · <a href="../palyazat/index.html">Összes nyitott pályázat</a></p>
+</article>`;
+  const modified = current ? today : sun;
+  const jsonld = [
+    {
+      '@context': 'https://schema.org', '@type': 'NewsArticle', headline: `Új pályázatok és változások: ${range}`, description: clip(lead, 300),
+      url: canonical, mainEntityOfPage: canonical, inLanguage: 'hu', datePublished: `${mon}T08:00:00+01:00`, dateModified: `${modified}T08:00:00+01:00`,
+      image: [`${BASE}/assets/og.png`],
+      author: { '@type': 'Organization', name: 'AIpályázó', url: `${BASE}/index.html` },
+      publisher: { '@type': 'Organization', name: 'AIpályázó', url: `${BASE}/index.html`, logo: { '@type': 'ImageObject', url: `${BASE}/assets/og.png` } },
+    },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'AIpályázó', item: `${BASE}/index.html` },
+      { '@type': 'ListItem', position: 2, name: 'Heti hírek', item: `${BASE}/hirek/index.html` },
+      { '@type': 'ListItem', position: 3, name: range, item: canonical },
+    ] },
+  ];
+  const title = `Új pályázatok ${range} – ${st.fresh.length} új felhívás | AIpályázó`;
+  return { html: shell({ title, description: clip(lead, 160), canonical, noindex: false, body, jsonld, current: 'hirek', ogType: 'article' }), stats: st, modified };
+}
+
+export function renderNewsIndex(weeks, statsByWeek, today) {
+  const canonical = `${BASE}/hirek/index.html`;
+  const latest = weeks[0];
+  const s0 = latest && statsByWeek.get(latest);
+  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">AIpályázó</a> / Heti hírek</nav>
+<header class="call-head"><p class="eyebrow">Heti hírek · naponta frissül</p><h1>Pályázati hírek: új felhívások és változások hétről hétre</h1>
+<p class="page-intro">Minden héten összefoglaljuk, mely pályázatok, hitelek és EU-s felhívások kerültek fel a listánkra, melyiknek módosult a határideje vagy a kerete, és mi jár le hamarosan.${s0 ? ` Ezen a héten eddig ${s0.fresh.length} új felhívás került fel.` : ''}</p></header>
+<ul class="guide-list">${weeks.map((m) => { const st = statsByWeek.get(m); return `<li><a href="het-${m}.html">${esc(weekRange(m))}</a><p>${st.fresh.length} új felhívás${st.fresh.length ? ` (${[st.hu && `${st.hu} hazai`, st.eu && `${st.eu} EU-s`].filter(Boolean).join(', ')})` : ''}${st.deadlines ? ` · ${st.deadlines} határidő-módosítás` : ''}${st.keret ? ` · ${st.keret} keretváltozás` : ''}</p></li>`; }).join('')}</ul>
+${prefBtn('../')}`;
+  const jsonld = [
+    { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Pályázati hírek hétről hétre', url: canonical, inLanguage: 'hu', dateModified: today,
+      hasPart: weeks.map((m) => ({ '@type': 'NewsArticle', headline: `Új pályázatok és változások: ${weekRange(m)}`, url: `${BASE}/hirek/het-${m}.html` })) },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'AIpályázó', item: `${BASE}/index.html` },
+      { '@type': 'ListItem', position: 2, name: 'Heti hírek', item: canonical },
+    ] },
+  ];
+  return shell({ title: 'Pályázati hírek hétről hétre: új felhívások, határidők | AIpályázó', description: 'Heti összefoglaló: új hazai és EU-s pályázatok, hitelek, határidő- és keretváltozások magyar vállalkozásoknak, naponta frissítve hivatalos forrásokból.', canonical, noindex: false, body, jsonld, current: 'hirek' });
+}
+
+const xmlEsc = (s) => esc(s).replace(/&#39;/g, '&apos;');
+const rfc822 = (d) => new Date(d + 'T06:00:00Z').toUTCString();
+export function buildRss({ changes, byId, idToSlug, openIds, today }) {
+  const from = addDays(today, -30);
+  const items = [];
+  for (const [id, list] of Object.entries(changes || {})) {
+    if (!openIds.has(id) || !idToSlug.has(id) || !Array.isArray(list)) continue;
+    const first = list.reduce((m, e) => (e && e.date && (!m || e.date < m) ? e.date : m), '');
+    for (const e of list) if (e.type === 'new' && e.date === first && e.date >= from && e.date >= NEWS_START) items.push({ id, date: e.date });
+  }
+  items.sort((a, b) => b.date.localeCompare(a.date) || a.id.localeCompare(b.id));
+  const body = items.slice(0, 100).map(({ id, date }) => {
+    const g = byId.get(id); const link = `${BASE}/palyazat/${idToSlug.get(id)}.html`;
+    return `<item><title>${xmlEsc(g.title)}</title><link>${xmlEsc(link)}</link><guid isPermaLink="false">${xmlEsc(id)}#${date}</guid><pubDate>${rfc822(date)}</pubDate><description>${xmlEsc(Cards.brief(g))}</description></item>`;
+  }).join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
+<title>AIpályázó – új pályázatok magyar vállalkozásoknak</title>
+<link>${BASE}/hirek/index.html</link>
+<atom:link href="${BASE}/hirek/rss.xml" rel="self" type="application/rss+xml"/>
+<description>Újonnan listázott hazai és EU-s pályázatok, hitelek és tőkeprogramok, naponta frissítve hivatalos forrásokból.</description>
+<language>hu</language>
+<lastBuildDate>${rfc822(today)}</lastBuildDate>
+${body}
+</channel></rss>
+`;
+}
+
 export const STATIC_PAGES = [
   ['index.html', '1.0', 'weekly'], ['palyazat/index.html', '0.9', 'daily'], ['onboarding.html', '0.8', 'monthly'],
   ['signup.html', '0.7', 'monthly'],
   ['impresszum.html', '0.2', 'yearly'], ['adatvedelem.html', '0.2', 'yearly'], ['aszf.html', '0.2', 'yearly'],
 ];
-export function buildSitemap(open, slugs, today, hubs = []) {
+export function buildSitemap(open, slugs, today, hubs = [], news = []) {
   const url = (loc, pri, freq, lastmod) => `  <url><loc>${esc(loc)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}<changefreq>${freq}</changefreq><priority>${pri}</priority></url>`;
   const lines = STATIC_PAGES.map(([p, pri, f]) => url(`${BASE}/${p}`, pri, f, p === 'palyazat/index.html' ? today : ''));
   for (const g of open) {
@@ -577,6 +739,8 @@ export function buildSitemap(open, slugs, today, hubs = []) {
   const newest = GUIDES.map((x) => x.updated).filter(isDate).sort().pop();
   lines.push(url(`${BASE}/utmutato/index.html`, '0.6', 'monthly', newest || ''));
   for (const x of GUIDES) lines.push(url(`${BASE}/utmutato/${x.slug}.html`, '0.6', 'monthly', isDate(x.updated) ? x.updated : ''));
+  if (news.length) lines.push(url(`${BASE}/hirek/index.html`, '0.7', 'daily', today));
+  for (const w of news) lines.push(url(`${BASE}/hirek/het-${w.mon}.html`, '0.5', w.modified === today ? 'daily' : 'yearly', w.modified));
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${lines.join('\n')}\n</urlset>\n`;
 }
 
@@ -595,6 +759,7 @@ export function buildLlmsTxt({ open, hubs = [], today }) {
 
 ## Fő oldalak
 - [Nyitott pályázatok listája](${BASE}/palyazat/index.html): minden nyitott felhívás határidő szerint, hazai és EU-s bontásban
+- [Heti pályázati hírek](${BASE}/hirek/index.html): új felhívások, határidő- és keretváltozások hétről hétre (RSS: ${BASE}/hirek/rss.xml)
 - [Gyors jogosultság-ellenőrzés](${BASE}/index.html#ellenorzes): 4 adat alapján, regisztráció nélkül
 - [Oldaltérkép](${BASE}/sitemap.xml)
 
@@ -656,10 +821,22 @@ export function buildAll({ grants, summaries = {}, manifest = {}, today, updated
   files.set('palyazat/index.html', renderIndex(open, slugs, { updatedAt, hubs }));
   for (const x of GUIDES) files.set(`utmutato/${x.slug}.html`, renderGuide(x, { open, hubs, today }));
   files.set('utmutato/index.html', renderGuidesIndex());
-  files.set('sitemap.xml', buildSitemap(open, slugs, today, hubs));
+  // weekly news
+  const byId = new Map(grants.filter((g) => g && g.id).map((g) => [g.id, g]));
+  const idToSlug = new Map(Object.entries(next).map(([slug, m]) => [m.id, slug]));
+  const weeks = newsWeeks(today), statsByWeek = new Map(), news = [];
+  for (const mon of weeks) {
+    const r = renderWeek(mon, { changes, byId, idToSlug, openIds, open, today });
+    files.set(`hirek/het-${mon}.html`, r.html); statsByWeek.set(mon, r.stats); news.push({ mon, modified: r.modified });
+  }
+  if (weeks.length) {
+    files.set('hirek/index.html', renderNewsIndex(weeks, statsByWeek, today));
+    files.set('hirek/rss.xml', buildRss({ changes, byId, idToSlug, openIds, today }));
+  }
+  files.set('sitemap.xml', buildSitemap(open, slugs, today, hubs, news));
   const sortedManifest = Object.fromEntries(Object.entries(next).sort(([a], [b]) => a.localeCompare(b)));
   files.set('palyazat/pages.json', JSON.stringify(sortedManifest, null, 1) + '\n');
-  return { files, manifest: sortedManifest, removed, stats: { open: open.length, hubs: hubs.length, guides: GUIDES.length, closed, removed: removed.length, withSummary: open.filter((g) => summaries[g.id]).length } };
+  return { files, manifest: sortedManifest, removed, stats: { open: open.length, hubs: hubs.length, guides: GUIDES.length, newsWeeks: weeks.length, closed, removed: removed.length, withSummary: open.filter((g) => summaries[g.id]).length } };
 }
 
 function main() {
@@ -676,6 +853,7 @@ function main() {
   const { files, removed, stats } = buildAll({ grants, summaries, manifest, today, updatedAt: meta.updatedAt, changes });
   mkdirSync(join(site, 'palyazat', 'tema'), { recursive: true });
   mkdirSync(join(site, 'utmutato'), { recursive: true });
+  mkdirSync(join(site, 'hirek'), { recursive: true });
   for (const [rel, content] of files) writeFileSync(join(site, rel), content);
   for (const rel of removed) { const p = join(site, rel); if (existsSync(p)) unlinkSync(p); }
   // Stray html files not in the manifest (e.g. hand-deleted manifest) are removed.
@@ -684,9 +862,10 @@ function main() {
   // Hubs that fell under the threshold today are removed (regenerated when back).
   for (const f of readdirSync(join(site, 'palyazat', 'tema'))) if (f.endsWith('.html') && !files.has(`palyazat/tema/${f}`)) unlinkSync(join(site, 'palyazat', 'tema', f));
   for (const f of readdirSync(join(site, 'utmutato'))) if (f.endsWith('.html') && !files.has(`utmutato/${f}`)) unlinkSync(join(site, 'utmutato', f));
+  for (const f of readdirSync(join(site, 'hirek'))) if (/\.(html|xml)$/.test(f) && !files.has(`hirek/${f}`)) unlinkSync(join(site, 'hirek', f));
   writeFileSync(join(root, 'robots.txt'), ROBOTS);
   writeFileSync(join(root, 'llms.txt'), buildLlmsTxt({ open: stats.open, hubs: selectHubs(grants.filter((g) => g && g.id && g.title && isOpen(g, today))), today }));
-  console.log(`build-pages: ${stats.open} open pages (${stats.withSummary} with summary), ${stats.hubs} topic hubs, ${stats.guides} guides, ${stats.closed} closed kept, ${stats.removed} removed`);
+  console.log(`build-pages: ${stats.open} open pages (${stats.withSummary} with summary), ${stats.hubs} topic hubs, ${stats.guides} guides, ${stats.newsWeeks} news weeks, ${stats.closed} closed kept, ${stats.removed} removed`);
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) main();
