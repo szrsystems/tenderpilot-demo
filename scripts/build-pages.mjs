@@ -150,7 +150,7 @@ ${body}
     <div class="cols">
       <div><a class="brand" href="${up}index.html">${MARK}<span><b>AI</b>pályázó</span></a><p class="brand-p">Ingyenes pályázatfigyelő magyar vállalkozásoknak. Tájékoztató szolgáltatás: beadás előtt mindig a hivatalos felhívás az irányadó.</p></div>
       <div><h4>Pályázatok</h4><ul><li><a href="${up}palyazat/index.html">Nyitott felhívások</a></li><li><a href="${up}palyazat/index.html#temak">Témák és programok</a></li><li><a href="${up}portal.html">Portál</a></li></ul></div>
-      <div><h4>Rólunk</h4><ul><li></li><li><a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a></li></ul></div>
+      <div><h4>Rólunk</h4><ul><li><a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a></li></ul></div>
       <div><h4>Jogi</h4><ul><li><a href="${up}impresszum.html">Impresszum</a></li><li><a href="${up}adatvedelem.html">Adatkezelés</a></li><li><a href="${up}aszf.html">ÁSZF</a></li></ul></div>
     </div>
     <div class="legal"><span>© 2026 AIpályázó · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
