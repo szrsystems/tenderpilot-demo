@@ -101,6 +101,8 @@ const PAGE_CSS = `
 .empty-note{padding:var(--s4) 0;color:var(--ink-3)}
 .back-link{margin:var(--s5) 0}.end-note{margin-bottom:var(--s7)}.side-box.narrow{max-width:640px;margin-bottom:var(--s7)}.disclaimer{margin-top:var(--s6)}
 .site-foot .brand-p{margin-top:var(--s3)}
+.faq-list{margin:0;border-top:1px solid var(--line)}.faq-list dt{font-weight:600;color:var(--ink);padding-top:12px}.faq-list dd{margin:4px 0 0;padding-bottom:12px;border-bottom:1px solid var(--line);color:var(--ink-2);overflow-wrap:anywhere}
+.related{margin:0;padding-left:18px}.related li{margin:6px 0}
 `;
 
 function shell({ title, description, canonical, noindex, body, jsonld, depth = 1 }) {
@@ -120,6 +122,11 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(canonical)}">
 <meta property="og:locale" content="hu_HU">
+<meta property="og:site_name" content="AIpályázó">
+<meta property="og:image" content="${BASE}/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/svg+xml" href="${up}favicon.svg">
 <link rel="preload" href="${up}assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -235,13 +242,51 @@ function summaryHtml(s) {
 <p class="muted small">Az összefoglalót mesterséges intelligencia készítette a <a href="${esc(safeUrl(s.sourceUrl))}" target="_blank" rel="noopener nofollow">hivatalos szövegből</a>; minden pont alatt ott a szó szerinti idézet, amire épül. Készült: ${esc(s.generatedAt || '')}.</p>`;
 }
 
+const HU_MONTHS = ['január', 'február', 'március', 'április', 'május', 'június', 'július', 'augusztus', 'szeptember', 'október', 'november', 'december'];
+const longDate = (d) => isDate(d) ? `${d.slice(0, 4)}. ${HU_MONTHS[+d.slice(5, 7) - 1]} ${+d.slice(8, 10)}.` : '';
 export function metaDescription(g) {
-  const parts = [g.title, g.amount && `Összeg: ${g.amount}`, isDate(g.deadline) ? `határidő: ${huDate(g.deadline)}` : 'folyamatos beadás', g.issuer && `kiíró: ${g.issuer}`];
-  const t = parts.filter(Boolean).join(' · ') + '. Nézze meg ingyen, jogosult-e a cége.';
-  return t.length > 300 ? t.slice(0, 297) + '…' : t;
+  const t = `${Cards.brief(g)}${g.issuer ? ` Kiíró: ${g.issuer}.` : ''} Nézze meg ingyen, jogosult-e a cége.`;
+  return clip(t, 160);
+}
+// cut at a word boundary
+function clip(t, n) {
+  if (t.length <= n) return t;
+  const cut = t.slice(0, n - 1); const i = cut.lastIndexOf(' ');
+  return (i > n * 0.6 ? cut.slice(0, i) : cut).replace(/[\s,;:.–-]+$/, '') + '…';
+}
+// <title>: what people search for first; long official titles are shortened (the H1 keeps the full title)
+export function pageTitle(g) {
+  const tail = ' | AIpályázó';
+  const dl = isDate(g.deadline) ? ` – határidő ${huDate(g.deadline)}` : '';
+  if ((g.title + ' – pályázat' + dl + tail).length <= 70) return `${g.title} – pályázat${dl}${tail}`;
+  if ((g.title + dl + tail).length <= 75) return `${g.title}${dl}${tail}`;
+  return clip(g.title, 60) + tail;
 }
 
-export function renderPage(g, slug, summary, { updatedAt, changes } = {}) {
+// Questions people (and AI assistants) ask about a call, answered only from the data we hold.
+export function faqItems(g) {
+  const out = [];
+  const who = [g.note, (g.sizeClasses || []).length ? `Cégméret: ${g.sizeClasses.join(', ')}.` : '', (g.regions || []).length ? `Régió: ${g.regions.join(', ')}.` : (g.regionNote || '')].filter(Boolean).join(' ');
+  if (who) out.push({ q: 'Ki pályázhat?', a: who });
+  const money = [g.amount && `Összeg: ${g.amount}.`, g.rate && `Támogatási arány / kamat: ${g.rate}.`].filter(Boolean).join(' ');
+  if (money) out.push({ q: 'Mennyi támogatás kapható?', a: money });
+  const when = isDate(g.deadline)
+    ? `A beadási határidő ${longDate(g.deadline)}${isDate(g.windowOpen) ? ` A beadás kezdete: ${longDate(g.windowOpen)}` : ''} A pontos időpontot és az esetleges módosításokat a hivatalos felhívás tartalmazza.`
+    : 'Folyamatosan lehet beadni, amíg a keret ki nem merül vagy a kiíró le nem zárja.';
+  out.push({ q: 'Mi a beadási határidő?', a: when });
+  if (g.issuer || g.url) out.push({ q: 'Hol lehet beadni?', a: `A kiíró: ${g.issuer || g.source || 'lásd a hivatalos oldalt'}.${safeUrl(g.url) ? ` A hivatalos felhívás: ${safeUrl(g.url)}` : ''}`, html: `A kiíró: ${esc(g.issuer || g.source || 'lásd a hivatalos oldalt')}.${safeUrl(g.url) ? ` <a href="${esc(safeUrl(g.url))}" rel="noopener" target="_blank">A hivatalos felhívás megnyitása ↗</a>` : ''}` });
+  return out;
+}
+function faqHtml(items) {
+  if (!items.length) return '';
+  return `<h2>Gyakori kérdések</h2><dl class="faq-list">${items.map((x) => `<dt>${esc(x.q)}</dt><dd>${x.html || esc(x.a)}</dd>`).join('')}</dl>`;
+}
+function relatedHtml(related, prefix = '') {
+  if (!related || !related.length) return '';
+  return `<h2>Hasonló felhívások</h2><ul class="related">${related.map((r) => `<li><a href="${esc(prefix + r.slug)}.html">${esc(r.title)}</a>${isDate(r.deadline) ? ` <span class="muted">· határidő ${esc(huDate(r.deadline))}</span>` : ''}</li>`).join('')}</ul>`;
+}
+
+export function renderPage(g, slug, summary, { updatedAt, changes, related } = {}) {
   const canonical = `${BASE}/palyazat/${slug}.html`;
   const portal = `../portal.html?grant=${encodeURIComponent(g.id)}`;
   const checked = g.lastChecked || g.verifiedAt || (g.modified ? String(g.modified).slice(0, 10) : '') || updatedAt || '';
@@ -256,6 +301,7 @@ export function renderPage(g, slug, summary, { updatedAt, changes } = {}) {
       description: metaDescription(g), funder: { '@type': 'Organization', name: g.issuer || g.source || '' },
       ...(safeUrl(g.url) ? { sameAs: safeUrl(g.url) } : {}),
     },
+    ...(faqItems(g).length ? [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqItems(g).map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })) }] : []),
     {
       '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'AIpályázó', item: `${BASE}/index.html` },
@@ -278,6 +324,8 @@ ${g.note ? `<h2>Kinek szól?</h2><p>${esc(g.note)}</p>` : ''}
 ${requiresHtml(g)}
 ${summaryHtml(summary)}
 ${changesHtml(changes)}
+${faqHtml(faqItems(g))}
+${relatedHtml(related)}
 <div class="notice warn disclaimer">Tájékoztató összefoglaló. Mindig a hivatalos felhívás és annak módosításai az irányadók — beadás előtt ellenőrizze a kiíró oldalán.</div>
 </div>
 <aside class="call-side" aria-label="Alapadatok">
@@ -290,7 +338,7 @@ ${factsRows(g)}
 </div>
 </aside>
 </div>`;
-  return shell({ title: `${g.title} — pályázat${isDate(g.deadline) ? `, határidő ${huDate(g.deadline)}` : ''} | AIpályázó`, description: metaDescription(g), canonical, noindex: false, body, jsonld });
+  return shell({ title: pageTitle(g), description: metaDescription(g), canonical, noindex: false, body, jsonld });
 }
 
 export function renderClosed(m, slug) {
@@ -300,7 +348,7 @@ export function renderClosed(m, slug) {
 <p class="page-intro">Ez a felhívás ${esc(m.closedAt || '')} óta nem szerepel a hivatalos forrásokban (lejárt, felfüggesztették vagy kimerült a kerete).</p>
 <div class="side-box narrow"><h2>Nézze meg, mire pályázhat most</h2><p>Naponta frissülő listánkban a nyitott felhívásokat mutatjuk, a cége adataival pontonként összevetve.</p>
 <a class="btn btn-primary" href="index.html">Nyitott pályázatok</a><a class="btn btn-ghost" href="../index.html#ellenorzes">Gyors ellenőrzés</a></div>`;
-  return shell({ title: `${m.title} — lezárult | AIpályázó`, description: `${m.title}: ez a felhívás lezárult. Nézze meg a nyitott pályázatokat.`, canonical, noindex: true, body });
+  return shell({ title: `${clip(m.title, 55)} – lezárult | AIpályázó`, description: `${m.title}: ez a felhívás lezárult. Nézze meg a nyitott pályázatokat.`, canonical, noindex: true, body });
 }
 
 
@@ -364,11 +412,22 @@ function regRow(g, href, withSearch) {
   return `<article class="gcard"${data}><div class="gc-head">${Cards.srcTag(g)}<div class="gc-main"><a class="gc-title" href="${esc(href)}">${esc(g.title)}</a><div class="gc-sub">${esc([g.code, g.issuer].filter(Boolean).join(' · '))}</div><div class="badges">${Cards.badges(g, { today })}</div></div><div class="gc-side"><div><div class="gc-amt-label">Támogatás</div><div class="gc-amt">${esc(g.amount || '—')}</div></div></div></div>${Cards.bars(g, { today })}</article>`;
 }
 
+// "2026. október 13-i" (1 → "1-jei")
+function asOfDate(d) {
+  if (!isDate(d)) return '';
+  const day = +d.slice(8, 10);
+  return `${d.slice(0, 4)}. ${HU_MONTHS[+d.slice(5, 7) - 1]} ${day}-${day === 1 ? 'jei' : 'i'}`;
+}
+
 export function renderHub(hub, slugs, { updatedAt } = {}) {
   const canonical = `${BASE}/palyazat/tema/${hub.slug}.html`;
   const items = [...hub.items].sort(byDeadline);
 
-  const intro = `${hub.intro} Jelenleg ${items.length} nyitott felhívás tartozik ide; a lista naponta frissül hivatalos forrásokból${updatedAt ? ` (utoljára: ${String(updatedAt).slice(0, 10)})` : ''}.`;
+  const nGrant = items.filter((g) => /grant|wage/.test(g.type || '')).length, nLoan = items.filter((g) => /loan|guarantee/.test(g.type || '')).length;
+  const nextDl = items.map((g) => g.deadline).filter(isDate).sort()[0];
+  const asOf = updatedAt ? asOfDate(String(updatedAt).slice(0, 10)) : '';
+  const stats = `${asOf ? asOf + ' állapot szerint ' : 'Jelenleg '}${items.length} nyitott felhívás tartozik ide${nGrant || nLoan ? ` (${[nGrant && nGrant + ' vissza nem térítendő támogatás', nLoan && nLoan + ' hitel vagy garancia'].filter(Boolean).join(', ')})` : ''}${nextDl ? `; a legközelebbi határidő ${longDate(nextDl)}` : '.'}`;
+  const intro = `${stats} ${hub.intro} A lista naponta frissül hivatalos forrásokból.`;
   const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../../index.html">AIpályázó</a> / <a href="../index.html">Pályázatok</a> / ${esc(hub.group)}</nav>
 <header class="call-head"><p class="eyebrow">${esc(hub.group)}</p><h1>${esc(hub.h1)}</h1><p class="page-intro intro">${esc(intro)}</p></header>
 <div class="gcards hub-list">${items.map((g) => regRow(g, '../' + slugs.get(g.id) + '.html')).join('')}</div>
@@ -379,8 +438,10 @@ export function renderHub(hub, slugs, { updatedAt } = {}) {
     isPartOf: { '@type': 'WebSite', name: 'AIpályázó', url: `${BASE}/index.html` },
     mainEntity: { '@type': 'ItemList', numberOfItems: items.length, itemListElement: items.map((g, i) => ({ '@type': 'ListItem', position: i + 1, url: `${BASE}/palyazat/${slugs.get(g.id)}.html`, name: g.title })) },
   };
-  const description = `${hub.h1}: ${items.length} nyitott felhívás, naponta frissítve hivatalos forrásokból.`;
-  return shell({ title: `${hub.h1} (${items.length} nyitott) | AIpályázó`, description, canonical, noindex: false, body, jsonld, depth: 2 });
+  const description = clip(`${stats} ${hub.intro}`, 160);
+  const year = String(updatedAt || new Date().toISOString()).slice(0, 4);
+  const title = hub.h1.length <= 50 ? `${hub.h1} – ${items.length} nyitott | AIpályázó` : (/(nak|nek)$/.test(hub.name) ? `Pályázatok ${/^[A-ZÁÉÍÓÖŐÚÜŰ]{2}/.test(hub.name) ? hub.name : hub.name.charAt(0).toLowerCase() + hub.name.slice(1)} ${year}` : `${hub.name} pályázatok ${year}`) + ` – ${items.length} nyitott | AIpályázó`;
+  return shell({ title, description, canonical, noindex: false, body, jsonld, depth: 2 });
 }
 
 export function hubLinks(hubs) {
@@ -435,7 +496,37 @@ export function buildSitemap(open, slugs, today, hubs = []) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${lines.join('\n')}\n</urlset>\n`;
 }
 
-export const ROBOTS = `User-agent: *
+// llms.txt (llmstxt.org): a short, plain map of the site for AI assistants and answer engines.
+export function buildLlmsTxt({ open, hubs = [], today }) {
+  const hub = (h) => `- [${h.h1}](${BASE}/palyazat/tema/${h.slug}.html): ${h.items.length} nyitott felhívás`;
+  return `# AIpályázó
+
+> Ingyenes, naponta frissülő pályázatfigyelő magyar vállalkozásoknak: nyitott hazai (Széchenyi Terv Plusz, KAP, MFB, NKFIH, Széchenyi Kártya) és EU-s (Horizon Europe, EIC, LIFE, Digital Europe stb.) felhívások hivatalos forrásból, a cég adataival pontról pontra összevetve.
+
+- Állapot: ${today} — ${open} nyitott felhívás, amelyre vállalkozás pályázhat.
+- Forrás: palyazat.gov.hu API, EU Funding & Tenders Portal, a kiírók hivatalos oldalai; minden felhívásnál feltüntetjük a forrást és az ellenőrzés napját.
+- Lakossági, civil, önkormányzati és magánszemélyeknek szóló felhívások nem szerepelnek.
+- Az adatok tájékoztató jellegűek; mindig a hivatalos felhívás az irányadó.
+- Hivatkozáskor kérjük, a felhívás saját oldalára mutasson (palyazat/<felhívás>.html).
+
+## Fő oldalak
+- [Nyitott pályázatok listája](${BASE}/palyazat/index.html): minden nyitott felhívás határidő szerint, hazai és EU-s bontásban
+- [Gyors jogosultság-ellenőrzés](${BASE}/index.html#ellenorzes): 4 adat alapján, regisztráció nélkül
+- [Oldaltérkép](${BASE}/sitemap.xml)
+
+## Témák, programok, cégtípusok és régiók
+${hubs.map(hub).join('\n')}
+
+## Kapcsolat és jogi információk
+- [Impresszum](${BASE}/impresszum.html) — Széphelyi Olivér Soma egyéni vállalkozó, info@aipalyazo.hu
+- [Adatkezelési tájékoztató](${BASE}/adatvedelem.html)
+`;
+}
+
+export const ROBOTS = `# Search engines and AI assistants (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot,
+# Google-Extended, Applebot …) are welcome to read the public grant pages.
+# See also https://aipalyazo.hu/llms.txt
+User-agent: *
 Allow: /
 Disallow: /aipalyazo/portal.html
 Disallow: /aipalyazo/login.html
@@ -460,7 +551,8 @@ export function buildAll({ grants, summaries = {}, manifest = {}, today, updated
     const slug = slugs.get(g.id);
     const prev = manifest[slug];
     next[slug] = { id: g.id, title: g.title, firstSeen: (prev && prev.firstSeen) || today, lastSeen: today };
-    files.set(`palyazat/${slug}.html`, renderPage(g, slug, summaries[g.id], { updatedAt, changes: changes[g.id] }));
+    const related = open.filter((x) => x.id !== g.id && x.cat === g.cat && x.scope === g.scope).sort(byDeadline).slice(0, 5).map((x) => ({ slug: slugs.get(x.id), title: x.title, deadline: x.deadline }));
+    files.set(`palyazat/${slug}.html`, renderPage(g, slug, summaries[g.id], { updatedAt, changes: changes[g.id], related }));
   }
   const removed = [];
   let closed = 0;
@@ -502,6 +594,7 @@ function main() {
   // Hubs that fell under the threshold today are removed (regenerated when back).
   for (const f of readdirSync(join(site, 'palyazat', 'tema'))) if (f.endsWith('.html') && !files.has(`palyazat/tema/${f}`)) unlinkSync(join(site, 'palyazat', 'tema', f));
   writeFileSync(join(root, 'robots.txt'), ROBOTS);
+  writeFileSync(join(root, 'llms.txt'), buildLlmsTxt({ open: stats.open, hubs: selectHubs(grants.filter((g) => g && g.id && g.title && isOpen(g, today))), today }));
   console.log(`build-pages: ${stats.open} open pages (${stats.withSummary} with summary), ${stats.hubs} topic hubs, ${stats.closed} closed kept, ${stats.removed} removed`);
 }
 

@@ -62,7 +62,7 @@ jobs:
         run: |
           git config user.name "aipalyazo-bot"
           git config user.email "bot@aipalyazo.hu"
-          git add aipalyazo/grants-status.json aipalyazo/grants_live.json aipalyazo/grants-meta.json aipalyazo/changes.json scripts/monitor/state.json scripts/monitor/flags.json scripts/monitor/auto-grants.json scripts/monitor/review-queue.json aipalyazo/summaries.json aipalyazo/palyazat aipalyazo/sitemap.xml robots.txt
+          git add aipalyazo/grants-status.json aipalyazo/grants_live.json aipalyazo/grants-meta.json aipalyazo/changes.json scripts/monitor/state.json scripts/monitor/flags.json scripts/monitor/auto-grants.json scripts/monitor/review-queue.json aipalyazo/summaries.json aipalyazo/palyazat aipalyazo/sitemap.xml robots.txt llms.txt
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
@@ -70,6 +70,12 @@ jobs:
             git commit -m "data: daily live grant feed ($(date -u +%Y-%m-%d)) — $CHANGES"
             git push
           fi
+
+      # Tell Bing/Yandex (IndexNow) which pages changed today; a manual run
+      # submits every page. Bing's index also feeds ChatGPT/Copilot search.
+      - name: Ping search engines (IndexNow)
+        continue-on-error: true
+        run: node scripts/indexnow.mjs ${{ github.event_name == 'workflow_dispatch' && '--all' || '' }}
 
       # Opt-in instant e-mails (new eligible calls, saved calls >80% committed).
       # The function only mails users who switched it on; alert_log stops repeats.

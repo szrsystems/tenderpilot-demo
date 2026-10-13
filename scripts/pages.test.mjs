@@ -85,7 +85,8 @@ test('topic hubs: only with ≥2 open calls, linked from the index, in the sitem
   assert.ok(html.includes('href="../index.html"'));                       // back to the index
   assert.ok(html.includes('href="../../favicon.svg"'));                   // shell at depth 2
   assert.ok(!/<[a-z][^>]*\sstyle=/i.test(html), 'no inline style attributes');
-  assert.match(html, /Jelenleg 2 nyitott felhívás/);
+  assert.match(html, /2 nyitott felhívás tartozik ide/);
+  assert.match(html, /állapot szerint|Jelenleg/);
 
   const index = r.files.get('palyazat/index.html');
   assert.ok(index.includes('href="tema/ginop-plusz.html"') && index.includes('href="tema/regio-del-alfold.html"'));
@@ -110,4 +111,30 @@ test('hub definitions: unique slugs, every group present, filters behave', () =>
   assert.equal(selectHubs([g()]).length, 0, `a single call never makes a hub (MIN_HUB=${MIN_HUB})`);
   const html = renderHub({ ...hub('kkv'), items: [g(), g({ id: 'v-2', title: 'Második' })] }, new Map([['pg-GINOP_PLUSZ-1.2.3/B-24', 'a'], ['v-2', 'b']]), {});
   assert.ok(html.includes('Teszt &lt;felhívás&gt;') && !html.includes('<felhívás>'));
+});
+
+import { faqItems, pageTitle, metaDescription } from './build-pages.mjs';
+test('SEO: short titles and descriptions, FAQ answered only from data', () => {
+  const long = g({ title: 'Mikro-, kis- és középvállalkozások digitalizációjának támogatása egyműveletes kombinált hiteltermék keretében' });
+  assert.ok(pageTitle(long).length <= 75, pageTitle(long));
+  assert.ok(pageTitle(g()).includes('határidő 2026. 12. 31.'));
+  assert.ok(metaDescription(long).length <= 160);
+  const faq = faqItems(g());
+  assert.deepEqual(faq.map((x) => x.q), ['Ki pályázhat?', 'Mennyi támogatás kapható?', 'Mi a beadási határidő?', 'Hol lehet beadni?']);
+  assert.match(faq[2].a, /2026\. december 31\./);
+  const html = renderPage(g(), 'x', null, { related: [{ slug: 'masik', title: 'Másik <b>', deadline: '2026-11-30' }] });
+  assert.match(html, /"@type":"FAQPage"/);
+  assert.ok(html.includes('href="masik.html"') && html.includes('Másik &lt;b&gt;'));
+  assert.match(html, /og:image/);
+});
+
+import { changedUrls } from './indexnow.mjs';
+import { buildLlmsTxt } from './build-pages.mjs';
+test('IndexNow: today\'s pages + daily pages; llms.txt lists hubs', () => {
+  const xml = '<url><loc>https://a/x.html</loc><lastmod>2026-10-13</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>\n<url><loc>https://a/y.html</loc><lastmod>2026-10-01</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>\n<url><loc>https://a/h.html</loc><changefreq>daily</changefreq><priority>0.6</priority></url>';
+  assert.deepEqual(changedUrls(xml, '2026-10-13'), ['https://a/x.html', 'https://a/h.html']);
+  assert.equal(changedUrls(xml, '2026-10-13', true).length, 3);
+  const t = buildLlmsTxt({ open: 5, hubs: [{ slug: 'kkv', h1: 'KKV', items: [1, 2] }], today: '2026-10-13' });
+  assert.match(t, /^# AIpályázó/);
+  assert.match(t, /tema\/kkv\.html\): 2 nyitott/);
 });

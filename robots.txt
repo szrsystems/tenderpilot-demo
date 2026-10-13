@@ -1,3 +1,6 @@
+# Search engines and AI assistants (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot,
+# Google-Extended, Applebot …) are welcome to read the public grant pages.
+# See also https://aipalyazo.hu/llms.txt
 User-agent: *
 Allow: /
 Disallow: /aipalyazo/portal.html
