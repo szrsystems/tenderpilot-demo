@@ -1,74 +1,56 @@
 {
- "updatedAt": "2026-10-13",
+ "updatedAt": "2026-10-14",
  "items": [
   {
+   "kind": "deadline-changed",
+   "id": "v-eitfood-poc-cofin-2026",
+   "title": "Proof-of-Concept Co-Financing Instrument (Agrárélelmiszer-startupok pilot projektjeinek társfinanszírozása)",
+   "url": "https://www.eitfood.eu/open-calls/proof-of-concept-co-financing-instrument-2",
+   "outcome": "auto-fixed",
+   "detail": "oldal szerint: „Deadline: 30 November 2026”"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-eurohpc-aif-large-scale",
+   "title": "Large Scale Access to AI Factories (Nagy léptékű GPU-hozzáférés az EU MI-gyárakban)",
+   "url": "https://www.eurohpc-ju.europa.eu/large-scale-access-ai-factories_en",
+   "outcome": "changed-unverified",
+   "detail": "deadline 2033-12-31 not in its quote"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-eurohpc-benchmark-2026",
+   "title": "EuroHPC Benchmark Access Call (Szuperszámítógépes benchmark-hozzáférés)",
+   "url": "https://www.eurohpc-ju.europa.eu/eurohpc-ju-call-proposals-benchmark-access_en",
+   "outcome": "changed-unverified",
+   "detail": "deadline 2033-12-31 not in its quote"
+  },
+  {
    "kind": "new",
    "source": "kap",
-   "url": "https://kap.gov.hu/node/3361",
-   "title": "Tavaszi fagykár megelőzésére szolgáló beruházások támogatása",
+   "url": "https://kap.gov.hu/node/2816",
+   "title": "Antimikrobiális rezisztencia (AMR) elleni küzdelem kompenzációs kifizetés",
    "detail": "deadline passed; status closed"
   },
   {
    "kind": "new",
    "source": "kap",
-   "url": "https://kap.gov.hu/node/3282",
-   "title": "Minőségrendszerek tájékoztatási és promóciós tevékenységének támogatása",
+   "url": "https://kap.gov.hu/node/2791",
+   "title": "Erdészeti génmegőrzés támogatása",
    "detail": "deadline passed; status closed"
   },
   {
    "kind": "new",
    "source": "kap",
-   "url": "https://kap.gov.hu/node/3251",
-   "title": "Élelmiszeripari és feldolgozó üzemek fejlesztésének támogatása",
+   "url": "https://kap.gov.hu/node/2732",
+   "title": "Agrár-erdészeti rendszerek telepítése, ápolása és fenntartása",
    "detail": "deadline passed; status closed"
   },
   {
    "kind": "new",
    "source": "kap",
-   "url": "https://kap.gov.hu/node/3009",
-   "title": "Egyedi szennyvízkezelési megoldások támogatása",
-   "detail": "deadline passed; status closed"
-  },
-  {
-   "kind": "new",
-   "source": "kap",
-   "url": "https://kap.gov.hu/node/3005",
-   "title": "EU-s minőségrendszerek létrehozásának támogatása",
-   "detail": "deadline passed; status closed"
-  },
-  {
-   "kind": "new",
-   "source": "kap",
-   "url": "https://kap.gov.hu/node/2980",
-   "title": "Gazdaságátadási együttműködés támogatása",
-   "detail": "deadline passed; status closed"
-  },
-  {
-   "kind": "new",
-   "source": "kap",
-   "url": "https://kap.gov.hu/node/2936",
-   "title": "Vidéki infrastruktúra fejlesztések támogatása tanyákon",
-   "detail": "deadline passed; status closed"
-  },
-  {
-   "kind": "new",
-   "source": "kap",
-   "url": "https://kap.gov.hu/node/2926",
-   "title": "Vízfelhasználás hatékonyságát javító fenntartható vízgazdálkodási közösségek támogatása",
-   "detail": "deadline passed; status closed"
-  },
-  {
-   "kind": "new",
-   "source": "kap",
-   "url": "https://kap.gov.hu/node/2873",
-   "title": "Szarvasmarha-, juh- és kecsketartó telepek járványvédelmi rendszereinek fejlesztése",
-   "detail": "deadline passed; status closed"
-  },
-  {
-   "kind": "new",
-   "source": "kap",
-   "url": "https://kap.gov.hu/node/2849",
-   "title": "Fiatal mezőgazdasági termelők elindulásának és beruházásainak támogatása",
+   "url": "https://kap.gov.hu/node/2697",
+   "title": "Rövid Ellátási Láncok fejlesztése",
    "detail": "deadline passed; status closed"
   },
   {

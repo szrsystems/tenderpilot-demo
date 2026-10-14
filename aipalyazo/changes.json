@@ -462,6 +462,11 @@
    "date": "2026-10-13",
    "type": "removed",
    "title": "Development aid and democratic governance"
+  },
+  {
+   "date": "2026-10-14",
+   "type": "new",
+   "title": "Development aid and democratic governance"
   }
  ],
  "eu-HORIZON-CL2-2027-01-DEMOCRACY-06": [
@@ -518,6 +523,11 @@
    "date": "2026-10-13",
    "type": "removed",
    "title": "Global Human Rights and EU values"
+  },
+  {
+   "date": "2026-10-14",
+   "type": "new",
+   "title": "Global Human Rights and EU values"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-03": [
@@ -547,6 +557,11 @@
    "date": "2026-10-13",
    "type": "removed",
    "title": "Culture, heritage and creative industries for health and well-being"
+  },
+  {
+   "date": "2026-10-14",
+   "type": "new",
+   "title": "Culture, heritage and creative industries for health and well-being"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-05": [
@@ -569,6 +584,11 @@
    "date": "2026-10-13",
    "type": "removed",
    "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
+  },
+  {
+   "date": "2026-10-14",
+   "type": "new",
+   "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-06": [
@@ -590,6 +610,11 @@
   {
    "date": "2026-10-13",
    "type": "removed",
+   "title": "Future-proofing sustainable cultural tourism"
+  },
+  {
+   "date": "2026-10-14",
+   "type": "new",
    "title": "Future-proofing sustainable cultural tourism"
   }
  ],
@@ -639,6 +664,11 @@
   {
    "date": "2026-10-13",
    "type": "removed",
+   "title": "Safeguarding & transmission of intangible cultural heritage"
+  },
+  {
+   "date": "2026-10-14",
+   "type": "new",
    "title": "Safeguarding & transmission of intangible cultural heritage"
   }
  ],
@@ -1345,6 +1375,11 @@
    "date": "2026-10-13",
    "type": "removed",
    "title": "De-risking renewable fuel technologies through transnational pre-commercial procurement of renewable fuel industrial value chains"
+  },
+  {
+   "date": "2026-10-14",
+   "type": "new",
+   "title": "De-risking renewable fuel technologies through transnational pre-commercial procurement of renewable fuel industrial value chains"
   }
  ],
  "eu-HORIZON-CL5-2026-11-D3-05": [
@@ -1363,6 +1398,11 @@
   {
    "date": "2026-10-13",
    "type": "removed",
+   "title": "Resource assessment for deep sedimentary and basement reservoirs"
+  },
+  {
+   "date": "2026-10-14",
+   "type": "new",
    "title": "Resource assessment for deep sedimentary and basement reservoirs"
   }
  ],
@@ -2856,6 +2896,11 @@
    "date": "2026-10-13",
    "type": "removed",
    "title": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being"
+  },
+  {
+   "date": "2026-10-14",
+   "type": "new",
+   "title": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being"
   }
  ],
  "eu-HORIZON-NEB-2026-01-REGEN-01": [
@@ -3180,6 +3225,16 @@
    "type": "deadline",
    "from": "2026-11-30",
    "to": "2026-10-30"
+  },
+  {
+   "date": "2026-10-14",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-14",
+   "type": "deadline",
+   "from": "2026-10-30",
+   "to": "2026-11-30"
   }
  ],
  "v-eitum-sioc-2027-01": [
@@ -3202,11 +3257,21 @@
    "title": "Erasmus+ kisléptékű partnerségek a felnőttoktatásban (KA210-ADU)"
   }
  ],
+ "v-eurohpc-aif-large-scale": [
+  {
+   "date": "2026-10-14",
+   "type": "page"
+  }
+ ],
  "v-eurohpc-benchmark-2026": [
   {
    "date": "2026-10-08",
    "type": "removed",
    "title": "EuroHPC Benchmark Access Call (Szuperszámítógépes benchmark-hozzáférés)"
+  },
+  {
+   "date": "2026-10-14",
+   "type": "page"
   }
  ],
  "v-exim-jovo-exportorei-beruhazasi-hitel": [
@@ -3929,6 +3994,10 @@
   },
   {
    "date": "2026-10-13",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-14",
    "type": "page"
   }
  ],

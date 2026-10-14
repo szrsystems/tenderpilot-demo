@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-13T13:28:14.151Z",
+ "updatedAt": "2026-10-14T11:07:29.398Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,22 +7,22 @@
   "palyazatApi": {
    "ok": true,
    "items": 17,
-   "lastOk": "2026-10-13T13:28:14.151Z"
+   "lastOk": "2026-10-14T11:07:29.398Z"
   },
   "euApi": {
    "ok": true,
-   "items": 262,
-   "lastOk": "2026-10-13T13:28:14.151Z"
+   "items": 271,
+   "lastOk": "2026-10-14T11:07:29.398Z"
   }
  },
  "counts": {
-  "total": 435,
+  "total": 444,
   "api": 17,
   "verified": 156,
-  "euAuto": 262,
+  "euAuto": 271,
   "hazai": 58,
-  "eu": 377,
-  "excluded": 20
+  "eu": 386,
+  "excluded": 19
  },
  "needsReview": [],
  "staleVerified": [],
@@ -68,10 +68,6 @@
    "why": "lejárt"
   },
   {
-   "id": "v-marc-impact-hu-2026",
-   "why": "lejárt"
-  },
-  {
    "id": "v-horizon-cl5-2026-10-d2-03",
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   },
@@ -102,6 +98,10 @@
   {
    "id": "v-digital-2026-ai-piloting-10-screening",
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-marc-impact-hu-2026",
+   "why": "monitor: closed: az oldal szerint: „2026. szeptember 28. Jelentkezési határidő (23:59)”"
   }
  ],
  "excluded": [
@@ -114,10 +114,6 @@
    "why": "Pénzügyi eszköz keret alapkezelőnek."
   },
   {
-   "code": "IKOP_PLUSZ-2.2.0-23",
-   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
-  },
-  {
    "code": "DIMOP_PLUSZ-1.2.3/A1-24",
    "why": "Alapkezelői technikai felhívás."
   },
@@ -126,24 +122,20 @@
    "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
   },
   {
-   "code": "IKOP_PLUSZ-1.2.0-23",
-   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
-  },
-  {
-   "code": "IKOP_PLUSZ-1.1.0-23",
-   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
-  },
-  {
    "code": "IKOP_PLUSZ-2.1.0-23",
    "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
+  },
+  {
+   "code": "IKOP_PLUSZ-1.2.0-23",
+   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/A2-24",
    "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
-   "why": "Alapkezelői/bank költségtérítés."
+   "code": "IKOP_PLUSZ-1.1.0-23",
+   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
   },
   {
    "code": "DIMOP_PLUSZ-5.1.4-2-26",
@@ -152,6 +144,14 @@
   {
    "code": "GINOP_PLUSZ-2.5.4-25",
    "why": "Alapkezelői költségtérítés."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
+   "why": "Alapkezelői/bank költségtérítés."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.2.0-23",
+   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/B1-24",
@@ -180,67 +180,60 @@
   {
    "code": "EFOP_PLUSZ-TEF-3.1.3/TEF-25",
    "why": "Csak közintézmények, egyházak, nonprofitok; 2026-09-25-én zár."
-  },
-  {
-   "code": "GINOP_PLUSZ-1.1.5-24",
-   "why": "Klaszter minősítés — nem ad pénzt."
   }
  ],
  "changes": [
   {
-   "id": "a-kap-rd46-1-25",
+   "id": "v-eitfood-poc-cofin-2026",
+   "type": "deadline",
+   "from": "2026-10-30",
+   "to": "2026-11-30",
+   "title": "Proof-of-Concept Co-Financing Instrument (Agrárélelmiszer-startupok pilot projektjeinek társfinanszírozása)"
+  },
+  {
+   "id": "eu-HORIZON-CL5-2026-11-D3-04",
    "type": "new",
-   "title": "Működő minőségrendszerhez történő csatlakozás támogatása"
+   "title": "De-risking renewable fuel technologies through transnational pre-commercial procurement of renewable fuel industrial value chains"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-03",
+   "id": "eu-HORIZON-CL5-2026-11-D3-06",
    "type": "new",
-   "title": "Rethinking sustainable competitiveness beyond traditional perspectives: role and contribution of the Social Economy"
+   "title": "Resource assessment for deep sedimentary and basement reservoirs"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-06",
+   "id": "eu-HORIZON-NEB-2026-01-PARTICIPATION-03",
    "type": "new",
-   "title": "Identifying user-focused solutions to support news media freedom"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-07",
-   "type": "new",
-   "title": "Societal impact of cultural heritage"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-06",
-   "type": "new",
-   "title": "Closing the learning gap: uncovering causes and effective policy interventions for declining youth skills in mathematics, reading, and science"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-08",
-   "type": "removed",
-   "title": "Global Human Rights and EU values"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-04",
-   "type": "removed",
-   "title": "Culture, heritage and creative industries for health and well-being"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-06",
-   "type": "removed",
-   "title": "Future-proofing sustainable cultural tourism"
+   "title": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being"
   },
   {
    "id": "eu-HORIZON-CL2-2027-01-HERITAGE-08",
-   "type": "removed",
+   "type": "new",
    "title": "Safeguarding & transmission of intangible cultural heritage"
   },
   {
    "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-05",
-   "type": "removed",
+   "type": "new",
    "title": "Development aid and democratic governance"
   },
   {
    "id": "eu-HORIZON-CL2-2027-01-HERITAGE-05",
-   "type": "removed",
+   "type": "new",
    "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-04",
+   "type": "new",
+   "title": "Culture, heritage and creative industries for health and well-being"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-06",
+   "type": "new",
+   "title": "Future-proofing sustainable cultural tourism"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-08",
+   "type": "new",
+   "title": "Global Human Rights and EU values"
   }
  ]
 }
