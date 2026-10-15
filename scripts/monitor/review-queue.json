@@ -1,13 +1,13 @@
 {
- "updatedAt": "2026-10-14",
+ "updatedAt": "2026-10-15",
  "items": [
   {
    "kind": "deadline-changed",
-   "id": "v-eitfood-poc-cofin-2026",
-   "title": "Proof-of-Concept Co-Financing Instrument (Agrárélelmiszer-startupok pilot projektjeinek társfinanszírozása)",
-   "url": "https://www.eitfood.eu/open-calls/proof-of-concept-co-financing-instrument-2",
+   "id": "v-eit-rib-hu-2027",
+   "title": "EIT Regional Innovation Booster – Hungary Edition 2027 (EIT Regionális Innovációs Gyorsító – magyar kiadás 2027)",
+   "url": "https://www.eiturbanmobility.eu/call-for-proposals/eit-regional-innovation-booster-eit-rib-hungary-2027/",
    "outcome": "auto-fixed",
-   "detail": "oldal szerint: „Deadline: 30 November 2026”"
+   "detail": "oldal szerint: „Deadline for applications: 30 October 2026, 17.00 (CET)”"
   },
   {
    "kind": "recheck",
@@ -26,32 +26,12 @@
    "detail": "deadline 2033-12-31 not in its quote"
   },
   {
-   "kind": "new",
-   "source": "kap",
-   "url": "https://kap.gov.hu/node/2816",
-   "title": "Antimikrobiális rezisztencia (AMR) elleni küzdelem kompenzációs kifizetés",
-   "detail": "deadline passed; status closed"
-  },
-  {
-   "kind": "new",
-   "source": "kap",
-   "url": "https://kap.gov.hu/node/2791",
-   "title": "Erdészeti génmegőrzés támogatása",
-   "detail": "deadline passed; status closed"
-  },
-  {
-   "kind": "new",
-   "source": "kap",
-   "url": "https://kap.gov.hu/node/2732",
-   "title": "Agrár-erdészeti rendszerek telepítése, ápolása és fenntartása",
-   "detail": "deadline passed; status closed"
-  },
-  {
-   "kind": "new",
-   "source": "kap",
-   "url": "https://kap.gov.hu/node/2697",
-   "title": "Rövid Ellátási Láncok fejlesztése",
-   "detail": "deadline passed; status closed"
+   "kind": "recheck",
+   "id": "v-tef-health-oc2",
+   "title": "TEF-Health OpenCall #2 – discounted AI & robotics validation services (Kedvezményes MI/robotika-validálási szolgáltatások egészségügyi KKV-knak)",
+   "url": "https://tefhealth.eu/calls/2",
+   "outcome": "changed-unverified",
+   "detail": "amount quote not on page"
   },
   {
    "kind": "benchmark-code",
@@ -73,6 +53,48 @@
    "title": "MAHOP Plusz-2.5.1-20",
    "url": "https://pafi.hu/palyazatok/vallalkozasok",
    "detail": "a(z) pafi.hu — vállalkozások listáján szerepel, nálunk nincs — ellenőrizd a hivatalos oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "a bolygo amelyet szeretunk",
+   "url": "https://pafi.hu/p/a-bolygo-amelyet-szeretunk",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "biotechusa az egeszsegert dij 1",
+   "url": "https://pafi.hu/p/biotechusa-az-egeszsegert-dij-1",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "kti elte kozlekedesbiztonsagi otletpalyazat 2026",
+   "url": "https://pafi.hu/p/kti-elte-kozlekedesbiztonsagi-otletpalyazat-2026",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "palyazati felhivas otthontalan emberek elorelepeseert 2",
+   "url": "https://pafi.hu/p/palyazati-felhivas-otthontalan-emberek-elorelepeseert-2",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "palyazati kiiras karacsonyi fenydekoracio elmenypontok ingyenes hasznalatara a karacsonyi idoszakra",
+   "url": "https://pafi.hu/p/palyazati-kiiras-karacsonyi-fenydekoracio-elmenypontok-ingyenes-hasznalatara-a-karacsonyi-idoszakra",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "kh orok aktiv program",
+   "url": "https://pafi.hu/p/kh-orok-aktiv-program",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]
 }

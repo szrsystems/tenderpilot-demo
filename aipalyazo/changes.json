@@ -297,11 +297,31 @@
    "title": "Regional Cable Hubs"
   }
  ],
+ "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-12-CBCH": [
+  {
+   "date": "2026-10-15",
+   "type": "new",
+   "title": "Cross-border Cyber Hubs"
+  }
+ ],
+ "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-12-NATCH": [
+  {
+   "date": "2026-10-15",
+   "type": "new",
+   "title": "National Cyber Hubs"
+  }
+ ],
  "eu-DIGITAL-JU-CHIPS-2026-AI-GFP": [
   {
    "date": "2026-10-08",
    "type": "new",
    "title": "AI compute evaluation and deployment platform for EU infrastructure"
+  },
+  {
+   "date": "2026-10-15",
+   "type": "deadline",
+   "from": "2026-10-27",
+   "to": "2026-12-01"
   }
  ],
  "eu-DIGITAL-JU-CHIPS-2026-AI1-SG": [
@@ -309,6 +329,12 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "AI chip demonstrators for EU compute infrastructure"
+  },
+  {
+   "date": "2026-10-15",
+   "type": "deadline",
+   "from": "2026-10-27",
+   "to": "2026-12-01"
   }
  ],
  "eu-DIGITAL-JU-CHIPS-2026-SG-JAPAN": [
@@ -1301,11 +1327,35 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Space critical EEE components for EU non-dependence"
+  },
+  {
+   "date": "2026-10-15",
+   "type": "removed",
+   "title": "Space critical EEE components for EU non-dependence"
   }
  ],
  "eu-HORIZON-CL4-2027-SPACE-03-84": [
   {
    "date": "2026-10-08",
+   "type": "new",
+   "title": "Space critical equipment for EU non-dependence"
+  },
+  {
+   "date": "2026-10-15",
+   "type": "removed",
+   "title": "Space critical equipment for EU non-dependence"
+  }
+ ],
+ "eu-HORIZON-CL4-2027-SPACE-07-83": [
+  {
+   "date": "2026-10-15",
+   "type": "new",
+   "title": "Space critical EEE components for EU non-dependence"
+  }
+ ],
+ "eu-HORIZON-CL4-2027-SPACE-07-84": [
+  {
+   "date": "2026-10-15",
    "type": "new",
    "title": "Space critical equipment for EU non-dependence"
   }
@@ -2044,12 +2094,22 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Improving analytical capacity for sustainable competitiveness of the agricultural sector"
+  },
+  {
+   "date": "2026-10-15",
+   "type": "removed",
+   "title": "Improving analytical capacity for sustainable competitiveness of the agricultural sector"
   }
  ],
  "eu-HORIZON-CL6-2027-03-GOVERNANCE-04": [
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "AI supporting informed advice for farmers and foresters to improve competitiveness and sustainability"
+  },
+  {
+   "date": "2026-10-15",
+   "type": "removed",
    "title": "AI supporting informed advice for farmers and foresters to improve competitiveness and sustainability"
   }
  ],
@@ -2116,6 +2176,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Rising Innovators category"
+  },
+  {
+   "date": "2026-10-15",
+   "type": "removed",
    "title": "Rising Innovators category"
   }
  ],
@@ -2860,6 +2925,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Approaches to reuse vacant, obsolete or underutilised spaces"
+  },
+  {
+   "date": "2026-10-15",
+   "type": "removed",
+   "title": "Approaches to reuse vacant, obsolete or underutilised spaces"
   }
  ],
  "eu-HORIZON-NEB-2026-01-PARTICIPATION-01": [
@@ -2873,6 +2943,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Innovative approaches for the spatial design of neighbourhoods"
+  },
+  {
+   "date": "2026-10-15",
+   "type": "removed",
    "title": "Innovative approaches for the spatial design of neighbourhoods"
   }
  ],
@@ -3105,6 +3180,13 @@
    "to": "2026-10-26"
   }
  ],
+ "eu-cs-48351491": [
+  {
+   "date": "2026-10-15",
+   "type": "new",
+   "title": "Rolling out the ERA Policy Agenda results — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
  "pg-GINOP_PLUSZ-1.1.6-25": [
   {
    "date": "2026-10-08",
@@ -3167,6 +3249,24 @@
    "date": "2026-10-09",
    "type": "removed",
    "title": "Strengthening EU cybersecurity capacities and capabilities in line with legislative requirements (Kiberbiztonsági képességek erősítése az uniós jogszabályi követelményekhez – pl. NIS2, CRA)"
+  }
+ ],
+ "v-eit-rib-hu-2027": [
+  {
+   "date": "2026-10-15",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-15",
+   "type": "deadline-official",
+   "from": "2026-10-15",
+   "to": "2026-10-30"
+  },
+  {
+   "date": "2026-10-15",
+   "type": "deadline",
+   "from": "2026-10-15",
+   "to": "2026-10-30"
   }
  ],
  "v-eitcc-innovation-projects-2026": [
@@ -3235,6 +3335,12 @@
    "type": "deadline",
    "from": "2026-10-30",
    "to": "2026-11-30"
+  },
+  {
+   "date": "2026-10-15",
+   "type": "deadline",
+   "from": "2026-11-30",
+   "to": "2026-10-30"
   }
  ],
  "v-eitum-sioc-2027-01": [
@@ -3261,6 +3367,16 @@
   {
    "date": "2026-10-14",
    "type": "page"
+  },
+  {
+   "date": "2026-10-15",
+   "type": "page"
+  }
+ ],
+ "v-eurohpc-aif-playground-fastlane": [
+  {
+   "date": "2026-10-15",
+   "type": "page"
   }
  ],
  "v-eurohpc-benchmark-2026": [
@@ -3271,6 +3387,10 @@
   },
   {
    "date": "2026-10-14",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-15",
    "type": "page"
   }
  ],
@@ -3307,6 +3427,12 @@
  "v-garantiqa-kezesseg": [
   {
    "date": "2026-10-09",
+   "type": "page"
+  }
+ ],
+ "v-grappa-cutoff-2": [
+  {
+   "date": "2026-10-15",
    "type": "page"
   }
  ],
@@ -3999,6 +4125,10 @@
   {
    "date": "2026-10-14",
    "type": "page"
+  },
+  {
+   "date": "2026-10-15",
+   "type": "page"
   }
  ],
  "v-mfb-agrar-forgoeszkoz-hitelprogram-2025": [
@@ -4021,11 +4151,25 @@
   {
    "date": "2026-10-09",
    "type": "page"
+  },
+  {
+   "date": "2026-10-15",
+   "type": "page"
   }
  ],
  "v-ngi-restack": [
   {
    "date": "2026-10-09",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-15",
+   "type": "page"
+  }
+ ],
+ "v-tef-health-oc2": [
+  {
+   "date": "2026-10-15",
    "type": "page"
   }
  ],

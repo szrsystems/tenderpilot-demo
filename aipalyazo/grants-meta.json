@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-14T11:07:29.398Z",
+ "updatedAt": "2026-10-15T10:48:35.417Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,21 +7,21 @@
   "palyazatApi": {
    "ok": true,
    "items": 17,
-   "lastOk": "2026-10-14T11:07:29.398Z"
+   "lastOk": "2026-10-15T10:48:35.417Z"
   },
   "euApi": {
    "ok": true,
-   "items": 271,
-   "lastOk": "2026-10-14T11:07:29.398Z"
+   "items": 269,
+   "lastOk": "2026-10-15T10:48:35.417Z"
   }
  },
  "counts": {
-  "total": 444,
+  "total": 442,
   "api": 17,
   "verified": 156,
-  "euAuto": 271,
+  "euAuto": 269,
   "hazai": 58,
-  "eu": 386,
+  "eu": 384,
   "excluded": 19
  },
  "needsReview": [],
@@ -101,7 +101,7 @@
   },
   {
    "id": "v-marc-impact-hu-2026",
-   "why": "monitor: closed: az oldal szerint: „2026. szeptember 28. Jelentkezési határidő (23:59)”"
+   "why": "monitor: closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
   }
  ],
  "excluded": [
@@ -114,12 +114,12 @@
    "why": "Pénzügyi eszköz keret alapkezelőnek."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/A1-24",
-   "why": "Alapkezelői technikai felhívás."
+   "code": "IKOP_PLUSZ-1.1.0-23",
+   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
+   "code": "DIMOP_PLUSZ-1.2.3/A1-24",
+   "why": "Alapkezelői technikai felhívás."
   },
   {
    "code": "IKOP_PLUSZ-2.1.0-23",
@@ -130,20 +130,20 @@
    "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
   },
   {
+   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
+  },
+  {
    "code": "DIMOP_PLUSZ-1.2.3/A2-24",
    "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
   },
   {
-   "code": "IKOP_PLUSZ-1.1.0-23",
-   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
+   "code": "GINOP_PLUSZ-2.5.4-25",
+   "why": "Alapkezelői költségtérítés."
   },
   {
    "code": "DIMOP_PLUSZ-5.1.4-2-26",
    "why": "Alapkezelői kezelési költségtérítés."
-  },
-  {
-   "code": "GINOP_PLUSZ-2.5.4-25",
-   "why": "Alapkezelői költségtérítés."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
@@ -158,16 +158,16 @@
    "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
   },
   {
-   "code": "KEHOP_PLUSZ-3.1.11-25",
-   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
-  },
-  {
    "code": "KEHOP_PLUSZ-3.1.12-25",
    "why": "Közszféra kármentesítési felhívás."
   },
   {
    "code": "GINOP_PLUSZ-1.4.6-24",
    "why": "Hitelkeret alapkezelőnek (Budapest)."
+  },
+  {
+   "code": "KEHOP_PLUSZ-3.1.11-25",
+   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
   },
   {
    "code": "GINOP_PLUSZ-1.4.7-24",
@@ -184,56 +184,92 @@
  ],
  "changes": [
   {
+   "id": "v-eit-rib-hu-2027",
+   "type": "deadline",
+   "from": "2026-10-15",
+   "to": "2026-10-30",
+   "title": "EIT Regional Innovation Booster – Hungary Edition 2027 (EIT Regionális Innovációs Gyorsító – magyar kiadás 2027)"
+  },
+  {
    "id": "v-eitfood-poc-cofin-2026",
    "type": "deadline",
-   "from": "2026-10-30",
-   "to": "2026-11-30",
+   "from": "2026-11-30",
+   "to": "2026-10-30",
    "title": "Proof-of-Concept Co-Financing Instrument (Agrárélelmiszer-startupok pilot projektjeinek társfinanszírozása)"
   },
   {
-   "id": "eu-HORIZON-CL5-2026-11-D3-04",
-   "type": "new",
-   "title": "De-risking renewable fuel technologies through transnational pre-commercial procurement of renewable fuel industrial value chains"
+   "id": "eu-DIGITAL-JU-CHIPS-2026-AI-GFP",
+   "type": "deadline",
+   "from": "2026-10-27",
+   "to": "2026-12-01",
+   "title": "AI compute evaluation and deployment platform for EU infrastructure"
   },
   {
-   "id": "eu-HORIZON-CL5-2026-11-D3-06",
-   "type": "new",
-   "title": "Resource assessment for deep sedimentary and basement reservoirs"
+   "id": "eu-DIGITAL-JU-CHIPS-2026-AI1-SG",
+   "type": "deadline",
+   "from": "2026-10-27",
+   "to": "2026-12-01",
+   "title": "AI chip demonstrators for EU compute infrastructure"
   },
   {
-   "id": "eu-HORIZON-NEB-2026-01-PARTICIPATION-03",
+   "id": "eu-cs-48351491",
    "type": "new",
-   "title": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being"
+   "title": "Rolling out the ERA Policy Agenda results — kaszkád (FSTP) nyílt felhívás"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-08",
+   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-12-CBCH",
    "type": "new",
-   "title": "Safeguarding & transmission of intangible cultural heritage"
+   "title": "Cross-border Cyber Hubs"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-05",
+   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-12-NATCH",
    "type": "new",
-   "title": "Development aid and democratic governance"
+   "title": "National Cyber Hubs"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-05",
+   "id": "eu-HORIZON-CL4-2027-SPACE-07-83",
    "type": "new",
-   "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
+   "title": "Space critical EEE components for EU non-dependence"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-04",
+   "id": "eu-HORIZON-CL4-2027-SPACE-07-84",
    "type": "new",
-   "title": "Culture, heritage and creative industries for health and well-being"
+   "title": "Space critical equipment for EU non-dependence"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-06",
-   "type": "new",
-   "title": "Future-proofing sustainable cultural tourism"
+   "id": "eu-HORIZON-EIC-2026-PRIZE-WIP-RisingInnovators",
+   "type": "removed",
+   "title": "Rising Innovators category"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-08",
-   "type": "new",
-   "title": "Global Human Rights and EU values"
+   "id": "eu-HORIZON-NEB-2026-01-BUSINESS-03",
+   "type": "removed",
+   "title": "Approaches to reuse vacant, obsolete or underutilised spaces"
+  },
+  {
+   "id": "eu-HORIZON-NEB-2026-01-PARTICIPATION-02",
+   "type": "removed",
+   "title": "Innovative approaches for the spatial design of neighbourhoods"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-03-GOVERNANCE-04",
+   "type": "removed",
+   "title": "AI supporting informed advice for farmers and foresters to improve competitiveness and sustainability"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-03-GOVERNANCE-02",
+   "type": "removed",
+   "title": "Improving analytical capacity for sustainable competitiveness of the agricultural sector"
+  },
+  {
+   "id": "eu-HORIZON-CL4-2027-SPACE-03-84",
+   "type": "removed",
+   "title": "Space critical equipment for EU non-dependence"
+  },
+  {
+   "id": "eu-HORIZON-CL4-2027-SPACE-03-83",
+   "type": "removed",
+   "title": "Space critical EEE components for EU non-dependence"
   }
  ]
 }
