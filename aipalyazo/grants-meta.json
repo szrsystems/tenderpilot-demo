@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-15T10:48:35.417Z",
+ "updatedAt": "2026-10-16T10:37:07.587Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,19 +7,19 @@
   "palyazatApi": {
    "ok": true,
    "items": 17,
-   "lastOk": "2026-10-15T10:48:35.417Z"
+   "lastOk": "2026-10-16T10:37:07.587Z"
   },
   "euApi": {
    "ok": true,
-   "items": 269,
-   "lastOk": "2026-10-15T10:48:35.417Z"
+   "items": 271,
+   "lastOk": "2026-10-16T10:37:07.587Z"
   }
  },
  "counts": {
   "total": 442,
   "api": 17,
-  "verified": 156,
-  "euAuto": 269,
+  "verified": 154,
+  "euAuto": 271,
   "hazai": 58,
   "eu": 384,
   "excluded": 19
@@ -44,7 +44,15 @@
    "why": "lejárt"
   },
   {
+   "id": "v-eit-rib-hu-2027",
+   "why": "lejárt"
+  },
+  {
    "id": "v-eitcc-shape-scale-2027",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-eurohpc-aif-large-scale",
    "why": "lejárt"
   },
   {
@@ -114,12 +122,20 @@
    "why": "Pénzügyi eszköz keret alapkezelőnek."
   },
   {
+   "code": "IKOP_PLUSZ-2.2.0-23",
+   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
    "code": "IKOP_PLUSZ-1.1.0-23",
    "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/A1-24",
    "why": "Alapkezelői technikai felhívás."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
   },
   {
    "code": "IKOP_PLUSZ-2.1.0-23",
@@ -130,48 +146,40 @@
    "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
-  },
-  {
    "code": "DIMOP_PLUSZ-1.2.3/A2-24",
    "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
-  },
-  {
-   "code": "GINOP_PLUSZ-2.5.4-25",
-   "why": "Alapkezelői költségtérítés."
-  },
-  {
-   "code": "DIMOP_PLUSZ-5.1.4-2-26",
-   "why": "Alapkezelői kezelési költségtérítés."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
    "why": "Alapkezelői/bank költségtérítés."
   },
   {
-   "code": "IKOP_PLUSZ-2.2.0-23",
-   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
+   "code": "DIMOP_PLUSZ-5.1.4-2-26",
+   "why": "Alapkezelői kezelési költségtérítés."
+  },
+  {
+   "code": "GINOP_PLUSZ-2.5.4-25",
+   "why": "Alapkezelői költségtérítés."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/B1-24",
    "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
   },
   {
-   "code": "KEHOP_PLUSZ-3.1.12-25",
-   "why": "Közszféra kármentesítési felhívás."
+   "code": "GINOP_PLUSZ-1.4.7-24",
+   "why": "Alapkezelői/közvetítői költségtérítés."
   },
   {
-   "code": "GINOP_PLUSZ-1.4.6-24",
-   "why": "Hitelkeret alapkezelőnek (Budapest)."
+   "code": "KEHOP_PLUSZ-3.1.12-25",
+   "why": "Közszféra kármentesítési felhívás."
   },
   {
    "code": "KEHOP_PLUSZ-3.1.11-25",
    "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
   },
   {
-   "code": "GINOP_PLUSZ-1.4.7-24",
-   "why": "Alapkezelői/közvetítői költségtérítés."
+   "code": "GINOP_PLUSZ-1.4.6-24",
+   "why": "Hitelkeret alapkezelőnek (Budapest)."
   },
   {
    "code": "2025-3.1.1-ED",
@@ -184,92 +192,54 @@
  ],
  "changes": [
   {
-   "id": "v-eit-rib-hu-2027",
-   "type": "deadline",
-   "from": "2026-10-15",
-   "to": "2026-10-30",
-   "title": "EIT Regional Innovation Booster – Hungary Edition 2027 (EIT Regionális Innovációs Gyorsító – magyar kiadás 2027)"
-  },
-  {
-   "id": "v-eitfood-poc-cofin-2026",
-   "type": "deadline",
-   "from": "2026-11-30",
-   "to": "2026-10-30",
-   "title": "Proof-of-Concept Co-Financing Instrument (Agrárélelmiszer-startupok pilot projektjeinek társfinanszírozása)"
-  },
-  {
-   "id": "eu-DIGITAL-JU-CHIPS-2026-AI-GFP",
-   "type": "deadline",
-   "from": "2026-10-27",
-   "to": "2026-12-01",
-   "title": "AI compute evaluation and deployment platform for EU infrastructure"
-  },
-  {
-   "id": "eu-DIGITAL-JU-CHIPS-2026-AI1-SG",
-   "type": "deadline",
-   "from": "2026-10-27",
-   "to": "2026-12-01",
-   "title": "AI chip demonstrators for EU compute infrastructure"
-  },
-  {
-   "id": "eu-cs-48351491",
-   "type": "new",
-   "title": "Rolling out the ERA Policy Agenda results — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-12-CBCH",
-   "type": "new",
-   "title": "Cross-border Cyber Hubs"
-  },
-  {
-   "id": "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-12-NATCH",
-   "type": "new",
-   "title": "National Cyber Hubs"
-  },
-  {
-   "id": "eu-HORIZON-CL4-2027-SPACE-07-83",
-   "type": "new",
-   "title": "Space critical EEE components for EU non-dependence"
-  },
-  {
-   "id": "eu-HORIZON-CL4-2027-SPACE-07-84",
-   "type": "new",
-   "title": "Space critical equipment for EU non-dependence"
-  },
-  {
-   "id": "eu-HORIZON-EIC-2026-PRIZE-WIP-RisingInnovators",
-   "type": "removed",
-   "title": "Rising Innovators category"
-  },
-  {
-   "id": "eu-HORIZON-NEB-2026-01-BUSINESS-03",
-   "type": "removed",
-   "title": "Approaches to reuse vacant, obsolete or underutilised spaces"
-  },
-  {
    "id": "eu-HORIZON-NEB-2026-01-PARTICIPATION-02",
-   "type": "removed",
+   "type": "new",
    "title": "Innovative approaches for the spatial design of neighbourhoods"
   },
   {
+   "id": "eu-HORIZON-NEB-2026-01-BUSINESS-03",
+   "type": "new",
+   "title": "Approaches to reuse vacant, obsolete or underutilised spaces"
+  },
+  {
+   "id": "eu-HORIZON-EIC-2026-PRIZE-WIP-RisingInnovators",
+   "type": "new",
+   "title": "Rising Innovators category"
+  },
+  {
    "id": "eu-HORIZON-CL6-2027-03-GOVERNANCE-04",
-   "type": "removed",
+   "type": "new",
    "title": "AI supporting informed advice for farmers and foresters to improve competitiveness and sustainability"
   },
   {
    "id": "eu-HORIZON-CL6-2027-03-GOVERNANCE-02",
-   "type": "removed",
+   "type": "new",
    "title": "Improving analytical capacity for sustainable competitiveness of the agricultural sector"
   },
   {
-   "id": "eu-HORIZON-CL4-2027-SPACE-03-84",
+   "id": "v-eit-rib-hu-2027",
    "type": "removed",
-   "title": "Space critical equipment for EU non-dependence"
+   "title": "EIT Regional Innovation Booster – Hungary Edition 2027 (EIT Regionális Innovációs Gyorsító – magyar kiadás 2027)"
   },
   {
-   "id": "eu-HORIZON-CL4-2027-SPACE-03-83",
+   "id": "v-eurohpc-aif-large-scale",
    "type": "removed",
-   "title": "Space critical EEE components for EU non-dependence"
+   "title": "Large Scale Access to AI Factories (Nagy léptékű GPU-hozzáférés az EU MI-gyárakban)"
+  },
+  {
+   "id": "eu-SMP-FOOD-2026-FW-STAKEHOLDERS-PJ",
+   "type": "removed",
+   "title": "EU support to Stakeholders to improve measurement of food waste and help implement food waste prevention in their operations and organisation - 2026-2027"
+  },
+  {
+   "id": "eu-DIGITAL-JU-CHIPS-2026-AI-GFP",
+   "type": "removed",
+   "title": "AI compute evaluation and deployment platform for EU infrastructure"
+  },
+  {
+   "id": "eu-HORIZON-HLTH-2027-01-DISEASE-10",
+   "type": "removed",
+   "title": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)"
   }
  ]
 }

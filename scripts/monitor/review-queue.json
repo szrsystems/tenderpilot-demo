@@ -1,38 +1,6 @@
 {
- "updatedAt": "2026-10-15",
+ "updatedAt": "2026-10-16",
  "items": [
-  {
-   "kind": "deadline-changed",
-   "id": "v-eit-rib-hu-2027",
-   "title": "EIT Regional Innovation Booster – Hungary Edition 2027 (EIT Regionális Innovációs Gyorsító – magyar kiadás 2027)",
-   "url": "https://www.eiturbanmobility.eu/call-for-proposals/eit-regional-innovation-booster-eit-rib-hungary-2027/",
-   "outcome": "auto-fixed",
-   "detail": "oldal szerint: „Deadline for applications: 30 October 2026, 17.00 (CET)”"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-eurohpc-aif-large-scale",
-   "title": "Large Scale Access to AI Factories (Nagy léptékű GPU-hozzáférés az EU MI-gyárakban)",
-   "url": "https://www.eurohpc-ju.europa.eu/large-scale-access-ai-factories_en",
-   "outcome": "changed-unverified",
-   "detail": "deadline 2033-12-31 not in its quote"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-eurohpc-benchmark-2026",
-   "title": "EuroHPC Benchmark Access Call (Szuperszámítógépes benchmark-hozzáférés)",
-   "url": "https://www.eurohpc-ju.europa.eu/eurohpc-ju-call-proposals-benchmark-access_en",
-   "outcome": "changed-unverified",
-   "detail": "deadline 2033-12-31 not in its quote"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-tef-health-oc2",
-   "title": "TEF-Health OpenCall #2 – discounted AI & robotics validation services (Kedvezményes MI/robotika-validálási szolgáltatások egészségügyi KKV-knak)",
-   "url": "https://tefhealth.eu/calls/2",
-   "outcome": "changed-unverified",
-   "detail": "amount quote not on page"
-  },
   {
    "kind": "benchmark-code",
    "source": "pafi",
@@ -57,43 +25,22 @@
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "a bolygo amelyet szeretunk",
-   "url": "https://pafi.hu/p/a-bolygo-amelyet-szeretunk",
+   "title": "megyei oszi tarlat",
+   "url": "https://pafi.hu/p/megyei-oszi-tarlat",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "biotechusa az egeszsegert dij 1",
-   "url": "https://pafi.hu/p/biotechusa-az-egeszsegert-dij-1",
+   "title": "zugloi ifjusagi kozossegi dij 2026",
+   "url": "https://pafi.hu/p/zugloi-ifjusagi-kozossegi-dij-2026",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "kti elte kozlekedesbiztonsagi otletpalyazat 2026",
-   "url": "https://pafi.hu/p/kti-elte-kozlekedesbiztonsagi-otletpalyazat-2026",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "palyazati felhivas otthontalan emberek elorelepeseert 2",
-   "url": "https://pafi.hu/p/palyazati-felhivas-otthontalan-emberek-elorelepeseert-2",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "palyazati kiiras karacsonyi fenydekoracio elmenypontok ingyenes hasznalatara a karacsonyi idoszakra",
-   "url": "https://pafi.hu/p/palyazati-kiiras-karacsonyi-fenydekoracio-elmenypontok-ingyenes-hasznalatara-a-karacsonyi-idoszakra",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "kh orok aktiv program",
-   "url": "https://pafi.hu/p/kh-orok-aktiv-program",
+   "title": "brooks nemzetkozi osztondijprogram 2027",
+   "url": "https://pafi.hu/p/brooks-nemzetkozi-osztondijprogram-2027",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]

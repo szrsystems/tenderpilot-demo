@@ -322,6 +322,11 @@
    "type": "deadline",
    "from": "2026-10-27",
    "to": "2026-12-01"
+  },
+  {
+   "date": "2026-10-16",
+   "type": "removed",
+   "title": "AI compute evaluation and deployment platform for EU infrastructure"
   }
  ],
  "eu-DIGITAL-JU-CHIPS-2026-AI1-SG": [
@@ -2099,6 +2104,11 @@
    "date": "2026-10-15",
    "type": "removed",
    "title": "Improving analytical capacity for sustainable competitiveness of the agricultural sector"
+  },
+  {
+   "date": "2026-10-16",
+   "type": "new",
+   "title": "Improving analytical capacity for sustainable competitiveness of the agricultural sector"
   }
  ],
  "eu-HORIZON-CL6-2027-03-GOVERNANCE-04": [
@@ -2110,6 +2120,11 @@
   {
    "date": "2026-10-15",
    "type": "removed",
+   "title": "AI supporting informed advice for farmers and foresters to improve competitiveness and sustainability"
+  },
+  {
+   "date": "2026-10-16",
+   "type": "new",
    "title": "AI supporting informed advice for farmers and foresters to improve competitiveness and sustainability"
   }
  ],
@@ -2181,6 +2196,11 @@
   {
    "date": "2026-10-15",
    "type": "removed",
+   "title": "Rising Innovators category"
+  },
+  {
+   "date": "2026-10-16",
+   "type": "new",
    "title": "Rising Innovators category"
   }
  ],
@@ -2347,6 +2367,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)"
+  },
+  {
+   "date": "2026-10-16",
+   "type": "removed",
    "title": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)"
   }
  ],
@@ -2930,6 +2955,11 @@
    "date": "2026-10-15",
    "type": "removed",
    "title": "Approaches to reuse vacant, obsolete or underutilised spaces"
+  },
+  {
+   "date": "2026-10-16",
+   "type": "new",
+   "title": "Approaches to reuse vacant, obsolete or underutilised spaces"
   }
  ],
  "eu-HORIZON-NEB-2026-01-PARTICIPATION-01": [
@@ -2948,6 +2978,11 @@
   {
    "date": "2026-10-15",
    "type": "removed",
+   "title": "Innovative approaches for the spatial design of neighbourhoods"
+  },
+  {
+   "date": "2026-10-16",
+   "type": "new",
    "title": "Innovative approaches for the spatial design of neighbourhoods"
   }
  ],
@@ -3163,6 +3198,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "EU support to Stakeholders to improve measurement of food waste and help implement food waste prevention in their operations and organisation - 2026-2027"
+  },
+  {
+   "date": "2026-10-16",
+   "type": "removed",
+   "title": "EU support to Stakeholders to improve measurement of food waste and help implement food waste prevention in their operations and organisation - 2026-2027"
   }
  ],
  "eu-cs-45962345": [
@@ -3267,6 +3307,11 @@
    "type": "deadline",
    "from": "2026-10-15",
    "to": "2026-10-30"
+  },
+  {
+   "date": "2026-10-16",
+   "type": "removed",
+   "title": "EIT Regional Innovation Booster – Hungary Edition 2027 (EIT Regionális Innovációs Gyorsító – magyar kiadás 2027)"
   }
  ],
  "v-eitcc-innovation-projects-2026": [
@@ -3371,6 +3416,11 @@
   {
    "date": "2026-10-15",
    "type": "page"
+  },
+  {
+   "date": "2026-10-16",
+   "type": "removed",
+   "title": "Large Scale Access to AI Factories (Nagy léptékű GPU-hozzáférés az EU MI-gyárakban)"
   }
  ],
  "v-eurohpc-aif-playground-fastlane": [
@@ -4128,6 +4178,10 @@
   },
   {
    "date": "2026-10-15",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-16",
    "type": "page"
   }
  ],
