@@ -1,4 +1,11 @@
 {
+ "a-canada-call-for-projects-number-8": [
+  {
+   "date": "2026-10-17",
+   "type": "new",
+   "title": "Canada call for projects number 8"
+  }
+ ],
  "a-kap-rd09a-2-26": [
   {
    "date": "2026-10-13",
@@ -326,6 +333,11 @@
   {
    "date": "2026-10-16",
    "type": "removed",
+   "title": "AI compute evaluation and deployment platform for EU infrastructure"
+  },
+  {
+   "date": "2026-10-17",
+   "type": "new",
    "title": "AI compute evaluation and deployment platform for EU infrastructure"
   }
  ],
@@ -2373,6 +2385,11 @@
    "date": "2026-10-16",
    "type": "removed",
    "title": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)"
+  },
+  {
+   "date": "2026-10-17",
+   "type": "new",
+   "title": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)"
   }
  ],
  "eu-HORIZON-HLTH-2027-01-ENVHLTH-02": [
@@ -3212,6 +3229,13 @@
    "title": "EU-wide network of pilot plants and testing facilities, improving SMEs and start-ups' access to scale-up — kaszkád (FSTP) nyílt felhívás"
   }
  ],
+ "eu-cs-46041400": [
+  {
+   "date": "2026-10-17",
+   "type": "removed",
+   "title": "Designing space-based downstream applications with international partners — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
  "eu-cs-47365875": [
   {
    "date": "2026-10-13",
@@ -3323,6 +3347,10 @@
   {
    "date": "2026-10-12",
    "type": "page"
+  },
+  {
+   "date": "2026-10-17",
+   "type": "page"
   }
  ],
  "v-eitcc-shape-scale-2027": [
@@ -3388,9 +3416,33 @@
    "to": "2026-10-30"
   }
  ],
+ "v-eitrm-kava14-ris": [
+  {
+   "date": "2026-10-17",
+   "type": "removed",
+   "title": "KAVA Call 14 – RIS Innovation Projects (Nyersanyag-innovációs projektek RIS-országokban)"
+  }
+ ],
+ "v-eitrm-kava14-upscaling": [
+  {
+   "date": "2026-10-17",
+   "type": "removed",
+   "title": "KAVA Call 14 – Upscaling (Nyersanyag-technológiák felskálázása)"
+  }
+ ],
+ "v-eitum-fsts-2026-c4": [
+  {
+   "date": "2026-10-17",
+   "type": "page"
+  }
+ ],
  "v-eitum-sioc-2027-01": [
   {
    "date": "2026-10-09",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-17",
    "type": "page"
   }
  ],
@@ -4182,6 +4234,10 @@
   },
   {
    "date": "2026-10-16",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-17",
    "type": "page"
   }
  ],

@@ -204,5 +204,52 @@
    "amount": "A felhívás meghirdetésekor a támogatásra rendelkezésre álló tervezett keretösszeg 1,6 milliárd Ft.",
    "eligibility": null
   }
+ },
+ {
+  "id": "a-canada-call-for-projects-number-8",
+  "code": null,
+  "title": "Canada call for projects number 8",
+  "issuer": "Eureka open calls",
+  "cat": "Kutatás-fejlesztés",
+  "type": "grant",
+  "amount": "up to a maximum total funding amount of 500,000 Canadian dollars",
+  "rate": null,
+  "deadline": "2027-01-07",
+  "rolling": false,
+  "windowOpen": "2026-07-27",
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "regionNote": "Canada",
+  "note": "A nemzetközi K+F projektnek legalább két független jogi entitást kell magában foglalnia legalább két résztvevő országból.",
+  "url": "https://www.eurekanetwork.org/programmes-and-calls/network-projects/canada-call-for-projects-number-8",
+  "source": "eurekanetwork.org",
+  "sources": [
+   "https://www.eurekanetwork.org/programmes-and-calls/network-projects/canada-call-for-projects-number-8"
+  ],
+  "verifiedAt": "2026-10-17",
+  "confidence": "auto",
+  "autoVerified": true,
+  "scope": "eu",
+  "singleApplicant": null,
+  "evidence": {
+   "title": "Canada call for projects number 8",
+   "status": "Start Date:\n27 July 2026, 12:00 AM CEST\nEnd Date:\n7 January 2027, 11:59 PM CET",
+   "deadline": "Submission deadline: 7 January 2027, 23:59 CEST/17:59 EDT, Ottawa",
+   "amount": "Eligible Canadian SMEs may receive up to 50% reimbursement of eligible project costs, up to a maximum total funding amount of 500,000 Canadian dollars, over 12 to 36 months.",
+   "eligibility": "Your project idea must represent international cooperation in the form of a specific project."
+  },
+  "requires": {
+   "consortium": true,
+   "rnd_project": true
+  },
+  "requiresEvidence": {
+   "consortium": "Your consortium must include at least two independent legal entities from a minimum of two Eureka Call participating countries.",
+   "rnd_project": "The project must be directed at researching or developing an innovative product, process or service with the goal of commercialisation."
+  }
  }
 ]

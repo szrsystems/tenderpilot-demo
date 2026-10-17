@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-16T10:37:07.587Z",
+ "updatedAt": "2026-10-17T10:08:26.736Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,19 +7,19 @@
   "palyazatApi": {
    "ok": true,
    "items": 17,
-   "lastOk": "2026-10-16T10:37:07.587Z"
+   "lastOk": "2026-10-17T10:08:26.736Z"
   },
   "euApi": {
    "ok": true,
-   "items": 271,
-   "lastOk": "2026-10-16T10:37:07.587Z"
+   "items": 272,
+   "lastOk": "2026-10-17T10:08:26.736Z"
   }
  },
  "counts": {
   "total": 442,
   "api": 17,
-  "verified": 154,
-  "euAuto": 271,
+  "verified": 153,
+  "euAuto": 272,
   "hazai": 58,
   "eu": 384,
   "excluded": 19
@@ -49,6 +49,14 @@
   },
   {
    "id": "v-eitcc-shape-scale-2027",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-eitrm-kava14-ris",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-eitrm-kava14-upscaling",
    "why": "lejárt"
   },
   {
@@ -166,20 +174,20 @@
    "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
   },
   {
-   "code": "GINOP_PLUSZ-1.4.7-24",
-   "why": "Alapkezelői/közvetítői költségtérítés."
+   "code": "KEHOP_PLUSZ-3.1.11-25",
+   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
   },
   {
    "code": "KEHOP_PLUSZ-3.1.12-25",
    "why": "Közszféra kármentesítési felhívás."
   },
   {
-   "code": "KEHOP_PLUSZ-3.1.11-25",
-   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
-  },
-  {
    "code": "GINOP_PLUSZ-1.4.6-24",
    "why": "Hitelkeret alapkezelőnek (Budapest)."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.7-24",
+   "why": "Alapkezelői/közvetítői költségtérítés."
   },
   {
    "code": "2025-3.1.1-ED",
@@ -192,54 +200,34 @@
  ],
  "changes": [
   {
-   "id": "eu-HORIZON-NEB-2026-01-PARTICIPATION-02",
+   "id": "a-canada-call-for-projects-number-8",
    "type": "new",
-   "title": "Innovative approaches for the spatial design of neighbourhoods"
-  },
-  {
-   "id": "eu-HORIZON-NEB-2026-01-BUSINESS-03",
-   "type": "new",
-   "title": "Approaches to reuse vacant, obsolete or underutilised spaces"
-  },
-  {
-   "id": "eu-HORIZON-EIC-2026-PRIZE-WIP-RisingInnovators",
-   "type": "new",
-   "title": "Rising Innovators category"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-03-GOVERNANCE-04",
-   "type": "new",
-   "title": "AI supporting informed advice for farmers and foresters to improve competitiveness and sustainability"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-03-GOVERNANCE-02",
-   "type": "new",
-   "title": "Improving analytical capacity for sustainable competitiveness of the agricultural sector"
-  },
-  {
-   "id": "v-eit-rib-hu-2027",
-   "type": "removed",
-   "title": "EIT Regional Innovation Booster – Hungary Edition 2027 (EIT Regionális Innovációs Gyorsító – magyar kiadás 2027)"
-  },
-  {
-   "id": "v-eurohpc-aif-large-scale",
-   "type": "removed",
-   "title": "Large Scale Access to AI Factories (Nagy léptékű GPU-hozzáférés az EU MI-gyárakban)"
-  },
-  {
-   "id": "eu-SMP-FOOD-2026-FW-STAKEHOLDERS-PJ",
-   "type": "removed",
-   "title": "EU support to Stakeholders to improve measurement of food waste and help implement food waste prevention in their operations and organisation - 2026-2027"
+   "title": "Canada call for projects number 8"
   },
   {
    "id": "eu-DIGITAL-JU-CHIPS-2026-AI-GFP",
-   "type": "removed",
+   "type": "new",
    "title": "AI compute evaluation and deployment platform for EU infrastructure"
   },
   {
    "id": "eu-HORIZON-HLTH-2027-01-DISEASE-10",
-   "type": "removed",
+   "type": "new",
    "title": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)"
+  },
+  {
+   "id": "v-eitrm-kava14-ris",
+   "type": "removed",
+   "title": "KAVA Call 14 – RIS Innovation Projects (Nyersanyag-innovációs projektek RIS-országokban)"
+  },
+  {
+   "id": "v-eitrm-kava14-upscaling",
+   "type": "removed",
+   "title": "KAVA Call 14 – Upscaling (Nyersanyag-technológiák felskálázása)"
+  },
+  {
+   "id": "eu-cs-46041400",
+   "type": "removed",
+   "title": "Designing space-based downstream applications with international partners — kaszkád (FSTP) nyílt felhívás"
   }
  ]
 }

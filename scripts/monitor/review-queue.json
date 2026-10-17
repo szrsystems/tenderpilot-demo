@@ -1,6 +1,14 @@
 {
- "updatedAt": "2026-10-16",
+ "updatedAt": "2026-10-17",
  "items": [
+  {
+   "kind": "recheck",
+   "id": "v-eitcc-innovation-projects-2026",
+   "title": "EIT Culture & Creativity Innovation Projects 2026 (Kreatívipari innovációs projektek – divat, audiovizuális média, építészet)",
+   "url": "https://eit-culture-creativity.eu/your-opportunities/calls-funding/innovation-projects",
+   "outcome": "changed-unverified",
+   "detail": "amount quote not on page"
+  },
   {
    "kind": "benchmark-code",
    "source": "pafi",
@@ -21,27 +29,6 @@
    "title": "MAHOP Plusz-2.5.1-20",
    "url": "https://pafi.hu/palyazatok/vallalkozasok",
    "detail": "a(z) pafi.hu — vállalkozások listáján szerepel, nálunk nincs — ellenőrizd a hivatalos oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "megyei oszi tarlat",
-   "url": "https://pafi.hu/p/megyei-oszi-tarlat",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "zugloi ifjusagi kozossegi dij 2026",
-   "url": "https://pafi.hu/p/zugloi-ifjusagi-kozossegi-dij-2026",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "brooks nemzetkozi osztondijprogram 2027",
-   "url": "https://pafi.hu/p/brooks-nemzetkozi-osztondijprogram-2027",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]
 }
