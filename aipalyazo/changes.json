@@ -469,6 +469,11 @@
    "date": "2026-10-09",
    "type": "new",
    "title": "Women’s, LGBTIQ and minority rights in a context of autocracy, conflict and geopolitical shifts"
+  },
+  {
+   "date": "2026-10-18",
+   "type": "removed",
+   "title": "Women’s, LGBTIQ and minority rights in a context of autocracy, conflict and geopolitical shifts"
   }
  ],
  "eu-HORIZON-CL2-2027-01-DEMOCRACY-03": [
@@ -578,6 +583,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Crafting routes to a circular economy"
+  },
+  {
+   "date": "2026-10-18",
+   "type": "removed",
+   "title": "Crafting routes to a circular economy"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-04": [
@@ -632,6 +642,11 @@
    "date": "2026-10-14",
    "type": "new",
    "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
+  },
+  {
+   "date": "2026-10-18",
+   "type": "removed",
+   "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-06": [
@@ -658,6 +673,11 @@
   {
    "date": "2026-10-14",
    "type": "new",
+   "title": "Future-proofing sustainable cultural tourism"
+  },
+  {
+   "date": "2026-10-18",
+   "type": "removed",
    "title": "Future-proofing sustainable cultural tourism"
   }
  ],
@@ -808,6 +828,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Scaling and deploying innovations in migration management"
+  },
+  {
+   "date": "2026-10-18",
+   "type": "removed",
    "title": "Scaling and deploying innovations in migration management"
   }
  ],
@@ -3229,6 +3254,13 @@
    "title": "EU-wide network of pilot plants and testing facilities, improving SMEs and start-ups' access to scale-up — kaszkád (FSTP) nyílt felhívás"
   }
  ],
+ "eu-cs-46014469": [
+  {
+   "date": "2026-10-18",
+   "type": "removed",
+   "title": "Boosting Digital Skills of young pupils, in particular girls — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
  "eu-cs-46041400": [
   {
    "date": "2026-10-17",
@@ -3259,11 +3291,29 @@
    "to": 5567249607
   }
  ],
+ "v-2025-1-1-1-iparjog": [
+  {
+   "date": "2026-10-18",
+   "type": "page"
+  }
+ ],
+ "v-2025-1-2-2-eureka": [
+  {
+   "date": "2026-10-18",
+   "type": "page"
+  }
+ ],
  "v-2025-1-2-5-eu-kp": [
   {
    "date": "2026-10-08",
    "type": "removed",
    "title": "Az EU Horizont Európa programjában, valamint egyéb közös EU-s programokban való magyar részvétel ösztönzése"
+  }
+ ],
+ "v-agrar-szk-max": [
+  {
+   "date": "2026-10-18",
+   "type": "page"
   }
  ],
  "v-cetp-jc2026": [
@@ -4168,6 +4218,10 @@
   {
    "date": "2026-10-11",
    "type": "page"
+  },
+  {
+   "date": "2026-10-18",
+   "type": "page"
   }
  ],
  "v-ivf-visegrad-grants-2026-10": [
@@ -4238,6 +4292,10 @@
   },
   {
    "date": "2026-10-17",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-18",
    "type": "page"
   }
  ],

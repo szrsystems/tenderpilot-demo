@@ -1,13 +1,21 @@
 {
- "updatedAt": "2026-10-17",
+ "updatedAt": "2026-10-18",
  "items": [
   {
    "kind": "recheck",
-   "id": "v-eitcc-innovation-projects-2026",
-   "title": "EIT Culture & Creativity Innovation Projects 2026 (Kreatívipari innovációs projektek – divat, audiovizuális média, építészet)",
-   "url": "https://eit-culture-creativity.eu/your-opportunities/calls-funding/innovation-projects",
+   "id": "v-agrar-szk-max",
+   "title": "Agrár Széchenyi Kártya MAX+",
+   "url": "https://www.kavosz.hu/hitelek/agrar-szechenyi-kartya/",
    "outcome": "changed-unverified",
-   "detail": "amount quote not on page"
+   "detail": "status not on page"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-interreg-huhr-b-light-2-call1",
+   "title": "Interreg Magyarország–Horvátország B Light 2 – 1. felhívás KKV-k határon átnyúló együttműködésére",
+   "url": "https://investinbaranya.hu/en/b-light/",
+   "outcome": "changed-unverified",
+   "detail": "not a funding call; title not on page; status not on page; no deadline and not rolling; eligibility unclear; status unclear"
   },
   {
    "kind": "benchmark-code",

@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-17T10:08:26.736Z",
+ "updatedAt": "2026-10-18T10:21:01.835Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,21 +7,21 @@
   "palyazatApi": {
    "ok": true,
    "items": 17,
-   "lastOk": "2026-10-17T10:08:26.736Z"
+   "lastOk": "2026-10-18T10:21:01.835Z"
   },
   "euApi": {
    "ok": true,
-   "items": 272,
-   "lastOk": "2026-10-17T10:08:26.736Z"
+   "items": 266,
+   "lastOk": "2026-10-18T10:21:01.835Z"
   }
  },
  "counts": {
-  "total": 442,
+  "total": 436,
   "api": 17,
   "verified": 153,
-  "euAuto": 272,
+  "euAuto": 266,
   "hazai": 58,
-  "eu": 384,
+  "eu": 378,
   "excluded": 19
  },
  "needsReview": [],
@@ -117,7 +117,7 @@
   },
   {
    "id": "v-marc-impact-hu-2026",
-   "why": "monitor: closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
+   "why": "monitor: closed: az oldal szerint: „2026. szeptember 28.\nJelentkezési határidő (23:59)”"
   }
  ],
  "excluded": [
@@ -200,34 +200,34 @@
  ],
  "changes": [
   {
-   "id": "a-canada-call-for-projects-number-8",
-   "type": "new",
-   "title": "Canada call for projects number 8"
-  },
-  {
-   "id": "eu-DIGITAL-JU-CHIPS-2026-AI-GFP",
-   "type": "new",
-   "title": "AI compute evaluation and deployment platform for EU infrastructure"
-  },
-  {
-   "id": "eu-HORIZON-HLTH-2027-01-DISEASE-10",
-   "type": "new",
-   "title": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)"
-  },
-  {
-   "id": "v-eitrm-kava14-ris",
+   "id": "eu-cs-46014469",
    "type": "removed",
-   "title": "KAVA Call 14 – RIS Innovation Projects (Nyersanyag-innovációs projektek RIS-országokban)"
+   "title": "Boosting Digital Skills of young pupils, in particular girls — kaszkád (FSTP) nyílt felhívás"
   },
   {
-   "id": "v-eitrm-kava14-upscaling",
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-06",
    "type": "removed",
-   "title": "KAVA Call 14 – Upscaling (Nyersanyag-technológiák felskálázása)"
+   "title": "Future-proofing sustainable cultural tourism"
   },
   {
-   "id": "eu-cs-46041400",
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-05",
    "type": "removed",
-   "title": "Designing space-based downstream applications with international partners — kaszkád (FSTP) nyílt felhívás"
+   "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-03",
+   "type": "removed",
+   "title": "Crafting routes to a circular economy"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-08",
+   "type": "removed",
+   "title": "Scaling and deploying innovations in migration management"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-02",
+   "type": "removed",
+   "title": "Women’s, LGBTIQ and minority rights in a context of autocracy, conflict and geopolitical shifts"
   }
  ]
 }
