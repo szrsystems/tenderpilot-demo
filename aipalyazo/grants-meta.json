@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-18T10:21:01.835Z",
+ "updatedAt": "2026-10-19T11:53:08.887Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,21 +7,21 @@
   "palyazatApi": {
    "ok": true,
    "items": 17,
-   "lastOk": "2026-10-18T10:21:01.835Z"
+   "lastOk": "2026-10-19T11:53:08.887Z"
   },
   "euApi": {
    "ok": true,
-   "items": 266,
-   "lastOk": "2026-10-18T10:21:01.835Z"
+   "items": 260,
+   "lastOk": "2026-10-19T11:53:08.887Z"
   }
  },
  "counts": {
-  "total": 436,
+  "total": 430,
   "api": 17,
   "verified": 153,
-  "euAuto": 266,
+  "euAuto": 260,
   "hazai": 58,
-  "eu": 378,
+  "eu": 372,
   "excluded": 19
  },
  "needsReview": [],
@@ -117,7 +117,7 @@
   },
   {
    "id": "v-marc-impact-hu-2026",
-   "why": "monitor: closed: az oldal szerint: „2026. szeptember 28.\nJelentkezési határidő (23:59)”"
+   "why": "monitor: closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
   }
  ],
  "excluded": [
@@ -200,34 +200,98 @@
  ],
  "changes": [
   {
-   "id": "eu-cs-46014469",
-   "type": "removed",
-   "title": "Boosting Digital Skills of young pupils, in particular girls — kaszkád (FSTP) nyílt felhívás"
+   "id": "v-eitfood-poc-cofin-2026",
+   "type": "deadline",
+   "from": "2026-10-30",
+   "to": "2026-11-30",
+   "title": "Proof-of-Concept Co-Financing Instrument (Agrárélelmiszer-startupok pilot projektjeinek társfinanszírozása)"
+  },
+  {
+   "id": "v-2024-1-2-1-he-partnerseg",
+   "type": "deadline",
+   "from": "2026-12-18",
+   "to": "2026-10-30",
+   "title": "Horizont Európa európai partnerségek közös nemzetközi felhívásaiban sikeresen szereplő magyar szervezetek támogatása"
   },
   {
    "id": "eu-HORIZON-CL2-2027-01-HERITAGE-06",
-   "type": "removed",
+   "type": "new",
    "title": "Future-proofing sustainable cultural tourism"
   },
   {
    "id": "eu-HORIZON-CL2-2027-01-HERITAGE-05",
-   "type": "removed",
+   "type": "new",
    "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
   },
   {
    "id": "eu-HORIZON-CL2-2027-01-HERITAGE-03",
-   "type": "removed",
+   "type": "new",
    "title": "Crafting routes to a circular economy"
   },
   {
    "id": "eu-HORIZON-CL2-2027-01-TRANSFO-08",
-   "type": "removed",
+   "type": "new",
    "title": "Scaling and deploying innovations in migration management"
   },
   {
    "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-02",
-   "type": "removed",
+   "type": "new",
    "title": "Women’s, LGBTIQ and minority rights in a context of autocracy, conflict and geopolitical shifts"
+  },
+  {
+   "id": "eu-HORIZON-HLTH-2027-02-DISEASE-14-two-stage",
+   "type": "removed",
+   "title": "Clinical trials for advancing innovative interventions for neurodegenerative diseases"
+  },
+  {
+   "id": "eu-HORIZON-HLTH-2027-01-DISEASE-07",
+   "type": "removed",
+   "title": "Development of monoclonal antibodies to prevent and treat infections from Filo-, Nairo-, Phenui-, Picorna- and Toga viruses"
+  },
+  {
+   "id": "eu-HORIZON-HLTH-2027-01-CARE-02",
+   "type": "removed",
+   "title": "Personalised approaches to reduce risks from Adverse Drug Reactions due to administration of multiple medications"
+  },
+  {
+   "id": "eu-HORIZON-HLTH-2027-02-TOOL-01-two-stage",
+   "type": "removed",
+   "title": "Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-03",
+   "type": "removed",
+   "title": "Student and family engagement for developing a culture of democratic/civic participation"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-04",
+   "type": "removed",
+   "title": "The impact of EU labour mobility on the Member States of the EU"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-07",
+   "type": "removed",
+   "title": "Societal impact of cultural heritage"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-01",
+   "type": "removed",
+   "title": "Impact of access to nature-positive environments in promoting social cohesion and reducing inequalities in urban and peri-urban settings"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-07",
+   "type": "removed",
+   "title": "The role of private companies in democracy"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-08",
+   "type": "removed",
+   "title": "Safeguarding & transmission of intangible cultural heritage"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-COMMUNITIES-01",
+   "type": "removed",
+   "title": "Strengthening rural communities' resilience to shocks"
   }
  ]
 }

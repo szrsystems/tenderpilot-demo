@@ -474,12 +474,22 @@
    "date": "2026-10-18",
    "type": "removed",
    "title": "Women’s, LGBTIQ and minority rights in a context of autocracy, conflict and geopolitical shifts"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "new",
+   "title": "Women’s, LGBTIQ and minority rights in a context of autocracy, conflict and geopolitical shifts"
   }
  ],
  "eu-HORIZON-CL2-2027-01-DEMOCRACY-03": [
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Student and family engagement for developing a culture of democratic/civic participation"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "removed",
    "title": "Student and family engagement for developing a culture of democratic/civic participation"
   }
  ],
@@ -549,6 +559,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "The role of private companies in democracy"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "removed",
+   "title": "The role of private companies in democracy"
   }
  ],
  "eu-HORIZON-CL2-2027-01-DEMOCRACY-08": [
@@ -587,6 +602,11 @@
   {
    "date": "2026-10-18",
    "type": "removed",
+   "title": "Crafting routes to a circular economy"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "new",
    "title": "Crafting routes to a circular economy"
   }
  ],
@@ -647,6 +667,11 @@
    "date": "2026-10-18",
    "type": "removed",
    "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "new",
+   "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-06": [
@@ -679,6 +704,11 @@
    "date": "2026-10-18",
    "type": "removed",
    "title": "Future-proofing sustainable cultural tourism"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "new",
+   "title": "Future-proofing sustainable cultural tourism"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-07": [
@@ -705,6 +735,11 @@
   {
    "date": "2026-10-13",
    "type": "new",
+   "title": "Societal impact of cultural heritage"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "removed",
    "title": "Societal impact of cultural heritage"
   }
  ],
@@ -733,12 +768,22 @@
    "date": "2026-10-14",
    "type": "new",
    "title": "Safeguarding & transmission of intangible cultural heritage"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "removed",
+   "title": "Safeguarding & transmission of intangible cultural heritage"
   }
  ],
  "eu-HORIZON-CL2-2027-01-TRANSFO-01": [
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Impact of access to nature-positive environments in promoting social cohesion and reducing inequalities in urban and peri-urban settings"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "removed",
    "title": "Impact of access to nature-positive environments in promoting social cohesion and reducing inequalities in urban and peri-urban settings"
   }
  ],
@@ -770,6 +815,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "The impact of EU labour mobility on the Member States of the EU"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "removed",
    "title": "The impact of EU labour mobility on the Member States of the EU"
   }
  ],
@@ -833,6 +883,11 @@
   {
    "date": "2026-10-18",
    "type": "removed",
+   "title": "Scaling and deploying innovations in migration management"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "new",
    "title": "Scaling and deploying innovations in migration management"
   }
  ],
@@ -2052,6 +2107,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Strengthening rural communities' resilience to shocks"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "removed",
+   "title": "Strengthening rural communities' resilience to shocks"
   }
  ],
  "eu-HORIZON-CL6-2027-02-COMMUNITIES-02": [
@@ -2370,6 +2430,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Personalised approaches to reduce risks from Adverse Drug Reactions due to administration of multiple medications"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "removed",
+   "title": "Personalised approaches to reduce risks from Adverse Drug Reactions due to administration of multiple medications"
   }
  ],
  "eu-HORIZON-HLTH-2027-01-DISEASE-05": [
@@ -2390,6 +2455,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Development of monoclonal antibodies to prevent and treat infections from Filo-, Nairo-, Phenui-, Picorna- and Toga viruses"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "removed",
    "title": "Development of monoclonal antibodies to prevent and treat infections from Filo-, Nairo-, Phenui-, Picorna- and Toga viruses"
   }
  ],
@@ -2467,6 +2537,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Clinical trials for advancing innovative interventions for neurodegenerative diseases"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "removed",
+   "title": "Clinical trials for advancing innovative interventions for neurodegenerative diseases"
   }
  ],
  "eu-HORIZON-HLTH-2027-02-IND-02-two-stage": [
@@ -2480,6 +2555,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "removed",
    "title": "Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases"
   }
  ],
@@ -3291,6 +3371,24 @@
    "to": 5567249607
   }
  ],
+ "v-2024-1-2-1-he-partnerseg": [
+  {
+   "date": "2026-10-19",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "deadline-official",
+   "from": "2026-12-18",
+   "to": "2026-10-30"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "deadline",
+   "from": "2026-12-18",
+   "to": "2026-10-30"
+  }
+ ],
  "v-2025-1-1-1-iparjog": [
   {
    "date": "2026-10-18",
@@ -3300,6 +3398,10 @@
  "v-2025-1-2-2-eureka": [
   {
    "date": "2026-10-18",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-19",
    "type": "page"
   }
  ],
@@ -3464,6 +3566,16 @@
    "type": "deadline",
    "from": "2026-11-30",
    "to": "2026-10-30"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "deadline",
+   "from": "2026-10-30",
+   "to": "2026-11-30"
   }
  ],
  "v-eitrm-kava14-ris": [
@@ -3567,6 +3679,10 @@
   },
   {
    "date": "2026-10-13",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-19",
    "type": "page"
   }
  ],
@@ -4001,6 +4117,12 @@
    "title": "Towards commercialization of food systems microbiome solutions (IA) (Élelmiszer-rendszerek mikrobiom-megoldásainak piacra vitele)"
   }
  ],
+ "v-horizon-eic-2026-accelerator-01": [
+  {
+   "date": "2026-10-19",
+   "type": "page"
+  }
+ ],
  "v-horizon-eic-2026-pathfinderchallenges-01-01": [
   {
    "date": "2026-10-09",
@@ -4222,6 +4344,10 @@
   {
    "date": "2026-10-18",
    "type": "page"
+  },
+  {
+   "date": "2026-10-19",
+   "type": "page"
   }
  ],
  "v-ivf-visegrad-grants-2026-10": [
@@ -4296,6 +4422,10 @@
   },
   {
    "date": "2026-10-18",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-19",
    "type": "page"
   }
  ],
