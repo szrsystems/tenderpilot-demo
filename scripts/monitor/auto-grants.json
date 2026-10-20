@@ -251,5 +251,43 @@
    "consortium": "Your consortium must include at least two independent legal entities from a minimum of two Eureka Call participating countries.",
    "rnd_project": "The project must be directed at researching or developing an innovative product, process or service with the goal of commercialisation."
   }
+ },
+ {
+  "id": "a-kap-rd57-2-26",
+  "code": "KAP-RD57-2-26",
+  "title": "LEADER együttműködések támogatása",
+  "issuer": "KAP Stratégiai Terv (kap.gov.hu)",
+  "cat": "Mezőgazdaság",
+  "type": "grant",
+  "amount": "2,5 milliárd Ft",
+  "rate": null,
+  "deadline": "2027-02-10",
+  "rolling": false,
+  "windowOpen": "2026-12-03",
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "regionNote": null,
+  "note": "A támogatási kérelmek benyújtására 2026. december 3. és 2027. február 10. között van lehetőség.",
+  "url": "https://kap.gov.hu/node/3905",
+  "source": "kap.gov.hu",
+  "sources": [
+   "https://kap.gov.hu/node/3905"
+  ],
+  "verifiedAt": "2026-10-20",
+  "confidence": "auto",
+  "autoVerified": true,
+  "scope": "hazai",
+  "evidence": {
+   "title": "Megjelent a „LEADER együttműködések támogatása” című (KAP-RD57-2-26 kódszámú) pályázati felhívás",
+   "status": "Megjelent a „LEADER együttműködések támogatása” című (KAP-RD57-2-26 kódszámú) pályázati felhívás",
+   "deadline": "A támogatási kérelmek benyújtására 2026. december 3. és 2027. február 10. között van lehetőség.",
+   "amount": "A felhívás meghirdetésekor a támogatásra rendelkezésre álló tervezett keretösszeg 2,5 milliárd Ft.",
+   "eligibility": null
+  }
  }
 ]

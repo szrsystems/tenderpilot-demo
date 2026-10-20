@@ -1,29 +1,20 @@
 {
- "updatedAt": "2026-10-19",
+ "updatedAt": "2026-10-20",
  "items": [
   {
-   "kind": "deadline-changed",
-   "id": "v-eitfood-poc-cofin-2026",
-   "title": "Proof-of-Concept Co-Financing Instrument (Agrárélelmiszer-startupok pilot projektjeinek társfinanszírozása)",
-   "url": "https://www.eitfood.eu/open-calls/proof-of-concept-co-financing-instrument-2",
-   "outcome": "auto-fixed",
-   "detail": "oldal szerint: „Deadline: 30 November 2026”"
-  },
-  {
-   "kind": "deadline-changed",
-   "id": "v-2024-1-2-1-he-partnerseg",
-   "title": "Horizont Európa európai partnerségek közös nemzetközi felhívásaiban sikeresen szereplő magyar szervezetek támogatása",
-   "url": "https://nkfih.gov.hu/palyazoknak/nkfi-alap/horizont-europa-europai-partnersegek-magyar-szervezetek-tamogatasa-2024-121-he-partnerseg/palyazati-felhivas",
-   "outcome": "auto-fixed",
-   "detail": "oldal szerint: „2026. október 30. 12:00”"
-  },
-  {
    "kind": "recheck",
-   "id": "v-interreg-huhr-b-light-2-call1",
-   "title": "Interreg Magyarország–Horvátország B Light 2 – 1. felhívás KKV-k határon átnyúló együttműködésére",
-   "url": "https://investinbaranya.hu/en/b-light/",
+   "id": "v-kap-rd01a-rd12-2-25",
+   "title": "Fagykárt szenvedett ültetvények cseréjének támogatása",
+   "url": "https://kap.gov.hu/tamogatas/kap-rd01a-rd12-2-25",
    "outcome": "changed-unverified",
-   "detail": "not a funding call; no deadline and not rolling"
+   "detail": "deadline quote not on page"
+  },
+  {
+   "kind": "new",
+   "source": "eit",
+   "url": "https://www.eit.europa.eu/our-activities/opportunities/eit-higher-education-initiative-call-proposals-2026",
+   "title": "EIT Higher Education Initiative Call for Proposals 2026",
+   "detail": "no deadline and not rolling"
   },
   {
    "kind": "benchmark-code",
@@ -49,22 +40,15 @@
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "mi van a tarisznyadban meskete alkotoi palyazat gyerekeknek a nepmese napja alkalmabol",
-   "url": "https://pafi.hu/p/mi-van-a-tarisznyadban-meskete-alkotoi-palyazat-gyerekeknek-a-nepmese-napja-alkalmabol",
+   "title": "perform europe online tajekoztato a partnerkeresesrol",
+   "url": "https://pafi.hu/p/perform-europe-online-tajekoztato-a-partnerkeresesrol",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "mi keruljon a tanyerunkra",
-   "url": "https://pafi.hu/p/mi-keruljon-a-tanyerunkra",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "nemzeti filmintezet inkubator programjaban keszult filmalkotasok filmgyartasi tamogatasa 1",
-   "url": "https://pafi.hu/p/nemzeti-filmintezet-inkubator-programjaban-keszult-filmalkotasok-filmgyartasi-tamogatasa-1",
+   "title": "perform europe oc 2026 2028",
+   "url": "https://pafi.hu/p/perform-europe-oc-2026-2028",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]

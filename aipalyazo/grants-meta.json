@@ -1,28 +1,30 @@
 {
- "updatedAt": "2026-10-19T11:53:08.887Z",
- "sourcesOk": true,
- "apiFailed": false,
+ "updatedAt": "2026-10-20T10:53:47.754Z",
+ "sourcesOk": false,
+ "apiFailed": true,
  "euApiFailed": false,
  "sources": {
   "palyazatApi": {
-   "ok": true,
+   "ok": false,
+   "error": "fetch failed",
    "items": 17,
+   "dataFrom": "2026-10-19T11:53:08.887Z",
    "lastOk": "2026-10-19T11:53:08.887Z"
   },
   "euApi": {
    "ok": true,
-   "items": 260,
-   "lastOk": "2026-10-19T11:53:08.887Z"
+   "items": 268,
+   "lastOk": "2026-10-20T10:53:47.754Z"
   }
  },
  "counts": {
-  "total": 430,
+  "total": 439,
   "api": 17,
-  "verified": 153,
-  "euAuto": 260,
-  "hazai": 58,
-  "eu": 372,
-  "excluded": 19
+  "verified": 154,
+  "euAuto": 268,
+  "hazai": 59,
+  "eu": 380,
+  "excluded": 0
  },
  "needsReview": [],
  "staleVerified": [],
@@ -117,181 +119,79 @@
   },
   {
    "id": "v-marc-impact-hu-2026",
-   "why": "monitor: closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
+   "why": "monitor: closed: az oldal szerint: „2026. szeptember 28.\nJelentkezési határidő (23:59)”"
   }
  ],
- "excluded": [
-  {
-   "code": "SSNS-NCC-HU-2026.KOMP",
-   "why": "Kiberbiztonsági kompetenciaközösségi tagság — nem pénzbeli, nem pályázat."
-  },
-  {
-   "code": "GINOP_PLUSZ-1.4.8-24",
-   "why": "Pénzügyi eszköz keret alapkezelőnek."
-  },
-  {
-   "code": "IKOP_PLUSZ-2.2.0-23",
-   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
-  },
-  {
-   "code": "IKOP_PLUSZ-1.1.0-23",
-   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/A1-24",
-   "why": "Alapkezelői technikai felhívás."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
-  },
-  {
-   "code": "IKOP_PLUSZ-2.1.0-23",
-   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
-  },
-  {
-   "code": "IKOP_PLUSZ-1.2.0-23",
-   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
-   "why": "Alapkezelői/bank költségtérítés."
-  },
-  {
-   "code": "DIMOP_PLUSZ-5.1.4-2-26",
-   "why": "Alapkezelői kezelési költségtérítés."
-  },
-  {
-   "code": "GINOP_PLUSZ-2.5.4-25",
-   "why": "Alapkezelői költségtérítés."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
-   "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
-  },
-  {
-   "code": "KEHOP_PLUSZ-3.1.11-25",
-   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
-  },
-  {
-   "code": "KEHOP_PLUSZ-3.1.12-25",
-   "why": "Közszféra kármentesítési felhívás."
-  },
-  {
-   "code": "GINOP_PLUSZ-1.4.6-24",
-   "why": "Hitelkeret alapkezelőnek (Budapest)."
-  },
-  {
-   "code": "GINOP_PLUSZ-1.4.7-24",
-   "why": "Alapkezelői/közvetítői költségtérítés."
-  },
-  {
-   "code": "2025-3.1.1-ED",
-   "why": "Egyedi döntésű NKFI kérelem, nem nyílt felhívás."
-  },
-  {
-   "code": "EFOP_PLUSZ-TEF-3.1.3/TEF-25",
-   "why": "Csak közintézmények, egyházak, nonprofitok; 2026-09-25-én zár."
-  }
- ],
+ "excluded": [],
  "changes": [
   {
    "id": "v-eitfood-poc-cofin-2026",
    "type": "deadline",
-   "from": "2026-10-30",
-   "to": "2026-11-30",
+   "from": "2026-11-30",
+   "to": "2026-10-30",
    "title": "Proof-of-Concept Co-Financing Instrument (Agrárélelmiszer-startupok pilot projektjeinek társfinanszírozása)"
   },
   {
    "id": "v-2024-1-2-1-he-partnerseg",
    "type": "deadline",
-   "from": "2026-12-18",
-   "to": "2026-10-30",
+   "from": "2026-10-30",
+   "to": "2026-12-18",
    "title": "Horizont Európa európai partnerségek közös nemzetközi felhívásaiban sikeresen szereplő magyar szervezetek támogatása"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-06",
+   "id": "a-kap-rd57-2-26",
    "type": "new",
-   "title": "Future-proofing sustainable cultural tourism"
+   "title": "LEADER együttműködések támogatása"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-05",
+   "id": "eu-CREA-CROSS-2027-MEDIALITERACY",
    "type": "new",
-   "title": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
+   "title": "NEWS - Media Literacy"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-03",
+   "id": "eu-CREA-CROSS-2027-MFP",
    "type": "new",
-   "title": "Crafting routes to a circular economy"
+   "title": "NEWS - Media Freedom Rapid Response Mechanism"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-08",
+   "id": "eu-CREA-CROSS-2027-JOURPART-COLLABORATIONS",
    "type": "new",
-   "title": "Scaling and deploying innovations in migration management"
+   "title": "NEWS - JOURNALISM PARTNERSHIPS - COLLABORATIONS"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-02",
+   "id": "eu-CREA-CROSS-2027-JOURPART-PLURALISM",
    "type": "new",
-   "title": "Women’s, LGBTIQ and minority rights in a context of autocracy, conflict and geopolitical shifts"
+   "title": "NEWS - JOURNALISM PARTNERSHIPS - PLURALISM"
   },
   {
    "id": "eu-HORIZON-HLTH-2027-02-DISEASE-14-two-stage",
-   "type": "removed",
+   "type": "new",
    "title": "Clinical trials for advancing innovative interventions for neurodegenerative diseases"
   },
   {
    "id": "eu-HORIZON-HLTH-2027-01-DISEASE-07",
-   "type": "removed",
+   "type": "new",
    "title": "Development of monoclonal antibodies to prevent and treat infections from Filo-, Nairo-, Phenui-, Picorna- and Toga viruses"
   },
   {
    "id": "eu-HORIZON-HLTH-2027-01-CARE-02",
-   "type": "removed",
+   "type": "new",
    "title": "Personalised approaches to reduce risks from Adverse Drug Reactions due to administration of multiple medications"
   },
   {
    "id": "eu-HORIZON-HLTH-2027-02-TOOL-01-two-stage",
-   "type": "removed",
+   "type": "new",
    "title": "Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-03",
-   "type": "removed",
-   "title": "Student and family engagement for developing a culture of democratic/civic participation"
+   "id": "eu-CREA-CROSS-2027-INNOVLAB",
+   "type": "new",
+   "title": "Creative Innovation Lab"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-04",
+   "id": "eu-HORIZON-HLTH-2027-01-DISEASE-10",
    "type": "removed",
-   "title": "The impact of EU labour mobility on the Member States of the EU"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-07",
-   "type": "removed",
-   "title": "Societal impact of cultural heritage"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-01",
-   "type": "removed",
-   "title": "Impact of access to nature-positive environments in promoting social cohesion and reducing inequalities in urban and peri-urban settings"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-07",
-   "type": "removed",
-   "title": "The role of private companies in democracy"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-08",
-   "type": "removed",
-   "title": "Safeguarding & transmission of intangible cultural heritage"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-02-COMMUNITIES-01",
-   "type": "removed",
-   "title": "Strengthening rural communities' resilience to shocks"
+   "title": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)"
   }
  ]
 }

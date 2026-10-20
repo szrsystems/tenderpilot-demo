@@ -41,6 +41,13 @@
    "title": "Működő minőségrendszerhez történő csatlakozás támogatása"
   }
  ],
+ "a-kap-rd57-2-26": [
+  {
+   "date": "2026-10-20",
+   "type": "new",
+   "title": "LEADER együttműködések támogatása"
+  }
+ ],
  "eu-CERV-2024-CITIZENS-VALUES": [
   {
    "date": "2026-10-08",
@@ -63,6 +70,41 @@
    "date": "2026-10-09",
    "type": "removed",
    "title": "Call for proposals to prevent and combat gender-based violence and violence against children"
+  }
+ ],
+ "eu-CREA-CROSS-2027-INNOVLAB": [
+  {
+   "date": "2026-10-20",
+   "type": "new",
+   "title": "Creative Innovation Lab"
+  }
+ ],
+ "eu-CREA-CROSS-2027-JOURPART-COLLABORATIONS": [
+  {
+   "date": "2026-10-20",
+   "type": "new",
+   "title": "NEWS - JOURNALISM PARTNERSHIPS - COLLABORATIONS"
+  }
+ ],
+ "eu-CREA-CROSS-2027-JOURPART-PLURALISM": [
+  {
+   "date": "2026-10-20",
+   "type": "new",
+   "title": "NEWS - JOURNALISM PARTNERSHIPS - PLURALISM"
+  }
+ ],
+ "eu-CREA-CROSS-2027-MEDIALITERACY": [
+  {
+   "date": "2026-10-20",
+   "type": "new",
+   "title": "NEWS - Media Literacy"
+  }
+ ],
+ "eu-CREA-CROSS-2027-MFP": [
+  {
+   "date": "2026-10-20",
+   "type": "new",
+   "title": "NEWS - Media Freedom Rapid Response Mechanism"
   }
  ],
  "eu-CREA-CULT-2024-PLAT": [
@@ -2435,6 +2477,11 @@
    "date": "2026-10-19",
    "type": "removed",
    "title": "Personalised approaches to reduce risks from Adverse Drug Reactions due to administration of multiple medications"
+  },
+  {
+   "date": "2026-10-20",
+   "type": "new",
+   "title": "Personalised approaches to reduce risks from Adverse Drug Reactions due to administration of multiple medications"
   }
  ],
  "eu-HORIZON-HLTH-2027-01-DISEASE-05": [
@@ -2461,6 +2508,11 @@
    "date": "2026-10-19",
    "type": "removed",
    "title": "Development of monoclonal antibodies to prevent and treat infections from Filo-, Nairo-, Phenui-, Picorna- and Toga viruses"
+  },
+  {
+   "date": "2026-10-20",
+   "type": "new",
+   "title": "Development of monoclonal antibodies to prevent and treat infections from Filo-, Nairo-, Phenui-, Picorna- and Toga viruses"
   }
  ],
  "eu-HORIZON-HLTH-2027-01-DISEASE-08": [
@@ -2484,6 +2536,11 @@
   {
    "date": "2026-10-17",
    "type": "new",
+   "title": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)"
+  },
+  {
+   "date": "2026-10-20",
+   "type": "removed",
    "title": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)"
   }
  ],
@@ -2542,6 +2599,11 @@
    "date": "2026-10-19",
    "type": "removed",
    "title": "Clinical trials for advancing innovative interventions for neurodegenerative diseases"
+  },
+  {
+   "date": "2026-10-20",
+   "type": "new",
+   "title": "Clinical trials for advancing innovative interventions for neurodegenerative diseases"
   }
  ],
  "eu-HORIZON-HLTH-2027-02-IND-02-two-stage": [
@@ -2560,6 +2622,11 @@
   {
    "date": "2026-10-19",
    "type": "removed",
+   "title": "Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases"
+  },
+  {
+   "date": "2026-10-20",
+   "type": "new",
    "title": "Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases"
   }
  ],
@@ -3387,6 +3454,12 @@
    "type": "deadline",
    "from": "2026-12-18",
    "to": "2026-10-30"
+  },
+  {
+   "date": "2026-10-20",
+   "type": "deadline",
+   "from": "2026-10-30",
+   "to": "2026-12-18"
   }
  ],
  "v-2025-1-1-1-iparjog": [
@@ -3576,6 +3649,12 @@
    "type": "deadline",
    "from": "2026-10-30",
    "to": "2026-11-30"
+  },
+  {
+   "date": "2026-10-20",
+   "type": "deadline",
+   "from": "2026-11-30",
+   "to": "2026-10-30"
   }
  ],
  "v-eitrm-kava14-ris": [
@@ -4357,6 +4436,12 @@
    "title": "Visegrad Grants – 1 October 2026 deadline (Visegrádi Alap – regionális együttműködési projektek támogatása)"
   }
  ],
+ "v-kap-rd01a-rd12-2-25": [
+  {
+   "date": "2026-10-20",
+   "type": "page"
+  }
+ ],
  "v-kap-rd35-1-25": [
   {
    "date": "2026-10-08",
@@ -4427,6 +4512,10 @@
   {
    "date": "2026-10-19",
    "type": "page"
+  },
+  {
+   "date": "2026-10-20",
+   "type": "page"
   }
  ],
  "v-mfb-agrar-forgoeszkoz-hitelprogram-2025": [
@@ -4468,6 +4557,10 @@
  "v-tef-health-oc2": [
   {
    "date": "2026-10-15",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-20",
    "type": "page"
   }
  ],
