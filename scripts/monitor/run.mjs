@@ -25,7 +25,7 @@ import { makeFetcher, extractLinks, hash, pool, todayBudapest } from './lib.mjs'
 import { extractFacts, llmFromEnv } from './extract.mjs';
 import { updateSummaries } from './summarize.mjs';
 import { mergeChanges } from '../changes-log.mjs';
-import { codeIndex } from '../fetch-live-grants.mjs';
+import { codeIndex, nextCutoff } from '../fetch-live-grants.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const P = (f) => join(HERE, f);
@@ -75,7 +75,7 @@ export const CODE_RE = /\b(?:(?:GINOP|DIMOP|KEHOP|TOP|VINOP|EFOP|MAHOP|IKOP)[ _]
 export async function runMonitor({
   benchmarks = [], knownCodes = [],
   items, sources, officialDomains, state, fetchImpl = fetch, llm = null, today = todayBudapest(),
-  maxLlmCalls = 60, maxNewPerSource = 15, delayMs = 1200, prevAuto = [], fetchPage: givenFetch = null,
+  maxLlmCalls = 60, maxNewPerSource = 15, delayMs = 1200, prevAuto = [], fetchPage: givenFetch = null, prevFlags = {},
 }) {
   const fetchPage = givenFetch || makeFetcher({ fetchImpl, delayMs });
   state.pages = state.pages || {};
@@ -91,7 +91,11 @@ export async function runMonitor({
   // ---------------------------------------------------------------- 1) re-check
   // (withdrawn: hand-marked as cancelled — not re-checked, stays hidden)
   const checkable = items.filter((g) => g.url && !String(g.id).startsWith('pg-') && !g.auto && !g.withdrawn);
-  const results = await pool(checkable, 8, async (g) => {
+  const results = await pool(checkable, 8, async (g0) => {
+    // Multi-round calls: compare against the next round; a date that is one
+    // of the known rounds is not a change.
+    const g = Array.isArray(g0.cutoffs) ? { ...g0, deadline: nextCutoff(g0, today) } : g0;
+    const known = (d) => d === g.deadline || (Array.isArray(g0.cutoffs) && g0.cutoffs.includes(d));
     const st = state.pages[g.url] || (state.pages[g.url] = {});
     const m = g.url.match(EU_TOPIC);
     if (m) {
@@ -100,8 +104,8 @@ export async function runMonitor({
       const f = euTopicFacts(r.json, today);
       if (!f || f.closed) { st.closedHits = (st.closedHits || 0) + 1; return { g, outcome: 'closed', detail: 'EU portál: nincs jövőbeli határidő' }; }
       st.closedHits = 0; st.lastOk = today;
-      if (g.deadline && g.deadline !== 'Folyamatos' && f.next !== g.deadline) return { g, outcome: 'deadline', deadline: f.next, detail: `EU portál: ${g.deadline} → ${f.next}` };
-      return { g, outcome: 'ok' };
+      if (g.deadline && g.deadline !== 'Folyamatos' && !known(f.next)) return { g, outcome: 'deadline', deadline: f.next, detail: `EU portál: ${g.deadline} → ${f.next}` };
+      return { g, outcome: 'ok', confirmed: true };
     }
     const r = await fetchPage(g.url);
     if (r.status === 404 || r.status === 410) { st.goneHits = (st.goneHits || 0) + 1; return { g, outcome: 'gone', detail: `HTTP ${r.status}` }; }
@@ -124,8 +128,8 @@ export async function runMonitor({
     st.closedHits = 0;
     if (v.ok) {
       st.lastOk = today;
-      if (f.deadline && g.deadline !== f.deadline) return { g, outcome: 'deadline', deadline: f.deadline, detail: `oldal szerint: „${f.evidence.deadline}”` };
-      return { g, outcome: 'ok' };
+      if (f.deadline && !known(f.deadline)) return { g, outcome: 'deadline', deadline: f.deadline, detail: `oldal szerint: „${f.evidence.deadline}”` };
+      return { g, outcome: 'ok', confirmed: true };
     }
     return { g, outcome: 'changed-unverified', detail: v.problems.join('; ') };
   });
@@ -135,8 +139,18 @@ export async function runMonitor({
     if (x.outcome === 'ok') flags.overrides[x.g.id] = { ...(flags.overrides[x.g.id] || {}), lastChecked: today };
     if (x.outcome === 'deadline') {
       pageChanges.push({ id: x.g.id, type: 'deadline-official', from: x.g.deadline || null, to: x.deadline });
-      flags.overrides[x.g.id] = { deadline: x.deadline, lastChecked: today, note: x.detail };
+      flags.overrides[x.g.id] = { deadline: x.deadline, lastChecked: today, note: x.detail, setAt: today };
       review.push({ kind: 'deadline-changed', id: x.g.id, title: x.g.title, url: x.g.url, outcome: 'auto-fixed', detail: x.detail });
+    }
+    // An official deadline found on an earlier day stays in force while the
+    // page has not changed since (or could not be read today) — otherwise it
+    // would flip back to the hand-verified date the next day. A newer hand
+    // check of the item (verifiedAt after the override) wins.
+    const prevO = (prevFlags.overrides || {})[x.g.id];
+    if (x.outcome !== 'deadline' && !x.confirmed && prevO && prevO.deadline && prevO.deadline >= today
+      && !(x.g.verifiedAt && prevO.setAt && x.g.verifiedAt > prevO.setAt)
+      && (x.g.deadline !== prevO.deadline)) {
+      flags.overrides[x.g.id] = { ...(flags.overrides[x.g.id] || {}), deadline: prevO.deadline, note: prevO.note, setAt: prevO.setAt || today };
     }
     if ((x.outcome === 'closed' && st.closedHits >= 2) || (x.outcome === 'gone' && st.goneHits >= 2)) flags.hide[x.g.id] = `${x.outcome}: ${x.detail}`;
     if (['closed', 'gone', 'changed-unverified', 'changed-unchecked'].includes(x.outcome) && !flags.hide[x.g.id]) {
@@ -235,6 +249,7 @@ async function main() {
     // codes that are deliberately NOT listed (excluded) or come from the API
     knownCodes: [...Object.keys(readJson(join(REPO, 'scripts/api-verified.json'), {})), ...readJson(join(REPO, 'aipalyazo/grants_live.json'), []).map((g) => g.code)],
     llm, today, prevAuto, maxLlmCalls: +(process.env.MAX_LLM_CALLS || 60),
+    prevFlags: readJson(P('flags.json'), {}),
   });
   // Official call summaries for everything currently listed.
   const feed = readJson(join(REPO, 'aipalyazo/grants_live.json'), []);

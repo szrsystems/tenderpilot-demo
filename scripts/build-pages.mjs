@@ -723,6 +723,30 @@ ${body}
 `;
 }
 
+// ---- homepage pre-render ----------------------------------------------------
+// The homepage figures and "Közelgő határidők" cards are filled by JS in the
+// browser; crawlers and AI assistants that do not run JS saw "—" and an empty
+// block. The daily build writes the same numbers into the HTML (same rules as
+// assets/pages/index.js), and the script still refreshes them on load.
+const isConsortium = (g) => !!((g.requires && g.requires.consortium) || (g.scope === 'eu' && g.singleApplicant === false));
+const ftHome = (n) => (n >= 1e9 ? (n / 1e9).toFixed(0) + ' Mrd Ft' : Math.round(n / 1e6) + ' M Ft');
+export function prerenderHome(html, { open, slugs, today, updatedAt }) {
+  const dleft = (d) => (isDate(d) ? daysBetween(today, d) : null);
+  const feed = open.filter((g) => { const d = dleft(g.deadline); return d === null || d >= 0; });
+  const hu = feed.filter((g) => g.scope !== 'eu');
+  const soon = feed.filter((g) => { const d = dleft(g.deadline); return d !== null && d <= 30; });
+  const budget = hu.reduce((s, g) => s + (typeof g.remaining === 'number' && g.remaining > 0 ? g.remaining : 0), 0);
+  const fig = { open: String(feed.length), hu: String(hu.length), soon: String(soon.length), budget: budget ? ftHome(budget) : '—' };
+  let out = html;
+  for (const [k, v] of Object.entries(fig)) out = out.replace(new RegExp(`(data-fig="${k}">)[^<]*(</div>)`), `$1${esc(v)}$2`);
+  const items = feed.filter((g) => { const d = dleft(g.deadline); return d !== null && d <= 90 && !isConsortium(g); }).sort((a, b) => a.deadline.localeCompare(b.deadline));
+  const pick = [...items.filter((g) => g.scope !== 'eu').slice(0, 3), ...items.filter((g) => g.scope === 'eu').slice(0, 2)].sort((a, b) => a.deadline.localeCompare(b.deadline));
+  const cards = pick.map((g) => regRow(g, slugs.get(g.id) ? `palyazat/${slugs.get(g.id)}.html` : `portal.html?grant=${encodeURIComponent(g.id)}`, false)).join('');
+  out = out.replace(/(<div class="gcards" id="next-deadlines"[^>]*>)[\s\S]*?(<\/div>\s*<p style="text-align:center;margin-top:var\(--s5\)">)/, `$1${cards}$2`);
+  out = out.replace(/(<p class="asof" data-asof>)[^<]*(<\/p>)/, `$1Frissítve: ${esc(longDate(today))} · Forrás: palyazat.gov.hu, EU Funding &amp; Tenders, kiírói oldalak$2`);
+  return out;
+}
+
 export const STATIC_PAGES = [
   ['index.html', '1.0', 'weekly'], ['palyazat/index.html', '0.9', 'daily'], ['onboarding.html', '0.8', 'monthly'],
   ['signup.html', '0.7', 'monthly'],
@@ -863,6 +887,14 @@ function main() {
   for (const f of readdirSync(join(site, 'palyazat', 'tema'))) if (f.endsWith('.html') && !files.has(`palyazat/tema/${f}`)) unlinkSync(join(site, 'palyazat', 'tema', f));
   for (const f of readdirSync(join(site, 'utmutato'))) if (f.endsWith('.html') && !files.has(`utmutato/${f}`)) unlinkSync(join(site, 'utmutato', f));
   for (const f of readdirSync(join(site, 'hirek'))) if (/\.(html|xml)$/.test(f) && !files.has(`hirek/${f}`)) unlinkSync(join(site, 'hirek', f));
+  {
+    const homeP = join(site, 'index.html');
+    const before = readFileSync(homeP, 'utf8');
+    const openNow = grants.filter((g) => g && g.id && g.title && isOpen(g, today));
+    const slugMap = new Map(Object.entries(JSON.parse(files.get('palyazat/pages.json'))).filter(([, m]) => !m.closedAt).map(([slug, m]) => [m.id, slug]));
+    const after = prerenderHome(before, { open: openNow, slugs: slugMap, today, updatedAt: meta.updatedAt });
+    if (after !== before) writeFileSync(homeP, after);
+  }
   writeFileSync(join(root, 'robots.txt'), ROBOTS);
   writeFileSync(join(root, 'llms.txt'), buildLlmsTxt({ open: stats.open, hubs: selectHubs(grants.filter((g) => g && g.id && g.title && isOpen(g, today))), today }));
   console.log(`build-pages: ${stats.open} open pages (${stats.withSummary} with summary), ${stats.hubs} topic hubs, ${stats.guides} guides, ${stats.newsWeeks} news weeks, ${stats.closed} closed kept, ${stats.removed} removed`);

@@ -214,3 +214,25 @@ test('weekly news: week maths, re-added calls and undone moves are not news, pag
   assert.ok(!/Moved call/.test(rss));
   assert.match(files.get('sitemap.xml'), /hirek\/het-2026-10-12\.html<\/loc><lastmod>2026-10-14<\/lastmod><changefreq>daily/);
 });
+
+import { prerenderHome } from './build-pages.mjs';
+import { readFileSync as rfs } from 'node:fs';
+test('homepage pre-render: figures, deadline cards and date are written into the HTML, idempotently', () => {
+  const html = rfs(new URL('../aipalyazo/index.html', import.meta.url), 'utf8');
+  const open = [
+    { id: 'a', title: 'Hazai A', scope: 'hu', type: 'grant', deadline: '2026-10-25', remaining: 2e9 },
+    { id: 'b', title: 'EU B', scope: 'eu', type: 'grant', deadline: '2026-11-01', singleApplicant: true },
+    { id: 'c', title: 'EU konzorcium', scope: 'eu', type: 'grant', deadline: '2026-10-22', singleApplicant: false },
+    { id: 'd', title: 'Folyamatos', scope: 'hu', type: 'loan', deadline: 'Folyamatos' },
+  ];
+  const slugs = new Map([['a', 'hazai-a'], ['b', 'eu-b']]);
+  const out = prerenderHome(html, { open, slugs, today: '2026-10-20' });
+  assert.match(out, /data-fig="open">4</);
+  assert.match(out, /data-fig="hu">2</);
+  assert.match(out, /data-fig="soon">3</);
+  assert.match(out, /data-fig="budget">2 Mrd Ft</);
+  assert.match(out, /href="palyazat\/hazai-a\.html"/);
+  assert.ok(!/EU konzorcium/.test(out), 'consortium calls are not in the quick list');
+  assert.match(out, /data-asof>Frissítve: 2026\. október 20\./);
+  assert.equal(prerenderHome(out, { open, slugs, today: '2026-10-20' }), out);
+});

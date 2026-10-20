@@ -293,3 +293,41 @@ test('sources.json: every listing is on an official domain and its pattern match
   }
   for (const id of Object.keys(samples)) assert.ok(ids.has(id), id);
 });
+
+test('an official deadline found once stays in force on the next days; a known later round is not a change', async () => {
+  let body = html('Stabil termék\nHatáridő: 2026. december 31.');
+  const { fetchImpl } = fakeWeb({ 'https://bkik.hu/szechenyi/x': () => ({ ok: true, status: 200, url: 'https://bkik.hu/szechenyi/x', headers: new Map([['content-type', 'text/html']]), text: async () => body }) });
+  const llmFor = (d, q) => async () => JSON.stringify({ ...GOOD, title: 'Stabil termék', deadline: d, window_open: null, amount: null,
+    evidence: { title: 'Stabil termék', status: 'Stabil termék', deadline: q, amount: null, eligibility: null } });
+  const items = [{ id: 'v-x', title: 'X', deadline: '2026-12-31', url: 'https://bkik.hu/szechenyi/x', verifiedAt: '2026-09-01' }];
+  const base = { items, sources: [], officialDomains: ['bkik.hu'], fetchImpl, today: TODAY, delayMs: 0 };
+  const r1 = await runMonitor({ ...base, llm: null, state: {} });
+  body = html('Stabil termék\nHatáridő: 2027. január 31.');
+  const r2 = await runMonitor({ ...base, llm: llmFor('2027-01-31', 'Határidő: 2027. január 31.'), state: r1.state, prevFlags: r1.flags });
+  assert.equal(r2.flags.overrides['v-x'].deadline, '2027-01-31');
+  // next day: page unchanged → the override is kept (it used to fall back to the verified date)
+  const r3 = await runMonitor({ ...base, llm: null, state: r2.state, prevFlags: r2.flags });
+  assert.equal(r3.flags.overrides['v-x'].deadline, '2027-01-31');
+  // a newer hand check of the item wins over the old override
+  const r4 = await runMonitor({ ...base, items: [{ ...items[0], deadline: '2027-01-31', verifiedAt: '2026-09-23' }], llm: null, state: r3.state, prevFlags: r3.flags });
+  assert.equal(r4.flags.overrides['v-x'].deadline, undefined);
+
+  // multi-round call: the page's final date is a known round → no override, listed deadline = next round
+  body = html('Stabil termék\nDeadline: 30 November 2026');
+  const multi = [{ id: 'v-m', title: 'M', deadline: '2026-10-30', cutoffs: ['2026-10-30', '2026-11-30'], url: 'https://bkik.hu/szechenyi/x' }];
+  const m1 = await runMonitor({ ...base, items: multi, llm: llmFor('2026-11-30', 'Deadline: 30 November 2026'), state: {} });
+  assert.equal((m1.flags.overrides['v-m'] || {}).deadline, undefined);
+  assert.deepEqual(m1.changes.filter((c) => c.type === 'deadline-official'), []);
+});
+
+import { selectVerified, nextCutoff } from '../fetch-live-grants.mjs';
+test('cutoffs: the listed deadline is the next round; the item closes after the last one', () => {
+  const g = { id: 'm', title: 'M', deadline: '2026-10-30', cutoffs: ['2026-11-30', '2026-10-30'], verifiedAt: '2026-10-20' };
+  assert.equal(nextCutoff(g, '2026-10-20'), '2026-10-30');
+  assert.equal(nextCutoff(g, '2026-10-31'), '2026-11-30');
+  assert.equal(selectVerified([g], '2026-10-31').kept[0].deadline, '2026-11-30');
+  assert.equal(selectVerified([g], '2026-12-01').kept.length, 0);
+  // a monitor override equal to a known round does not replace the next round
+  const out = applyMonitor([g], { flags: { overrides: { m: { deadline: '2026-11-30', lastChecked: '2026-10-20' } } } }).items[0];
+  assert.equal(selectVerified([out], '2026-10-20').kept[0].deadline, '2026-10-30');
+});

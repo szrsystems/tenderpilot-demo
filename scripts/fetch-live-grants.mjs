@@ -213,9 +213,18 @@ const daysBetween = (a, b) => Math.round((new Date(b) - new Date(a)) / 86400000)
 
 // Hand-verified items: shown until their deadline; rolling ones (no fixed
 // deadline) stay while their verification is fresh.
+// Calls with several submission rounds list them in `cutoffs` (ISO dates):
+// the listed deadline is always the next round that has not passed yet.
+export function nextCutoff(g, today) {
+  const c = Array.isArray(g && g.cutoffs) ? g.cutoffs.filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d)).sort() : [];
+  if (!c.length) return g ? g.deadline : null;
+  return c.find((d) => d >= today) || c[c.length - 1];
+}
+
 export function selectVerified(items, today) {
   const kept = [], stale = [], dropped = [];
-  for (const it of items) {
+  for (let it of items) {
+    if (Array.isArray(it.cutoffs)) it = { ...it, deadline: nextCutoff(it, today) };
     if (it.deadline && it.deadline < today) { dropped.push({ id: it.id, why: 'lejárt' }); continue; }
     // Freshness = the later of the human check and the last successful
     // automatic re-check of the official page (scripts/monitor).
@@ -305,7 +314,8 @@ export function applyMonitor(items, monitor) {
   for (const it of items) {
     if (it.withdrawn) { hidden.push({ id: it.id, why: 'visszavonva: ' + it.withdrawn }); continue; }
     if (hide[it.id]) { hidden.push({ id: it.id, why: hide[it.id] }); continue; }
-    const o = ov[it.id];
+    let o = ov[it.id];
+    if (o && o.deadline && Array.isArray(it.cutoffs) && it.cutoffs.includes(o.deadline)) o = { ...o, deadline: undefined };
     out.push(o ? { ...it, ...(o.deadline ? { deadline: o.deadline } : {}), ...(o.lastChecked ? { lastChecked: o.lastChecked } : {}) } : it);
   }
   const have = codeIndex(out.map((g) => g.code));

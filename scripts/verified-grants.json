@@ -4164,7 +4164,7 @@
    "windowOpen": null,
    "sizeClasses": [],
    "regions": [],
-   "note": "EIT Food régióiban (így Magyarországon) működő agrárélelmiszer-startupok vállalati ügyféllel közös pilotjára; további cut-off: 2026-11-30. Több beadási forduló; a következő 2026.10.30., az utolsó 2026.11.30. 12:00 (CET).",
+   "note": "EIT Food régióiban (így Magyarországon) működő agrárélelmiszer-startupok vállalati ügyféllel közös pilotjára. Több beadási forduló; a következő 2026.10.30., az utolsó 2026.11.30. 12:00 (CET).",
    "url": "https://www.eitfood.eu/open-calls/proof-of-concept-co-financing-instrument-2",
    "source": "eitfood.eu",
    "sources": [
@@ -4175,7 +4175,11 @@
    "verifiedAt": "2026-10-13",
    "confidence": "high",
    "scope": "eu",
-   "singleApplicant": true
+   "singleApplicant": true,
+   "cutoffs": [
+    "2026-10-30",
+    "2026-11-30"
+   ]
   },
   {
    "id": "v-eit-ai-entrepreneurs-lab-2026",

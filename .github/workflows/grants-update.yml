@@ -63,7 +63,7 @@ jobs:
         run: |
           git config user.name "aipalyazo-bot"
           git config user.email "bot@aipalyazo.hu"
-          git add aipalyazo/grants-status.json aipalyazo/grants_live.json aipalyazo/grants-meta.json aipalyazo/changes.json scripts/monitor/state.json scripts/monitor/flags.json scripts/monitor/auto-grants.json scripts/monitor/review-queue.json aipalyazo/summaries.json aipalyazo/palyazat aipalyazo/utmutato aipalyazo/hirek aipalyazo/sitemap.xml robots.txt llms.txt
+          git add aipalyazo/grants-status.json aipalyazo/grants_live.json aipalyazo/grants-meta.json aipalyazo/changes.json scripts/monitor/state.json scripts/monitor/flags.json scripts/monitor/auto-grants.json scripts/monitor/review-queue.json aipalyazo/summaries.json aipalyazo/palyazat aipalyazo/utmutato aipalyazo/hirek aipalyazo/index.html aipalyazo/sitemap.xml robots.txt llms.txt
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
