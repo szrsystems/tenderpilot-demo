@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-20T10:53:47.754Z",
+ "updatedAt": "2026-10-21T11:05:54.870Z",
  "sourcesOk": false,
  "apiFailed": true,
  "euApiFailed": false,
@@ -13,17 +13,17 @@
   },
   "euApi": {
    "ok": true,
-   "items": 268,
-   "lastOk": "2026-10-20T10:53:47.754Z"
+   "items": 270,
+   "lastOk": "2026-10-21T11:05:54.870Z"
   }
  },
  "counts": {
-  "total": 439,
+  "total": 440,
   "api": 17,
-  "verified": 154,
-  "euAuto": 268,
+  "verified": 153,
+  "euAuto": 270,
   "hazai": 59,
-  "eu": 380,
+  "eu": 381,
   "excluded": 0
  },
  "needsReview": [],
@@ -39,6 +39,10 @@
   },
   {
    "id": "v-kap-rd35-2-26",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-grappa-cutoff-2",
    "why": "lejárt"
   },
   {
@@ -119,79 +123,82 @@
   },
   {
    "id": "v-marc-impact-hu-2026",
-   "why": "monitor: closed: az oldal szerint: „2026. szeptember 28.\nJelentkezési határidő (23:59)”"
+   "why": "monitor: closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
   }
  ],
  "excluded": [],
  "changes": [
   {
-   "id": "v-eitfood-poc-cofin-2026",
-   "type": "deadline",
-   "from": "2026-11-30",
-   "to": "2026-10-30",
-   "title": "Proof-of-Concept Co-Financing Instrument (Agrárélelmiszer-startupok pilot projektjeinek társfinanszírozása)"
-  },
-  {
    "id": "v-2024-1-2-1-he-partnerseg",
    "type": "deadline",
-   "from": "2026-10-30",
-   "to": "2026-12-18",
+   "from": "2026-12-18",
+   "to": "2026-10-30",
    "title": "Horizont Európa európai partnerségek közös nemzetközi felhívásaiban sikeresen szereplő magyar szervezetek támogatása"
   },
   {
-   "id": "a-kap-rd57-2-26",
-   "type": "new",
-   "title": "LEADER együttműködések támogatása"
-  },
-  {
-   "id": "eu-CREA-CROSS-2027-MEDIALITERACY",
-   "type": "new",
-   "title": "NEWS - Media Literacy"
-  },
-  {
-   "id": "eu-CREA-CROSS-2027-MFP",
-   "type": "new",
-   "title": "NEWS - Media Freedom Rapid Response Mechanism"
-  },
-  {
-   "id": "eu-CREA-CROSS-2027-JOURPART-COLLABORATIONS",
-   "type": "new",
-   "title": "NEWS - JOURNALISM PARTNERSHIPS - COLLABORATIONS"
-  },
-  {
-   "id": "eu-CREA-CROSS-2027-JOURPART-PLURALISM",
-   "type": "new",
-   "title": "NEWS - JOURNALISM PARTNERSHIPS - PLURALISM"
-  },
-  {
-   "id": "eu-HORIZON-HLTH-2027-02-DISEASE-14-two-stage",
-   "type": "new",
-   "title": "Clinical trials for advancing innovative interventions for neurodegenerative diseases"
-  },
-  {
-   "id": "eu-HORIZON-HLTH-2027-01-DISEASE-07",
-   "type": "new",
-   "title": "Development of monoclonal antibodies to prevent and treat infections from Filo-, Nairo-, Phenui-, Picorna- and Toga viruses"
-  },
-  {
-   "id": "eu-HORIZON-HLTH-2027-01-CARE-02",
-   "type": "new",
-   "title": "Personalised approaches to reduce risks from Adverse Drug Reactions due to administration of multiple medications"
-  },
-  {
-   "id": "eu-HORIZON-HLTH-2027-02-TOOL-01-two-stage",
-   "type": "new",
-   "title": "Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases"
-  },
-  {
-   "id": "eu-CREA-CROSS-2027-INNOVLAB",
-   "type": "new",
-   "title": "Creative Innovation Lab"
-  },
-  {
    "id": "eu-HORIZON-HLTH-2027-01-DISEASE-10",
-   "type": "removed",
+   "type": "new",
    "title": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-COMMUNITIES-01",
+   "type": "new",
+   "title": "Strengthening rural communities' resilience to shocks"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-07",
+   "type": "new",
+   "title": "Societal impact of cultural heritage"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-07",
+   "type": "new",
+   "title": "The role of private companies in democracy"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-08",
+   "type": "new",
+   "title": "Safeguarding & transmission of intangible cultural heritage"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-01",
+   "type": "new",
+   "title": "Impact of access to nature-positive environments in promoting social cohesion and reducing inequalities in urban and peri-urban settings"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-04",
+   "type": "new",
+   "title": "The impact of EU labour mobility on the Member States of the EU"
+  },
+  {
+   "id": "v-grappa-cutoff-2",
+   "type": "removed",
+   "title": "GRAPPA Open Call – valorisation of agri-food biomass side-streams, cut-off 2 (Agrár-élelmiszeripari melléktermékek hasznosítása)"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-02",
+   "type": "removed",
+   "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-03",
+   "type": "removed",
+   "title": "Carbon farming innovation and scale-up"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-03",
+   "type": "removed",
+   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-01",
+   "type": "removed",
+   "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-08",
+   "type": "removed",
+   "title": "AI-powered foodome characterization"
   }
  ]
 }

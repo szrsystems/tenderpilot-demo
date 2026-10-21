@@ -1,20 +1,45 @@
 {
- "updatedAt": "2026-10-20",
+ "updatedAt": "2026-10-21",
  "items": [
   {
    "kind": "recheck",
-   "id": "v-kap-rd01a-rd12-2-25",
-   "title": "Fagykárt szenvedett ültetvények cseréjének támogatása",
-   "url": "https://kap.gov.hu/tamogatas/kap-rd01a-rd12-2-25",
-   "outcome": "changed-unverified",
-   "detail": "deadline quote not on page"
+   "id": "v-grappa-cutoff-2",
+   "title": "GRAPPA Open Call – valorisation of agri-food biomass side-streams, cut-off 2 (Agrár-élelmiszeripari melléktermékek hasznosítása)",
+   "url": "https://i4be.eu/grappa/",
+   "outcome": "closed",
+   "detail": "az oldal szerint: „Open Call Closed”"
   },
   {
-   "kind": "new",
-   "source": "eit",
-   "url": "https://www.eit.europa.eu/our-activities/opportunities/eit-higher-education-initiative-call-proposals-2026",
-   "title": "EIT Higher Education Initiative Call for Proposals 2026",
-   "detail": "no deadline and not rolling"
+   "kind": "recheck",
+   "id": "v-ngi-codesupply",
+   "title": "NLnet CodeSupply – software supply chain security (Szoftver-ellátási lánc biztonsága)",
+   "url": "https://nlnet.nl/codesupply/",
+   "outcome": "changed-unverified",
+   "detail": "deadline 2026-11-03 not in its quote"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-eitcc-shape-scale-2027",
+   "title": "Financial Support to Startups and Scaleups – Shape Acceleration & Scale Post-Acceleration (Kreatívipari startupok és scale-upok támogatása)",
+   "url": "https://eit-culture-creativity.eu/your-opportunities/calls-funding/financial-support-startups-and-scaleups-shape-acceleration-scale",
+   "outcome": "closed",
+   "detail": "az oldal szerint: „Application deadlines\n12 October 2026, 17:00 CEST”"
+  },
+  {
+   "kind": "deadline-changed",
+   "id": "v-2024-1-2-1-he-partnerseg",
+   "title": "Horizont Európa európai partnerségek közös nemzetközi felhívásaiban sikeresen szereplő magyar szervezetek támogatása",
+   "url": "https://nkfih.gov.hu/palyazoknak/nkfi-alap/horizont-europa-europai-partnersegek-magyar-szervezetek-tamogatasa-2024-121-he-partnerseg/palyazati-felhivas",
+   "outcome": "auto-fixed",
+   "detail": "oldal szerint: „2026. október 30. 12:00”"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-2025-1-2-5-eu-kp",
+   "title": "Az EU Horizont Európa programjában, valamint egyéb közös EU-s programokban való magyar részvétel ösztönzése",
+   "url": "https://nkfih.gov.hu/palyazoknak/nkfi-alap/eu-programokban-valo-magyar-reszvetel-osztonzese-2025-125-eu-kp/palyazati-felhivas",
+   "outcome": "closed",
+   "detail": "az oldal szerint: „Elektronikus benyújtás határideje:\n2026. április 30. 12:00”"
   },
   {
    "kind": "benchmark-code",
@@ -40,15 +65,15 @@
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "perform europe online tajekoztato a partnerkeresesrol",
-   "url": "https://pafi.hu/p/perform-europe-online-tajekoztato-a-partnerkeresesrol",
+   "title": "7 most endangered programme 2027",
+   "url": "https://pafi.hu/p/7-most-endangered-programme-2027",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "perform europe oc 2026 2028",
-   "url": "https://pafi.hu/p/perform-europe-oc-2026-2028",
+   "title": "a het legveszelyeztetettebb orokseg 2027",
+   "url": "https://pafi.hu/p/a-het-legveszelyeztetettebb-orokseg-2027",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]

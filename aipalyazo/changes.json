@@ -606,6 +606,11 @@
    "date": "2026-10-19",
    "type": "removed",
    "title": "The role of private companies in democracy"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "new",
+   "title": "The role of private companies in democracy"
   }
  ],
  "eu-HORIZON-CL2-2027-01-DEMOCRACY-08": [
@@ -783,6 +788,11 @@
    "date": "2026-10-19",
    "type": "removed",
    "title": "Societal impact of cultural heritage"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "new",
+   "title": "Societal impact of cultural heritage"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-08": [
@@ -815,6 +825,11 @@
    "date": "2026-10-19",
    "type": "removed",
    "title": "Safeguarding & transmission of intangible cultural heritage"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "new",
+   "title": "Safeguarding & transmission of intangible cultural heritage"
   }
  ],
  "eu-HORIZON-CL2-2027-01-TRANSFO-01": [
@@ -826,6 +841,11 @@
   {
    "date": "2026-10-19",
    "type": "removed",
+   "title": "Impact of access to nature-positive environments in promoting social cohesion and reducing inequalities in urban and peri-urban settings"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "new",
    "title": "Impact of access to nature-positive environments in promoting social cohesion and reducing inequalities in urban and peri-urban settings"
   }
  ],
@@ -862,6 +882,11 @@
   {
    "date": "2026-10-19",
    "type": "removed",
+   "title": "The impact of EU labour mobility on the Member States of the EU"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "new",
    "title": "The impact of EU labour mobility on the Member States of the EU"
   }
  ],
@@ -2128,12 +2153,22 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "removed",
+   "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
   }
  ],
  "eu-HORIZON-CL6-2027-02-CLIMATE-03": [
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Carbon farming innovation and scale-up"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "removed",
    "title": "Carbon farming innovation and scale-up"
   }
  ],
@@ -2154,6 +2189,11 @@
    "date": "2026-10-19",
    "type": "removed",
    "title": "Strengthening rural communities' resilience to shocks"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "new",
+   "title": "Strengthening rural communities' resilience to shocks"
   }
  ],
  "eu-HORIZON-CL6-2027-02-COMMUNITIES-02": [
@@ -2167,6 +2207,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "removed",
    "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
   }
  ],
@@ -2196,6 +2241,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "removed",
+   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
   }
  ],
  "eu-HORIZON-CL6-2027-02-FARM2FORK-05": [
@@ -2223,6 +2273,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "AI-powered foodome characterization"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "removed",
    "title": "AI-powered foodome characterization"
   }
  ],
@@ -2541,6 +2596,11 @@
   {
    "date": "2026-10-20",
    "type": "removed",
+   "title": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "new",
    "title": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)"
   }
  ],
@@ -3460,11 +3520,25 @@
    "type": "deadline",
    "from": "2026-10-30",
    "to": "2026-12-18"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "deadline",
+   "from": "2026-12-18",
+   "to": "2026-10-30"
   }
  ],
  "v-2025-1-1-1-iparjog": [
   {
    "date": "2026-10-18",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-21",
    "type": "page"
   }
  ],
@@ -3476,6 +3550,10 @@
   {
    "date": "2026-10-19",
    "type": "page"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "page"
   }
  ],
  "v-2025-1-2-5-eu-kp": [
@@ -3483,6 +3561,10 @@
    "date": "2026-10-08",
    "type": "removed",
    "title": "Az EU Horizont Európa programjában, valamint egyéb közös EU-s programokban való magyar részvétel ösztönzése"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "page"
   }
  ],
  "v-agrar-szk-max": [
@@ -3576,6 +3658,10 @@
   {
    "date": "2026-10-17",
    "type": "page"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "page"
   }
  ],
  "v-eitcc-shape-scale-2027": [
@@ -3587,6 +3673,10 @@
    "date": "2026-10-13",
    "type": "removed",
    "title": "Financial Support to Startups and Scaleups – Shape Acceleration & Scale Post-Acceleration (Kreatívipari startupok és scale-upok támogatása)"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "page"
   }
  ],
  "v-eitfood-poc-cofin-2026": [
@@ -3655,6 +3745,10 @@
    "type": "deadline",
    "from": "2026-11-30",
    "to": "2026-10-30"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "page"
   }
  ],
  "v-eitrm-kava14-ris": [
@@ -3684,6 +3778,10 @@
   },
   {
    "date": "2026-10-17",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-21",
    "type": "page"
   }
  ],
@@ -3742,6 +3840,10 @@
    "date": "2026-10-09",
    "type": "new",
    "title": "EXIM Jövő Exportőrei Beruházási Hitel (Demján Sándor Program)"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "page"
   }
  ],
  "v-exim-zold-beruhazasi-hitel": [
@@ -3781,6 +3883,15 @@
   {
    "date": "2026-10-15",
    "type": "page"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "removed",
+   "title": "GRAPPA Open Call – valorisation of agri-food biomass side-streams, cut-off 2 (Agrár-élelmiszeripari melléktermékek hasznosítása)"
   }
  ],
  "v-horizon-cl3-2026-01-bm-01": [
@@ -4516,6 +4627,10 @@
   {
    "date": "2026-10-20",
    "type": "page"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "page"
   }
  ],
  "v-mfb-agrar-forgoeszkoz-hitelprogram-2025": [
@@ -4542,6 +4657,10 @@
   {
    "date": "2026-10-15",
    "type": "page"
+  },
+  {
+   "date": "2026-10-21",
+   "type": "page"
   }
  ],
  "v-ngi-restack": [
@@ -4551,6 +4670,10 @@
   },
   {
    "date": "2026-10-15",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-21",
    "type": "page"
   }
  ],
