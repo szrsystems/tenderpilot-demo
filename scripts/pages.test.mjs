@@ -236,3 +236,12 @@ test('homepage pre-render: figures, deadline cards and date are written into the
   assert.match(out, /data-asof>Frissítve: 2026\. október 20\./);
   assert.equal(prerenderHome(out, { open, slugs, today: '2026-10-20' }), out);
 });
+
+import { STATIC_PAGES } from './build-pages.mjs';
+test('sitemap static pages exist, are indexable and self-canonical (Search Console "noindex" warnings)', () => {
+  for (const [p] of STATIC_PAGES) {
+    const html = rfs(new URL('../aipalyazo/' + p, import.meta.url), 'utf8');
+    assert.ok(!/name="robots" content="noindex/.test(html), p + ' is noindex but listed in the sitemap');
+    assert.match(html, new RegExp(`<link rel="canonical" href="https://aipalyazo\\.hu/aipalyazo/${p.replace(/\./g, '\\.')}">`), p + ' canonical');
+  }
+});

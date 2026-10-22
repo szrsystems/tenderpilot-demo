@@ -748,8 +748,8 @@ export function prerenderHome(html, { open, slugs, today, updatedAt }) {
 }
 
 export const STATIC_PAGES = [
-  ['index.html', '1.0', 'weekly'], ['palyazat/index.html', '0.9', 'daily'], ['onboarding.html', '0.8', 'monthly'],
-  ['signup.html', '0.7', 'monthly'],
+  // onboarding.html / signup.html are app pages with noindex — never list them here.
+  ['index.html', '1.0', 'weekly'], ['palyazat/index.html', '0.9', 'daily'],
   ['impresszum.html', '0.2', 'yearly'], ['adatvedelem.html', '0.2', 'yearly'], ['aszf.html', '0.2', 'yearly'],
 ];
 export function buildSitemap(open, slugs, today, hubs = [], news = []) {
