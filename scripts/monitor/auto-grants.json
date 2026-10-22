@@ -289,5 +289,43 @@
    "amount": "A felhívás meghirdetésekor a támogatásra rendelkezésre álló tervezett keretösszeg 2,5 milliárd Ft.",
    "eligibility": null
   }
+ },
+ {
+  "id": "a-kap-rd21-rd22-3-26",
+  "code": "KAP-RD21-RD22-3-26",
+  "title": "Agrár-erdészeti rendszerek telepítése, ápolása és fenntartása",
+  "issuer": "KAP Stratégiai Terv (kap.gov.hu)",
+  "cat": "Mezőgazdaság",
+  "type": "grant",
+  "amount": "5 milliárd Ft",
+  "rate": null,
+  "deadline": "2027-01-26",
+  "rolling": false,
+  "windowOpen": "2026-11-25",
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "regionNote": null,
+  "note": "A támogatási kérelmek benyújtására 2026. november 25. és 2027. január 26. között van lehetőség.",
+  "url": "https://kap.gov.hu/node/3920",
+  "source": "kap.gov.hu",
+  "sources": [
+   "https://kap.gov.hu/node/3920"
+  ],
+  "verifiedAt": "2026-10-22",
+  "confidence": "auto",
+  "autoVerified": true,
+  "scope": "hazai",
+  "evidence": {
+   "title": "Megjelent az „Agrár-erdészeti rendszerek telepítése, ápolása és fenntartása” című (KAP-RD21-RD22-3-26 kódszámú) pályázati felhívás",
+   "status": "A támogatási kérelmek benyújtására 2026. november 25. és 2027. január 26. között van lehetőség.",
+   "deadline": "2027. január 26.",
+   "amount": "5 milliárd Ft",
+   "eligibility": null
+  }
  }
 ]

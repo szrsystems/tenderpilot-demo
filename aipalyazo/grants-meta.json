@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-21T11:05:54.870Z",
+ "updatedAt": "2026-10-22T11:05:47.792Z",
  "sourcesOk": false,
  "apiFailed": true,
  "euApiFailed": false,
@@ -13,17 +13,17 @@
   },
   "euApi": {
    "ok": true,
-   "items": 270,
-   "lastOk": "2026-10-21T11:05:54.870Z"
+   "items": 276,
+   "lastOk": "2026-10-22T11:05:47.792Z"
   }
  },
  "counts": {
-  "total": 440,
+  "total": 446,
   "api": 17,
   "verified": 153,
-  "euAuto": 270,
-  "hazai": 59,
-  "eu": 381,
+  "euAuto": 276,
+  "hazai": 60,
+  "eu": 386,
   "excluded": 0
  },
  "needsReview": [],
@@ -63,6 +63,10 @@
   },
   {
    "id": "v-eitrm-kava14-upscaling",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-eit-ai-entrepreneurs-lab-2026",
    "why": "lejárt"
   },
   {
@@ -129,76 +133,54 @@
  "excluded": [],
  "changes": [
   {
-   "id": "v-2024-1-2-1-he-partnerseg",
-   "type": "deadline",
-   "from": "2026-12-18",
-   "to": "2026-10-30",
-   "title": "Horizont Európa európai partnerségek közös nemzetközi felhívásaiban sikeresen szereplő magyar szervezetek támogatása"
-  },
-  {
-   "id": "eu-HORIZON-HLTH-2027-01-DISEASE-10",
+   "id": "a-kap-rd21-rd22-3-26",
    "type": "new",
-   "title": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)"
+   "title": "Agrár-erdészeti rendszerek telepítése, ápolása és fenntartása"
   },
   {
-   "id": "eu-HORIZON-CL6-2027-02-COMMUNITIES-01",
+   "id": "eu-IMCAP-2027-INFOME",
    "type": "new",
-   "title": "Strengthening rural communities' resilience to shocks"
+   "title": "Support for information measures relating to the common agricultural policy (IMCAP)"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-07",
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-03",
    "type": "new",
-   "title": "Societal impact of cultural heritage"
+   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
   },
   {
-   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-07",
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-08",
    "type": "new",
-   "title": "The role of private companies in democracy"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-08",
-   "type": "new",
-   "title": "Safeguarding & transmission of intangible cultural heritage"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-01",
-   "type": "new",
-   "title": "Impact of access to nature-positive environments in promoting social cohesion and reducing inequalities in urban and peri-urban settings"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-04",
-   "type": "new",
-   "title": "The impact of EU labour mobility on the Member States of the EU"
-  },
-  {
-   "id": "v-grappa-cutoff-2",
-   "type": "removed",
-   "title": "GRAPPA Open Call – valorisation of agri-food biomass side-streams, cut-off 2 (Agrár-élelmiszeripari melléktermékek hasznosítása)"
+   "title": "AI-powered foodome characterization"
   },
   {
    "id": "eu-HORIZON-CL6-2027-02-CLIMATE-02",
-   "type": "removed",
+   "type": "new",
    "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
   },
   {
    "id": "eu-HORIZON-CL6-2027-02-CLIMATE-03",
-   "type": "removed",
+   "type": "new",
    "title": "Carbon farming innovation and scale-up"
   },
   {
-   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-03",
-   "type": "removed",
-   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
-  },
-  {
    "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-01",
-   "type": "removed",
+   "type": "new",
    "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
   },
   {
-   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-08",
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-03",
+   "type": "new",
+   "title": "Student and family engagement for developing a culture of democratic/civic participation"
+  },
+  {
+   "id": "v-eit-ai-entrepreneurs-lab-2026",
    "type": "removed",
-   "title": "AI-powered foodome characterization"
+   "title": "AI Entrepreneurs Lab 2026 (MI- és robotika-vállalkozói bootcamp)"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-03-GOVERNANCE-02",
+   "type": "removed",
+   "title": "Improving analytical capacity for sustainable competitiveness of the agricultural sector"
   }
  ]
 }

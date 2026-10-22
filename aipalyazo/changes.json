@@ -13,6 +13,13 @@
    "title": "Mezőgazdasági kisüzemek beruházási támogatása"
   }
  ],
+ "a-kap-rd21-rd22-3-26": [
+  {
+   "date": "2026-10-22",
+   "type": "new",
+   "title": "Agrár-erdészeti rendszerek telepítése, ápolása és fenntartása"
+  }
+ ],
  "a-kap-rd40-2-26": [
   {
    "date": "2026-10-13",
@@ -532,6 +539,11 @@
   {
    "date": "2026-10-19",
    "type": "removed",
+   "title": "Student and family engagement for developing a culture of democratic/civic participation"
+  },
+  {
+   "date": "2026-10-22",
+   "type": "new",
    "title": "Student and family engagement for developing a culture of democratic/civic participation"
   }
  ],
@@ -2158,6 +2170,11 @@
    "date": "2026-10-21",
    "type": "removed",
    "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
+  },
+  {
+   "date": "2026-10-22",
+   "type": "new",
+   "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
   }
  ],
  "eu-HORIZON-CL6-2027-02-CLIMATE-03": [
@@ -2169,6 +2186,11 @@
   {
    "date": "2026-10-21",
    "type": "removed",
+   "title": "Carbon farming innovation and scale-up"
+  },
+  {
+   "date": "2026-10-22",
+   "type": "new",
    "title": "Carbon farming innovation and scale-up"
   }
  ],
@@ -2213,6 +2235,11 @@
    "date": "2026-10-21",
    "type": "removed",
    "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
+  },
+  {
+   "date": "2026-10-22",
+   "type": "new",
+   "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
   }
  ],
  "eu-HORIZON-CL6-2027-02-FARM2FORK-01-two-stage": [
@@ -2245,6 +2272,11 @@
   {
    "date": "2026-10-21",
    "type": "removed",
+   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
+  },
+  {
+   "date": "2026-10-22",
+   "type": "new",
    "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
   }
  ],
@@ -2279,6 +2311,11 @@
    "date": "2026-10-21",
    "type": "removed",
    "title": "AI-powered foodome characterization"
+  },
+  {
+   "date": "2026-10-22",
+   "type": "new",
+   "title": "AI-powered foodome characterization"
   }
  ],
  "eu-HORIZON-CL6-2027-03-GOVERNANCE-01": [
@@ -2302,6 +2339,11 @@
   {
    "date": "2026-10-16",
    "type": "new",
+   "title": "Improving analytical capacity for sustainable competitiveness of the agricultural sector"
+  },
+  {
+   "date": "2026-10-22",
+   "type": "removed",
    "title": "Improving analytical capacity for sustainable competitiveness of the agricultural sector"
   }
  ],
@@ -3435,6 +3477,13 @@
    "title": "I3-2026-INV2a - Interregional Innovation Investments Strand 2a"
   }
  ],
+ "eu-IMCAP-2027-INFOME": [
+  {
+   "date": "2026-10-22",
+   "type": "new",
+   "title": "Support for information measures relating to the common agricultural policy (IMCAP)"
+  }
+ ],
  "eu-SMP-COSME-2024-CLUSTER-01": [
   {
    "date": "2026-10-08",
@@ -3622,6 +3671,13 @@
    "title": "Strengthening EU cybersecurity capacities and capabilities in line with legislative requirements (Kiberbiztonsági képességek erősítése az uniós jogszabályi követelményekhez – pl. NIS2, CRA)"
   }
  ],
+ "v-eit-ai-entrepreneurs-lab-2026": [
+  {
+   "date": "2026-10-22",
+   "type": "removed",
+   "title": "AI Entrepreneurs Lab 2026 (MI- és robotika-vállalkozói bootcamp)"
+  }
+ ],
  "v-eit-rib-hu-2027": [
   {
    "date": "2026-10-15",
@@ -3661,6 +3717,10 @@
   },
   {
    "date": "2026-10-21",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-22",
    "type": "page"
   }
  ],
@@ -3748,6 +3808,10 @@
   },
   {
    "date": "2026-10-21",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-22",
    "type": "page"
   }
  ],
@@ -3871,11 +3935,19 @@
   {
    "date": "2026-10-09",
    "type": "page"
+  },
+  {
+   "date": "2026-10-22",
+   "type": "page"
   }
  ],
  "v-garantiqa-kezesseg": [
   {
    "date": "2026-10-09",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-22",
    "type": "page"
   }
  ],
@@ -4547,6 +4619,12 @@
    "title": "Visegrad Grants – 1 October 2026 deadline (Visegrádi Alap – regionális együttműködési projektek támogatása)"
   }
  ],
+ "v-kap-rd01a-rd01c-rd01d-rd01e-rd02-rd04a-rd04b-rd12-1-25": [
+  {
+   "date": "2026-10-22",
+   "type": "page"
+  }
+ ],
  "v-kap-rd01a-rd12-2-25": [
   {
    "date": "2026-10-20",
@@ -4630,6 +4708,10 @@
   },
   {
    "date": "2026-10-21",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-22",
    "type": "page"
   }
  ],

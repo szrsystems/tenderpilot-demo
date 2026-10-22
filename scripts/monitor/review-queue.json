@@ -1,45 +1,21 @@
 {
- "updatedAt": "2026-10-21",
+ "updatedAt": "2026-10-22",
  "items": [
   {
    "kind": "recheck",
-   "id": "v-grappa-cutoff-2",
-   "title": "GRAPPA Open Call – valorisation of agri-food biomass side-streams, cut-off 2 (Agrár-élelmiszeripari melléktermékek hasznosítása)",
-   "url": "https://i4be.eu/grappa/",
-   "outcome": "closed",
-   "detail": "az oldal szerint: „Open Call Closed”"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-ngi-codesupply",
-   "title": "NLnet CodeSupply – software supply chain security (Szoftver-ellátási lánc biztonsága)",
-   "url": "https://nlnet.nl/codesupply/",
+   "id": "v-garantiqa-kezesseg",
+   "title": "Garantiqa készfizető kezességvállalás (de minimis, csoportmentességi, Gazdaság Újjáépítési és piaci díjas kezesség banki hitelekhez)",
+   "url": "https://garantiqa.hu/kezessegvallalas/kezessegvallalasi-formak/",
    "outcome": "changed-unverified",
-   "detail": "deadline 2026-11-03 not in its quote"
+   "detail": "not a funding call; status not on page; no deadline and not rolling; eligibility unclear; status unclear"
   },
   {
    "kind": "recheck",
-   "id": "v-eitcc-shape-scale-2027",
-   "title": "Financial Support to Startups and Scaleups – Shape Acceleration & Scale Post-Acceleration (Kreatívipari startupok és scale-upok támogatása)",
-   "url": "https://eit-culture-creativity.eu/your-opportunities/calls-funding/financial-support-startups-and-scaleups-shape-acceleration-scale",
-   "outcome": "closed",
-   "detail": "az oldal szerint: „Application deadlines\n12 October 2026, 17:00 CEST”"
-  },
-  {
-   "kind": "deadline-changed",
-   "id": "v-2024-1-2-1-he-partnerseg",
-   "title": "Horizont Európa európai partnerségek közös nemzetközi felhívásaiban sikeresen szereplő magyar szervezetek támogatása",
-   "url": "https://nkfih.gov.hu/palyazoknak/nkfi-alap/horizont-europa-europai-partnersegek-magyar-szervezetek-tamogatasa-2024-121-he-partnerseg/palyazati-felhivas",
-   "outcome": "auto-fixed",
-   "detail": "oldal szerint: „2026. október 30. 12:00”"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-2025-1-2-5-eu-kp",
-   "title": "Az EU Horizont Európa programjában, valamint egyéb közös EU-s programokban való magyar részvétel ösztönzése",
-   "url": "https://nkfih.gov.hu/palyazoknak/nkfi-alap/eu-programokban-valo-magyar-reszvetel-osztonzese-2025-125-eu-kp/palyazati-felhivas",
-   "outcome": "closed",
-   "detail": "az oldal szerint: „Elektronikus benyújtás határideje:\n2026. április 30. 12:00”"
+   "id": "v-eitcc-innovation-projects-2026",
+   "title": "EIT Culture & Creativity Innovation Projects 2026 (Kreatívipari innovációs projektek – divat, audiovizuális média, építészet)",
+   "url": "https://eit-culture-creativity.eu/your-opportunities/calls-funding/innovation-projects",
+   "outcome": "changed-unverified",
+   "detail": "amount quote not on page"
   },
   {
    "kind": "benchmark-code",
@@ -65,15 +41,36 @@
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "7 most endangered programme 2027",
-   "url": "https://pafi.hu/p/7-most-endangered-programme-2027",
+   "title": "vadviragos sztradak",
+   "url": "https://pafi.hu/p/vadviragos-sztradak",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "a het legveszelyeztetettebb orokseg 2027",
-   "url": "https://pafi.hu/p/a-het-legveszelyeztetettebb-orokseg-2027",
+   "title": "zold hid madagaszkarnak",
+   "url": "https://pafi.hu/p/zold-hid-madagaszkarnak",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "varosi vadak nyomaban",
+   "url": "https://pafi.hu/p/varosi-vadak-nyomaban",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "a szeretet hazavezet",
+   "url": "https://pafi.hu/p/a-szeretet-hazavezet",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "crea cult 2027 lit european literary translation projects",
+   "url": "https://pafi.hu/p/crea-cult-2027-lit-european-literary-translation-projects",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]
