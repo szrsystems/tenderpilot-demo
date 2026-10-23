@@ -327,5 +327,175 @@
    "amount": "5 milliárd Ft",
    "eligibility": null
   }
+ },
+ {
+  "id": "a-kap-rd30-2-26",
+  "code": "KAP-RD30-2-26",
+  "title": "Állatjóléti támogatás a tejtermelő szarvasmarha ágazatban",
+  "issuer": "KAP Stratégiai Terv (kap.gov.hu)",
+  "cat": "Mezőgazdaság",
+  "type": "grant",
+  "amount": "2,4 milliárd Ft",
+  "rate": null,
+  "deadline": "2027-03-12",
+  "rolling": false,
+  "windowOpen": "2027-02-15",
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "regionNote": null,
+  "note": "A támogatási kérelmek benyújtására 2027. február 15. és 2027. március 12. között van lehetőség.",
+  "url": "https://kap.gov.hu/node/3923",
+  "source": "kap.gov.hu",
+  "sources": [
+   "https://kap.gov.hu/node/3923"
+  ],
+  "verifiedAt": "2026-10-23",
+  "confidence": "auto",
+  "autoVerified": true,
+  "scope": "hazai",
+  "evidence": {
+   "title": "Megjelent az „Állatjóléti támogatás a tejtermelő szarvasmarha ágazatban” című (KAP-RD30-2-26 kódszámú) pályázati felhívás",
+   "status": "A támogatási kérelmek benyújtására 2027. február 15. és 2027. március 12. között van lehetőség.",
+   "deadline": "2027. március 12.",
+   "amount": "2,4 milliárd Ft",
+   "eligibility": null
+  }
+ },
+ {
+  "id": "a-t255-p255",
+  "code": "t255-p255",
+  "title": "MFB Társasház Plusz Hitelprogram",
+  "issuer": "MFB vállalkozói termékek",
+  "cat": "KKV fejlesztés",
+  "type": "loan",
+  "amount": "",
+  "rate": null,
+  "deadline": null,
+  "rolling": true,
+  "windowOpen": null,
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "regionNote": null,
+  "note": "Olyan projekttársaságok igényelhetik, amelyek értékesítési céllal legfeljebb 50 lakásból álló társasházak létrehozására kívánnak kölcsönt felvenni.",
+  "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-tarsashaz-plusz-hitelprogram-t255-p255.html",
+  "source": "mfb.hu",
+  "sources": [
+   "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-tarsashaz-plusz-hitelprogram-t255-p255.html"
+  ],
+  "verifiedAt": "2026-10-23",
+  "confidence": "auto",
+  "autoVerified": true,
+  "scope": "hazai",
+  "evidence": {
+   "title": "MFB Társasház Plusz Hitelprogram",
+   "status": "Termékleírás (hatályos: 2025.11.14-től)",
+   "deadline": null,
+   "amount": null,
+   "eligibility": "értékesítési célú, többlakásos társasház-építési projektek finanszírozására, azon projektcégek számára"
+  }
+ },
+ {
+  "id": "a-innovation-validation-call-2027",
+  "code": null,
+  "title": "Innovation Validation Call 2027",
+  "issuer": "EIT opportunities",
+  "cat": "Kutatás-fejlesztés",
+  "type": "grant",
+  "amount": "up to €850,000 per project",
+  "rate": null,
+  "deadline": "2027-01-13",
+  "rolling": false,
+  "windowOpen": "2026-10-14",
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "regionNote": null,
+  "note": "A konzorciumnak legalább két különböző országból származó, a Tudásthromszög két oldalát képviselő szervezetből kell állnia.",
+  "url": "https://www.eit.europa.eu/our-activities/opportunities/innovation-validation-call-2027",
+  "source": "eit.europa.eu",
+  "sources": [
+   "https://www.eit.europa.eu/our-activities/opportunities/innovation-validation-call-2027"
+  ],
+  "verifiedAt": "2026-10-23",
+  "confidence": "auto",
+  "autoVerified": true,
+  "scope": "eu",
+  "singleApplicant": null,
+  "evidence": {
+   "title": "Innovation Validation Call 2027",
+   "status": "Call opens on: 14 October 2026",
+   "deadline": "Call closes on: 13 January 2027",
+   "amount": "EIT Health will fund up to 50% of the total project budget, up to €850,000 per project.",
+   "eligibility": "Consortia must comprise at least two organisations from different countries, representing at least two sides of the Knowledge Triangle (industry, research, education)."
+  },
+  "requires": {
+   "consortium": true,
+   "rnd_project": true
+  },
+  "requiresEvidence": {
+   "consortium": "Consortia must comprise at least two organisations from different countries, representing at least two sides of the Knowledge Triangle (industry, research, edu…",
+   "rnd_project": "Funding supports activities enabling clinical validation (i.e. pivotal clinical studies), regulatory submission (i.e. CE-mark application dossier), product fin…"
+  }
+ },
+ {
+  "id": "a-globalstars-call-with-japan-2026",
+  "code": null,
+  "title": "Globalstars call with Japan 2026",
+  "issuer": "Eureka open calls",
+  "cat": "Kutatás-fejlesztés",
+  "type": "grant",
+  "amount": "",
+  "rate": null,
+  "deadline": "2027-01-20",
+  "rolling": false,
+  "windowOpen": "2026-10-07",
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "regionNote": null,
+  "note": "A pályázathoz nemzetközi konzorciumra és K+F tevékenységre van szükség.",
+  "url": "https://www.eurekanetwork.org/programmes-and-calls/globalstars/globalstars-call-with-japan-2026",
+  "source": "eurekanetwork.org",
+  "sources": [
+   "https://www.eurekanetwork.org/programmes-and-calls/globalstars/globalstars-call-with-japan-2026"
+  ],
+  "verifiedAt": "2026-10-23",
+  "confidence": "auto",
+  "autoVerified": true,
+  "scope": "eu",
+  "singleApplicant": null,
+  "evidence": {
+   "title": "Globalstars call with Japan 2026",
+   "status": "Start Date:\n7 October 2026, 12:00 AM CEST\nEnd Date:\n20 January 2027, 12:00 AM CET",
+   "deadline": "20 January 2027, 12:00 AM CET",
+   "amount": null,
+   "eligibility": "Your consortium must include companies based in at least one Eureka country and Japan."
+  },
+  "requires": {
+   "consortium": true,
+   "rnd_project": true
+  },
+  "requiresEvidence": {
+   "consortium": "Your consortium must include companies based in at least one Eureka country and Japan.",
+   "rnd_project": "This call is open for all R&D projects, excluding technologies associated with nuclear power, pharmaceutical development, and regenerative medicine product dev…"
+  }
  }
 ]

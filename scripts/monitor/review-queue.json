@@ -1,21 +1,79 @@
 {
- "updatedAt": "2026-10-22",
+ "updatedAt": "2026-10-23",
  "items": [
   {
    "kind": "recheck",
-   "id": "v-garantiqa-kezesseg",
-   "title": "Garantiqa készfizető kezességvállalás (de minimis, csoportmentességi, Gazdaság Újjáépítési és piaci díjas kezesség banki hitelekhez)",
-   "url": "https://garantiqa.hu/kezessegvallalas/kezessegvallalasi-formak/",
-   "outcome": "changed-unverified",
-   "detail": "not a funding call; status not on page; no deadline and not rolling; eligibility unclear; status unclear"
+   "id": "v-mfb-zold-lendulet-hitelprogram",
+   "title": "MFB Zöld Lendület Hitelprogram",
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-zold-lendulet-hitelprogram-t272-p273",
+   "outcome": "gone",
+   "detail": "HTTP 404"
   },
   {
    "kind": "recheck",
-   "id": "v-eitcc-innovation-projects-2026",
-   "title": "EIT Culture & Creativity Innovation Projects 2026 (Kreatívipari innovációs projektek – divat, audiovizuális média, építészet)",
-   "url": "https://eit-culture-creativity.eu/your-opportunities/calls-funding/innovation-projects",
-   "outcome": "changed-unverified",
-   "detail": "amount quote not on page"
+   "id": "v-mfb-agrar-forgoeszkoz-hitelprogram-2025",
+   "title": "MFB Agrár Forgóeszköz Hitelprogram 2025",
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-agrar-forgoeszkoz-hitelprogram-2025-t266-masolat-t266-p267",
+   "outcome": "gone",
+   "detail": "HTTP 404"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025",
+   "title": "MFB Élelmiszeripari Forgóeszköz Hitelprogram 2025",
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025-t259-masolat-t259-p260",
+   "outcome": "gone",
+   "detail": "HTTP 404"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-mfb-pvrk-forgoeszkoz-hitelprogram",
+   "title": "MFB PVRK Forgóeszköz Hitelprogram",
+   "url": "https://www.mfb.hu/vallalkozasok/mikro/hitel/mfb-pvrk-forgoeszkoz-hitelprogram-t228-p228",
+   "outcome": "gone",
+   "detail": "HTTP 404"
+  },
+  {
+   "kind": "new",
+   "source": "mfb",
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/kavosz-agrar-szechenyi-ujrainditasi-beruhazasi-hitel-max-t234--t235-p235.html",
+   "title": "KAVOSZ Agrár Széchenyi Újraindítási Beruházási Hitel MAX+",
+   "detail": "status not on page; status unclear"
+  },
+  {
+   "kind": "new",
+   "source": "mfb",
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/kavosz-szechenyi-ujrainditasi-beruhazasi-hitel-max-t232--t233-p233.html",
+   "title": "KAVOSZ Széchenyi Újraindítási Beruházási Hitel MAX+",
+   "detail": "status not on page"
+  },
+  {
+   "kind": "new",
+   "source": "mfb",
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/kavosz-szechenyi-ujrainditasi-likviditasi-hitel-max-t237--t238-p238.html",
+   "title": "KAVOSZ Széchenyi Újraindítási Likviditási Hitel MAX+",
+   "detail": "status not on page"
+  },
+  {
+   "kind": "new",
+   "source": "mfb",
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-agrar-forgoeszkoz-hitelprogram-2025-t266-masolat-t266-p267.html",
+   "title": "MFB Agrár Forgóeszköz Hitelprogram 2025",
+   "detail": "status not on page; amount quote not on page"
+  },
+  {
+   "kind": "new",
+   "source": "mfb",
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025-t259-masolat-t259-p260.html",
+   "title": "MFB Élelmiszeripari Forgóeszköz Hitelprogram 2025",
+   "detail": "status not on page; no deadline and not rolling; amount quote not on page; status unclear"
+  },
+  {
+   "kind": "new",
+   "source": "mfb",
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-pvrk-forgoeszkoz-hitelprogram-t228--t230-p230.html",
+   "title": "MFB PVRK Forgóeszköz Hitelprogram",
+   "detail": "status not on page"
   },
   {
    "kind": "benchmark-code",
@@ -41,36 +99,15 @@
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "vadviragos sztradak",
-   "url": "https://pafi.hu/p/vadviragos-sztradak",
+   "title": "tudtad hogy a sajat kerted egy nyuzsgo titkos birodalom",
+   "url": "https://pafi.hu/p/tudtad-hogy-a-sajat-kerted-egy-nyuzsgo-titkos-birodalom",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "zold hid madagaszkarnak",
-   "url": "https://pafi.hu/p/zold-hid-madagaszkarnak",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "varosi vadak nyomaban",
-   "url": "https://pafi.hu/p/varosi-vadak-nyomaban",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "a szeretet hazavezet",
-   "url": "https://pafi.hu/p/a-szeretet-hazavezet",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "crea cult 2027 lit european literary translation projects",
-   "url": "https://pafi.hu/p/crea-cult-2027-lit-european-literary-translation-projects",
+   "title": "jo veled mert figyelunk egymasra",
+   "url": "https://pafi.hu/p/jo-veled-mert-figyelunk-egymasra",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]

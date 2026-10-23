@@ -6,6 +6,20 @@
    "title": "Canada call for projects number 8"
   }
  ],
+ "a-globalstars-call-with-japan-2026": [
+  {
+   "date": "2026-10-23",
+   "type": "new",
+   "title": "Globalstars call with Japan 2026"
+  }
+ ],
+ "a-innovation-validation-call-2027": [
+  {
+   "date": "2026-10-23",
+   "type": "new",
+   "title": "Innovation Validation Call 2027"
+  }
+ ],
  "a-kap-rd09a-2-26": [
   {
    "date": "2026-10-13",
@@ -18,6 +32,13 @@
    "date": "2026-10-22",
    "type": "new",
    "title": "Agrár-erdészeti rendszerek telepítése, ápolása és fenntartása"
+  }
+ ],
+ "a-kap-rd30-2-26": [
+  {
+   "date": "2026-10-23",
+   "type": "new",
+   "title": "Állatjóléti támogatás a tejtermelő szarvasmarha ágazatban"
   }
  ],
  "a-kap-rd40-2-26": [
@@ -53,6 +74,13 @@
    "date": "2026-10-20",
    "type": "new",
    "title": "LEADER együttműködések támogatása"
+  }
+ ],
+ "a-t255-p255": [
+  {
+   "date": "2026-10-23",
+   "type": "new",
+   "title": "MFB Társasház Plusz Hitelprogram"
   }
  ],
  "eu-CERV-2024-CITIZENS-VALUES": [
@@ -433,6 +461,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "EU AI Media Platform – modular multilingual public-interest infrastructure for European news and audiovisual media (IA) - Apply AI"
+  },
+  {
+   "date": "2026-10-23",
+   "type": "removed",
    "title": "EU AI Media Platform – modular multilingual public-interest infrastructure for European news and audiovisual media (IA) - Apply AI"
   }
  ],
@@ -2175,6 +2208,11 @@
    "date": "2026-10-22",
    "type": "new",
    "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
+  },
+  {
+   "date": "2026-10-23",
+   "type": "removed",
+   "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
   }
  ],
  "eu-HORIZON-CL6-2027-02-CLIMATE-03": [
@@ -2191,6 +2229,11 @@
   {
    "date": "2026-10-22",
    "type": "new",
+   "title": "Carbon farming innovation and scale-up"
+  },
+  {
+   "date": "2026-10-23",
+   "type": "removed",
    "title": "Carbon farming innovation and scale-up"
   }
  ],
@@ -2278,6 +2321,11 @@
    "date": "2026-10-22",
    "type": "new",
    "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
+  },
+  {
+   "date": "2026-10-23",
+   "type": "removed",
+   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
   }
  ],
  "eu-HORIZON-CL6-2027-02-FARM2FORK-05": [
@@ -2316,6 +2364,11 @@
    "date": "2026-10-22",
    "type": "new",
    "title": "AI-powered foodome characterization"
+  },
+  {
+   "date": "2026-10-23",
+   "type": "removed",
+   "title": "AI-powered foodome characterization"
   }
  ],
  "eu-HORIZON-CL6-2027-03-GOVERNANCE-01": [
@@ -2344,6 +2397,11 @@
   {
    "date": "2026-10-22",
    "type": "removed",
+   "title": "Improving analytical capacity for sustainable competitiveness of the agricultural sector"
+  },
+  {
+   "date": "2026-10-23",
+   "type": "new",
    "title": "Improving analytical capacity for sustainable competitiveness of the agricultural sector"
   }
  ],
@@ -3532,6 +3590,13 @@
    "to": "2026-10-26"
   }
  ],
+ "eu-cs-48256791": [
+  {
+   "date": "2026-10-23",
+   "type": "new",
+   "title": "European City Facility — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
  "eu-cs-48351491": [
   {
    "date": "2026-10-15",
@@ -3813,6 +3878,10 @@
   {
    "date": "2026-10-22",
    "type": "page"
+  },
+  {
+   "date": "2026-10-23",
+   "type": "page"
   }
  ],
  "v-eitrm-kava14-ris": [
@@ -3861,6 +3930,12 @@
    "date": "2026-10-08",
    "type": "removed",
    "title": "Erasmus+ kisléptékű partnerségek a felnőttoktatásban (KA210-ADU)"
+  }
+ ],
+ "v-esa-ba-kickstart-2026-10": [
+  {
+   "date": "2026-10-23",
+   "type": "page"
   }
  ],
  "v-eurohpc-aif-large-scale": [
@@ -4383,6 +4458,10 @@
   {
    "date": "2026-10-19",
    "type": "page"
+  },
+  {
+   "date": "2026-10-23",
+   "type": "page"
   }
  ],
  "v-horizon-eic-2026-pathfinderchallenges-01-01": [
@@ -4713,6 +4792,10 @@
   {
    "date": "2026-10-22",
    "type": "page"
+  },
+  {
+   "date": "2026-10-23",
+   "type": "page"
   }
  ],
  "v-mfb-agrar-forgoeszkoz-hitelprogram-2025": [
@@ -4759,6 +4842,13 @@
    "type": "page"
   }
  ],
+ "v-perform-europe-2026-2028": [
+  {
+   "date": "2026-10-23",
+   "type": "removed",
+   "title": "Perform Europe Open Call 2026–2028 (Előadó-művészeti nemzetközi turnék támogatása)"
+  }
+ ],
  "v-tef-health-oc2": [
   {
    "date": "2026-10-15",
@@ -4766,6 +4856,10 @@
   },
   {
    "date": "2026-10-20",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-23",
    "type": "page"
   }
  ],
@@ -4785,6 +4879,10 @@
  "v-water4all-jtc-2026": [
   {
    "date": "2026-10-09",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-23",
    "type": "page"
   }
  ]
