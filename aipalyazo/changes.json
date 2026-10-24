@@ -467,12 +467,22 @@
    "date": "2026-10-23",
    "type": "removed",
    "title": "EU AI Media Platform – modular multilingual public-interest infrastructure for European news and audiovisual media (IA) - Apply AI"
+  },
+  {
+   "date": "2026-10-24",
+   "type": "new",
+   "title": "EU AI Media Platform – modular multilingual public-interest infrastructure for European news and audiovisual media (IA) - Apply AI"
   }
  ],
  "eu-HORIZON-BRIDGING-2027-01-10": [
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Autonomous Drive Ambition Cities (IA) - Apply AI"
+  },
+  {
+   "date": "2026-10-24",
+   "type": "removed",
    "title": "Autonomous Drive Ambition Cities (IA) - Apply AI"
   }
  ],
@@ -2213,6 +2223,11 @@
    "date": "2026-10-23",
    "type": "removed",
    "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
+  },
+  {
+   "date": "2026-10-24",
+   "type": "new",
+   "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
   }
  ],
  "eu-HORIZON-CL6-2027-02-CLIMATE-03": [
@@ -2234,6 +2249,11 @@
   {
    "date": "2026-10-23",
    "type": "removed",
+   "title": "Carbon farming innovation and scale-up"
+  },
+  {
+   "date": "2026-10-24",
+   "type": "new",
    "title": "Carbon farming innovation and scale-up"
   }
  ],
@@ -2326,6 +2346,11 @@
    "date": "2026-10-23",
    "type": "removed",
    "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
+  },
+  {
+   "date": "2026-10-24",
+   "type": "new",
+   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
   }
  ],
  "eu-HORIZON-CL6-2027-02-FARM2FORK-05": [
@@ -2368,6 +2393,11 @@
   {
    "date": "2026-10-23",
    "type": "removed",
+   "title": "AI-powered foodome characterization"
+  },
+  {
+   "date": "2026-10-24",
+   "type": "new",
    "title": "AI-powered foodome characterization"
   }
  ],
@@ -3787,6 +3817,10 @@
   {
    "date": "2026-10-22",
    "type": "page"
+  },
+  {
+   "date": "2026-10-24",
+   "type": "page"
   }
  ],
  "v-eitcc-shape-scale-2027": [
@@ -3882,6 +3916,10 @@
   {
    "date": "2026-10-23",
    "type": "page"
+  },
+  {
+   "date": "2026-10-24",
+   "type": "page"
   }
  ],
  "v-eitrm-kava14-ris": [
@@ -3951,11 +3989,19 @@
    "date": "2026-10-16",
    "type": "removed",
    "title": "Large Scale Access to AI Factories (Nagy léptékű GPU-hozzáférés az EU MI-gyárakban)"
+  },
+  {
+   "date": "2026-10-24",
+   "type": "page"
   }
  ],
  "v-eurohpc-aif-playground-fastlane": [
   {
    "date": "2026-10-15",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-24",
    "type": "page"
   }
  ],
@@ -3971,6 +4017,16 @@
   },
   {
    "date": "2026-10-15",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-24",
+   "type": "page"
+  }
+ ],
+ "v-eurostars-3-call-12": [
+  {
+   "date": "2026-10-24",
    "type": "page"
   }
  ],
@@ -4592,6 +4648,12 @@
    "to": "2027-09-16"
   }
  ],
+ "v-horizon-ju-eurohpc-2026-qti-13": [
+  {
+   "date": "2026-10-24",
+   "type": "page"
+  }
+ ],
  "v-horizon-miss-2027-03-ocean-04": [
   {
    "date": "2026-10-09",
@@ -4806,12 +4868,36 @@
   {
    "date": "2026-10-13",
    "type": "page"
+  },
+  {
+   "date": "2026-10-24",
+   "type": "removed",
+   "title": "MFB Agrár Forgóeszköz Hitelprogram 2025"
   }
  ],
  "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025": [
   {
    "date": "2026-10-12",
    "type": "page"
+  },
+  {
+   "date": "2026-10-24",
+   "type": "removed",
+   "title": "MFB Élelmiszeripari Forgóeszköz Hitelprogram 2025"
+  }
+ ],
+ "v-mfb-pvrk-forgoeszkoz-hitelprogram": [
+  {
+   "date": "2026-10-24",
+   "type": "removed",
+   "title": "MFB PVRK Forgóeszköz Hitelprogram"
+  }
+ ],
+ "v-mfb-zold-lendulet-hitelprogram": [
+  {
+   "date": "2026-10-24",
+   "type": "removed",
+   "title": "MFB Zöld Lendület Hitelprogram"
   }
  ],
  "v-ngi-codesupply": [
@@ -4860,6 +4946,10 @@
   },
   {
    "date": "2026-10-23",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-24",
    "type": "page"
   }
  ],

@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-23T10:57:57.785Z",
+ "updatedAt": "2026-10-24T10:13:42.617Z",
  "sourcesOk": false,
  "apiFailed": true,
  "euApiFailed": false,
@@ -13,17 +13,17 @@
   },
   "euApi": {
    "ok": true,
-   "items": 273,
-   "lastOk": "2026-10-23T10:57:57.785Z"
+   "items": 277,
+   "lastOk": "2026-10-24T10:13:42.617Z"
   }
  },
  "counts": {
   "total": 446,
   "api": 17,
-  "verified": 156,
-  "euAuto": 273,
-  "hazai": 62,
-  "eu": 384,
+  "verified": 152,
+  "euAuto": 277,
+  "hazai": 58,
+  "eu": 388,
   "excluded": 0
  },
  "needsReview": [],
@@ -94,8 +94,24 @@
    "why": "lejárt"
   },
   {
+   "id": "v-marc-impact-hu-2026",
+   "why": "lejárt"
+  },
+  {
    "id": "v-perform-europe-2026-2028",
    "why": "lejárt"
+  },
+  {
+   "id": "v-mfb-zold-lendulet-hitelprogram",
+   "why": "monitor: gone: HTTP 404"
+  },
+  {
+   "id": "v-mfb-agrar-forgoeszkoz-hitelprogram-2025",
+   "why": "monitor: gone: HTTP 404"
+  },
+  {
+   "id": "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025",
+   "why": "monitor: gone: HTTP 404"
   },
   {
    "id": "v-horizon-cl5-2026-10-d2-03",
@@ -130,71 +146,61 @@
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   },
   {
-   "id": "v-marc-impact-hu-2026",
-   "why": "monitor: closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
+   "id": "v-mfb-pvrk-forgoeszkoz-hitelprogram",
+   "why": "monitor: gone: HTTP 404"
   }
  ],
  "excluded": [],
  "changes": [
   {
-   "id": "a-kap-rd30-2-26",
-   "type": "new",
-   "title": "Állatjóléti támogatás a tejtermelő szarvasmarha ágazatban"
-  },
-  {
-   "id": "a-t255-p255",
-   "type": "new",
-   "title": "MFB Társasház Plusz Hitelprogram"
-  },
-  {
-   "id": "a-innovation-validation-call-2027",
-   "type": "new",
-   "title": "Innovation Validation Call 2027"
-  },
-  {
-   "id": "a-globalstars-call-with-japan-2026",
-   "type": "new",
-   "title": "Globalstars call with Japan 2026"
-  },
-  {
-   "id": "eu-cs-48256791",
-   "type": "new",
-   "title": "European City Facility — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-03-GOVERNANCE-02",
-   "type": "new",
-   "title": "Improving analytical capacity for sustainable competitiveness of the agricultural sector"
-  },
-  {
-   "id": "v-perform-europe-2026-2028",
-   "type": "removed",
-   "title": "Perform Europe Open Call 2026–2028 (Előadó-művészeti nemzetközi turnék támogatása)"
-  },
-  {
    "id": "eu-HORIZON-BRIDGING-2027-01-09",
-   "type": "removed",
+   "type": "new",
    "title": "EU AI Media Platform – modular multilingual public-interest infrastructure for European news and audiovisual media (IA) - Apply AI"
   },
   {
    "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-03",
-   "type": "removed",
+   "type": "new",
    "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
   },
   {
    "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-08",
-   "type": "removed",
+   "type": "new",
    "title": "AI-powered foodome characterization"
   },
   {
    "id": "eu-HORIZON-CL6-2027-02-CLIMATE-02",
-   "type": "removed",
+   "type": "new",
    "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
   },
   {
    "id": "eu-HORIZON-CL6-2027-02-CLIMATE-03",
-   "type": "removed",
+   "type": "new",
    "title": "Carbon farming innovation and scale-up"
+  },
+  {
+   "id": "v-mfb-zold-lendulet-hitelprogram",
+   "type": "removed",
+   "title": "MFB Zöld Lendület Hitelprogram"
+  },
+  {
+   "id": "v-mfb-agrar-forgoeszkoz-hitelprogram-2025",
+   "type": "removed",
+   "title": "MFB Agrár Forgóeszköz Hitelprogram 2025"
+  },
+  {
+   "id": "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025",
+   "type": "removed",
+   "title": "MFB Élelmiszeripari Forgóeszköz Hitelprogram 2025"
+  },
+  {
+   "id": "v-mfb-pvrk-forgoeszkoz-hitelprogram",
+   "type": "removed",
+   "title": "MFB PVRK Forgóeszköz Hitelprogram"
+  },
+  {
+   "id": "eu-HORIZON-BRIDGING-2027-01-10",
+   "type": "removed",
+   "title": "Autonomous Drive Ambition Cities (IA) - Apply AI"
   }
  ]
 }

@@ -1,79 +1,58 @@
 {
- "updatedAt": "2026-10-23",
+ "updatedAt": "2026-10-24",
  "items": [
   {
    "kind": "recheck",
-   "id": "v-mfb-zold-lendulet-hitelprogram",
-   "title": "MFB Zöld Lendület Hitelprogram",
-   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-zold-lendulet-hitelprogram-t272-p273",
-   "outcome": "gone",
-   "detail": "HTTP 404"
+   "id": "v-eurohpc-aif-large-scale",
+   "title": "Large Scale Access to AI Factories (Nagy léptékű GPU-hozzáférés az EU MI-gyárakban)",
+   "url": "https://www.eurohpc-ju.europa.eu/large-scale-access-ai-factories_en",
+   "outcome": "changed-unverified",
+   "detail": "deadline 2033-12-31 not in its quote"
   },
   {
    "kind": "recheck",
-   "id": "v-mfb-agrar-forgoeszkoz-hitelprogram-2025",
-   "title": "MFB Agrár Forgóeszköz Hitelprogram 2025",
-   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-agrar-forgoeszkoz-hitelprogram-2025-t266-masolat-t266-p267",
-   "outcome": "gone",
-   "detail": "HTTP 404"
+   "id": "v-eurohpc-benchmark-2026",
+   "title": "EuroHPC Benchmark Access Call (Szuperszámítógépes benchmark-hozzáférés)",
+   "url": "https://www.eurohpc-ju.europa.eu/eurohpc-ju-call-proposals-benchmark-access_en",
+   "outcome": "changed-unverified",
+   "detail": "deadline 2033-12-31 not in its quote"
   },
   {
    "kind": "recheck",
-   "id": "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025",
-   "title": "MFB Élelmiszeripari Forgóeszköz Hitelprogram 2025",
-   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025-t259-masolat-t259-p260",
-   "outcome": "gone",
-   "detail": "HTTP 404"
+   "id": "v-eitcc-innovation-projects-2026",
+   "title": "EIT Culture & Creativity Innovation Projects 2026 (Kreatívipari innovációs projektek – divat, audiovizuális média, építészet)",
+   "url": "https://eit-culture-creativity.eu/your-opportunities/calls-funding/innovation-projects",
+   "outcome": "changed-unverified",
+   "detail": "amount quote not on page"
   },
   {
    "kind": "recheck",
-   "id": "v-mfb-pvrk-forgoeszkoz-hitelprogram",
-   "title": "MFB PVRK Forgóeszköz Hitelprogram",
-   "url": "https://www.mfb.hu/vallalkozasok/mikro/hitel/mfb-pvrk-forgoeszkoz-hitelprogram-t228-p228",
-   "outcome": "gone",
-   "detail": "HTTP 404"
-  },
-  {
-   "kind": "new",
-   "source": "mfb",
-   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/kavosz-agrar-szechenyi-ujrainditasi-beruhazasi-hitel-max-t234--t235-p235.html",
-   "title": "KAVOSZ Agrár Széchenyi Újraindítási Beruházási Hitel MAX+",
+   "id": "a-t255-p255",
+   "title": "MFB Társasház Plusz Hitelprogram",
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-tarsashaz-plusz-hitelprogram-t255-p255.html",
+   "outcome": "changed-unverified",
    "detail": "status not on page; status unclear"
   },
   {
    "kind": "new",
    "source": "mfb",
-   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/kavosz-szechenyi-ujrainditasi-beruhazasi-hitel-max-t232--t233-p233.html",
-   "title": "KAVOSZ Széchenyi Újraindítási Beruházási Hitel MAX+",
-   "detail": "status not on page"
-  },
-  {
-   "kind": "new",
-   "source": "mfb",
-   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/kavosz-szechenyi-ujrainditasi-likviditasi-hitel-max-t237--t238-p238.html",
-   "title": "KAVOSZ Széchenyi Újraindítási Likviditási Hitel MAX+",
-   "detail": "status not on page"
-  },
-  {
-   "kind": "new",
-   "source": "mfb",
-   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-agrar-forgoeszkoz-hitelprogram-2025-t266-masolat-t266-p267.html",
-   "title": "MFB Agrár Forgóeszköz Hitelprogram 2025",
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-tesz-forgoeszkoz-hitelprogram-2025-t263-masolat-t263-p264.html",
+   "title": "MFB TÉSZ Forgóeszköz Hitelprogram 2025",
    "detail": "status not on page; amount quote not on page"
   },
   {
    "kind": "new",
    "source": "mfb",
-   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025-t259-masolat-t259-p260.html",
-   "title": "MFB Élelmiszeripari Forgóeszköz Hitelprogram 2025",
-   "detail": "status not on page; no deadline and not rolling; amount quote not on page; status unclear"
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-zold-lendulet-hitelprogram-t272-p273.html",
+   "title": "MFB Zöld Lendület Hitelprogram",
+   "detail": "status not on page; amount quote not on page"
   },
   {
    "kind": "new",
    "source": "mfb",
-   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-pvrk-forgoeszkoz-hitelprogram-t228--t230-p230.html",
-   "title": "MFB PVRK Forgóeszköz Hitelprogram",
-   "detail": "status not on page"
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/kombinalt_termekek/rrf-rep-10141-24-elektromos-gepjarmu-toltoallomasok-telepitese-a-benyujtasi-hatarido-lejart-t223-p223.html",
+   "title": "Elektromos gépjármű töltőállomások telepítése",
+   "detail": "no deadline and not rolling; status closed"
   },
   {
    "kind": "benchmark-code",
@@ -95,20 +74,6 @@
    "title": "MAHOP Plusz-2.5.1-20",
    "url": "https://pafi.hu/palyazatok/vallalkozasok",
    "detail": "a(z) pafi.hu — vállalkozások listáján szerepel, nálunk nincs — ellenőrizd a hivatalos oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "tudtad hogy a sajat kerted egy nyuzsgo titkos birodalom",
-   "url": "https://pafi.hu/p/tudtad-hogy-a-sajat-kerted-egy-nyuzsgo-titkos-birodalom",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "jo veled mert figyelunk egymasra",
-   "url": "https://pafi.hu/p/jo-veled-mert-figyelunk-egymasra",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]
 }
