@@ -13,7 +13,7 @@
 
   function card(g, extra) {
     var C = window.AIPCards;
-    return '<article class="gcard' + C.cardClass(g) + '"><div class="gc-head">' + C.srcTag(g) + '<div class="gc-main"><a class="gc-title" href="' + pageUrl(g) + '">' + esc(g.title) + '</a><div class="gc-sub">' + esc([g.code, g.issuer].filter(Boolean).join(' · ')) + '</div><div class="badges">' + C.badges(g, { today: TODAY }) + '</div></div><div class="gc-side"><div><div class="gc-amt-label">Támogatás</div><div class="gc-amt">' + esc(g.amount || '—') + '</div></div></div></div>' + C.bars(g, { today: TODAY }) + (extra || '') + '</article>';
+    return '<article class="gcard' + C.cardClass(g) + '"><div class="gc-head">' + C.srcTag(g) + '<div class="gc-main"><a class="gc-title" href="' + pageUrl(g) + '">' + esc(g.title) + '</a><div class="gc-sub">' + esc([g.code, g.issuer].filter(Boolean).join(' · ')) + '</div><div class="badges">' + C.badges(g, { today: TODAY }) + '</div></div><div class="gc-side"><div><div class="gc-amt-label">Támogatás</div><div class="gc-amt">' + esc(g.amount || '—') + '</div>' + C.rateLine(g) + '</div></div></div>' + C.bars(g, { today: TODAY }) + (extra || '') + '</article>';
   }
 
   Promise.all([
@@ -57,13 +57,19 @@
     try { localStorage.setItem('aip:quick', JSON.stringify(Object.assign({}, p, { company: '' }))); } catch (e2) {}
     if (window.aipTrack) aipTrack('quick-check');
     var html = '<p class="result-sum"><b>' + good.length + '</b> felhívás illik jól a cégéhez' + (grants.length ? ', ebből <b>' + grants.length + '</b> vissza nem térítendő vagy kombinált' : '') + '.' + (consortium ? ' <span class="muted">További ' + consortium + ' nemzetközi konzorciumi felhívás külön listában.</span>' : '') + '</p>';
-    html += '<div class="gcards">' + single.slice(0, 4).map(function (x) {
+    // Grants first, repayable money (loan, guarantee, equity) in its own group.
+    var C = window.AIPCards;
+    var repay = function (x) { var k = C.finKind(x.g); return k && k !== 'mixed'; };
+    var withMarks = function (x) {
       var marks = x.m.checks.filter(function (c) { return ['ok', 'fail', 'unknown', 'warn'].indexOf(c.status) >= 0; }).slice(0, 6).map(function (c) {
         var sym = { ok: '✓', fail: '✗', unknown: '?', warn: '!' }[c.status];
         return '<span class="' + c.status + '">' + sym + ' ' + esc(c.label) + '</span>';
       }).join('');
       return card(x.g, '<div class="marks">' + marks + '</div>');
-    }).join('') + '</div>';
+    };
+    var gr = single.filter(function (x) { return !repay(x); }), fin = single.filter(repay);
+    if (gr.length) html += '<h3 class="result-group">Vissza nem térítendő támogatások</h3><div class="gcards">' + gr.slice(0, 4).map(withMarks).join('') + '</div>';
+    if (fin.length) html += '<h3 class="result-group fin">Kedvezményes hitelek, garancia, tőke <span class="muted">· vissza kell fizetni</span></h3><div class="gcards">' + fin.slice(0, 2).map(withMarks).join('') + '</div>';
     html += '<div class="results-foot"><a class="btn btn-primary" href="signup.html?from=quick">Teljes lista, értesítések — ingyenes regisztráció</a><p class="tiny muted" style="margin:0">A „?” pontokat a teljes profilban tudja pontosítani (TEÁOR, köztartozás, önerő). Adószám alapján a cégadatokat kitöltjük.</p></div>';
     var box = $('#results'); box.innerHTML = html; box.hidden = false;
     box.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });

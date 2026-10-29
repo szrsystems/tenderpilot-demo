@@ -58,6 +58,14 @@
   function cardClass(g) { var k = finKind(g); return k ? ' k-' + k : ''; }
   var AMT_LABEL = { loan: 'Hitelösszeg', guarantee: 'Kezesség', equity: 'Befektetés', mixed: 'Hitel + támogatás' };
   function amountLabel(g) { return AMT_LABEL[finKind(g)] || 'Támogatás'; }
+  // Loans: the interest rate decides, so it sits under the amount on the card.
+  function rateText(g) {
+    var k = finKind(g), r = typeof (g && g.rate) === 'string' ? g.rate : '';
+    if (!r || !(k === 'loan' || k === 'guarantee' || (k === 'mixed' && /kamat/i.test(r)))) return '';
+    r = r.replace(/\s*\([^)]*\)/g, '').replace(/\s+([,;.])/g, '$1').replace(/\s+/g, ' ').trim();
+    return r.length > 44 ? r.slice(0, 43).replace(/[\s,;]+\S*$/, '') + '…' : r;
+  }
+  function rateLine(g) { var t = rateText(g); return t ? '<div class="gc-rate">' + esc(t) + '</div>' : ''; }
   var FIN_BADGE = { loan: 'Hitel · vissza kell fizetni', guarantee: 'Garancia · nem pénzbeli támogatás', equity: 'Tőkebefektetés · tulajdonrészért', mixed: 'Hitel + vissza nem térítendő rész' };
 
   function badges(g, opts) {
@@ -130,7 +138,7 @@
     return s;
   }
 
-  var api = { finKind: finKind, cardClass: cardClass, amountLabel: amountLabel, brief: brief, esc: esc, srcTag: srcTag, badges: badges, bars: bars, budget: budget, ft: ft, TYPE_HU: TYPE_HU };
+  var api = { finKind: finKind, rateText: rateText, rateLine: rateLine, FIN_BADGE: FIN_BADGE, cardClass: cardClass, amountLabel: amountLabel, brief: brief, esc: esc, srcTag: srcTag, badges: badges, bars: bars, budget: budget, ft: ft, TYPE_HU: TYPE_HU };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.AIPCards = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

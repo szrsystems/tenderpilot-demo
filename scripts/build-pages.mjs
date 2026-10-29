@@ -299,7 +299,7 @@ export function renderPage(g, slug, summary, { updatedAt, changes, related } = {
   const checked = g.lastChecked || g.verifiedAt || (g.modified ? String(g.modified).slice(0, 10) : '') || updatedAt || '';
   const tags = [
     `<span class="tag brand">${g.scope === 'eu' ? 'EU / nemzetközi' : 'Hazai'}</span>`,
-    `<span class="tag">${esc(TYPE_HU[g.type] || g.type || 'Támogatás')}</span>`,
+    Cards.FIN_BADGE[Cards.finKind(g)] ? `<span class="tag fin">${esc(Cards.FIN_BADGE[Cards.finKind(g)])}</span>` : `<span class="tag">${esc(TYPE_HU[g.type] || g.type || 'Támogatás')}</span>`,
     isDate(g.deadline) ? `<span class="tag signal">Határidő: ${esc(huDate(g.deadline))}</span>` : '<span class="tag">Folyamatos beadás</span>',
   ].join('');
   const jsonld = [
@@ -417,7 +417,7 @@ const byDeadline = (a, b) => {
 function regRow(g, href, withSearch) {
   const data = withSearch ? ` data-s="${esc(`${g.title} ${g.code || ''} ${g.issuer || ''} ${g.cat || ''} ${g.note || ''} ${g.amount || ''} ${(g.regions || []).join(' ')}`.toLowerCase())}" data-scope="${g.scope === 'eu' ? 'eu' : 'hu'}" data-type="${esc(g.type || '')}"` : '';
   const today = todayHU();
-  return `<article class="gcard${Cards.cardClass(g)}"${data}><div class="gc-head">${Cards.srcTag(g)}<div class="gc-main"><a class="gc-title" href="${esc(href)}">${esc(g.title)}</a><div class="gc-sub">${esc([g.code, g.issuer].filter(Boolean).join(' · '))}</div><div class="badges">${Cards.badges(g, { today })}</div></div><div class="gc-side"><div><div class="gc-amt-label">${esc(Cards.amountLabel(g))}</div><div class="gc-amt">${esc(g.amount || '—')}</div></div></div></div>${Cards.bars(g, { today })}</article>`;
+  return `<article class="gcard${Cards.cardClass(g)}"${data}><div class="gc-head">${Cards.srcTag(g)}<div class="gc-main"><a class="gc-title" href="${esc(href)}">${esc(g.title)}</a><div class="gc-sub">${esc([g.code, g.issuer].filter(Boolean).join(' · '))}</div><div class="badges">${Cards.badges(g, { today })}</div></div><div class="gc-side"><div><div class="gc-amt-label">${esc(Cards.amountLabel(g))}</div><div class="gc-amt">${esc(g.amount || '—')}</div>${Cards.rateLine(g)}</div></div></div>${Cards.bars(g, { today })}</article>`;
 }
 
 // "2026. október 13-i" (1 → "1-jei")

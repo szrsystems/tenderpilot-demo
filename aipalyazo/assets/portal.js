@@ -249,7 +249,7 @@
         '<div class="gc-main"><button type="button" class="gc-title" data-open="' + esc(g.id) + '">' + esc(g.title) + '</button>' +
         '<div class="gc-sub">' + esc([g.code, g.issuer].filter(Boolean).join(' · ')) + '</div>' +
         '<div class="badges">' + C.badges(g, { today: TODAY, isNew: isNewCall(g), consortium: m && m.group === 'consortium' }) + '</div></div>' +
-        '<div class="gc-side"><div><div class="gc-amt-label">' + esc(C.amountLabel(g)) + '</div><div class="gc-amt">' + esc(g.amount || '—') + '</div></div>' + fit + '</div>' +
+        '<div class="gc-side"><div><div class="gc-amt-label">' + esc(C.amountLabel(g)) + '</div><div class="gc-amt">' + esc(g.amount || '—') + '</div>' + C.rateLine(g) + '</div>' + fit + '</div>' +
       '</div>' +
       C.bars(g, { today: TODAY }) +
       (personal && !opts.noMarks ? '<div class="marks">' + marksHtml(m, 7) + '</div>' : '') +
