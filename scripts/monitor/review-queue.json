@@ -1,29 +1,85 @@
 {
- "updatedAt": "2026-10-24",
+ "updatedAt": "2026-10-29",
  "items": [
   {
    "kind": "recheck",
-   "id": "v-eurohpc-aif-large-scale",
-   "title": "Large Scale Access to AI Factories (Nagy léptékű GPU-hozzáférés az EU MI-gyárakban)",
-   "url": "https://www.eurohpc-ju.europa.eu/large-scale-access-ai-factories_en",
-   "outcome": "changed-unverified",
-   "detail": "deadline 2033-12-31 not in its quote"
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-01",
+   "title": "EIC Pathfinder Challenge: Advanced Materials for Miniaturised Energy Harvesting Systems (Fejlett anyagok miniatűr energiabetakarításhoz)",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eic-2026-pathfinderchallenges-01-01",
+   "outcome": "closed",
+   "detail": "EU portál: nincs jövőbeli határidő"
   },
   {
    "kind": "recheck",
-   "id": "v-eurohpc-benchmark-2026",
-   "title": "EuroHPC Benchmark Access Call (Szuperszámítógépes benchmark-hozzáférés)",
-   "url": "https://www.eurohpc-ju.europa.eu/eurohpc-ju-call-proposals-benchmark-access_en",
-   "outcome": "changed-unverified",
-   "detail": "deadline 2033-12-31 not in its quote"
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-02",
+   "title": "EIC Pathfinder Challenge: Biotechnology for Healthy Ageing (Biotechnológia az egészséges időskorért)",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eic-2026-pathfinderchallenges-01-02",
+   "outcome": "closed",
+   "detail": "EU portál: nincs jövőbeli határidő"
   },
   {
    "kind": "recheck",
-   "id": "v-eitcc-innovation-projects-2026",
-   "title": "EIT Culture & Creativity Innovation Projects 2026 (Kreatívipari innovációs projektek – divat, audiovizuális média, építészet)",
-   "url": "https://eit-culture-creativity.eu/your-opportunities/calls-funding/innovation-projects",
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-03",
+   "title": "EIC Pathfinder Challenge: DeepRAP: Deep Reasoning, Abstraction & Planning towards trustworthy Cognitive AI Systems (Megbízható kognitív MI-rendszerek)",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eic-2026-pathfinderchallenges-01-03",
+   "outcome": "closed",
+   "detail": "EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-ngi-codesupply",
+   "title": "NLnet CodeSupply – software supply chain security (Szoftver-ellátási lánc biztonsága)",
+   "url": "https://nlnet.nl/codesupply/",
    "outcome": "changed-unverified",
-   "detail": "amount quote not on page"
+   "detail": "deadline 2026-11-03 not in its quote"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-eitrm-kava14-upscaling",
+   "title": "KAVA Call 14 – Upscaling (Nyersanyag-technológiák felskálázása)",
+   "url": "https://eitrawmaterials.eu/kava-call-14-upscaling",
+   "outcome": "closed",
+   "detail": "az oldal szerint: „This call is CLOSED”"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-ivf-visegrad-grants-2026-10",
+   "title": "Visegrad Grants – 1 October 2026 deadline (Visegrádi Alap – regionális együttműködési projektek támogatása)",
+   "url": "https://www.visegradfund.org/visegrad-grants-apply",
+   "outcome": "closed",
+   "detail": "az oldal szerint: „Currently closed”"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-garantiqa-investeu",
+   "title": "Garantiqa InvestEU Garanciaprogram (Az Európai Bizottság viszontgaranciájával működő KKV-hitelgarancia)",
+   "url": "https://garantiqa.hu/garantiqa-investeu-garanciaprogram/",
+   "outcome": "changed-unverified",
+   "detail": "status not on page"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-garantiqa-kezesseg",
+   "title": "Garantiqa készfizető kezességvállalás (de minimis, csoportmentességi, Gazdaság Újjáépítési és piaci díjas kezesség banki hitelekhez)",
+   "url": "https://garantiqa.hu/kezessegvallalas/kezessegvallalasi-formak/",
+   "outcome": "changed-unverified",
+   "detail": "not a funding call; title not on page; status not on page; no deadline and not rolling; eligibility unclear; status unclear"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-perform-europe-2026-2028",
+   "title": "Perform Europe Open Call 2026–2028 (Előadó-művészeti nemzetközi turnék támogatása)",
+   "url": "https://performeurope.eu/open-call/",
+   "outcome": "closed",
+   "detail": "az oldal szerint: „Submissions for the Perform Europe Open Call are now closed”"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-interreg-huhr-b-light-2-call1",
+   "title": "Interreg Magyarország–Horvátország B Light 2 – 1. felhívás KKV-k határon átnyúló együttműködésére",
+   "url": "https://investinbaranya.hu/en/b-light/",
+   "outcome": "changed-unverified",
+   "detail": "deadline 2028-12-31 not in its quote"
   },
   {
    "kind": "recheck",
@@ -31,33 +87,33 @@
    "title": "MFB Társasház Plusz Hitelprogram",
    "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-tarsashaz-plusz-hitelprogram-t255-p255.html",
    "outcome": "changed-unverified",
-   "detail": "status not on page; status unclear"
+   "detail": "not a funding call; title not on page; status not on page; no deadline and not rolling; eligibility unclear; status unclear"
+  },
+  {
+   "kind": "new",
+   "source": "kap",
+   "url": "https://kap.gov.hu/node/3926",
+   "title": "Mezőgazdasági Kockázatkezelési Rendszer: Válságtámogatás",
+   "detail": "no deadline and not rolling"
   },
   {
    "kind": "new",
    "source": "mfb",
-   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-tesz-forgoeszkoz-hitelprogram-2025-t263-masolat-t263-p264.html",
-   "title": "MFB TÉSZ Forgóeszköz Hitelprogram 2025",
-   "detail": "status not on page; amount quote not on page"
-  },
-  {
-   "kind": "new",
-   "source": "mfb",
-   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-zold-lendulet-hitelprogram-t272-p273.html",
-   "title": "MFB Zöld Lendület Hitelprogram",
-   "detail": "status not on page; amount quote not on page"
-  },
-  {
-   "kind": "new",
-   "source": "mfb",
-   "url": "https://www.mfb.hu/vallalkozasok/mukodo/kombinalt_termekek/rrf-rep-10141-24-elektromos-gepjarmu-toltoallomasok-telepitese-a-benyujtasi-hatarido-lejart-t223-p223.html",
-   "title": "Elektromos gépjármű töltőállomások telepítése",
-   "detail": "no deadline and not rolling; status closed"
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/kombinalt_termekek/kehop-plusz-510-26-igazsagos-atmenet-alap-jtf-kkv-hitelprogram-t282-masolat-t282-p283",
+   "title": "KEHOP Plusz-5.1.0-26 Igazságos Átmenet Alap (JTF) KKV Hitelprogram",
+   "detail": "status not on page; no deadline and not rolling; status unclear"
   },
   {
    "kind": "benchmark-code",
    "source": "pafi",
-   "title": "DIMOP Plusz-1.2.6/C-26",
+   "title": "2026-1.2.1-KÖA",
+   "url": "https://pafi.hu/palyazatok/vallalkozasok",
+   "detail": "a(z) pafi.hu — vállalkozások listáján szerepel, nálunk nincs — ellenőrizd a hivatalos oldalon"
+  },
+  {
+   "kind": "benchmark-code",
+   "source": "pafi",
+   "title": "KEHOP Plusz-5.1.0-26",
    "url": "https://pafi.hu/palyazatok/vallalkozasok",
    "detail": "a(z) pafi.hu — vállalkozások listáján szerepel, nálunk nincs — ellenőrizd a hivatalos oldalon"
   },
@@ -74,6 +130,55 @@
    "title": "MAHOP Plusz-2.5.1-20",
    "url": "https://pafi.hu/palyazatok/vallalkozasok",
    "detail": "a(z) pafi.hu — vállalkozások listáján szerepel, nálunk nincs — ellenőrizd a hivatalos oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "a romantika orok regenypalyazat",
+   "url": "https://pafi.hu/p/a-romantika-orok-regenypalyazat",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "ezustgerely muveszeti palyazat 2026",
+   "url": "https://pafi.hu/p/ezustgerely-muveszeti-palyazat-2026",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "osztrak magyar akcio alapitvany palyazata",
+   "url": "https://pafi.hu/p/osztrak-magyar-akcio-alapitvany-palyazata",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "tamogatas egyszeri utazasokhoz",
+   "url": "https://pafi.hu/p/tamogatas-egyszeri-utazasokhoz",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "onero alap 2026 121 koa",
+   "url": "https://pafi.hu/p/onero-alap-2026-121-koa",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "professzionalis weboldal csak 69500 ft 10 munkanap alatt teljes felszereltseggel igeny szerint tobbnyelvu es webaruhazas kialakitassal 2",
+   "url": "https://pafi.hu/p/professzionalis-weboldal-csak-69500-ft-10-munkanap-alatt-teljes-felszereltseggel-igeny-szerint-tobbnyelvu-es-webaruhazas-kialakitassal-2",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "igazsagos atmenet alap jtf kkv hitelprogram kehop plusz 510 26",
+   "url": "https://pafi.hu/p/igazsagos-atmenet-alap-jtf-kkv-hitelprogram-kehop-plusz-510-26",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]
 }

@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-24T10:13:42.617Z",
+ "updatedAt": "2026-10-29T12:45:35.769Z",
  "sourcesOk": false,
  "apiFailed": true,
  "euApiFailed": false,
@@ -13,17 +13,17 @@
   },
   "euApi": {
    "ok": true,
-   "items": 277,
-   "lastOk": "2026-10-24T10:13:42.617Z"
+   "items": 273,
+   "lastOk": "2026-10-29T12:45:35.769Z"
   }
  },
  "counts": {
-  "total": 446,
+  "total": 439,
   "api": 17,
-  "verified": 152,
-  "euAuto": 277,
-  "hazai": 58,
-  "eu": 388,
+  "verified": 149,
+  "euAuto": 273,
+  "hazai": 59,
+  "eu": 380,
   "excluded": 0
  },
  "needsReview": [],
@@ -42,7 +42,19 @@
    "why": "lejárt"
   },
   {
-   "id": "v-grappa-cutoff-2",
+   "id": "v-kap-rd06-1-25",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-01",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-02",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-03",
    "why": "lejárt"
   },
   {
@@ -82,6 +94,10 @@
    "why": "lejárt"
   },
   {
+   "id": "v-eureka-celticnext-aut2026",
+   "why": "lejárt"
+  },
+  {
    "id": "v-ivf-visegrad-grants-2026-10",
    "why": "lejárt"
   },
@@ -94,24 +110,12 @@
    "why": "lejárt"
   },
   {
-   "id": "v-marc-impact-hu-2026",
-   "why": "lejárt"
-  },
-  {
    "id": "v-perform-europe-2026-2028",
    "why": "lejárt"
   },
   {
-   "id": "v-mfb-zold-lendulet-hitelprogram",
-   "why": "monitor: gone: HTTP 404"
-  },
-  {
-   "id": "v-mfb-agrar-forgoeszkoz-hitelprogram-2025",
-   "why": "monitor: gone: HTTP 404"
-  },
-  {
-   "id": "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025",
-   "why": "monitor: gone: HTTP 404"
+   "id": "v-grappa-cutoff-2",
+   "why": "monitor: closed: az oldal szerint: „This call is now closed. Cut-off 2 proposals are under evaluation and results will be announced in January 2027.”"
   },
   {
    "id": "v-horizon-cl5-2026-10-d2-03",
@@ -146,61 +150,113 @@
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   },
   {
-   "id": "v-mfb-pvrk-forgoeszkoz-hitelprogram",
-   "why": "monitor: gone: HTTP 404"
+   "id": "v-marc-impact-hu-2026",
+   "why": "monitor: closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
   }
  ],
  "excluded": [],
  "changes": [
   {
-   "id": "eu-HORIZON-BRIDGING-2027-01-09",
-   "type": "new",
-   "title": "EU AI Media Platform – modular multilingual public-interest infrastructure for European news and audiovisual media (IA) - Apply AI"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-03",
-   "type": "new",
-   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-08",
-   "type": "new",
-   "title": "AI-powered foodome characterization"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-02",
-   "type": "new",
-   "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-03",
-   "type": "new",
-   "title": "Carbon farming innovation and scale-up"
-  },
-  {
    "id": "v-mfb-zold-lendulet-hitelprogram",
-   "type": "removed",
+   "type": "new",
    "title": "MFB Zöld Lendület Hitelprogram"
   },
   {
    "id": "v-mfb-agrar-forgoeszkoz-hitelprogram-2025",
-   "type": "removed",
+   "type": "new",
    "title": "MFB Agrár Forgóeszköz Hitelprogram 2025"
   },
   {
    "id": "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025",
-   "type": "removed",
+   "type": "new",
    "title": "MFB Élelmiszeripari Forgóeszköz Hitelprogram 2025"
   },
   {
    "id": "v-mfb-pvrk-forgoeszkoz-hitelprogram",
-   "type": "removed",
+   "type": "new",
    "title": "MFB PVRK Forgóeszköz Hitelprogram"
   },
   {
+   "id": "eu-cs-47365875",
+   "type": "deadline",
+   "from": "2026-10-26",
+   "to": "2026-11-01",
+   "title": "Fostering Ukrainians’ access to culture and cultural heritage — kaszkád (FSTP) nyílt felhívás"
+  },
+  {
    "id": "eu-HORIZON-BRIDGING-2027-01-10",
-   "type": "removed",
+   "type": "new",
    "title": "Autonomous Drive Ambition Cities (IA) - Apply AI"
+  },
+  {
+   "id": "eu-cs-46014314",
+   "type": "new",
+   "title": "Reinforcing skills in semiconductors — kaszkád (FSTP) nyílt felhívás"
+  },
+  {
+   "id": "v-kap-rd06-1-25",
+   "type": "removed",
+   "title": "Generációs megújulás gazdaságátvevő támogatásával"
+  },
+  {
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-01",
+   "type": "removed",
+   "title": "EIC Pathfinder Challenge: Advanced Materials for Miniaturised Energy Harvesting Systems (Fejlett anyagok miniatűr energiabetakarításhoz)"
+  },
+  {
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-02",
+   "type": "removed",
+   "title": "EIC Pathfinder Challenge: Biotechnology for Healthy Ageing (Biotechnológia az egészséges időskorért)"
+  },
+  {
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-03",
+   "type": "removed",
+   "title": "EIC Pathfinder Challenge: DeepRAP: Deep Reasoning, Abstraction & Planning towards trustworthy Cognitive AI Systems (Megbízható kognitív MI-rendszerek)"
+  },
+  {
+   "id": "v-eureka-celticnext-aut2026",
+   "type": "removed",
+   "title": "CELTIC-NEXT Call for Projects – Autumn 2026 (Eureka klaszter: következő generációs kommunikáció)"
+  },
+  {
+   "id": "a-kap-rd42a-1-26",
+   "type": "removed",
+   "title": "Vidéki infrastruktúra fejlesztés zártkerti területeken"
+  },
+  {
+   "id": "a-kap-rd46-1-25",
+   "type": "removed",
+   "title": "Működő minőségrendszerhez történő csatlakozás támogatása"
+  },
+  {
+   "id": "eu-cs-45640341",
+   "type": "removed",
+   "title": "Excellence Hubs — kaszkád (FSTP) nyílt felhívás"
+  },
+  {
+   "id": "eu-HORIZON-EIC-2026-DEFENCE-01",
+   "type": "removed",
+   "title": "EIC defence call"
+  },
+  {
+   "id": "eu-DIGITAL-JU-CHIPS-2026-SG-JAPAN",
+   "type": "removed",
+   "title": "International collaboration EU and Japan on semiconductors"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-03-GOVERNANCE-01",
+   "type": "removed",
+   "title": "Strengthening the resilience of European farmers through improved capacity in coping with risks and crises"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-03",
+   "type": "removed",
+   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-08",
+   "type": "removed",
+   "title": "AI-powered foodome characterization"
   }
  ]
 }

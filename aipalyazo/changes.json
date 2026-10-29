@@ -60,12 +60,22 @@
    "date": "2026-10-13",
    "type": "new",
    "title": "Vidéki infrastruktúra fejlesztés zártkerti területeken"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "removed",
+   "title": "Vidéki infrastruktúra fejlesztés zártkerti területeken"
   }
  ],
  "a-kap-rd46-1-25": [
   {
    "date": "2026-10-13",
    "type": "new",
+   "title": "Működő minőségrendszerhez történő csatlakozás támogatása"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "removed",
    "title": "Működő minőségrendszerhez történő csatlakozás támogatása"
   }
  ],
@@ -81,6 +91,10 @@
    "date": "2026-10-23",
    "type": "new",
    "title": "MFB Társasház Plusz Hitelprogram"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "page"
   }
  ],
  "eu-CERV-2024-CITIZENS-VALUES": [
@@ -436,6 +450,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "International collaboration EU and Japan on semiconductors"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "removed",
+   "title": "International collaboration EU and Japan on semiconductors"
   }
  ],
  "eu-EDF-2024-RA-SIMTRAIN-BRG-STEP": [
@@ -483,6 +502,11 @@
   {
    "date": "2026-10-24",
    "type": "removed",
+   "title": "Autonomous Drive Ambition Cities (IA) - Apply AI"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "new",
    "title": "Autonomous Drive Ambition Cities (IA) - Apply AI"
   }
  ],
@@ -2351,6 +2375,11 @@
    "date": "2026-10-24",
    "type": "new",
    "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "removed",
+   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
   }
  ],
  "eu-HORIZON-CL6-2027-02-FARM2FORK-05": [
@@ -2399,12 +2428,22 @@
    "date": "2026-10-24",
    "type": "new",
    "title": "AI-powered foodome characterization"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "removed",
+   "title": "AI-powered foodome characterization"
   }
  ],
  "eu-HORIZON-CL6-2027-03-GOVERNANCE-01": [
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Strengthening the resilience of European farmers through improved capacity in coping with risks and crises"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "removed",
    "title": "Strengthening the resilience of European farmers through improved capacity in coping with risks and crises"
   }
  ],
@@ -2480,6 +2519,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "EIC defence call"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "removed",
    "title": "EIC defence call"
   }
  ],
@@ -3591,11 +3635,25 @@
    "title": "EU support to Stakeholders to improve measurement of food waste and help implement food waste prevention in their operations and organisation - 2026-2027"
   }
  ],
+ "eu-cs-45640341": [
+  {
+   "date": "2026-10-29",
+   "type": "removed",
+   "title": "Excellence Hubs — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
  "eu-cs-45962345": [
   {
    "date": "2026-10-11",
    "type": "removed",
    "title": "EU-wide network of pilot plants and testing facilities, improving SMEs and start-ups' access to scale-up — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
+ "eu-cs-46014314": [
+  {
+   "date": "2026-10-29",
+   "type": "new",
+   "title": "Reinforcing skills in semiconductors — kaszkád (FSTP) nyílt felhívás"
   }
  ],
  "eu-cs-46014469": [
@@ -3618,6 +3676,12 @@
    "type": "deadline",
    "from": "2026-11-10",
    "to": "2026-10-26"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "deadline",
+   "from": "2026-10-26",
+   "to": "2026-11-01"
   }
  ],
  "eu-cs-48256791": [
@@ -3920,6 +3984,10 @@
   {
    "date": "2026-10-24",
    "type": "page"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "page"
   }
  ],
  "v-eitrm-kava14-ris": [
@@ -3934,6 +4002,10 @@
    "date": "2026-10-17",
    "type": "removed",
    "title": "KAVA Call 14 – Upscaling (Nyersanyag-technológiák felskálázása)"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "page"
   }
  ],
  "v-eitum-fsts-2026-c4": [
@@ -3976,6 +4048,13 @@
    "type": "page"
   }
  ],
+ "v-eureka-celticnext-aut2026": [
+  {
+   "date": "2026-10-29",
+   "type": "removed",
+   "title": "CELTIC-NEXT Call for Projects – Autumn 2026 (Eureka klaszter: következő generációs kommunikáció)"
+  }
+ ],
  "v-eurohpc-aif-large-scale": [
   {
    "date": "2026-10-14",
@@ -4002,6 +4081,10 @@
   },
   {
    "date": "2026-10-24",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-29",
    "type": "page"
   }
  ],
@@ -4060,6 +4143,10 @@
   {
    "date": "2026-10-19",
    "type": "page"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "page"
   }
  ],
  "v-garantiqa-investeu": [
@@ -4070,6 +4157,10 @@
   {
    "date": "2026-10-22",
    "type": "page"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "page"
   }
  ],
  "v-garantiqa-kezesseg": [
@@ -4079,6 +4170,10 @@
   },
   {
    "date": "2026-10-22",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-29",
    "type": "page"
   }
  ],
@@ -4095,6 +4190,10 @@
    "date": "2026-10-21",
    "type": "removed",
    "title": "GRAPPA Open Call – valorisation of agri-food biomass side-streams, cut-off 2 (Agrár-élelmiszeripari melléktermékek hasznosítása)"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "page"
   }
  ],
  "v-horizon-cl3-2026-01-bm-01": [
@@ -4525,6 +4624,11 @@
    "date": "2026-10-09",
    "type": "removed",
    "title": "EIC Pathfinder Challenge: Advanced Materials for Miniaturised Energy Harvesting Systems (Fejlett anyagok miniatűr energiabetakarításhoz)"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "removed",
+   "title": "EIC Pathfinder Challenge: Advanced Materials for Miniaturised Energy Harvesting Systems (Fejlett anyagok miniatűr energiabetakarításhoz)"
   }
  ],
  "v-horizon-eic-2026-pathfinderchallenges-01-02": [
@@ -4532,11 +4636,21 @@
    "date": "2026-10-09",
    "type": "removed",
    "title": "EIC Pathfinder Challenge: Biotechnology for Healthy Ageing (Biotechnológia az egészséges időskorért)"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "removed",
+   "title": "EIC Pathfinder Challenge: Biotechnology for Healthy Ageing (Biotechnológia az egészséges időskorért)"
   }
  ],
  "v-horizon-eic-2026-pathfinderchallenges-01-03": [
   {
    "date": "2026-10-09",
+   "type": "removed",
+   "title": "EIC Pathfinder Challenge: DeepRAP: Deep Reasoning, Abstraction & Planning towards trustworthy Cognitive AI Systems (Megbízható kognitív MI-rendszerek)"
+  },
+  {
+   "date": "2026-10-29",
    "type": "removed",
    "title": "EIC Pathfinder Challenge: DeepRAP: Deep Reasoning, Abstraction & Planning towards trustworthy Cognitive AI Systems (Megbízható kognitív MI-rendszerek)"
   }
@@ -4751,6 +4865,10 @@
   {
    "date": "2026-10-19",
    "type": "page"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "page"
   }
  ],
  "v-ivf-visegrad-grants-2026-10": [
@@ -4758,6 +4876,10 @@
    "date": "2026-10-08",
    "type": "removed",
    "title": "Visegrad Grants – 1 October 2026 deadline (Visegrádi Alap – regionális együttműködési projektek támogatása)"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "page"
   }
  ],
  "v-kap-rd01a-rd01c-rd01d-rd01e-rd02-rd04a-rd04b-rd12-1-25": [
@@ -4770,6 +4892,13 @@
   {
    "date": "2026-10-20",
    "type": "page"
+  }
+ ],
+ "v-kap-rd06-1-25": [
+  {
+   "date": "2026-10-29",
+   "type": "removed",
+   "title": "Generációs megújulás gazdaságátvevő támogatásával"
   }
  ],
  "v-kap-rd35-1-25": [
@@ -4858,6 +4987,10 @@
   {
    "date": "2026-10-23",
    "type": "page"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "page"
   }
  ],
  "v-mfb-agrar-forgoeszkoz-hitelprogram-2025": [
@@ -4873,6 +5006,11 @@
    "date": "2026-10-24",
    "type": "removed",
    "title": "MFB Agrár Forgóeszköz Hitelprogram 2025"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "new",
+   "title": "MFB Agrár Forgóeszköz Hitelprogram 2025"
   }
  ],
  "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025": [
@@ -4884,6 +5022,11 @@
    "date": "2026-10-24",
    "type": "removed",
    "title": "MFB Élelmiszeripari Forgóeszköz Hitelprogram 2025"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "new",
+   "title": "MFB Élelmiszeripari Forgóeszköz Hitelprogram 2025"
   }
  ],
  "v-mfb-pvrk-forgoeszkoz-hitelprogram": [
@@ -4891,12 +5034,22 @@
    "date": "2026-10-24",
    "type": "removed",
    "title": "MFB PVRK Forgóeszköz Hitelprogram"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "new",
+   "title": "MFB PVRK Forgóeszköz Hitelprogram"
   }
  ],
  "v-mfb-zold-lendulet-hitelprogram": [
   {
    "date": "2026-10-24",
    "type": "removed",
+   "title": "MFB Zöld Lendület Hitelprogram"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "new",
    "title": "MFB Zöld Lendület Hitelprogram"
   }
  ],
@@ -4912,6 +5065,10 @@
   {
    "date": "2026-10-21",
    "type": "page"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "page"
   }
  ],
  "v-ngi-restack": [
@@ -4926,6 +5083,10 @@
   {
    "date": "2026-10-21",
    "type": "page"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "page"
   }
  ],
  "v-perform-europe-2026-2028": [
@@ -4933,6 +5094,10 @@
    "date": "2026-10-23",
    "type": "removed",
    "title": "Perform Europe Open Call 2026–2028 (Előadó-művészeti nemzetközi turnék támogatása)"
+  },
+  {
+   "date": "2026-10-29",
+   "type": "page"
   }
  ],
  "v-tef-health-oc2": [
@@ -4950,6 +5115,10 @@
   },
   {
    "date": "2026-10-24",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-29",
    "type": "page"
   }
  ],
@@ -4973,6 +5142,10 @@
   },
   {
    "date": "2026-10-23",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-29",
    "type": "page"
   }
  ]
