@@ -127,7 +127,11 @@ test('requires: the four audit companies no longer get a consortium or target-gr
 const T3 = '2026-10-09';
 const ok3 = { public_debt_free: 'igen', in_difficulty: 'nem', own_funds: 'igen', rnd: 'nem', women_led: 'nem' };
 const live3 = JSON.parse(readFileSync(new URL('../aipalyazo/grants_live.json', import.meta.url), 'utf8'));
-const byId3 = (id) => live3.find((x) => x.id === id);
+// Fixtures come from the live feed, but a call can drop out of it any day
+// (closed, page down). Fall back to the hand-verified source entry so the
+// daily workflow's tests never depend on what happens to be listed today.
+const verified3 = JSON.parse(readFileSync(new URL('./verified-grants.json', import.meta.url), 'utf8')).items;
+const byId3 = (id) => live3.find((x) => x.id === id) || (() => { const v = verified3.find((x) => x.id === id); return v && { ...v, deadline: v.deadline || 'Folyamatos' }; })();
 const sizeOf = (r) => r.checks.find((c) => c.key === 'size').status;
 
 test('size: 250+ is large (fails KKV-only calls), 101-249 is mid, legacy 100+ is unknown', () => {

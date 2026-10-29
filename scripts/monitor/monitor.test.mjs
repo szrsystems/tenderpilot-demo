@@ -85,7 +85,7 @@ function fakeWeb(pages) {
 }
 const html = (t) => `<html><body><main>${t.split('\n').map((l) => `<p>${l}</p>`).join('')}</main></body></html>`;
 
-test('daily run: re-check, hide after two failures, discover + auto-publish, queue the rest', async () => {
+test('daily run: re-check, hide after three failed days, discover + auto-publish, queue the rest', async () => {
   const items = [
     { id: 'v-eu', title: 'EU topic', deadline: '2026-10-28', url: 'https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-x-01' },
     { id: 'v-gone', title: 'Megszűnt termék', deadline: 'Folyamatos', url: 'https://www.mfb.hu/vallalkozasok/mukodo/hitel/regi' },
@@ -119,8 +119,10 @@ test('daily run: re-check, hide after two failures, discover + auto-publish, que
   assert.ok(r1.review.some((x) => x.kind === 'new' && /status closed/.test(x.detail)));
   assert.ok(r1.log.some((l) => /eit: .*0 matches/.test(l)));
 
-  const r2 = await runMonitor({ ...cfg, state: r1.state, prevAuto: r1.auto });
-  assert.match(r2.flags.hide['v-gone'], /gone/);                            // second 404 → hidden
+  const r1b = await runMonitor({ ...cfg, state: r1.state, prevAuto: r1.auto });
+  assert.equal(r1b.flags.hide['v-gone'], undefined);                        // two 404s: still listed (sites have bad days)
+  const r2 = await runMonitor({ ...cfg, state: r1b.state, prevAuto: r1b.auto });
+  assert.match(r2.flags.hide['v-gone'], /gone/);                            // third 404 in a row → hidden
   assert.equal(r2.auto.length, 1);                                          // kept, not re-fetched
   assert.equal(r2.flags.overrides['v-ok'].lastChecked, TODAY);              // unchanged page → fresh
 

@@ -1,27 +1,5 @@
 [
  {
-  "id": "exp-kap-agrar-erdeszeti-rendszerek-2",
-  "title": "Agrár-erdészeti rendszerek telepítése, ápolása és fenntartása (2. kör)",
-  "programme": "KAP Stratégiai Terv (vidékfejlesztés)",
-  "expectedWindow": "2026 Q4",
-  "audience": "Mezőgazdasági termelők",
-  "amountHint": "Tervezett keret: 2,5 Mrd Ft",
-  "source": "https://kap.gov.hu/palyazatiutemterv",
-  "sourceNote": "A KAP Nemzeti Irányító Hatóság 2026.09.09-től hatályos pályázati menetrendje a 2026. III–IV. negyedévben meghirdetendő felhívások között sorolja fel; kedvezményezett: mezőgazdasági termelők.",
-  "addedAt": "2026-09-28"
- },
- {
-  "id": "exp-kap-tejhasznu-szarvasmarha-allatjolet-2",
-  "title": "Állatjóléti támogatás a tejtermelő szarvasmarha ágazatban (2. kör)",
-  "programme": "KAP Stratégiai Terv (vidékfejlesztés)",
-  "expectedWindow": "2026 Q4",
-  "audience": "Tejelő szarvasmarhát tartó mezőgazdasági termelők",
-  "amountHint": "Tervezett keret: 2,4 Mrd Ft",
-  "source": "https://kap.gov.hu/palyazatiutemterv",
-  "sourceNote": "A KAP pályázati menetrend (hatályos 2026.09.09-től) a 2026. III–IV. negyedévre tervezett felhívások között szerepelteti; kedvezményezett: mezőgazdasági termelők.",
-  "addedAt": "2026-09-28"
- },
- {
   "id": "exp-kap-erdokarok-megelozese-2",
   "title": "Erdőkárok megelőzésének támogatása (2. kör)",
   "programme": "KAP Stratégiai Terv (vidékfejlesztés)",

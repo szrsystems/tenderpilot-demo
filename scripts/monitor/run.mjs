@@ -152,7 +152,7 @@ export async function runMonitor({
       && (x.g.deadline !== prevO.deadline)) {
       flags.overrides[x.g.id] = { ...(flags.overrides[x.g.id] || {}), deadline: prevO.deadline, note: prevO.note, setAt: prevO.setAt || today };
     }
-    if ((x.outcome === 'closed' && st.closedHits >= 2) || (x.outcome === 'gone' && st.goneHits >= 2)) flags.hide[x.g.id] = `${x.outcome}: ${x.detail}`;
+    if ((x.outcome === 'closed' && st.closedHits >= 2) || (x.outcome === 'gone' && st.goneHits >= 3)) flags.hide[x.g.id] = `${x.outcome}: ${x.detail}`;
     if (['closed', 'gone', 'changed-unverified', 'changed-unchecked'].includes(x.outcome) && !flags.hide[x.g.id]) {
       review.push({ kind: 'recheck', id: x.g.id, title: x.g.title, url: x.g.url, outcome: x.outcome, detail: x.detail });
     }
