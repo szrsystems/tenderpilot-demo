@@ -45,6 +45,21 @@
   var SCALE = 90; // deadline bar without a known window: fixed 90-day scale (full bar = 90+ days left)
 
   // opts: { today: 'YYYY-MM-DD', isNew: bool, consortium: bool }
+  // Repayable / non-grant money is shown differently from grants, so a loan never
+  // reads as free money: own colour, card accent, badge text and amount label.
+  function finKind(g) {
+    var t = g && g.type || '';
+    if (t === 'loan') return 'loan';
+    if (t === 'guarantee') return 'guarantee';
+    if (/equity/.test(t) && !/grant/.test(t)) return 'equity';
+    if (t === 'loan+grant') return 'mixed';
+    return '';
+  }
+  function cardClass(g) { var k = finKind(g); return k ? ' k-' + k : ''; }
+  var AMT_LABEL = { loan: 'Hitelösszeg', guarantee: 'Kezesség', equity: 'Befektetés', mixed: 'Hitel + támogatás' };
+  function amountLabel(g) { return AMT_LABEL[finKind(g)] || 'Támogatás'; }
+  var FIN_BADGE = { loan: 'Hitel · vissza kell fizetni', guarantee: 'Garancia · nem pénzbeli támogatás', equity: 'Tőkebefektetés · tulajdonrészért', mixed: 'Hitel + vissza nem térítendő rész' };
+
   function badges(g, opts) {
     opts = opts || {};
     var out = [], d = isDate(g.deadline) ? daysBetween(opts.today, g.deadline) : null, b = budget(g);
@@ -55,7 +70,8 @@
     else if (d !== null && d <= 30) out.push('<span class="badge amber">Hamarosan lejár · ' + d + ' nap</span>');
     if ((b && b.left === 0) || (!b && g.budgetExhausted)) out.push('<span class="badge red">Keret lekötve</span>');
     else if (b && b.pct <= 25) out.push('<span class="badge amber">Keret fogyóban</span>');
-    if (TYPE_HU[g.type]) out.push('<span class="badge ' + (/grant|wage/.test(g.type) && !/equity/.test(g.type) ? 'green' : 'gray') + '">' + esc(TYPE_HU[g.type]) + '</span>');
+    if (FIN_BADGE[finKind(g)]) out.push('<span class="badge fin">' + esc(FIN_BADGE[finKind(g)]) + '</span>');
+    else if (TYPE_HU[g.type]) out.push('<span class="badge ' + (/grant|wage/.test(g.type) && !/equity/.test(g.type) ? 'green' : 'gray') + '">' + esc(TYPE_HU[g.type]) + '</span>');
     if (g.cat) out.push('<span class="badge gray">' + esc(g.cat) + '</span>');
     if (opts.consortium) out.push('<span class="badge blue">EU · konzorcium</span>');
     else if (g.scope === 'eu') out.push('<span class="badge blue">EU</span>');
@@ -114,7 +130,7 @@
     return s;
   }
 
-  var api = { brief: brief, esc: esc, srcTag: srcTag, badges: badges, bars: bars, budget: budget, ft: ft, TYPE_HU: TYPE_HU };
+  var api = { finKind: finKind, cardClass: cardClass, amountLabel: amountLabel, brief: brief, esc: esc, srcTag: srcTag, badges: badges, bars: bars, budget: budget, ft: ft, TYPE_HU: TYPE_HU };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.AIPCards = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

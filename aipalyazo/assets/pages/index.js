@@ -13,7 +13,7 @@
 
   function card(g, extra) {
     var C = window.AIPCards;
-    return '<article class="gcard"><div class="gc-head">' + C.srcTag(g) + '<div class="gc-main"><a class="gc-title" href="' + pageUrl(g) + '">' + esc(g.title) + '</a><div class="gc-sub">' + esc([g.code, g.issuer].filter(Boolean).join(' · ')) + '</div><div class="badges">' + C.badges(g, { today: TODAY }) + '</div></div><div class="gc-side"><div><div class="gc-amt-label">Támogatás</div><div class="gc-amt">' + esc(g.amount || '—') + '</div></div></div></div>' + C.bars(g, { today: TODAY }) + (extra || '') + '</article>';
+    return '<article class="gcard' + C.cardClass(g) + '"><div class="gc-head">' + C.srcTag(g) + '<div class="gc-main"><a class="gc-title" href="' + pageUrl(g) + '">' + esc(g.title) + '</a><div class="gc-sub">' + esc([g.code, g.issuer].filter(Boolean).join(' · ')) + '</div><div class="badges">' + C.badges(g, { today: TODAY }) + '</div></div><div class="gc-side"><div><div class="gc-amt-label">Támogatás</div><div class="gc-amt">' + esc(g.amount || '—') + '</div></div></div></div>' + C.bars(g, { today: TODAY }) + (extra || '') + '</article>';
   }
 
   Promise.all([

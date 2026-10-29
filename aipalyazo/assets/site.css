@@ -39,6 +39,8 @@
   --danger: #b42318;
   --danger-tint: #fdecea;
   --info: #1d5fb8;
+  --fin: #6a4c9c;           /* loans, guarantees, equity: repayable / not a grant (6.7:1 on white) */
+  --fin-tint: #f3eefa;
   --info-tint: #eaf2fc;
   --focus: #1d5fd1;
   --rail: #ffffff;
@@ -334,6 +336,11 @@ select { max-width: 100%; }
 .gcard { position: relative; display: grid; gap: 14px; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); transition: border-color .15s var(--ease), box-shadow .15s var(--ease), transform .15s var(--ease); }
 .gcard:hover { border-color: color-mix(in srgb, var(--brand) 45%, var(--line)); box-shadow: 0 10px 28px rgba(18, 132, 74, .10); transform: translateY(-1px); }
 .gcard.apply { border-left: 4px solid var(--brand); padding-left: 17px; }
+/* repayable money (loan, guarantee, equity) — never looks like a grant */
+.gcard.k-loan, .gcard.k-guarantee, .gcard.k-equity, .gcard.k-mixed { border-left: 4px solid var(--fin); padding-left: 17px; }
+.gcard.k-mixed { border-left-style: dashed; }
+.gcard.k-loan .gc-amt, .gcard.k-guarantee .gc-amt, .gcard.k-equity .gc-amt { color: var(--fin); }
+.badge.fin { background: var(--fin-tint); color: var(--fin); font-weight: 600; }
 .gc-head { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 14px; align-items: start; }
 @media (min-width: 900px) { .gc-head { grid-template-columns: 48px minmax(0, 1fr) 230px; } }
 .src-tag { width: 48px; height: 48px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; font: 700 13px/1 var(--sans); letter-spacing: -.01em; background: var(--brand-tint); color: var(--brand-strong); }

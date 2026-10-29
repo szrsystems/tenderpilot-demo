@@ -417,7 +417,7 @@ const byDeadline = (a, b) => {
 function regRow(g, href, withSearch) {
   const data = withSearch ? ` data-s="${esc(`${g.title} ${g.code || ''} ${g.issuer || ''} ${g.cat || ''} ${g.note || ''} ${g.amount || ''} ${(g.regions || []).join(' ')}`.toLowerCase())}" data-scope="${g.scope === 'eu' ? 'eu' : 'hu'}" data-type="${esc(g.type || '')}"` : '';
   const today = todayHU();
-  return `<article class="gcard"${data}><div class="gc-head">${Cards.srcTag(g)}<div class="gc-main"><a class="gc-title" href="${esc(href)}">${esc(g.title)}</a><div class="gc-sub">${esc([g.code, g.issuer].filter(Boolean).join(' · '))}</div><div class="badges">${Cards.badges(g, { today })}</div></div><div class="gc-side"><div><div class="gc-amt-label">Támogatás</div><div class="gc-amt">${esc(g.amount || '—')}</div></div></div></div>${Cards.bars(g, { today })}</article>`;
+  return `<article class="gcard${Cards.cardClass(g)}"${data}><div class="gc-head">${Cards.srcTag(g)}<div class="gc-main"><a class="gc-title" href="${esc(href)}">${esc(g.title)}</a><div class="gc-sub">${esc([g.code, g.issuer].filter(Boolean).join(' · '))}</div><div class="badges">${Cards.badges(g, { today })}</div></div><div class="gc-side"><div><div class="gc-amt-label">${esc(Cards.amountLabel(g))}</div><div class="gc-amt">${esc(g.amount || '—')}</div></div></div></div>${Cards.bars(g, { today })}</article>`;
 }
 
 // "2026. október 13-i" (1 → "1-jei")
