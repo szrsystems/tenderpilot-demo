@@ -53,7 +53,7 @@ export const GUIDES = [
   },
   {
     slug: 'de-minimis-tamogatas',
-    seoTitle: 'De minimis támogatás: 300 000 euró 3 év alatt',
+    seoTitle: 'De minimis támogatás 2026: 300 000 euró, 3 év',
     updated: '2026-10-13',
     title: 'Mi az a de minimis támogatás? 300 000 eurós keret három év alatt',
     description: 'A de minimis támogatás felső határa 2024 óta 300 000 euró vállalkozásonként, bármely három év alatt. Kire vonatkozik, mi a kivétel.',
@@ -166,6 +166,49 @@ export const GUIDES = [
       ['EU Funding & Tenders Portal', 'https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/home'],
       ['NKFIH — Horizont Európa nemzeti kapcsolattartók', 'https://www.horizonteuropa.nkfih.gov.hu'],
       ['EMDESK: How to build a consortium for Horizon Europe', 'https://www.emdesk.com/horizon-2020-horizon-europe-basics-guide/build-consortium-find-partners-eu-project'],
+    ],
+  },
+  {
+    slug: 'szechenyi-mikrohitel-max',
+    seoTitle: 'Széchenyi Mikrohitel MAX+ 2026: feltételek, kalkulátor',
+    updated: '2026-10-29',
+    title: 'Széchenyi Mikrohitel MAX+: feltételek és törlesztő-kalkulátor',
+    description: 'Széchenyi Mikrohitel MAX+: 1–150 millió Ft, fix 3% kamat, 13–120 hónap futamidő, max. 24 hónap türelmi idő. Feltételek és havi törlesztő-kalkulátor.',
+    lead: 'A Széchenyi Mikrohitel MAX+ mikro- és kisvállalkozásoknak szóló, államilag támogatott beruházási hitel: 1 és 150 millió forint között igényelhető (induló, lezárt üzleti évvel még nem rendelkező vállalkozásnak legfeljebb 100 millió Ft), fix évi 3,0% nettó kamattal, 13–120 hónapos futamidőre, legfeljebb 24 hónap türelmi idővel. A hitelösszeg legfeljebb 20%-a fordítható forgóeszközre.',
+    sections: [
+      { h: 'A feltételek röviden', html: `<table class="facts">
+<tr><th>Hitelösszeg</th><td>1–150 millió Ft; lezárt teljes üzleti évvel nem rendelkező (induló) vállalkozásnak legfeljebb 100 millió Ft</td></tr>
+<tr><th>Kamat</th><td>fix évi 3,0% nettó ügyleti kamat; kezelési költség évi 0,0%</td></tr>
+<tr><th>Futamidő</th><td>13–120 hónap</td></tr>
+<tr><th>Türelmi idő</th><td>legfeljebb 24 hónap (újonnan épült ingatlan vásárlásánál legfeljebb 36 hónap)</td></tr>
+<tr><th>Törlesztés</th><td>havonta vagy negyedévente, a kamattal együtt</td></tr>
+<tr><th>Hitelcél</th><td>mezőgazdasági és nem mezőgazdasági beruházás; a hitelösszeg legfeljebb 20%-a forgóeszköz</td></tr>
+<tr><th>Ki igényelheti?</th><td>mikro- és kisvállalkozás, induló vállalkozás is; nem lehet lejárt adó- vagy hiteltartozása</td></tr>
+<tr><th>Biztosíték</th><td>legalább egy dologi biztosíték és magánszemély készfizető kezessége kötelező; ha a fedezet 115% (óvadéknál 100%) alatti, garantőrintézmény kezessége is kell</td></tr></table>
+<p>A teljes költséget (regisztrációs díj, kezességi díj és egyéb díjak) a KAVOSZ kondíciós listája és a Mikrohitel Szabályzat tartalmazza; a kamarai önkéntes tagok a regisztrációs díj alól mentesülnek.</p>` },
+      { h: 'Törlesztő-kalkulátor', html: `<form id="loan-calc" class="loan-calc" novalidate>
+<label>Hitelösszeg (millió Ft)<input class="input" name="amount" type="number" min="1" max="150" step="1" value="20" inputmode="numeric"></label>
+<label>Futamidő (hónap, 13–120)<input class="input" name="term" type="number" min="13" max="120" step="1" value="60" inputmode="numeric"></label>
+<label>Türelmi idő (hónap, 0–24)<input class="input" name="grace" type="number" min="0" max="24" step="1" value="6" inputmode="numeric"></label>
+</form>
+<div id="loan-out" class="notice ok loan-out" aria-live="polite"><p>A kalkulátorhoz JavaScript szükséges.</p></div>
+<p class="muted">Tájékoztató számítás havi törlesztéssel és fix 3,0% kamattal; a díjakat (regisztrációs, kezességi) nem tartalmazza. A pontos ajánlatot a KAVOSZ ügyintéző adja.</p>
+<script src="../assets/loan-calc.js" defer></script>` },
+      { h: 'Hogyan igényelhető?', html: `<ol><li>A szükséges dokumentumok listája a KAVOSZ oldalán érhető el.</li><li>Az igénylés online, a KAVOSZ Széchenyi Kártya ügyfélportálon kezdhető el, vagy személyesen egy KAVOSZ-ügyintézőnél (például a kamarai irodákban, előzetes időpontfoglalással).</li><li>A hitelt a programban részt vevő bank bírálja el és folyósítja.</li></ol>` },
+    ],
+    live: (open, link) => {
+      const max = open.filter((g) => /Széchenyi|KAVOSZ/i.test(`${g.title} ${g.issuer || ''}`) && /MAX\+/i.test(g.title || ''));
+      return `Jelenleg ${max.length} Széchenyi Kártya Program MAX+ konstrukció érhető el a listánkon (folyószámlahitel, likviditási, beruházási hitel, lízing, mikrohitel). Lásd: ${link('szechenyi-kartya', 'a Széchenyi Kártya Program összes hitele')}, ${link('hitel', 'kedvezményes hitelek')}.`;
+    },
+    faq: [
+      { q: 'Mekkora a Széchenyi Mikrohitel MAX+ kamata?', a: 'Fix évi 3,0% nettó ügyleti kamat, évi 0,0% kezelési költséggel; a díjakat a KAVOSZ kondíciós listája tartalmazza.' },
+      { q: 'Mennyi Széchenyi Mikrohitel MAX+ igényelhető?', a: '1 és 150 millió Ft között; lezárt teljes üzleti évvel még nem rendelkező induló vállalkozásnak legfeljebb 100 millió Ft.' },
+      { q: 'Mennyi a futamidő és a türelmi idő?', a: 'A futamidő 13–120 hónap, a türelmi idő legfeljebb 24 hónap (újonnan épült ingatlan vásárlásánál legfeljebb 36 hónap).' },
+      { q: 'Induló vállalkozás is igényelheti?', a: 'Igen, a lezárt üzleti évvel még nem rendelkező vállalkozás is, legfeljebb 100 millió Ft összegig.' },
+    ],
+    sources: [
+      ['BKIK — Széchenyi Mikrohitel MAX+ (kamarai tájékoztató)', 'https://bkik.hu/szechenyi/mikrohitel-max'],
+      ['KAVOSZ — Széchenyi Kártya Program', 'https://www.kavosz.hu'],
     ],
   },
 ];

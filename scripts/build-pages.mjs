@@ -106,6 +106,7 @@ const PAGE_CSS = `
 .related{margin:0;padding-left:18px}.related li{margin:6px 0}
 .guide{max-width:760px}.guide h2{margin-top:var(--s6)}.guide .lead{font-size:18px;color:var(--ink)}.guide .live{margin:var(--s4) 0}.guide section ul,.guide section ol{padding-left:20px}.guide section li{margin:6px 0}.guide .facts th{width:38%}
 .news-list{list-style:none;padding:0;margin:0}.news-list li{padding:10px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.news-list a{font-weight:600}.news h2 .count{font-size:14px;color:var(--ink-3);font-weight:500}
+.loan-calc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:12px 0}.loan-calc label{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:14px}.loan-out .big{font-size:22px}@media (max-width:640px){.loan-calc{grid-template-columns:1fr}}
 .sources{padding-left:18px;overflow-wrap:anywhere}.sources li{margin:6px 0}
 .guide-list{list-style:none;padding:0;margin:var(--s5) 0;max-width:760px}.guide-list li{padding:var(--s4) 0;border-bottom:1px solid var(--line)}.guide-list a{font-weight:600;font-size:18px}.guide-list p{margin:6px 0 0;color:var(--ink-2)}
 `;
@@ -495,6 +496,7 @@ export function guidesFor(g) {
   const out = ['hogyan-palyazzunk'];
   if (g.scope === 'eu') out.push('eu-palyazatok-magyar-cegeknek');
   else if ((g.sizeClasses || []).length) out.push('kkv-minosites');
+  if (/Széchenyi|KAVOSZ/i.test(`${g.title || ''} ${g.issuer || ''}`) && /loan/.test(g.type || '')) out.push('szechenyi-mikrohitel-max');
   if (/loan|guarantee/.test(g.type || '')) out.push('vissza-nem-teritendo-vagy-hitel');
   else if (g.scope !== 'eu' && /de minimis/i.test(`${g.rate || ''} ${g.note || ''} ${g.amount || ''}`)) out.push('de-minimis-tamogatas');
   return out.filter((s) => GUIDE_BY_SLUG.has(s)).slice(0, 3).map((s) => GUIDE_BY_SLUG.get(s));
