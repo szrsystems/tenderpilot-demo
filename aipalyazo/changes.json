@@ -455,6 +455,11 @@
    "date": "2026-10-29",
    "type": "removed",
    "title": "International collaboration EU and Japan on semiconductors"
+  },
+  {
+   "date": "2026-10-30",
+   "type": "new",
+   "title": "International collaboration EU and Japan on semiconductors"
   }
  ],
  "eu-EDF-2024-RA-SIMTRAIN-BRG-STEP": [
@@ -2380,6 +2385,11 @@
    "date": "2026-10-29",
    "type": "removed",
    "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
+  },
+  {
+   "date": "2026-10-30",
+   "type": "new",
+   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
   }
  ],
  "eu-HORIZON-CL6-2027-02-FARM2FORK-05": [
@@ -2433,6 +2443,11 @@
    "date": "2026-10-29",
    "type": "removed",
    "title": "AI-powered foodome characterization"
+  },
+  {
+   "date": "2026-10-30",
+   "type": "new",
+   "title": "AI-powered foodome characterization"
   }
  ],
  "eu-HORIZON-CL6-2027-03-GOVERNANCE-01": [
@@ -2444,6 +2459,11 @@
   {
    "date": "2026-10-29",
    "type": "removed",
+   "title": "Strengthening the resilience of European farmers through improved capacity in coping with risks and crises"
+  },
+  {
+   "date": "2026-10-30",
+   "type": "new",
    "title": "Strengthening the resilience of European farmers through improved capacity in coping with risks and crises"
   }
  ],
@@ -3670,6 +3690,13 @@
    "title": "Designing space-based downstream applications with international partners — kaszkád (FSTP) nyílt felhívás"
   }
  ],
+ "eu-cs-46908840": [
+  {
+   "date": "2026-10-30",
+   "type": "new",
+   "title": "New forms of cooperation in agriculture and the forest-based sector — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
  "eu-cs-47365875": [
   {
    "date": "2026-10-13",
@@ -3698,12 +3725,27 @@
    "title": "Rolling out the ERA Policy Agenda results — kaszkád (FSTP) nyílt felhívás"
   }
  ],
+ "pg-EFOP_PLUSZ-4.1.2-25": [
+  {
+   "date": "2026-10-30",
+   "type": "new",
+   "title": "Fogyatékos és sajátos nevelési igényű fiatalok munkatapasztalat szerzésének támogatása, munkakompetenciák fejlesztése"
+  }
+ ],
  "pg-GINOP_PLUSZ-1.1.6-25": [
   {
    "date": "2026-10-08",
    "type": "szabad-keret",
    "from": 5767306554,
    "to": 5567249607
+  }
+ ],
+ "pg-MAHOP_PLUSZ-1.3.1-25": [
+  {
+   "date": "2026-10-30",
+   "type": "szabad-keret",
+   "from": 448615488,
+   "to": 448615555
   }
  ],
  "v-2024-1-2-1-he-partnerseg": [
@@ -4055,6 +4097,13 @@
    "title": "CELTIC-NEXT Call for Projects – Autumn 2026 (Eureka klaszter: következő generációs kommunikáció)"
   }
  ],
+ "v-eureka-eurogia2030-call31": [
+  {
+   "date": "2026-10-30",
+   "type": "removed",
+   "title": "Eurogia2030 – Call 31 (Eureka klaszter: alacsony szén-dioxid-kibocsátású energiatechnológiák)"
+  }
+ ],
  "v-eurohpc-aif-large-scale": [
   {
    "date": "2026-10-14",
@@ -4174,6 +4223,10 @@
   },
   {
    "date": "2026-10-29",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-30",
    "type": "page"
   }
  ],
@@ -4991,6 +5044,10 @@
   {
    "date": "2026-10-29",
    "type": "page"
+  },
+  {
+   "date": "2026-10-30",
+   "type": "page"
   }
  ],
  "v-mfb-agrar-forgoeszkoz-hitelprogram-2025": [
@@ -5069,6 +5126,10 @@
   {
    "date": "2026-10-29",
    "type": "page"
+  },
+  {
+   "date": "2026-10-30",
+   "type": "page"
   }
  ],
  "v-ngi-restack": [
@@ -5086,6 +5147,10 @@
   },
   {
    "date": "2026-10-29",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-30",
    "type": "page"
   }
  ],
@@ -5119,6 +5184,10 @@
   },
   {
    "date": "2026-10-29",
+   "type": "page"
+  },
+  {
+   "date": "2026-10-30",
    "type": "page"
   }
  ],

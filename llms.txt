@@ -2,7 +2,7 @@
 
 > Ingyenes, naponta frissülő pályázatfigyelő magyar vállalkozásoknak: nyitott hazai (Széchenyi Terv Plusz, KAP, MFB, NKFIH, Széchenyi Kártya) és EU-s (Horizon Europe, EIC, LIFE, Digital Europe stb.) felhívások hivatalos forrásból, a cég adataival pontról pontra összevetve.
 
-- Állapot: 2026-10-29 — 439 nyitott felhívás, amelyre vállalkozás pályázhat.
+- Állapot: 2026-10-30 — 444 nyitott felhívás, amelyre vállalkozás pályázhat.
 - Forrás: palyazat.gov.hu API, EU Funding & Tenders Portal, a kiírók hivatalos oldalai; minden felhívásnál feltüntetjük a forrást és az ellenőrzés napját.
 - Lakossági, civil, önkormányzati és magánszemélyeknek szóló felhívások nem szerepelnek.
 - Az adatok tájékoztató jellegűek; mindig a hivatalos felhívás az irányadó.
@@ -20,6 +20,7 @@
 - [Vissza nem térítendő támogatás vagy kedvezményes hitel? A különbség](https://aipalyazo.hu/aipalyazo/utmutato/vissza-nem-teritendo-vagy-hitel.html): A vissza nem térítendő támogatást nem kell visszafizetni, a kedvezményes hitelt igen, de olcsóbban. Mikor melyik éri meg?
 - [Hogyan pályázzunk? A pályázás lépései vállalkozásoknak](https://aipalyazo.hu/aipalyazo/utmutato/hogyan-palyazzunk.html): A pályázás lépései: felhívás, jogosultság, költségvetés, elektronikus beadás a palyazat.gov.hu-n, hiánypótlás, döntés, elszámolás.
 - [EU-s pályázatok magyar cégeknek: Horizon Europe, EIC, konzorcium](https://aipalyazo.hu/aipalyazo/utmutato/eu-palyazatok-magyar-cegeknek.html): EU-s pályázatok (Horizon Europe, EIC, LIFE) a Funding & Tenders portálon, többnyire konzorciumban. Kinek érdemes, hogyan induljon.
+- [Széchenyi Mikrohitel MAX+: feltételek és törlesztő-kalkulátor](https://aipalyazo.hu/aipalyazo/utmutato/szechenyi-mikrohitel-max.html): Széchenyi Mikrohitel MAX+: 1–150 millió Ft, fix 3% kamat, 13–120 hónap futamidő, max. 24 hónap türelmi idő. Feltételek és havi törlesztő-kalkulátor.
 
 ## Témák, programok, cégtípusok és régiók
 - [GINOP Plusz pályázatok és hitelek](https://aipalyazo.hu/aipalyazo/palyazat/tema/ginop-plusz.html): 8 nyitott felhívás
@@ -27,17 +28,17 @@
 - [KEHOP Plusz pályázatok és hitelek vállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/kehop-plusz.html): 4 nyitott felhívás
 - [MAHOP Plusz halászati és akvakultúra pályázatok](https://aipalyazo.hu/aipalyazo/palyazat/tema/mahop-plusz.html): 3 nyitott felhívás
 - [KAP Stratégiai Terv pályázatok (agrár és vidékfejlesztés)](https://aipalyazo.hu/aipalyazo/palyazat/tema/kap.html): 11 nyitott felhívás
-- [Horizon Europe felhívások magyar vállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/horizon-europe.html): 296 nyitott felhívás
+- [Horizon Europe felhívások magyar vállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/horizon-europe.html): 299 nyitott felhívás
 - [Európai Innovációs Tanács (EIC) felhívások](https://aipalyazo.hu/aipalyazo/palyazat/tema/eic.html): 5 nyitott felhívás
-- [Erasmus+, Digital Europe, EIT és egyéb EU-s felhívások](https://aipalyazo.hu/aipalyazo/palyazat/tema/eu-egyeb-programok.html): 79 nyitott felhívás
+- [Erasmus+, Digital Europe, EIT és egyéb EU-s felhívások](https://aipalyazo.hu/aipalyazo/palyazat/tema/eu-egyeb-programok.html): 80 nyitott felhívás
 - [Széchenyi Kártya Program hitelei](https://aipalyazo.hu/aipalyazo/palyazat/tema/szechenyi-kartya.html): 8 nyitott felhívás
 - [Pályázatok és hitelek egyéni vállalkozóknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/egyeni-vallalkozo.html): 9 nyitott felhívás
-- [Pályázatok és hitelek mikrovállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/mikrovallalkozas.html): 52 nyitott felhívás
-- [Pályázatok és hitelek kis- és középvállalkozásoknak (KKV)](https://aipalyazo.hu/aipalyazo/palyazat/tema/kkv.html): 57 nyitott felhívás
+- [Pályázatok és hitelek mikrovállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/mikrovallalkozas.html): 53 nyitott felhívás
+- [Pályázatok és hitelek kis- és középvállalkozásoknak (KKV)](https://aipalyazo.hu/aipalyazo/palyazat/tema/kkv.html): 58 nyitott felhívás
 - [Pályázatok, tőke és hitel induló vállalkozásoknak és startupoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/startup.html): 15 nyitott felhívás
 - [Pályázatok és hitelek mezőgazdasági termelőknek](https://aipalyazo.hu/aipalyazo/palyazat/tema/mezogazdasagi-termelo.html): 14 nyitott felhívás
 - [Pályázatok és hitelek turisztikai és vendéglátó vállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/turisztikai-vallalkozas.html): 4 nyitott felhívás
-- [Vissza nem térítendő támogatások vállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/vissza-nem-teritendo.html): 400 nyitott felhívás
+- [Vissza nem térítendő támogatások vállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/vissza-nem-teritendo.html): 405 nyitott felhívás
 - [Kedvezményes hitelek és lízing vállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/hitel.html): 26 nyitott felhívás
 - [Kockázati tőke és tőkebefektetési programok](https://aipalyazo.hu/aipalyazo/palyazat/tema/toke.html): 6 nyitott felhívás
 - [Hitelgarancia és kezességvállalás vállalkozásoknak](https://aipalyazo.hu/aipalyazo/palyazat/tema/garancia.html): 5 nyitott felhívás

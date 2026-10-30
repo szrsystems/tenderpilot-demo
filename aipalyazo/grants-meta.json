@@ -1,32 +1,35 @@
 {
- "updatedAt": "2026-10-29T12:45:35.769Z",
- "sourcesOk": false,
- "apiFailed": true,
+ "updatedAt": "2026-10-30T12:05:54.407Z",
+ "sourcesOk": true,
+ "apiFailed": false,
  "euApiFailed": false,
  "sources": {
   "palyazatApi": {
-   "ok": false,
-   "error": "fetch failed",
-   "items": 17,
-   "dataFrom": "2026-10-19T11:53:08.887Z",
-   "lastOk": "2026-10-19T11:53:08.887Z"
+   "ok": true,
+   "items": 18,
+   "lastOk": "2026-10-30T12:05:54.407Z"
   },
   "euApi": {
    "ok": true,
-   "items": 273,
-   "lastOk": "2026-10-29T12:45:35.769Z"
+   "items": 278,
+   "lastOk": "2026-10-30T12:05:54.407Z"
   }
  },
  "counts": {
-  "total": 439,
-  "api": 17,
-  "verified": 149,
-  "euAuto": 273,
-  "hazai": 59,
-  "eu": 380,
-  "excluded": 0
+  "total": 444,
+  "api": 18,
+  "verified": 148,
+  "euAuto": 278,
+  "hazai": 60,
+  "eu": 384,
+  "excluded": 19
  },
- "needsReview": [],
+ "needsReview": [
+  {
+   "code": "EFOP_PLUSZ-4.1.2-25",
+   "title": "Fogyatékos és sajátos nevelési igényű fiatalok munkatapasztalat szerzésének támogatása, munkakompetenciák fejlesztése"
+  }
+ ],
  "staleVerified": [],
  "droppedVerified": [
   {
@@ -46,15 +49,7 @@
    "why": "lejárt"
   },
   {
-   "id": "v-horizon-eic-2026-pathfinderchallenges-01-01",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-horizon-eic-2026-pathfinderchallenges-01-02",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-horizon-eic-2026-pathfinderchallenges-01-03",
+   "id": "v-grappa-cutoff-2",
    "why": "lejárt"
   },
   {
@@ -98,6 +93,10 @@
    "why": "lejárt"
   },
   {
+   "id": "v-eureka-eurogia2030-call31",
+   "why": "lejárt"
+  },
+  {
    "id": "v-ivf-visegrad-grants-2026-10",
    "why": "lejárt"
   },
@@ -114,8 +113,16 @@
    "why": "lejárt"
   },
   {
-   "id": "v-grappa-cutoff-2",
-   "why": "monitor: closed: az oldal szerint: „This call is now closed. Cut-off 2 proposals are under evaluation and results will be announced in January 2027.”"
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-01",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-02",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-eic-2026-pathfinderchallenges-01-03",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   },
   {
    "id": "v-horizon-cl5-2026-10-d2-03",
@@ -154,109 +161,126 @@
    "why": "monitor: closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
   }
  ],
- "excluded": [],
+ "excluded": [
+  {
+   "code": "SSNS-NCC-HU-2026.KOMP",
+   "why": "Kiberbiztonsági kompetenciaközösségi tagság — nem pénzbeli, nem pályázat."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.8-24",
+   "why": "Pénzügyi eszköz keret alapkezelőnek."
+  },
+  {
+   "code": "IKOP_PLUSZ-1.1.0-23",
+   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A1-24",
+   "why": "Alapkezelői technikai felhívás."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.1.0-23",
+   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
+  },
+  {
+   "code": "IKOP_PLUSZ-1.2.0-23",
+   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
+   "why": "Alapkezelői/bank költségtérítés."
+  },
+  {
+   "code": "DIMOP_PLUSZ-5.1.4-2-26",
+   "why": "Alapkezelői kezelési költségtérítés."
+  },
+  {
+   "code": "GINOP_PLUSZ-2.5.4-25",
+   "why": "Alapkezelői költségtérítés."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
+   "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.2.0-23",
+   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "KEHOP_PLUSZ-3.1.11-25",
+   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
+  },
+  {
+   "code": "KEHOP_PLUSZ-3.1.12-25",
+   "why": "Közszféra kármentesítési felhívás."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.6-24",
+   "why": "Hitelkeret alapkezelőnek (Budapest)."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.7-24",
+   "why": "Alapkezelői/közvetítői költségtérítés."
+  },
+  {
+   "code": "2025-3.1.1-ED",
+   "why": "Egyedi döntésű NKFI kérelem, nem nyílt felhívás."
+  },
+  {
+   "code": "EFOP_PLUSZ-TEF-3.1.3/TEF-25",
+   "why": "Csak közintézmények, egyházak, nonprofitok; 2026-09-25-én zár."
+  }
+ ],
  "changes": [
   {
-   "id": "v-mfb-zold-lendulet-hitelprogram",
+   "id": "pg-MAHOP_PLUSZ-1.3.1-25",
+   "type": "szabad-keret",
+   "from": 448615488,
+   "to": 448615555,
+   "title": "A fenntartható természetesvízi halgazdálkodás támogatása"
+  },
+  {
+   "id": "pg-EFOP_PLUSZ-4.1.2-25",
    "type": "new",
-   "title": "MFB Zöld Lendület Hitelprogram"
-  },
-  {
-   "id": "v-mfb-agrar-forgoeszkoz-hitelprogram-2025",
-   "type": "new",
-   "title": "MFB Agrár Forgóeszköz Hitelprogram 2025"
-  },
-  {
-   "id": "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025",
-   "type": "new",
-   "title": "MFB Élelmiszeripari Forgóeszköz Hitelprogram 2025"
-  },
-  {
-   "id": "v-mfb-pvrk-forgoeszkoz-hitelprogram",
-   "type": "new",
-   "title": "MFB PVRK Forgóeszköz Hitelprogram"
-  },
-  {
-   "id": "eu-cs-47365875",
-   "type": "deadline",
-   "from": "2026-10-26",
-   "to": "2026-11-01",
-   "title": "Fostering Ukrainians’ access to culture and cultural heritage — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-HORIZON-BRIDGING-2027-01-10",
-   "type": "new",
-   "title": "Autonomous Drive Ambition Cities (IA) - Apply AI"
-  },
-  {
-   "id": "eu-cs-46014314",
-   "type": "new",
-   "title": "Reinforcing skills in semiconductors — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "v-kap-rd06-1-25",
-   "type": "removed",
-   "title": "Generációs megújulás gazdaságátvevő támogatásával"
-  },
-  {
-   "id": "v-horizon-eic-2026-pathfinderchallenges-01-01",
-   "type": "removed",
-   "title": "EIC Pathfinder Challenge: Advanced Materials for Miniaturised Energy Harvesting Systems (Fejlett anyagok miniatűr energiabetakarításhoz)"
-  },
-  {
-   "id": "v-horizon-eic-2026-pathfinderchallenges-01-02",
-   "type": "removed",
-   "title": "EIC Pathfinder Challenge: Biotechnology for Healthy Ageing (Biotechnológia az egészséges időskorért)"
-  },
-  {
-   "id": "v-horizon-eic-2026-pathfinderchallenges-01-03",
-   "type": "removed",
-   "title": "EIC Pathfinder Challenge: DeepRAP: Deep Reasoning, Abstraction & Planning towards trustworthy Cognitive AI Systems (Megbízható kognitív MI-rendszerek)"
-  },
-  {
-   "id": "v-eureka-celticnext-aut2026",
-   "type": "removed",
-   "title": "CELTIC-NEXT Call for Projects – Autumn 2026 (Eureka klaszter: következő generációs kommunikáció)"
-  },
-  {
-   "id": "a-kap-rd42a-1-26",
-   "type": "removed",
-   "title": "Vidéki infrastruktúra fejlesztés zártkerti területeken"
-  },
-  {
-   "id": "a-kap-rd46-1-25",
-   "type": "removed",
-   "title": "Működő minőségrendszerhez történő csatlakozás támogatása"
-  },
-  {
-   "id": "eu-cs-45640341",
-   "type": "removed",
-   "title": "Excellence Hubs — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-HORIZON-EIC-2026-DEFENCE-01",
-   "type": "removed",
-   "title": "EIC defence call"
+   "title": "Fogyatékos és sajátos nevelési igényű fiatalok munkatapasztalat szerzésének támogatása, munkakompetenciák fejlesztése"
   },
   {
    "id": "eu-DIGITAL-JU-CHIPS-2026-SG-JAPAN",
-   "type": "removed",
+   "type": "new",
    "title": "International collaboration EU and Japan on semiconductors"
   },
   {
+   "id": "eu-cs-46908840",
+   "type": "new",
+   "title": "New forms of cooperation in agriculture and the forest-based sector — kaszkád (FSTP) nyílt felhívás"
+  },
+  {
    "id": "eu-HORIZON-CL6-2027-03-GOVERNANCE-01",
-   "type": "removed",
+   "type": "new",
    "title": "Strengthening the resilience of European farmers through improved capacity in coping with risks and crises"
   },
   {
    "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-03",
-   "type": "removed",
+   "type": "new",
    "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
   },
   {
    "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-08",
-   "type": "removed",
+   "type": "new",
    "title": "AI-powered foodome characterization"
+  },
+  {
+   "id": "v-eureka-eurogia2030-call31",
+   "type": "removed",
+   "title": "Eurogia2030 – Call 31 (Eureka klaszter: alacsony szén-dioxid-kibocsátású energiatechnológiák)"
   }
  ]
 }
