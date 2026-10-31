@@ -1,35 +1,21 @@
 {
- "updatedAt": "2026-10-30",
+ "updatedAt": "2026-10-31",
  "items": [
   {
    "kind": "recheck",
-   "id": "v-ngi-codesupply",
-   "title": "NLnet CodeSupply – software supply chain security (Szoftver-ellátási lánc biztonsága)",
-   "url": "https://nlnet.nl/codesupply/",
-   "outcome": "changed-unverified",
-   "detail": "deadline 2026-11-03 not in its quote"
+   "id": "v-eit-rib-hu-2027",
+   "title": "EIT Regional Innovation Booster – Hungary Edition 2027 (EIT Regionális Innovációs Gyorsító – magyar kiadás 2027)",
+   "url": "https://www.eiturbanmobility.eu/call-for-proposals/eit-regional-innovation-booster-eit-rib-hungary-2027/",
+   "outcome": "closed",
+   "detail": "az oldal szerint: „Deadline for applications:\n30 October 2026”"
   },
   {
    "kind": "recheck",
-   "id": "v-garantiqa-kezesseg",
-   "title": "Garantiqa készfizető kezességvállalás (de minimis, csoportmentességi, Gazdaság Újjáépítési és piaci díjas kezesség banki hitelekhez)",
-   "url": "https://garantiqa.hu/kezessegvallalas/kezessegvallalasi-formak/",
+   "id": "v-garantiqa-investeu",
+   "title": "Garantiqa InvestEU Garanciaprogram (Az Európai Bizottság viszontgaranciájával működő KKV-hitelgarancia)",
+   "url": "https://garantiqa.hu/garantiqa-investeu-garanciaprogram/",
    "outcome": "changed-unverified",
-   "detail": "not a funding call; status not on page; no deadline and not rolling; eligibility unclear; status unclear"
-  },
-  {
-   "kind": "new",
-   "source": "eit",
-   "url": "https://www.eit.europa.eu/our-activities/opportunities/catalyse-neb-2027-open-call",
-   "title": "Catalyse NEB 2027 Open Call",
-   "detail": "no deadline and not rolling"
-  },
-  {
-   "kind": "benchmark-code",
-   "source": "pafi",
-   "title": "KEHOP Plusz-5.1.0-26",
-   "url": "https://pafi.hu/palyazatok/vallalkozasok",
-   "detail": "a(z) pafi.hu — vállalkozások listáján szerepel, nálunk nincs — ellenőrizd a hivatalos oldalon"
+   "detail": "status not on page"
   },
   {
    "kind": "benchmark-code",
@@ -48,36 +34,43 @@
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "veres kepvilag",
-   "url": "https://pafi.hu/p/veres-kepvilag",
+   "title": "richter tett te es a termeszettudomanyok meses tortenetek 2026",
+   "url": "https://pafi.hu/p/richter-tett-te-es-a-termeszettudomanyok-meses-tortenetek-2026",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "8 sopianae nemzetkozi foto salon 2026",
-   "url": "https://pafi.hu/p/8-sopianae-nemzetkozi-foto-salon-2026",
+   "title": "blikk allati szeretet fotopalyazat",
+   "url": "https://pafi.hu/p/blikk-allati-szeretet-fotopalyazat",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "a generali kozlekedesbiztonsagi elmenyprogram oktatasi intezmenyek palyazata 2026",
-   "url": "https://pafi.hu/p/a-generali-kozlekedesbiztonsagi-elmenyprogram-oktatasi-intezmenyek-palyazata-2026",
+   "title": "csoori sandor alap 2026",
+   "url": "https://pafi.hu/p/csoori-sandor-alap-2026",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "keszits filmet kobanyarol 2",
-   "url": "https://pafi.hu/p/keszits-filmet-kobanyarol-2",
+   "title": "elrajtolt az athletica galactica 20262027 es evada",
+   "url": "https://pafi.hu/p/elrajtolt-az-athletica-galactica-20262027-es-evada",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "pro filii alapitvany palyazata 3",
-   "url": "https://pafi.hu/p/pro-filii-alapitvany-palyazata-3",
+   "title": "fellepes a gyermekek elleni eroszak ellen",
+   "url": "https://pafi.hu/p/fellepes-a-gyermekek-elleni-eroszak-ellen",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "professzionalis weboldal csak 69500 ft 10 munkanap alatt teljes felszereltseggel igeny szerint tobbnyelvu es webaruhazas kialakitassal 1",
+   "url": "https://pafi.hu/p/professzionalis-weboldal-csak-69500-ft-10-munkanap-alatt-teljes-felszereltseggel-igeny-szerint-tobbnyelvu-es-webaruhazas-kialakitassal-1",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]
