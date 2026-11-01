@@ -1,22 +1,6 @@
 {
- "updatedAt": "2026-10-31",
+ "updatedAt": "2026-11-01",
  "items": [
-  {
-   "kind": "recheck",
-   "id": "v-eit-rib-hu-2027",
-   "title": "EIT Regional Innovation Booster – Hungary Edition 2027 (EIT Regionális Innovációs Gyorsító – magyar kiadás 2027)",
-   "url": "https://www.eiturbanmobility.eu/call-for-proposals/eit-regional-innovation-booster-eit-rib-hungary-2027/",
-   "outcome": "closed",
-   "detail": "az oldal szerint: „Deadline for applications:\n30 October 2026”"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-garantiqa-investeu",
-   "title": "Garantiqa InvestEU Garanciaprogram (Az Európai Bizottság viszontgaranciájával működő KKV-hitelgarancia)",
-   "url": "https://garantiqa.hu/garantiqa-investeu-garanciaprogram/",
-   "outcome": "changed-unverified",
-   "detail": "status not on page"
-  },
   {
    "kind": "benchmark-code",
    "source": "pafi",
@@ -34,43 +18,22 @@
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "richter tett te es a termeszettudomanyok meses tortenetek 2026",
-   "url": "https://pafi.hu/p/richter-tett-te-es-a-termeszettudomanyok-meses-tortenetek-2026",
+   "title": "csodalatos allatvilag",
+   "url": "https://pafi.hu/p/csodalatos-allatvilag",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "blikk allati szeretet fotopalyazat",
-   "url": "https://pafi.hu/p/blikk-allati-szeretet-fotopalyazat",
+   "title": "az ev videos hirdetese verseny iab hungary",
+   "url": "https://pafi.hu/p/az-ev-videos-hirdetese-verseny-iab-hungary",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "csoori sandor alap 2026",
-   "url": "https://pafi.hu/p/csoori-sandor-alap-2026",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "elrajtolt az athletica galactica 20262027 es evada",
-   "url": "https://pafi.hu/p/elrajtolt-az-athletica-galactica-20262027-es-evada",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "fellepes a gyermekek elleni eroszak ellen",
-   "url": "https://pafi.hu/p/fellepes-a-gyermekek-elleni-eroszak-ellen",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "professzionalis weboldal csak 69500 ft 10 munkanap alatt teljes felszereltseggel igeny szerint tobbnyelvu es webaruhazas kialakitassal 1",
-   "url": "https://pafi.hu/p/professzionalis-weboldal-csak-69500-ft-10-munkanap-alatt-teljes-felszereltseggel-igeny-szerint-tobbnyelvu-es-webaruhazas-kialakitassal-1",
+   "title": "a hangfoglalo konnyuzene tamogato program kollegium nyilt palyazati felhivasa 1",
+   "url": "https://pafi.hu/p/a-hangfoglalo-konnyuzene-tamogato-program-kollegium-nyilt-palyazati-felhivasa-1",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]

@@ -683,6 +683,11 @@
    "date": "2026-10-31",
    "type": "removed",
    "title": "Identifying user-focused solutions to support news media freedom"
+  },
+  {
+   "date": "2026-11-01",
+   "type": "new",
+   "title": "Identifying user-focused solutions to support news media freedom"
   }
  ],
  "eu-HORIZON-CL2-2027-01-DEMOCRACY-07": [
@@ -749,6 +754,11 @@
    "date": "2026-10-31",
    "type": "removed",
    "title": "Crafting routes to a circular economy"
+  },
+  {
+   "date": "2026-11-01",
+   "type": "new",
+   "title": "Crafting routes to a circular economy"
   }
  ],
  "eu-HORIZON-CL2-2027-01-HERITAGE-04": [
@@ -780,6 +790,11 @@
   {
    "date": "2026-10-31",
    "type": "removed",
+   "title": "Culture, heritage and creative industries for health and well-being"
+  },
+  {
+   "date": "2026-11-01",
+   "type": "new",
    "title": "Culture, heritage and creative industries for health and well-being"
   }
  ],
@@ -896,6 +911,11 @@
   {
    "date": "2026-10-31",
    "type": "removed",
+   "title": "Societal impact of cultural heritage"
+  },
+  {
+   "date": "2026-11-01",
+   "type": "new",
    "title": "Societal impact of cultural heritage"
   }
  ],
@@ -2333,6 +2353,11 @@
    "date": "2026-10-31",
    "type": "removed",
    "title": "Strengthening rural communities' resilience to shocks"
+  },
+  {
+   "date": "2026-11-01",
+   "type": "new",
+   "title": "Strengthening rural communities' resilience to shocks"
   }
  ],
  "eu-HORIZON-CL6-2027-02-COMMUNITIES-02": [
@@ -2415,6 +2440,11 @@
    "date": "2026-10-30",
    "type": "new",
    "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
+  },
+  {
+   "date": "2026-11-01",
+   "type": "removed",
+   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
   }
  ],
  "eu-HORIZON-CL6-2027-02-FARM2FORK-05": [
@@ -2472,6 +2502,11 @@
   {
    "date": "2026-10-30",
    "type": "new",
+   "title": "AI-powered foodome characterization"
+  },
+  {
+   "date": "2026-11-01",
+   "type": "removed",
    "title": "AI-powered foodome characterization"
   }
  ],
@@ -4098,6 +4133,10 @@
    "type": "deadline",
    "from": "2026-10-30",
    "to": "2026-11-30"
+  },
+  {
+   "date": "2026-11-01",
+   "type": "page"
   }
  ],
  "v-eitrm-kava14-ris": [
@@ -5128,6 +5167,10 @@
   },
   {
    "date": "2026-10-31",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-01",
    "type": "page"
   }
  ],
