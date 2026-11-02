@@ -1,6 +1,46 @@
 {
- "updatedAt": "2026-11-01",
+ "updatedAt": "2026-11-02",
  "items": [
+  {
+   "kind": "recheck",
+   "id": "v-mfb-agrar-forgoeszkoz-hitelprogram-2025",
+   "title": "MFB Agrár Forgóeszköz Hitelprogram 2025",
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-agrar-forgoeszkoz-hitelprogram-2025-t266-masolat-t266-p267",
+   "outcome": "changed-unverified",
+   "detail": "status not on page; amount quote not on page"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025",
+   "title": "MFB Élelmiszeripari Forgóeszköz Hitelprogram 2025",
+   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025-t259-masolat-t259-p260",
+   "outcome": "changed-unverified",
+   "detail": "status not on page; amount quote not on page"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-agrar-szk-max",
+   "title": "Agrár Széchenyi Kártya MAX+",
+   "url": "https://www.kavosz.hu/hitelek/agrar-szechenyi-kartya/",
+   "outcome": "changed-unverified",
+   "detail": "status not on page"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-2024-1-2-1-he-partnerseg",
+   "title": "Horizont Európa európai partnerségek közös nemzetközi felhívásaiban sikeresen szereplő magyar szervezetek támogatása",
+   "url": "https://nkfih.gov.hu/palyazoknak/nkfi-alap/horizont-europa-europai-partnersegek-magyar-szervezetek-tamogatasa-2024-121-he-partnerseg/palyazati-felhivas",
+   "outcome": "closed",
+   "detail": "az oldal szerint: „Következő beadási határidő:\nElektronikus benyújtás határideje:\n2026. október 30. 12:00”"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-mfb-pvrk-forgoeszkoz-hitelprogram",
+   "title": "MFB PVRK Forgóeszköz Hitelprogram",
+   "url": "https://www.mfb.hu/vallalkozasok/mikro/hitel/mfb-pvrk-forgoeszkoz-hitelprogram-t228-p228",
+   "outcome": "changed-unverified",
+   "detail": "not a funding call; title not on page; status not on page; no deadline and not rolling; eligibility unclear; status unclear"
+  },
   {
    "kind": "benchmark-code",
    "source": "pafi",
@@ -18,22 +58,15 @@
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "csodalatos allatvilag",
-   "url": "https://pafi.hu/p/csodalatos-allatvilag",
+   "title": "bursa hungarica felsooktatasi onkormanyzati osztondijpalyazat felsooktatasi tanulmanyokat kezdeni kivano fiatalok szamara bursa 2027 b",
+   "url": "https://pafi.hu/p/bursa-hungarica-felsooktatasi-onkormanyzati-osztondijpalyazat-felsooktatasi-tanulmanyokat-kezdeni-kivano-fiatalok-szamara-bursa-2027-b",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "az ev videos hirdetese verseny iab hungary",
-   "url": "https://pafi.hu/p/az-ev-videos-hirdetese-verseny-iab-hungary",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "a hangfoglalo konnyuzene tamogato program kollegium nyilt palyazati felhivasa 1",
-   "url": "https://pafi.hu/p/a-hangfoglalo-konnyuzene-tamogato-program-kollegium-nyilt-palyazati-felhivasa-1",
+   "title": "bursa hungarica felsooktatasi onkormanyzati osztondijpalyazata felsooktatasi hallgatok szamara bursa 2027 a",
+   "url": "https://pafi.hu/p/bursa-hungarica-felsooktatasi-onkormanyzati-osztondijpalyazata-felsooktatasi-hallgatok-szamara-bursa-2027-a",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]

@@ -3777,6 +3777,12 @@
    "type": "deadline",
    "from": "2026-10-26",
    "to": "2026-11-01"
+  },
+  {
+   "date": "2026-11-02",
+   "type": "deadline",
+   "from": "2026-11-01",
+   "to": "2026-11-10"
   }
  ],
  "eu-cs-48256791": [
@@ -3868,6 +3874,10 @@
    "type": "deadline",
    "from": "2026-10-30",
    "to": "2026-12-18"
+  },
+  {
+   "date": "2026-11-02",
+   "type": "page"
   }
  ],
  "v-2025-1-1-1-iparjog": [
@@ -3877,6 +3887,10 @@
   },
   {
    "date": "2026-10-21",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-02",
    "type": "page"
   }
  ],
@@ -3908,6 +3922,10 @@
  "v-agrar-szk-max": [
   {
    "date": "2026-10-18",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-02",
    "type": "page"
   }
  ],
@@ -4137,6 +4155,10 @@
   {
    "date": "2026-11-01",
    "type": "page"
+  },
+  {
+   "date": "2026-11-02",
+   "type": "page"
   }
  ],
  "v-eitrm-kava14-ris": [
@@ -4282,6 +4304,10 @@
   },
   {
    "date": "2026-10-21",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-02",
    "type": "page"
   }
  ],
@@ -5172,6 +5198,10 @@
   {
    "date": "2026-11-01",
    "type": "page"
+  },
+  {
+   "date": "2026-11-02",
+   "type": "page"
   }
  ],
  "v-mfb-agrar-forgoeszkoz-hitelprogram-2025": [
@@ -5192,6 +5222,10 @@
    "date": "2026-10-29",
    "type": "new",
    "title": "MFB Agrár Forgóeszköz Hitelprogram 2025"
+  },
+  {
+   "date": "2026-11-02",
+   "type": "page"
   }
  ],
  "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025": [
@@ -5208,6 +5242,10 @@
    "date": "2026-10-29",
    "type": "new",
    "title": "MFB Élelmiszeripari Forgóeszköz Hitelprogram 2025"
+  },
+  {
+   "date": "2026-11-02",
+   "type": "page"
   }
  ],
  "v-mfb-pvrk-forgoeszkoz-hitelprogram": [
@@ -5220,6 +5258,10 @@
    "date": "2026-10-29",
    "type": "new",
    "title": "MFB PVRK Forgóeszköz Hitelprogram"
+  },
+  {
+   "date": "2026-11-02",
+   "type": "page"
   }
  ],
  "v-mfb-zold-lendulet-hitelprogram": [

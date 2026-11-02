@@ -2,7 +2,7 @@
 
 > Ingyenes, naponta frissülő pályázatfigyelő magyar vállalkozásoknak: nyitott hazai (Széchenyi Terv Plusz, KAP, MFB, NKFIH, Széchenyi Kártya) és EU-s (Horizon Europe, EIC, LIFE, Digital Europe stb.) felhívások hivatalos forrásból, a cég adataival pontról pontra összevetve.
 
-- Állapot: 2026-11-01 — 437 nyitott felhívás, amelyre vállalkozás pályázhat.
+- Állapot: 2026-11-02 — 437 nyitott felhívás, amelyre vállalkozás pályázhat.
 - Forrás: palyazat.gov.hu API, EU Funding & Tenders Portal, a kiírók hivatalos oldalai; minden felhívásnál feltüntetjük a forrást és az ellenőrzés napját.
 - Lakossági, civil, önkormányzati és magánszemélyeknek szóló felhívások nem szerepelnek.
 - Az adatok tájékoztató jellegűek; mindig a hivatalos felhívás az irányadó.

@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-01T12:36:04.718Z",
+ "updatedAt": "2026-11-02T14:33:38.728Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,12 +7,12 @@
   "palyazatApi": {
    "ok": true,
    "items": 16,
-   "lastOk": "2026-11-01T12:36:04.718Z"
+   "lastOk": "2026-11-02T14:33:38.728Z"
   },
   "euApi": {
    "ok": true,
    "items": 276,
-   "lastOk": "2026-11-01T12:36:04.718Z"
+   "lastOk": "2026-11-02T14:33:38.728Z"
   }
  },
  "counts": {
@@ -170,7 +170,7 @@
   },
   {
    "id": "v-marc-impact-hu-2026",
-   "why": "monitor: closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
+   "why": "monitor: closed: az oldal szerint: „2026. szeptember 28.\nJelentkezési határidő (23:59)”"
   }
  ],
  "excluded": [
@@ -183,22 +183,6 @@
    "why": "Pénzügyi eszköz keret alapkezelőnek."
   },
   {
-   "code": "IKOP_PLUSZ-2.2.0-23",
-   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
-  },
-  {
-   "code": "IKOP_PLUSZ-2.1.0-23",
-   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
-  },
-  {
-   "code": "IKOP_PLUSZ-1.2.0-23",
-   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
-  },
-  {
    "code": "DIMOP_PLUSZ-1.2.3/A1-24",
    "why": "Alapkezelői technikai felhívás."
   },
@@ -207,32 +191,44 @@
    "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
   },
   {
-   "code": "IKOP_PLUSZ-1.1.0-23",
-   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
+   "code": "IKOP_PLUSZ-1.2.0-23",
+   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
-   "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
+   "code": "IKOP_PLUSZ-2.1.0-23",
+   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.2.0-23",
+   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "IKOP_PLUSZ-1.1.0-23",
+   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
    "why": "Alapkezelői/bank költségtérítés."
   },
   {
-   "code": "GINOP_PLUSZ-2.5.4-25",
-   "why": "Alapkezelői költségtérítés."
-  },
-  {
    "code": "DIMOP_PLUSZ-5.1.4-2-26",
    "why": "Alapkezelői kezelési költségtérítés."
   },
   {
-   "code": "KEHOP_PLUSZ-3.1.11-25",
-   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
+   "code": "GINOP_PLUSZ-2.5.4-25",
+   "why": "Alapkezelői költségtérítés."
   },
   {
-   "code": "GINOP_PLUSZ-1.4.7-24",
-   "why": "Alapkezelői/közvetítői költségtérítés."
+   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
+   "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
+  },
+  {
+   "code": "KEHOP_PLUSZ-3.1.11-25",
+   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
   },
   {
    "code": "KEHOP_PLUSZ-3.1.12-25",
@@ -241,6 +237,10 @@
   {
    "code": "GINOP_PLUSZ-1.4.6-24",
    "why": "Hitelkeret alapkezelőnek (Budapest)."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.7-24",
+   "why": "Alapkezelői/közvetítői költségtérítés."
   },
   {
    "code": "2025-3.1.1-ED",
@@ -253,39 +253,11 @@
  ],
  "changes": [
   {
-   "id": "eu-HORIZON-CL6-2027-02-COMMUNITIES-01",
-   "type": "new",
-   "title": "Strengthening rural communities' resilience to shocks"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-07",
-   "type": "new",
-   "title": "Societal impact of cultural heritage"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-04",
-   "type": "new",
-   "title": "Culture, heritage and creative industries for health and well-being"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-HERITAGE-03",
-   "type": "new",
-   "title": "Crafting routes to a circular economy"
-  },
-  {
-   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-06",
-   "type": "new",
-   "title": "Identifying user-focused solutions to support news media freedom"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-03",
-   "type": "removed",
-   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-08",
-   "type": "removed",
-   "title": "AI-powered foodome characterization"
+   "id": "eu-cs-47365875",
+   "type": "deadline",
+   "from": "2026-11-01",
+   "to": "2026-11-10",
+   "title": "Fostering Ukrainians’ access to culture and cultural heritage — kaszkád (FSTP) nyílt felhívás"
   }
  ]
 }
