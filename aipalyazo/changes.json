@@ -617,6 +617,11 @@
    "date": "2026-10-22",
    "type": "new",
    "title": "Student and family engagement for developing a culture of democratic/civic participation"
+  },
+  {
+   "date": "2026-11-03",
+   "type": "removed",
+   "title": "Student and family engagement for developing a culture of democratic/civic participation"
   }
  ],
  "eu-HORIZON-CL2-2027-01-DEMOCRACY-04": [
@@ -650,6 +655,11 @@
   {
    "date": "2026-10-14",
    "type": "new",
+   "title": "Development aid and democratic governance"
+  },
+  {
+   "date": "2026-11-03",
+   "type": "removed",
    "title": "Development aid and democratic governance"
   }
  ],
@@ -2297,6 +2307,11 @@
    "date": "2026-10-24",
    "type": "new",
    "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
+  },
+  {
+   "date": "2026-11-03",
+   "type": "removed",
+   "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
   }
  ],
  "eu-HORIZON-CL6-2027-02-CLIMATE-03": [
@@ -2323,6 +2338,11 @@
   {
    "date": "2026-10-24",
    "type": "new",
+   "title": "Carbon farming innovation and scale-up"
+  },
+  {
+   "date": "2026-11-03",
+   "type": "removed",
    "title": "Carbon farming innovation and scale-up"
   }
  ],
@@ -2381,6 +2401,11 @@
   {
    "date": "2026-10-22",
    "type": "new",
+   "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
+  },
+  {
+   "date": "2026-11-03",
+   "type": "removed",
    "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
   }
  ],
@@ -3722,6 +3747,20 @@
    "title": "Excellence Hubs — kaszkád (FSTP) nyílt felhívás"
   }
  ],
+ "eu-cs-45652931": [
+  {
+   "date": "2026-11-03",
+   "type": "new",
+   "title": "European partnership on sustainable food systems for people, planet and climate — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
+ "eu-cs-45704318": [
+  {
+   "date": "2026-11-03",
+   "type": "new",
+   "title": "Industrial leadership in AI, Data and Robotics boosting competitiveness and the green transition (AI Data and Robotics Partnership) (IA)[[https://www.europarl.europa.eu/RegData/etudes/STUD/2021/662906"
+  }
+ ],
  "eu-cs-45962345": [
   {
    "date": "2026-10-11",
@@ -4159,6 +4198,10 @@
   {
    "date": "2026-11-02",
    "type": "page"
+  },
+  {
+   "date": "2026-11-03",
+   "type": "page"
   }
  ],
  "v-eitrm-kava14-ris": [
@@ -4236,6 +4279,13 @@
    "date": "2026-10-30",
    "type": "removed",
    "title": "Eurogia2030 – Call 31 (Eureka klaszter: alacsony szén-dioxid-kibocsátású energiatechnológiák)"
+  }
+ ],
+ "v-eureka-itea-2026": [
+  {
+   "date": "2026-11-03",
+   "type": "removed",
+   "title": "ITEA Call for Projects 2026 (Eureka klaszter: szoftver-alapú digitális innováció)"
   }
  ],
  "v-eurohpc-aif-large-scale": [
@@ -4334,6 +4384,10 @@
   {
    "date": "2026-10-29",
    "type": "page"
+  },
+  {
+   "date": "2026-11-03",
+   "type": "page"
   }
  ],
  "v-garantiqa-investeu": [
@@ -4352,6 +4406,10 @@
   {
    "date": "2026-10-31",
    "type": "page"
+  },
+  {
+   "date": "2026-11-03",
+   "type": "page"
   }
  ],
  "v-garantiqa-kezesseg": [
@@ -4369,6 +4427,10 @@
   },
   {
    "date": "2026-10-30",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-03",
    "type": "page"
   }
  ],
@@ -5202,6 +5264,10 @@
   {
    "date": "2026-11-02",
    "type": "page"
+  },
+  {
+   "date": "2026-11-03",
+   "type": "page"
   }
  ],
  "v-mfb-agrar-forgoeszkoz-hitelprogram-2025": [
@@ -5296,6 +5362,10 @@
   {
    "date": "2026-10-30",
    "type": "page"
+  },
+  {
+   "date": "2026-11-03",
+   "type": "page"
   }
  ],
  "v-ngi-restack": [
@@ -5317,6 +5387,10 @@
   },
   {
    "date": "2026-10-30",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-03",
    "type": "page"
   }
  ],
@@ -5368,6 +5442,21 @@
   {
    "date": "2026-10-09",
    "type": "page"
+  },
+  {
+   "date": "2026-11-03",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-03",
+   "type": "deadline-official",
+   "to": "2029-06-29"
+  },
+  {
+   "date": "2026-11-03",
+   "type": "deadline",
+   "from": "Folyamatos",
+   "to": "2029-06-29"
   }
  ],
  "v-trunsport-oc1": [

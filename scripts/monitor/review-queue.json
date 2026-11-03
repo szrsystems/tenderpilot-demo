@@ -1,45 +1,52 @@
 {
- "updatedAt": "2026-11-02",
+ "updatedAt": "2026-11-03",
  "items": [
   {
    "kind": "recheck",
-   "id": "v-mfb-agrar-forgoeszkoz-hitelprogram-2025",
-   "title": "MFB Agrár Forgóeszköz Hitelprogram 2025",
-   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-agrar-forgoeszkoz-hitelprogram-2025-t266-masolat-t266-p267",
+   "id": "v-ngi-restack",
+   "title": "NLnet Restack – Open Internet Stack fund (Nyílt internetes technológiai verem – NGI)",
+   "url": "https://nlnet.nl/restack/",
    "outcome": "changed-unverified",
-   "detail": "status not on page; amount quote not on page"
+   "detail": "deadline 2026-11-03 not in its quote"
   },
   {
    "kind": "recheck",
-   "id": "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025",
-   "title": "MFB Élelmiszeripari Forgóeszköz Hitelprogram 2025",
-   "url": "https://www.mfb.hu/vallalkozasok/mukodo/hitel/mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025-t259-masolat-t259-p260",
+   "id": "v-ngi-codesupply",
+   "title": "NLnet CodeSupply – software supply chain security (Szoftver-ellátási lánc biztonsága)",
+   "url": "https://nlnet.nl/codesupply/",
    "outcome": "changed-unverified",
-   "detail": "status not on page; amount quote not on page"
+   "detail": "deadline 2026-11-03 not in its quote"
   },
   {
    "kind": "recheck",
-   "id": "v-agrar-szk-max",
-   "title": "Agrár Széchenyi Kártya MAX+",
-   "url": "https://www.kavosz.hu/hitelek/agrar-szechenyi-kartya/",
+   "id": "v-garantiqa-investeu",
+   "title": "Garantiqa InvestEU Garanciaprogram (Az Európai Bizottság viszontgaranciájával működő KKV-hitelgarancia)",
+   "url": "https://garantiqa.hu/garantiqa-investeu-garanciaprogram/",
    "outcome": "changed-unverified",
-   "detail": "status not on page"
+   "detail": "not a funding call; status not on page; no deadline and not rolling; eligibility unclear; status unclear"
   },
   {
    "kind": "recheck",
-   "id": "v-2024-1-2-1-he-partnerseg",
-   "title": "Horizont Európa európai partnerségek közös nemzetközi felhívásaiban sikeresen szereplő magyar szervezetek támogatása",
-   "url": "https://nkfih.gov.hu/palyazoknak/nkfi-alap/horizont-europa-europai-partnersegek-magyar-szervezetek-tamogatasa-2024-121-he-partnerseg/palyazati-felhivas",
-   "outcome": "closed",
-   "detail": "az oldal szerint: „Következő beadási határidő:\nElektronikus benyújtás határideje:\n2026. október 30. 12:00”"
+   "id": "v-garantiqa-kezesseg",
+   "title": "Garantiqa készfizető kezességvállalás (de minimis, csoportmentességi, Gazdaság Újjáépítési és piaci díjas kezesség banki hitelekhez)",
+   "url": "https://garantiqa.hu/kezessegvallalas/kezessegvallalasi-formak/",
+   "outcome": "changed-unverified",
+   "detail": "not a funding call; status not on page; no deadline and not rolling; eligibility unclear; status unclear"
   },
   {
-   "kind": "recheck",
-   "id": "v-mfb-pvrk-forgoeszkoz-hitelprogram",
-   "title": "MFB PVRK Forgóeszköz Hitelprogram",
-   "url": "https://www.mfb.hu/vallalkozasok/mikro/hitel/mfb-pvrk-forgoeszkoz-hitelprogram-t228-p228",
-   "outcome": "changed-unverified",
-   "detail": "not a funding call; title not on page; status not on page; no deadline and not rolling; eligibility unclear; status unclear"
+   "kind": "deadline-changed",
+   "id": "v-top-plusz-3-1-1-21",
+   "title": "Vármegyei foglalkoztatási paktum – bértámogatás hátrányos helyzetű álláskeresők felvételéhez",
+   "url": "https://nfsz.munka.hu/cikk/3150/TOP_PLUSZ_Tamogatasok",
+   "outcome": "auto-fixed",
+   "detail": "oldal szerint: „2029.06.29.”"
+  },
+  {
+   "kind": "new",
+   "source": "nlnet",
+   "url": "https://nlnet.nl/geocommons",
+   "title": "GeoCommons",
+   "detail": "deadline 2027-01-03 not in its quote"
   },
   {
    "kind": "benchmark-code",
@@ -58,15 +65,15 @@
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "bursa hungarica felsooktatasi onkormanyzati osztondijpalyazat felsooktatasi tanulmanyokat kezdeni kivano fiatalok szamara bursa 2027 b",
-   "url": "https://pafi.hu/p/bursa-hungarica-felsooktatasi-onkormanyzati-osztondijpalyazat-felsooktatasi-tanulmanyokat-kezdeni-kivano-fiatalok-szamara-bursa-2027-b",
+   "title": "aerowaves podcast akademia 2027",
+   "url": "https://pafi.hu/p/aerowaves-podcast-akademia-2027",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "bursa hungarica felsooktatasi onkormanyzati osztondijpalyazata felsooktatasi hallgatok szamara bursa 2027 a",
-   "url": "https://pafi.hu/p/bursa-hungarica-felsooktatasi-onkormanyzati-osztondijpalyazata-felsooktatasi-hallgatok-szamara-bursa-2027-a",
+   "title": "tanulmanyi kirandulas hetedikeseknek 1",
+   "url": "https://pafi.hu/p/tanulmanyi-kirandulas-hetedikeseknek-1",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]

@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-02T14:33:38.728Z",
+ "updatedAt": "2026-11-03T13:32:17.564Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,21 +7,21 @@
   "palyazatApi": {
    "ok": true,
    "items": 16,
-   "lastOk": "2026-11-02T14:33:38.728Z"
+   "lastOk": "2026-11-03T13:32:17.564Z"
   },
   "euApi": {
    "ok": true,
-   "items": 276,
-   "lastOk": "2026-11-02T14:33:38.728Z"
+   "items": 273,
+   "lastOk": "2026-11-03T13:32:17.564Z"
   }
  },
  "counts": {
-  "total": 437,
+  "total": 433,
   "api": 16,
-  "verified": 145,
-  "euAuto": 276,
+  "verified": 144,
+  "euAuto": 273,
   "hazai": 58,
-  "eu": 379,
+  "eu": 375,
   "excluded": 19
  },
  "needsReview": [
@@ -105,6 +105,10 @@
    "why": "lejárt"
   },
   {
+   "id": "v-eureka-itea-2026",
+   "why": "lejárt"
+  },
+  {
    "id": "v-ivf-visegrad-grants-2026-10",
    "why": "lejárt"
   },
@@ -183,12 +187,24 @@
    "why": "Pénzügyi eszköz keret alapkezelőnek."
   },
   {
+   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
+   "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.2.0-23",
+   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
    "code": "DIMOP_PLUSZ-1.2.3/A1-24",
    "why": "Alapkezelői technikai felhívás."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/B2-24",
    "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
+  },
+  {
+   "code": "IKOP_PLUSZ-1.1.0-23",
+   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
   },
   {
    "code": "IKOP_PLUSZ-1.2.0-23",
@@ -203,18 +219,6 @@
    "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
   },
   {
-   "code": "IKOP_PLUSZ-2.2.0-23",
-   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
-  },
-  {
-   "code": "IKOP_PLUSZ-1.1.0-23",
-   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
-   "why": "Alapkezelői/bank költségtérítés."
-  },
-  {
    "code": "DIMOP_PLUSZ-5.1.4-2-26",
    "why": "Alapkezelői kezelési költségtérítés."
   },
@@ -223,8 +227,12 @@
    "why": "Alapkezelői költségtérítés."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
-   "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
+   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
+   "why": "Alapkezelői/bank költségtérítés."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.7-24",
+   "why": "Alapkezelői/közvetítői költségtérítés."
   },
   {
    "code": "KEHOP_PLUSZ-3.1.11-25",
@@ -239,10 +247,6 @@
    "why": "Hitelkeret alapkezelőnek (Budapest)."
   },
   {
-   "code": "GINOP_PLUSZ-1.4.7-24",
-   "why": "Alapkezelői/közvetítői költségtérítés."
-  },
-  {
    "code": "2025-3.1.1-ED",
    "why": "Egyedi döntésű NKFI kérelem, nem nyílt felhívás."
   },
@@ -253,11 +257,51 @@
  ],
  "changes": [
   {
-   "id": "eu-cs-47365875",
+   "id": "v-top-plusz-3-1-1-21",
    "type": "deadline",
-   "from": "2026-11-01",
-   "to": "2026-11-10",
-   "title": "Fostering Ukrainians’ access to culture and cultural heritage — kaszkád (FSTP) nyílt felhívás"
+   "from": "Folyamatos",
+   "to": "2029-06-29",
+   "title": "Vármegyei foglalkoztatási paktum – bértámogatás hátrányos helyzetű álláskeresők felvételéhez"
+  },
+  {
+   "id": "eu-cs-45652931",
+   "type": "new",
+   "title": "European partnership on sustainable food systems for people, planet and climate — kaszkád (FSTP) nyílt felhívás"
+  },
+  {
+   "id": "eu-cs-45704318",
+   "type": "new",
+   "title": "Industrial leadership in AI, Data and Robotics boosting competitiveness and the green transition (AI Data and Robotics Partnership) (IA)[[https://www.europarl.europa.eu/RegData/etudes/STUD/2021/662906/IPOL_STU(2021)662906_EN.pdf]] — kaszkád (FSTP) nyílt felhívás"
+  },
+  {
+   "id": "v-eureka-itea-2026",
+   "type": "removed",
+   "title": "ITEA Call for Projects 2026 (Eureka klaszter: szoftver-alapú digitális innováció)"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-02",
+   "type": "removed",
+   "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-03",
+   "type": "removed",
+   "title": "Carbon farming innovation and scale-up"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-01",
+   "type": "removed",
+   "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-03",
+   "type": "removed",
+   "title": "Student and family engagement for developing a culture of democratic/civic participation"
+  },
+  {
+   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-05",
+   "type": "removed",
+   "title": "Development aid and democratic governance"
   }
  ]
 }
