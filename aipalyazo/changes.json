@@ -622,6 +622,11 @@
    "date": "2026-11-03",
    "type": "removed",
    "title": "Student and family engagement for developing a culture of democratic/civic participation"
+  },
+  {
+   "date": "2026-11-04",
+   "type": "new",
+   "title": "Student and family engagement for developing a culture of democratic/civic participation"
   }
  ],
  "eu-HORIZON-CL2-2027-01-DEMOCRACY-04": [
@@ -660,6 +665,11 @@
   {
    "date": "2026-11-03",
    "type": "removed",
+   "title": "Development aid and democratic governance"
+  },
+  {
+   "date": "2026-11-04",
+   "type": "new",
    "title": "Development aid and democratic governance"
   }
  ],
@@ -1131,6 +1141,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Designing new ways of risk awareness and enhanced disaster preparedness"
+  },
+  {
+   "date": "2026-11-04",
+   "type": "removed",
    "title": "Designing new ways of risk awareness and enhanced disaster preparedness"
   }
  ],
@@ -2312,6 +2327,11 @@
    "date": "2026-11-03",
    "type": "removed",
    "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
+  },
+  {
+   "date": "2026-11-04",
+   "type": "new",
+   "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
   }
  ],
  "eu-HORIZON-CL6-2027-02-CLIMATE-03": [
@@ -2343,6 +2363,11 @@
   {
    "date": "2026-11-03",
    "type": "removed",
+   "title": "Carbon farming innovation and scale-up"
+  },
+  {
+   "date": "2026-11-04",
+   "type": "new",
    "title": "Carbon farming innovation and scale-up"
   }
  ],
@@ -2407,6 +2432,11 @@
    "date": "2026-11-03",
    "type": "removed",
    "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
+  },
+  {
+   "date": "2026-11-04",
+   "type": "new",
+   "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
   }
  ],
  "eu-HORIZON-CL6-2027-02-FARM2FORK-01-two-stage": [
@@ -2470,6 +2500,11 @@
    "date": "2026-11-01",
    "type": "removed",
    "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
+  },
+  {
+   "date": "2026-11-04",
+   "type": "new",
+   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
   }
  ],
  "eu-HORIZON-CL6-2027-02-FARM2FORK-05": [
@@ -2532,6 +2567,11 @@
   {
    "date": "2026-11-01",
    "type": "removed",
+   "title": "AI-powered foodome characterization"
+  },
+  {
+   "date": "2026-11-04",
+   "type": "new",
    "title": "AI-powered foodome characterization"
   }
  ],
@@ -3394,6 +3434,12 @@
    "date": "2026-10-10",
    "type": "new",
    "title": "MSCA Staff Exchanges 2027"
+  },
+  {
+   "date": "2026-11-04",
+   "type": "deadline",
+   "from": "2027-04-15",
+   "to": "2027-04-13"
   }
  ],
  "eu-HORIZON-NATURE-2027-01-01": [
@@ -3789,6 +3835,13 @@
    "title": "Designing space-based downstream applications with international partners — kaszkád (FSTP) nyílt felhívás"
   }
  ],
+ "eu-cs-46238629": [
+  {
+   "date": "2026-11-04",
+   "type": "removed",
+   "title": "European Platforms for the promotion of emerging artists — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
  "eu-cs-46908840": [
   {
    "date": "2026-10-30",
@@ -3836,6 +3889,21 @@
    "date": "2026-10-15",
    "type": "new",
    "title": "Rolling out the ERA Policy Agenda results — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
+ "eu-cs-48401116": [
+  {
+   "date": "2026-11-04",
+   "type": "new",
+   "title": "Robust and trustworthy GenerativeAI for Robotics and industrial automation (RIA) (AI/Data/Robotics & Made in Europe Partnerships) — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
+ "eu-cs-48401785": [
+  {
+   "date": "2026-11-04",
+   "type": "deadline",
+   "from": "2026-11-03",
+   "to": "2027-02-03"
   }
  ],
  "pg-EFOP_PLUSZ-4.1.2-25": [
@@ -4201,6 +4269,10 @@
   },
   {
    "date": "2026-11-03",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-04",
    "type": "page"
   }
  ],
@@ -5268,6 +5340,10 @@
   {
    "date": "2026-11-03",
    "type": "page"
+  },
+  {
+   "date": "2026-11-04",
+   "type": "page"
   }
  ],
  "v-mfb-agrar-forgoeszkoz-hitelprogram-2025": [
@@ -5366,6 +5442,22 @@
   {
    "date": "2026-11-03",
    "type": "page"
+  },
+  {
+   "date": "2026-11-04",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-04",
+   "type": "deadline-official",
+   "from": "2026-11-03",
+   "to": "2027-01-03"
+  },
+  {
+   "date": "2026-11-04",
+   "type": "deadline",
+   "from": "2026-11-03",
+   "to": "2027-01-03"
   }
  ],
  "v-ngi-restack": [
@@ -5392,6 +5484,22 @@
   {
    "date": "2026-11-03",
    "type": "page"
+  },
+  {
+   "date": "2026-11-04",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-04",
+   "type": "deadline-official",
+   "from": "2026-11-03",
+   "to": "2027-01-03"
+  },
+  {
+   "date": "2026-11-04",
+   "type": "deadline",
+   "from": "2026-11-03",
+   "to": "2027-01-03"
   }
  ],
  "v-perform-europe-2026-2028": [

@@ -1,52 +1,21 @@
 {
- "updatedAt": "2026-11-03",
+ "updatedAt": "2026-11-04",
  "items": [
   {
-   "kind": "recheck",
+   "kind": "deadline-changed",
    "id": "v-ngi-restack",
    "title": "NLnet Restack – Open Internet Stack fund (Nyílt internetes technológiai verem – NGI)",
    "url": "https://nlnet.nl/restack/",
-   "outcome": "changed-unverified",
-   "detail": "deadline 2026-11-03 not in its quote"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-ngi-codesupply",
-   "title": "NLnet CodeSupply – software supply chain security (Szoftver-ellátási lánc biztonsága)",
-   "url": "https://nlnet.nl/codesupply/",
-   "outcome": "changed-unverified",
-   "detail": "deadline 2026-11-03 not in its quote"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-garantiqa-investeu",
-   "title": "Garantiqa InvestEU Garanciaprogram (Az Európai Bizottság viszontgaranciájával működő KKV-hitelgarancia)",
-   "url": "https://garantiqa.hu/garantiqa-investeu-garanciaprogram/",
-   "outcome": "changed-unverified",
-   "detail": "not a funding call; status not on page; no deadline and not rolling; eligibility unclear; status unclear"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-garantiqa-kezesseg",
-   "title": "Garantiqa készfizető kezességvállalás (de minimis, csoportmentességi, Gazdaság Újjáépítési és piaci díjas kezesség banki hitelekhez)",
-   "url": "https://garantiqa.hu/kezessegvallalas/kezessegvallalasi-formak/",
-   "outcome": "changed-unverified",
-   "detail": "not a funding call; status not on page; no deadline and not rolling; eligibility unclear; status unclear"
+   "outcome": "auto-fixed",
+   "detail": "oldal szerint: „Next deadline January 3, 2027”"
   },
   {
    "kind": "deadline-changed",
-   "id": "v-top-plusz-3-1-1-21",
-   "title": "Vármegyei foglalkoztatási paktum – bértámogatás hátrányos helyzetű álláskeresők felvételéhez",
-   "url": "https://nfsz.munka.hu/cikk/3150/TOP_PLUSZ_Tamogatasok",
+   "id": "v-ngi-codesupply",
+   "title": "NLnet CodeSupply – software supply chain security (Szoftver-ellátási lánc biztonsága)",
+   "url": "https://nlnet.nl/codesupply/",
    "outcome": "auto-fixed",
-   "detail": "oldal szerint: „2029.06.29.”"
-  },
-  {
-   "kind": "new",
-   "source": "nlnet",
-   "url": "https://nlnet.nl/geocommons",
-   "title": "GeoCommons",
-   "detail": "deadline 2027-01-03 not in its quote"
+   "detail": "oldal szerint: „Next deadline January 3, 2027”"
   },
   {
    "kind": "benchmark-code",
@@ -65,15 +34,8 @@
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "aerowaves podcast akademia 2027",
-   "url": "https://pafi.hu/p/aerowaves-podcast-akademia-2027",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "tanulmanyi kirandulas hetedikeseknek 1",
-   "url": "https://pafi.hu/p/tanulmanyi-kirandulas-hetedikeseknek-1",
+   "title": "legjobb noi munkahely 2025",
+   "url": "https://pafi.hu/p/legjobb-noi-munkahely-2025",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]
