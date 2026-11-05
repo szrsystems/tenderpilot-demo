@@ -1,13 +1,21 @@
 {
- "updatedAt": "2026-11-04",
+ "updatedAt": "2026-11-05",
  "items": [
+  {
+   "kind": "recheck",
+   "id": "v-horizon-eic-2026-accelerator-01",
+   "title": "EIC Accelerator 2026 – Open & Challenges (EIC Accelerator: mélytech startupok/KKV-k skálázása)",
+   "url": "https://eic.ec.europa.eu/eic-funding-opportunities/eic-accelerator_en",
+   "outcome": "changed-unverified",
+   "detail": "amount quote not on page"
+  },
   {
    "kind": "deadline-changed",
    "id": "v-ngi-restack",
    "title": "NLnet Restack – Open Internet Stack fund (Nyílt internetes technológiai verem – NGI)",
    "url": "https://nlnet.nl/restack/",
    "outcome": "auto-fixed",
-   "detail": "oldal szerint: „Next deadline January 3, 2027”"
+   "detail": "oldal szerint: „January 3rd 2027”"
   },
   {
    "kind": "deadline-changed",
@@ -16,6 +24,22 @@
    "url": "https://nlnet.nl/codesupply/",
    "outcome": "auto-fixed",
    "detail": "oldal szerint: „Next deadline January 3, 2027”"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-garantiqa-investeu",
+   "title": "Garantiqa InvestEU Garanciaprogram (Az Európai Bizottság viszontgaranciájával működő KKV-hitelgarancia)",
+   "url": "https://garantiqa.hu/garantiqa-investeu-garanciaprogram/",
+   "outcome": "changed-unverified",
+   "detail": "status not on page"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-garantiqa-kezesseg",
+   "title": "Garantiqa készfizető kezességvállalás (de minimis, csoportmentességi, Gazdaság Újjáépítési és piaci díjas kezesség banki hitelekhez)",
+   "url": "https://garantiqa.hu/kezessegvallalas/kezessegvallalasi-formak/",
+   "outcome": "changed-unverified",
+   "detail": "not a funding call; status not on page; no deadline and not rolling; eligibility unclear; status unclear"
   },
   {
    "kind": "benchmark-code",
@@ -30,13 +54,6 @@
    "title": "MAHOP Plusz-2.5.1-20",
    "url": "https://pafi.hu/palyazatok/vallalkozasok",
    "detail": "a(z) pafi.hu — vállalkozások listáján szerepel, nálunk nincs — ellenőrizd a hivatalos oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "legjobb noi munkahely 2025",
-   "url": "https://pafi.hu/p/legjobb-noi-munkahely-2025",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]
 }

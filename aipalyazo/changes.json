@@ -1147,6 +1147,11 @@
    "date": "2026-11-04",
    "type": "removed",
    "title": "Designing new ways of risk awareness and enhanced disaster preparedness"
+  },
+  {
+   "date": "2026-11-05",
+   "type": "new",
+   "title": "Designing new ways of risk awareness and enhanced disaster preparedness"
   }
  ],
  "eu-HORIZON-CL3-2026-01-DRS-02": [
@@ -2928,12 +2933,22 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Integrating climate-related exposures into the human exposome and characterising its changes in response to climate change"
+  },
+  {
+   "date": "2026-11-05",
+   "type": "removed",
+   "title": "Integrating climate-related exposures into the human exposome and characterising its changes in response to climate change"
   }
  ],
  "eu-HORIZON-HLTH-2027-01-ENVHLTH-MISSCLIMA-03": [
   {
    "date": "2026-10-10",
    "type": "new",
+   "title": "Tools and technologies to support health adaptation to climate change"
+  },
+  {
+   "date": "2026-11-05",
+   "type": "removed",
    "title": "Tools and technologies to support health adaptation to climate change"
   }
  ],
@@ -3877,6 +3892,13 @@
    "to": "2026-11-10"
   }
  ],
+ "eu-cs-47942210": [
+  {
+   "date": "2026-11-05",
+   "type": "new",
+   "title": "Co-funded European partnership for Resilient Cultural Heritage — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
  "eu-cs-48256791": [
   {
    "date": "2026-10-23",
@@ -4274,6 +4296,10 @@
   {
    "date": "2026-11-04",
    "type": "page"
+  },
+  {
+   "date": "2026-11-05",
+   "type": "page"
   }
  ],
  "v-eitrm-kava14-ris": [
@@ -4337,6 +4363,19 @@
    "date": "2026-10-31",
    "type": "removed",
    "title": "ESA Business Applications – Open Call for Kick-starts, cut-off 30 Oct 2026 (Űralapú szolgáltatások megvalósíthatósági Kick-start projektjei)"
+  }
+ ],
+ "v-esa-ba-ssidbt-contest": [
+  {
+   "date": "2026-11-05",
+   "type": "removed",
+   "title": "Space for Sustainable Industry and Digital Business Transformation Contest (Űrtechnológia a fenntartható ipar és digitális átállás szolgálatában – verseny)"
+  }
+ ],
+ "v-euipo-sme-fund-2026": [
+  {
+   "date": "2026-11-05",
+   "type": "page"
   }
  ],
  "v-eureka-celticnext-aut2026": [
@@ -4462,6 +4501,13 @@
    "type": "page"
   }
  ],
+ "v-fortis-oc2": [
+  {
+   "date": "2026-11-05",
+   "type": "removed",
+   "title": "FORTIS Open Call #2 – Human-Robot Interaction pilots (Ember–robot együttműködés ipari pilotjai)"
+  }
+ ],
  "v-garantiqa-investeu": [
   {
    "date": "2026-10-09",
@@ -4481,6 +4527,10 @@
   },
   {
    "date": "2026-11-03",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-05",
    "type": "page"
   }
  ],
@@ -4503,6 +4553,10 @@
   },
   {
    "date": "2026-11-03",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-05",
    "type": "page"
   }
  ],
@@ -4946,6 +5000,15 @@
   {
    "date": "2026-10-23",
    "type": "page"
+  },
+  {
+   "date": "2026-11-05",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-05",
+   "type": "removed",
+   "title": "EIC Accelerator 2026 – Open & Challenges (EIC Accelerator: mélytech startupok/KKV-k skálázása)"
   }
  ],
  "v-horizon-eic-2026-pathfinderchallenges-01-01": [
@@ -5244,6 +5307,13 @@
    "title": "Erdő-környezetvédelmi többéves kötelezettségvállalások (EKV II.)"
   }
  ],
+ "v-kap-rd38-rd39-1-25": [
+  {
+   "date": "2026-11-05",
+   "type": "removed",
+   "title": "Erdőtelepítés és fásítás támogatása"
+  }
+ ],
  "v-kap-rd40-rd12-1-26": [
   {
    "date": "2026-10-08",
@@ -5343,6 +5413,10 @@
   },
   {
    "date": "2026-11-04",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-05",
    "type": "page"
   }
  ],
@@ -5458,6 +5532,10 @@
    "type": "deadline",
    "from": "2026-11-03",
    "to": "2027-01-03"
+  },
+  {
+   "date": "2026-11-05",
+   "type": "page"
   }
  ],
  "v-ngi-restack": [
@@ -5500,6 +5578,10 @@
    "type": "deadline",
    "from": "2026-11-03",
    "to": "2027-01-03"
+  },
+  {
+   "date": "2026-11-05",
+   "type": "page"
   }
  ],
  "v-perform-europe-2026-2028": [
@@ -5536,6 +5618,10 @@
   },
   {
    "date": "2026-10-30",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-05",
    "type": "page"
   }
  ],
