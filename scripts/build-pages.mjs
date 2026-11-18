@@ -103,6 +103,17 @@ const PAGE_CSS = `
 .back-link{margin:var(--s5) 0}.end-note{margin-bottom:var(--s7)}.side-box.narrow{max-width:640px;margin-bottom:var(--s7)}.disclaimer{margin-top:var(--s6)}
 .site-foot .brand-p{margin-top:var(--s3)}
 .faq-list{margin:0;border-top:1px solid var(--line)}.faq-list dt{font-weight:600;color:var(--ink);padding-top:12px}.faq-list dd{margin:4px 0 0;padding-bottom:12px;border-bottom:1px solid var(--line);color:var(--ink-2);overflow-wrap:anywhere}
+.promo{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:24px;margin:20px 0 28px;padding:28px 32px;border-radius:18px;background:linear-gradient(135deg,#0f6e3d 0%,#12844a 60%,#1a9a58 100%);color:#fff;box-shadow:0 14px 40px rgba(18,132,74,.22);overflow:hidden}
+.promo[hidden]{display:none}
+.promo-kicker{margin:0 0 6px;font:700 12.5px/1.2 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#d9f2e3}
+.promo h2{margin:0;font:800 clamp(30px,4.6vw,46px)/1.05 var(--sans);letter-spacing:-.02em;color:#fff}
+.promo-sub{margin:8px 0 14px;font:500 clamp(17px,2vw,20px)/1.35 var(--sans);color:#eaf7ef}
+.promo-points{margin:0 0 18px;padding:0;list-style:none;display:grid;gap:6px;font-size:15px;color:#eaf7ef}.promo-points li{padding-left:24px;position:relative}.promo-points li::before{content:"";position:absolute;left:2px;top:6px;width:12px;height:7px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(-45deg)}
+.promo-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px}
+.promo .promo-btn{background:#fff;color:#0f6e3d;border-color:#fff;min-height:50px;padding:0 26px;font-size:16px;font-weight:700}.promo .promo-btn:hover{background:#f1fbf5;color:#0b5a31}
+.promo-login{color:#fff;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.promo-art{width:100%;max-width:320px;justify-self:end;filter:drop-shadow(0 10px 18px rgba(0,0,0,.18))}
+@media (max-width:760px){.promo{grid-template-columns:1fr;padding:24px 20px}.promo-art{max-width:240px;justify-self:center;order:-1}}
 .related{margin:0;padding-left:18px}.related li{margin:6px 0}
 .guide{max-width:760px}.guide h2{margin-top:var(--s6)}.guide .lead{font-size:18px;color:var(--ink)}.guide .live{margin:var(--s4) 0}.guide section ul,.guide section ol{padding-left:20px}.guide section li{margin:6px 0}.guide .facts th{width:38%}
 .news-list{list-style:none;padding:0;margin:0}.news-list li{padding:10px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.news-list a{font-weight:600}.news h2 .count{font-size:14px;color:var(--ink-3);font-weight:500}
@@ -466,6 +477,18 @@ export function renderIndex(open, slugs, { updatedAt, hubs = [] } = {}) {
 <header class="call-head"><p class="eyebrow">Naponta frissítve${updatedAt ? ' · ' + esc(String(updatedAt).slice(0, 10)) : ''}</p>
 <h1>Nyitott pályázatok magyar vállalkozásoknak</h1>
 <p class="page-intro">${open.length} nyitott felhívás — ${hu.length} hazai és ${eu.length} EU-s / nemzetközi. Csak olyan kiírások, amelyekre vállalkozás pályázhat, és amelyek határideje még nem járt le. Mi változott a héten? <a href="../hirek/index.html">Heti összefoglaló</a>.</p></header>
+<section class="promo" data-guest aria-labelledby="promo-h">
+<div class="promo-text"><p class="promo-kicker">Ingyenes, 2 perc</p>
+<h2 id="promo-h">Regisztráljon ingyen</h2>
+<p class="promo-sub">hogy lássa, milyen pályázatokra jogosult a cége</p>
+<ul class="promo-points"><li>Pontról pontra összevetjük a feltételeket a cége adataival</li><li>E-mailt kap, ha új, Önnek szóló felhívás nyílik</li></ul>
+<div class="promo-cta"><a class="btn btn-primary promo-btn" href="../signup.html?from=list">Ingyenes regisztráció</a><a class="promo-login" href="../login.html">Már van fiókja? Belépés</a></div></div>
+<svg class="promo-art" viewBox="0 0 320 220" role="img" aria-label="Pályázati felhívások, a cégére illők kipipálva">
+<rect x="40" y="26" width="236" height="52" rx="10" fill="#fff" stroke="#cfe6d8"/><rect x="58" y="42" width="120" height="8" rx="4" fill="#12844a"/><rect x="58" y="56" width="84" height="6" rx="3" fill="#cfe6d8"/><circle cx="246" cy="52" r="14" fill="#12844a"/><path d="M239 52l5 5 9-10" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="22" y="88" width="236" height="52" rx="10" fill="#fff" stroke="#cfe6d8"/><rect x="40" y="104" width="138" height="8" rx="4" fill="#12844a"/><rect x="40" y="118" width="96" height="6" rx="3" fill="#cfe6d8"/><circle cx="228" cy="114" r="14" fill="#12844a"/><path d="M221 114l5 5 9-10" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="52" y="150" width="236" height="52" rx="10" fill="#fff" stroke="#e6e9e7" opacity=".85"/><rect x="70" y="166" width="104" height="8" rx="4" fill="#b9c4be"/><rect x="70" y="180" width="70" height="6" rx="3" fill="#e6e9e7"/><circle cx="258" cy="176" r="14" fill="#fff" stroke="#b9c4be" stroke-width="2"/><path d="M252 170l12 12M264 170l-12 12" stroke="#b9c4be" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="292" cy="30" r="22" fill="#fff6dc" stroke="#e8b923" stroke-width="2"/><text x="292" y="36" text-anchor="middle" font-family="IBM Plex Sans,Arial,sans-serif" font-size="16" font-weight="700" fill="#8a5a00">0 Ft</text></svg>
+</section>
 <div class="bigsearch"><h2>Mire keres támogatást?</h2><form role="search" data-nosubmit><div class="inp"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><label class="visually-hidden" for="q">Keresés a pályázatok között</label>
 <input id="q" type="search" placeholder="Pl. energia, gép, digitalizáció, GINOP, turizmus…" autocomplete="off"></div></form>
 <div class="filters" role="group" aria-label="Szűrés">

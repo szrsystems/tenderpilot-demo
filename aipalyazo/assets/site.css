@@ -351,7 +351,7 @@ select { max-width: 100%; }
 .src-tag { width: 48px; height: 48px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; font: 700 13px/1 var(--sans); letter-spacing: -.01em; background: var(--brand-tint); color: var(--brand-strong); }
 .src-tag.eu { background: var(--info-tint); color: var(--info); }
 .src-tag.fin { background: var(--signal-tint); color: var(--signal); }
-.gc-title { display: block; font: 700 17px/1.35 var(--sans); color: var(--ink); text-decoration: none; background: none; border: 0; padding: 0; text-align: left; cursor: pointer; }
+.gc-title { overflow-wrap: anywhere; display: block; font: 700 17px/1.35 var(--sans); color: var(--ink); text-decoration: none; background: none; border: 0; padding: 0; text-align: left; cursor: pointer; }
 .gc-title:hover { color: var(--brand); }
 .gc-title::after { content: ''; position: absolute; inset: 0; border-radius: 14px; } /* whole card clickable */
 .gc-sub { font-size: 13.5px; color: var(--ink-3); margin-top: 3px; overflow-wrap: anywhere; }

@@ -236,7 +236,11 @@ test('closed years in words; employer minimum head-count', () => {
 test('personas: women-led deeptech startup sees Women TechEU and EIC Accelerator in its top 5', () => {
   const p = { ...ok3, company: 'D', industries: ['IT'], employees: '1-5', site_region: 'Budapest', teaor: '7219', years_operating: '0', rnd: 'igen', women_led: 'igen', revenue: '<50M' };
   const rank = (m) => (m.verdict === 'APPLY' ? 1000 : m.verdict === 'REVIEW' ? 500 : 0) + (m.group === 'hazai' ? 3 : 0) - (m.group === 'consortium' ? 10 : 0) + m.score;
-  const top = live3.map((x) => ({ x, m: M.match(x, p, T3) })).filter((r) => r.m.eligible).sort((a, b) => rank(b.m) - rank(a.m)).slice(0, 5).map((r) => r.x.id);
-  assert.ok(top.includes('v-horizon-eie-womentecheu-2'), top.join());
-  assert.ok(top.includes('v-horizon-eic-2026-accelerator-01'), top.join());
+  // The two expected calls are always in the pool (from the verified source if
+  // they have closed since), so the test does not break when a call expires.
+  const want = ['v-horizon-eie-womentecheu-2', 'v-horizon-eic-2026-accelerator-01'];
+  const pool = [...live3.filter((x) => !want.includes(x.id)), ...want.map(byId3).filter(Boolean)];
+  assert.equal(pool.length - live3.filter((x) => !want.includes(x.id)).length, want.length, 'expected calls exist in the verified list');
+  const top = pool.map((x) => ({ x, m: M.match(x, p, T3) })).filter((r) => r.m.eligible).sort((a, b) => rank(b.m) - rank(a.m)).slice(0, 5).map((r) => r.x.id);
+  for (const id of want) assert.ok(top.includes(id), id + ' not in ' + top.join());
 });

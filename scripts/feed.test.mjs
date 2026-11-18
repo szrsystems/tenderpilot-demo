@@ -320,3 +320,12 @@ test('calls for private persons are dropped; organisation and large-company call
   for (const [t, id] of [['Joint Cluster Initiatives (EUROCLUSTERS)', 'SMP-COSME-2026-CLUSTER'], ['Large-scale battery manufacturing (IA)', 'HORIZON-CL5-2026-D2-01'], ['Student and family engagement for civic participation', 'HORIZON-CL2-2027-01-DEMOCRACY-03'], ['EIC Accelerator', 'HORIZON-EIC-2026-ACCELERATOR'], ['MSCA Doctoral Networks 2026', 'HORIZON-MSCA-2026-DN-01-01'], ['MSCA Staff Exchanges 2026', 'HORIZON-MSCA-2026-SE-01-01']])
     assert.equal(isForIndividuals(t, id), false, t);
 });
+
+import { mapEuHit as _mapEu } from './fetch-eu-calls.mjs';
+test('EU titles: wiki-style links and bare URLs are removed', () => {
+  const hit = { metadata: { type: ['8'], identifier: ['HORIZON-CL4-2021-DIGITAL-EMERGING-01'], title: ['Industrial leadership in AI (IA)[[https://www.europarl.europa.eu/x(2021)662906_EN.pdf]] see https://example.org/a'], deadlineDate: ['2099-01-01T00:00:00.000+0000'], url: ['https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/12345'] } };
+  const g = _mapEu(hit, '2026-11-18');
+  assert.ok(g, 'mapped');
+  assert.ok(!/https?:|\[\[/.test(g.title), g.title);
+  assert.match(g.title, /^Industrial leadership in AI \(IA\) see/);
+});

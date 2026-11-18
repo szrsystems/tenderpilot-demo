@@ -142,7 +142,10 @@ export function mapEuHit(hit, today) {
   const fp = one(m, 'frameworkProgramme');
   const identifier = one(m, 'identifier') || hit.reference || '';
   // Titles come from a third-party API and end up in HTML: strip markup.
-  const title = (one(m, 'title') || hit.title || hit.summary || '').replace(/[<>"]/g, '').trim();
+  // Some cascade titles carry wiki-style links ("[[https://…]]") or bare URLs:
+  // drop them, they break the card layout and mean nothing in a title.
+  const title = (one(m, 'title') || hit.title || hit.summary || '').replace(/[<>"]/g, '')
+    .replace(/\[\[?\s*https?:\/\/[^\]\s]*\s*\]?\]/g, '').replace(/https?:\/\/\S+/g, '').replace(/\s{2,}/g, ' ').replace(/\s+([,;)])/g, '$1').trim();
   if (!identifier || !title) return null;
   if (isForIndividuals(title, identifier)) return null;
   if (isNonBusinessId(identifier)) return null;
