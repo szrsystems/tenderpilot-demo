@@ -3,6 +3,8 @@
 export const SITE_ORIGINS = [
   'https://aipalyazo.hu',
   'https://www.aipalyazo.hu',
+  'https://palyazati-ertesito.hu',
+  'https://www.palyazati-ertesito.hu',
 ];
 
 export type Env = (key: string) => string | undefined;
