@@ -88,12 +88,20 @@ jobs:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
           if [ -z "$CRON_SECRET" ]; then echo "CRON_SECRET not set — skipping."; exit 0; fi
-          node -e "const g=require('./aipalyazo/grants_live.json');const m=require('./aipalyazo/grants-meta.json');process.stdout.write(JSON.stringify({grants:g,changes:m.changes||[]}))" > /tmp/alerts.json
-          CODE=$(curl -sS -o /tmp/alerts-resp.json -w '%{http_code}' -X POST "https://kacnvchwfwvpkkyhyupb.supabase.co/functions/v1/instant-alerts" \
-            -H "Authorization: Bearer $ANON" -H "apikey: $ANON" -H "x-cron-secret: $CRON_SECRET" \
-            -H "Content-Type: application/json" --data-binary @/tmp/alerts.json)
-          echo "instant-alerts HTTP $CODE"
-          node -e "try{const r=require('/tmp/alerts-resp.json');console.log('sent',r.sent,'skipped',r.skipped,'failed',r.failed,r.reason||'')}catch(e){}"
+          # Paged: 100 users per call (one Resend batch), repeated until next=null.
+          OFFSET=0
+          for i in $(seq 1 200); do
+            OFFSET=$OFFSET node -e "const g=require('./aipalyazo/grants_live.json');const m=require('./aipalyazo/grants-meta.json');process.stdout.write(JSON.stringify({grants:g,changes:m.changes||[],offset:+process.env.OFFSET}))" > /tmp/alerts.json
+            CODE=$(curl -sS -o /tmp/alerts-resp.json -w '%{http_code}' -X POST "https://kacnvchwfwvpkkyhyupb.supabase.co/functions/v1/instant-alerts" \
+              -H "Authorization: Bearer $ANON" -H "apikey: $ANON" -H "x-cron-secret: $CRON_SECRET" \
+              -H "Content-Type: application/json" --data-binary @/tmp/alerts.json)
+            echo "instant-alerts page $i (offset $OFFSET) HTTP $CODE"
+            node -e "try{const r=require('/tmp/alerts-resp.json');console.log('sent',r.sent,'skipped',r.skipped,'failed',r.failed,r.reason||'')}catch(e){}"
+            case "$CODE" in 2*) ;; *) break ;; esac
+            NEXT=$(node -e "try{const r=require('/tmp/alerts-resp.json');process.stdout.write(r.next==null?'':String(r.next))}catch(e){}")
+            [ -z "$NEXT" ] && break
+            OFFSET=$NEXT; sleep 1
+          done
 
       - name: Post the review list to a GitHub issue (if anything needs a human)
         env:
