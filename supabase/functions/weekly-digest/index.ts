@@ -107,51 +107,65 @@ function emailHtml(name: string, top: any[], urgent: any[], token: string) {
 </table>`;
 }
 
-async function sendEmail(to: string, subject: string, html: string, token: string) {
-  const r = await fetch('https://api.resend.com/emails', {
+type Mail = { to: string; subject: string; html: string; token: string };
+// One Resend batch call = up to 100 e-mails (Resend allows 2 calls/s).
+async function resendBatch(mails: Mail[]) {
+  const r = await fetch('https://api.resend.com/emails/batch', {
     method: 'POST',
     headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      from: FROM, to: [to], subject, html,
+    body: JSON.stringify(mails.map((m) => ({
+      from: FROM, to: [m.to], subject: m.subject, html: m.html,
       // RFC 8058 one-click unsubscribe: Gmail / Outlook show a native
       // "Leiratkozás" button that POSTs to UNSUB_API. Required by Gmail and
       // Yahoo for bulk senders since 2024.
       headers: {
-        'List-Unsubscribe': `<${UNSUB_API}?t=${token}>, <mailto:info@aipalyazo.hu?subject=Leiratkozas>`,
+        'List-Unsubscribe': `<${UNSUB_API}?t=${m.token}>, <mailto:info@aipalyazo.hu?subject=Leiratkozas>`,
         'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
       },
-    }),
+    }))),
   });
-  if (!r.ok) { const t = await r.text().catch(() => ''); throw new Error(`resend ${r.status} ${t}`); }
+  if (!r.ok) { const t = await r.text().catch(() => ''); throw new Error(`resend ${r.status} ${t.slice(0, 200)}`); }
 }
 
-Deno.serve(async (req) => {
+const PAGE_MAX = 100;
+// Paged: POST { offset } → { next }. The weekly GitHub job repeats the call
+// with offset = next until next is null. notif_prefs.last_digest_at makes a
+// re-run of the same week skip users who already got their e-mail.
+export async function handler(req: Request, deps: { admin?: any; sendBatch?: (m: Mail[]) => Promise<void>; grants?: any[]; now?: Date } = {}) {
   if (req.method !== 'POST') return new Response('method_not_allowed', { status: 405 });
   if (!CRON_SECRET || !timingSafeEqual(req.headers.get('x-cron-secret') ?? '', CRON_SECRET)) {
     return new Response('forbidden', { status: 403 });
   }
-  if (!RESEND_API_KEY) return new Response(JSON.stringify({ error: 'email_not_configured' }), { status: 503 });
+  if (!RESEND_API_KEY && !deps.sendBatch) return new Response(JSON.stringify({ error: 'email_not_configured' }), { status: 503 });
+  let body: any = {};
+  try { body = await req.json(); } catch { /* empty body = first page */ }
+  const offset = Math.max(0, Math.floor(Number(body?.offset) || 0));
+  const page = Math.min(PAGE_MAX, Math.max(1, Math.floor(Number(body?.limit) || PAGE_MAX)));
 
   // 1) Live grant list.
   let grants: any[];
   try {
-    const gr = await fetch(GRANTS_URL, { cache: 'no-store' });
-    grants = prepGrants(await gr.json());
+    grants = deps.grants ?? prepGrants(await (await fetch(GRANTS_URL, { cache: 'no-store' })).json());
   } catch (e) {
     return new Response(JSON.stringify({ error: 'grants_fetch_failed', detail: String(e) }), { status: 502 });
   }
 
-  // 2) Opted-in users with a real profile.
-  const admin = createClient(SUPABASE_URL, SERVICE_ROLE);
+  // 2) One page of opted-in users.
+  const admin = deps.admin || createClient(SUPABASE_URL, SERVICE_ROLE);
+  const sendBatch = deps.sendBatch || resendBatch;
   const { data: rows, error } = await admin
     .from('notif_prefs')
-    .select('user_id, urgent_enabled, frequency, section_deadlines, unsubscribe_token, recipient_email, section_top_n, profiles(email, display_name, company, industry, industries, categories, employees, site_region, years_operating, public_debt_free, in_difficulty, own_funds, teaor, revenue, rnd, women_led)')
-    .eq('weekly_enabled', true);
+    .select('user_id, urgent_enabled, frequency, section_deadlines, unsubscribe_token, recipient_email, section_top_n, last_digest_at, profiles(email, display_name, company, industry, industries, categories, employees, site_region, years_operating, public_debt_free, in_difficulty, own_funds, teaor, revenue, rnd, women_led)')
+    .eq('weekly_enabled', true)
+    .order('user_id')
+    .range(offset, offset + page - 1);
   if (error) return new Response(JSON.stringify({ error: 'query_failed', detail: error.message }), { status: 500 });
+  const list: any[] = rows ?? [];
+  const next = list.length === page ? offset + page : null;
 
   // Frequency: 'heti' every run; 'kétheti' on even ISO weeks; 'havi' only in
   // the first run of the month (the cron fires once a week).
-  const now = new Date();
+  const now = deps.now ?? new Date();
   const isoWeek = (() => {
     const d = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
     const day = d.getUTCDay() || 7; d.setUTCDate(d.getUTCDate() + 4 - day);
@@ -160,43 +174,56 @@ Deno.serve(async (req) => {
   })();
   const dueThisWeek = (f: string | null) =>
     f === 'kétheti' ? isoWeek % 2 === 0 : f === 'havi' ? now.getDate() <= 7 : true;
+  const todayIso = now.toLocaleDateString('sv-SE', { timeZone: 'Europe/Budapest' });
+  const recent = now.getTime() - 3 * 86400000; // sent in this run already → skip on re-run
 
-  let sent = 0, skipped = 0;
-  const errors: string[] = [];
-  for (const row of (rows ?? [])) {
-    if (!dueThisWeek((row as any).frequency)) { skipped++; continue; }
-    const token = (row as any).unsubscribe_token;
+  let skipped = 0;
+  const mails: Mail[] = [];
+  const sentIds: string[] = [];
+  for (const row of list) {
+    if (!dueThisWeek(row.frequency)) { skipped++; continue; }
+    if (row.last_digest_at && Date.parse(row.last_digest_at) > recent) { skipped++; continue; }
+    const token = row.unsubscribe_token;
     if (!token) { skipped++; continue; } // never send without a working unsubscribe link
-    const p: any = (row as any).profiles;
+    const p: any = row.profiles;
     if (!p || !p.company || !String(p.company).trim()) { skipped++; continue; } // no profile → no personalised digest
-    const to = (row as any).recipient_email || p.email;
+    const to = row.recipient_email || p.email;
     if (!to || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(to)) { skipped++; continue; }
 
     // Only calls the company is eligible for, best fit first.
-    const todayIso = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Budapest' });
     const ranked = grants
       .map((g) => { const m = AIPMatch.match(g, p, todayIso); return { g: { ...g, score: m.score, why: (m.checks.find((c: any) => c.key === 'sector' && c.status === 'ok') || {}).reason || '' }, s: m.score, ok: m.eligible }; })
       .filter((x) => x.ok && x.s >= 60)
       .sort((a, b) => b.s - a.s || a.g.days - b.g.days);
     if (!ranked.length) { skipped++; continue; }
 
-    const topN = Math.min(Math.max((row as any).section_top_n || 5, 3), 8);
+    const topN = Math.min(Math.max(row.section_top_n || 5, 3), 8);
     const top = ranked.slice(0, topN).map((x) => x.g);
-    const urgent = ((row as any).urgent_enabled && (row as any).section_deadlines !== false)
+    const urgent = (row.urgent_enabled && row.section_deadlines !== false)
       ? ranked.map((x) => x.g).filter((g) => g.days > 0 && g.days <= 14).slice(0, 5)
       : [];
+    mails.push({ to, subject: 'Heti pályázati összefoglaló — AIpályázó', html: emailHtml(p.display_name, top, urgent, token), token });
+    sentIds.push(row.user_id);
+  }
 
+  let sent = 0;
+  const errors: string[] = [];
+  if (mails.length) {
     try {
-      await sendEmail(to, 'Heti pályázati összefoglaló — AIpályázó', emailHtml(p.display_name, top, urgent, token), token);
-      sent++;
+      await sendBatch(mails);
+      sent = mails.length;
+      const { error: upErr } = await admin.from('notif_prefs').update({ last_digest_at: now.toISOString() }).in('user_id', sentIds);
+      if (upErr) console.error('last_digest_at update failed', String(upErr.message).slice(0, 120));
     } catch (e) {
       // Log the detail server-side only; the response goes to a CI log.
-      console.error('digest send failed', (row as any).user_id, String(e).slice(0, 200));
-      errors.push(`user ${String((row as any).user_id).slice(0, 8)}: send failed`);
+      console.error('digest batch failed', String(e).slice(0, 200));
+      errors.push(`page ${offset}: send failed (${mails.length})`);
     }
   }
 
-  return new Response(JSON.stringify({ ok: true, sent, skipped, errors }), {
+  return new Response(JSON.stringify({ ok: !errors.length, sent, skipped, errors, next }), {
     status: 200, headers: { 'Content-Type': 'application/json' },
   });
-});
+}
+
+if (import.meta.main) Deno.serve((req) => handler(req));

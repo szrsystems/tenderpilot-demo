@@ -1,5 +1,5 @@
 -- =========================================================================
--- Company data cache (2026-11-19)
+-- Company data cache + digest paging (2026-11-19)
 -- =========================================================================
 -- The company-lookup edge function asks NAV (queryTaxpayer) once per company
 -- and keeps the answer here, so a re-registration, a second user of the same
@@ -41,3 +41,7 @@ as $$
 $$;
 revoke all on function public.purge_company_data() from public, anon, authenticated;
 grant execute on function public.purge_company_data() to service_role;
+
+-- Weekly digest is now sent in pages of 100 (one Resend batch call each).
+-- last_digest_at lets a re-run of the same week skip users already served.
+alter table public.notif_prefs add column if not exists last_digest_at timestamptz;

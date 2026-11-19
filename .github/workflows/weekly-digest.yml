@@ -20,11 +20,22 @@ jobs:
           ANON: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImthY252Y2h3Znd2cGtreWh5dXBiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzQwNDEsImV4cCI6MjA5NjE1MDA0MX0.ajkwWvyPP-ENAnOXmokvBQ-1PP0So-qoZg4DJmsPob0'
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
-          CODE=$(curl -sS -o /dev/null -w '%{http_code}' -X POST "https://kacnvchwfwvpkkyhyupb.supabase.co/functions/v1/weekly-digest" \
-            -H "Authorization: Bearer $ANON" \
-            -H "apikey: $ANON" \
-            -H "x-cron-secret: $CRON_SECRET" \
-            -H "Content-Type: application/json" \
-            -d '{}')
-          echo "weekly-digest HTTP $CODE"
-          case "$CODE" in 2*) ;; *) exit 1 ;; esac
+          # Paged: 100 users per call (one Resend batch), repeated until next=null.
+          OFFSET=0; FAIL=0
+          for i in $(seq 1 200); do
+            CODE=$(curl -sS -o /tmp/digest-resp.json -w '%{http_code}' -X POST "https://kacnvchwfwvpkkyhyupb.supabase.co/functions/v1/weekly-digest" \
+              -H "Authorization: Bearer $ANON" \
+              -H "apikey: $ANON" \
+              -H "x-cron-secret: $CRON_SECRET" \
+              -H "Content-Type: application/json" \
+              -d "{\"offset\":$OFFSET}")
+            echo "weekly-digest page $i (offset $OFFSET) HTTP $CODE"
+            node -e "try{const r=require('/tmp/digest-resp.json');console.log('sent',r.sent,'skipped',r.skipped,(r.errors||[]).join('; '))}catch(e){}"
+            case "$CODE" in 2*) ;; *) exit 1 ;; esac
+            node -e "process.exit(require('/tmp/digest-resp.json').ok===false?1:0)" || FAIL=1
+            NEXT=$(node -e "try{const r=require('/tmp/digest-resp.json');process.stdout.write(r.next==null?'':String(r.next))}catch(e){}")
+            [ -z "$NEXT" ] && break
+            OFFSET=$NEXT; sleep 1
+          done
+          # a failed page: re-run the workflow — users already served are skipped
+          exit $FAIL
