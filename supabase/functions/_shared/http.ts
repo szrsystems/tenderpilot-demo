@@ -1,6 +1,9 @@
 // Small HTTP helpers shared by the AIpályázó edge functions.
 
 export const SITE_ORIGINS = [
+  'https://palyazati-ertesito.hu',
+  'https://www.palyazati-ertesito.hu',
+  // old domain: kept while it 301-redirects, so open tabs and cached pages keep working
   'https://aipalyazo.hu',
   'https://www.aipalyazo.hu',
 ];

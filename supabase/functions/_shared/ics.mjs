@@ -5,7 +5,7 @@
 // Differences: lines are folded at 75 OCTETS (not characters) without
 // splitting a UTF-8 sequence, and the clock / calendar name are injectable.
 
-export const PORTAL_URL = 'https://aipalyazo.hu/aipalyazo/portal.html';
+export const PORTAL_URL = 'https://palyazati-ertesito.hu/aipalyazo/portal.html';
 
 /** Escape a TEXT value: backslash, semicolon, comma, newline. */
 export function icsEscape(s) {

@@ -3,7 +3,7 @@ import { statusLink, statusToken, timingSafeEqual, verifyStatusToken } from '../
 import { assert, assertEquals, assertMatch, memStore } from '../_shared/testing.ts';
 
 const SECRET = 'test-secret';
-const post = (b: unknown) => new Request('http://x/lead-status', { method: 'POST', headers: { 'content-type': 'application/json', origin: 'https://aipalyazo.hu' }, body: JSON.stringify(b) });
+const post = (b: unknown) => new Request('http://x/lead-status', { method: 'POST', headers: { 'content-type': 'application/json', origin: 'https://palyazati-ertesito.hu' }, body: JSON.stringify(b) });
 
 Deno.test('token: HMAC-SHA256(secret, ref|status), first 32 hex', async () => {
   // Reference computed independently: printf 'L-ABCDEF|won' | openssl dgst -sha256 -hmac test-secret
@@ -26,7 +26,7 @@ Deno.test('token verification: right token only, bound to ref, status and secret
   assert(!(await verifyStatusToken(SECRET, 'L-ABCDEF', 'paid', paid)), 'paid is admin-only');
   assert(timingSafeEqual('abc', 'abc') && !timingSafeEqual('abc', 'abd') && !timingSafeEqual('abc', 'abcd'));
   const link = await statusLink(SECRET, 'L-ABCDEF', 'won');
-  assertEquals(link, `https://aipalyazo.hu/aipalyazo/lead-status.html?ref=L-ABCDEF&s=won&t=${t}`);
+  assertEquals(link, `https://palyazati-ertesito.hu/aipalyazo/lead-status.html?ref=L-ABCDEF&s=won&t=${t}`);
 });
 
 Deno.test('valid POST updates status (+note); wrong token 403; unknown ref 404', async () => {

@@ -27,10 +27,10 @@ const SERVICE_ROLE = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY') ?? '';
 const CRON_SECRET = Deno.env.get('CRON_SECRET') ?? '';
 // The live daily feed — NOT grants.json (the old 300-item demo bundle).
-const GRANTS_URL = 'https://aipalyazo.hu/aipalyazo/grants_live.json';
-const UNSUB_PAGE = 'https://aipalyazo.hu/aipalyazo/leiratkozas.html';
+const GRANTS_URL = 'https://palyazati-ertesito.hu/aipalyazo/grants_live.json';
+const UNSUB_PAGE = 'https://palyazati-ertesito.hu/aipalyazo/leiratkozas.html';
 const UNSUB_API = `${SUPABASE_URL}/functions/v1/unsubscribe`;
-const PORTAL_URL = 'https://aipalyazo.hu/aipalyazo/portal.html';
+const PORTAL_URL = 'https://palyazati-ertesito.hu/aipalyazo/portal.html';
 const FROM = 'AIpályázó <noreply@aipalyazo.hu>';
 
 function esc(s: unknown) {
@@ -99,7 +99,7 @@ function emailHtml(name: string, top: any[], urgent: any[], token: string) {
         <p style="margin:0;font-size:12px;line-height:1.6;color:#9ca3af;">
           Ezt az összefoglalót azért kapja, mert feliratkozott az AIpályázó heti e-mail jelentésére. ·
           <a href="${unsubUrl}" style="color:#16a34a;">Leiratkozás egy kattintással</a> ·
-          <a href="https://aipalyazo.hu/aipalyazo/adatvedelem.html" style="color:#16a34a;">Adatkezelés</a>
+          <a href="https://palyazati-ertesito.hu/aipalyazo/adatvedelem.html" style="color:#16a34a;">Adatkezelés</a>
         </p>
       </td></tr>
     </table>

@@ -43,7 +43,7 @@ const SOURCES = [
 
 const OUT_PATH = 'aipalyazo/grants-status.json';
 const TIMEOUT_MS = 12_000;
-const USER_AGENT = 'AIpalyazo-Monitor/1.0 (+https://aipalyazo.hu/bot; contact: bot@aipalyazo.hu)';
+const USER_AGENT = 'AIpalyazo-Monitor/1.0 (+https://palyazati-ertesito.hu/bot; contact: bot@aipalyazo.hu)';
 // Some sites reject unknown bots but accept a browser UA — used as a retry,
 // the honest bot UA always goes first.
 const BROWSER_UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';

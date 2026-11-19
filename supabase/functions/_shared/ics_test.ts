@@ -42,7 +42,7 @@ Deno.test('buildICS: all-day events, two alarms, stable UID, CRLF, skips non-dat
   assertStringIncludes(u, 'DTSTAMP:20260928T071000Z');
   assertStringIncludes(u, 'DTSTART;VALUE=DATE:20261231\r\nDTEND;VALUE=DATE:20270101');
   assertStringIncludes(u, 'SUMMARY:Pályázati határidő: Digitális\\; fejlesztés\\, KKV');
-  assertStringIncludes(u, 'URL:https://aipalyazo.hu/aipalyazo/portal.html?grant=pg-DIMOP_PLUSZ-1.2.3%2FB-24');
+  assertStringIncludes(u, 'URL:https://palyazati-ertesito.hu/aipalyazo/portal.html?grant=pg-DIMOP_PLUSZ-1.2.3%2FB-24');
   assertEquals((u.match(/BEGIN:VALARM/g) || []).length, 2);
   assertStringIncludes(u, 'TRIGGER:-P14D');
   assertStringIncludes(u, 'TRIGGER:-P3D');

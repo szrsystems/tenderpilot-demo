@@ -13,7 +13,7 @@ function sourceLabel(lead: { utm_source?: string | null; utm_campaign?: string |
 
 export const FROM = 'AIpályázó <noreply@aipalyazo.hu>';
 export const PARTNER_NAME_DEFAULT = 'DFT-Hungária';
-export const PRIVACY_URL = 'https://aipalyazo.hu/aipalyazo/adatvedelem.html';
+export const PRIVACY_URL = 'https://palyazati-ertesito.hu/aipalyazo/adatvedelem.html';
 export const MAX_NOTIFY_ATTEMPTS = 5;
 
 export type MailMessage = {

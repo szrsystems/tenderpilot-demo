@@ -7,14 +7,14 @@
 // ChatGPT / Copilot search, so this matters for AI answers too.
 // Sends every sitemap URL whose <lastmod> is today plus the list and topic
 // pages (they change daily). The key is public by design: the file
-// https://aipalyazo.hu/<KEY>.txt proves we own the host.
+// https://palyazati-ertesito.hu/<KEY>.txt proves we own the host.
 // Run after the pages are built: node scripts/indexnow.mjs [--all] [--dry]
 // (--all: every sitemap URL — used on a manual run of the workflow)
 // =========================================================================
 import { readFileSync } from 'node:fs';
 
 export const KEY = 'e98c152f1d6c05ecdc5365c6edd85ec6';
-const HOST = 'aipalyazo.hu';
+const HOST = 'palyazati-ertesito.hu';
 
 export function changedUrls(sitemapXml, today, all = false) {
   const out = [];

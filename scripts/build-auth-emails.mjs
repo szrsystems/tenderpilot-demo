@@ -12,7 +12,7 @@
 import { writeFileSync } from 'node:fs';
 
 const DIR = new URL('../supabase/email-templates/', import.meta.url);
-const SITE = 'https://aipalyazo.hu/aipalyazo';
+const SITE = 'https://palyazati-ertesito.hu/aipalyazo';
 const BRAND = '#12844a';
 const FONT = "-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
 
@@ -46,7 +46,7 @@ function shell({ preheader, title, body }) {
 ${body}
 </td></tr>
 <tr><td style="padding:18px 32px;background-color:#f9fafb;border-top:1px solid #f0f0f0;border-radius:0 0 12px 12px;">
-<p style="margin:0;font-family:${FONT};font-size:12px;line-height:1.6;color:#9ca3af;">AIpályázó — pályázatfigyelés magyar vállalkozásoknak · <a href="${SITE}/index.html" style="color:${BRAND};">aipalyazo.hu</a> · <a href="${SITE}/adatvedelem.html" style="color:${BRAND};">Adatkezelés</a> · <a href="mailto:info@aipalyazo.hu" style="color:${BRAND};">info@aipalyazo.hu</a><br>Ezt az automatikus levelet a(z) {{ .Email }} címre küldtük. Kérjük, ne válaszoljon rá.</p>
+<p style="margin:0;font-family:${FONT};font-size:12px;line-height:1.6;color:#9ca3af;">AIpályázó — pályázatfigyelés magyar vállalkozásoknak · <a href="${SITE}/index.html" style="color:${BRAND};">palyazati-ertesito.hu</a> · <a href="${SITE}/adatvedelem.html" style="color:${BRAND};">Adatkezelés</a> · <a href="mailto:info@aipalyazo.hu" style="color:${BRAND};">info@aipalyazo.hu</a><br>Ezt az automatikus levelet a(z) {{ .Email }} címre küldtük. Kérjük, ne válaszoljon rá.</p>
 </td></tr>
 </table>
 </td></tr>

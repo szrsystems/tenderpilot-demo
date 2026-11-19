@@ -13,7 +13,7 @@ const body = (o: Record<string, unknown> = {}) => ({
   ...o,
 });
 const req = (o: unknown, headers: Record<string, string> = {}) => new Request('http://x/lead-submit', {
-  method: 'POST', headers: { 'content-type': 'application/json', origin: 'https://aipalyazo.hu', 'x-forwarded-for': '203.0.113.9, 10.0.0.1', ...headers },
+  method: 'POST', headers: { 'content-type': 'application/json', origin: 'https://palyazati-ertesito.hu', 'x-forwarded-for': '203.0.113.9, 10.0.0.1', ...headers },
   body: typeof o === 'string' ? o : JSON.stringify(o),
 });
 function setup(env: Record<string, string | undefined> = ENV, feed = staticFeed([GRANT])) {
@@ -27,7 +27,7 @@ Deno.test('stores the lead, notifies partner + requester, returns ref', async ()
   const { store, mailer, deps } = setup();
   const r = await handler(req(body(), { authorization: 'Bearer user-jwt' }), deps);
   assertEquals(r.status, 200);
-  assertEquals(r.headers.get('access-control-allow-origin'), 'https://aipalyazo.hu');
+  assertEquals(r.headers.get('access-control-allow-origin'), 'https://palyazati-ertesito.hu');
   const j = await r.json();
   assertEquals(j.ok, true);
   assertMatch(j.ref, /^L-[A-Z2-7]{6}$/);
@@ -251,7 +251,7 @@ Deno.test('server errors never leak internals', async () => {
 Deno.test('CORS: unknown origin gets the default allow-origin, OPTIONS ok', async () => {
   const { deps } = setup();
   const r = await handler(new Request('http://x', { method: 'OPTIONS', headers: { origin: 'https://evil.example' } }), deps);
-  assertEquals(r.headers.get('access-control-allow-origin'), 'https://aipalyazo.hu');
+  assertEquals(r.headers.get('access-control-allow-origin'), 'https://palyazati-ertesito.hu');
 });
 
 Deno.test('campaign tags: stored on the lead and shown to the partner; junk tags dropped, never blocking', async () => {

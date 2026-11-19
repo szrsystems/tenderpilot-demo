@@ -25,7 +25,7 @@
 
 const ENDPOINT = 'https://api.tech.ec.europa.eu/search-api/prod/rest/search';
 const TOPIC_URL = 'https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/';
-const UA = 'Mozilla/5.0 (compatible; AIpalyazoBot/1.0; +https://aipalyazo.hu)';
+const UA = 'Mozilla/5.0 (compatible; AIpalyazoBot/1.0; +https://palyazati-ertesito.hu)';
 
 // frameworkProgramme id → display name (ids from the portal's own facets).
 export const PROGRAMMES = {

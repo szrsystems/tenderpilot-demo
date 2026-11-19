@@ -21,7 +21,7 @@ import { GUIDES } from './guides.mjs';
 const Cards = createRequire(import.meta.url)('../aipalyazo/lib/cards.js');
 const todayHU = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Budapest' });
 
-export const SITE = 'https://aipalyazo.hu';
+export const SITE = 'https://palyazati-ertesito.hu';
 export const BASE = `${SITE}/aipalyazo`;
 const KEEP_CLOSED_DAYS = 365;
 
@@ -593,7 +593,7 @@ export function renderGuidesIndex() {
 // regenerated any day. Starts on NEWS_START: earlier "new" entries are the
 // initial import and source clean-ups, not real news.
 export const NEWS_START = '2026-10-12';
-export const PREFERRED_SOURCE_URL = 'https://www.google.com/preferences/source?q=aipalyazo.hu';
+export const PREFERRED_SOURCE_URL = 'https://www.google.com/preferences/source?q=palyazati-ertesito.hu';
 const NEWS_TYPES = new Set(['new', 'deadline', 'keret', 'szabad-keret']); // deadline-official is an internal review flag, not news
 const addDays = (d, n) => new Date(Date.parse(d + 'T00:00:00Z') + n * 86400000).toISOString().slice(0, 10);
 export const mondayOf = (d) => addDays(d, -((new Date(d + 'T00:00:00Z').getUTCDay() + 6) % 7));
@@ -826,7 +826,7 @@ ${hubs.map(hub).join('\n')}
 
 export const ROBOTS = `# Search engines and AI assistants (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot,
 # Google-Extended, Applebot …) are welcome to read the public grant pages.
-# See also https://aipalyazo.hu/llms.txt
+# See also https://palyazati-ertesito.hu/llms.txt
 User-agent: *
 Allow: /
 Disallow: /aipalyazo/portal.html

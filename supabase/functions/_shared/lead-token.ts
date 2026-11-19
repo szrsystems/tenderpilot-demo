@@ -22,7 +22,7 @@ export const STATUS_LABELS: Record<LeadStatus, string> = {
   spam: 'Spam / érvénytelen',
 };
 
-export const STATUS_PAGE = 'https://aipalyazo.hu/aipalyazo/lead-status.html';
+export const STATUS_PAGE = 'https://palyazati-ertesito.hu/aipalyazo/lead-status.html';
 
 export async function statusToken(secret: string, ref: string, status: string): Promise<string> {
   const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);

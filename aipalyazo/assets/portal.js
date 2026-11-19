@@ -682,7 +682,7 @@
     list.forEach(function (g) {
       if (!isDate(g.deadline)) return;
       var next = new Date(g.deadline + 'T12:00:00Z'); next.setUTCDate(next.getUTCDate() + 1);
-      var link = 'https://aipalyazo.hu/aipalyazo/portal.html?grant=' + encodeURIComponent(g.id);
+      var link = 'https://palyazati-ertesito.hu/aipalyazo/portal.html?grant=' + encodeURIComponent(g.id);
       L.push('BEGIN:VEVENT', 'UID:' + String(g.id).replace(/[^A-Za-z0-9._-]/g, '_') + '@aipalyazo.hu', 'DTSTAMP:' + stamp, 'DTSTART;VALUE=DATE:' + g.deadline.replace(/-/g, ''), 'DTEND;VALUE=DATE:' + next.toISOString().slice(0, 10).replace(/-/g, ''),
         'SUMMARY:' + icsEscape('Pályázati határidő: ' + g.title), 'DESCRIPTION:' + icsEscape((g.amount ? 'Összeg: ' + g.amount + '\n' : '') + 'Hivatalos oldal: ' + (safeUrl(g.url) || '—') + '\nAIpályázó: ' + link + '\nA határidőt mindig ellenőrizze a hivatalos kiírásban.'), 'URL:' + link,
         'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + icsEscape('2 hét múlva lejár: ' + g.title), 'TRIGGER:-P14D', 'END:VALARM', 'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + icsEscape('3 nap múlva lejár: ' + g.title), 'TRIGGER:-P3D', 'END:VALARM', 'END:VEVENT');

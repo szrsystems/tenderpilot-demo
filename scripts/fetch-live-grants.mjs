@@ -45,7 +45,7 @@ const API_HEADERS = {
   // Public constants baked into the site's own JS bundle — not secrets.
   'application-name': 'FairApp',
   'device-id': '40b0c32c-77fe-4380-9f5e-be96ae24fabd',
-  'User-Agent': 'Mozilla/5.0 (compatible; AIpalyazoBot/1.0; +https://aipalyazo.hu)',
+  'User-Agent': 'Mozilla/5.0 (compatible; AIpalyazoBot/1.0; +https://palyazati-ertesito.hu)',
 };
 
 const OUT_GRANTS = 'aipalyazo/grants_live.json';

@@ -22,8 +22,8 @@ const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
 const SERVICE_ROLE = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY') ?? '';
 const CRON_SECRET = Deno.env.get('CRON_SECRET') ?? '';
-const PORTAL = 'https://aipalyazo.hu/aipalyazo/portal.html';
-const UNSUB_PAGE = 'https://aipalyazo.hu/aipalyazo/leiratkozas.html';
+const PORTAL = 'https://palyazati-ertesito.hu/aipalyazo/portal.html';
+const UNSUB_PAGE = 'https://palyazati-ertesito.hu/aipalyazo/leiratkozas.html';
 const UNSUB_API = `${SUPABASE_URL}/functions/v1/unsubscribe`;
 const FROM = 'AIpályázó <noreply@aipalyazo.hu>';
 const MIN_SCORE = 75; // = the portal's "Érdemes pályázni" verdict — instant mails must be strong fits only

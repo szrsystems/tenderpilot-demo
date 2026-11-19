@@ -18,7 +18,7 @@ function setup(over: Record<string, unknown> = {}) {
   return { deps, prompts, counts };
 }
 const post = (b: unknown, headers: Record<string, string> = { authorization: 'Bearer jwt' }) =>
-  new Request('http://x/ai-generate', { method: 'POST', headers: { 'content-type': 'application/json', origin: 'https://aipalyazo.hu', ...headers }, body: JSON.stringify(b) });
+  new Request('http://x/ai-generate', { method: 'POST', headers: { 'content-type': 'application/json', origin: 'https://palyazati-ertesito.hu', ...headers }, body: JSON.stringify(b) });
 
 Deno.test('callreview task is gone', async () => {
   const { deps, counts } = setup();

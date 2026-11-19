@@ -2,7 +2,7 @@
 // Edge functions use it so that grant titles, codes, deadlines and links
 // come from the official feed, not from whatever the browser sent.
 
-export const DEFAULT_GRANTS_URL = 'https://aipalyazo.hu/aipalyazo/grants_live.json';
+export const DEFAULT_GRANTS_URL = 'https://palyazati-ertesito.hu/aipalyazo/grants_live.json';
 
 export type Grant = {
   id: string;

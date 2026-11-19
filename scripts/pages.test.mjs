@@ -20,7 +20,7 @@ test('page escapes feed text, links the portal deep link and never trusts non-ht
   assert.ok(!html.includes('<felhívás>'));
   assert.ok(!html.includes('javascript:'));
   assert.ok(html.includes('../portal.html?grant=pg-GINOP_PLUSZ-1.2.3%2FB-24'));
-  assert.ok(html.includes('rel="canonical" href="https://aipalyazo.hu/aipalyazo/palyazat/x.html"'));
+  assert.ok(html.includes('rel="canonical" href="https://palyazati-ertesito.hu/aipalyazo/palyazat/x.html"'));
   assert.ok(html.includes('"@type":"MonetaryGrant"'));
   assert.ok(!/<\/script>[^]*<\/script>[^]*MonetaryGrant/.test(''));
 });
@@ -78,7 +78,7 @@ test('topic hubs: only with ≥2 open calls, linked from the index, in the sitem
 
   const html = r.files.get('palyazat/tema/ginop-plusz.html');
   assert.match(html, /<h1>GINOP Plusz pályázatok és hitelek<\/h1>/);
-  assert.ok(html.includes('rel="canonical" href="https://aipalyazo.hu/aipalyazo/palyazat/tema/ginop-plusz.html"'));
+  assert.ok(html.includes('rel="canonical" href="https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/ginop-plusz.html"'));
   assert.ok(html.includes('"@type":"CollectionPage"'));
   assert.ok(html.includes('href="../ginop-plusz-1-4-3-24.html"') && html.includes('href="../ginop-plusz-1-1-6-25.html"'));
   assert.ok(!html.includes('Lejárt'));
@@ -160,7 +160,7 @@ test('guides: valid content, JSON-LD, hub links only to existing hubs, in sitema
     const blocks = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map((m) => JSON.parse(m[1]));
     const types = blocks.flat().map((b) => b['@type']);
     assert.deepEqual(types, ['Article', 'FAQPage', 'BreadcrumbList']);
-    assert.match(html, new RegExp(`<link rel="canonical" href="https://aipalyazo.hu/aipalyazo/utmutato/${x.slug}.html">`));
+    assert.match(html, new RegExp(`<link rel="canonical" href="https://palyazati-ertesito.hu/aipalyazo/utmutato/${x.slug}.html">`));
     // only hubs that exist are linked
     for (const m of html.matchAll(/palyazat\/tema\/([a-z0-9-]+)\.html/g)) assert.equal(m[1], 'kkv');
     assert.ok(!/undefined|NaN/.test(html), x.slug + ' has no undefined');
@@ -207,7 +207,7 @@ test('weekly news: week maths, re-added calls and undone moves are not news, pag
   assert.match(wk, /1 új felhívás került fel a listánkra \(1 hazai\), 1 felhívás határideje módosult/);
   assert.match(wk, /"@type":"NewsArticle"/);
   assert.match(wk, /Hamarosan lejár/);
-  assert.match(wk, /google\.com\/preferences\/source\?q=aipalyazo\.hu/);
+  assert.match(wk, /google\.com\/preferences\/source\?q=palyazati-ertesito\.hu/);
   assert.ok(files.has('hirek/index.html'));
   const rss = files.get('hirek/rss.xml');
   assert.match(rss, /<item><title>Fresh call<\/title>/);
@@ -237,11 +237,11 @@ test('homepage pre-render: figures, deadline cards and date are written into the
   assert.equal(prerenderHome(out, { open, slugs, today: '2026-10-20' }), out);
 });
 
-import { STATIC_PAGES } from './build-pages.mjs';
+import { STATIC_PAGES, BASE } from './build-pages.mjs';
 test('sitemap static pages exist, are indexable and self-canonical (Search Console "noindex" warnings)', () => {
   for (const [p] of STATIC_PAGES) {
     const html = rfs(new URL('../aipalyazo/' + p, import.meta.url), 'utf8');
     assert.ok(!/name="robots" content="noindex/.test(html), p + ' is noindex but listed in the sitemap');
-    assert.match(html, new RegExp(`<link rel="canonical" href="https://aipalyazo\\.hu/aipalyazo/${p.replace(/\./g, '\\.')}">`), p + ' canonical');
+    assert.match(html, new RegExp(`<link rel="canonical" href="${BASE.replace(/\./g, '\\.')}/${p.replace(/\./g, '\\.')}">`), p + ' canonical');
   }
 });

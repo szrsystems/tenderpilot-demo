@@ -3,7 +3,7 @@
 // =========================================================================
 import { createHash } from 'node:crypto';
 
-export const UA = 'Mozilla/5.0 (compatible; AIpalyazoBot/1.0; +https://aipalyazo.hu/aipalyazo/impresszum.html)';
+export const UA = 'Mozilla/5.0 (compatible; AIpalyazoBot/1.0; +https://palyazati-ertesito.hu/aipalyazo/impresszum.html)';
 
 // ---- polite fetching ------------------------------------------------------
 // One request at a time per host, a pause between requests, robots.txt
