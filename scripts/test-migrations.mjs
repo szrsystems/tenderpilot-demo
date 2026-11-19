@@ -294,3 +294,19 @@ test('limits: oversized profile/bookmark text rejected; drafts closed; deleted m
     db.exec(`update public.profiles set display_name = 'Visszajöttem' where id = '${B}'`));
   assert.equal((await db.query(`select display_name from public.profiles where id = '${B}'`)).rows[0].display_name, '__DELETED__');
 });
+
+test('company_data cache: service-role only; users cannot set tax_number / company_verified_at', async () => {
+  await db.exec(`insert into public.company_data (tax8, found, data) values ('12345678', true, '{"name":"MINTA KFT"}') on conflict (tax8) do nothing`);
+  await as('authenticated', { id: B, email: 'b@example.com' }, () =>
+    rejects(db.query(`select * from public.company_data`), /permission denied/));
+  await as('anon', null, () =>
+    rejects(db.query(`select * from public.company_data`), /permission denied/));
+  await as('authenticated', { id: B, email: 'b@example.com' }, () =>
+    rejects(db.exec(`update public.profiles set tax_number = '12345678' where id = '${B}'`), /permission denied/));
+  await as('authenticated', { id: B, email: 'b@example.com' }, () =>
+    rejects(db.exec(`update public.profiles set company_verified_at = now() where id = '${B}'`), /permission denied/));
+  await rejects(db.exec(`insert into public.company_data (tax8, found) values ('123', false)`), /check/);
+  await db.exec(`insert into public.company_data (tax8, found, fetched_at) values ('87654321', false, now() - interval '400 days')`);
+  assert.equal((await db.query(`select public.purge_company_data() as n`)).rows[0].n, 1);
+  assert.equal((await db.query(`select count(*)::int as n from public.company_data where tax8 = '12345678'`)).rows[0].n, 1);
+});

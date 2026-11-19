@@ -159,6 +159,8 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
     const purge = deps.purge ?? (async () => {
       const { data, error } = await getAdmin().rpc('purge_deleted_emails');
       if (error) throw new Error(error.message);
+      // company_data cache retention (1 year); missing migration = harmless
+      await getAdmin().rpc('purge_company_data').then(() => {}, () => {});
       return Number(data) || 0;
     });
     out.purged = await purge();

@@ -78,6 +78,12 @@ test('NAV queryTaxpayer: request signature and response parsing', async () => {
   assert.equal(normalizeTaxNumber('12345678-1-41'), '12345678');
   const ok = parseTaxpayerResponse('<ns2:R><result><funcCode>OK</funcCode></result><ns2:taxpayerValidity>true</ns2:taxpayerValidity><ns2:taxpayerName>MINTA BT</ns2:taxpayerName><ns2:incorporation>ORGANIZATION</ns2:incorporation><ns2:taxpayerAddressItem><ns2:taxpayerAddressType>HQ</ns2:taxpayerAddressType><ns3:postalCode>6720</ns3:postalCode><ns3:city>SZEGED</ns3:city></ns2:taxpayerAddressItem></ns2:R>');
   assert.equal(ok.legalForm, 'Bt'); assert.equal(ok.postalCode, '6720');
+  assert.deepEqual(ok.sites, []);
+  const multi = parseTaxpayerResponse('<R><funcCode>OK</funcCode><taxpayerValidity>true</taxpayerValidity><taxpayerName>MINTA KFT</taxpayerName><incorporation>ORGANIZATION</incorporation>'
+    + '<taxpayerAddressItem><taxpayerAddressType>SITE</taxpayerAddressType><postalCode>3530</postalCode><city>MISKOLC</city></taxpayerAddressItem>'
+    + '<taxpayerAddressItem><taxpayerAddressType>HQ</taxpayerAddressType><postalCode>1025</postalCode><city>BUDAPEST</city></taxpayerAddressItem></R>');
+  assert.equal(multi.postalCode, '1025'); // HQ wins even when listed second
+  assert.deepEqual(multi.sites, [{ type: 'SITE', postalCode: '3530', city: 'MISKOLC' }]);
   assert.equal(parseTaxpayerResponse('<x><funcCode>OK</funcCode><taxpayerValidity>false</taxpayerValidity></x>').found, false);
   assert.equal(parseTaxpayerResponse('<x><funcCode>ERROR</funcCode><errorCode>E</errorCode></x>').ok, false);
 });
