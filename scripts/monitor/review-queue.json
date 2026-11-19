@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-18",
+ "updatedAt": "2026-11-19",
  "items": [
   {
    "kind": "recheck",
@@ -15,187 +15,7 @@
    "title": "EIC Accelerator 2026 – Open & Challenges (EIC Accelerator: mélytech startupok/KKV-k skálázása)",
    "url": "https://eic.ec.europa.eu/eic-funding-opportunities/eic-accelerator_en",
    "outcome": "auto-fixed",
-   "detail": "oldal szerint: „20/01/2027”"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-i3-2026-inv1",
-   "title": "Interregional Innovation Investments Strand 1 (Interregionális innovációs beruházások – 1. ág)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/i3-2026-inv1",
-   "outcome": "closed",
-   "detail": "EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-i3-2026-inv2a",
-   "title": "Interregional Innovation Investments Strand 2a (Interregionális innovációs beruházások – 2a ág, kevésbé fejlett régiók)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/i3-2026-inv2a",
-   "outcome": "closed",
-   "detail": "EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-fierce-oc2",
-   "title": "FIERCE 2nd Open Call – space-enabled green solutions (Űradat-alapú zöld megoldások KKV-knak)",
-   "url": "https://2nd-financing.project-fierce.eu/",
-   "outcome": "closed",
-   "detail": "az oldal szerint: „This Open Call closed on 09/11/2026”"
-  },
-  {
-   "kind": "deadline-changed",
-   "id": "v-ngi-restack",
-   "title": "NLnet Restack – Open Internet Stack fund (Nyílt internetes technológiai verem – NGI)",
-   "url": "https://nlnet.nl/restack/",
-   "outcome": "auto-fixed",
-   "detail": "oldal szerint: „Next deadline January 3, 2027”"
-  },
-  {
-   "kind": "deadline-changed",
-   "id": "v-ngi-codesupply",
-   "title": "NLnet CodeSupply – software supply chain security (Szoftver-ellátási lánc biztonsága)",
-   "url": "https://nlnet.nl/codesupply/",
-   "outcome": "auto-fixed",
-   "detail": "oldal szerint: „January 3, 2027”"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-horizon-cl3-2026-01-drs-02",
-   "title": "Multi-hazard approach and cumulative / cascading impacts (IA) (Többveszélyes megközelítés és kaszkádhatások kezelése)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-drs-02",
-   "outcome": "closed",
-   "detail": "EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-horizon-cl3-2026-01-drs-03",
-   "title": "Innovative tools, processes, equipment and technologies for search and rescue in hazardous conditions (IA) (Innovatív kutató-mentő eszközök veszélyes körülményekhez)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-drs-03",
-   "outcome": "closed",
-   "detail": "EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-horizon-cl3-2026-01-drs-04",
-   "title": "Open topic on driving innovation uptake of disaster risk solutions (IA) (Katasztrófakockázati megoldások piaci bevezetése – nyitott téma)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-drs-04",
-   "outcome": "closed",
-   "detail": "EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-horizon-cl3-2026-01-infra-01",
-   "title": "Tools and processes to support stress tests of critical infrastructure (IA) (Kritikus infrastruktúra stressztesztjét támogató eszközök)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-infra-01",
-   "outcome": "closed",
-   "detail": "EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-horizon-cl3-2026-01-infra-03",
-   "title": "Targeted innovative capabilities for the resilience of critical entities to natural and human-induced disasters (IA) (Kritikus szervezetek rezilienciáját növelő innovatív képességek)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-infra-03",
-   "outcome": "closed",
-   "detail": "EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-horizon-cl3-2026-01-ssri-04",
-   "title": "Ecosystem and next-generation capabilities for a secured European Critical Communication System (IA) (Biztonságos európai kritikus kommunikációs rendszer)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-ssri-04",
-   "outcome": "closed",
-   "detail": "EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-horizon-cl3-2026-01-bm-01",
-   "title": "Advanced border surveillance and situational awareness (IA) (Fejlett határfelügyelet és helyzetfelismerés)",
-   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-bm-01",
-   "outcome": "closed",
-   "detail": "EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "kind": "deadline-changed",
-   "id": "v-eitum-fsts-2026-c4",
-   "title": "Financial Support to Startups Open Call 2026 – 4th cut-off (Városi mobilitási startupok befektetési támogatása – 4. forduló)",
-   "url": "https://www.eiturbanmobility.eu/call-for-proposals/financial-support-to-startups-open-call-3/",
-   "outcome": "auto-fixed",
-   "detail": "oldal szerint: „Deadline for applications:\n11 January 2027”"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-eurohpc-aif-large-scale",
-   "title": "Large Scale Access to AI Factories (Nagy léptékű GPU-hozzáférés az EU MI-gyárakban)",
-   "url": "https://www.eurohpc-ju.europa.eu/large-scale-access-ai-factories_en",
-   "outcome": "changed-unverified",
-   "detail": "deadline 2033-12-31 not in its quote"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-battleverse-oc1",
-   "title": "BattleVerse 1st Open Call for Experiments – defence simulation & AI (Védelmi szimuláció és MI kísérletek KKV-knak)",
-   "url": "https://battleverse.ems-carsa.com/call/detail/1",
-   "outcome": "closed",
-   "detail": "az oldal szerint: „Closed”"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-eye-rolling",
-   "title": "Erasmus for Young Entrepreneurs (Erasmus fiatal vállalkozóknak – külföldi tapasztalatszerzés tapasztalt vállalkozónál)",
-   "url": "https://www.erasmus-entrepreneurs.eu/page.php?pid=005",
-   "outcome": "changed-unverified",
-   "detail": "status not on page"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-eitcc-innovation-projects-2026",
-   "title": "EIT Culture & Creativity Innovation Projects 2026 (Kreatívipari innovációs projektek – divat, audiovizuális média, építészet)",
-   "url": "https://eit-culture-creativity.eu/your-opportunities/calls-funding/innovation-projects",
-   "outcome": "changed-unverified",
-   "detail": "deadline passed"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-exim-jovo-exportorei-beruhazasi-hitel",
-   "title": "EXIM Jövő Exportőrei Beruházási Hitel (Demján Sándor Program)",
-   "url": "https://exim.hu/demjan-sandor-program/",
-   "outcome": "changed-unverified",
-   "detail": "title not on page; status not on page; no deadline and not rolling; amount quote not on page; status closed"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-interreg-huhr-b-light-2-call1",
-   "title": "Interreg Magyarország–Horvátország B Light 2 – 1. felhívás KKV-k határon átnyúló együttműködésére",
-   "url": "https://investinbaranya.hu/en/b-light/",
-   "outcome": "changed-unverified",
-   "detail": "deadline 2026-11-23 not in its quote"
-  },
-  {
-   "kind": "new",
-   "source": "eit",
-   "url": "https://www.eit.europa.eu/our-activities/opportunities/open-call-implementing-participants-empowering-women-agrifood-ewa",
-   "title": "Open Call for Implementing Participants of the Empowering Women in Agrifood (EWA) Programme 2027–2028",
-   "detail": "status not on page"
-  },
-  {
-   "kind": "new",
-   "source": "eit",
-   "url": "https://www.eit.europa.eu/our-activities/opportunities/proof-concept-technology-validation-call",
-   "title": "Proof of Concept & Technology Validation Call",
-   "detail": "status not on page"
-  },
-  {
-   "kind": "new",
-   "source": "eit",
-   "url": "https://www.eit.europa.eu/our-activities/opportunities/rocket-2027-take-your-startup-new-european-market",
-   "title": "Rocket Up 2027",
-   "detail": "no deadline and not rolling"
-  },
-  {
-   "kind": "new",
-   "source": "eit",
-   "url": "https://www.eit.europa.eu/our-activities/opportunities/seedbed-venture-catalyst-call-startups-0",
-   "title": "Seedbed Venture Catalyst Call for Startups",
-   "detail": "status not on page; no deadline and not rolling; status unclear"
+   "detail": "oldal szerint: „04/11/2027”"
   },
   {
    "kind": "benchmark-code",
@@ -214,57 +34,15 @@
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "ace animation special 2027",
-   "url": "https://pafi.hu/p/ace-animation-special-2027",
+   "title": "kohan esszeiro palyazat",
+   "url": "https://pafi.hu/p/kohan-esszeiro-palyazat",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "az eloado muveszetek kollegiuma szinhazmuveszet szakterulet nyilt palyazati felhivasa 1",
-   "url": "https://pafi.hu/p/az-eloado-muveszetek-kollegiuma-szinhazmuveszet-szakterulet-nyilt-palyazati-felhivasa-1",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "az eloado muveszetek kollegiuma zenemuveszet szakterulet nyilt palyazati felhivasa 1",
-   "url": "https://pafi.hu/p/az-eloado-muveszetek-kollegiuma-zenemuveszet-szakterulet-nyilt-palyazati-felhivasa-1",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "1956 hosei a szabadsag hangjai",
-   "url": "https://pafi.hu/p/1956-hosei-a-szabadsag-hangjai",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "a muveszet erejevel a mait antologia 2026",
-   "url": "https://pafi.hu/p/a-muveszet-erejevel-a-mait-antologia-2026",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "az eloado muveszetek kollegiuma tancmuveszet szakterulet nyilt palyazati felhivasa 1",
-   "url": "https://pafi.hu/p/az-eloado-muveszetek-kollegiuma-tancmuveszet-szakterulet-nyilt-palyazati-felhivasa-1",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "35 magyar innovacios nagydij",
-   "url": "https://pafi.hu/p/35-magyar-innovacios-nagydij",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "sozialmarie prize for social innovation 2027",
-   "url": "https://pafi.hu/p/sozialmarie-prize-for-social-innovation-2027",
+   "title": "hero dij 2026",
+   "url": "https://pafi.hu/p/hero-dij-2026",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]

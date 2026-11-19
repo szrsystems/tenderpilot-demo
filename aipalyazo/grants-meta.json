@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-18T16:22:04.813Z",
+ "updatedAt": "2026-11-19T15:08:58.772Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,21 +7,21 @@
   "palyazatApi": {
    "ok": true,
    "items": 17,
-   "lastOk": "2026-11-18T16:22:04.813Z"
+   "lastOk": "2026-11-19T15:08:58.772Z"
   },
   "euApi": {
    "ok": true,
-   "items": 275,
-   "lastOk": "2026-11-18T16:22:04.813Z"
+   "items": 276,
+   "lastOk": "2026-11-19T15:08:58.772Z"
   }
  },
  "counts": {
-  "total": 418,
+  "total": 419,
   "api": 17,
   "verified": 126,
-  "euAuto": 275,
+  "euAuto": 276,
   "hazai": 58,
-  "eu": 360,
+  "eu": 361,
   "excluded": 19
  },
  "needsReview": [
@@ -46,7 +46,6 @@
   "v-agrar-szk-max",
   "v-eurostars-3-call-12",
   "v-eureka-xecs-call6",
-  "v-eye-rolling",
   "v-eif-investeu-unicredit-hu",
   "v-eif-sustainability-kh-hu",
   "v-garantiqa-investeu",
@@ -79,14 +78,6 @@
    "why": "lejárt"
   },
   {
-   "id": "v-i3-2026-inv1",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-i3-2026-inv2a",
-   "why": "lejárt"
-  },
-  {
    "id": "v-trunsport-oc1",
    "why": "lejárt"
   },
@@ -104,34 +95,6 @@
   },
   {
    "id": "v-erasmus-2026-ka210-adu",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-horizon-cl3-2026-01-drs-02",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-horizon-cl3-2026-01-drs-03",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-horizon-cl3-2026-01-drs-04",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-horizon-cl3-2026-01-infra-01",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-horizon-cl3-2026-01-infra-03",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-horizon-cl3-2026-01-ssri-04",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-horizon-cl3-2026-01-bm-01",
    "why": "lejárt"
   },
   {
@@ -199,6 +162,10 @@
    "why": "lejárt"
   },
   {
+   "id": "v-ivf-visegrad-grants-2026-10",
+   "why": "lejárt"
+  },
+  {
    "id": "v-horizon-ju-eurohpc-2026-qti-13",
    "why": "lejárt"
   },
@@ -235,6 +202,14 @@
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   },
   {
+   "id": "v-i3-2026-inv1",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-i3-2026-inv2a",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
    "id": "v-horizon-cl5-2026-10-d2-03",
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   },
@@ -248,6 +223,34 @@
   },
   {
    "id": "v-horizon-cl5-2026-10-d6-10",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2026-01-drs-02",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2026-01-drs-03",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2026-01-drs-04",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2026-01-infra-01",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2026-01-infra-03",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2026-01-ssri-04",
+   "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-horizon-cl3-2026-01-bm-01",
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   },
   {
@@ -267,12 +270,8 @@
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   },
   {
-   "id": "v-ivf-visegrad-grants-2026-10",
-   "why": "monitor: closed: az oldal szerint: „Currently closed”"
-  },
-  {
    "id": "v-marc-impact-hu-2026",
-   "why": "monitor: closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
+   "why": "monitor: closed: az oldal szerint: „2026. szeptember 28.\nJelentkezési határidő (23:59)”"
   }
  ],
  "excluded": [
@@ -285,36 +284,40 @@
    "why": "Pénzügyi eszköz keret alapkezelőnek."
   },
   {
-   "code": "IKOP_PLUSZ-2.2.0-23",
-   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
-   "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
-  },
-  {
    "code": "IKOP_PLUSZ-1.1.0-23",
    "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/A1-24",
    "why": "Alapkezelői technikai felhívás."
   },
   {
-   "code": "IKOP_PLUSZ-2.1.0-23",
-   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
-  },
-  {
    "code": "DIMOP_PLUSZ-1.2.3/A2-24",
    "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
   },
   {
+   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
+  },
+  {
    "code": "IKOP_PLUSZ-1.2.0-23",
    "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.1.0-23",
+   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
+   "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.2.0-23",
+   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
+   "why": "Alapkezelői/bank költségtérítés."
   },
   {
    "code": "DIMOP_PLUSZ-5.1.4-2-26",
@@ -325,12 +328,8 @@
    "why": "Alapkezelői költségtérítés."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
-   "why": "Alapkezelői/bank költségtérítés."
-  },
-  {
-   "code": "GINOP_PLUSZ-1.4.7-24",
-   "why": "Alapkezelői/közvetítői költségtérítés."
+   "code": "KEHOP_PLUSZ-3.1.12-25",
+   "why": "Közszféra kármentesítési felhívás."
   },
   {
    "code": "KEHOP_PLUSZ-3.1.11-25",
@@ -341,8 +340,8 @@
    "why": "Hitelkeret alapkezelőnek (Budapest)."
   },
   {
-   "code": "KEHOP_PLUSZ-3.1.12-25",
-   "why": "Közszféra kármentesítési felhívás."
+   "code": "GINOP_PLUSZ-1.4.7-24",
+   "why": "Alapkezelői/közvetítői költségtérítés."
   },
   {
    "code": "2025-3.1.1-ED",
@@ -355,362 +354,37 @@
  ],
  "changes": [
   {
-   "id": "pg-KEHOP_PLUSZ-5.1.0-26",
-   "type": "new",
-   "title": "Igazságos Átmenet Alap (JTF) KKV Hitelprogram"
-  },
-  {
-   "id": "pg-GINOP_PLUSZ-2.1.3-24",
-   "type": "new",
-   "title": "KKV-k innovációs képességének támogatása"
+   "id": "pg-MAHOP_PLUSZ-1.3.1-25",
+   "type": "szabad-keret",
+   "from": 448615555,
+   "to": 450702055,
+   "title": "A fenntartható természetesvízi halgazdálkodás támogatása"
   },
   {
    "id": "pg-EFOP_PLUSZ-4.1.2-25",
    "type": "szabad-keret",
-   "from": 249667057,
-   "to": 148807648,
+   "from": 148807648,
+   "to": 149254161,
    "title": "Fogyatékos és sajátos nevelési igényű fiatalok munkatapasztalat szerzésének támogatása, munkakompetenciák fejlesztése"
   },
   {
    "id": "v-horizon-eic-2026-accelerator-01",
-   "type": "new",
+   "type": "deadline",
+   "from": "2027-01-20",
+   "to": "2027-11-04",
    "title": "EIC Accelerator 2026 – Open & Challenges (EIC Accelerator: mélytech startupok/KKV-k skálázása)"
   },
   {
-   "id": "v-eitum-fsts-2026-c4",
+   "id": "eu-cs-46813062",
    "type": "deadline",
-   "from": "2026-11-16",
-   "to": "2027-01-11",
-   "title": "Financial Support to Startups Open Call 2026 – 4th cut-off (Városi mobilitási startupok befektetési támogatása – 4. forduló)"
+   "from": "2026-11-18",
+   "to": "2026-11-30",
+   "title": "Specialised Education Programmes in Key Capacity Areas — kaszkád (FSTP) nyílt felhívás"
   },
   {
-   "id": "eu-cs-43966258",
-   "type": "deadline",
-   "from": "2026-11-10",
-   "to": "2027-04-16",
-   "title": "European partnership rescuing biodiversity to safeguard life on Earth — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-44093037",
+   "id": "eu-cs-45700455",
    "type": "new",
-   "title": "European Partnership Water Security for the Planet (Water4All) — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-48351428",
-   "type": "deadline",
-   "from": "2026-11-12",
-   "to": "2027-05-05",
-   "title": "Support for R&I policy making in the EU enlargement countries — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-44092120",
-   "type": "deadline",
-   "from": "2026-11-16",
-   "to": "2027-06-14",
-   "title": "European Partnership for a climate neutral, sustainable and productive Blue Economy — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-44121492",
-   "type": "new",
-   "title": "Co-Funded Partnership: Driving Urban Transitions to a sustainable future (DUT) — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-45659376",
-   "type": "deadline",
-   "from": "2026-11-16",
-   "to": "2026-11-23",
-   "title": "Implementing co-funded action plans for connected regional innovation valleys — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-47365875",
-   "type": "deadline",
-   "from": "2026-11-10",
-   "to": "2026-12-28",
-   "title": "Fostering Ukrainians’ access to culture and cultural heritage — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-47039365",
-   "type": "deadline",
-   "from": "2026-11-13",
-   "to": "2027-01-06",
-   "title": "Preparedness Support and Mutual Assistance, Targeting Larger Industrial Operations and Installations — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-46950864",
-   "type": "new",
-   "title": "Facilitate the engagement in global ICT standardisation development (CSA) — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-47790029",
-   "type": "new",
-   "title": "Drone-based affordable mass munitions — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-43971674",
-   "type": "new",
-   "title": "European partnership fostering a European Research Area (ERA) for health research — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-45703720",
-   "type": "new",
-   "title": "Piloting emerging Smart IoT Platforms and decentralized intelligence (IA) — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-46827222",
-   "type": "new",
-   "title": "Interregional Innovation Investments Strand 2a — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-45705096",
-   "type": "deadline",
-   "from": "2026-11-09",
-   "to": "2027-01-19",
-   "title": "'Innovate to transform' support for SME's sustainability transition (CSA) — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-45700894",
-   "type": "new",
-   "title": "European Partnership on Personalised Medicine — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-45658229",
-   "type": "new",
-   "title": "Enhancing working conditions and strengthening the work force through digital and data technologies – the potential of robotics and augmented reality in agriculture — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-46906387",
-   "type": "new",
-   "title": "A European Collaborative Cloud for Cultural Heritage – Innovative tools for the study, conservation and restoration of heritage objects — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-HORIZON-HLTH-2027-01-ENVHLTH-MISSCLIMA-03",
-   "type": "new",
-   "title": "Tools and technologies to support health adaptation to climate change"
-  },
-  {
-   "id": "eu-HORIZON-HLTH-2027-01-ENVHLTH-02",
-   "type": "new",
-   "title": "Integrating climate-related exposures into the human exposome and characterising its changes in response to climate change"
-  },
-  {
-   "id": "eu-EMFAF-2027-PIA-ScientificAdviceFisheries",
-   "type": "new",
-   "title": "Improving scientific knowledge to strengthen the science-basis of management decisions under the CFP"
-  },
-  {
-   "id": "eu-HORIZON-EIC-2027-PATHFINDEROPEN-two-stage",
-   "type": "new",
-   "title": "HORIZON-EIC-2027-PATHFINDEROPEN-two-stage"
-  },
-  {
-   "id": "eu-HORIZON-EIC-2027-DEFENCE-01",
-   "type": "new",
-   "title": "EIC STEP Defence"
-  },
-  {
-   "id": "eu-cs-46110887",
-   "type": "new",
-   "title": "Next Generation Innovation Talents — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-HORIZON-EIC-2027-STEP",
-   "type": "new",
-   "title": "EIC STEP Scale Up"
-  },
-  {
-   "id": "eu-HORIZON-EIC-2027-ACCELERATOR-01",
-   "type": "new",
-   "title": "Short proposal"
-  },
-  {
-   "id": "pg-KEHOP_PLUSZ-4.2.5-25",
-   "type": "removed",
-   "title": "Földhő Hasznosítási Kedvezményes Hitelkonstrukció"
-  },
-  {
-   "id": "v-i3-2026-inv1",
-   "type": "removed",
-   "title": "Interregional Innovation Investments Strand 1 (Interregionális innovációs beruházások – 1. ág)"
-  },
-  {
-   "id": "v-i3-2026-inv2a",
-   "type": "removed",
-   "title": "Interregional Innovation Investments Strand 2a (Interregionális innovációs beruházások – 2a ág, kevésbé fejlett régiók)"
-  },
-  {
-   "id": "v-fierce-oc2",
-   "type": "removed",
-   "title": "FIERCE 2nd Open Call – space-enabled green solutions (Űradat-alapú zöld megoldások KKV-knak)"
-  },
-  {
-   "id": "v-horizon-cl3-2026-01-drs-02",
-   "type": "removed",
-   "title": "Multi-hazard approach and cumulative / cascading impacts (IA) (Többveszélyes megközelítés és kaszkádhatások kezelése)"
-  },
-  {
-   "id": "v-horizon-cl3-2026-01-drs-03",
-   "type": "removed",
-   "title": "Innovative tools, processes, equipment and technologies for search and rescue in hazardous conditions (IA) (Innovatív kutató-mentő eszközök veszélyes körülményekhez)"
-  },
-  {
-   "id": "v-horizon-cl3-2026-01-drs-04",
-   "type": "removed",
-   "title": "Open topic on driving innovation uptake of disaster risk solutions (IA) (Katasztrófakockázati megoldások piaci bevezetése – nyitott téma)"
-  },
-  {
-   "id": "v-horizon-cl3-2026-01-infra-01",
-   "type": "removed",
-   "title": "Tools and processes to support stress tests of critical infrastructure (IA) (Kritikus infrastruktúra stressztesztjét támogató eszközök)"
-  },
-  {
-   "id": "v-horizon-cl3-2026-01-infra-03",
-   "type": "removed",
-   "title": "Targeted innovative capabilities for the resilience of critical entities to natural and human-induced disasters (IA) (Kritikus szervezetek rezilienciáját növelő innovatív képességek)"
-  },
-  {
-   "id": "v-horizon-cl3-2026-01-ssri-04",
-   "type": "removed",
-   "title": "Ecosystem and next-generation capabilities for a secured European Critical Communication System (IA) (Biztonságos európai kritikus kommunikációs rendszer)"
-  },
-  {
-   "id": "v-horizon-cl3-2026-01-bm-01",
-   "type": "removed",
-   "title": "Advanced border surveillance and situational awareness (IA) (Fejlett határfelügyelet és helyzetfelismerés)"
-  },
-  {
-   "id": "v-battleverse-oc1",
-   "type": "removed",
-   "title": "BattleVerse 1st Open Call for Experiments – defence simulation & AI (Védelmi szimuláció és MI kísérletek KKV-knak)"
-  },
-  {
-   "id": "v-dut-call-2026",
-   "type": "removed",
-   "title": "Driving Urban Transitions (DUT) Call 2026 (Városi átmenet partnerség – 2026-os közös felhívás)"
-  },
-  {
-   "id": "v-water4all-jtc-2026",
-   "type": "removed",
-   "title": "Water4All 2026 Joint Transnational Call (Vízbiztonsági partnerség – 2026-os közös felhívás)"
-  },
-  {
-   "id": "v-horizon-ju-eurohpc-2026-qti-13",
-   "type": "removed",
-   "title": "Quantum-Testing Infrastructure (Kvantumtechnológiai tesztinfrastruktúra – KKV-k és startupok validálása)"
-  },
-  {
-   "id": "v-horizon-ju-eurohpc-2026-nqkd-12",
-   "type": "removed",
-   "title": "Next-Generation QKD Systems (Következő generációs kvantumkulcs-szétosztó rendszerek)"
-  },
-  {
-   "id": "eu-HORIZON-CL3-2026-01-SSRI-02",
-   "type": "removed",
-   "title": "Demand-led innovation in security"
-  },
-  {
-   "id": "eu-HORIZON-CL3-2026-01-FCT-06",
-   "type": "removed",
-   "title": "Prevention and mitigation of misuse of synthetic biology for bioterrorism purposes"
-  },
-  {
-   "id": "eu-HORIZON-CL3-2026-01-DRS-05",
-   "type": "removed",
-   "title": "Climate security and civil preparedness – new ways to develop pre- and post-crisis climate-change related scenarios for a more resilient Europe"
-  },
-  {
-   "id": "eu-HORIZON-CL3-2026-01-FCT-04",
-   "type": "removed",
-   "title": "Crime prevention approaches, online and off-line, tackling the nexus between addictions and crime"
-  },
-  {
-   "id": "eu-HORIZON-CL3-2026-01-FCT-01",
-   "type": "removed",
-   "title": "Improving capabilities of law enforcement to counter climate-related challenges"
-  },
-  {
-   "id": "eu-HORIZON-CL3-2026-01-SSRI-01",
-   "type": "removed",
-   "title": "Open topic on supporting disruptive technological innovations for civil security"
-  },
-  {
-   "id": "eu-HORIZON-CL3-2026-01-BM-02",
-   "type": "removed",
-   "title": "Accessible and available travel facilitation"
-  },
-  {
-   "id": "eu-HORIZON-CL3-2026-01-FCT-03",
-   "type": "removed",
-   "title": "Missing persons: prevention and investigation"
-  },
-  {
-   "id": "eu-HORIZON-CL3-2026-01-DRS-01",
-   "type": "removed",
-   "title": "Designing new ways of risk awareness and enhanced disaster preparedness"
-  },
-  {
-   "id": "eu-HORIZON-CL3-2026-01-FCT-05",
-   "type": "removed",
-   "title": "Enhancing the security of citizens against terrorism and lone-actor violence in confined spaces such as schools"
-  },
-  {
-   "id": "eu-HORIZON-CL3-2026-01-FCT-02",
-   "type": "removed",
-   "title": "Open topic on preventing and countering the misuse of emerging technologies for criminal purposes, including issues related to lawful access to data"
-  },
-  {
-   "id": "eu-HORIZON-CL3-2026-01-INFRA-02",
-   "type": "removed",
-   "title": "Security challenges of the green transition in urban und peri urban areas"
-  },
-  {
-   "id": "eu-HORIZON-CL3-2026-01-SSRI-03",
-   "type": "removed",
-   "title": "Public procurement of innovation for security"
-  },
-  {
-   "id": "eu-cs-46039280",
-   "type": "removed",
-   "title": "Interregional Innovation Investments Strand 2a — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-46830380",
-   "type": "removed",
-   "title": "Interregional Innovation Investments Strand 1 — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-46905650",
-   "type": "removed",
-   "title": "Methods for bridging reality gaps — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-HORIZON-JU-EUROHPC-2026-QTI-13-01",
-   "type": "removed",
-   "title": "Quantum-Testing Infrastructure for Quantum Technologies"
-  },
-  {
-   "id": "eu-HORIZON-JU-EUROHPC-2026-NAPT-11-01",
-   "type": "removed",
-   "title": "Neutral-Atom Platform Technologies"
-  },
-  {
-   "id": "eu-HORIZON-JU-EUROHPC-2026-QEXP-14-01",
-   "type": "removed",
-   "title": "Quantum Experimental Pilot Lines for Quantum Technologies"
-  },
-  {
-   "id": "eu-HORIZON-JU-EUROHPC-2026-SPT-10-01",
-   "type": "removed",
-   "title": "Superconducting Platform Technologies"
-  },
-  {
-   "id": "eu-HORIZON-JU-EUROHPC-2026-NQKD-12-01",
-   "type": "removed",
-   "title": "Next-Generation QKD Systems"
-  },
-  {
-   "id": "eu-HORIZON-JU-EUROHPC-2026-TIPT-09-01",
-   "type": "removed",
-   "title": "Trapped-Ion Platform Technologies"
+   "title": "European Partnership: One Health Anti-Microbial Resistance — kaszkád (FSTP) nyílt felhívás"
   }
  ]
 }
