@@ -77,13 +77,15 @@
     var el = $(id); var label = el && el.closest('.field') && el.closest('.field').querySelector('label');
     if (label && !label.querySelector('.from-nav')) label.insertAdjacentHTML('beforeend', ' <span class="tag brand from-nav">NAV</span>');
   }
-  $('taxbox-btn').addEventListener('click', async function () {
-    var input = $('f_taxnumber'), msg = $('taxbox-msg'), btn = this;
+  var lastLookup = '';
+  async function runLookup(auto) {
+    var input = $('f_taxnumber'), msg = $('taxbox-msg'), btn = $('taxbox-btn');
     var digits = input.value.replace(/\D/g, '');
+    if (auto && (lastLookup === digits.slice(0, 8) || btn.disabled)) return; // one lookup per number
     msg.className = 'hint';
-    if (!(digits.length === 8 || digits.length === 11)) { msg.textContent = 'Adjon meg 8 vagy 11 számjegyű adószámot (pl. 12345678-1-12).'; msg.className = 'hint error'; input.focus(); return; }
-    if (!window.gp || !window.gp.client || !signedInUser) { msg.innerHTML = 'A NAV-os kitöltéshez <a href="login.html">jelentkezzen be</a>. Az adatokat kézzel is megadhatja.'; msg.className = 'hint error'; return; }
-    btn.disabled = true; btn.textContent = 'Keresés…';
+    if (!(digits.length === 8 || digits.length === 11)) { if (auto) return; msg.textContent = 'Adjon meg 8 vagy 11 számjegyű adószámot (pl. 12345678-1-12).'; msg.className = 'hint error'; input.focus(); return; }
+    if (!window.gp || !window.gp.client || !signedInUser) { if (auto) return; msg.innerHTML = 'A NAV-os kitöltéshez <a href="login.html">jelentkezzen be</a>. Az adatokat kézzel is megadhatja.'; msg.className = 'hint error'; return; }
+    btn.disabled = true; btn.textContent = 'Keresés…'; lastLookup = digits.slice(0, 8);
     try {
       var r = await window.gp.client.functions.invoke('company-lookup', { body: { taxNumber: digits } });
       var data = r.data;
@@ -101,12 +103,22 @@
       if (data.legalForm) set('f_legal', data.legalForm);
       if (data.region && !val('f_site_region')) set('f_site_region', data.region);
       try { sessionStorage.setItem('aip:tax', digits.slice(0, 8)); } catch (e) {}
-      msg.textContent = 'Kitöltöttük: cégnév, székhely, cégforma' + (data.region ? ', régió (a székhely alapján — ha máshol fejleszt, módosítsa)' : '') + '. A többi adatot a NAV nem teszi közzé.';
+      var otherRegions = (data.sites || []).map(function (x) { return x.region; }).filter(function (r, i, a) { return r && r !== data.region && a.indexOf(r) === i; });
+      msg.textContent = 'Kitöltöttük: cégnév, székhely, cégforma' + (data.region ? ', régió (a székhely alapján — ha máshol fejleszt, módosítsa)' : '') + '.'
+        + (otherRegions.length ? ' A NAV szerint telephelye van itt is: ' + otherRegions.join(', ') + '.' : '')
+        + ' A létszámot és az árbevételt a NAV nem teszi közzé, ezeket kérjük megadni.';
       if (window.aipTrack) aipTrack('tax-lookup');
       preview();
     } catch (e) {
+      lastLookup = '';
       msg.textContent = 'A gyorskitöltés most nem érhető el. Kérjük, töltse ki az adatokat kézzel.'; msg.className = 'hint error';
     } finally { btn.disabled = false; btn.textContent = 'Kitöltés'; }
+  }
+  $('taxbox-btn').addEventListener('click', function () { lastLookup = ''; runLookup(false); });
+  // automatic: as soon as a full tax number is typed or pasted
+  $('f_taxnumber').addEventListener('input', function () {
+    var d = this.value.replace(/\D/g, '');
+    if (d.length === 8 || d.length === 11) runLookup(true);
   });
 
   // ---------- steps ----------

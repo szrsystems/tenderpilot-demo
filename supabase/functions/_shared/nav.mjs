@@ -73,9 +73,14 @@ export function parseTaxpayerResponse(xml) {
     postalCode: tag(hq, 'postalCode'), city: decode(tag(hq, 'city')),
     street: [decode(tag(hq, 'streetName')), decode(tag(hq, 'publicPlaceCategory')), tag(hq, 'number')].filter(Boolean).join(' ') || decode(tag(hq, 'additionalAddressDetail')),
   } : {};
+  // Telephely / fióktelep addresses: grants often depend on where the project
+  // site is, not on the HQ.
+  const sites = items.filter((x) => x !== hq).map((x) => ({
+    type: tag(x, 'taxpayerAddressType'), postalCode: tag(x, 'postalCode'), city: decode(tag(x, 'city')),
+  })).filter((s) => /^\d{4}$/.test(s.postalCode || ''));
   const name = decode(tag(xml, 'taxpayerName'));
   const incorporation = tag(xml, 'incorporation');
-  return { ok: true, found: true, name, shortName: decode(tag(xml, 'taxpayerShortName')), incorporation, legalForm: legalFormOf(name, incorporation), ...addr };
+  return { ok: true, found: true, name, shortName: decode(tag(xml, 'taxpayerShortName')), incorporation, legalForm: legalFormOf(name, incorporation), ...addr, sites };
 }
 
 export function legalFormOf(name, incorporation) {

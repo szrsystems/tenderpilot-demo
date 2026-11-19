@@ -2,8 +2,13 @@
 // AIpályázó — company-lookup Edge Function (tax number → company data)
 // =========================================================================
 // POST { taxNumber: "12345678" | "12345678-1-41" }  (signed-in users only)
-// → { found, name, legalForm, postalCode, city, street, county, region }
+// → { found, name, legalForm, postalCode, city, street, county, region, sites[], cached }
 // Source: NAV Online Számla API v3 queryTaxpayer (official, free).
+// Asked once per company: the answer is cached in public.company_data for
+// CACHE_DAYS, so repeat sign-ups / reloads never call NAV again. A successful
+// lookup also stores the tax number on the caller's profile (server-side).
+// company_verified_at means "NAV confirmed this tax number is valid" — it
+// does NOT prove the user works for that company.
 // TEÁOR, headcount, revenue, closed years are NOT available here: the
 // onboarding asks the user for them.
 //
@@ -31,6 +36,7 @@ const NAV = {
   softwareId: Deno.env.get('NAV_SOFTWARE_ID') ?? '',
 };
 const DAILY_LIMIT = 150; // shared per-user daily AI/lookup counter
+const CACHE_DAYS = 30;
 
 const ALLOWED_ORIGINS = ['https://aipalyazo.hu', 'https://www.aipalyazo.hu', 'https://palyazati-ertesito.hu', 'https://www.palyazati-ertesito.hu'];
 function cors(origin: string | null) {
@@ -66,6 +72,29 @@ Deno.serve(async (req) => {
   const target = normalizeTaxNumber(body?.taxNumber);
   if (!target) return json(origin, { error: 'invalid_tax_number' }, 400);
 
+  const shape = (res: any, cached: boolean) => ({
+    found: true, name: res.shortName || res.name, fullName: res.name, legalForm: res.legalForm,
+    postalCode: res.postalCode, city: res.city, street: res.street,
+    county: AIPGeo.countyOf(res.postalCode), region: AIPGeo.regionOf(res.postalCode),
+    sites: (res.sites || []).map((x: any) => ({ ...x, region: AIPGeo.regionOf(x.postalCode) })),
+    source: 'NAV', cached,
+  });
+  const markProfile = () => admin.from('profiles')
+    .update({ tax_number: target, company_verified_at: new Date().toISOString() })
+    .eq('id', user.id).then(() => {}, () => {}); // migration pending = harmless
+
+  // 1) cache
+  const { data: hit } = await admin.from('company_data').select('found, data, fetched_at').eq('tax8', target).maybeSingle()
+    .then((r: any) => r, () => ({ data: null }));
+  const age = hit ? Date.now() - Date.parse(hit.fetched_at) : Infinity;
+  // "not found" is re-checked after a day (a brand-new company may appear soon)
+  if (hit && age < (hit.found ? CACHE_DAYS : 1) * 864e5) {
+    if (!hit.found) return json(origin, { found: false, cached: true });
+    await markProfile();
+    return json(origin, shape(hit.data, true));
+  }
+
+  // 2) NAV
   const xml = await buildQueryTaxpayerXml({
     login: NAV.login, password: NAV.password, signKey: NAV.signKey, ownTaxNumber: NAV.taxNumber,
     software: { id: NAV.softwareId, name: 'AIpalyazo', version: '1.0', devName: 'Szephelyi Oliver Soma EV', devContact: 'info@aipalyazo.hu', devTaxNumber: NAV.taxNumber },
@@ -77,17 +106,23 @@ Deno.serve(async (req) => {
     const r = await fetch(NAV.url, { method: 'POST', headers: { 'Content-Type': 'application/xml', Accept: 'application/xml' }, body: xml, signal: AbortSignal.timeout(15000) });
     text = await r.text();
   } catch {
+    if (hit?.found) return json(origin, shape(hit.data, true)); // stale beats nothing
     return json(origin, { error: 'nav_unreachable' }, 502);
   }
   const res: any = parseTaxpayerResponse(text);
   if (!res.ok) {
     console.error('NAV error', res.error); // never echo NAV credentials or raw XML to the client
+    if (hit?.found) return json(origin, shape(hit.data, true));
     return json(origin, { error: 'nav_error' }, 502);
   }
+  const { ok: _ok, ...stored } = res;
+  // Sole traders (EV) are natural persons: their data is personal data and is
+  // NOT cached (it must disappear with the account — see adatvedelem.html).
+  if (res.incorporation !== 'SELF_EMPLOYED') {
+    await admin.from('company_data').upsert({ tax8: target, source: 'NAV', found: !!res.found, data: res.found ? stored : {}, fetched_at: new Date().toISOString() })
+      .then(() => {}, () => {}); // cache write failure must not break the lookup
+  }
   if (!res.found) return json(origin, { found: false });
-  return json(origin, {
-    found: true, name: res.shortName || res.name, fullName: res.name, legalForm: res.legalForm,
-    postalCode: res.postalCode, city: res.city, street: res.street,
-    county: AIPGeo.countyOf(res.postalCode), region: AIPGeo.regionOf(res.postalCode), source: 'NAV',
-  });
+  await markProfile();
+  return json(origin, shape(res, false));
 });
