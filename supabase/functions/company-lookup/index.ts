@@ -21,7 +21,7 @@
 import { createClient } from 'jsr:@supabase/supabase-js@2';
 import jsSha3 from 'npm:js-sha3@0.9.3'; // CommonJS package → default import
 const { sha3_512 } = jsSha3 as any;
-import { buildQueryTaxpayerXml, parseTaxpayerResponse, normalizeTaxNumber, newRequestId } from '../_shared/nav.mjs';
+import { buildQueryTaxpayerXml, parseTaxpayerResponse, normalizeTaxNumber, newRequestId, legalFormOf } from '../_shared/nav.mjs';
 import '../_shared/hu-geo.js';
 const AIPGeo = (globalThis as any).AIPGeo;
 
@@ -73,7 +73,7 @@ Deno.serve(async (req) => {
   if (!target) return json(origin, { error: 'invalid_tax_number' }, 400);
 
   const shape = (res: any, cached: boolean) => ({
-    found: true, name: res.shortName || res.name, fullName: res.name, legalForm: res.legalForm,
+    found: true, name: res.shortName || res.name, fullName: res.name, legalForm: legalFormOf(res.name, res.incorporation, res.shortName), // recomputed: cached rows keep up with fixes
     postalCode: res.postalCode, city: res.city, street: res.street,
     county: AIPGeo.countyOf(res.postalCode), region: AIPGeo.regionOf(res.postalCode),
     sites: (res.sites || []).map((x: any) => ({ ...x, region: AIPGeo.regionOf(x.postalCode) })),

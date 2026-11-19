@@ -80,16 +80,18 @@ export function parseTaxpayerResponse(xml) {
   })).filter((s) => /^\d{4}$/.test(s.postalCode || ''));
   const name = decode(tag(xml, 'taxpayerName'));
   const incorporation = tag(xml, 'incorporation');
-  return { ok: true, found: true, name, shortName: decode(tag(xml, 'taxpayerShortName')), incorporation, legalForm: legalFormOf(name, incorporation), ...addr, sites };
+  return { ok: true, found: true, name, shortName: decode(tag(xml, 'taxpayerShortName')), incorporation, legalForm: legalFormOf(name, incorporation, decode(tag(xml, 'taxpayerShortName'))), ...addr, sites };
 }
 
-export function legalFormOf(name, incorporation) {
+export function legalFormOf(name, incorporation, shortName = '') {
   if (incorporation === 'SELF_EMPLOYED') return 'EV';
-  const n = String(name || '');
-  if (/\bKft\.?|korlátolt felelősségű/i.test(n)) return 'Kft';
-  if (/\bBt\.?|betéti társaság/i.test(n)) return 'Bt';
-  if (/\bNyrt\.?/i.test(n)) return 'Nyrt';
-  if (/\bZrt\.?|zártkörűen/i.test(n)) return 'Zrt';
+  // NAV gives both the full name ("… NYILVÁNOSAN MŰKÖDŐ RÉSZVÉNYTÁRSASÁG") and the
+  // short one ("… NYRT."); \b does not see accented letters, so match both forms.
+  const n = `${name || ''} | ${shortName || ''}`;
+  if (/\bKft\.?(?![a-zà-ű])|korlátolt felelősségű/i.test(n)) return 'Kft';
+  if (/\bBt\.?(?![a-zà-ű])|betéti társaság/i.test(n)) return 'Bt';
+  if (/\bNyrt\.?(?![a-zà-ű])|nyilvánosan működő/i.test(n)) return 'Nyrt';
+  if (/\bZrt\.?(?![a-zà-ű])|zártkörűen működő/i.test(n)) return 'Zrt';
   if (/szövetkezet/i.test(n)) return 'Szövetkezet';
   return incorporation === 'ORGANIZATION' ? 'Egyéb' : '';
 }

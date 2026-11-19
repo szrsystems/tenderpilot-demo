@@ -79,6 +79,12 @@ test('NAV queryTaxpayer: request signature and response parsing', async () => {
   const ok = parseTaxpayerResponse('<ns2:R><result><funcCode>OK</funcCode></result><ns2:taxpayerValidity>true</ns2:taxpayerValidity><ns2:taxpayerName>MINTA BT</ns2:taxpayerName><ns2:incorporation>ORGANIZATION</ns2:incorporation><ns2:taxpayerAddressItem><ns2:taxpayerAddressType>HQ</ns2:taxpayerAddressType><ns3:postalCode>6720</ns3:postalCode><ns3:city>SZEGED</ns3:city></ns2:taxpayerAddressItem></ns2:R>');
   assert.equal(ok.legalForm, 'Bt'); assert.equal(ok.postalCode, '6720');
   assert.deepEqual(ok.sites, []);
+  const { legalFormOf } = await import('../supabase/functions/_shared/nav.mjs');
+  assert.equal(legalFormOf('MAGYAR TELEKOM TÁVKÖZLÉSI NYILVÁNOSAN MŰKÖDŐ RÉSZVÉNYTÁRSASÁG', 'ORGANIZATION', 'MAGYAR TELEKOM NYRT.'), 'Nyrt');
+  assert.equal(legalFormOf('DFT-HUNGÁRIA ZÁRTKÖRŰEN MŰKÖDŐ RÉSZVÉNYTÁRSASÁG', 'ORGANIZATION'), 'Zrt');
+  assert.equal(legalFormOf('MINTA KORLÁTOLT FELELŐSSÉGŰ TÁRSASÁG', 'ORGANIZATION', 'MINTA KFT.'), 'Kft');
+  assert.equal(legalFormOf('KFTÉSZ EGYESÜLET', 'ORGANIZATION'), 'Egyéb');
+  assert.equal(legalFormOf('SZÉPHELYI OLIVÉR SOMA', 'SELF_EMPLOYED'), 'EV');
   const multi = parseTaxpayerResponse('<R><funcCode>OK</funcCode><taxpayerValidity>true</taxpayerValidity><taxpayerName>MINTA KFT</taxpayerName><incorporation>ORGANIZATION</incorporation>'
     + '<taxpayerAddressItem><taxpayerAddressType>SITE</taxpayerAddressType><postalCode>3530</postalCode><city>MISKOLC</city></taxpayerAddressItem>'
     + '<taxpayerAddressItem><taxpayerAddressType>HQ</taxpayerAddressType><postalCode>1025</postalCode><city>BUDAPEST</city></taxpayerAddressItem></R>');
