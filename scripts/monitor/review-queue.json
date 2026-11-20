@@ -1,6 +1,14 @@
 {
- "updatedAt": "2026-11-19",
+ "updatedAt": "2026-11-20",
  "items": [
+  {
+   "kind": "recheck",
+   "id": "v-kap-rd40-rd12-1-26",
+   "title": "Versenyképes erdőgazdálkodást szolgáló beruházások támogatása",
+   "url": "https://kap.gov.hu/tamogatas/kap-rd40-rd12-1-26",
+   "outcome": "closed",
+   "detail": "az oldal szerint: „Lezárult”"
+  },
   {
    "kind": "recheck",
    "id": "v-agrar-szk-max",
@@ -16,6 +24,14 @@
    "url": "https://eic.ec.europa.eu/eic-funding-opportunities/eic-accelerator_en",
    "outcome": "auto-fixed",
    "detail": "oldal szerint: „04/11/2027”"
+  },
+  {
+   "kind": "recheck",
+   "id": "v-tff-5-1-5-2026-kth-start-kiegeszito",
+   "title": "Kiegészítő támogatás a KTH START beruházási vagy forgóeszköz kölcsönhöz („2=3 akció”)",
+   "url": "https://kth.hu/hirdetmenyek/2-3-akcio-a-kth-start-kolcsonokhoz",
+   "outcome": "changed-unverified",
+   "detail": "status not on page; no deadline and not rolling; amount quote not on page; status closed"
   },
   {
    "kind": "benchmark-code",
@@ -34,15 +50,15 @@
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "kohan esszeiro palyazat",
-   "url": "https://pafi.hu/p/kohan-esszeiro-palyazat",
+   "title": "felhivas az europai mi szolgaltatok reszveteli szandekanak kifejezesere",
+   "url": "https://pafi.hu/p/felhivas-az-europai-mi-szolgaltatok-reszveteli-szandekanak-kifejezesere",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "hero dij 2026",
-   "url": "https://pafi.hu/p/hero-dij-2026",
+   "title": "rocket up 2027 take your startup to a new european market",
+   "url": "https://pafi.hu/p/rocket-up-2027-take-your-startup-to-a-new-european-market",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]

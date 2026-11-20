@@ -4092,6 +4092,13 @@
    "title": "European Platforms for the promotion of emerging artists — kaszkád (FSTP) nyílt felhívás"
   }
  ],
+ "eu-cs-46597762": [
+  {
+   "date": "2026-11-20",
+   "type": "removed",
+   "title": "Co-creating solutions for soil health in Living Labs — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
  "eu-cs-46813062": [
   {
    "date": "2026-11-19",
@@ -4307,6 +4314,12 @@
    "type": "szabad-keret",
    "from": 448615555,
    "to": 450702055
+  },
+  {
+   "date": "2026-11-20",
+   "type": "szabad-keret",
+   "from": 450702055,
+   "to": 0
   }
  ],
  "v-2024-1-2-1-he-partnerseg": [
@@ -4351,6 +4364,15 @@
   {
    "date": "2026-11-02",
    "type": "page"
+  },
+  {
+   "date": "2026-11-20",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-20",
+   "type": "removed",
+   "title": "Horizont Európa európai partnerségek közös nemzetközi felhívásaiban sikeresen szereplő magyar szervezetek támogatása"
   }
  ],
  "v-2025-1-1-1-iparjog": [
@@ -4364,6 +4386,10 @@
   },
   {
    "date": "2026-11-02",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-20",
    "type": "page"
   }
  ],
@@ -4379,6 +4405,10 @@
   {
    "date": "2026-10-21",
    "type": "page"
+  },
+  {
+   "date": "2026-11-20",
+   "type": "page"
   }
  ],
  "v-2025-1-2-5-eu-kp": [
@@ -4389,6 +4419,10 @@
   },
   {
    "date": "2026-10-21",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-20",
    "type": "page"
   }
  ],
@@ -4407,6 +4441,10 @@
   },
   {
    "date": "2026-11-19",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-20",
    "type": "page"
   }
  ],
@@ -4769,6 +4807,10 @@
  "v-euipo-sme-fund-2026": [
   {
    "date": "2026-11-05",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-20",
    "type": "page"
   }
  ],
@@ -5496,6 +5538,10 @@
    "type": "deadline",
    "from": "2027-01-20",
    "to": "2027-11-04"
+  },
+  {
+   "date": "2026-11-20",
+   "type": "page"
   }
  ],
  "v-horizon-eic-2026-pathfinderchallenges-01-01": [
@@ -5836,6 +5882,16 @@
    "date": "2026-10-08",
    "type": "removed",
    "title": "Versenyképes erdőgazdálkodást szolgáló beruházások támogatása"
+  },
+  {
+   "date": "2026-11-20",
+   "type": "page"
+  }
+ ],
+ "v-kth-start-beruhazasi-kolcson": [
+  {
+   "date": "2026-11-20",
+   "type": "page"
   }
  ],
  "v-marc-impact-hu-2026": [
@@ -5942,6 +5998,10 @@
   },
   {
    "date": "2026-11-19",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-20",
    "type": "page"
   }
  ],
@@ -6160,6 +6220,10 @@
   {
    "date": "2026-11-18",
    "type": "page"
+  },
+  {
+   "date": "2026-11-20",
+   "type": "page"
   }
  ],
  "v-tff-5-1-5-2026-kth-start-kiegeszito": [
@@ -6167,6 +6231,10 @@
    "date": "2026-09-28",
    "type": "new",
    "title": "Kiegészítő támogatás a KTH START beruházási vagy forgóeszköz kölcsönhöz („2=3 akció”)"
+  },
+  {
+   "date": "2026-11-20",
+   "type": "page"
   }
  ],
  "v-top-plusz-3-1-1-21": [
