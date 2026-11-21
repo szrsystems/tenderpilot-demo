@@ -1,38 +1,6 @@
 {
- "updatedAt": "2026-11-20",
+ "updatedAt": "2026-11-21",
  "items": [
-  {
-   "kind": "recheck",
-   "id": "v-kap-rd40-rd12-1-26",
-   "title": "Versenyképes erdőgazdálkodást szolgáló beruházások támogatása",
-   "url": "https://kap.gov.hu/tamogatas/kap-rd40-rd12-1-26",
-   "outcome": "closed",
-   "detail": "az oldal szerint: „Lezárult”"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-agrar-szk-max",
-   "title": "Agrár Széchenyi Kártya MAX+",
-   "url": "https://www.kavosz.hu/hitelek/agrar-szechenyi-kartya/",
-   "outcome": "changed-unverified",
-   "detail": "status not on page"
-  },
-  {
-   "kind": "deadline-changed",
-   "id": "v-horizon-eic-2026-accelerator-01",
-   "title": "EIC Accelerator 2026 – Open & Challenges (EIC Accelerator: mélytech startupok/KKV-k skálázása)",
-   "url": "https://eic.ec.europa.eu/eic-funding-opportunities/eic-accelerator_en",
-   "outcome": "auto-fixed",
-   "detail": "oldal szerint: „04/11/2027”"
-  },
-  {
-   "kind": "recheck",
-   "id": "v-tff-5-1-5-2026-kth-start-kiegeszito",
-   "title": "Kiegészítő támogatás a KTH START beruházási vagy forgóeszköz kölcsönhöz („2=3 akció”)",
-   "url": "https://kth.hu/hirdetmenyek/2-3-akcio-a-kth-start-kolcsonokhoz",
-   "outcome": "changed-unverified",
-   "detail": "status not on page; no deadline and not rolling; amount quote not on page; status closed"
-  },
   {
    "kind": "benchmark-code",
    "source": "pafi",
@@ -50,15 +18,43 @@
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "felhivas az europai mi szolgaltatok reszveteli szandekanak kifejezesere",
-   "url": "https://pafi.hu/p/felhivas-az-europai-mi-szolgaltatok-reszveteli-szandekanak-kifejezesere",
+   "title": "14 nemzetkozi soproni husegnapi fotopalyazat",
+   "url": "https://pafi.hu/p/14-nemzetkozi-soproni-husegnapi-fotopalyazat",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   },
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "rocket up 2027 take your startup to a new european market",
-   "url": "https://pafi.hu/p/rocket-up-2027-take-your-startup-to-a-new-european-market",
+   "title": "a halmos bela program kollegium nyilt palyazati felhivasa",
+   "url": "https://pafi.hu/p/a-halmos-bela-program-kollegium-nyilt-palyazati-felhivasa",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "losz ev palyakezdo lakberendezoje 2026",
+   "url": "https://pafi.hu/p/losz-ev-palyakezdo-lakberendezoje-2026",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "a halmos bela program kollegium nyilt palyazati felhivasa 1",
+   "url": "https://pafi.hu/p/a-halmos-bela-program-kollegium-nyilt-palyazati-felhivasa-1",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "losz ev lakberendezoje 2026 projekt",
+   "url": "https://pafi.hu/p/losz-ev-lakberendezoje-2026-projekt",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "losz ev lakberendezoje 2026 otthon",
+   "url": "https://pafi.hu/p/losz-ev-lakberendezoje-2026-otthon",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]

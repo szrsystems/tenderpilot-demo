@@ -4373,6 +4373,11 @@
    "date": "2026-11-20",
    "type": "removed",
    "title": "Horizont Európa európai partnerségek közös nemzetközi felhívásaiban sikeresen szereplő magyar szervezetek támogatása"
+  },
+  {
+   "date": "2026-11-21",
+   "type": "new",
+   "title": "Horizont Európa európai partnerségek közös nemzetközi felhívásaiban sikeresen szereplő magyar szervezetek támogatása"
   }
  ],
  "v-2025-1-1-1-iparjog": [
@@ -6002,6 +6007,10 @@
   },
   {
    "date": "2026-11-20",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-21",
    "type": "page"
   }
  ],

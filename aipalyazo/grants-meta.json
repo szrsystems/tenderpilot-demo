@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-20T14:51:24.800Z",
+ "updatedAt": "2026-11-21T14:07:27.053Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,20 +7,20 @@
   "palyazatApi": {
    "ok": true,
    "items": 17,
-   "lastOk": "2026-11-20T14:51:24.800Z"
+   "lastOk": "2026-11-21T14:07:27.053Z"
   },
   "euApi": {
    "ok": true,
    "items": 275,
-   "lastOk": "2026-11-20T14:51:24.800Z"
+   "lastOk": "2026-11-21T14:07:27.053Z"
   }
  },
  "counts": {
-  "total": 417,
+  "total": 418,
   "api": 17,
-  "verified": 125,
+  "verified": 126,
   "euAuto": 275,
-  "hazai": 57,
+  "hazai": 58,
   "eu": 360,
   "excluded": 19
  },
@@ -42,7 +42,6 @@
   "v-mfb-zold-lendulet-hitelprogram",
   "v-mfb-agrar-forgoeszkoz-hitelprogram-2025",
   "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025",
-  "v-agrar-szk-max",
   "v-eurostars-3-call-12",
   "v-eureka-xecs-call6",
   "v-eif-investeu-unicredit-hu",
@@ -51,8 +50,7 @@
   "v-garantiqa-kezesseg",
   "v-avhga-kezesseg",
   "v-mfb-pvrk-forgoeszkoz-hitelprogram",
-  "v-innowwide-call5-2026",
-  "v-tff-5-1-5-2026-kth-start-kiegeszito"
+  "v-innowwide-call5-2026"
  ],
  "droppedVerified": [
   {
@@ -172,6 +170,10 @@
    "why": "lejárt"
   },
   {
+   "id": "v-2025-1-2-5-eu-kp",
+   "why": "lejárt"
+  },
+  {
    "id": "v-eitum-umx-2026",
    "why": "lejárt"
   },
@@ -264,16 +266,8 @@
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   },
   {
-   "id": "v-2024-1-2-1-he-partnerseg",
-   "why": "monitor: closed: az oldal szerint: „Elektronikus benyújtás határideje: 2026. október 30. 12:00”"
-  },
-  {
-   "id": "v-2025-1-2-5-eu-kp",
-   "why": "monitor: closed: az oldal szerint: „Elektronikus benyújtás határideje:\n2026. április 30. 12:00”"
-  },
-  {
    "id": "v-marc-impact-hu-2026",
-   "why": "monitor: closed: az oldal szerint: „2026. szeptember 28.\nJelentkezési határidő (23:59)”"
+   "why": "monitor: closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
   }
  ],
  "excluded": [
@@ -290,12 +284,8 @@
    "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
-   "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
+   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
+   "why": "Alapkezelői/bank költségtérítés."
   },
   {
    "code": "IKOP_PLUSZ-1.1.0-23",
@@ -304,6 +294,10 @@
   {
    "code": "DIMOP_PLUSZ-1.2.3/A1-24",
    "why": "Alapkezelői technikai felhívás."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
   },
   {
    "code": "IKOP_PLUSZ-1.2.0-23",
@@ -318,8 +312,8 @@
    "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
-   "why": "Alapkezelői/bank költségtérítés."
+   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
+   "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
   },
   {
    "code": "DIMOP_PLUSZ-5.1.4-2-26",
@@ -330,16 +324,16 @@
    "why": "Alapkezelői költségtérítés."
   },
   {
-   "code": "KEHOP_PLUSZ-3.1.11-25",
-   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
+   "code": "GINOP_PLUSZ-1.4.6-24",
+   "why": "Hitelkeret alapkezelőnek (Budapest)."
   },
   {
    "code": "KEHOP_PLUSZ-3.1.12-25",
    "why": "Közszféra kármentesítési felhívás."
   },
   {
-   "code": "GINOP_PLUSZ-1.4.6-24",
-   "why": "Hitelkeret alapkezelőnek (Budapest)."
+   "code": "KEHOP_PLUSZ-3.1.11-25",
+   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
   },
   {
    "code": "GINOP_PLUSZ-1.4.7-24",
@@ -356,21 +350,9 @@
  ],
  "changes": [
   {
-   "id": "pg-MAHOP_PLUSZ-1.3.1-25",
-   "type": "szabad-keret",
-   "from": 450702055,
-   "to": 0,
-   "title": "A fenntartható természetesvízi halgazdálkodás támogatása"
-  },
-  {
    "id": "v-2024-1-2-1-he-partnerseg",
-   "type": "removed",
+   "type": "new",
    "title": "Horizont Európa európai partnerségek közös nemzetközi felhívásaiban sikeresen szereplő magyar szervezetek támogatása"
-  },
-  {
-   "id": "eu-cs-46597762",
-   "type": "removed",
-   "title": "Co-creating solutions for soil health in Living Labs — kaszkád (FSTP) nyílt felhívás"
   }
  ]
 }
