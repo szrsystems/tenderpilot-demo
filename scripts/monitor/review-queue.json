@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-21",
+ "updatedAt": "2026-11-22",
  "items": [
   {
    "kind": "benchmark-code",
@@ -14,48 +14,6 @@
    "title": "MAHOP Plusz-2.5.1-20",
    "url": "https://pafi.hu/palyazatok/vallalkozasok",
    "detail": "a(z) pafi.hu — vállalkozások listáján szerepel, nálunk nincs — ellenőrizd a hivatalos oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "14 nemzetkozi soproni husegnapi fotopalyazat",
-   "url": "https://pafi.hu/p/14-nemzetkozi-soproni-husegnapi-fotopalyazat",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "a halmos bela program kollegium nyilt palyazati felhivasa",
-   "url": "https://pafi.hu/p/a-halmos-bela-program-kollegium-nyilt-palyazati-felhivasa",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "losz ev palyakezdo lakberendezoje 2026",
-   "url": "https://pafi.hu/p/losz-ev-palyakezdo-lakberendezoje-2026",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "a halmos bela program kollegium nyilt palyazati felhivasa 1",
-   "url": "https://pafi.hu/p/a-halmos-bela-program-kollegium-nyilt-palyazati-felhivasa-1",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "losz ev lakberendezoje 2026 projekt",
-   "url": "https://pafi.hu/p/losz-ev-lakberendezoje-2026-projekt",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
-  },
-  {
-   "kind": "benchmark-new",
-   "source": "pafi",
-   "title": "losz ev lakberendezoje 2026 otthon",
-   "url": "https://pafi.hu/p/losz-ev-lakberendezoje-2026-otthon",
-   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]
 }
