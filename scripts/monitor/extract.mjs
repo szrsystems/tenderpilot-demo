@@ -43,6 +43,7 @@ export function buildPrompt(pageText, url, today) {
 Read the page text below (from ${url}) and answer ONLY with JSON in this shape:
 ${SCHEMA_HINT}
 Allowed "requires" keys: ${Object.keys(REQUIRES_VOCAB).join(', ')}.
+Key meanings (set only when the page says so): no_kata = KATA / kisadózó taxpayers are excluded; de_minimis = the aid is "csekély összegű (de minimis) támogatás"; favoured_district = only applicants or projects in a "kedvezményezett járás" / "kedvezményezett település" may apply (a mere scoring bonus does NOT count).
 Rules: copy evidence strings character-for-character from the page text; if a fact is not on the page use null — never guess; "closed" if the page says submission ended, the budget ran out or the call was suspended; dates in the page may be Hungarian ("2026. október 30.").
 
 PAGE TEXT:

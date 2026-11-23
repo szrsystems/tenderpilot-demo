@@ -67,7 +67,7 @@ test('TEÁOR drives sector and exclusion checks', () => {
   assert.deepEqual(M.teaorIndustries('1071 Kenyérgyártás'), ['Manufacturing', 'Food']);
   const r = M.match(g({}), { ...maker, industries: [], teaor: '6820' }, TODAY);
   assert.ok(r.checks.some((c) => c.key === 'teaor' && c.status === 'warn'));
-  assert.deepEqual(M.missingFields({ employees: '1-5' }).map((f) => f.key), ['site_region', 'teaor', 'years_operating', 'public_debt_free', 'in_difficulty', 'own_funds', 'rnd']);
+  assert.deepEqual(M.missingFields({ employees: '1-5' }).map((f) => f.key), ['site_region', 'teaor', 'years_operating', 'public_debt_free', 'in_difficulty', 'insolvency', 'own_funds', 'rnd']);
 });
 test('NAV queryTaxpayer: request signature and response parsing', async () => {
   const { buildQueryTaxpayerXml, parseTaxpayerResponse, normalizeTaxNumber } = await import('../supabase/functions/_shared/nav.mjs');
@@ -255,4 +255,44 @@ test('personas: women-led deeptech startup sees Women TechEU and EIC Accelerator
   assert.equal(pool.length - live3.filter((x) => !want.includes(x.id)).length, want.length, 'expected calls exist in the verified list');
   const top = pool.map((x) => ({ x, m: M.match(x, p, T3) })).filter((r) => r.m.eligible).sort((a, b) => rank(b.m) - rank(a.m)).slice(0, 5).map((r) => r.x.id);
   for (const id of want) assert.ok(top.includes(id), id + ' not in ' + top.join());
+});
+
+// ---- matching v3: DFT eligibility model, first round --------------------------
+test('v3: insolvency, public ownership, group, KATA, de minimis, favoured district', () => {
+  require('../aipalyazo/lib/hu-favoured.js');
+  assert.equal(readFileSync(new URL('../aipalyazo/lib/hu-favoured.js', import.meta.url), 'utf8'), readFileSync(new URL('../supabase/functions/_shared/hu-favoured.js', import.meta.url), 'utf8'));
+  const base = { company: 'Minta Kft', industries: ['IT'], employees: '6-10', site_region: 'Észak-Magyarország', years_operating: '5+', teaor: '6201', public_debt_free: 'igen', in_difficulty: 'nem', legal_form: 'Kft', location: '3600 Ózd' };
+  const g = { id: 't', title: 'Szoftverfejlesztés KKV-knak', note: 'digitális fejlesztés', type: 'grant', scope: 'hu', sizeClasses: ['mikro', 'kis', 'közép'], regions: [], deadline: '2027-06-30' };
+  const chk = (m, key) => m.checks.find((c) => c.key === key);
+  // insolvency excludes everywhere
+  assert.equal(M.match(g, { ...base, insolvency: 'igen' }, '2026-11-23').eligible, false);
+  // 25%+ public owner: not an SME
+  const pub = M.match(g, { ...base, public_owner: 'igen' }, '2026-11-23');
+  assert.equal(chk(pub, 'size').status, 'fail');
+  // group member: size must be counted at group level
+  assert.equal(chk(M.match(g, { ...base, group_member: 'igen' }, '2026-11-23'), 'size').status, 'unknown');
+  assert.equal(chk(M.match(g, base, '2026-11-23'), 'size').status, 'ok');
+  // KATA excluded
+  const gk = { ...g, requires: { no_kata: true }, requiresEvidence: { no_kata: 'KATA-s adózók nem' } };
+  assert.equal(M.match(gk, { ...base, legal_form: 'EV', tax_regime: 'kata' }, '2026-11-23').eligible, false);
+  assert.equal(chk(M.match(gk, { ...base, legal_form: 'EV' }, '2026-11-23'), 'kata').status, 'unknown');
+  assert.equal(chk(M.match(gk, base, '2026-11-23'), 'kata'), undefined, 'a Kft cannot be KATA — no question');
+  // de minimis
+  const gd = { ...g, requires: { de_minimis: true }, requiresEvidence: { de_minimis: 'csekély összegű' } };
+  assert.equal(chk(M.match(gd, { ...base, de_minimis: '250k+' }, '2026-11-23'), 'de_minimis').status, 'warn');
+  assert.equal(chk(M.match(gd, { ...base, de_minimis: 'nincs' }, '2026-11-23'), 'de_minimis').status, 'ok');
+  // favoured district from the seat's postcode
+  const gf = { ...g, requires: { favoured_district: true }, requiresEvidence: { favoured_district: 'kedvezményezett járás' } };
+  assert.equal(chk(M.match(gf, base, '2026-11-23'), 'favoured').status, 'ok');                         // Ózd
+  assert.equal(chk(M.match(gf, { ...base, location: '6720 Szeged' }, '2026-11-23'), 'favoured').status, 'warn');
+  assert.equal(chk(M.match(gf, { ...base, location: '1025 Budapest' }, '2026-11-23'), 'favoured').status, 'warn');
+  assert.equal(chk(M.match(gf, { ...base, location: '' }, '2026-11-23'), 'favoured').status, 'unknown');
+});
+
+test('favoured districts: decree spot checks', () => {
+  const F = require('../aipalyazo/lib/hu-favoured.js');
+  for (const [loc, want] of [['3600 Ózd', 'yes'], ['3604 Ózd', 'yes'], ['6782 Mórahalom', 'yes'], ['6440 Jánoshalma', 'yes'], ['7300 Komló', 'yes'], ['8749 Zalakaros', 'yes'],
+    ['6720 Szeged', 'no'], ['6000 Kecskemét', 'no'], ['9000 Győr', 'no'], ['1052 Budapest', 'no'], ['Szeged', 'unknown']]) assert.equal(F.statusOfLocation(loc), want, loc);
+  assert.equal(F.status('8756', 'Kisrécse'), 'yes');
+  assert.equal(F.status('8756'), 'unknown');
 });

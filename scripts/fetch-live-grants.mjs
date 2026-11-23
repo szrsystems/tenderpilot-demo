@@ -316,7 +316,17 @@ export function applyMonitor(items, monitor) {
     if (hide[it.id]) { hidden.push({ id: it.id, why: hide[it.id] }); continue; }
     let o = ov[it.id];
     if (o && o.deadline && Array.isArray(it.cutoffs) && it.cutoffs.includes(o.deadline)) o = { ...o, deadline: undefined };
-    out.push(o ? { ...it, ...(o.deadline ? { deadline: o.deadline } : {}), ...(o.lastChecked ? { lastChecked: o.lastChecked } : {}) } : it);
+    let row = o ? { ...it, ...(o.deadline ? { deadline: o.deadline } : {}), ...(o.lastChecked ? { lastChecked: o.lastChecked } : {}) } : it;
+    // Eligibility tags the monitor found on the official page: only ADDED
+    // (a hand-checked tag is never overridden or removed).
+    if (o && o.tags && o.tags.requires) {
+      const add = Object.keys(o.tags.requires).filter((k) => !(row.requires && k in row.requires));
+      if (add.length) {
+        row = { ...row, requires: { ...(row.requires || {}) }, requiresEvidence: { ...(row.requiresEvidence || {}) } };
+        for (const k of add) { row.requires[k] = o.tags.requires[k]; row.requiresEvidence[k] = o.tags.requiresEvidence[k]; }
+      }
+    }
+    out.push(row);
   }
   const have = codeIndex(out.map((g) => g.code));
   const urls = new Set(out.flatMap((g) => [g.url, ...(g.altUrls || [])]).filter(Boolean).map(normUrl));

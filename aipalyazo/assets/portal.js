@@ -97,7 +97,8 @@
       company: p.company || '', industry: p.industry || '', industries: Array.isArray(p.industries) && p.industries.length ? p.industries : (p.industry ? [p.industry] : []),
       employees: p.employees || '', revenue: p.revenue || '', location: p.location || '', site_region: p.site_region || '', years_operating: p.years_operating || '',
       legal_form: p.legal_form || '', public_debt_free: p.public_debt_free || '', own_funds: p.own_funds || '', in_difficulty: p.in_difficulty || '', teaor: p.teaor || '',
-      rnd: p.rnd || '', women_led: p.women_led || '', categories: Array.isArray(p.categories) ? p.categories : [], contact_name: p.display_name || '', email: p.email || '', phone: p.phone || ''
+      rnd: p.rnd || '', women_led: p.women_led || '', categories: Array.isArray(p.categories) ? p.categories : [], contact_name: p.display_name || '', email: p.email || '', phone: p.phone || '',
+      tax_regime: p.tax_regime || '', group_member: p.group_member || '', public_owner: p.public_owner || '', de_minimis: p.de_minimis || '', insolvency: p.insolvency || ''
     };
   }
   async function resolveUser() {
@@ -142,6 +143,8 @@
     if (Object.keys(patch).length) { var r = await c.from('profiles').update(patch).eq('id', S.user.id); if (r.error) console.warn('[aip] profile push failed', r.error); }
     var v2 = {}; if (p.rnd) v2.rnd = p.rnd; if (p.women_led) v2.women_led = p.women_led;
     if (Object.keys(v2).length) await c.from('profiles').update(v2).eq('id', S.user.id);
+    var v3 = {}; ['tax_regime', 'group_member', 'public_owner', 'de_minimis', 'insolvency'].forEach(function (k) { if (p[k]) v3[k] = p[k]; });
+    if (Object.keys(v3).length) await c.from('profiles').update(v3).eq('id', S.user.id).then(function () {}, function () {});
   }
   async function pushAttribution() {
     if (!S.user || !window.gp) return; var c = window.gp.client;
@@ -547,7 +550,7 @@
     var v = function (x) { return x == null || x === '' ? '—' : typeof x === 'number' && /keret/.test(c.type) ? ft(x) : isDate(x) ? huDate(x) : String(x); };
     return (CHANGE_HU[c.type] || 'Változás') + (c.from != null || c.to != null ? ': ' + v(c.from) + ' → ' + v(c.to) : '');
   }
-  var TAG_HU = { consortium: 'Nemzetközi konzorcium szükséges', women_led: 'Nők által alapított vagy vezetett cégeknek', youth_founder: 'Fiatal alapítóknak', jobseeker: 'Álláskeresők vállalkozásindításához', research_led: 'Kutatóhely a pályázó vagy a vezető partner', rnd_project: 'K+F / innovációs projekt a támogatás tárgya', deeptech: 'Mélytechnológiai (deep-tech) innováció', farmer: 'Mezőgazdasági termelőknek', fisheries: 'Halászati / akvakultúra-vállalkozásoknak', forestry: 'Erdőgazdálkodóknak', tourism_ntak: 'NTAK-regisztrált turisztikai szolgáltatóknak', restaurant: 'Vendéglátóhelyeknek', social_enterprise: 'Társadalmi vállalkozásoknak', cluster_manager: 'Akkreditált klasztermenedzsment-szervezeteknek', employer: 'Alkalmazottat foglalkoztató cégeknek', hires_disadvantaged: 'Célcsoportból felvett munkavállaló bérére', bank_loan: 'Bankon / hitelközvetítőn keresztül igényelhető' };
+  var TAG_HU = { consortium: 'Nemzetközi konzorcium szükséges', women_led: 'Nők által alapított vagy vezetett cégeknek', youth_founder: 'Fiatal alapítóknak', jobseeker: 'Álláskeresők vállalkozásindításához', research_led: 'Kutatóhely a pályázó vagy a vezető partner', rnd_project: 'K+F / innovációs projekt a támogatás tárgya', deeptech: 'Mélytechnológiai (deep-tech) innováció', farmer: 'Mezőgazdasági termelőknek', fisheries: 'Halászati / akvakultúra-vállalkozásoknak', forestry: 'Erdőgazdálkodóknak', tourism_ntak: 'NTAK-regisztrált turisztikai szolgáltatóknak', restaurant: 'Vendéglátóhelyeknek', social_enterprise: 'Társadalmi vállalkozásoknak', cluster_manager: 'Akkreditált klasztermenedzsment-szervezeteknek', employer: 'Alkalmazottat foglalkoztató cégeknek', hires_disadvantaged: 'Célcsoportból felvett munkavállaló bérére', bank_loan: 'Bankon / hitelközvetítőn keresztül igényelhető', no_kata: 'KATA-s vállalkozások nem pályázhatnak', de_minimis: 'Csekély összegű (de minimis) támogatás', favoured_district: 'Csak kedvezményezett járásokban' };
   var lastFocus = null;
   function openDetail(id) {
     var g = byId(id);

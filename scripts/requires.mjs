@@ -29,6 +29,9 @@ export const REQUIRES_VOCAB = {
   hires_disadvantaged: 'bool',// wage subsidy for hiring a target group
   min_revenue_huf: 'number',
   bank_loan: 'bool',          // financial product applied for via a bank / intermediary
+  no_kata: 'bool',            // KATA (kisadózó) taxpayers are excluded
+  de_minimis: 'bool',         // the aid is granted as de minimis aid
+  favoured_district: 'bool',  // only in a kedvezményezett járás / favoured settlement
 };
 export const REQUIRES_KEYS = Object.keys(REQUIRES_VOCAB);
 export const MAX_EVIDENCE = 160;

@@ -194,7 +194,7 @@ const TAG_HU = {
   jobseeker: 'Álláskeresők vállalkozásindításához', research_led: 'Kutatóhely (egyetem, kutatóintézet) a pályázó vagy a vezető partner', rnd_project: 'K+F / innovációs projekt a támogatás tárgya',
   deeptech: 'Mélytechnológiai (deep-tech) innováció', farmer: 'Mezőgazdasági termelőknek (pl. őstermelő, agrárvállalkozás)', fisheries: 'Halászati és akvakultúra-vállalkozásoknak', forestry: 'Erdőgazdálkodóknak',
   tourism_ntak: 'NTAK-regisztrált turisztikai szolgáltatóknak', restaurant: 'Vendéglátóhelyeknek', social_enterprise: 'Társadalmi vállalkozásoknak', cluster_manager: 'Csak akkreditált klasztermenedzsment-szervezeteknek',
-  employer: 'Alkalmazottat foglalkoztató cégeknek', hires_disadvantaged: 'Célcsoportból (pl. fiatal, álláskereső) felvett munkavállaló bérére', bank_loan: 'Bankon vagy hitelközvetítőn keresztül, hitelbírálattal',
+  employer: 'Alkalmazottat foglalkoztató cégeknek', hires_disadvantaged: 'Célcsoportból (pl. fiatal, álláskereső) felvett munkavállaló bérére', bank_loan: 'Bankon vagy hitelközvetítőn keresztül, hitelbírálattal', no_kata: 'KATA-s vállalkozások nem pályázhatnak', de_minimis: 'Csekély összegű (de minimis) támogatásként', favoured_district: 'Csak kedvezményezett járásokban megvalósuló fejlesztésre',
 };
 function requiresHtml(g) {
   const r = g.requires || {}, ev = g.requiresEvidence || {};

@@ -18,6 +18,7 @@
 
 import { createClient } from 'jsr:@supabase/supabase-js@2';
 // Same point-by-point matcher as the portal (byte-identical copy, test-enforced).
+import '../_shared/hu-favoured.js';
 import '../_shared/match.js';
 import { timingSafeEqual } from '../_shared/lead-token.ts';
 const AIPMatch = (globalThis as any).AIPMatch;
@@ -155,7 +156,7 @@ export async function handler(req: Request, deps: { admin?: any; sendBatch?: (m:
   const sendBatch = deps.sendBatch || resendBatch;
   const { data: rows, error } = await admin
     .from('notif_prefs')
-    .select('user_id, urgent_enabled, frequency, section_deadlines, unsubscribe_token, recipient_email, section_top_n, last_digest_at, profiles(email, display_name, company, industry, industries, categories, employees, site_region, years_operating, public_debt_free, in_difficulty, own_funds, teaor, revenue, rnd, women_led)')
+    .select('user_id, urgent_enabled, frequency, section_deadlines, unsubscribe_token, recipient_email, section_top_n, last_digest_at, profiles(email, display_name, company, industry, industries, categories, employees, site_region, years_operating, public_debt_free, in_difficulty, own_funds, teaor, revenue, rnd, women_led, tax_regime, group_member, public_owner, de_minimis, insolvency, location, legal_form)')
     .eq('weekly_enabled', true)
     .order('user_id')
     .range(offset, offset + page - 1);
