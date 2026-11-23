@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-22T14:01:23.171Z",
+ "updatedAt": "2026-11-23T17:08:48.962Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,21 +7,21 @@
   "palyazatApi": {
    "ok": true,
    "items": 17,
-   "lastOk": "2026-11-22T14:01:23.171Z"
+   "lastOk": "2026-11-23T17:08:48.962Z"
   },
   "euApi": {
    "ok": true,
-   "items": 275,
-   "lastOk": "2026-11-22T14:01:23.171Z"
+   "items": 276,
+   "lastOk": "2026-11-23T17:08:48.962Z"
   }
  },
  "counts": {
-  "total": 418,
+  "total": 419,
   "api": 17,
   "verified": 126,
-  "euAuto": 275,
+  "euAuto": 276,
   "hazai": 58,
-  "eu": 360,
+  "eu": 361,
   "excluded": 19
  },
  "needsReview": [
@@ -42,7 +42,6 @@
   "v-mfb-zold-lendulet-hitelprogram",
   "v-mfb-agrar-forgoeszkoz-hitelprogram-2025",
   "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025",
-  "v-2025-1-1-1-iparjog",
   "v-eurostars-3-call-12",
   "v-eureka-xecs-call6",
   "v-eif-investeu-unicredit-hu",
@@ -50,8 +49,6 @@
   "v-garantiqa-investeu",
   "v-garantiqa-kezesseg",
   "v-avhga-kezesseg",
-  "v-2025-1-2-2-eureka",
-  "v-2024-1-2-1-he-partnerseg",
   "v-mfb-pvrk-forgoeszkoz-hitelprogram",
   "v-innowwide-call5-2026"
  ],
@@ -283,60 +280,60 @@
    "why": "Pénzügyi eszköz keret alapkezelőnek."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/A1-24",
-   "why": "Alapkezelői technikai felhívás."
-  },
-  {
-   "code": "IKOP_PLUSZ-2.1.0-23",
-   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
-  },
-  {
-   "code": "IKOP_PLUSZ-1.2.0-23",
-   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
-  },
-  {
-   "code": "IKOP_PLUSZ-1.1.0-23",
-   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
-  },
-  {
-   "code": "IKOP_PLUSZ-2.2.0-23",
-   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
-   "why": "Alapkezelői/bank költségtérítés."
+   "code": "DIMOP_PLUSZ-5.1.4-2-26",
+   "why": "Alapkezelői kezelési költségtérítés."
   },
   {
    "code": "GINOP_PLUSZ-2.5.4-25",
    "why": "Alapkezelői költségtérítés."
   },
   {
-   "code": "DIMOP_PLUSZ-5.1.4-2-26",
-   "why": "Alapkezelői kezelési költségtérítés."
+   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
+   "why": "Alapkezelői/bank költségtérítés."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.2.0-23",
+   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A1-24",
+   "why": "Alapkezelői technikai felhívás."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
+  },
+  {
+   "code": "IKOP_PLUSZ-1.2.0-23",
+   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.1.0-23",
+   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
+  },
+  {
+   "code": "IKOP_PLUSZ-1.1.0-23",
+   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/B1-24",
    "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
   },
   {
-   "code": "KEHOP_PLUSZ-3.1.11-25",
-   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
+   "code": "KEHOP_PLUSZ-3.1.12-25",
+   "why": "Közszféra kármentesítési felhívás."
   },
   {
    "code": "GINOP_PLUSZ-1.4.6-24",
    "why": "Hitelkeret alapkezelőnek (Budapest)."
   },
   {
-   "code": "KEHOP_PLUSZ-3.1.12-25",
-   "why": "Közszféra kármentesítési felhívás."
+   "code": "KEHOP_PLUSZ-3.1.11-25",
+   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
   },
   {
    "code": "GINOP_PLUSZ-1.4.7-24",
@@ -351,5 +348,11 @@
    "why": "Csak közintézmények, egyházak, nonprofitok; 2026-09-25-én zár."
   }
  ],
- "changes": []
+ "changes": [
+  {
+   "id": "eu-cs-47038104",
+   "type": "new",
+   "title": "Towards networked Local Digital Twins in the EU — kaszkád (FSTP) nyílt felhívás"
+  }
+ ]
 }

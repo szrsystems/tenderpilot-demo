@@ -4149,6 +4149,13 @@
    "title": "Facilitate the engagement in global ICT standardisation development (CSA) — kaszkád (FSTP) nyílt felhívás"
   }
  ],
+ "eu-cs-47038104": [
+  {
+   "date": "2026-11-23",
+   "type": "new",
+   "title": "Towards networked Local Digital Twins in the EU — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
  "eu-cs-47039365": [
   {
    "date": "2026-10-31",
@@ -6016,6 +6023,10 @@
   {
    "date": "2026-11-22",
    "type": "page"
+  },
+  {
+   "date": "2026-11-23",
+   "type": "page"
   }
  ],
  "v-mfb-agrar-forgoeszkoz-hitelprogram-2025": [
@@ -6236,6 +6247,10 @@
   },
   {
    "date": "2026-11-20",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-23",
    "type": "page"
   }
  ],
