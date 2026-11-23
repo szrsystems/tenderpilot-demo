@@ -14,7 +14,8 @@
     return {
       company: val('f_company') || 'x', industries: checked('#f_industries'), employees: val('f_employees'), site_region: val('f_site_region'),
       teaor: val('f_teaor'), years_operating: val('f_years'), public_debt_free: val('f_public_debt'), in_difficulty: val('f_difficulty'),
-      own_funds: val('f_own_funds'), rnd: val('f_rnd'), women_led: val('f_women_led'), revenue: val('f_revenue'), categories: checked('#f_categories')
+      own_funds: val('f_own_funds'), rnd: val('f_rnd'), women_led: val('f_women_led'), revenue: val('f_revenue'), categories: checked('#f_categories'),
+      legal_form: val('f_legal'), location: val('f_location'), tax_regime: val('f_tax_regime'), group_member: val('f_group'), public_owner: val('f_public_owner'), de_minimis: val('f_de_minimis'), insolvency: val('f_insolvency')
     };
   }
 
@@ -143,6 +144,7 @@
     var setv = function (id, v) { var el = $(id); if (el && v != null && v !== '' && !el.value) el.value = v; };
     setv('f_company', p.company === 'gyors-ellenorzes' ? '' : p.company); setv('f_employees', p.employees); setv('f_years', p.years_operating); setv('f_site_region', p.site_region);
     setv('f_teaor', p.teaor); setv('f_public_debt', p.public_debt_free); setv('f_difficulty', p.in_difficulty); setv('f_own_funds', p.own_funds);
+    setv('f_tax_regime', p.tax_regime); setv('f_group', p.group_member); setv('f_public_owner', p.public_owner); setv('f_de_minimis', p.de_minimis); setv('f_insolvency', p.insolvency);
     setv('f_rnd', p.rnd); setv('f_women_led', p.women_led); setv('f_revenue', p.revenue); setv('f_legal', p.legal_form); setv('f_location', p.location);
     setv('f_name', p.contact_name || p.display_name); setv('f_email', p.email); setv('f_phone', p.phone); setv('f_notes', p.notes); setv('f_past', p.past_grants);
     var inds = Array.isArray(p.industries) && p.industries.length ? p.industries : (p.industry ? [p.industry] : []);
@@ -186,6 +188,8 @@
     var r = await c.from('profiles').update(patch).eq('id', signedInUser.id);
     if (r.error) { console.warn('[gp] profile save failed', r.error); return false; }
     var v2 = {}; if (data.rnd) v2.rnd = data.rnd; if (data.women_led) v2.women_led = data.women_led;
+    var v3 = {}; ['tax_regime', 'group_member', 'public_owner', 'de_minimis', 'insolvency'].forEach(function (k) { if (data[k]) v3[k] = data[k]; });
+    if (Object.keys(v3).length) { var r3 = await c.from('profiles').update(v3).eq('id', signedInUser.id); if (r3.error) console.info('[gp] v3 profile fields not saved (migration pending)'); }
     if (Object.keys(v2).length) { var r2 = await c.from('profiles').update(v2).eq('id', signedInUser.id); if (r2.error) console.info('[gp] v2 profile fields not saved (migration pending)'); }
     var a = window.AIPAttr && AIPAttr.get(); if (a) { try { await c.from('profiles').update({ acq_source: a.source, acq_campaign: a.campaign, acq_medium: a.medium, acq_at: a.at }).eq('id', signedInUser.id); } catch (eA) {} } // first touch only; the database keeps the first value
     var np = await c.from('notif_prefs').upsert({ user_id: signedInUser.id, weekly_enabled: data.channels.indexOf('weekly') >= 0 }, { onConflict: 'user_id' });

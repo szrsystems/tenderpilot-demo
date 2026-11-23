@@ -137,6 +137,17 @@ fieldset.field{border:0;padding:0;margin:0 0 var(--s4)}fieldset legend{margin-bo
       <div class="field"><label for="f_women_led">Nők által alapított vagy vezetett cég?</label><select id="f_women_led"><option value="">Nem kívánom megadni</option><option value="igen">Igen</option><option value="nem">Nem</option></select><p class="hint">Néhány felhívás (pl. Women TechEU) csak ilyen cégeknek szól.</p></div>
     </div>
     <div class="row2">
+      <div class="field"><label for="f_insolvency">Folyik csőd-, felszámolási, végelszámolási vagy végrehajtási eljárás?</label><select id="f_insolvency"><option value="">Válasszon…</option><option value="nem">Nem</option><option value="igen">Igen</option></select></div>
+      <div class="field"><label for="f_tax_regime">Adózási forma</label><select id="f_tax_regime"><option value="">Válasszon…</option><option value="normal">Társasági adó / személyi jövedelemadó</option><option value="kiva">KIVA</option><option value="kata">KATA</option><option value="atalany">Átalányadó (egyéni vállalkozó)</option></select><p class="hint">Több felhívás kizárja a KATA-s vállalkozásokat.</p></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="f_group">Van 25%-os vagy nagyobb tulajdoni kapcsolata más vállalkozással?</label><select id="f_group"><option value="">Válasszon…</option><option value="nem">Nem</option><option value="igen">Igen</option></select><p class="hint">Akár a cégnek van részesedése máshol, akár egy másik vállalkozásnak a cégben. Ilyenkor a KKV-méretet csoportszinten kell számolni.</p></div>
+      <div class="field"><label for="f_public_owner">Állami vagy önkormányzati tulajdon 25% felett?</label><select id="f_public_owner"><option value="">Válasszon…</option><option value="nem">Nem</option><option value="igen">Igen</option></select><p class="hint">Ilyen tulajdon mellett a cég nem minősül KKV-nak.</p></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="f_de_minimis">Az elmúlt 3 évben kapott csekély összegű (de minimis) támogatás</label><select id="f_de_minimis"><option value="">Válasszon…</option><option value="nincs">Nem kapott</option><option value="&lt;100k">100 ezer euró alatt</option><option value="100k-250k">100–250 ezer euró</option><option value="250k+">250 ezer euró felett</option></select><p class="hint">3 év alatt legfeljebb 300 ezer euró kapható. A korábbi támogatói okiratokon szerepel.</p></div>
+    </div>
+    <div class="row2">
       <div class="field"><label for="f_legal">Cégforma</label><select id="f_legal"><option value="">Válasszon…</option><option value="Kft">Kft.</option><option value="Bt">Bt.</option><option value="EV">Egyéni vállalkozó</option><option value="Zrt">Zrt.</option><option value="Nyrt">Nyrt.</option><option value="Szövetkezet">Szövetkezet</option><option value="Egyéb">Egyéb</option></select></div>
       <div class="field"><label for="f_location">Székhely</label><input type="text" id="f_location" autocomplete="address-level2"></div>
     </div>
@@ -212,6 +223,7 @@ fieldset.field{border:0;padding:0;margin:0 0 var(--s4)}fieldset legend{margin-bo
 <script src="assets/site.js" defer></script>
 <script src="assets/analytics.js" defer></script>
 <script src="lib/hu-geo.js"></script>
+<script src="lib/hu-favoured.js"></script>
 <script src="lib/match.js"></script>
 <script src="lib/supabase.js" defer></script>
 <script src="assets/config.js"></script>

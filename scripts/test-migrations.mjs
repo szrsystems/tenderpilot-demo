@@ -310,3 +310,14 @@ test('company_data cache: service-role only; users cannot set tax_number / compa
   assert.equal((await db.query(`select public.purge_company_data() as n`)).rows[0].n, 1);
   assert.equal((await db.query(`select count(*)::int as n from public.company_data where tax8 = '12345678'`)).rows[0].n, 1);
 });
+
+test('eligibility v3: user sets own new fields, bad values rejected, view exposes them', async () => {
+  await db.exec(sql('20261123000001_eligibility_v3.sql')); // the before() hook re-runs lead_pipeline, which resets column grants
+  await as('authenticated', { id: B, email: 'b@example.com' }, () =>
+    db.exec(`update public.profiles set tax_regime = 'kata', group_member = 'nem', public_owner = 'nem', de_minimis = '<100k', insolvency = 'nem' where id = '${B}'`));
+  await as('authenticated', { id: B, email: 'b@example.com' }, () =>
+    rejects(db.exec(`update public.profiles set tax_regime = 'xyz' where id = '${B}'`), /check/));
+  const r = await as('authenticated', { id: B, email: 'b@example.com' }, () =>
+    db.query(`select tax_regime, de_minimis from public.user_with_tier where id = '${B}'`));
+  assert.deepEqual(r.rows[0], { tax_regime: 'kata', de_minimis: '<100k' });
+});

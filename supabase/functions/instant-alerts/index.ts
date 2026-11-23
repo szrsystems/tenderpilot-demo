@@ -14,6 +14,7 @@
 // Secrets: RESEND_API_KEY, CRON_SECRET (already set for weekly-digest).
 // =========================================================================
 import { createClient } from 'jsr:@supabase/supabase-js@2';
+import '../_shared/hu-favoured.js';
 import '../_shared/match.js';
 import { timingSafeEqual } from '../_shared/lead-token.ts';
 const AIPMatch = (globalThis as any).AIPMatch;
@@ -104,7 +105,7 @@ export async function handler(req: Request, deps: { admin?: any; sendBatch?: (ma
   const sendBatch = deps.sendBatch || resendBatch;
 
   const { data: users, error } = await admin.from('notif_prefs')
-    .select('user_id, unsubscribe_token, recipient_email, profiles(email, display_name, company, industry, industries, categories, employees, site_region, years_operating, public_debt_free, in_difficulty, own_funds, teaor, revenue, rnd, women_led)')
+    .select('user_id, unsubscribe_token, recipient_email, profiles(email, display_name, company, industry, industries, categories, employees, site_region, years_operating, public_debt_free, in_difficulty, own_funds, teaor, revenue, rnd, women_led, tax_regime, group_member, public_owner, de_minimis, insolvency, location, legal_form)')
     .eq('instant_enabled', true)
     .order('user_id')
     .range(offset, offset + page - 1);
