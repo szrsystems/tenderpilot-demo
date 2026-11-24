@@ -1,6 +1,13 @@
 {
- "updatedAt": "2026-11-23",
+ "updatedAt": "2026-11-24",
  "items": [
+  {
+   "kind": "new",
+   "source": "eit",
+   "url": "https://www.eit.europa.eu/our-activities/opportunities/factoryx-2026-2027-open-call",
+   "title": "FactoryX 2026-2027 Open Call",
+   "detail": "status not on page; no deadline and not rolling; status unclear"
+  },
   {
    "kind": "benchmark-code",
    "source": "pafi",
@@ -18,8 +25,57 @@
   {
    "kind": "benchmark-new",
    "source": "pafi",
-   "title": "feleves ciprusi rezidenciaprogram kepzomuveszeknek",
-   "url": "https://pafi.hu/p/feleves-ciprusi-rezidenciaprogram-kepzomuveszeknek",
+   "title": "kpmg felelos tarsadalomert program 2026",
+   "url": "https://pafi.hu/p/kpmg-felelos-tarsadalomert-program-2026",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "a vizualis muveszetek kollegiuma iparmuveszet szakterulet nyilt palyazati felhivasa",
+   "url": "https://pafi.hu/p/a-vizualis-muveszetek-kollegiuma-iparmuveszet-szakterulet-nyilt-palyazati-felhivasa",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "az eloado muveszetek kollegiuma konnyuzene szakterulet nyilt palyazati felhivasa",
+   "url": "https://pafi.hu/p/az-eloado-muveszetek-kollegiuma-konnyuzene-szakterulet-nyilt-palyazati-felhivasa",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "unnepi rajzpalyazat",
+   "url": "https://pafi.hu/p/unnepi-rajzpalyazat",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "mav orfk videokeszito palyazat",
+   "url": "https://pafi.hu/p/mav-orfk-videokeszito-palyazat",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "fake off kreativ palyazatot hirdetunk",
+   "url": "https://pafi.hu/p/fake-off-kreativ-palyazatot-hirdetunk",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "a hangfoglalo konnyuzene tamogato program kollegium nyilt palyazati felhivasa 4",
+   "url": "https://pafi.hu/p/a-hangfoglalo-konnyuzene-tamogato-program-kollegium-nyilt-palyazati-felhivasa-4",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "az eloado muveszetek kollegiuma zenemuveszet szakterulet nyilt palyazati felhivasa 2",
+   "url": "https://pafi.hu/p/az-eloado-muveszetek-kollegiuma-zenemuveszet-szakterulet-nyilt-palyazati-felhivasa-2",
    "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]

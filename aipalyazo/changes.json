@@ -3153,12 +3153,22 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Consolidation of the research infrastructure landscape – development of complementarities, synergies and/or integration between a set of pan-European research infrastructures"
+  },
+  {
+   "date": "2026-11-24",
+   "type": "removed",
+   "title": "Consolidation of the research infrastructure landscape – development of complementarities, synergies and/or integration between a set of pan-European research infrastructures"
   }
  ],
  "eu-HORIZON-INFRA-2027-DEV-01-03": [
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Consolidation of the research infrastructure landscape – individual support for evolution, long-term sustainability and emerging needs of pan-European research infrastructures"
+  },
+  {
+   "date": "2026-11-24",
+   "type": "removed",
    "title": "Consolidation of the research infrastructure landscape – individual support for evolution, long-term sustainability and emerging needs of pan-European research infrastructures"
   }
  ],
@@ -3167,12 +3177,22 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Access to research infrastructures, their resources and services: large-scale pilots for more integrated scheme across (sub)domains"
+  },
+  {
+   "date": "2026-11-24",
+   "type": "removed",
+   "title": "Access to research infrastructures, their resources and services: large-scale pilots for more integrated scheme across (sub)domains"
   }
  ],
  "eu-HORIZON-INFRA-2027-SERV-01-02": [
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Access to research infrastructure services to enable R&I addressing EU priorities and emerging challenges"
+  },
+  {
+   "date": "2026-11-24",
+   "type": "removed",
    "title": "Access to research infrastructure services to enable R&I addressing EU priorities and emerging challenges"
   }
  ],
@@ -3575,6 +3595,11 @@
    "date": "2026-10-10",
    "type": "new",
    "title": "MSCA Doctoral Networks 2026"
+  },
+  {
+   "date": "2026-11-24",
+   "type": "removed",
+   "title": "MSCA Doctoral Networks 2026"
   }
  ],
  "eu-HORIZON-MSCA-2027-DN-01-01": [
@@ -3850,6 +3875,11 @@
    "date": "2026-10-10",
    "type": "new",
    "title": "RAISE Doctoral Networks for AI in Science (RAISE pilot)"
+  },
+  {
+   "date": "2026-11-24",
+   "type": "removed",
+   "title": "RAISE Doctoral Networks for AI in Science (RAISE pilot)"
   }
  ],
  "eu-HORIZON-RAISE-2027-01-01": [
@@ -4005,6 +4035,12 @@
    "type": "deadline",
    "from": "2026-11-16",
    "to": "2026-11-23"
+  },
+  {
+   "date": "2026-11-24",
+   "type": "deadline",
+   "from": "2026-11-23",
+   "to": "2026-12-10"
   }
  ],
  "eu-cs-45700455": [
@@ -4085,6 +4121,13 @@
    "title": "Next Generation Innovation Talents — kaszkád (FSTP) nyílt felhívás"
   }
  ],
+ "eu-cs-46236562": [
+  {
+   "date": "2026-11-24",
+   "type": "new",
+   "title": "Supporting competitiveness and innovation potential of SMEs — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
  "eu-cs-46238629": [
   {
    "date": "2026-11-04",
@@ -4097,6 +4140,13 @@
    "date": "2026-11-20",
    "type": "removed",
    "title": "Co-creating solutions for soil health in Living Labs — kaszkád (FSTP) nyílt felhívás"
+  }
+ ],
+ "eu-cs-46695847": [
+  {
+   "date": "2026-11-24",
+   "type": "new",
+   "title": "Strengthen Cybersecurity capacities of European SMEs in line with CRA requirements and obligations — kaszkád (FSTP) nyílt felhívás"
   }
  ],
  "eu-cs-46813062": [
@@ -5832,6 +5882,11 @@
   {
    "date": "2026-11-18",
    "type": "page"
+  },
+  {
+   "date": "2026-11-24",
+   "type": "removed",
+   "title": "Interreg Magyarország–Horvátország B Light 2 – 1. felhívás KKV-k határon átnyúló együttműködésére"
   }
  ],
  "v-ivf-visegrad-grants-2026-10": [
@@ -6026,6 +6081,10 @@
   },
   {
    "date": "2026-11-23",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-24",
    "type": "page"
   }
  ],
