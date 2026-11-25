@@ -559,7 +559,7 @@
     var m = matchOf(g), d = days(g.deadline), saved = S.bookmarks.has(g.id), url = safeUrl(g.url), pub = publicUrl(g), sum = S.summaries[g.id];
     $('#drawer-eyebrow').textContent = g.code || g.issuer || '';
     var tags = '<div class="tags"><span class="tag brand">' + (g.scope === 'eu' ? 'EU / nemzetközi' : 'Hazai') + '</span><span class="tag">' + esc(TYPE_HU[g.type] || g.type || '') + '</span>' + (d !== null ? '<span class="tag' + (d <= 14 ? ' signal' : '') + '">Határidő: ' + esc(huDate(g.deadline)) + ' · ' + d + ' nap</span>' : '<span class="tag">Folyamatos beadás</span>') + '</div>';
-    var h = tags + '<h2 class="title" id="drawer-title">' + esc(g.title) + '</h2>' +
+    var h = tags + '<h2 class="title" id="drawer-title">' + esc(g.title) + '</h2>' + (g.titleOriginal ? '<p class="small muted" lang="en" style="margin:-4px 0 8px">Eredeti cím: ' + esc(g.titleOriginal) + '</p>' : '') +
       '<span class="stamp">Forrás: <b>' + esc(g.source || 'hivatalos oldal') + '</b> · ellenőrizve: ' + esc(g.lastChecked || g.verifiedAt || (S.meta.updatedAt || '').slice(0, 10)) + '</span>';
     // verdict
     if (m && m.personal) {
@@ -611,7 +611,8 @@
   // ---- consultation request
   function leadBox(g) {
     var p = S.profile || {}, partner = CFG.partnerPublic ? esc(CFG.partnerName) : 'pályázatíró partnerünk';
-    return '<section class="lead-box" id="lead-box"><h3>Díjmentes konzultáció</h3><p class="muted">Ha pályázna, ' + partner + ' 2 munkanapon belül felveszi Önnel a kapcsolatot, és megnézi, érdemes-e beadni. Nem kötelez semmire.</p>' +
+    var badge = CFG.partnerPublic && CFG.partnerLogo ? '<div class="partner-badge"><img src="' + esc(CFG.partnerLogo) + '" alt="' + esc(CFG.partnerName) + ' logó" width="44" height="44"><span><b>' + esc(CFG.partnerName) + '</b> — pályázatíró partnerünk<br><span class="muted small">1993 óta pályázatírás és projektmenedzsment</span></span></div>' : '';
+    return '<section class="lead-box" id="lead-box">' + badge + '<h3>Díjmentes konzultáció</h3><p class="muted">Ha pályázna, ' + partner + ' 2 munkanapon belül felveszi Önnel a kapcsolatot, és megnézi, érdemes-e beadni. Nem kötelez semmire.</p>' +
       '<form id="lead-form" data-grant="' + esc(g.id) + '" novalidate>' +
       '<div class="row2"><div class="field"><label for="ld-name">Név <span class="req" style="color:var(--danger)">*</span></label><input id="ld-name" autocomplete="name" value="' + esc(p.contact_name || (S.user && S.user.name) || '') + '"></div>' +
       '<div class="field"><label for="ld-company">Cégnév</label><input id="ld-company" autocomplete="organization" value="' + esc(p.company || '') + '"></div></div>' +

@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-22T14:01:23.171Z",
+ "updatedAt": "2026-11-24T16:57:23.288Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,22 +7,22 @@
   "palyazatApi": {
    "ok": true,
    "items": 17,
-   "lastOk": "2026-11-22T14:01:23.171Z"
+   "lastOk": "2026-11-24T16:57:23.288Z"
   },
   "euApi": {
    "ok": true,
-   "items": 275,
-   "lastOk": "2026-11-22T14:01:23.171Z"
+   "items": 272,
+   "lastOk": "2026-11-24T16:57:23.288Z"
   }
  },
  "counts": {
-  "total": 418,
+  "total": 414,
   "api": 17,
-  "verified": 126,
-  "euAuto": 275,
+  "verified": 125,
+  "euAuto": 272,
   "hazai": 58,
-  "eu": 360,
-  "excluded": 19
+  "eu": 356,
+  "excluded": 20
  },
  "needsReview": [
   {
@@ -50,6 +50,7 @@
   "v-garantiqa-investeu",
   "v-garantiqa-kezesseg",
   "v-avhga-kezesseg",
+  "v-eib-raiffeisen-lizing",
   "v-2025-1-2-2-eureka",
   "v-2024-1-2-1-he-partnerseg",
   "v-mfb-pvrk-forgoeszkoz-hitelprogram",
@@ -189,6 +190,10 @@
    "why": "lejárt"
   },
   {
+   "id": "v-interreg-huhr-b-light-2-call1",
+   "why": "lejárt"
+  },
+  {
    "id": "v-horizon-eic-2026-pathfinderchallenges-01-01",
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   },
@@ -283,52 +288,48 @@
    "why": "Pénzügyi eszköz keret alapkezelőnek."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/A1-24",
-   "why": "Alapkezelői technikai felhívás."
-  },
-  {
-   "code": "IKOP_PLUSZ-2.1.0-23",
-   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
-  },
-  {
-   "code": "IKOP_PLUSZ-1.2.0-23",
-   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
-  },
-  {
-   "code": "IKOP_PLUSZ-1.1.0-23",
-   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
+   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
+   "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
   },
   {
    "code": "IKOP_PLUSZ-2.2.0-23",
    "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
-   "why": "Alapkezelői/bank költségtérítés."
+   "code": "IKOP_PLUSZ-1.1.0-23",
+   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
   },
   {
-   "code": "GINOP_PLUSZ-2.5.4-25",
-   "why": "Alapkezelői költségtérítés."
+   "code": "IKOP_PLUSZ-1.2.0-23",
+   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A1-24",
+   "why": "Alapkezelői technikai felhívás."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.1.0-23",
+   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
+   "why": "Alapkezelői/bank költségtérítés."
   },
   {
    "code": "DIMOP_PLUSZ-5.1.4-2-26",
    "why": "Alapkezelői kezelési költségtérítés."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
-   "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
-  },
-  {
-   "code": "KEHOP_PLUSZ-3.1.11-25",
-   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
+   "code": "GINOP_PLUSZ-2.5.4-25",
+   "why": "Alapkezelői költségtérítés."
   },
   {
    "code": "GINOP_PLUSZ-1.4.6-24",
@@ -339,8 +340,16 @@
    "why": "Közszféra kármentesítési felhívás."
   },
   {
+   "code": "KEHOP_PLUSZ-3.1.11-25",
+   "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
+  },
+  {
    "code": "GINOP_PLUSZ-1.4.7-24",
    "why": "Alapkezelői/közvetítői költségtérítés."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.1.5-24",
+   "why": "Klaszter minősítés — nem ad pénzt."
   },
   {
    "code": "2025-3.1.1-ED",
@@ -351,5 +360,58 @@
    "why": "Csak közintézmények, egyházak, nonprofitok; 2026-09-25-én zár."
   }
  ],
- "changes": []
+ "changes": [
+  {
+   "id": "eu-cs-45659376",
+   "type": "deadline",
+   "from": "2026-11-23",
+   "to": "2026-12-10",
+   "title": "Implementing co-funded action plans for connected regional innovation valleys — kaszkád (FSTP) nyílt felhívás"
+  },
+  {
+   "id": "eu-cs-46236562",
+   "type": "new",
+   "title": "Supporting competitiveness and innovation potential of SMEs — kaszkád (FSTP) nyílt felhívás"
+  },
+  {
+   "id": "eu-cs-46695847",
+   "type": "new",
+   "title": "Strengthen Cybersecurity capacities of European SMEs in line with CRA requirements and obligations — kaszkád (FSTP) nyílt felhívás"
+  },
+  {
+   "id": "v-interreg-huhr-b-light-2-call1",
+   "type": "removed",
+   "title": "Interreg Magyarország–Horvátország B Light 2 – 1. felhívás KKV-k határon átnyúló együttműködésére"
+  },
+  {
+   "id": "eu-HORIZON-RAISE-2026-01-03",
+   "type": "removed",
+   "title": "RAISE Doctoral Networks for AI in Science (RAISE pilot)"
+  },
+  {
+   "id": "eu-HORIZON-MSCA-2026-DN-01-01",
+   "type": "removed",
+   "title": "MSCA Doctoral Networks 2026"
+  },
+  {
+   "id": "eu-HORIZON-INFRA-2027-DEV-01-03",
+   "type": "removed",
+   "title": "Consolidation of the research infrastructure landscape – individual support for evolution, long-term sustainability and emerging needs of pan-European research infrastructures"
+  },
+  {
+   "id": "eu-HORIZON-INFRA-2027-SERV-01-02",
+   "type": "removed",
+   "title": "Access to research infrastructure services to enable R&I addressing EU priorities and emerging challenges"
+  },
+  {
+   "id": "eu-HORIZON-INFRA-2027-DEV-01-02",
+   "type": "removed",
+   "title": "Consolidation of the research infrastructure landscape – development of complementarities, synergies and/or integration between a set of pan-European research infrastructures"
+  },
+  {
+   "id": "eu-HORIZON-INFRA-2027-SERV-01-01",
+   "type": "removed",
+   "title": "Access to research infrastructures, their resources and services: large-scale pilots for more integrated scheme across (sub)domains"
+  }
+ ]
 }

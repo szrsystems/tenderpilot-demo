@@ -428,3 +428,8 @@ select { max-width: 100%; }
 .bigsearch .chips button:hover, .bigsearch .filters button:hover { background: rgba(255,255,255,.26); }
 .bigsearch .filters button[aria-pressed="true"] { background: #fff; color: var(--brand-strong); border-color: #fff; }
 .bigsearch .hint { color: rgba(255,255,255,.85); }
+
+/* Pályázatíró partner (DFT-Hungária) */
+.partner-strip { display: flex; align-items: center; gap: 14px; margin-top: var(--s5); padding: 14px 18px; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--surface, #fff); color: var(--ink); text-decoration: none; max-width: 640px; line-height: 1.4; text-align: left; margin-left: auto; margin-right: auto; }
+.partner-strip:hover { border-color: var(--brand); }
+.partner-strip img { width: 48px; height: 48px; border-radius: 8px; flex: none; }
