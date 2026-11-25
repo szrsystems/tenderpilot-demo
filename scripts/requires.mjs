@@ -32,7 +32,30 @@ export const REQUIRES_VOCAB = {
   no_kata: 'bool',            // KATA (kisadózó) taxpayers are excluded
   de_minimis: 'bool',         // the aid is granted as de minimis aid
   favoured_district: 'bool',  // only in a kedvezményezett járás / favoured settlement
+  // --- DFT eligibility model (2026-11-25) ---
+  no_sole_trader: 'bool',     // egyéni vállalkozók nem pályázhatnak
+  min_headcount: 'number',    // minimum average statistical headcount (fő)
+  min_closed_years: 'number', // at least N closed full business years
+  teaor_codes: 'codes',       // only these TEÁOR activities (main or project activity)
+  excluded_teaor: 'codes',    // these TEÁOR activities are excluded
+  szvz: 'bool',               // only in a szabad vállalkozási zóna
+  max_settlement_pop: 'number', // only settlements below N inhabitants
+  premises_min_days: 'number',// project site registered at least N days before submission
+  export: 'bool',             // for exporting companies
+  positive_equity: 'bool',    // equity must not be negative
+  equity_vs_capital: 'bool',  // equity must reach the registered (share) capital
+  aid_max_equity: 'bool',     // the aid may not exceed the applicant's equity
+  project_max_revenue_pct: 'number', // project cost ≤ N% of last year's net revenue
+  loan_max_ebit_x: 'number',  // loan ≤ N × operating profit (EBIT)
+  not_started: 'bool',        // the project must not start before the application (incentive effect)
+  new_assets_only: 'bool',    // only new (not used) assets are eligible
 };
+const MAX_CODES = 80;
+// "47.11", "4711", "56" → "4711", "56"; anything else is dropped.
+export function cleanCodes(v) {
+  const list = (Array.isArray(v) ? v : String(v || '').split(/[,;\s]+/)).map((c) => String(c).replace(/\D/g, '')).filter((c) => c.length >= 2 && c.length <= 6);
+  return [...new Set(list)].slice(0, MAX_CODES);
+}
 export const REQUIRES_KEYS = Object.keys(REQUIRES_VOCAB);
 export const MAX_EVIDENCE = 160;
 
@@ -48,6 +71,7 @@ export function checkRequires(item) {
     if (!t) { problems.push(`unknown key ${k}`); continue; }
     if (t === 'bool' && v !== true) problems.push(`${k} must be true`);
     if (t === 'number' && !(typeof v === 'number' && v > 0)) problems.push(`${k} must be a positive number`);
+    if (t === 'codes' && !(Array.isArray(v) && v.length && v.length <= MAX_CODES && v.every((c) => /^\d{2,6}$/.test(c)))) problems.push(`${k} must be a list of 2–6 digit codes`);
     const e = ev && ev[k];
     if (typeof e !== 'string' || e.trim().length < 4) problems.push(`${k} has no evidence`);
     else if (e.length > MAX_EVIDENCE) problems.push(`${k} evidence longer than ${MAX_EVIDENCE}`);
@@ -64,8 +88,8 @@ export function cleanRequires(raw, isGrounded = () => true) {
   for (const [k, x] of Object.entries(raw)) {
     const t = REQUIRES_VOCAB[k];
     if (!t || !x || typeof x !== 'object') continue;
-    const v = t === 'number' ? Number(x.value) : x.value === true;
-    if (t === 'number' ? !(v > 0) : !v) continue;
+    const v = t === 'number' ? Number(x.value) : t === 'codes' ? cleanCodes(x.value) : x.value === true;
+    if (t === 'number' ? !(v > 0) : t === 'codes' ? !v.length : !v) continue;
     const e = typeof x.evidence === 'string' ? x.evidence.trim() : '';
     if (!e || e.length > MAX_EVIDENCE * 2 || !isGrounded(e)) continue;
     requires[k] = v;

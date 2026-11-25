@@ -98,7 +98,8 @@
       employees: p.employees || '', revenue: p.revenue || '', location: p.location || '', site_region: p.site_region || '', years_operating: p.years_operating || '',
       legal_form: p.legal_form || '', public_debt_free: p.public_debt_free || '', own_funds: p.own_funds || '', in_difficulty: p.in_difficulty || '', teaor: p.teaor || '',
       rnd: p.rnd || '', women_led: p.women_led || '', categories: Array.isArray(p.categories) ? p.categories : [], contact_name: p.display_name || '', email: p.email || '', phone: p.phone || '',
-      tax_regime: p.tax_regime || '', group_member: p.group_member || '', public_owner: p.public_owner || '', de_minimis: p.de_minimis || '', insolvency: p.insolvency || ''
+      tax_regime: p.tax_regime || '', group_member: p.group_member || '', public_owner: p.public_owner || '', de_minimis: p.de_minimis || '', insolvency: p.insolvency || '',
+      elig: p.elig && typeof p.elig === 'object' && Object.keys(p.elig).length ? p.elig : ''
     };
   }
   async function resolveUser() {
@@ -145,6 +146,7 @@
     if (Object.keys(v2).length) await c.from('profiles').update(v2).eq('id', S.user.id);
     var v3 = {}; ['tax_regime', 'group_member', 'public_owner', 'de_minimis', 'insolvency'].forEach(function (k) { if (p[k]) v3[k] = p[k]; });
     if (Object.keys(v3).length) await c.from('profiles').update(v3).eq('id', S.user.id).then(function () {}, function () {});
+    if (p.elig && typeof p.elig === 'object' && Object.keys(p.elig).length) await c.from('profiles').update({ elig: p.elig, elig_updated_at: new Date().toISOString() }).eq('id', S.user.id).then(function () {}, function () {});
   }
   async function pushAttribution() {
     if (!S.user || !window.gp) return; var c = window.gp.client;
@@ -278,6 +280,8 @@
     if (!hasProfile()) return '<div class="callout"><p><b>Adja meg a cége adatait — kb. 1 perc.</b> Utána minden felhívásnál pontonként látja, mely feltételek teljesülnek.</p><a class="btn btn-primary" href="onboarding.html">Cégprofil megadása</a></div>';
     var miss = window.AIPMatch ? AIPMatch.missingFields(S.profile) : [];
     if (miss.length) return '<div class="callout warn"><p><b>' + miss.length + ' adat hiányzik a pontos ellenőrzéshez:</b> ' + esc(miss.map(function (f) { return f.label; }).join(', ')) + '. Ezek nélkül a feltételeket „?” jellel jelöljük.</p><a class="btn btn-ghost" href="onboarding.html">Profil kiegészítése</a></div>';
+    var c = window.AIPElig ? AIPElig.completeness(S.profile.elig || {}) : null;
+    if (c && c.pct < 60) return '<div class="callout"><p><b>Részletes adatlap: ' + c.pct + '% kitöltve.</b> A pályázatíró partnerünk jogosultsági modellje alapján: tulajdonosi kapcsolatok, beszámoló adatai, telephely, megfelelőségi nyilatkozatok. Ezekkel csak az marad a jól illeszkedők között, amire tényleg jogosult.</p><a class="btn btn-ghost" href="adatlap.html">Adatlap kitöltése</a></div>';
     return '';
   }
   function eligibleSorted(filterFn) {
@@ -507,7 +511,7 @@
     var h = head('Fiók', 'Beállítások');
     var p = S.profile || {};
     h += '<div class="set-grid">';
-    h += '<section class="card"><h2>Cégprofil</h2>' + (hasProfile() ? '<table class="facts">' + [['Cégnév', p.company], ['Tevékenység', (p.industries || []).map(function (c) { return industryLabel(c); }).join(', ')], ['Létszám', empLabel(p.employees)], ['Régió', p.site_region], ['TEÁOR', p.teaor], ['Lezárt üzleti évek', p.years_operating]].map(function (r) { return '<tr><th>' + r[0] + '</th><td>' + esc(r[1] || '—') + '</td></tr>'; }).join('') + '</table>' : '<p class="muted">Még nincs cégprofil.</p>') + '<p style="margin-top:var(--s4)"><a class="btn btn-primary" href="onboarding.html">' + (hasProfile() ? 'Profil szerkesztése' : 'Cégprofil megadása') + '</a></p></section>';
+    h += '<section class="card"><h2>Cégprofil</h2>' + (hasProfile() ? '<table class="facts">' + [['Cégnév', p.company], ['Tevékenység', (p.industries || []).map(function (c) { return industryLabel(c); }).join(', ')], ['Létszám', empLabel(p.employees)], ['Régió', p.site_region], ['TEÁOR', p.teaor], ['Lezárt üzleti évek', p.years_operating]].map(function (r) { return '<tr><th>' + r[0] + '</th><td>' + esc(r[1] || '—') + '</td></tr>'; }).join('') + '</table>' : '<p class="muted">Még nincs cégprofil.</p>') + '<p style="margin-top:var(--s4);display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href="onboarding.html">' + (hasProfile() ? 'Profil szerkesztése' : 'Cégprofil megadása') + '</a>' + (hasProfile() ? '<a class="btn btn-ghost" href="adatlap.html">Részletes adatlap' + (window.AIPElig ? ' (' + AIPElig.completeness(p.elig || {}).pct + '%)' : '') + '</a>' : '') + '</p></section>';
     if (S.user) {
       h += '<section class="card"><h2>Értesítések</h2><p class="muted small">A leveleket ide küldjük: <b>' + esc(S.user.email) + '</b></p>' +
         '<label class="toggle"><input type="checkbox" id="n-weekly"><span><b>Heti összefoglaló</b><span>Új, Önnek illő felhívások és közelgő határidők.</span></span></label>' +
@@ -566,7 +570,7 @@
       var v = VERDICT[m.verdict];
       h += '<section class="verdict-box ' + v[0] + '" aria-label="Jogosultság"><div class="verdict-head"><span class="sc">' + m.score + '</span><b>' + esc(v[1]) + '</b>' + (m.group === 'consortium' ? '<span class="muted">Konzorciumi felhívás — partnerek kellenek.</span>' : '') + '</div><ul class="checks">' +
         m.checks.map(function (c) { return '<li class="' + esc(c.status) + '"><span class="mark" aria-hidden="true">' + SYM[c.status] + '</span><span class="what">' + esc(c.label) + '</span><span class="why">' + esc(c.reason) + '</span></li>'; }).join('') + '</ul>' +
-        (AIPMatch.missingFields(S.profile).length ? '<p class="small" style="margin:10px 0 0"><a href="onboarding.html">Hiányzó adatok megadása</a> — kevesebb „?” marad.</p>' : '') + '</section>';
+        (AIPMatch.missingFields(S.profile).length ? '<p class="small" style="margin:10px 0 0"><a href="onboarding.html">Hiányzó adatok megadása</a> — kevesebb „?” marad.</p>' : m.checks.some(function (c) { return c.status === 'unknown'; }) ? '<p class="small" style="margin:10px 0 0"><a href="adatlap.html">Részletes adatlap</a> — a pontos adatokkal kevesebb „?” marad.</p>' : '') + '</section>';
     } else {
       h += '<div class="callout" style="margin-top:var(--s5)"><p><b>Jogosult erre a cége?</b> Adja meg a cége adatait, és pontonként megmutatjuk.</p><a class="btn btn-primary" href="onboarding.html">Cégprofil megadása</a></div>';
     }
