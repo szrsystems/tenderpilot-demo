@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=r2">
 <style>
 .auth-grid{display:grid;gap:var(--s7);padding:var(--s7) 0 var(--s8)}
 @media(min-width:960px){.auth-grid{grid-template-columns:minmax(0,440px) minmax(0,1fr);align-items:start}}
@@ -32,6 +32,7 @@ input.mismatch{border-color:var(--danger)!important}
 .alt-link{margin-top:var(--s5);color:var(--ink-2)}
 .submit{width:100%}
 .msg.show{border-left:3px solid var(--line-strong);background:var(--surface);padding:12px 16px;border-radius:0 var(--r) var(--r) 0}.msg.error,.msg.err{border-color:var(--danger);background:var(--danger-tint)}.msg.success,.msg.ok{border-color:var(--brand);background:var(--brand-tint)}</style>
+<style>.confirm-page{max-width:none}.confirm-steps{display:grid;gap:var(--s4);margin:var(--s5) 0}@media (min-width:900px){.confirm-steps{grid-template-columns:repeat(3,1fr)}}</style>
 </head>
 <body>
 <a class="skip" href="#main">Ugrás a tartalomra</a>
@@ -58,13 +59,13 @@ input.mismatch{border-color:var(--danger)!important}
   </div>
 </header>
 <main id="main"><div class="wrap">
-<section class="auth-card" style="padding:var(--s7) 0 var(--s8);max-width:560px">
+<section class="confirm-page" style="padding:var(--s7) 0 var(--s8)">
 <p class="eyebrow">Utolsó lépés</p>
 <h1 style="margin-top:var(--s2)">Erősítse meg az e-mail-címét</h1>
 <p class="lede">Megerősítő linket küldtünk erre a címre:</p>
 <p class="mono" id="email-display" style="font-size:17px;margin:-8px 0 var(--s5)">…</p>
 <div id="msg" class="msg" role="status"></div>
-<ol class="numbered" style="display:grid;gap:var(--s4)">
+<ol class="numbered confirm-steps">
 <li><h3>Nyissa meg a postafiókját</h3><p>A levél néhány percen belül megérkezik — nézze meg a spam mappát is.</p></li>
 <li><h3>Kattintson a „Megerősítés” linkre</h3><p>Ezzel igazolja, hogy az e-mail-cím az Öné.</p></li>
 <li><h3>Visszahozzuk ide</h3><p>A megerősítés után automatikusan belépteti a rendszer, és kitöltheti a cégprofilt.</p></li>
@@ -86,12 +87,12 @@ input.mismatch{border-color:var(--danger)!important}
     <div class="legal"><span>© 2026 AIpályázó · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
   </div>
 </footer>
-<script src="lib/attribution.js"></script>
-<script src="assets/site.js" defer></script>
-<script src="assets/analytics.js" defer></script>
-<script src="lib/supabase.js" defer></script>
-<script src="assets/pages/confirm-email-1.js"></script>
+<script src="lib/attribution.js?v=r2"></script>
+<script src="assets/site.js?v=r2" defer></script>
+<script src="assets/analytics.js?v=r2" defer></script>
+<script src="lib/supabase.js?v=r2" defer></script>
+<script src="assets/pages/confirm-email-1.js?v=r2"></script>
 
-<script src="assets/pages/confirm-email-2.js"></script>
+<script src="assets/pages/confirm-email-2.js?v=r2"></script>
 </body>
 </html>

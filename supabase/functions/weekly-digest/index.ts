@@ -200,9 +200,9 @@ export async function handler(req: Request, deps: { admin?: any; sendBatch?: (m:
 
     const topN = Math.min(Math.max(row.section_top_n || 5, 3), 8);
     const top = ranked.slice(0, topN).map((x) => x.g);
-    const urgent = (row.urgent_enabled && row.section_deadlines !== false)
-      ? ranked.map((x) => x.g).filter((g) => g.days > 0 && g.days <= 14).slice(0, 5)
-      : [];
+    // No separate "urgent deadlines" section any more (2026-11-25): the
+    // digest lists only the best fits; deadlines show on each row.
+    const urgent: any[] = [];
     mails.push({ to, subject: 'Heti pályázati összefoglaló — AIpályázó', html: emailHtml(p.display_name, top, urgent, token), token });
     sentIds.push(row.user_id);
   }

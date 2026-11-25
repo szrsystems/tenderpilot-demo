@@ -133,7 +133,7 @@
     return { score: total + (matched === toks.length ? 100 : 0), all: matched === toks.length, matched: matched, of: toks.length };
   }
   function grantFields(g, extra) {
-    return [[g.title, 6], [g.code, 8, 'code'], [g.cat, 4], [g.issuer, 2], [g.note, 2], [g.amount, 1], [(g.regions || []).join(' '), 1], [g.type, 1], [extra || '', 1]];
+    return [[g.title, 6], [g.titleOriginal, 4], [g.code, 8, 'code'], [g.cat, 4], [g.issuer, 2], [g.note, 2], [g.amount, 1], [(g.regions || []).join(' '), 1], [g.type, 1], [extra || '', 1]];
   }
   var cache = typeof WeakMap === 'function' ? new WeakMap() : null;
   function prepGrant(g, extraText) {

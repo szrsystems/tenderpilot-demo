@@ -37,6 +37,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fetchEuCalls, isForIndividuals, normalizeEuItem } from './fetch-eu-calls.mjs';
 import { withConsortiumTag } from './requires.mjs';
+import { applyHungarianTitles } from './titles-hu.mjs';
 import { mergeChanges } from './changes-log.mjs';
 
 const API = 'https://ginapp-api.fair.gov.hu/papi/tenders/list';
@@ -514,6 +515,8 @@ async function main() {
   }
 
   const { grants } = out;
+  // Hungarian titles for English calls (cache made by scripts/translate-titles.mjs)
+  try { applyHungarianTitles(grants, existsSync('aipalyazo/titles-hu.json') ? JSON.parse(readFileSync('aipalyazo/titles-hu.json', 'utf8')) : {}); } catch (e) { console.log('titles-hu: skipped', String(e.message || e)); }
   const changes = diff(prevGrants, grants);
   const needsReview = out.apiGrants.filter((g) => g.needsReview).map((g) => ({ code: g.code, title: g.title }));
   writeFileSync(OUT_GRANTS, JSON.stringify(grants, null, 1));

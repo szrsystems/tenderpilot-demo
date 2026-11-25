@@ -63,7 +63,7 @@
   var GENERIC_BONUS = 3;   // "general business money" — a tiebreak, not a match
   var BONUS_CAP = 22;      // all fit bonuses together
   // Checks whose 'unknown' blocks an APPLY verdict (stays REVIEW at most).
-  var HARD = ['size', 'region', 'years', 'jobseeker', 'startup', 'women_led', 'revenue', 'employer', 'farmer', 'fisheries', 'forestry', 'tourism_ntak', 'restaurant', 'youth_founder', 'rnd', 'kata'];
+  var HARD = ['basics', 'size', 'region', 'years', 'jobseeker', 'startup', 'women_led', 'revenue', 'employer', 'farmer', 'fisheries', 'forestry', 'tourism_ntak', 'restaurant', 'youth_founder', 'rnd', 'kata'];
   var TIER_LABEL = { micro: 'mikrovállalkozás', small: 'kisvállalkozás', mid: 'középvállalkozás', large: 'nagyvállalkozás' };
   // Call text that says "SMEs only" / text that says larger firms may apply too.
   var KKV_TEXT = /\bKKV|\bSMEs?\b|SME's|mikro-, kis- és közép|kis- és középvállal/i;
@@ -182,6 +182,10 @@
     var match = inds.some(function (x) { return x !== 'General' && INDUSTRY_RE[x] && INDUSTRY_RE[x].test(text); })
       || (inds.indexOf('Agriculture') >= 0 && (div === null || FOREST_DIVS.indexOf(div) >= 0) && FOREST_RE.test(text));
     var interest = p && Array.isArray(p.categories) && p.categories.indexOf(g.cat) >= 0;
+    // Loans, guarantees and equity are general-purpose money: a keyword in their
+    // name ("digitalizációs", "innovációs") is not a real sector fit.
+    var finance = ['loan', 'guarantee', 'equity'].indexOf(g.type) >= 0;
+    if (match && finance) return { key: 'sector', label: 'Tevékenység', status: 'ok', reason: 'Általános finanszírozási termék, a témája érinti a tevékenységét.', bonus: 8 };
     if (match) return { key: 'sector', label: 'Tevékenység', status: 'ok', reason: 'A felhívás témája illik a tevékenységéhez.', bonus: interest ? 22 : 18 };
     if (interest) return { key: 'sector', label: 'Tevékenység', status: 'ok', reason: 'Az Ön által megjelölt témakörbe esik.', bonus: 8 };
     // Broad Hungarian business-development money (Széchenyi Kártya, MFB,
@@ -396,10 +400,12 @@
       // Base + how well the topic fits (sector bonus) + what kind of money it is
       // (non-repayable ranks above loans) + domestic first + time to prepare,
       // minus hurdles. APPLY (≥75) in practice needs a topic match.
-      var typeB = { 'grant': 6, 'wage-subsidy': 2, 'loan+grant': 4, 'grant+equity': 4, 'in-kind': 2 }[g.type] || 0;
+      var typeB = { 'grant': 6, 'wage-subsidy': 2, 'loan+grant': 4, 'grant+equity': 4, 'in-kind': 2, 'loan': -4, 'guarantee': -6 }[g.type] || 0;
       if (g.type === 'equity') typeB = (closedYears[p.years_operating] <= 2 || industriesOf(p).indexOf('IT') >= 0) ? 3 : -3;
       var d = daysUntil(g.deadline, today);
-      score = 60 + bonus + typeB + (g.scope !== 'eu' ? 4 : -4) + (d === null || d >= 21 ? 2 : 0) - warns * 9 - unknown * 3;
+      // Strict on purpose (2026-11-25): a high score means "very likely
+      // eligible and a real fit", so every open question costs more.
+      score = 56 + bonus + typeB + (g.scope !== 'eu' ? 4 : -4) + (d === null || d >= 21 ? 2 : 0) - warns * 10 - unknown * 6;
       if (fails) score = Math.min(30, 30 - (fails - 1) * 8);
     }
     score = Math.max(5, Math.min(99, Math.round(score)));
@@ -411,7 +417,13 @@
     var rq = g.requires || {};
     var tier = sizeTier(p && p.employees);
     var consortiumCap = group === 'consortium' && tier !== 'large' && tier !== 'mid';
-    if (verdict === 'APPLY' && (consortiumCap || !topical || hardUnknown || noMoney || ((rq.rnd_project || rq.deeptech) && !(p && p.rnd === 'igen')))) {
+    // EU programme money is almost always an R&D / innovation project in
+    // English with a heavy application: a top recommendation only for
+    // companies that said they plan one.
+    // Medium and large companies run EU projects routinely, so the cap is for
+    // micro and small firms only (decided Oct 2026: big firms are key leads).
+    var euNoRnd = g.scope === 'eu' && !(p && p.rnd === 'igen') && tier !== 'large' && tier !== 'mid';
+    if (verdict === 'APPLY' && (consortiumCap || euNoRnd || !topical || hardUnknown || noMoney || ((rq.rnd_project || rq.deeptech) && !(p && p.rnd === 'igen')))) {
       verdict = 'REVIEW';
       score = Math.min(score, 74);
     }
