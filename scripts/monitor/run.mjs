@@ -23,6 +23,18 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { makeFetcher, extractLinks, hash, pool, todayBudapest } from './lib.mjs';
 import { extractFacts, llmFromEnv } from './extract.mjs';
+
+// Bump when scripts/requires.mjs gets new keys: every monitored call is then
+// re-read once (maxRetagCalls a day) and the new tags are added to it.
+export const TAG_V = 3;
+// Keys the re-tagging may ADD to a hand-checked call (it never removes or
+// overrides the curated tags).
+export const RETAG_KEYS = ['no_kata', 'de_minimis', 'favoured_district'];
+function tagsOf(facts) {
+  const req = {}, ev = {};
+  for (const k of RETAG_KEYS) if (facts.requires && facts.requires[k]) { req[k] = facts.requires[k]; ev[k] = facts.requiresEvidence[k]; }
+  return Object.keys(req).length ? { requires: req, requiresEvidence: ev } : null;
+}
 import { updateSummaries } from './summarize.mjs';
 import { mergeChanges } from '../changes-log.mjs';
 import { codeIndex, nextCutoff } from '../fetch-live-grants.mjs';
@@ -76,6 +88,7 @@ export async function runMonitor({
   benchmarks = [], knownCodes = [],
   items, sources, officialDomains, state, fetchImpl = fetch, llm = null, today = todayBudapest(),
   maxLlmCalls = 60, maxNewPerSource = 15, delayMs = 1200, prevAuto = [], fetchPage: givenFetch = null, prevFlags = {},
+  maxRetagCalls = 15,
 }) {
   const fetchPage = givenFetch || makeFetcher({ fetchImpl, delayMs });
   state.pages = state.pages || {};
@@ -83,7 +96,7 @@ export async function runMonitor({
   const flags = { hide: {}, overrides: {} };
   const review = [];
   const log = [];
-  let llmCalls = 0;
+  let llmCalls = 0, retagCalls = 0;
   const pageChanges = []; // → aipalyazo/changes.json ("page", "deadline-official")
   const canLlm = () => llm && llmCalls < maxLlmCalls;
   const official = (url) => { try { const h = new URL(url).hostname; return officialDomains.some((d) => h === d || h.endsWith('.' + d)); } catch { return false; } };
@@ -115,12 +128,23 @@ export async function runMonitor({
     const changed = st.hash && st.hash !== h;
     const first = !st.hash;
     st.hash = h;
-    if (!changed && !first) { st.lastOk = today; return { g, outcome: 'ok' }; }
+    if (!changed && !first) {
+      st.lastOk = today;
+      // Re-tag once per vocabulary version (new eligibility keys), a few a day
+      // so new calls keep most of the LLM budget.
+      if (st.tagV !== TAG_V && canLlm() && retagCalls < maxRetagCalls) {
+        llmCalls++; retagCalls++;
+        const v = await extractFacts(r, { llm, today }).catch(() => null);
+        if (v && v.facts) { st.tagV = TAG_V; st.tags = tagsOf(v.facts); }
+      }
+      return { g, outcome: 'ok' };
+    }
     if (changed) pageChanges.push({ id: g.id, type: 'page' });
     if (!canLlm()) return { g, outcome: first ? 'baseline' : 'changed-unchecked', detail: first ? 'első mentés' : 'az oldal megváltozott, LLM nélkül nem ellenőrizhető' };
     llmCalls++;
     const v = await extractFacts(r, { llm, today }).catch((e) => ({ ok: false, problems: [String(e.message || e)] }));
     const f = v.facts || {};
+    if (v.facts) { st.tagV = TAG_V; st.tags = tagsOf(v.facts); }
     if (['closed', 'suspended'].includes(f.status) && f.evidence && v.problems && !v.problems.includes('status not on page')) {
       st.closedHits = (st.closedHits || 0) + 1;
       return { g, outcome: 'closed', detail: `az oldal szerint: „${String(f.evidence.status).slice(0, 120)}”` };
@@ -136,6 +160,7 @@ export async function runMonitor({
 
   for (const x of results) {
     const st = state.pages[x.g.url];
+    if (st && st.tags) flags.overrides[x.g.id] = { ...(flags.overrides[x.g.id] || {}), tags: st.tags };
     if (x.outcome === 'ok') flags.overrides[x.g.id] = { ...(flags.overrides[x.g.id] || {}), lastChecked: today };
     if (x.outcome === 'deadline') {
       pageChanges.push({ id: x.g.id, type: 'deadline-official', from: x.g.deadline || null, to: x.deadline });
@@ -248,7 +273,7 @@ async function main() {
     benchmarks: cfg.benchmarks || [],
     // codes that are deliberately NOT listed (excluded) or come from the API
     knownCodes: [...Object.keys(readJson(join(REPO, 'scripts/api-verified.json'), {})), ...readJson(join(REPO, 'aipalyazo/grants_live.json'), []).map((g) => g.code)],
-    llm, today, prevAuto, maxLlmCalls: +(process.env.MAX_LLM_CALLS || 60),
+    llm, today, prevAuto, maxLlmCalls: +(process.env.MAX_LLM_CALLS || 60), maxRetagCalls: +(process.env.MAX_RETAG_CALLS || 15),
     prevFlags: readJson(P('flags.json'), {}),
   });
   // Official call summaries for everything currently listed.

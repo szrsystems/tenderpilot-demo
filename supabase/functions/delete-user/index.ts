@@ -65,6 +65,7 @@ export function supabaseOps(admin: any): Ops {
         display_name: '__DELETED__', email: `deleted-${userId}@aipalyazo.hu`, phone: null, company: null, industry: null,
         industries: null, employees: null, revenue: null, location: null, site_region: null, years_operating: null,
         legal_form: null, public_debt_free: null, own_funds: null, in_difficulty: null, teaor: null, categories: null, rnd: null, women_led: null,
+        tax_regime: null, group_member: null, public_owner: null, de_minimis: null, insolvency: null, tax_number: null, company_verified_at: null,
       }).eq('id', userId), 'profiles');
     },
     async deleteAuthUser(userId) {

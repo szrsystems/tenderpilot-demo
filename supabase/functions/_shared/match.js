@@ -63,7 +63,7 @@
   var GENERIC_BONUS = 3;   // "general business money" — a tiebreak, not a match
   var BONUS_CAP = 22;      // all fit bonuses together
   // Checks whose 'unknown' blocks an APPLY verdict (stays REVIEW at most).
-  var HARD = ['size', 'region', 'years', 'jobseeker', 'startup', 'women_led', 'revenue', 'employer', 'farmer', 'fisheries', 'forestry', 'tourism_ntak', 'restaurant', 'youth_founder', 'rnd'];
+  var HARD = ['size', 'region', 'years', 'jobseeker', 'startup', 'women_led', 'revenue', 'employer', 'farmer', 'fisheries', 'forestry', 'tourism_ntak', 'restaurant', 'youth_founder', 'rnd', 'kata'];
   var TIER_LABEL = { micro: 'mikrovállalkozás', small: 'kisvállalkozás', mid: 'középvállalkozás', large: 'nagyvállalkozás' };
   // Call text that says "SMEs only" / text that says larger firms may apply too.
   var KKV_TEXT = /\bKKV|\bSMEs?\b|SME's|mikro-, kis- és közép|kis- és középvállal/i;
@@ -114,7 +114,9 @@
   // ---- the individual checks ---------------------------------------------
   function checkSize(g, p) {
     var emp = p && p.employees, tier = sizeTier(emp), legacy = emp === '100+';
-    var big = tier === 'large' || legacy;
+    // 25%+ state / municipal ownership: never an SME, whatever the headcount.
+    var publicOwned = !!(p && p.public_owner === 'igen');
+    var big = tier === 'large' || legacy || publicOwned;
     var cls = (g.sizeClasses || []).map(function (s) { return String(s).toLowerCase(); });
     function has(re) { return cls.some(function (s) { return re.test(s); }); }
     var nagy = has(/nagyvállalkoz/), kozep = has(/középvállalkoz/), kis = has(/kisvállalkoz/), mikro = has(/mikro/);
@@ -127,7 +129,8 @@
       if (big && saysKkv) return r('unknown', 'A leírás szerint KKV-knak szól — nagyvállalatként ellenőrizze a felhívásban.' + (legacy ? ' ' + ASK : ''));
       return r('ok', 'A felhívás nem korlátozza a cégméretet.');
     }
-    if (!tier && !legacy) return r('unknown', 'Adja meg a létszámot a profilban.');
+    if (!tier && !legacy && !publicOwned) return r('unknown', 'Adja meg a létszámot a profilban.');
+    if (publicOwned && !nagy) return r('fail', 'Állami / önkormányzati 25%-os vagy nagyobb tulajdon mellett a cég nem minősül KKV-nak.');
     if (big) {
       if (nagy) return r('ok', 'Nagyvállalkozás is pályázhat.');
       if (legacy) return kozep ? r('unknown', 'Csak KKV-k (250 fő alatt) pályázhatnak. ' + ASK) : r('fail', 'Csak mikro- és kisvállalkozások pályázhatnak.');
@@ -136,6 +139,8 @@
     }
     if (generic) return r('ok', 'A felhívás nem korlátozza a cégméretet.');
     var ok = (tier === 'micro' && mikro) || (tier === 'small' && kis) || (tier === 'mid' && (kozep || nagy));
+    // Linked / partner enterprises: the SME size is counted for the whole group.
+    if (ok && p && p.group_member === 'igen' && !nagy) return r('unknown', 'Cégcsoport tagjaként a KKV-méretet a kapcsolt és partnervállalkozásokkal együtt kell számolni — ellenőrizze.');
     return ok ? r('ok', 'Pályázhat ' + TIER_LABEL[tier] + 'ként.') : r('fail', TIER_LABEL[tier] + ' nem szerepel a jogosultak között.');
   }
 
@@ -203,6 +208,7 @@
 
   function checkBasics(g, p) {
     if (!p) return null;
+    if (p.insolvency === 'igen') return { key: 'basics', label: 'Alapfeltételek', status: 'fail', reason: 'Csőd-, felszámolási, végelszámolási vagy végrehajtási eljárás alatt álló cég nem pályázhat.' };
     if (g.scope === 'eu') {
       // EU money is not Hungarian state aid, but nearly every EU call also
       // excludes applicants with tax debt or in financial difficulty.
@@ -313,6 +319,26 @@
         : { key: 'revenue', label: 'Árbevétel', status: 'unknown', reason: 'Legalább ' + fmt + ' árbevétel kell — határeset.' });
     }
     if (r.bank_loan) out.push({ key: 'bank', label: 'Igénylés', status: 'neutral', reason: 'Bankon / hitelközvetítőn keresztül igényelhető, hitelbírálattal.' });
+    if (r.no_kata) {
+      var tx = p && p.tax_regime, lf = p && p.legal_form;
+      // Since 2022 only sole traders can be KATA taxpayers.
+      if (tx === 'kata') out.push({ key: 'kata', label: 'Adózási forma', status: 'fail', reason: 'KATA-s vállalkozás nem pályázhat.' });
+      else if (tx) out.push({ key: 'kata', label: 'Adózási forma', status: 'ok', reason: 'KATA-sok nem pályázhatnak — Ön nem KATA-s.' });
+      else if (!lf || lf === 'EV') out.push({ key: 'kata', label: 'Adózási forma', status: 'unknown', reason: 'KATA-s vállalkozás nem pályázhat — adja meg az adózási formát a profilban.' });
+    }
+    if (r.de_minimis) {
+      var dm = p && p.de_minimis;
+      out.push(dm === '250k+' ? { key: 'de_minimis', label: 'De minimis keret', status: 'warn', reason: 'Csekély összegű (de minimis) támogatás: 3 év alatt legfeljebb 300 ezer € — az Ön kerete nagyrészt elfogyott.' }
+        : dm === '100k-250k' ? { key: 'de_minimis', label: 'De minimis keret', status: 'neutral', reason: 'De minimis támogatás: 3 év alatt legfeljebb 300 ezer € — még van szabad kerete, de számolja ki pontosan.' }
+        : dm === 'nincs' || dm === '<100k' ? { key: 'de_minimis', label: 'De minimis keret', status: 'ok', reason: 'De minimis támogatás — van szabad kerete.' }
+        : { key: 'de_minimis', label: 'De minimis keret', status: 'neutral', reason: 'Csekély összegű (de minimis) támogatás: 3 év alatt legfeljebb 300 ezer € adható — ellenőrizze a szabad keretét.' });
+    }
+    if (r.favoured_district) {
+      var F = root.AIPFav, fs = F && p && p.location ? F.statusOfLocation(p.location) : 'unknown';
+      out.push(fs === 'yes' ? { key: 'favoured', label: 'Kedvezményezett térség', status: 'ok', reason: 'Kedvezményezett járásban — a székhely alapján megfelel.', bonus: 8 }
+        : fs === 'no' ? { key: 'favoured', label: 'Kedvezményezett térség', status: 'warn', reason: 'Csak kedvezményezett járásban megvalósuló fejlesztés pályázhat; a székhely nem ilyen — telephelyen megvalósítva még lehetséges.' }
+        : { key: 'favoured', label: 'Kedvezményezett térség', status: 'unknown', reason: 'Csak kedvezményezett járásban megvalósuló fejlesztés pályázhat — adja meg a székhely irányítószámát.' });
+    }
     return out;
   }
 
@@ -396,7 +422,7 @@
   var NEEDED = [
     ['employees', 'Létszám'], ['site_region', 'Megvalósítás régiója'], ['teaor', 'TEÁOR főtevékenység'],
     ['years_operating', 'Lezárt üzleti évek'], ['public_debt_free', 'Köztartozásmentesség'],
-    ['in_difficulty', 'Nehéz helyzetű-e'], ['own_funds', 'Önerő'], ['rnd', 'Tervez-e K+F / innovációs projektet'],
+    ['in_difficulty', 'Nehéz helyzetű-e'], ['insolvency', 'Csőd-, felszámolási vagy végrehajtási eljárás'], ['own_funds', 'Önerő'], ['rnd', 'Tervez-e K+F / innovációs projektet'],
   ];
   function missingFields(p) {
     return NEEDED.filter(function (f) { return !p || !p[f[0]] || (f[0] === 'employees' && p.employees === '100+'); })

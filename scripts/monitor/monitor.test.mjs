@@ -333,3 +333,29 @@ test('cutoffs: the listed deadline is the next round; the item closes after the 
   const out = applyMonitor([g], { flags: { overrides: { m: { deadline: '2026-11-30', lastChecked: '2026-10-20' } } } }).items[0];
   assert.equal(selectVerified([out], '2026-10-20').kept[0].deadline, '2026-10-30');
 });
+
+test('re-tagging: unchanged pages are re-read once per tag version (capped); new tags are only added to the feed item', async () => {
+  const text = 'Stabil termék\nHatáridő: 2026. december 31.\nKATA hatálya alá tartozó vállalkozás nem nyújthat be támogatási kérelmet.';
+  const { fetchImpl } = fakeWeb({ 'https://bkik.hu/szechenyi/x': html(text), 'https://bkik.hu/szechenyi/y': html(text) });
+  let calls = 0;
+  const llm = async () => { calls++; return JSON.stringify({ ...GOOD, title: 'Stabil termék', deadline: '2026-12-31', window_open: null, amount: null,
+    requires: { no_kata: { value: true, evidence: 'KATA hatálya alá tartozó vállalkozás nem nyújthat be támogatási kérelmet.' }, farmer: { value: true, evidence: 'Stabil termék' } },
+    evidence: { title: 'Stabil termék', status: 'Stabil termék', deadline: 'Határidő: 2026. december 31.', amount: null, eligibility: null } }); };
+  const items = [
+    { id: 'v-x', title: 'X', deadline: '2026-12-31', url: 'https://bkik.hu/szechenyi/x', requires: { employer: true }, requiresEvidence: { employer: 'kézzel' } },
+    { id: 'v-y', title: 'Y', deadline: '2026-12-31', url: 'https://bkik.hu/szechenyi/y' },
+  ];
+  const base = { items, sources: [], officialDomains: ['bkik.hu'], fetchImpl, today: TODAY, delayMs: 0 };
+  const r1 = await runMonitor({ ...base, llm: null, state: {} });                       // baseline hashes
+  const r2 = await runMonitor({ ...base, llm, state: r1.state, prevFlags: r1.flags, maxRetagCalls: 1 });
+  assert.equal(calls, 1, 'cap respected');
+  const r3 = await runMonitor({ ...base, llm, state: r2.state, prevFlags: r2.flags, maxRetagCalls: 5 });
+  assert.equal(calls, 2, 'the already re-tagged page is not read again');
+  const r4 = await runMonitor({ ...base, llm, state: r3.state, prevFlags: r3.flags, maxRetagCalls: 5 });
+  assert.equal(calls, 2);
+  assert.deepEqual(r4.flags.overrides['v-x'].tags.requires, { no_kata: true }, 'only the new-vocabulary keys are carried');
+  const feed = applyMonitor(items, { flags: r4.flags });
+  assert.deepEqual(feed.items[0].requires, { employer: true, no_kata: true });
+  assert.equal(feed.items[0].requiresEvidence.employer, 'kézzel');
+  assert.deepEqual(feed.items[1].requires, { no_kata: true });
+});
