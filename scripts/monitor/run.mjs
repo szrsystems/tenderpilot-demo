@@ -26,10 +26,10 @@ import { extractFacts, llmFromEnv } from './extract.mjs';
 
 // Bump when scripts/requires.mjs gets new keys: every monitored call is then
 // re-read once (maxRetagCalls a day) and the new tags are added to it.
-export const TAG_V = 3;
+export const TAG_V = 4;
 // Keys the re-tagging may ADD to a hand-checked call (it never removes or
 // overrides the curated tags).
-export const RETAG_KEYS = ['no_kata', 'de_minimis', 'favoured_district'];
+export const RETAG_KEYS = ['no_kata', 'de_minimis', 'favoured_district', 'no_sole_trader', 'min_headcount', 'min_closed_years', 'teaor_codes', 'excluded_teaor', 'szvz', 'max_settlement_pop', 'premises_min_days', 'export', 'positive_equity', 'equity_vs_capital', 'aid_max_equity', 'project_max_revenue_pct', 'loan_max_ebit_x', 'not_started', 'new_assets_only'];
 function tagsOf(facts) {
   const req = {}, ev = {};
   for (const k of RETAG_KEYS) if (facts.requires && facts.requires[k]) { req[k] = facts.requires[k]; ev[k] = facts.requiresEvidence[k]; }

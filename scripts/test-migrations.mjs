@@ -312,7 +312,9 @@ test('company_data cache: service-role only; users cannot set tax_number / compa
 });
 
 test('eligibility v3: user sets own new fields, bad values rejected, view exposes them', async () => {
-  await db.exec(sql('20261123000001_eligibility_v3.sql')); // the before() hook re-runs lead_pipeline, which resets column grants
+  // the before() hook re-runs lead_pipeline, which resets column grants; the
+  // whole v3 file cannot run again once a later migration appended view columns
+  await db.exec(sql('20261123000001_eligibility_v3.sql').match(/grant update[^;]+;/)[0]);
   await as('authenticated', { id: B, email: 'b@example.com' }, () =>
     db.exec(`update public.profiles set tax_regime = 'kata', group_member = 'nem', public_owner = 'nem', de_minimis = '<100k', insolvency = 'nem' where id = '${B}'`));
   await as('authenticated', { id: B, email: 'b@example.com' }, () =>
@@ -320,4 +322,20 @@ test('eligibility v3: user sets own new fields, bad values rejected, view expose
   const r = await as('authenticated', { id: B, email: 'b@example.com' }, () =>
     db.query(`select tax_regime, de_minimis from public.user_with_tier where id = '${B}'`));
   assert.deepEqual(r.rows[0], { tax_regime: 'kata', de_minimis: '<100k' });
+});
+
+test('detailed eligibility sheet: owner writes elig JSON, others cannot, shape enforced, view exposes it', async () => {
+  await db.exec(sql('20261125000001_eligibility_detail.sql')); // re-grant after lead_pipeline re-run; also proves it is re-runnable
+  await as('authenticated', { id: B, email: 'b@example.com' }, () =>
+    db.exec(`update public.profiles set elig = '{"founded_date":"2019-05-02","fin":[{"net_revenue":"120000"}]}', elig_updated_at = now() where id = '${B}'`));
+  await as('authenticated', { id: B, email: 'b@example.com' }, () =>
+    rejects(db.exec(`update public.profiles set elig = '[1,2]' where id = '${B}'`), /check/));
+  await as('authenticated', { id: B, email: 'b@example.com' }, () =>
+    rejects(db.exec(`update public.profiles set elig = jsonb_build_object('x', repeat('a', 30000)) where id = '${B}'`), /check/));
+  // another user's row is not touched (RLS)
+  await as('authenticated', { id: A, email: 'a@example.com' }, () =>
+    db.exec(`update public.profiles set elig = '{"hack":true}' where id = '${B}'`));
+  const r = await as('authenticated', { id: B, email: 'b@example.com' }, () =>
+    db.query(`select elig->>'founded_date' as d from public.user_with_tier where id = '${B}'`));
+  assert.equal(r.rows[0].d, '2019-05-02');
 });

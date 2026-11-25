@@ -31,7 +31,7 @@ export const SCHEMA_HINT = `{
  "sizes": ["mikro","kis","közép","nagy"],
  "regions_note": "short, or null",
  "requires": {                          // ONLY hard eligibility conditions stated on the page; omit keys that do not apply
-   "<key>": { "value": true (or a number for *_years / *_huf keys), "evidence": "EXACT substring from the page, max 160 chars" }
+   "<key>": { "value": true (a number for min_*/max_*/*_days/*_pct/*_x keys, a list of TEÁOR code strings for teaor_codes / excluded_teaor), "evidence": "EXACT substring from the page, max 160 chars" }
  },
  "evidence": {                          // EXACT substrings copied from the page text, max 200 chars each
    "title": "...", "status": "...", "deadline": "... or null", "amount": "... or null", "eligibility": "... or null"
@@ -43,7 +43,7 @@ export function buildPrompt(pageText, url, today) {
 Read the page text below (from ${url}) and answer ONLY with JSON in this shape:
 ${SCHEMA_HINT}
 Allowed "requires" keys: ${Object.keys(REQUIRES_VOCAB).join(', ')}.
-Key meanings (set only when the page says so): no_kata = KATA / kisadózó taxpayers are excluded; de_minimis = the aid is "csekély összegű (de minimis) támogatás"; favoured_district = only applicants or projects in a "kedvezményezett járás" / "kedvezményezett település" may apply (a mere scoring bonus does NOT count).
+Key meanings (set only when the page says so): no_kata = KATA / kisadózó taxpayers are excluded; de_minimis = the aid is "csekély összegű (de minimis) támogatás"; favoured_district = only applicants or projects in a "kedvezményezett járás" / "kedvezményezett település" may apply (a mere scoring bonus does NOT count). no_sole_trader = egyéni vállalkozók cannot apply; min_headcount = minimum (average statistical) headcount in persons; min_closed_years = at least N closed full business years; teaor_codes = only the listed TEÁOR activities may be supported (copy the codes); excluded_teaor = listed TEÁOR activities are excluded; szvz = only in a "szabad vállalkozási zóna"; max_settlement_pop = only settlements under N inhabitants; premises_min_days = the site must be registered at least N days before submission; export = for exporting companies; positive_equity = negative equity excludes; equity_vs_capital = equity must reach the registered capital; aid_max_equity = the aid cannot exceed equity; project_max_revenue_pct = project cost at most N% of net revenue; loan_max_ebit_x = loan at most N times operating profit (EBIT); not_started = the project must not start before submission; new_assets_only = only new assets are eligible.
 Rules: copy evidence strings character-for-character from the page text; if a fact is not on the page use null — never guess; "closed" if the page says submission ended, the budget ran out or the call was suspended; dates in the page may be Hungarian ("2026. október 30.").
 
 PAGE TEXT:

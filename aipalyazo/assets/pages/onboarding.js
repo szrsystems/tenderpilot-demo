@@ -214,6 +214,7 @@
       channels: checked('#f_channels'), past_grants: val('f_past'), notes: val('f_notes'), contact_name: val('f_name'), email: val('f_email'), phone: val('f_phone'),
       gdpr_consent: true, gdpr_consent_ts: new Date().toISOString(), submitted: new Date().toISOString()
     });
+    try { var prev = JSON.parse(localStorage.getItem('grantpilot:profile') || 'null'); if (prev && prev.elig) data.elig = prev.elig; } catch (e) {} // keep the detailed sheet
     try { localStorage.setItem('grantpilot:profile', JSON.stringify(data)); localStorage.removeItem('aip:quick'); } catch (e) {}
     var btn = this; btn.disabled = true; btn.textContent = 'Mentés…';
     var ok = await syncProfile(data).catch(function () { return false; });
