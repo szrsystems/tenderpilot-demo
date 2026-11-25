@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-24T16:57:23.288Z",
+ "updatedAt": "2026-11-25T16:44:58.469Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,21 +7,21 @@
   "palyazatApi": {
    "ok": true,
    "items": 17,
-   "lastOk": "2026-11-24T16:57:23.288Z"
+   "lastOk": "2026-11-25T16:44:58.469Z"
   },
   "euApi": {
    "ok": true,
-   "items": 272,
-   "lastOk": "2026-11-24T16:57:23.288Z"
+   "items": 267,
+   "lastOk": "2026-11-25T16:44:58.469Z"
   }
  },
  "counts": {
-  "total": 414,
+  "total": 412,
   "api": 17,
-  "verified": 125,
-  "euAuto": 272,
+  "verified": 128,
+  "euAuto": 267,
   "hazai": 58,
-  "eu": 356,
+  "eu": 354,
   "excluded": 20
  },
  "needsReview": [
@@ -42,8 +42,11 @@
   "v-mfb-zold-lendulet-hitelprogram",
   "v-mfb-agrar-forgoeszkoz-hitelprogram-2025",
   "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025",
-  "v-2025-1-1-1-iparjog",
+  "v-ginop-plusz-4-1-1-23",
+  "v-ginop-plusz-3-1-1-23",
+  "v-vallalkozova-valast-elosegito-tamogatas",
   "v-eurostars-3-call-12",
+  "v-ngi-codesupply",
   "v-eureka-xecs-call6",
   "v-eif-investeu-unicredit-hu",
   "v-eif-sustainability-kh-hu",
@@ -51,9 +54,8 @@
   "v-garantiqa-kezesseg",
   "v-avhga-kezesseg",
   "v-eib-raiffeisen-lizing",
-  "v-2025-1-2-2-eureka",
-  "v-2024-1-2-1-he-partnerseg",
   "v-mfb-pvrk-forgoeszkoz-hitelprogram",
+  "v-top-plusz-3-1-1-21",
   "v-innowwide-call5-2026"
  ],
  "droppedVerified": [
@@ -79,10 +81,6 @@
   },
   {
    "id": "v-trunsport-oc1",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-grappa-cutoff-2",
    "why": "lejárt"
   },
   {
@@ -174,10 +172,6 @@
    "why": "lejárt"
   },
   {
-   "id": "v-2025-1-2-5-eu-kp",
-   "why": "lejárt"
-  },
-  {
    "id": "v-eitum-umx-2026",
    "why": "lejárt"
   },
@@ -212,6 +206,10 @@
   {
    "id": "v-i3-2026-inv2a",
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
+  },
+  {
+   "id": "v-grappa-cutoff-2",
+   "why": "monitor: closed: az oldal szerint: „This call is now closed. Cut-off 2 proposals are under evaluation and results will be announced in January 2027.”"
   },
   {
    "id": "v-horizon-cl5-2026-10-d2-03",
@@ -274,6 +272,10 @@
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   },
   {
+   "id": "v-2025-1-2-5-eu-kp",
+   "why": "monitor: closed: az oldal szerint: „Döntés dátuma: 2026. november 24.”"
+  },
+  {
    "id": "v-marc-impact-hu-2026",
    "why": "monitor: closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
   }
@@ -288,20 +290,20 @@
    "why": "Pénzügyi eszköz keret alapkezelőnek."
   },
   {
+   "code": "GINOP_PLUSZ-2.5.4-25",
+   "why": "Alapkezelői költségtérítés."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
+   "why": "Alapkezelői/bank költségtérítés."
+  },
+  {
+   "code": "DIMOP_PLUSZ-5.1.4-2-26",
+   "why": "Alapkezelői kezelési költségtérítés."
+  },
+  {
    "code": "DIMOP_PLUSZ-1.2.3/B1-24",
    "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
-  },
-  {
-   "code": "IKOP_PLUSZ-2.2.0-23",
-   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
-  },
-  {
-   "code": "IKOP_PLUSZ-1.1.0-23",
-   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
-  },
-  {
-   "code": "IKOP_PLUSZ-1.2.0-23",
-   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/A1-24",
@@ -320,16 +322,20 @@
    "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
-   "why": "Alapkezelői/bank költségtérítés."
+   "code": "IKOP_PLUSZ-2.2.0-23",
+   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
   },
   {
-   "code": "DIMOP_PLUSZ-5.1.4-2-26",
-   "why": "Alapkezelői kezelési költségtérítés."
+   "code": "IKOP_PLUSZ-1.1.0-23",
+   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
   },
   {
-   "code": "GINOP_PLUSZ-2.5.4-25",
-   "why": "Alapkezelői költségtérítés."
+   "code": "IKOP_PLUSZ-1.2.0-23",
+   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.7-24",
+   "why": "Alapkezelői/közvetítői költségtérítés."
   },
   {
    "code": "GINOP_PLUSZ-1.4.6-24",
@@ -342,10 +348,6 @@
   {
    "code": "KEHOP_PLUSZ-3.1.11-25",
    "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
-  },
-  {
-   "code": "GINOP_PLUSZ-1.4.7-24",
-   "why": "Alapkezelői/közvetítői költségtérítés."
   },
   {
    "code": "GINOP_PLUSZ-1.1.5-24",
@@ -362,56 +364,84 @@
  ],
  "changes": [
   {
-   "id": "eu-cs-45659376",
-   "type": "deadline",
-   "from": "2026-11-23",
-   "to": "2026-12-10",
-   "title": "Implementing co-funded action plans for connected regional innovation valleys — kaszkád (FSTP) nyílt felhívás"
-  },
-  {
-   "id": "eu-cs-46236562",
+   "id": "a-seasonal-schools-in-creative-entrepreneurship",
    "type": "new",
-   "title": "Supporting competitiveness and innovation potential of SMEs — kaszkád (FSTP) nyílt felhívás"
+   "title": "Seasonal Schools in Creative Entrepreneurship"
   },
   {
-   "id": "eu-cs-46695847",
+   "id": "a-resilience-roadmaps",
    "type": "new",
-   "title": "Strengthen Cybersecurity capacities of European SMEs in line with CRA requirements and obligations — kaszkád (FSTP) nyílt felhívás"
+   "title": "Resilience Roadmaps"
   },
   {
-   "id": "v-interreg-huhr-b-light-2-call1",
-   "type": "removed",
-   "title": "Interreg Magyarország–Horvátország B Light 2 – 1. felhívás KKV-k határon átnyúló együttműködésére"
-  },
-  {
-   "id": "eu-HORIZON-RAISE-2026-01-03",
-   "type": "removed",
-   "title": "RAISE Doctoral Networks for AI in Science (RAISE pilot)"
-  },
-  {
-   "id": "eu-HORIZON-MSCA-2026-DN-01-01",
-   "type": "removed",
-   "title": "MSCA Doctoral Networks 2026"
-  },
-  {
-   "id": "eu-HORIZON-INFRA-2027-DEV-01-03",
-   "type": "removed",
-   "title": "Consolidation of the research infrastructure landscape – individual support for evolution, long-term sustainability and emerging needs of pan-European research infrastructures"
+   "id": "a-continuous-professional-development-cpd-courses-on-creative-",
+   "type": "new",
+   "title": "Continuous Professional Development (CPD) Courses on Creative Entrepreneurship"
   },
   {
    "id": "eu-HORIZON-INFRA-2027-SERV-01-02",
-   "type": "removed",
+   "type": "new",
    "title": "Access to research infrastructure services to enable R&I addressing EU priorities and emerging challenges"
   },
   {
+   "id": "eu-HORIZON-INFRA-2027-SERV-01-01",
+   "type": "new",
+   "title": "Access to research infrastructures, their resources and services: large-scale pilots for more integrated scheme across (sub)domains"
+  },
+  {
    "id": "eu-HORIZON-INFRA-2027-DEV-01-02",
-   "type": "removed",
+   "type": "new",
    "title": "Consolidation of the research infrastructure landscape – development of complementarities, synergies and/or integration between a set of pan-European research infrastructures"
   },
   {
-   "id": "eu-HORIZON-INFRA-2027-SERV-01-01",
+   "id": "eu-HORIZON-INFRA-2027-DEV-01-03",
+   "type": "new",
+   "title": "Consolidation of the research infrastructure landscape – individual support for evolution, long-term sustainability and emerging needs of pan-European research infrastructures"
+  },
+  {
+   "id": "eu-HORIZON-CL5-2026-11-D3-06",
    "type": "removed",
-   "title": "Access to research infrastructures, their resources and services: large-scale pilots for more integrated scheme across (sub)domains"
+   "title": "Resource assessment for deep sedimentary and basement reservoirs"
+  },
+  {
+   "id": "eu-CREA-MEDIA-2027-DEVSLATE",
+   "type": "removed",
+   "title": "European slate development"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-03",
+   "type": "removed",
+   "title": "Carbon farming innovation and scale-up"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-02",
+   "type": "removed",
+   "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-08",
+   "type": "removed",
+   "title": "AI-powered foodome characterization"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-01",
+   "type": "removed",
+   "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-03",
+   "type": "removed",
+   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-04",
+   "type": "removed",
+   "title": "Unlocking a safe operating space for Antarctica and the Southern Ocean"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-01",
+   "type": "removed",
+   "title": "Governance, sustainable development and international politics of a future ice-free Arctic"
   }
  ]
 }

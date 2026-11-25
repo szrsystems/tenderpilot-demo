@@ -6,6 +6,13 @@
    "title": "Canada call for projects number 8"
   }
  ],
+ "a-continuous-professional-development-cpd-courses-on-creative-": [
+  {
+   "date": "2026-11-25",
+   "type": "new",
+   "title": "Continuous Professional Development (CPD) Courses on Creative Entrepreneurship"
+  }
+ ],
  "a-globalstars-call-with-japan-2026": [
   {
    "date": "2026-10-23",
@@ -84,6 +91,20 @@
    "date": "2026-10-20",
    "type": "new",
    "title": "LEADER együttműködések támogatása"
+  }
+ ],
+ "a-resilience-roadmaps": [
+  {
+   "date": "2026-11-25",
+   "type": "new",
+   "title": "Resilience Roadmaps"
+  }
+ ],
+ "a-seasonal-schools-in-creative-entrepreneurship": [
+  {
+   "date": "2026-11-25",
+   "type": "new",
+   "title": "Seasonal Schools in Creative Entrepreneurship"
   }
  ],
  "a-t255-p255": [
@@ -214,6 +235,11 @@
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "European slate development"
+  },
+  {
+   "date": "2026-11-25",
+   "type": "removed",
    "title": "European slate development"
   }
  ],
@@ -1844,6 +1870,11 @@
    "date": "2026-10-14",
    "type": "new",
    "title": "Resource assessment for deep sedimentary and basement reservoirs"
+  },
+  {
+   "date": "2026-11-25",
+   "type": "removed",
+   "title": "Resource assessment for deep sedimentary and basement reservoirs"
   }
  ],
  "eu-HORIZON-CL5-2026-11-D3-14": [
@@ -2365,6 +2396,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Governance, sustainable development and international politics of a future ice-free Arctic"
+  },
+  {
+   "date": "2026-11-25",
+   "type": "removed",
+   "title": "Governance, sustainable development and international politics of a future ice-free Arctic"
   }
  ],
  "eu-HORIZON-CL6-2027-02-CLIMATE-01-two-stage": [
@@ -2409,6 +2445,11 @@
    "date": "2026-11-04",
    "type": "new",
    "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
+  },
+  {
+   "date": "2026-11-25",
+   "type": "removed",
+   "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
   }
  ],
  "eu-HORIZON-CL6-2027-02-CLIMATE-03": [
@@ -2446,12 +2487,22 @@
    "date": "2026-11-04",
    "type": "new",
    "title": "Carbon farming innovation and scale-up"
+  },
+  {
+   "date": "2026-11-25",
+   "type": "removed",
+   "title": "Carbon farming innovation and scale-up"
   }
  ],
  "eu-HORIZON-CL6-2027-02-CLIMATE-04": [
   {
    "date": "2026-10-08",
    "type": "new",
+   "title": "Unlocking a safe operating space for Antarctica and the Southern Ocean"
+  },
+  {
+   "date": "2026-11-25",
+   "type": "removed",
    "title": "Unlocking a safe operating space for Antarctica and the Southern Ocean"
   }
  ],
@@ -2513,6 +2564,11 @@
   {
    "date": "2026-11-04",
    "type": "new",
+   "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
+  },
+  {
+   "date": "2026-11-25",
+   "type": "removed",
    "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
   }
  ],
@@ -2582,6 +2638,11 @@
    "date": "2026-11-04",
    "type": "new",
    "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
+  },
+  {
+   "date": "2026-11-25",
+   "type": "removed",
+   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
   }
  ],
  "eu-HORIZON-CL6-2027-02-FARM2FORK-05": [
@@ -2649,6 +2710,11 @@
   {
    "date": "2026-11-04",
    "type": "new",
+   "title": "AI-powered foodome characterization"
+  },
+  {
+   "date": "2026-11-25",
+   "type": "removed",
    "title": "AI-powered foodome characterization"
   }
  ],
@@ -3158,6 +3224,11 @@
    "date": "2026-11-24",
    "type": "removed",
    "title": "Consolidation of the research infrastructure landscape – development of complementarities, synergies and/or integration between a set of pan-European research infrastructures"
+  },
+  {
+   "date": "2026-11-25",
+   "type": "new",
+   "title": "Consolidation of the research infrastructure landscape – development of complementarities, synergies and/or integration between a set of pan-European research infrastructures"
   }
  ],
  "eu-HORIZON-INFRA-2027-DEV-01-03": [
@@ -3169,6 +3240,11 @@
   {
    "date": "2026-11-24",
    "type": "removed",
+   "title": "Consolidation of the research infrastructure landscape – individual support for evolution, long-term sustainability and emerging needs of pan-European research infrastructures"
+  },
+  {
+   "date": "2026-11-25",
+   "type": "new",
    "title": "Consolidation of the research infrastructure landscape – individual support for evolution, long-term sustainability and emerging needs of pan-European research infrastructures"
   }
  ],
@@ -3182,6 +3258,11 @@
    "date": "2026-11-24",
    "type": "removed",
    "title": "Access to research infrastructures, their resources and services: large-scale pilots for more integrated scheme across (sub)domains"
+  },
+  {
+   "date": "2026-11-25",
+   "type": "new",
+   "title": "Access to research infrastructures, their resources and services: large-scale pilots for more integrated scheme across (sub)domains"
   }
  ],
  "eu-HORIZON-INFRA-2027-SERV-01-02": [
@@ -3193,6 +3274,11 @@
   {
    "date": "2026-11-24",
    "type": "removed",
+   "title": "Access to research infrastructure services to enable R&I addressing EU priorities and emerging challenges"
+  },
+  {
+   "date": "2026-11-25",
+   "type": "new",
    "title": "Access to research infrastructure services to enable R&I addressing EU priorities and emerging challenges"
   }
  ],
@@ -4486,6 +4572,10 @@
   {
    "date": "2026-11-20",
    "type": "page"
+  },
+  {
+   "date": "2026-11-25",
+   "type": "page"
   }
  ],
  "v-agrar-szk-max": [
@@ -4777,6 +4867,10 @@
   },
   {
    "date": "2026-11-18",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-25",
    "type": "page"
   }
  ],
@@ -5101,6 +5195,10 @@
   },
   {
    "date": "2026-10-29",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-25",
    "type": "page"
   }
  ],
@@ -6086,6 +6184,10 @@
   {
    "date": "2026-11-24",
    "type": "page"
+  },
+  {
+   "date": "2026-11-25",
+   "type": "page"
   }
  ],
  "v-mfb-agrar-forgoeszkoz-hitelprogram-2025": [
@@ -6208,6 +6310,10 @@
   {
    "date": "2026-11-18",
    "type": "page"
+  },
+  {
+   "date": "2026-11-25",
+   "type": "page"
   }
  ],
  "v-ngi-restack": [
@@ -6257,6 +6363,10 @@
   },
   {
    "date": "2026-11-18",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-25",
    "type": "page"
   }
  ],
