@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25",
+ "updatedAt": "2026-11-26",
  "items": [
   {
    "kind": "deadline-changed",
@@ -10,26 +10,243 @@
    "detail": "oldal szerint: „Next deadline January 3, 2027”"
   },
   {
-   "kind": "recheck",
+   "kind": "deadline-changed",
    "id": "v-ngi-codesupply",
    "title": "NLnet CodeSupply – software supply chain security (Szoftver-ellátási lánc biztonsága)",
    "url": "https://nlnet.nl/codesupply/",
-   "outcome": "changed-unverified",
-   "detail": "deadline 2027-01-03 not in its quote"
+   "outcome": "auto-fixed",
+   "detail": "oldal szerint: „Next deadline January 3, 2027”"
   },
   {
-   "kind": "benchmark-code",
-   "source": "pafi",
-   "title": "MAHOP Plusz-2.1.1-20",
-   "url": "https://pafi.hu/palyazatok/vallalkozasok",
-   "detail": "a(z) pafi.hu — vállalkozások listáján szerepel, nálunk nincs — ellenőrizd a hivatalos oldalon"
+   "kind": "new",
+   "source": "eit",
+   "url": "https://www.eit.europa.eu/our-activities/opportunities/eit-regional-innovation-booster-poland-open-call-202627",
+   "title": "EIT Regional Innovation Booster Poland Open Call 2026/27",
+   "detail": "no deadline and not rolling"
   },
   {
-   "kind": "benchmark-code",
+   "kind": "new",
+   "source": "eit",
+   "url": "https://www.eit.europa.eu/our-activities/opportunities/resilience-roadmaps",
+   "title": "Resilience Roadmaps",
+   "detail": "status not on page; no deadline and not rolling"
+  },
+  {
+   "kind": "benchmark-new",
    "source": "pafi",
-   "title": "MAHOP Plusz-2.5.1-20",
-   "url": "https://pafi.hu/palyazatok/vallalkozasok",
-   "detail": "a(z) pafi.hu — vállalkozások listáján szerepel, nálunk nincs — ellenőrizd a hivatalos oldalon"
+   "title": "deak ferenc igazsagugyi karrier osztondij",
+   "url": "https://pafi.hu/p/deak-ferenc-igazsagugyi-karrier-osztondij",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "persons with disabilities opportunities for labour inclusion and social protection through the life course horizon cl2 2027 01 transfo 07",
+   "url": "https://pafi.hu/p/persons-with-disabilities-opportunities-for-labour-inclusion-and-social-protection-through-the-life-course-horizon-cl2-2027-01-transfo-07",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "ai4creatives support platform embracing a fair ai revolution horizon cl2 2027 01 heritage 02",
+   "url": "https://pafi.hu/p/ai4creatives-support-platform-embracing-a-fair-ai-revolution-horizon-cl2-2027-01-heritage-02",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "future proofing sustainable cultural tourism horizon cl2 2027 01 heritage 06",
+   "url": "https://pafi.hu/p/future-proofing-sustainable-cultural-tourism-horizon-cl2-2027-01-heritage-06",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "re imagining the creative economy the interplay between the cultural and creative sectors and industries and the social economy horizon cl2 2027 01 heritage 05",
+   "url": "https://pafi.hu/p/re-imagining-the-creative-economy-the-interplay-between-the-cultural-and-creative-sectors-and-industries-and-the-social-economy-horizon-cl2-2027-01-heritage-05",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "impact of in kind benefits on income distribution and on vulnerable populations horizon cl2 2027 01 transfo 02",
+   "url": "https://pafi.hu/p/impact-of-in-kind-benefits-on-income-distribution-and-on-vulnerable-populations-horizon-cl2-2027-01-transfo-02",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "societal impact of cultural heritage horizon cl2 2027 01 heritage 07",
+   "url": "https://pafi.hu/p/societal-impact-of-cultural-heritage-horizon-cl2-2027-01-heritage-07",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "culture heritage and creative industries for health and well being horizon cl2 2027 01 heritage 04",
+   "url": "https://pafi.hu/p/culture-heritage-and-creative-industries-for-health-and-well-being-horizon-cl2-2027-01-heritage-04",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "the effective use of artificial intelligence in learning environments in pre primary and primary education horizon cl2 2027 01 transfo 05",
+   "url": "https://pafi.hu/p/the-effective-use-of-artificial-intelligence-in-learning-environments-in-pre-primary-and-primary-education-horizon-cl2-2027-01-transfo-05",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "closing the learning gap uncovering causes and effective policy interventions for declining youth skills in mathematics reading and science horizon cl2 2027 01 transfo 06",
+   "url": "https://pafi.hu/p/closing-the-learning-gap-uncovering-causes-and-effective-policy-interventions-for-declining-youth-skills-in-mathematics-reading-and-science-horizon-cl2-2027-01-transfo-06",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "msca doctoral networks 2027 horizon msca 2027 dn 01 01",
+   "url": "https://pafi.hu/p/msca-doctoral-networks-2027-horizon-msca-2027-dn-01-01",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "enhancing the involvement of philanthropic organisations in innovation ecosystems horizon eie 2027 01 connect 03",
+   "url": "https://pafi.hu/p/enhancing-the-involvement-of-philanthropic-organisations-in-innovation-ecosystems-horizon-eie-2027-01-connect-03",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "reinforcing synergies between experimentation spaces and innovation procurement horizon eie 2027 01 connect 02",
+   "url": "https://pafi.hu/p/reinforcing-synergies-between-experimentation-spaces-and-innovation-procurement-horizon-eie-2027-01-connect-02",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "advancing interdisciplinary data driven research at the biodiversity health interface under a one health approach horizon nature 2027 03 01",
+   "url": "https://pafi.hu/p/advancing-interdisciplinary-data-driven-research-at-the-biodiversity-health-interface-under-a-one-health-approach-horizon-nature-2027-03-01",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "virtual human twins vhts for integrated clinical decision support in prevention and diagnosis horizon hlth 2027 03 tool 04",
+   "url": "https://pafi.hu/p/virtual-human-twins-vhts-for-integrated-clinical-decision-support-in-prevention-and-diagnosis-horizon-hlth-2027-03-tool-04",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "towards the next generation of frontier artificial intelligence models for healthcare horizon hlth 2027 03 tool 08",
+   "url": "https://pafi.hu/p/towards-the-next-generation-of-frontier-artificial-intelligence-models-for-healthcare-horizon-hlth-2027-03-tool-08",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "advancing bio printing of living cells for regenerative medicine horizon hlth 2027 03 tool 02",
+   "url": "https://pafi.hu/p/advancing-bio-printing-of-living-cells-for-regenerative-medicine-horizon-hlth-2027-03-tool-02",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "support for dissemination events in the field of transport research horizon cl5 2027 06 d6 12",
+   "url": "https://pafi.hu/p/support-for-dissemination-events-in-the-field-of-transport-research-horizon-cl5-2027-06-d6-12",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "european ccam knowledge hub and tools for safe and scalable deployment horizon cl5 2027 06 d6 05",
+   "url": "https://pafi.hu/p/european-ccam-knowledge-hub-and-tools-for-safe-and-scalable-deployment-horizon-cl5-2027-06-d6-05",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "holistic solutions for ccam integration in critical scenarios horizon cl5 2027 06 d6 04",
+   "url": "https://pafi.hu/p/holistic-solutions-for-ccam-integration-in-critical-scenarios-horizon-cl5-2027-06-d6-04",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "enhancing resilience and accuracy in positioning navigation and timing pnt systems and e conspicuity solutions horizon cl5 2027 06 d6 11",
+   "url": "https://pafi.hu/p/enhancing-resilience-and-accuracy-in-positioning-navigation-and-timing-pnt-systems-and-e-conspicuity-solutions-horizon-cl5-2027-06-d6-11",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "erasmus virtual exchanges in sub saharan africa erasmus edu 2027 virt exch ssa",
+   "url": "https://pafi.hu/p/erasmus-virtual-exchanges-in-sub-saharan-africa-erasmus-edu-2027-virt-exch-ssa",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "demonstration of hydropower technologies for efficient and forward looking refurbishment of existing hydropower plants horizon cl5 2027 07 d3 11",
+   "url": "https://pafi.hu/p/demonstration-of-hydropower-technologies-for-efficient-and-forward-looking-refurbishment-of-existing-hydropower-plants-horizon-cl5-2027-07-d3-11",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "pv based electrification of the economy designing optimising pv systems supporting industrial electrification and promoting participation in electricity markets horizon cl5 2027 07 d3 17",
+   "url": "https://pafi.hu/p/pv-based-electrification-of-the-economy-designing-optimising-pv-systems-supporting-industrial-electrification-and-promoting-participation-in-electricity-markets-horizon-cl5-2027-07-d3-17",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "community of practice data driven decision making in energy horizon cl5 2027 07 d3 28",
+   "url": "https://pafi.hu/p/community-of-practice-data-driven-decision-making-in-energy-horizon-cl5-2027-07-d3-28",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "integrated approaches for retrofitting infrastructures with innovative energy storage technologies horizon cl5 2027 07 d3 27",
+   "url": "https://pafi.hu/p/integrated-approaches-for-retrofitting-infrastructures-with-innovative-energy-storage-technologies-horizon-cl5-2027-07-d3-27",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "industrial processes and equipment for innovative reliable and scalable tandem technologies horizon cl5 2027 07 d3 16",
+   "url": "https://pafi.hu/p/industrial-processes-and-equipment-for-innovative-reliable-and-scalable-tandem-technologies-horizon-cl5-2027-07-d3-16",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "delivery of industrial ccus clusters societal readiness pilot horizon cl5 2027 07 d3 32",
+   "url": "https://pafi.hu/p/delivery-of-industrial-ccus-clusters-societal-readiness-pilot-horizon-cl5-2027-07-d3-32",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "space critical eee components for eu non dependence horizon cl4 2027 space 07 83",
+   "url": "https://pafi.hu/p/space-critical-eee-components-for-eu-non-dependence-horizon-cl4-2027-space-07-83",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "space critical equipment for eu non dependence horizon cl4 2027 space 07 84",
+   "url": "https://pafi.hu/p/space-critical-equipment-for-eu-non-dependence-horizon-cl4-2027-space-07-84",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
+  },
+  {
+   "kind": "benchmark-new",
+   "source": "pafi",
+   "title": "advanced integrated photonic devices for extended features and ultra low power consumption horizon cl4 2027 05 digital emerging 03",
+   "url": "https://pafi.hu/p/advanced-integrated-photonic-devices-for-extended-features-and-ultra-low-power-consumption-horizon-cl4-2027-05-digital-emerging-03",
+   "detail": "új tétel a(z) pafi.hu — vállalkozások oldalon"
   }
  ]
 }

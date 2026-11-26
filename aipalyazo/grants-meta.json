@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T16:44:58.469Z",
+ "updatedAt": "2026-11-26T16:17:22.548Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,21 +7,21 @@
   "palyazatApi": {
    "ok": true,
    "items": 17,
-   "lastOk": "2026-11-25T16:44:58.469Z"
+   "lastOk": "2026-11-26T16:17:22.548Z"
   },
   "euApi": {
    "ok": true,
-   "items": 267,
-   "lastOk": "2026-11-25T16:44:58.469Z"
+   "items": 274,
+   "lastOk": "2026-11-26T16:17:22.548Z"
   }
  },
  "counts": {
-  "total": 412,
+  "total": 419,
   "api": 17,
   "verified": 128,
-  "euAuto": 267,
+  "euAuto": 274,
   "hazai": 58,
-  "eu": 354,
+  "eu": 361,
   "excluded": 20
  },
  "needsReview": [
@@ -46,7 +46,6 @@
   "v-ginop-plusz-3-1-1-23",
   "v-vallalkozova-valast-elosegito-tamogatas",
   "v-eurostars-3-call-12",
-  "v-ngi-codesupply",
   "v-eureka-xecs-call6",
   "v-eif-investeu-unicredit-hu",
   "v-eif-sustainability-kh-hu",
@@ -81,6 +80,10 @@
   },
   {
    "id": "v-trunsport-oc1",
+   "why": "lejárt"
+  },
+  {
+   "id": "v-grappa-cutoff-2",
    "why": "lejárt"
   },
   {
@@ -172,6 +175,10 @@
    "why": "lejárt"
   },
   {
+   "id": "v-2025-1-2-5-eu-kp",
+   "why": "lejárt"
+  },
+  {
    "id": "v-eitum-umx-2026",
    "why": "lejárt"
   },
@@ -206,10 +213,6 @@
   {
    "id": "v-i3-2026-inv2a",
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
-  },
-  {
-   "id": "v-grappa-cutoff-2",
-   "why": "monitor: closed: az oldal szerint: „This call is now closed. Cut-off 2 proposals are under evaluation and results will be announced in January 2027.”"
   },
   {
    "id": "v-horizon-cl5-2026-10-d2-03",
@@ -272,10 +275,6 @@
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   },
   {
-   "id": "v-2025-1-2-5-eu-kp",
-   "why": "monitor: closed: az oldal szerint: „Döntés dátuma: 2026. november 24.”"
-  },
-  {
    "id": "v-marc-impact-hu-2026",
    "why": "monitor: closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
   }
@@ -290,20 +289,20 @@
    "why": "Pénzügyi eszköz keret alapkezelőnek."
   },
   {
-   "code": "GINOP_PLUSZ-2.5.4-25",
-   "why": "Alapkezelői költségtérítés."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
-   "why": "Alapkezelői/bank költségtérítés."
-  },
-  {
-   "code": "DIMOP_PLUSZ-5.1.4-2-26",
-   "why": "Alapkezelői kezelési költségtérítés."
-  },
-  {
    "code": "DIMOP_PLUSZ-1.2.3/B1-24",
    "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
+  },
+  {
+   "code": "IKOP_PLUSZ-2.1.0-23",
+   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
+  },
+  {
+   "code": "IKOP_PLUSZ-1.1.0-23",
+   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
+  },
+  {
+   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/A1-24",
@@ -314,24 +313,24 @@
    "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
   },
   {
-   "code": "IKOP_PLUSZ-2.1.0-23",
-   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
-  },
-  {
-   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
+   "code": "IKOP_PLUSZ-1.2.0-23",
+   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
   },
   {
    "code": "IKOP_PLUSZ-2.2.0-23",
    "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
   },
   {
-   "code": "IKOP_PLUSZ-1.1.0-23",
-   "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
+   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
+   "why": "Alapkezelői/bank költségtérítés."
   },
   {
-   "code": "IKOP_PLUSZ-1.2.0-23",
-   "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
+   "code": "GINOP_PLUSZ-2.5.4-25",
+   "why": "Alapkezelői költségtérítés."
+  },
+  {
+   "code": "DIMOP_PLUSZ-5.1.4-2-26",
+   "why": "Alapkezelői kezelési költségtérítés."
   },
   {
    "code": "GINOP_PLUSZ-1.4.7-24",
@@ -342,12 +341,12 @@
    "why": "Hitelkeret alapkezelőnek (Budapest)."
   },
   {
-   "code": "KEHOP_PLUSZ-3.1.12-25",
-   "why": "Közszféra kármentesítési felhívás."
-  },
-  {
    "code": "KEHOP_PLUSZ-3.1.11-25",
    "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
+  },
+  {
+   "code": "KEHOP_PLUSZ-3.1.12-25",
+   "why": "Közszféra kármentesítési felhívás."
   },
   {
    "code": "GINOP_PLUSZ-1.1.5-24",
@@ -364,84 +363,59 @@
  ],
  "changes": [
   {
-   "id": "a-seasonal-schools-in-creative-entrepreneurship",
-   "type": "new",
-   "title": "Seasonal Schools in Creative Entrepreneurship"
-  },
-  {
-   "id": "a-resilience-roadmaps",
-   "type": "new",
-   "title": "Resilience Roadmaps"
-  },
-  {
-   "id": "a-continuous-professional-development-cpd-courses-on-creative-",
-   "type": "new",
-   "title": "Continuous Professional Development (CPD) Courses on Creative Entrepreneurship"
-  },
-  {
-   "id": "eu-HORIZON-INFRA-2027-SERV-01-02",
-   "type": "new",
-   "title": "Access to research infrastructure services to enable R&I addressing EU priorities and emerging challenges"
-  },
-  {
-   "id": "eu-HORIZON-INFRA-2027-SERV-01-01",
-   "type": "new",
-   "title": "Access to research infrastructures, their resources and services: large-scale pilots for more integrated scheme across (sub)domains"
-  },
-  {
-   "id": "eu-HORIZON-INFRA-2027-DEV-01-02",
-   "type": "new",
-   "title": "Consolidation of the research infrastructure landscape – development of complementarities, synergies and/or integration between a set of pan-European research infrastructures"
-  },
-  {
-   "id": "eu-HORIZON-INFRA-2027-DEV-01-03",
-   "type": "new",
-   "title": "Consolidation of the research infrastructure landscape – individual support for evolution, long-term sustainability and emerging needs of pan-European research infrastructures"
-  },
-  {
-   "id": "eu-HORIZON-CL5-2026-11-D3-06",
-   "type": "removed",
-   "title": "Resource assessment for deep sedimentary and basement reservoirs"
-  },
-  {
    "id": "eu-CREA-MEDIA-2027-DEVSLATE",
-   "type": "removed",
+   "type": "new",
    "title": "European slate development"
   },
   {
+   "id": "eu-HORIZON-CL5-2026-11-D3-06",
+   "type": "new",
+   "title": "Resource assessment for deep sedimentary and basement reservoirs"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-04",
+   "type": "new",
+   "title": "Unlocking a safe operating space for Antarctica and the Southern Ocean"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-01",
+   "type": "new",
+   "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
+  },
+  {
    "id": "eu-HORIZON-CL6-2027-02-CLIMATE-03",
-   "type": "removed",
+   "type": "new",
    "title": "Carbon farming innovation and scale-up"
   },
   {
    "id": "eu-HORIZON-CL6-2027-02-CLIMATE-02",
-   "type": "removed",
+   "type": "new",
    "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
   },
   {
-   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-08",
-   "type": "removed",
-   "title": "AI-powered foodome characterization"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-01",
-   "type": "removed",
-   "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
+   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-01",
+   "type": "new",
+   "title": "Governance, sustainable development and international politics of a future ice-free Arctic"
   },
   {
    "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-03",
-   "type": "removed",
+   "type": "new",
    "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
   },
   {
-   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-04",
-   "type": "removed",
-   "title": "Unlocking a safe operating space for Antarctica and the Southern Ocean"
+   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-08",
+   "type": "new",
+   "title": "AI-powered foodome characterization"
   },
   {
-   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-01",
+   "id": "eu-HORIZON-CL6-2027-01-BIODIV-01",
    "type": "removed",
-   "title": "Governance, sustainable development and international politics of a future ice-free Arctic"
+   "title": "Távérzékelés és helyszíni biodiverzitási megfigyelések integrálása"
+  },
+  {
+   "id": "eu-HORIZON-CL6-2027-01-ZEROPOLLUTION-03",
+   "type": "removed",
+   "title": "Mezőgazdasági légszennyezés monitoringjának és csökkentésének fejlesztése"
   }
  ]
 }

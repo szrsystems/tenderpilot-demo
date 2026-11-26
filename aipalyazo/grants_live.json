@@ -1,48 +1,54 @@
 [
  {
-  "id": "pg-GINOP_PLUSZ-2.5.1-25",
-  "code": "GINOP_PLUSZ-2.5.1-25",
-  "title": "Korai fázisú kutatás-fejlesztési kockázati tőkeprogram",
+  "id": "pg-DIMOP_PLUSZ-5.1.4-26",
+  "code": "DIMOP_PLUSZ-5.1.4-26",
+  "title": "Kockázati tőkeprogram a digitális startup program támogatására",
   "issuer": "Széchenyi Terv Plusz / palyazat.gov.hu",
-  "cat": "Kutatás-fejlesztés",
+  "cat": "Digitális átalakulás",
   "type": "equity",
-  "amount": "max. kb. 120 M Ft (~300 ezer EUR) tőkebefektetés",
-  "keret": 18119714427,
+  "amount": "50–900 M Ft tőkebefektetés",
+  "keret": 16700000000,
   "deadline": "2029-12-31",
   "days": 0,
   "score": 0,
-  "url": "https://hiventures.hu/befektetes/",
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-5.1.4-26",
   "source": "palyazat.gov.hu",
   "status": "Aktív",
   "requested": 0,
-  "remaining": 18119714427,
-  "regions": [],
+  "remaining": 16700000000,
+  "regions": [
+   "Közép-Dunántúl",
+   "Nyugat-Dunántúl",
+   "Dél-Dunántúl",
+   "Észak-Magyarország",
+   "Észak-Alföld",
+   "Dél-Alföld"
+  ],
   "sizeClasses": [
    "középvállalkozás",
    "Mikrovállalkozás",
    "kisvállalkozás"
   ],
-  "modified": "2026-11-25T16:42:44.685Z",
+  "modified": "2026-11-26T16:15:49.276Z",
   "live": true,
   "scope": "hazai",
-  "note": "Kockázati tőke a Hiventures-en keresztül korai fázisú, innovatív vállalkozásoknak; nem vissza nem térítendő támogatás.",
+  "note": "Kockázati tőke digitális (IKT) startupoknak kiválasztott alapkezelőkön keresztül; Budapest és Pest nem.",
   "verifiedAt": "2026-09-24",
   "confidence": "medium",
   "requires": {
    "rnd_project": true
   },
   "requiresEvidence": {
-   "rnd_project": "korai fázisú, innovatív vállalkozásoknak"
+   "rnd_project": "Kockázati tőke digitális (IKT) startupoknak"
   },
   "sources": [
-   "https://palyazat.uni-obuda.hu/palyazati_felhivasok/korai-fazisu-kutatas-fejlesztesi-kockazati-tokeprogram-ginop-plusz-2-5-1-25/",
-   "https://forrascenter.hu/pj-palyazatok/ginop-plusz-2-5-1-25-korai-fazisu-kutatas-fejlesztesi-kockazati-tokeprogram/",
-   "https://www.portfolio.hu/gazdasag/20260319/vege-a-startupok-forrashianyanak-uj-17-milliard-forintos-korai-fazisu-tokeprogramot-indit-a-hiventures-824692"
+   "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-5.1.4-26",
+   "https://www.palyazas.hu/palyazatok/dimop-plusz-5-1-4-26"
   ],
   "factors": {
    "size": 92,
    "industry": 85,
-   "location": 95,
+   "location": 78,
    "preference": 85
   }
  },
@@ -78,7 +84,7 @@
    "kisvállalkozás",
    "vállalkozás"
   ],
-  "modified": "2026-11-25T16:42:41.595Z",
+  "modified": "2026-11-26T16:15:47.968Z",
   "live": true,
   "scope": "hazai",
   "note": "Kockázati tőke deep-tech, hardveres innovációs KKV-knak; alapkezelőn keresztül.",
@@ -104,55 +110,49 @@
   }
  },
  {
-  "id": "pg-DIMOP_PLUSZ-5.1.4-26",
-  "code": "DIMOP_PLUSZ-5.1.4-26",
-  "title": "Kockázati tőkeprogram a digitális startup program támogatására",
+  "id": "pg-GINOP_PLUSZ-2.5.1-25",
+  "code": "GINOP_PLUSZ-2.5.1-25",
+  "title": "Korai fázisú kutatás-fejlesztési kockázati tőkeprogram",
   "issuer": "Széchenyi Terv Plusz / palyazat.gov.hu",
-  "cat": "Digitális átalakulás",
+  "cat": "Kutatás-fejlesztés",
   "type": "equity",
-  "amount": "50–900 M Ft tőkebefektetés",
-  "keret": 16700000000,
+  "amount": "max. kb. 120 M Ft (~300 ezer EUR) tőkebefektetés",
+  "keret": 18119714427,
   "deadline": "2029-12-31",
   "days": 0,
   "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-5.1.4-26",
+  "url": "https://hiventures.hu/befektetes/",
   "source": "palyazat.gov.hu",
   "status": "Aktív",
   "requested": 0,
-  "remaining": 16700000000,
-  "regions": [
-   "Közép-Dunántúl",
-   "Nyugat-Dunántúl",
-   "Dél-Dunántúl",
-   "Észak-Magyarország",
-   "Észak-Alföld",
-   "Dél-Alföld"
-  ],
+  "remaining": 18119714427,
+  "regions": [],
   "sizeClasses": [
    "középvállalkozás",
    "Mikrovállalkozás",
    "kisvállalkozás"
   ],
-  "modified": "2026-11-25T16:43:55.178Z",
+  "modified": "2026-11-26T16:15:49.469Z",
   "live": true,
   "scope": "hazai",
-  "note": "Kockázati tőke digitális (IKT) startupoknak kiválasztott alapkezelőkön keresztül; Budapest és Pest nem.",
+  "note": "Kockázati tőke a Hiventures-en keresztül korai fázisú, innovatív vállalkozásoknak; nem vissza nem térítendő támogatás.",
   "verifiedAt": "2026-09-24",
   "confidence": "medium",
   "requires": {
    "rnd_project": true
   },
   "requiresEvidence": {
-   "rnd_project": "Kockázati tőke digitális (IKT) startupoknak"
+   "rnd_project": "korai fázisú, innovatív vállalkozásoknak"
   },
   "sources": [
-   "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-5.1.4-26",
-   "https://www.palyazas.hu/palyazatok/dimop-plusz-5-1-4-26"
+   "https://palyazat.uni-obuda.hu/palyazati_felhivasok/korai-fazisu-kutatas-fejlesztesi-kockazati-tokeprogram-ginop-plusz-2-5-1-25/",
+   "https://forrascenter.hu/pj-palyazatok/ginop-plusz-2-5-1-25-korai-fazisu-kutatas-fejlesztesi-kockazati-tokeprogram/",
+   "https://www.portfolio.hu/gazdasag/20260319/vege-a-startupok-forrashianyanak-uj-17-milliard-forintos-korai-fazisu-tokeprogramot-indit-a-hiventures-824692"
   ],
   "factors": {
    "size": 92,
    "industry": 85,
-   "location": 78,
+   "location": 95,
    "preference": 85
   }
  },
@@ -180,7 +180,7 @@
    "kisvállalkozás"
   ],
   "rate": "90% támogatási intenzitás",
-  "modified": "2026-11-25T16:42:44.015Z",
+  "modified": "2026-11-26T16:15:48.883Z",
   "live": true,
   "scope": "hazai",
   "needsReview": true,
@@ -191,56 +191,6 @@
    "location": 95,
    "preference": 85
   }
- },
- {
-  "id": "pg-MAHOP_PLUSZ-2.1.1-25",
-  "code": "MAHOP_PLUSZ-2.1.1-25",
-  "title": "Akvakultúra beruházás támogatása",
-  "issuer": "Széchenyi Terv Plusz / palyazat.gov.hu",
-  "cat": "Mezőgazdaság",
-  "type": "grant",
-  "amount": "6–400 M Ft (max. 60%)",
-  "keret": 7146074859,
-  "deadline": "2027-08-31",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=MAHOP_PLUSZ&code=MAHOP_PLUSZ-2.1.1-25",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "requested": 10702457314,
-  "remaining": 0,
-  "regions": [],
-  "sizeClasses": [
-   "középvállalkozás",
-   "egyéb vállalkozás",
-   "Mikrovállalkozás",
-   "kisvállalkozás",
-   "vállalkozás"
-  ],
-  "rate": "60% támogatási intenzitás",
-  "modified": "2026-11-25T16:42:44.924Z",
-  "live": true,
-  "scope": "hazai",
-  "note": "Akvakultúra-vállalkozások beruházásai.",
-  "verifiedAt": "2026-09-24",
-  "confidence": "medium",
-  "requires": {
-   "fisheries": true
-  },
-  "requiresEvidence": {
-   "fisheries": "Akvakultúra-vállalkozások beruházásai."
-  },
-  "sources": [
-   "https://pafi.hu/p/akvakultura-beruhazas-tamogatasa-mahop-plusz-211-2025",
-   "https://www.bkmkik.hu/hu/palyazatok/aktualis-palyazatok/7762-akvakultura-beruhazas-tamogatasa"
-  ],
-  "factors": {
-   "size": 92,
-   "industry": 85,
-   "location": 95,
-   "preference": 85
-  },
-  "budgetExhausted": true
  },
  {
   "id": "pg-MAHOP_PLUSZ-2.5.1-25",
@@ -268,7 +218,7 @@
    "vállalkozás"
   ],
   "rate": "50% támogatási intenzitás",
-  "modified": "2026-11-25T16:43:56.416Z",
+  "modified": "2026-11-26T16:15:48.030Z",
   "live": true,
   "scope": "hazai",
   "note": "Működő halfeldolgozó üzemmel rendelkező mikro-, kis- és középvállalkozások.",
@@ -294,47 +244,97 @@
   "budgetExhausted": true
  },
  {
-  "id": "pg-DIMOP_PLUSZ-1.2.3/B-24",
-  "code": "DIMOP_PLUSZ-1.2.3/B-24",
-  "title": "Kis- és középvállalkozások digitalizációjának támogatása hitelprogram keretében",
+  "id": "pg-MAHOP_PLUSZ-2.1.1-25",
+  "code": "MAHOP_PLUSZ-2.1.1-25",
+  "title": "Akvakultúra beruházás támogatása",
   "issuer": "Széchenyi Terv Plusz / palyazat.gov.hu",
-  "cat": "Digitális átalakulás",
-  "type": "loan",
-  "amount": "20–200 M Ft",
-  "keret": 6950000000,
-  "deadline": "2027-06-30",
+  "cat": "Mezőgazdaság",
+  "type": "grant",
+  "amount": "6–400 M Ft (max. 60%)",
+  "keret": 7146074859,
+  "deadline": "2027-08-31",
   "days": 0,
   "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-1.2.3%2FB-24",
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=MAHOP_PLUSZ&code=MAHOP_PLUSZ-2.1.1-25",
   "source": "palyazat.gov.hu",
   "status": "Aktív",
-  "requested": 0,
-  "remaining": 6950000000,
+  "requested": 10702457314,
+  "remaining": 0,
   "regions": [],
   "sizeClasses": [
    "középvállalkozás",
-   "kisvállalkozás"
+   "egyéb vállalkozás",
+   "Mikrovállalkozás",
+   "kisvállalkozás",
+   "vállalkozás"
   ],
-  "rate": "0% fix kamat",
-  "modified": "2026-11-25T16:42:49.079Z",
+  "rate": "60% támogatási intenzitás",
+  "modified": "2026-11-26T16:15:47.790Z",
   "live": true,
   "scope": "hazai",
-  "note": "Kis- és középvállalkozásoknak (mikro nem); min. 2 lezárt üzleti év, kettős könyvvitel.",
+  "note": "Akvakultúra-vállalkozások beruházásai.",
   "verifiedAt": "2026-09-24",
-  "confidence": "high",
+  "confidence": "medium",
+  "requires": {
+   "fisheries": true
+  },
+  "requiresEvidence": {
+   "fisheries": "Akvakultúra-vállalkozások beruházásai."
+  },
+  "sources": [
+   "https://pafi.hu/p/akvakultura-beruhazas-tamogatasa-mahop-plusz-211-2025",
+   "https://www.bkmkik.hu/hu/palyazatok/aktualis-palyazatok/7762-akvakultura-beruhazas-tamogatasa"
+  ],
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 95,
+   "preference": 85
+  },
+  "budgetExhausted": true
+ },
+ {
+  "id": "pg-DIMOP_PLUSZ-1.2.3/A-24",
+  "code": "DIMOP_PLUSZ-1.2.3/A-24",
+  "title": "Mikro-, kis- és középvállalkozások digitalizációjának támogatása egyműveletes kombinált hiteltermék keretében",
+  "issuer": "Széchenyi Terv Plusz / palyazat.gov.hu",
+  "cat": "Digitális átalakulás",
+  "type": "loan+grant",
+  "amount": "3–20 M Ft (max. 50% vissza nem térítendő)",
+  "keret": 27800000000,
+  "deadline": "2027-06-30",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-1.2.3%2FA-24",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "requested": 0,
+  "remaining": 27800000000,
+  "regions": [],
+  "sizeClasses": [
+   "középvállalkozás",
+   "kisvállalkozás",
+   "mikrovállalkozás természetes személy"
+  ],
+  "rate": "0% fix kamat",
+  "modified": "2026-11-26T16:15:52.347Z",
+  "live": true,
+  "scope": "hazai",
+  "note": "Mikro-, kis- és középvállalkozások digitalizációja; MFB Pontokon igényelhető.",
+  "verifiedAt": "2026-09-24",
+  "confidence": "medium",
   "requires": {
    "bank_loan": true
   },
   "requiresEvidence": {
-   "bank_loan": "A hitelprogram az MFB Pontokon (kereskedelmi bankfiókokban) igényelhető."
+   "bank_loan": "MFB Pontokon igényelhető."
   },
   "sources": [
-   "https://mfb.hu/vallalkozasok/mukodo/hitel/dimop-plusz--123b-24-kis--es-kozepvallalkozasok-digitalizaciojanak-tamogatasa-hitelprogram-t227-p227",
-   "https://palyaz.hu/kkv-k-digitalizaciojanak-tamogatasa-hitelprogram-dimop-b/",
-   "https://palyazatfigyelo.com/mikro--kis-es-kozepvallalkozasok-digitalizaciojanak-tamogatasa-hitelprogram-kereteben--dimop-plusz-1-2-3-b-24"
+   "https://palyaz.hu/kkv-k-digitalizaciojanak-tamogatasa-hitelprogram-dimop-a/",
+   "https://www.mfb.hu/vallalkozasok/mukodo/hitel/dimop-plusz--123a-24-mikro--kis--es-kozepvallalkozasok-digitalizaciojanak-tamogatasa-egymuveletes-kombinalt-hiteltermek-kereteben-t226-p226"
   ],
   "factors": {
-   "size": 82,
+   "size": 92,
    "industry": 85,
    "location": 95,
    "preference": 85
@@ -375,7 +375,7 @@
    "vállalkozás"
   ],
   "rate": "0% fix kamat",
-  "modified": "2026-11-25T16:42:44.765Z",
+  "modified": "2026-11-26T16:15:47.633Z",
   "live": true,
   "scope": "hazai",
   "note": "MGFÜ-regisztráció, min. 5 fő, 3 lezárt év és 100 M Ft árbevétel szükséges.",
@@ -400,105 +400,6 @@
    "size": 92,
    "industry": 85,
    "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-GINOP_PLUSZ-1.4.4-24",
-  "code": "GINOP_PLUSZ-1.4.4-24",
-  "title": "Ganz Ábrahám Európai Uniós Vállalati Hitelprogram - KKV Technológia Budapest Plusz",
-  "issuer": "Széchenyi Terv Plusz / palyazat.gov.hu",
-  "cat": "KKV fejlesztés",
-  "type": "loan",
-  "amount": "5–150 M Ft",
-  "keret": 73185414649,
-  "deadline": "2026-12-31",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=GINOP_PLUSZ&code=GINOP_PLUSZ-1.4.4-24",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "requested": 0,
-  "remaining": 73185414649,
-  "regions": [
-   "Budapest"
-  ],
-  "sizeClasses": [
-   "középvállalkozás",
-   "egyéb vállalkozás",
-   "kisvállalkozás",
-   "mikrovállalkozás természetes személy",
-   "vállalkozás"
-  ],
-  "rate": "0% fix kamat",
-  "modified": "2026-11-25T16:42:48.466Z",
-  "live": true,
-  "scope": "hazai",
-  "note": "A beruházás helyszíne csak Budapest lehet; induló vállalkozásnak max. 25 M Ft.",
-  "verifiedAt": "2026-09-24",
-  "confidence": "medium",
-  "requires": {
-   "bank_loan": true
-  },
-  "requiresEvidence": {
-   "bank_loan": "KKV Technológia Plusz Budapest Hitelprogram: igénylés az MFB Pontokon (bankfiókokban)."
-  },
-  "sources": [
-   "https://www.mfb.hu/vallalkozasok/mukodo/hitel/kkv-technologia-plusz-budapest-hitelprogram-ginop-plusz--144-24-t219-p220",
-   "https://pulzuspalyazatiras.hu/osszes-palyazat/284-kkv-technologia-plusz-hitelprogram-budapest",
-   "https://qlm.hu/ginop-plusz-1-4-4-24-kkv-technologia-plusz-budapest-hitelprogram/"
-  ],
-  "factors": {
-   "size": 92,
-   "industry": 85,
-   "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-DIMOP_PLUSZ-1.2.3/A-24",
-  "code": "DIMOP_PLUSZ-1.2.3/A-24",
-  "title": "Mikro-, kis- és középvállalkozások digitalizációjának támogatása egyműveletes kombinált hiteltermék keretében",
-  "issuer": "Széchenyi Terv Plusz / palyazat.gov.hu",
-  "cat": "Digitális átalakulás",
-  "type": "loan+grant",
-  "amount": "3–20 M Ft (max. 50% vissza nem térítendő)",
-  "keret": 27800000000,
-  "deadline": "2027-06-30",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-1.2.3%2FA-24",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "requested": 0,
-  "remaining": 27800000000,
-  "regions": [],
-  "sizeClasses": [
-   "középvállalkozás",
-   "kisvállalkozás",
-   "mikrovállalkozás természetes személy"
-  ],
-  "rate": "0% fix kamat",
-  "modified": "2026-11-25T16:44:00.977Z",
-  "live": true,
-  "scope": "hazai",
-  "note": "Mikro-, kis- és középvállalkozások digitalizációja; MFB Pontokon igényelhető.",
-  "verifiedAt": "2026-09-24",
-  "confidence": "medium",
-  "requires": {
-   "bank_loan": true
-  },
-  "requiresEvidence": {
-   "bank_loan": "MFB Pontokon igényelhető."
-  },
-  "sources": [
-   "https://palyaz.hu/kkv-k-digitalizaciojanak-tamogatasa-hitelprogram-dimop-a/",
-   "https://www.mfb.hu/vallalkozasok/mukodo/hitel/dimop-plusz--123a-24-mikro--kis--es-kozepvallalkozasok-digitalizaciojanak-tamogatasa-egymuveletes-kombinalt-hiteltermek-kereteben-t226-p226"
-  ],
-  "factors": {
-   "size": 92,
-   "industry": 85,
-   "location": 95,
    "preference": 85
   }
  },
@@ -536,7 +437,7 @@
    "vállalkozás"
   ],
   "rate": "0% fix kamat",
-  "modified": "2026-11-25T16:44:01.490Z",
+  "modified": "2026-11-26T16:15:52.979Z",
   "live": true,
   "scope": "hazai",
   "note": "Csak az „A” beruházási konstrukció nyitott; a „B” forgóeszköz-konstrukciót 2026-01-15-én felfüggesztették.",
@@ -557,6 +458,153 @@
    "size": 92,
    "industry": 85,
    "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-DIMOP_PLUSZ-1.2.3/B-24",
+  "code": "DIMOP_PLUSZ-1.2.3/B-24",
+  "title": "Kis- és középvállalkozások digitalizációjának támogatása hitelprogram keretében",
+  "issuer": "Széchenyi Terv Plusz / palyazat.gov.hu",
+  "cat": "Digitális átalakulás",
+  "type": "loan",
+  "amount": "20–200 M Ft",
+  "keret": 6950000000,
+  "deadline": "2027-06-30",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=DIMOP_PLUSZ&code=DIMOP_PLUSZ-1.2.3%2FB-24",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "requested": 0,
+  "remaining": 6950000000,
+  "regions": [],
+  "sizeClasses": [
+   "középvállalkozás",
+   "kisvállalkozás"
+  ],
+  "rate": "0% fix kamat",
+  "modified": "2026-11-26T16:15:52.439Z",
+  "live": true,
+  "scope": "hazai",
+  "note": "Kis- és középvállalkozásoknak (mikro nem); min. 2 lezárt üzleti év, kettős könyvvitel.",
+  "verifiedAt": "2026-09-24",
+  "confidence": "high",
+  "requires": {
+   "bank_loan": true
+  },
+  "requiresEvidence": {
+   "bank_loan": "A hitelprogram az MFB Pontokon (kereskedelmi bankfiókokban) igényelhető."
+  },
+  "sources": [
+   "https://mfb.hu/vallalkozasok/mukodo/hitel/dimop-plusz--123b-24-kis--es-kozepvallalkozasok-digitalizaciojanak-tamogatasa-hitelprogram-t227-p227",
+   "https://palyaz.hu/kkv-k-digitalizaciojanak-tamogatasa-hitelprogram-dimop-b/",
+   "https://palyazatfigyelo.com/mikro--kis-es-kozepvallalkozasok-digitalizaciojanak-tamogatasa-hitelprogram-kereteben--dimop-plusz-1-2-3-b-24"
+  ],
+  "factors": {
+   "size": 82,
+   "industry": 85,
+   "location": 95,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-GINOP_PLUSZ-1.4.4-24",
+  "code": "GINOP_PLUSZ-1.4.4-24",
+  "title": "Ganz Ábrahám Európai Uniós Vállalati Hitelprogram - KKV Technológia Budapest Plusz",
+  "issuer": "Széchenyi Terv Plusz / palyazat.gov.hu",
+  "cat": "KKV fejlesztés",
+  "type": "loan",
+  "amount": "5–150 M Ft",
+  "keret": 73185414649,
+  "deadline": "2026-12-31",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=GINOP_PLUSZ&code=GINOP_PLUSZ-1.4.4-24",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "requested": 0,
+  "remaining": 73185414649,
+  "regions": [
+   "Budapest"
+  ],
+  "sizeClasses": [
+   "középvállalkozás",
+   "egyéb vállalkozás",
+   "kisvállalkozás",
+   "mikrovállalkozás természetes személy",
+   "vállalkozás"
+  ],
+  "rate": "0% fix kamat",
+  "modified": "2026-11-26T16:15:53.735Z",
+  "live": true,
+  "scope": "hazai",
+  "note": "A beruházás helyszíne csak Budapest lehet; induló vállalkozásnak max. 25 M Ft.",
+  "verifiedAt": "2026-09-24",
+  "confidence": "medium",
+  "requires": {
+   "bank_loan": true
+  },
+  "requiresEvidence": {
+   "bank_loan": "KKV Technológia Plusz Budapest Hitelprogram: igénylés az MFB Pontokon (bankfiókokban)."
+  },
+  "sources": [
+   "https://www.mfb.hu/vallalkozasok/mukodo/hitel/kkv-technologia-plusz-budapest-hitelprogram-ginop-plusz--144-24-t219-p220",
+   "https://pulzuspalyazatiras.hu/osszes-palyazat/284-kkv-technologia-plusz-hitelprogram-budapest",
+   "https://qlm.hu/ginop-plusz-1-4-4-24-kkv-technologia-plusz-budapest-hitelprogram/"
+  ],
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 78,
+   "preference": 85
+  }
+ },
+ {
+  "id": "pg-GINOP_PLUSZ-1.1.6-25",
+  "code": "GINOP_PLUSZ-1.1.6-25",
+  "title": "Minősített klasztermenedzsment szervezetek támogatása",
+  "issuer": "Széchenyi Terv Plusz / palyazat.gov.hu",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "20–120 M Ft",
+  "keret": 6000000000,
+  "deadline": "2027-01-15",
+  "days": 0,
+  "score": 0,
+  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=GINOP_PLUSZ&code=GINOP_PLUSZ-1.1.6-25",
+  "source": "palyazat.gov.hu",
+  "status": "Aktív",
+  "requested": 432750393,
+  "remaining": 5567249607,
+  "regions": [],
+  "sizeClasses": [
+   "középvállalkozás",
+   "Mikrovállalkozás",
+   "kisvállalkozás"
+  ],
+  "rate": "85% támogatási intenzitás",
+  "modified": "2026-11-26T16:15:47.484Z",
+  "live": true,
+  "scope": "hazai",
+  "note": "Csak minősített klasztermenedzsment szervezetek pályázhatnak (GINOP Plusz-1.1.5-24 minősítéssel).",
+  "verifiedAt": "2026-09-24",
+  "confidence": "high",
+  "requires": {
+   "cluster_manager": true
+  },
+  "requiresEvidence": {
+   "cluster_manager": "Csak minősített klasztermenedzsment szervezetek pályázhatnak (GINOP Plusz-1.1.5-24 minősítéssel)."
+  },
+  "sources": [
+   "https://kormany.hu/hirek/megjelent-a-minositett-klasztermenedzsment-szervezetek-tamogatasat-celzo-uj-palyazat",
+   "https://vmkik.hu/hirek/megjelent-a-minositett-klasztermenedzsment-szervezetek-tamogatasa-cimu-palyazati-felhivas",
+   "https://hirlevel.egov.hu/2026/03/15/megjelent-a-minositett-klasztermenedzsment-szervezetek-tamogatasat-celzo-uj-palyazat/"
+  ],
+  "factors": {
+   "size": 92,
+   "industry": 85,
+   "location": 95,
    "preference": 85
   }
  },
@@ -593,7 +641,7 @@
    "kisvállalkozás"
   ],
   "rate": "0% fix kamat",
-  "modified": "2026-11-25T16:42:43.725Z",
+  "modified": "2026-11-26T16:15:48.069Z",
   "live": true,
   "scope": "hazai",
   "note": "Legalább 30% primerenergia-megtakarítás szükséges; MFB Pontokon igényelhető.",
@@ -614,54 +662,6 @@
    "size": 92,
    "industry": 85,
    "location": 78,
-   "preference": 85
-  }
- },
- {
-  "id": "pg-GINOP_PLUSZ-1.1.6-25",
-  "code": "GINOP_PLUSZ-1.1.6-25",
-  "title": "Minősített klasztermenedzsment szervezetek támogatása",
-  "issuer": "Széchenyi Terv Plusz / palyazat.gov.hu",
-  "cat": "KKV fejlesztés",
-  "type": "grant",
-  "amount": "20–120 M Ft",
-  "keret": 6000000000,
-  "deadline": "2027-01-15",
-  "days": 0,
-  "score": 0,
-  "url": "https://www.palyazat.gov.hu/palyazatok/redirect?program=szechenyi-terv-plusz&op=GINOP_PLUSZ&code=GINOP_PLUSZ-1.1.6-25",
-  "source": "palyazat.gov.hu",
-  "status": "Aktív",
-  "requested": 432750393,
-  "remaining": 5567249607,
-  "regions": [],
-  "sizeClasses": [
-   "középvállalkozás",
-   "Mikrovállalkozás",
-   "kisvállalkozás"
-  ],
-  "rate": "85% támogatási intenzitás",
-  "modified": "2026-11-25T16:43:56.033Z",
-  "live": true,
-  "scope": "hazai",
-  "note": "Csak minősített klasztermenedzsment szervezetek pályázhatnak (GINOP Plusz-1.1.5-24 minősítéssel).",
-  "verifiedAt": "2026-09-24",
-  "confidence": "high",
-  "requires": {
-   "cluster_manager": true
-  },
-  "requiresEvidence": {
-   "cluster_manager": "Csak minősített klasztermenedzsment szervezetek pályázhatnak (GINOP Plusz-1.1.5-24 minősítéssel)."
-  },
-  "sources": [
-   "https://kormany.hu/hirek/megjelent-a-minositett-klasztermenedzsment-szervezetek-tamogatasat-celzo-uj-palyazat",
-   "https://vmkik.hu/hirek/megjelent-a-minositett-klasztermenedzsment-szervezetek-tamogatasa-cimu-palyazati-felhivas",
-   "https://hirlevel.egov.hu/2026/03/15/megjelent-a-minositett-klasztermenedzsment-szervezetek-tamogatasat-celzo-uj-palyazat/"
-  ],
-  "factors": {
-   "size": 92,
-   "industry": 85,
-   "location": 95,
    "preference": 85
   }
  },
@@ -688,7 +688,7 @@
    "kisvállalkozás"
   ],
   "rate": "70% támogatási intenzitás",
-  "modified": "2026-11-25T16:42:49.414Z",
+  "modified": "2026-11-26T16:15:52.999Z",
   "live": true,
   "scope": "hazai",
   "needsReview": true,
@@ -725,7 +725,7 @@
    "kisvállalkozás"
   ],
   "rate": "100% támogatási intenzitás",
-  "modified": "2026-11-25T16:42:43.703Z",
+  "modified": "2026-11-26T16:15:48.374Z",
   "live": true,
   "scope": "hazai",
   "note": "Halgazdálkodási joggal rendelkezők pályázhatnak (szűk kör).",
@@ -775,7 +775,7 @@
    "vállalkozás"
   ],
   "rate": "75% támogatási intenzitás",
-  "modified": "2026-11-25T16:42:43.968Z",
+  "modified": "2026-11-26T16:15:48.389Z",
   "live": true,
   "scope": "hazai",
   "note": "Nem pénzbeli: a Bay Zoltán K+F szolgáltatását kapja 75%-os intenzitással; a keretből kevés maradt.",
@@ -823,7 +823,7 @@
    "kisvállalkozás"
   ],
   "rate": "100% támogatási intenzitás",
-  "modified": "2026-11-25T16:42:45.396Z",
+  "modified": "2026-11-26T16:15:48.018Z",
   "live": true,
   "scope": "hazai",
   "needsReview": true,
@@ -999,7 +999,7 @@
    "bank_loan": "Széchenyi Kártya Program: az igénylés a KAVOSZ ügyintézőnél, a partnerbank hiteleként történik.",
    "min_closed_years": "rendelkezik egy – 150 millió Ft felett két* – teljes lezárt éves működési múlttal"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1047,7 +1047,7 @@
    "bank_loan": "Széchenyi Kártya Program: az igénylés a KAVOSZ ügyintézőnél, a partnerbank hiteleként történik.",
    "min_closed_years": "rendelkezik egy – 150 millió Ft feletti hitelösszeg igénylése esetén két – teljes lezárt éves működési múlttal."
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1097,7 +1097,7 @@
    "bank_loan": "Széchenyi Kártya Program: az igénylés a KAVOSZ ügyintézőnél, a partnerbank hiteleként történik.",
    "min_closed_years": "rendelkezik egy – 150 millió Ft felett két* – teljes lezárt éves működési múlttal"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1145,7 +1145,7 @@
    "bank_loan": "Széchenyi Kártya Program: az igénylés a KAVOSZ ügyintézőnél, a partnerbank hiteleként történik.",
    "min_closed_years": "rendelkezik legalább egy teljes lezárt éves működési múlttal"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1189,7 +1189,7 @@
   "requiresEvidence": {
    "bank_loan": "Széchenyi Kártya Program: az igénylés a KAVOSZ ügyintézőnél, a partnerbank hiteleként történik."
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1236,7 +1236,7 @@
    "bank_loan": "Széchenyi Kártya Program: a lízinget a KAVOSZ ügyintézőnél, a partner lízingtársaságon keresztül lehet igényelni.",
    "min_closed_years": "rendelkezik legalább egy teljes lezárt éves működési múlttal"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1281,7 +1281,7 @@
   "requiresEvidence": {
    "bank_loan": "Széchenyi Kártya Program: az igénylés a KAVOSZ ügyintézőnél, a partnerbank hiteleként történik."
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1330,7 +1330,7 @@
    "min_closed_years": "kétéven belül alapított vállalkozás nem igényelhet KTH START Kölcsönt.",
    "positive_equity": "Csak nyereségesen működő vállalkozások jogosultak hitel igénylésére?"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1379,7 +1379,7 @@
    "min_closed_years": "kétéven belül alapított vállalkozás nem igényelhet KTH START Kölcsönt.",
    "positive_equity": "Csak nyereségesen működő vállalkozások jogosultak hitel igénylésére?"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1420,7 +1420,7 @@
   "verifiedAt": "2026-09-24",
   "confidence": "high",
   "scope": "hazai",
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1603,7 +1603,7 @@
   "requiresEvidence": {
    "farmer": "Elismert termelői csoport vagy elismert termelői integrációs szervezet pályázhat; 3. szakasz 2026.11.05–12.16."
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1645,7 +1645,7 @@
   "verifiedAt": "2026-09-24",
   "confidence": "high",
   "scope": "hazai",
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1688,13 +1688,15 @@
   "scope": "hazai",
   "requires": {
    "farmer": true,
-   "bank_loan": true
+   "bank_loan": true,
+   "min_closed_years": 1
   },
   "requiresEvidence": {
    "farmer": "Mezőgazdasági, erdő-, vad- és halgazdálkodó KKV-k és őstermelők legalább egy lezárt üzleti évvel és MÁK ügyfél-azonosítóval.",
-   "bank_loan": "Széchenyi Kártya Program: az igénylés a KAVOSZ ügyintézőnél, a partnerbank hiteleként történik."
+   "bank_loan": "Széchenyi Kártya Program: az igénylés a KAVOSZ ügyintézőnél, a partnerbank hiteleként történik.",
+   "min_closed_years": "rendelkezik legalább egy (25 millió forint felett két) lezárt teljes naptári évre vonatkozó működési múlttal"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1739,7 +1741,7 @@
    "deeptech": "EIC Accelerator: mélytech startupok/KKV-k skálázása",
    "rnd_project": "EIC Accelerator: innovációs projekt (TRL 5/6 → 9) és skálázás támogatása."
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1783,7 +1785,7 @@
    "consortium": "Kis konzorcium (spin-off, startup, KKV)",
    "rnd_project": "Horizon Europe: nemzetközi K+F+I projekt"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1827,7 +1829,7 @@
    "consortium": "Konzorciumos IA",
    "rnd_project": "Horizon Europe: nemzetközi K+F+I projekt"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1871,7 +1873,7 @@
    "consortium": "Konzorcium pályázik, de a keret nagy része kaszkádban megy KKV-k vagy KKV-vezette kis csapatok felé.",
    "rnd_project": "Horizon Europe: nemzetközi K+F+I projekt"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1915,7 +1917,7 @@
    "consortium": "Nagy konzorciumos IA",
    "rnd_project": "Horizon Europe: nemzetközi K+F+I projekt"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -1959,7 +1961,7 @@
    "consortium": "Konzorcium szükséges",
    "rnd_project": "Horizon Europe: nemzetközi K+F+I projekt"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2003,7 +2005,7 @@
    "consortium": "Multi-actor konzorcium",
    "rnd_project": "Horizon Europe: nemzetközi K+F+I projekt"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2047,7 +2049,7 @@
    "consortium": "Konzorcium",
    "rnd_project": "Horizon Europe: nemzetközi K+F+I projekt"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2091,7 +2093,7 @@
    "consortium": "Konzorciumos innovációs akció",
    "rnd_project": "Horizon Europe: nemzetközi K+F+I projekt"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2183,7 +2185,7 @@
   "altUrls": [
    "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/48106227"
   ],
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2226,7 +2228,7 @@
   "requiresEvidence": {
    "consortium": "SME Support Action konzorciumoknak (KKV-knál 75% intenzitás)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2266,7 +2268,7 @@
   "altUrls": [
    "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/48400841"
   ],
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2303,10 +2305,10 @@
   "confidence": "high",
   "scope": "eu",
   "singleApplicant": true,
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
-  "stale": true,
   "factors": {
    "size": 75,
    "industry": 85,
@@ -2343,7 +2345,7 @@
   "altUrls": [
    "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/45657640"
   ],
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2380,7 +2382,7 @@
   "confidence": "high",
   "scope": "eu",
   "singleApplicant": true,
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2424,7 +2426,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország)",
    "rnd_project": "Horizon Europe – Cluster 4: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2468,7 +2470,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország)",
    "rnd_project": "Horizon Europe – Cluster 4: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2512,7 +2514,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 4: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2556,7 +2558,7 @@
    "consortium": "Kis nemzetközi konzorcium (max. 6 résztvevő",
    "rnd_project": "Horizon Europe – Cluster 4: nemzetközi K+F+I projekt"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2600,7 +2602,7 @@
    "consortium": "Kis nemzetközi konzorcium (max. 6 résztvevő",
    "rnd_project": "Horizon Europe – Cluster 4: nemzetközi K+F+I projekt"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2644,7 +2646,7 @@
    "consortium": "nemzetközi konzorcium (min. 3 ország), feldolgozóipari vállalatok vezetésével",
    "rnd_project": "Horizon Europe – Cluster 4: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2688,7 +2690,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország)",
    "rnd_project": "Horizon Europe – Cluster 4: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2732,7 +2734,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 4: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2776,7 +2778,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 4: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2820,7 +2822,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 4 (Space): kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2864,7 +2866,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 4 (Space): kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2908,7 +2910,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2952,7 +2954,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -2996,7 +2998,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3040,7 +3042,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3084,7 +3086,7 @@
    "consortium": "Nagy ipari konzorcium (min. 3 ország)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3128,7 +3130,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3172,7 +3174,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3216,7 +3218,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3260,7 +3262,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3304,7 +3306,7 @@
    "consortium": "Nagy ipari konzorcium (min. 3 ország)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3348,7 +3350,7 @@
    "consortium": "Nemzetközi konzorcium (min. 3 ország)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3392,7 +3394,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3436,7 +3438,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3480,7 +3482,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3524,7 +3526,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3568,7 +3570,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3612,7 +3614,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 5: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3656,7 +3658,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3700,7 +3702,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3744,7 +3746,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3788,7 +3790,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3832,7 +3834,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3876,7 +3878,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3920,7 +3922,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -3964,7 +3966,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4008,7 +4010,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 6: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4053,7 +4055,7 @@
    "consortium": "nemzetközi konzorcium (min. 3 ország)",
    "rnd_project": "Horizon Europe – Cluster 1 (Health): kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4098,7 +4100,7 @@
    "consortium": "Nemzetközi konzorcium (min. 3 ország)",
    "rnd_project": "Horizon Europe – Cluster 1 (Health): kutatási-innovációs projekt (RIA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4143,7 +4145,7 @@
    "consortium": "Nemzetközi konzorcium (min. 3 ország)",
    "rnd_project": "Horizon Europe – Cluster 1 (Health): kutatási-innovációs projekt (RIA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4188,7 +4190,7 @@
    "consortium": "Nemzetközi konzorcium (min. 3 ország)",
    "rnd_project": "Horizon Europe – Cluster 1 (Health): kutatási-innovációs projekt (RIA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4232,7 +4234,7 @@
    "consortium": "Nemzetközi konzorcium",
    "rnd_project": "Horizon Europe – Cluster 3: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4276,7 +4278,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 3: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4320,7 +4322,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 3: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4364,7 +4366,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Cluster 3: kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4408,7 +4410,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Missions (Cities): kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4452,7 +4454,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Missions (Cities): kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4496,7 +4498,7 @@
    "consortium": "nemzetközi konzorcium (min. 3 ország)",
    "rnd_project": "Horizon Europe – Missions (Soil): kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4540,7 +4542,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Missions (Climate/Cities): kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4584,7 +4586,7 @@
    "consortium": "Nemzetközi konzorcium szükséges (min. 3 ország, legalább 1 EU-tagállamból)",
    "rnd_project": "Horizon Europe – Missions (Ocean & Waters): kutatási-innovációs projekt (IA)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4626,7 +4628,7 @@
   "requiresEvidence": {
    "deeptech": "EIC Pre-accelerator: mélytech (deep-tech) startupok/KKV-k felkészítése az EIC Acceleratorra felzárkózó országokban."
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4670,7 +4672,7 @@
    "consortium": "vállalkozások partnerként részt vehetnek.",
    "rnd_project": "Horizon Europe – Widening: nemzetközi K+F+I projekt"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4712,7 +4714,7 @@
   "requiresEvidence": {
    "consortium": "EU/EGT-ben bejegyzett jogi személyek (konzorcium)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4754,7 +4756,7 @@
   "requiresEvidence": {
    "consortium": "EU/EGT-ben bejegyzett jogi személyek (konzorcium)"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4792,7 +4794,7 @@
   "confidence": "high",
   "scope": "eu",
   "singleApplicant": true,
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4829,7 +4831,7 @@
   "confidence": "high",
   "scope": "eu",
   "singleApplicant": true,
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4873,7 +4875,7 @@
    "consortium": "Legalább 2 független szervezet 2 különböző EU/HE-társult országból",
    "rnd_project": "EIT Urban Mobility: nemzetközi K+F+I projekt"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4915,7 +4917,7 @@
    "2026-10-30",
    "2026-11-30"
   ],
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4953,7 +4955,7 @@
   "confidence": "high",
   "scope": "eu",
   "singleApplicant": true,
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -4989,7 +4991,7 @@
   "confidence": "high",
   "scope": "eu",
   "singleApplicant": true,
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -5026,7 +5028,7 @@
   "confidence": "high",
   "scope": "eu",
   "singleApplicant": true,
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -5108,7 +5110,7 @@
   "confidence": "high",
   "scope": "eu",
   "singleApplicant": true,
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -5407,7 +5409,7 @@
    "consortium": "Csak jóváhagyott nemzetközi EUREKA-projekt (EUREKA Titkárság vagy klaszter adatbázis) magyar partnere/konzorciumvezetője; előzetes szakmai vélemény kell (kérhe…",
    "rnd_project": "Az EUREKA programban való magyar részvétel támogatása: jóváhagyott nemzetközi K+F projekt magyar partnerének."
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -5455,7 +5457,7 @@
    "consortium": "Olyan magyar szervezetek (a nem kutató vállalatokat is beleértve) pályázhatnak, amelyek egy európai partnerség közös nemzetközi felhívásán támogatásra javasolt…",
    "rnd_project": "Horizont Európa európai partnerségek közös nemzetközi (K+F+I) felhívásaiban támogatásra javasolt konzorcium tagjai."
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -5502,7 +5504,7 @@
   "requiresEvidence": {
    "farmer": "A Kedvezményezetti Nyilvántartási Rendszerben (KNYR) regisztrált mezőgazdasági termelők fagykárt szenvedett ültetvényei cseréjére."
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -5549,7 +5551,7 @@
   "requiresEvidence": {
    "forestry": "Jóváhagyott erdőtervvel rendelkező, az Evt. szerint nyilvántartott, KNYR-ben regisztrált erdőgazdálkodók."
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -5742,7 +5744,7 @@
    "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-EIC-2026-PRIZE-WIP",
    "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eic-2026-prize-wip"
   ],
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -5789,7 +5791,7 @@
   "requiresEvidence": {
    "tourism_ntak": "Turisztikai vállalkozások, egyéni vállalkozók, adószámos magánszemélyek, akik a Nemzeti Turisztikai Adatszolgáltató Központban (NTAK) regisztrációval rendelkez…"
   },
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -5830,7 +5832,7 @@
   "verifiedAt": "2026-10-09",
   "confidence": "medium",
   "scope": "hazai",
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -5871,7 +5873,7 @@
   "verifiedAt": "2026-10-09",
   "confidence": "medium",
   "scope": "hazai",
-  "lastChecked": "2026-11-25",
+  "lastChecked": "2026-11-26",
   "live": false,
   "days": 0,
   "score": 0,
@@ -6982,6 +6984,78 @@
    "location": 95,
    "preference": 72
   }
+ },
+ {
+  "id": "eu-CREA-MEDIA-2027-DEVSLATE",
+  "code": "CREA-MEDIA-2027-DEVSLATE",
+  "title": "Európai csomagfejlesztés",
+  "issuer": "Európai Bizottság — Creative Europe",
+  "cat": "Turizmus",
+  "type": "grant",
+  "amount": "",
+  "deadline": "2026-12-01",
+  "rolling": false,
+  "windowOpen": null,
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/CREA-MEDIA-2027-DEVSLATE",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "European slate development"
+ },
+ {
+  "id": "eu-HORIZON-CL5-2026-11-D3-06",
+  "code": "HORIZON-CL5-2026-11-D3-06",
+  "title": "Mély üledékes és aljzatrészek erőforrás-felmérése",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Energiahatékonyság",
+  "type": "grant",
+  "amount": "€4.5M–€40M",
+  "deadline": "2026-12-01",
+  "rolling": false,
+  "windowOpen": null,
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL5-2026-11-D3-06",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Resource assessment for deep sedimentary and basement reservoirs"
  },
  {
   "id": "eu-HORIZON-EIT-2026-PRIZE-WIP-LEADERSHIP",
@@ -8658,42 +8732,6 @@
   }
  },
  {
-  "id": "eu-CREA-CROSS-2027-MFP",
-  "code": "CREA-CROSS-2027-MFP",
-  "title": "HÍREK - Média-szabadság Gyorsreagálású Mechanizmus",
-  "issuer": "Európai Bizottság — Creative Europe",
-  "cat": "Turizmus",
-  "type": "grant",
-  "amount": "",
-  "deadline": "2027-01-27",
-  "rolling": false,
-  "windowOpen": null,
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/CREA-CROSS-2027-MFP",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "NEWS - Media Freedom Rapid Response Mechanism"
- },
- {
   "id": "eu-CREA-CULT-2027-LIT",
   "code": "CREA-CULT-2027-LIT",
   "title": "Európai irodalmi művek terjesztése",
@@ -8730,24 +8768,23 @@
   "titleOriginal": "Circulation of European literary works"
  },
  {
-  "id": "eu-cs-46906387",
-  "code": null,
-  "parentTopic": "HORIZON-CL2-2024-HERITAGE-ECCCH-01-05",
-  "title": "A European Collaborative Cloud for Cultural Heritage – Innovative tools for the study, conservation and restoration of heritage objects — kaszkád (FSTP) nyílt felhívás",
-  "issuer": "EU kaszkád (FSTP) felhívás",
-  "cat": "Digitális átalakulás",
+  "id": "eu-CREA-CROSS-2027-MFP",
+  "code": "CREA-CROSS-2027-MFP",
+  "title": "HÍREK - Média-szabadság Gyorsreagálású Mechanizmus",
+  "issuer": "Európai Bizottság — Creative Europe",
+  "cat": "Turizmus",
   "type": "grant",
   "amount": "",
   "deadline": "2027-01-27",
   "rolling": false,
-  "windowOpen": "2026-11-26",
+  "windowOpen": null,
   "regions": [],
   "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; egyedül is pályázható.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/46906387",
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/CREA-CROSS-2027-MFP",
   "source": "ec.europa.eu",
   "scope": "eu",
-  "singleApplicant": true,
+  "singleApplicant": false,
   "auto": true,
   "live": true,
   "days": 0,
@@ -8756,8 +8793,15 @@
    "size": 75,
    "industry": 85,
    "location": 95,
-   "preference": 72
-  }
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "NEWS - Media Freedom Rapid Response Mechanism"
  },
  {
   "id": "eu-cs-45704318",
@@ -8775,6 +8819,36 @@
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; egyedül is pályázható.",
   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/45704318",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": true,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 72
+  }
+ },
+ {
+  "id": "eu-cs-46906387",
+  "code": null,
+  "parentTopic": "HORIZON-CL2-2024-HERITAGE-ECCCH-01-05",
+  "title": "A European Collaborative Cloud for Cultural Heritage – Innovative tools for the study, conservation and restoration of heritage objects — kaszkád (FSTP) nyílt felhívás",
+  "issuer": "EU kaszkád (FSTP) felhívás",
+  "cat": "Digitális átalakulás",
+  "type": "grant",
+  "amount": "",
+  "deadline": "2027-01-27",
+  "rolling": false,
+  "windowOpen": null,
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; egyedül is pályázható.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/46906387",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": true,
@@ -8922,20 +8996,20 @@
   }
  },
  {
-  "id": "eu-HORIZON-RAISE-2027-01-02",
-  "code": "HORIZON-RAISE-2027-01-02",
-  "title": "Automatizált Tudományos Felfedezés – Élelmiszer (RAISE kísérlet)",
+  "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-47",
+  "code": "HORIZON-CL4-2027-01-MAT-PROD-47",
+  "title": "Technológiai infrastruktúrák elérése startupok, scaleupok és innovatív KKV-k számára",
   "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Mezőgazdaság",
+  "cat": "KKV fejlesztés",
   "type": "grant",
-  "amount": "€1M–€9M",
+  "amount": "€200k–€12.5M",
   "deadline": "2027-02-02",
   "rolling": false,
   "windowOpen": null,
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-RAISE-2027-01-02",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-01-MAT-PROD-47",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -8955,7 +9029,43 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Automated Scientific Discovery – Food (RAISE pilot)"
+  "titleOriginal": "Pilot access schemes to Technology Infrastructures for European startups, scaleups and innovative SMEs (CSA)"
+ },
+ {
+  "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-03",
+  "code": "HORIZON-CL4-2027-01-MAT-PROD-03",
+  "title": "Gyári folyamatok és automatizálás az újragyártáshoz és leszereléshez",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "€200k–€12.5M",
+  "deadline": "2027-02-02",
+  "rolling": false,
+  "windowOpen": null,
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-01-MAT-PROD-03",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Factory processes and automation for de- and re-manufacturing (RIA) (Made in Europe partnership)"
  },
  {
   "id": "eu-HORIZON-RAISE-2027-01-01",
@@ -8992,6 +9102,78 @@
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
   "titleOriginal": "Automated Scientific Discovery - Materials Science (RAISE pilot) (RIA)"
+ },
+ {
+  "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-42",
+  "code": "HORIZON-CL4-2027-01-MAT-PROD-42",
+  "title": "Akadémiai szellemi tőke hasznosítása ipar, KKV-k és startupok számára",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "€200k–€12.5M",
+  "deadline": "2027-02-02",
+  "rolling": false,
+  "windowOpen": null,
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-01-MAT-PROD-42",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Unlocking the potential of academic intellectual assets for industry, SMEs and startups (CSA)"
+ },
+ {
+  "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-06",
+  "code": "HORIZON-CL4-2027-01-MAT-PROD-06",
+  "title": "Körkörös, innovatív fejlett anyagok a tervezéstől a piacra jutásig",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Környezetvédelem",
+  "type": "grant",
+  "amount": "€200k–€12.5M",
+  "deadline": "2027-02-02",
+  "rolling": false,
+  "windowOpen": null,
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-01-MAT-PROD-06",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Circular innovative advanced materials: facilitating the transition from design to markets (RIA) (Innovative Advanced Materials for the EU and Made in Europe partnerships)"
  },
  {
   "id": "eu-HORIZON-CL4-2027-02-DIGITAL-EMERGING-52-two-stage",
@@ -9066,20 +9248,20 @@
   "titleOriginal": "European video games and immersive content"
  },
  {
-  "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-06",
-  "code": "HORIZON-CL4-2027-01-MAT-PROD-06",
-  "title": "Körkörös, innovatív fejlett anyagok a tervezéstől a piacra jutásig",
+  "id": "eu-HORIZON-RAISE-2027-01-02",
+  "code": "HORIZON-RAISE-2027-01-02",
+  "title": "Automatizált Tudományos Felfedezés – Élelmiszer (RAISE kísérlet)",
   "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Környezetvédelem",
+  "cat": "Mezőgazdaság",
   "type": "grant",
-  "amount": "€200k–€12.5M",
+  "amount": "€1M–€9M",
   "deadline": "2027-02-02",
   "rolling": false,
   "windowOpen": null,
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-01-MAT-PROD-06",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-RAISE-2027-01-02",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -9099,115 +9281,7 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Circular innovative advanced materials: facilitating the transition from design to markets (RIA) (Innovative Advanced Materials for the EU and Made in Europe partnerships)"
- },
- {
-  "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-42",
-  "code": "HORIZON-CL4-2027-01-MAT-PROD-42",
-  "title": "Akadémiai szellemi tőke hasznosítása ipar, KKV-k és startupok számára",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "KKV fejlesztés",
-  "type": "grant",
-  "amount": "€200k–€12.5M",
-  "deadline": "2027-02-02",
-  "rolling": false,
-  "windowOpen": null,
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-01-MAT-PROD-42",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Unlocking the potential of academic intellectual assets for industry, SMEs and startups (CSA)"
- },
- {
-  "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-47",
-  "code": "HORIZON-CL4-2027-01-MAT-PROD-47",
-  "title": "Technológiai infrastruktúrák elérése startupok, scaleupok és innovatív KKV-k számára",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "KKV fejlesztés",
-  "type": "grant",
-  "amount": "€200k–€12.5M",
-  "deadline": "2027-02-02",
-  "rolling": false,
-  "windowOpen": null,
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-01-MAT-PROD-47",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Pilot access schemes to Technology Infrastructures for European startups, scaleups and innovative SMEs (CSA)"
- },
- {
-  "id": "eu-HORIZON-CL4-2027-01-MAT-PROD-03",
-  "code": "HORIZON-CL4-2027-01-MAT-PROD-03",
-  "title": "Gyári folyamatok és automatizálás az újragyártáshoz és leszereléshez",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "KKV fejlesztés",
-  "type": "grant",
-  "amount": "€200k–€12.5M",
-  "deadline": "2027-02-02",
-  "rolling": false,
-  "windowOpen": null,
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-01-MAT-PROD-03",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Factory processes and automation for de- and re-manufacturing (RIA) (Made in Europe partnership)"
+  "titleOriginal": "Automated Scientific Discovery – Food (RAISE pilot)"
  },
  {
   "id": "eu-cs-48401785",
@@ -9348,42 +9422,6 @@
   "titleOriginal": "TV and online content Fiction projects"
  },
  {
-  "id": "eu-CREA-MEDIA-2027-TVONLINE-2",
-  "code": "CREA-MEDIA-2027-TVONLINE-2",
-  "title": "TV- és online tartalom Dokumentumfilm-projektek",
-  "issuer": "Európai Bizottság — Creative Europe",
-  "cat": "Digitális átalakulás",
-  "type": "grant",
-  "amount": "",
-  "deadline": "2027-02-10",
-  "rolling": false,
-  "windowOpen": null,
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/CREA-MEDIA-2027-TVONLINE-2",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "TV and online content Documentary projects"
- },
- {
   "id": "eu-CREA-MEDIA-2027-TVONLINE-1",
   "code": "CREA-MEDIA-2027-TVONLINE-1",
   "title": "TV- és online tartalom Animációs projektek",
@@ -9418,6 +9456,42 @@
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
   "titleOriginal": "TV and online content Animation projects"
+ },
+ {
+  "id": "eu-CREA-MEDIA-2027-TVONLINE-2",
+  "code": "CREA-MEDIA-2027-TVONLINE-2",
+  "title": "TV- és online tartalom Dokumentumfilm-projektek",
+  "issuer": "Európai Bizottság — Creative Europe",
+  "cat": "Digitális átalakulás",
+  "type": "grant",
+  "amount": "",
+  "deadline": "2027-02-10",
+  "rolling": false,
+  "windowOpen": null,
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/CREA-MEDIA-2027-TVONLINE-2",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "TV and online content Documentary projects"
  },
  {
   "id": "eu-cs-48401116",
@@ -9486,20 +9560,20 @@
   "titleOriginal": "Detection, monitoring, modelling, and attribution capabilities for Solar Radiation Modification (SRM) activities and assessing their impacts on Earth's climate and ecosystems"
  },
  {
-  "id": "eu-HORIZON-BRIDGING-2027-01-10",
-  "code": "HORIZON-BRIDGING-2027-01-10",
-  "title": "Autonóm járművek ambíciói városokban (IA) - AI alkalmazása",
+  "id": "eu-HORIZON-BRIDGING-2027-06-02",
+  "code": "HORIZON-BRIDGING-2027-06-02",
+  "title": "Horizon projekt eredményeinek hasznosítása innovációs ökoszisztémákon keresztül",
   "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Digitális átalakulás",
+  "cat": "Mezőgazdaság",
   "type": "grant",
-  "amount": "€10M–€15M",
+  "amount": "€2.5M–€4M",
   "deadline": "2027-02-16",
   "rolling": false,
   "windowOpen": null,
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-BRIDGING-2027-01-10",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-BRIDGING-2027-06-02",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -9519,7 +9593,7 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Autonomous Drive Ambition Cities (IA) - Apply AI"
+  "titleOriginal": "Valorising Horizon project results via innovation ecosystems"
  },
  {
   "id": "eu-HORIZON-BRIDGING-2027-01-09",
@@ -9558,9 +9632,9 @@
   "titleOriginal": "EU AI Media Platform – modular multilingual public-interest infrastructure for European news and audiovisual media (IA) - Apply AI"
  },
  {
-  "id": "eu-HORIZON-BRIDGING-2027-01-12",
-  "code": "HORIZON-BRIDGING-2027-01-12",
-  "title": "Nagyszabású AI-alapú digitális platformok az európai energrendszerért",
+  "id": "eu-HORIZON-BRIDGING-2027-01-10",
+  "code": "HORIZON-BRIDGING-2027-01-10",
+  "title": "Autonóm járművek ambíciói városokban (IA) - AI alkalmazása",
   "issuer": "Európai Bizottság — Horizon Europe",
   "cat": "Digitális átalakulás",
   "type": "grant",
@@ -9571,7 +9645,7 @@
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-BRIDGING-2027-01-12",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-BRIDGING-2027-01-10",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -9591,79 +9665,7 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Large-Scale piloting of next-generation AI-driven digital platforms for a more affordable, secure and sustainable European energy system (IA) - Apply AI"
- },
- {
-  "id": "eu-HORIZON-BRIDGING-2027-01-13",
-  "code": "HORIZON-BRIDGING-2027-01-13",
-  "title": "EU Frontier AI Kezdeményezés: Nagy teljesítményű AI modellek",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Digitális átalakulás",
-  "type": "grant",
-  "amount": "€10M–€15M",
-  "deadline": "2027-02-16",
-  "rolling": false,
-  "windowOpen": null,
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-BRIDGING-2027-01-13",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "EU Frontier AI Initiative: Advanced Scaling Frameworks for High-Performance AI Models (RIA) - Apply AI"
- },
- {
-  "id": "eu-HORIZON-BRIDGING-2027-06-02",
-  "code": "HORIZON-BRIDGING-2027-06-02",
-  "title": "Horizon projekt eredményeinek hasznosítása innovációs ökoszisztémákon keresztül",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Mezőgazdaság",
-  "type": "grant",
-  "amount": "€2.5M–€4M",
-  "deadline": "2027-02-16",
-  "rolling": false,
-  "windowOpen": null,
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-BRIDGING-2027-06-02",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Valorising Horizon project results via innovation ecosystems"
+  "titleOriginal": "Autonomous Drive Ambition Cities (IA) - Apply AI"
  },
  {
   "id": "eu-HORIZON-NATURE-2027-04-01",
@@ -9702,128 +9704,20 @@
   "titleOriginal": "A stronger Global Ocean Observing System to enhance Europe’s strategic autonomy, climate resilience and biodiversity conservation"
  },
  {
-  "id": "eu-HORIZON-HLTH-2027-02-DISEASE-01-two-stage",
-  "code": "HORIZON-HLTH-2027-02-DISEASE-01-two-stage",
-  "title": "Innovatív egészségügyi beavatkozások nem fertőző betegségekre",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "KKV fejlesztés",
-  "type": "grant",
-  "amount": "€5M–€10M",
-  "deadline": "2027-02-17",
-  "rolling": false,
-  "windowOpen": null,
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-02-DISEASE-01-two-stage",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Innovative healthcare interventions for non-communicable diseases"
- },
- {
-  "id": "eu-HORIZON-HLTH-2027-01-ENVHLTH-MISSCLIMA-03",
-  "code": "HORIZON-HLTH-2027-01-ENVHLTH-MISSCLIMA-03",
-  "title": "Eszközök és technológiák az éghajlatváltozáshoz való egészségügyi alkalmazkodáshoz",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Környezetvédelem",
-  "type": "grant",
-  "amount": "€3M–€11M",
-  "deadline": "2027-02-17",
-  "rolling": false,
-  "windowOpen": null,
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-01-ENVHLTH-MISSCLIMA-03",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Tools and technologies to support health adaptation to climate change"
- },
- {
-  "id": "eu-HORIZON-HLTH-2027-01-DISEASE-10",
-  "code": "HORIZON-HLTH-2027-01-DISEASE-10",
-  "title": "Krónikus nem fertőző betegségek megelőzése gyermekeknél és fiataloknál",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "KKV fejlesztés",
-  "type": "grant",
-  "amount": "€3M–€11M",
-  "deadline": "2027-02-17",
-  "rolling": false,
-  "windowOpen": null,
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-01-DISEASE-10",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)"
- },
- {
-  "id": "eu-HORIZON-HLTH-2027-02-TOOL-01-two-stage",
-  "code": "HORIZON-HLTH-2027-02-TOOL-01-two-stage",
-  "title": "Prediktív biomarkerek fejlesztése AI módszerekkel krónikus betegségekre",
+  "id": "eu-HORIZON-BRIDGING-2027-01-13",
+  "code": "HORIZON-BRIDGING-2027-01-13",
+  "title": "EU Frontier AI Kezdeményezés: Nagy teljesítményű AI modellek",
   "issuer": "Európai Bizottság — Horizon Europe",
   "cat": "Digitális átalakulás",
   "type": "grant",
-  "amount": "€5M–€10M",
-  "deadline": "2027-02-17",
+  "amount": "€10M–€15M",
+  "deadline": "2027-02-16",
   "rolling": false,
   "windowOpen": null,
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-02-TOOL-01-two-stage",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-BRIDGING-2027-01-13",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -9843,23 +9737,23 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases"
+  "titleOriginal": "EU Frontier AI Initiative: Advanced Scaling Frameworks for High-Performance AI Models (RIA) - Apply AI"
  },
  {
-  "id": "eu-HORIZON-HLTH-2027-01-STAYHLTH-01",
-  "code": "HORIZON-HLTH-2027-01-STAYHLTH-01",
-  "title": "Fogyatékosságok kezelése az önálló életvitel és társadalmi inklúzió érdekében",
+  "id": "eu-HORIZON-BRIDGING-2027-01-12",
+  "code": "HORIZON-BRIDGING-2027-01-12",
+  "title": "Nagyszabású AI-alapú digitális platformok az európai energrendszerért",
   "issuer": "Európai Bizottság — Horizon Europe",
   "cat": "Digitális átalakulás",
   "type": "grant",
-  "amount": "€3M–€11M",
-  "deadline": "2027-02-17",
+  "amount": "€10M–€15M",
+  "deadline": "2027-02-16",
   "rolling": false,
   "windowOpen": null,
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-01-STAYHLTH-01",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-BRIDGING-2027-01-12",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -9879,79 +9773,7 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Addressing disabilities through the life course to support independent living and inclusion"
- },
- {
-  "id": "eu-HORIZON-HLTH-2027-01-ENVHLTH-02",
-  "code": "HORIZON-HLTH-2027-01-ENVHLTH-02",
-  "title": "Klímával kapcsolatos expozíciók integrálása a humán exposomába",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Környezetvédelem",
-  "type": "grant",
-  "amount": "€3M–€11M",
-  "deadline": "2027-02-17",
-  "rolling": false,
-  "windowOpen": null,
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-01-ENVHLTH-02",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Integrating climate-related exposures into the human exposome and characterising its changes in response to climate change"
- },
- {
-  "id": "eu-HORIZON-HLTH-2027-02-DISEASE-14-two-stage",
-  "code": "HORIZON-HLTH-2027-02-DISEASE-14-two-stage",
-  "title": "Klinikai vizsgálatok neurodegeneratív betegségek innovatív kezelésére",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "KKV fejlesztés",
-  "type": "grant",
-  "amount": "€5M–€10M",
-  "deadline": "2027-02-17",
-  "rolling": false,
-  "windowOpen": null,
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-02-DISEASE-14-two-stage",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Clinical trials for advancing innovative interventions for neurodegenerative diseases"
+  "titleOriginal": "Large-Scale piloting of next-generation AI-driven digital platforms for a more affordable, secure and sustainable European energy system (IA) - Apply AI"
  },
  {
   "id": "eu-HORIZON-HLTH-2027-01-DISEASE-07",
@@ -9990,6 +9812,78 @@
   "titleOriginal": "Development of monoclonal antibodies to prevent and treat infections from Filo-, Nairo-, Phenui-, Picorna- and Toga viruses"
  },
  {
+  "id": "eu-HORIZON-HLTH-2027-01-ENVHLTH-02",
+  "code": "HORIZON-HLTH-2027-01-ENVHLTH-02",
+  "title": "Klímával kapcsolatos expozíciók integrálása a humán exposomába",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Környezetvédelem",
+  "type": "grant",
+  "amount": "€3M–€11M",
+  "deadline": "2027-02-17",
+  "rolling": false,
+  "windowOpen": null,
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-01-ENVHLTH-02",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Integrating climate-related exposures into the human exposome and characterising its changes in response to climate change"
+ },
+ {
+  "id": "eu-HORIZON-HLTH-2027-01-ENVHLTH-MISSCLIMA-03",
+  "code": "HORIZON-HLTH-2027-01-ENVHLTH-MISSCLIMA-03",
+  "title": "Eszközök és technológiák az éghajlatváltozáshoz való egészségügyi alkalmazkodáshoz",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Környezetvédelem",
+  "type": "grant",
+  "amount": "€3M–€11M",
+  "deadline": "2027-02-17",
+  "rolling": false,
+  "windowOpen": null,
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-01-ENVHLTH-MISSCLIMA-03",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Tools and technologies to support health adaptation to climate change"
+ },
+ {
   "id": "eu-HORIZON-HLTH-2027-01-DISEASE-06",
   "code": "HORIZON-HLTH-2027-01-DISEASE-06",
   "title": "Monoklonális antitestek fejlesztése Flavivírusok okozta fertőzésekre",
@@ -10024,6 +9918,78 @@
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
   "titleOriginal": "Development of monoclonal antibodies to prevent and treat infections from Flaviviruses"
+ },
+ {
+  "id": "eu-HORIZON-HLTH-2027-01-STAYHLTH-01",
+  "code": "HORIZON-HLTH-2027-01-STAYHLTH-01",
+  "title": "Fogyatékosságok kezelése az önálló életvitel és társadalmi inklúzió érdekében",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Digitális átalakulás",
+  "type": "grant",
+  "amount": "€3M–€11M",
+  "deadline": "2027-02-17",
+  "rolling": false,
+  "windowOpen": null,
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-01-STAYHLTH-01",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Addressing disabilities through the life course to support independent living and inclusion"
+ },
+ {
+  "id": "eu-HORIZON-HLTH-2027-02-DISEASE-14-two-stage",
+  "code": "HORIZON-HLTH-2027-02-DISEASE-14-two-stage",
+  "title": "Klinikai vizsgálatok neurodegeneratív betegségek innovatív kezelésére",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "€5M–€10M",
+  "deadline": "2027-02-17",
+  "rolling": false,
+  "windowOpen": null,
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-02-DISEASE-14-two-stage",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Clinical trials for advancing innovative interventions for neurodegenerative diseases"
  },
  {
   "id": "eu-HORIZON-HLTH-2027-01-CARE-02",
@@ -10062,6 +10028,78 @@
   "titleOriginal": "Personalised approaches to reduce risks from Adverse Drug Reactions due to administration of multiple medications"
  },
  {
+  "id": "eu-HORIZON-HLTH-2027-02-DISEASE-01-two-stage",
+  "code": "HORIZON-HLTH-2027-02-DISEASE-01-two-stage",
+  "title": "Innovatív egészségügyi beavatkozások nem fertőző betegségekre",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "€5M–€10M",
+  "deadline": "2027-02-17",
+  "rolling": false,
+  "windowOpen": null,
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-02-DISEASE-01-two-stage",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Innovative healthcare interventions for non-communicable diseases"
+ },
+ {
+  "id": "eu-HORIZON-HLTH-2027-02-TOOL-01-two-stage",
+  "code": "HORIZON-HLTH-2027-02-TOOL-01-two-stage",
+  "title": "Prediktív biomarkerek fejlesztése AI módszerekkel krónikus betegségekre",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Digitális átalakulás",
+  "type": "grant",
+  "amount": "€5M–€10M",
+  "deadline": "2027-02-17",
+  "rolling": false,
+  "windowOpen": null,
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-02-TOOL-01-two-stage",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases"
+ },
+ {
   "id": "eu-HORIZON-HLTH-2027-01-DISEASE-05",
   "code": "HORIZON-HLTH-2027-01-DISEASE-05",
   "title": "Új kismolekulás antivirális terápiák járványvesélyes kórokozókra",
@@ -10096,6 +10134,42 @@
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
   "titleOriginal": "Development of novel small molecule antiviral therapeutics for pathogens with epidemic potential"
+ },
+ {
+  "id": "eu-HORIZON-HLTH-2027-01-DISEASE-10",
+  "code": "HORIZON-HLTH-2027-01-DISEASE-10",
+  "title": "Krónikus nem fertőző betegségek megelőzése gyermekeknél és fiataloknál",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "€3M–€11M",
+  "deadline": "2027-02-17",
+  "rolling": false,
+  "windowOpen": null,
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-01-DISEASE-10",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)"
  },
  {
   "id": "eu-EMFAF-2027-PIA-ScientificAdviceFisheries",
@@ -11892,6 +11966,42 @@
   "titleOriginal": "EIC STEP Defence"
  },
  {
+  "id": "eu-HORIZON-INFRA-2027-DEV-01-03",
+  "code": "HORIZON-INFRA-2027-DEV-01-03",
+  "title": "Páneurópai kutatási infrastruktúrák egyéni támogatása és fenntarthatósága",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "€1.5M–€40M",
+  "deadline": "2027-06-15",
+  "rolling": false,
+  "windowOpen": "2027-03-09",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-INFRA-2027-DEV-01-03",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Consolidation of the research infrastructure landscape – individual support for evolution, long-term sustainability and emerging needs of pan-European research infrastructures"
+ },
+ {
   "id": "eu-HORIZON-INFRA-2027-SERV-01-03",
   "code": "HORIZON-INFRA-2027-SERV-01-03",
   "title": "Kutatási infrastruktúrák összekapcsolása az Európai Kutatási Térségben",
@@ -11926,6 +12036,114 @@
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
   "titleOriginal": "Connecting research infrastructures and a wider user community across the European Research Area through access to advanced research infrastructure services"
+ },
+ {
+  "id": "eu-HORIZON-INFRA-2027-SERV-01-02",
+  "code": "HORIZON-INFRA-2027-SERV-01-02",
+  "title": "Kutatási infrastruktúrák elérése az EU prioritásaihoz",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "€1.5M–€40M",
+  "deadline": "2027-06-15",
+  "rolling": false,
+  "windowOpen": "2027-03-09",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-INFRA-2027-SERV-01-02",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Access to research infrastructure services to enable R&I addressing EU priorities and emerging challenges"
+ },
+ {
+  "id": "eu-HORIZON-INFRA-2027-DEV-01-02",
+  "code": "HORIZON-INFRA-2027-DEV-01-02",
+  "title": "Páneurópai kutatási infrastruktúrák szinergiáinak fejlesztése",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "€1.5M–€40M",
+  "deadline": "2027-06-15",
+  "rolling": false,
+  "windowOpen": "2027-03-09",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-INFRA-2027-DEV-01-02",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Consolidation of the research infrastructure landscape – development of complementarities, synergies and/or integration between a set of pan-European research infrastructures"
+ },
+ {
+  "id": "eu-HORIZON-INFRA-2027-SERV-01-01",
+  "code": "HORIZON-INFRA-2027-SERV-01-01",
+  "title": "Kutatási infrastruktúrák és szolgáltatások nagyszabású pilot projektjei",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "€1.5M–€40M",
+  "deadline": "2027-06-15",
+  "rolling": false,
+  "windowOpen": "2027-03-09",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-INFRA-2027-SERV-01-01",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Access to research infrastructures, their resources and services: large-scale pilots for more integrated scheme across (sub)domains"
  },
  {
   "id": "eu-HORIZON-INFRA-2027-TECH-01-02",
@@ -12000,42 +12218,6 @@
   "titleOriginal": "Testing and optimising models of co-creation of advanced research infrastructure technologies"
  },
  {
-  "id": "eu-HORIZON-BRIDGING-2027-03-06",
-  "code": "HORIZON-BRIDGING-2027-03-06",
-  "title": "Kutatási infrastruktúrák elérése az ipari igények kielégítésére",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Mezőgazdaság",
-  "type": "grant",
-  "amount": "€1.5M–€8M",
-  "deadline": "2027-06-15",
-  "rolling": false,
-  "windowOpen": "2027-03-09",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-BRIDGING-2027-03-06",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Access to research infrastructure services to enable R&I addressing industry needs in priority areas"
- },
- {
   "id": "eu-HORIZON-BRIDGING-2027-03-04",
   "code": "HORIZON-BRIDGING-2027-03-04",
   "title": "Kritikus kutatási adatok és tudástárak hosszú távú rezilienciája",
@@ -12072,20 +12254,20 @@
   "titleOriginal": "Supporting the long-term resilience and European sovereignty of critical research data and knowledge repositories and scientific services for the life sciences"
  },
  {
-  "id": "eu-HORIZON-INFRA-2027-SERV-01-02",
-  "code": "HORIZON-INFRA-2027-SERV-01-02",
-  "title": "Kutatási infrastruktúrák elérése az EU prioritásaihoz",
+  "id": "eu-HORIZON-BRIDGING-2027-03-06",
+  "code": "HORIZON-BRIDGING-2027-03-06",
+  "title": "Kutatási infrastruktúrák elérése az ipari igények kielégítésére",
   "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "KKV fejlesztés",
+  "cat": "Mezőgazdaság",
   "type": "grant",
-  "amount": "€1.5M–€40M",
+  "amount": "€1.5M–€8M",
   "deadline": "2027-06-15",
   "rolling": false,
   "windowOpen": "2027-03-09",
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-INFRA-2027-SERV-01-02",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-BRIDGING-2027-03-06",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -12105,115 +12287,7 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Access to research infrastructure services to enable R&I addressing EU priorities and emerging challenges"
- },
- {
-  "id": "eu-HORIZON-INFRA-2027-SERV-01-01",
-  "code": "HORIZON-INFRA-2027-SERV-01-01",
-  "title": "Kutatási infrastruktúrák és szolgáltatások nagyszabású pilot projektjei",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "KKV fejlesztés",
-  "type": "grant",
-  "amount": "€1.5M–€40M",
-  "deadline": "2027-06-15",
-  "rolling": false,
-  "windowOpen": "2027-03-09",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-INFRA-2027-SERV-01-01",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Access to research infrastructures, their resources and services: large-scale pilots for more integrated scheme across (sub)domains"
- },
- {
-  "id": "eu-HORIZON-INFRA-2027-DEV-01-02",
-  "code": "HORIZON-INFRA-2027-DEV-01-02",
-  "title": "Páneurópai kutatási infrastruktúrák szinergiáinak fejlesztése",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "KKV fejlesztés",
-  "type": "grant",
-  "amount": "€1.5M–€40M",
-  "deadline": "2027-06-15",
-  "rolling": false,
-  "windowOpen": "2027-03-09",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-INFRA-2027-DEV-01-02",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Consolidation of the research infrastructure landscape – development of complementarities, synergies and/or integration between a set of pan-European research infrastructures"
- },
- {
-  "id": "eu-HORIZON-INFRA-2027-DEV-01-03",
-  "code": "HORIZON-INFRA-2027-DEV-01-03",
-  "title": "Páneurópai kutatási infrastruktúrák egyéni támogatása és fenntarthatósága",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "KKV fejlesztés",
-  "type": "grant",
-  "amount": "€1.5M–€40M",
-  "deadline": "2027-06-15",
-  "rolling": false,
-  "windowOpen": "2027-03-09",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-INFRA-2027-DEV-01-03",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Consolidation of the research infrastructure landscape – individual support for evolution, long-term sustainability and emerging needs of pan-European research infrastructures"
+  "titleOriginal": "Access to research infrastructure services to enable R&I addressing industry needs in priority areas"
  },
  {
   "id": "eu-CREA-MEDIA-2027-FILMSALES",
@@ -12312,42 +12386,6 @@
   }
  },
  {
-  "id": "eu-HORIZON-CL4-2027-SPACE-03-33",
-  "code": "HORIZON-CL4-2027-SPACE-03-33",
-  "title": "Digitális alapelemek a Földmegfigyeléshez és űrtávközléshez",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Digitális átalakulás",
-  "type": "grant",
-  "amount": "€1.5M–€15M",
-  "deadline": "2027-09-02",
-  "rolling": false,
-  "windowOpen": "2027-03-09",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-SPACE-03-33",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Digital enablers and building blocks for collaborative Earth Observation and Satellite telecommunications for Space solutions (Space Partnership)"
- },
- {
   "id": "eu-HORIZON-CL4-2027-SPACE-03-71",
   "code": "HORIZON-CL4-2027-SPACE-03-71",
   "title": "Kvantum űrgravimetriás téma",
@@ -12382,6 +12420,42 @@
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
   "titleOriginal": "Quantum Space Gravimetry topic"
+ },
+ {
+  "id": "eu-HORIZON-CL4-2027-SPACE-03-33",
+  "code": "HORIZON-CL4-2027-SPACE-03-33",
+  "title": "Digitális alapelemek a Földmegfigyeléshez és űrtávközléshez",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Digitális átalakulás",
+  "type": "grant",
+  "amount": "€1.5M–€15M",
+  "deadline": "2027-09-02",
+  "rolling": false,
+  "windowOpen": "2027-03-09",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-SPACE-03-33",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Digital enablers and building blocks for collaborative Earth Observation and Satellite telecommunications for Space solutions (Space Partnership)"
  },
  {
   "id": "eu-HORIZON-CL4-2027-SPACE-03-21",
@@ -12564,6 +12638,42 @@
   "titleOriginal": "Secure Computing Continuum (IoT, Edge, Cloud, Data spaces)"
  },
  {
+  "id": "eu-HORIZON-CL3-2027-02-CS-ECCC-04",
+  "code": "HORIZON-CL3-2027-02-CS-ECCC-04",
+  "title": "Új protokollok hibrid klasszikus és kvantumhálózatokhoz",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Digitális átalakulás",
+  "type": "grant",
+  "amount": "€3M–€5M",
+  "deadline": "2027-09-15",
+  "rolling": false,
+  "windowOpen": "2027-03-02",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-02-CS-ECCC-04",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "New primitives and protocols for functionalities of future hybrid classical-hybrid and quantum networks"
+ },
+ {
   "id": "eu-HORIZON-CL3-2027-02-CS-ECCC-03",
   "code": "HORIZON-CL3-2027-02-CS-ECCC-03",
   "title": "Biztonságos PQC-implementációk és posztkvantum digitális bizalom",
@@ -12634,42 +12744,6 @@
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
   "titleOriginal": "Artificial Intelligence for Cybersecurity applications"
- },
- {
-  "id": "eu-HORIZON-CL3-2027-02-CS-ECCC-04",
-  "code": "HORIZON-CL3-2027-02-CS-ECCC-04",
-  "title": "Új protokollok hibrid klasszikus és kvantumhálózatokhoz",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Digitális átalakulás",
-  "type": "grant",
-  "amount": "€3M–€5M",
-  "deadline": "2027-09-15",
-  "rolling": false,
-  "windowOpen": "2027-03-02",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-02-CS-ECCC-04",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "New primitives and protocols for functionalities of future hybrid classical-hybrid and quantum networks"
  },
  {
   "id": "eu-HORIZON-CID-2027-01-02",
@@ -12816,11 +12890,11 @@
   "titleOriginal": "Advancing interdisciplinary, data-driven research at the biodiversity- health interface under a One Health approach"
  },
  {
-  "id": "eu-HORIZON-MISS-2027-02-CANCER-01",
-  "code": "HORIZON-MISS-2027-02-CANCER-01",
-  "title": "Funkcionális genomika alkalmazása a rákkezelési célpontok feltárására",
+  "id": "eu-HORIZON-MISS-2027-02-CANCER-03",
+  "code": "HORIZON-MISS-2027-02-CANCER-03",
+  "title": "Klinikai fázisú vizsgálatok ritka rákbetegségek kezelésére",
   "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "KKV fejlesztés",
+  "cat": "Digitális átalakulás",
   "type": "grant",
   "amount": "€3M–€10M",
   "deadline": "2027-09-16",
@@ -12829,7 +12903,7 @@
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-01",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-03",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -12849,7 +12923,43 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Leveraging functional genomics to reveal novel targets for cancer treatment"
+  "titleOriginal": "Phase 1 including first-in-human clinical trials to test biomarker-guided medicines or multi-modal treatment interventions for patients with rare or very rare cancers or cancer subtypes"
+ },
+ {
+  "id": "eu-HORIZON-MISS-2027-02-CANCER-02",
+  "code": "HORIZON-MISS-2027-02-CANCER-02",
+  "title": "Klinikai kutatások átfogó rákászati infrastruktúrák által",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Digitális átalakulás",
+  "type": "grant",
+  "amount": "€3M–€10M",
+  "deadline": "2027-09-16",
+  "rolling": false,
+  "windowOpen": "2027-02-10",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-02",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Clinical research by Comprehensive Cancer Infrastructures for the benefit of patients with common cancers"
  },
  {
   "id": "eu-HORIZON-MISS-2027-02-CANCER-04",
@@ -12924,11 +13034,11 @@
   "titleOriginal": "Pre-commercial procurement of affordable solutions for healthcare systems in the areas of cancer technologies, cancer medical devices, or cancer medicines"
  },
  {
-  "id": "eu-HORIZON-MISS-2027-02-CANCER-02",
-  "code": "HORIZON-MISS-2027-02-CANCER-02",
-  "title": "Klinikai kutatások átfogó rákászati infrastruktúrák által",
+  "id": "eu-HORIZON-MISS-2027-02-CANCER-01",
+  "code": "HORIZON-MISS-2027-02-CANCER-01",
+  "title": "Funkcionális genomika alkalmazása a rákkezelési célpontok feltárására",
   "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Digitális átalakulás",
+  "cat": "KKV fejlesztés",
   "type": "grant",
   "amount": "€3M–€10M",
   "deadline": "2027-09-16",
@@ -12937,7 +13047,7 @@
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-02",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-01",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -12957,43 +13067,7 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Clinical research by Comprehensive Cancer Infrastructures for the benefit of patients with common cancers"
- },
- {
-  "id": "eu-HORIZON-MISS-2027-02-CANCER-03",
-  "code": "HORIZON-MISS-2027-02-CANCER-03",
-  "title": "Klinikai fázisú vizsgálatok ritka rákbetegségek kezelésére",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Digitális átalakulás",
-  "type": "grant",
-  "amount": "€3M–€10M",
-  "deadline": "2027-09-16",
-  "rolling": false,
-  "windowOpen": "2027-02-10",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-03",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Phase 1 including first-in-human clinical trials to test biomarker-guided medicines or multi-modal treatment interventions for patients with rare or very rare cancers or cancer subtypes"
+  "titleOriginal": "Leveraging functional genomics to reveal novel targets for cancer treatment"
  },
  {
   "id": "eu-HORIZON-MISS-2027-06-SOIL-CANCER",
@@ -13032,20 +13106,20 @@
   "titleOriginal": "Living labs to monitor and mitigate carcinogenic substances in and originating from soils: Evaluating their effects on human cancer risks"
  },
  {
-  "id": "eu-HORIZON-MISS-2027-03-OCEAN-05",
-  "code": "HORIZON-MISS-2027-03-OCEAN-05",
-  "title": "Kék erdő ökoszisztémák helyreállítása európai tengeri medencékben",
+  "id": "eu-HORIZON-MISS-2027-01-CLIMA-01",
+  "code": "HORIZON-MISS-2027-01-CLIMA-01",
+  "title": "Transzformatív megoldások a határokon átívelő klímarezilienciáért",
   "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Mezőgazdaság",
+  "cat": "Környezetvédelem",
   "type": "grant",
-  "amount": "€1M–€8.93M",
+  "amount": "€3M–€15M",
   "deadline": "2027-09-21",
   "rolling": false,
   "windowOpen": "2027-02-09",
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-03-OCEAN-05",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-01-CLIMA-01",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -13065,7 +13139,7 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Large-scale demonstration of protection, restoration and management of blue forest ecosystems in European sea basins"
+  "titleOriginal": "Demonstrating transformative solutions to increase cross-border climate resilience"
  },
  {
   "id": "eu-HORIZON-MISS-2027-01-CLIMA-02",
@@ -13104,45 +13178,9 @@
   "titleOriginal": "Researching and applying the potential of Artificial Intelligence to foster climate resilience at the regional and local levels"
  },
  {
-  "id": "eu-HORIZON-MISS-2027-01-CLIMA-01",
-  "code": "HORIZON-MISS-2027-01-CLIMA-01",
-  "title": "Transzformatív megoldások a határokon átívelő klímarezilienciáért",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Környezetvédelem",
-  "type": "grant",
-  "amount": "€3M–€15M",
-  "deadline": "2027-09-21",
-  "rolling": false,
-  "windowOpen": "2027-02-09",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-01-CLIMA-01",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Demonstrating transformative solutions to increase cross-border climate resilience"
- },
- {
-  "id": "eu-HORIZON-MISS-2027-03-OCEAN-01",
-  "code": "HORIZON-MISS-2027-03-OCEAN-01",
-  "title": "Part menti területek és városok klímaváltozási rezilienciájának növelése",
+  "id": "eu-HORIZON-MISS-2027-03-OCEAN-02",
+  "code": "HORIZON-MISS-2027-03-OCEAN-02",
+  "title": "A tengeri élelmiszerek ellátási láncának körkörössége",
   "issuer": "Európai Bizottság — Horizon Europe",
   "cat": "Mezőgazdaság",
   "type": "grant",
@@ -13153,7 +13191,7 @@
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-03-OCEAN-01",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-03-OCEAN-02",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -13173,7 +13211,7 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Increasing riparian and coastal areas resilience to climate change, including in waterfront cities and islands."
+  "titleOriginal": "Circularity of seafood supply chain"
  },
  {
   "id": "eu-HORIZON-MISS-2027-03-OCEAN-03",
@@ -13212,9 +13250,9 @@
   "titleOriginal": "Green, circular and resilient harbours"
  },
  {
-  "id": "eu-HORIZON-MISS-2027-03-OCEAN-02",
-  "code": "HORIZON-MISS-2027-03-OCEAN-02",
-  "title": "A tengeri élelmiszerek ellátási láncának körkörössége",
+  "id": "eu-HORIZON-MISS-2027-03-OCEAN-01",
+  "code": "HORIZON-MISS-2027-03-OCEAN-01",
+  "title": "Part menti területek és városok klímaváltozási rezilienciájának növelése",
   "issuer": "Európai Bizottság — Horizon Europe",
   "cat": "Mezőgazdaság",
   "type": "grant",
@@ -13225,7 +13263,7 @@
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-03-OCEAN-02",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-03-OCEAN-01",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -13245,23 +13283,23 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Circularity of seafood supply chain"
+  "titleOriginal": "Increasing riparian and coastal areas resilience to climate change, including in waterfront cities and islands."
  },
  {
-  "id": "eu-HORIZON-CL6-2027-01-BIODIV-01",
-  "code": "HORIZON-CL6-2027-01-BIODIV-01",
-  "title": "Távérzékelés és helyszíni biodiverzitási megfigyelések integrálása",
+  "id": "eu-HORIZON-MISS-2027-03-OCEAN-05",
+  "code": "HORIZON-MISS-2027-03-OCEAN-05",
+  "title": "Kék erdő ökoszisztémák helyreállítása európai tengeri medencékben",
   "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Digitális átalakulás",
+  "cat": "Mezőgazdaság",
   "type": "grant",
-  "amount": "€3M–€8M",
-  "deadline": "2027-09-22",
+  "amount": "€1M–€8.93M",
+  "deadline": "2027-09-21",
   "rolling": false,
-  "windowOpen": "2027-04-20",
+  "windowOpen": "2027-02-09",
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-01-BIODIV-01",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-03-OCEAN-05",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -13281,12 +13319,12 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Integrating Remote Sensing and in-situ observations of Biodiversity, towards a fully interoperable observation and data framework"
+  "titleOriginal": "Large-scale demonstration of protection, restoration and management of blue forest ecosystems in European sea basins"
  },
  {
-  "id": "eu-HORIZON-CL6-2027-01-ZEROPOLLUTION-03",
-  "code": "HORIZON-CL6-2027-01-ZEROPOLLUTION-03",
-  "title": "Mezőgazdasági légszennyezés monitoringjának és csökkentésének fejlesztése",
+  "id": "eu-HORIZON-CL6-2027-01-BIODIV-09",
+  "code": "HORIZON-CL6-2027-01-BIODIV-09",
+  "title": "Ökologikus növénynemesítés versenyképességének növelése",
   "issuer": "Európai Bizottság — Horizon Europe",
   "cat": "Mezőgazdaság",
   "type": "grant",
@@ -13297,7 +13335,7 @@
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-01-ZEROPOLLUTION-03",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-01-BIODIV-09",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -13317,7 +13355,43 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Improve the capacity to monitor and reduce air pollution from agriculture"
+  "titleOriginal": "Enhancing the competitiveness of organic crop breeding: focus on intercropping adapted varieties"
+ },
+ {
+  "id": "eu-HORIZON-CL6-2027-01-BIODIV-08",
+  "code": "HORIZON-CL6-2027-01-BIODIV-08",
+  "title": "Mezei madarak és emlősök szerepe az élelmiszer-termelésben",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Mezőgazdaság",
+  "type": "grant",
+  "amount": "€3M–€8M",
+  "deadline": "2027-09-22",
+  "rolling": false,
+  "windowOpen": "2027-04-20",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-01-BIODIV-08",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Fostering common farmland birds and mammals for resilient food production systems"
  },
  {
   "id": "eu-HORIZON-CL6-2027-01-ZEROPOLLUTION-01",
@@ -13426,42 +13500,6 @@
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
   "titleOriginal": "Towards a Europe of Bioeconomy Places"
- },
- {
-  "id": "eu-HORIZON-CL6-2027-01-BIODIV-08",
-  "code": "HORIZON-CL6-2027-01-BIODIV-08",
-  "title": "Mezei madarak és emlősök szerepe az élelmiszer-termelésben",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Mezőgazdaság",
-  "type": "grant",
-  "amount": "€3M–€8M",
-  "deadline": "2027-09-22",
-  "rolling": false,
-  "windowOpen": "2027-04-20",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-01-BIODIV-08",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Fostering common farmland birds and mammals for resilient food production systems"
  },
  {
   "id": "eu-HORIZON-CL6-2027-01-BIODIV-07",
@@ -13750,42 +13788,6 @@
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
   "titleOriginal": "Strengthening forest research for the support of Ukraine"
- },
- {
-  "id": "eu-HORIZON-CL6-2027-01-BIODIV-09",
-  "code": "HORIZON-CL6-2027-01-BIODIV-09",
-  "title": "Ökologikus növénynemesítés versenyképességének növelése",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Mezőgazdaság",
-  "type": "grant",
-  "amount": "€3M–€8M",
-  "deadline": "2027-09-22",
-  "rolling": false,
-  "windowOpen": "2027-04-20",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-01-BIODIV-09",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Enhancing the competitiveness of organic crop breeding: focus on intercropping adapted varieties"
  },
  {
   "id": "eu-HORIZON-MISS-2027-07-CLIMA-CIT-NEB-01",
@@ -14112,6 +14114,150 @@
   "titleOriginal": "Impact of in-kind benefits on income distribution and on vulnerable populations"
  },
  {
+  "id": "eu-HORIZON-CL2-2027-01-HERITAGE-05",
+  "code": "HORIZON-CL2-2027-01-HERITAGE-05",
+  "title": "Kreatív gazdaság és szociális gazdaság kapcsolata",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Turizmus",
+  "type": "grant",
+  "amount": "€2.5M–€5M",
+  "deadline": "2027-09-23",
+  "rolling": false,
+  "windowOpen": "2027-05-13",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-HERITAGE-05",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
+ },
+ {
+  "id": "eu-HORIZON-CL2-2027-01-HERITAGE-06",
+  "code": "HORIZON-CL2-2027-01-HERITAGE-06",
+  "title": "Fenntartható kulturális turizmus jövőálló tényezői",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Digitális átalakulás",
+  "type": "grant",
+  "amount": "€2.5M–€5M",
+  "deadline": "2027-09-23",
+  "rolling": false,
+  "windowOpen": "2027-05-13",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-HERITAGE-06",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Future-proofing sustainable cultural tourism"
+ },
+ {
+  "id": "eu-HORIZON-CL6-2027-02-CLIMATE-04",
+  "code": "HORIZON-CL6-2027-02-CLIMATE-04",
+  "title": "Az Antarktisz és a Déli-óceán biztonságos működési tere",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Környezetvédelem",
+  "type": "grant",
+  "amount": "€5M–€11M",
+  "deadline": "2027-09-23",
+  "rolling": false,
+  "windowOpen": "2027-04-20",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-CLIMATE-04",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Unlocking a safe operating space for Antarctica and the Southern Ocean"
+ },
+ {
+  "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-01",
+  "code": "HORIZON-CL6-2027-02-FARM2FORK-01",
+  "title": "Mezőgazdasági reziliencia növelése vízhiányos területeken digitális innovációval",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Mezőgazdaság",
+  "type": "grant",
+  "amount": "€5M–€11M",
+  "deadline": "2027-09-23",
+  "rolling": false,
+  "windowOpen": "2027-04-20",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-FARM2FORK-01",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
+ },
+ {
   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-07",
   "code": "HORIZON-CL2-2027-01-TRANSFO-07",
   "title": "Fogyatékkal élők munkaerő-piaci integrációja",
@@ -14184,20 +14330,20 @@
   "titleOriginal": "Rethinking sustainable competitiveness beyond traditional perspectives: role and contribution of the Social Economy"
  },
  {
-  "id": "eu-HORIZON-CL2-2027-01-HERITAGE-08",
-  "code": "HORIZON-CL2-2027-01-HERITAGE-08",
-  "title": "Szellemi kulturális örökség megőrzése és átadása",
+  "id": "eu-HORIZON-CL6-2027-02-CLIMATE-03",
+  "code": "HORIZON-CL6-2027-02-CLIMATE-03",
+  "title": "Szén-dioxid-gazdálkodási innováció és bővítés",
   "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Turizmus",
+  "cat": "Mezőgazdaság",
   "type": "grant",
-  "amount": "€2.5M–€5M",
+  "amount": "€5M–€11M",
   "deadline": "2027-09-23",
   "rolling": false,
-  "windowOpen": "2027-05-13",
+  "windowOpen": "2027-04-20",
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-HERITAGE-08",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-CLIMATE-03",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -14217,7 +14363,223 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Safeguarding & transmission of intangible cultural heritage"
+  "titleOriginal": "Carbon farming innovation and scale-up"
+ },
+ {
+  "id": "eu-HORIZON-CL6-2027-02-CLIMATE-02",
+  "code": "HORIZON-CL6-2027-02-CLIMATE-02",
+  "title": "Bizonyítékokon alapuló politikák az európai agrárium válságállóságáért",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Mezőgazdaság",
+  "type": "grant",
+  "amount": "€5M–€11M",
+  "deadline": "2027-09-23",
+  "rolling": false,
+  "windowOpen": "2027-04-20",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-CLIMATE-02",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
+ },
+ {
+  "id": "eu-HORIZON-CL6-2027-02-CLIMATE-01",
+  "code": "HORIZON-CL6-2027-02-CLIMATE-01",
+  "title": "A jövőbeli jégmentes Arktisz kormányzása és fenntarthatósága",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Környezetvédelem",
+  "type": "grant",
+  "amount": "€5M–€11M",
+  "deadline": "2027-09-23",
+  "rolling": false,
+  "windowOpen": "2027-04-20",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-CLIMATE-01",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Governance, sustainable development and international politics of a future ice-free Arctic"
+ },
+ {
+  "id": "eu-HORIZON-CL6-2027-02-COMMUNITIES-01",
+  "code": "HORIZON-CL6-2027-02-COMMUNITIES-01",
+  "title": "Vidéki közösségek rezilienciájának erősítése",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Mezőgazdaság",
+  "type": "grant",
+  "amount": "€5M–€11M",
+  "deadline": "2027-09-23",
+  "rolling": false,
+  "windowOpen": "2027-04-20",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-COMMUNITIES-01",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Strengthening rural communities' resilience to shocks"
+ },
+ {
+  "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-03",
+  "code": "HORIZON-CL6-2027-02-FARM2FORK-03",
+  "title": "Mikrobiom a szárazföldi állattenyésztés fenntarthatóságáért",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Mezőgazdaság",
+  "type": "grant",
+  "amount": "€5M–€11M",
+  "deadline": "2027-09-23",
+  "rolling": false,
+  "windowOpen": "2027-04-20",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-FARM2FORK-03",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
+ },
+ {
+  "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-08",
+  "code": "HORIZON-CL6-2027-02-FARM2FORK-08",
+  "title": "AI-alapú foodome jellemzés",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Mezőgazdaság",
+  "type": "grant",
+  "amount": "€5M–€11M",
+  "deadline": "2027-09-23",
+  "rolling": false,
+  "windowOpen": "2027-04-20",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-FARM2FORK-08",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "AI-powered foodome characterization"
+ },
+ {
+  "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-05",
+  "code": "HORIZON-CL2-2027-01-DEMOCRACY-05",
+  "title": "Fejlesztési segélyek és demokratikus kormányzás",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Mezőgazdaság",
+  "type": "grant",
+  "amount": "€2.5M–€5M",
+  "deadline": "2027-09-23",
+  "rolling": false,
+  "windowOpen": "2027-05-13",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-DEMOCRACY-05",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Development aid and democratic governance"
  },
  {
   "id": "eu-HORIZON-CL2-2027-01-TRANSFO-08",
@@ -14292,9 +14654,9 @@
   "titleOriginal": "Identifying user-focused solutions to support news media freedom"
  },
  {
-  "id": "eu-HORIZON-CL2-2027-01-TRANSFO-04",
-  "code": "HORIZON-CL2-2027-01-TRANSFO-04",
-  "title": "EU-s munkaerő-mobilitás hatása a tagállamokra",
+  "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-07",
+  "code": "HORIZON-CL2-2027-01-DEMOCRACY-07",
+  "title": "Magánvállalatok szerepe a demokráciában",
   "issuer": "Európai Bizottság — Horizon Europe",
   "cat": "Turizmus",
   "type": "grant",
@@ -14305,7 +14667,7 @@
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-TRANSFO-04",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-DEMOCRACY-07",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -14325,187 +14687,7 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "The impact of EU labour mobility on the Member States of the EU"
- },
- {
-  "id": "eu-HORIZON-CL2-2027-01-HERITAGE-05",
-  "code": "HORIZON-CL2-2027-01-HERITAGE-05",
-  "title": "Kreatív gazdaság és szociális gazdaság kapcsolata",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Turizmus",
-  "type": "grant",
-  "amount": "€2.5M–€5M",
-  "deadline": "2027-09-23",
-  "rolling": false,
-  "windowOpen": "2027-05-13",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-HERITAGE-05",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy"
- },
- {
-  "id": "eu-HORIZON-CL2-2027-01-HERITAGE-06",
-  "code": "HORIZON-CL2-2027-01-HERITAGE-06",
-  "title": "Fenntartható kulturális turizmus jövőálló tényezői",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Digitális átalakulás",
-  "type": "grant",
-  "amount": "€2.5M–€5M",
-  "deadline": "2027-09-23",
-  "rolling": false,
-  "windowOpen": "2027-05-13",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-HERITAGE-06",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Future-proofing sustainable cultural tourism"
- },
- {
-  "id": "eu-HORIZON-CL6-2027-02-COMMUNITIES-01",
-  "code": "HORIZON-CL6-2027-02-COMMUNITIES-01",
-  "title": "Vidéki közösségek rezilienciájának erősítése",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Mezőgazdaság",
-  "type": "grant",
-  "amount": "€5M–€11M",
-  "deadline": "2027-09-23",
-  "rolling": false,
-  "windowOpen": "2027-04-20",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-COMMUNITIES-01",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Strengthening rural communities' resilience to shocks"
- },
- {
-  "id": "eu-HORIZON-CL2-2027-01-TRANSFO-01",
-  "code": "HORIZON-CL2-2027-01-TRANSFO-01",
-  "title": "Természetalapú környezet hatása a társadalmi kohézióra",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Környezetvédelem",
-  "type": "grant",
-  "amount": "€2.5M–€5M",
-  "deadline": "2027-09-23",
-  "rolling": false,
-  "windowOpen": "2027-05-13",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-TRANSFO-01",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Impact of access to nature-positive environments in promoting social cohesion and reducing inequalities in urban and peri-urban settings"
- },
- {
-  "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-03",
-  "code": "HORIZON-CL2-2027-01-DEMOCRACY-03",
-  "title": "Diákok és családok bevonása a demokratikus kultúrába",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Turizmus",
-  "type": "grant",
-  "amount": "€2.5M–€5M",
-  "deadline": "2027-09-23",
-  "rolling": false,
-  "windowOpen": "2027-05-13",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-DEMOCRACY-03",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Student and family engagement for developing a culture of democratic/civic participation"
+  "titleOriginal": "The role of private companies in democracy"
  },
  {
   "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-08",
@@ -14544,9 +14726,9 @@
   "titleOriginal": "Global Human Rights and EU values"
  },
  {
-  "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-07",
-  "code": "HORIZON-CL2-2027-01-DEMOCRACY-07",
-  "title": "Magánvállalatok szerepe a demokráciában",
+  "id": "eu-HORIZON-CL2-2027-01-HERITAGE-08",
+  "code": "HORIZON-CL2-2027-01-HERITAGE-08",
+  "title": "Szellemi kulturális örökség megőrzése és átadása",
   "issuer": "Európai Bizottság — Horizon Europe",
   "cat": "Turizmus",
   "type": "grant",
@@ -14557,7 +14739,7 @@
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-DEMOCRACY-07",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-HERITAGE-08",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -14577,14 +14759,14 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "The role of private companies in democracy"
+  "titleOriginal": "Safeguarding & transmission of intangible cultural heritage"
  },
  {
-  "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-05",
-  "code": "HORIZON-CL2-2027-01-DEMOCRACY-05",
-  "title": "Fejlesztési segélyek és demokratikus kormányzás",
+  "id": "eu-HORIZON-CL2-2027-01-DEMOCRACY-03",
+  "code": "HORIZON-CL2-2027-01-DEMOCRACY-03",
+  "title": "Diákok és családok bevonása a demokratikus kultúrába",
   "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Mezőgazdaság",
+  "cat": "Turizmus",
   "type": "grant",
   "amount": "€2.5M–€5M",
   "deadline": "2027-09-23",
@@ -14593,7 +14775,7 @@
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-DEMOCRACY-05",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-DEMOCRACY-03",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -14613,23 +14795,23 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Development aid and democratic governance"
+  "titleOriginal": "Student and family engagement for developing a culture of democratic/civic participation"
  },
  {
-  "id": "eu-HORIZON-CL5-2027-06-D6-04",
-  "code": "HORIZON-CL5-2027-06-D6-04",
-  "title": "Megoldások az önvezető közlekedés integrációjához",
+  "id": "eu-HORIZON-CL2-2027-01-TRANSFO-01",
+  "code": "HORIZON-CL2-2027-01-TRANSFO-01",
+  "title": "Természetalapú környezet hatása a társadalmi kohézióra",
   "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "KKV fejlesztés",
+  "cat": "Környezetvédelem",
   "type": "grant",
-  "amount": "€1.6M–€7M",
-  "deadline": "2027-10-07",
+  "amount": "€2.5M–€5M",
+  "deadline": "2027-09-23",
   "rolling": false,
-  "windowOpen": "2027-06-03",
+  "windowOpen": "2027-05-13",
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL5-2027-06-D6-04",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-TRANSFO-01",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -14649,7 +14831,43 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Holistic solutions for CCAM integration in critical scenarios (CCAM Partnership)"
+  "titleOriginal": "Impact of access to nature-positive environments in promoting social cohesion and reducing inequalities in urban and peri-urban settings"
+ },
+ {
+  "id": "eu-HORIZON-CL2-2027-01-TRANSFO-04",
+  "code": "HORIZON-CL2-2027-01-TRANSFO-04",
+  "title": "EU-s munkaerő-mobilitás hatása a tagállamokra",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Turizmus",
+  "type": "grant",
+  "amount": "€2.5M–€5M",
+  "deadline": "2027-09-23",
+  "rolling": false,
+  "windowOpen": "2027-05-13",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-01-TRANSFO-04",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "The impact of EU labour mobility on the Member States of the EU"
  },
  {
   "id": "eu-HORIZON-CL5-2027-06-D6-11",
@@ -14724,20 +14942,20 @@
   "titleOriginal": "Enhancing Mobility for All: affordable, reliable, and accessible multimodal transport for inclusive rural and urban connectivity – Societal Readiness pilot"
  },
  {
-  "id": "eu-HORIZON-MISS-2027-04-CIT-03",
-  "code": "HORIZON-MISS-2027-04-CIT-03",
-  "title": "Fenntartható és inkluzív városi utasszállítási csomópontok",
+  "id": "eu-HORIZON-CL5-2027-06-D6-04",
+  "code": "HORIZON-CL5-2027-06-D6-04",
+  "title": "Megoldások az önvezető közlekedés integrációjához",
   "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Környezetvédelem",
+  "cat": "KKV fejlesztés",
   "type": "grant",
-  "amount": "€5M–€9M",
+  "amount": "€1.6M–€7M",
   "deadline": "2027-10-07",
   "rolling": false,
-  "windowOpen": "2027-02-09",
+  "windowOpen": "2027-06-03",
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-04-CIT-03",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL5-2027-06-D6-04",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -14757,7 +14975,7 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Inclusive and climate resilient multimodal passenger hubs enhancing modal shift towards sustainable transport and shared mobility"
+  "titleOriginal": "Holistic solutions for CCAM integration in critical scenarios (CCAM Partnership)"
  },
  {
   "id": "eu-HORIZON-MISS-2027-04-CIT-05",
@@ -14796,20 +15014,20 @@
   "titleOriginal": "Boosting the transformation towards climate-neutral cities, the net-zero economy and open strategic autonomy through Pre-Commercial Procurement (PCP)"
  },
  {
-  "id": "eu-HORIZON-CL3-2027-01-FCT-05",
-  "code": "HORIZON-CL3-2027-01-FCT-05",
-  "title": "Szintetikus drogok terjedése elleni hatékony válaszlépések",
+  "id": "eu-HORIZON-MISS-2027-04-CIT-03",
+  "code": "HORIZON-MISS-2027-04-CIT-03",
+  "title": "Fenntartható és inkluzív városi utasszállítási csomópontok",
   "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "KKV fejlesztés",
+  "cat": "Környezetvédelem",
   "type": "grant",
-  "amount": "€1M–€7.83M",
-  "deadline": "2027-11-04",
+  "amount": "€5M–€9M",
+  "deadline": "2027-10-07",
   "rolling": false,
-  "windowOpen": "2027-05-05",
+  "windowOpen": "2027-02-09",
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-FCT-05",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-04-CIT-03",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -14829,151 +15047,7 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Effective and evidence-based responses to the increased availability and use of synthetic drugs and stimulants in Europe"
- },
- {
-  "id": "eu-HORIZON-CL3-2027-01-BM-01",
-  "code": "HORIZON-CL3-2027-01-BM-01",
-  "title": "Kutatás és innováció az EU külső határainak hatékony, alapvető jogokat tiszteletben tartó kezeléséért",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "KKV fejlesztés",
-  "type": "grant",
-  "amount": "€1M–€7.83M",
-  "deadline": "2027-11-04",
-  "rolling": false,
-  "windowOpen": "2027-05-05",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-BM-01",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Open topic on research and innovation for effective management of EU external borders that promotes fundamental rights and EU values"
- },
- {
-  "id": "eu-HORIZON-CL3-2027-01-BM-02",
-  "code": "HORIZON-CL3-2027-01-BM-02",
-  "title": "Megbízható, biztonságos és minőségi jövőbeli digitális utazási igazolványok",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Digitális átalakulás",
-  "type": "grant",
-  "amount": "€1M–€7.83M",
-  "deadline": "2027-11-04",
-  "rolling": false,
-  "windowOpen": "2027-05-05",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-BM-02",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Trusted, secure, quality future digital travel credentials"
- },
- {
-  "id": "eu-HORIZON-CL3-2027-01-DRS-04",
-  "code": "HORIZON-CL3-2027-01-DRS-04",
-  "title": "Felkészültség növelése a nagyszabású, átnyúló katasztrófákra",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Oktatás",
-  "type": "grant",
-  "amount": "€1M–€7.83M",
-  "deadline": "2027-11-04",
-  "rolling": false,
-  "windowOpen": "2027-05-05",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-DRS-04",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Enhancing preparedness for large-scale cross-border disasters"
- },
- {
-  "id": "eu-HORIZON-CL3-2027-01-FCT-01",
-  "code": "HORIZON-CL3-2027-01-FCT-01",
-  "title": "Online káros hatásokat észlelő és vizsgáló eszközök rövid fejlesztési ciklussal",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Digitális átalakulás",
-  "type": "grant",
-  "amount": "€1M–€7.83M",
-  "deadline": "2027-11-04",
-  "rolling": false,
-  "windowOpen": "2027-05-05",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-FCT-01",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Online harms detection and investigation tools using a short development cycle model"
+  "titleOriginal": "Inclusive and climate resilient multimodal passenger hubs enhancing modal shift towards sustainable transport and shared mobility"
  },
  {
   "id": "eu-HORIZON-CL3-2027-01-SSRI-03",
@@ -15012,45 +15086,9 @@
   "titleOriginal": "Demand-led innovation in security"
  },
  {
-  "id": "eu-HORIZON-CL3-2027-01-DRS-02",
-  "code": "HORIZON-CL3-2027-01-DRS-02",
-  "title": "Társadalmi reziliencia, fiatalok bevonása és digitális innováció a katasztrófavédelemért",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Digitális átalakulás",
-  "type": "grant",
-  "amount": "€1M–€7.83M",
-  "deadline": "2027-11-04",
-  "rolling": false,
-  "windowOpen": "2027-05-05",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-DRS-02",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Societal resilience, engagement of the younger generations and digital innovation for disaster resilience"
- },
- {
-  "id": "eu-HORIZON-CL3-2027-01-FCT-04",
-  "code": "HORIZON-CL3-2027-01-FCT-04",
-  "title": "Nyílt felhívás a polgárok terrorizmus elleni biztonságának növelésére, közterületeken is",
+  "id": "eu-HORIZON-CL3-2027-01-DRS-04",
+  "code": "HORIZON-CL3-2027-01-DRS-04",
+  "title": "Felkészültség növelése a nagyszabású, átnyúló katasztrófákra",
   "issuer": "Európai Bizottság — Horizon Europe",
   "cat": "Oktatás",
   "type": "grant",
@@ -15061,7 +15099,7 @@
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-FCT-04",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-DRS-04",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -15081,79 +15119,7 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Open topic on increasing security of citizens against terrorism, including in public spaces"
- },
- {
-  "id": "eu-HORIZON-CL3-2027-01-FCT-03",
-  "code": "HORIZON-CL3-2027-01-FCT-03",
-  "title": "Bűncselekmények megelőzése, felderítése és elrettentése a társadalmi problémák kezelésére",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Oktatás",
-  "type": "grant",
-  "amount": "€1M–€7.83M",
-  "deadline": "2027-11-04",
-  "rolling": false,
-  "windowOpen": "2027-05-05",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-FCT-03",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Open topic on enhanced prevention, detection and deterrence of societal issues related to various forms of crime"
- },
- {
-  "id": "eu-HORIZON-CL3-2027-01-INFRA-02",
-  "code": "HORIZON-CL3-2027-01-INFRA-02",
-  "title": "Nyílt forráskódú hírszerzés rosszindulatú használatának hatása a kritikus infrastruktúrákra",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "KKV fejlesztés",
-  "type": "grant",
-  "amount": "€1M–€7.83M",
-  "deadline": "2027-11-04",
-  "rolling": false,
-  "windowOpen": "2027-05-05",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-INFRA-02",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Impact of malicious use of Open-Source Intelligence on critical infrastructure business continuity"
+  "titleOriginal": "Enhancing preparedness for large-scale cross-border disasters"
  },
  {
   "id": "eu-HORIZON-CL3-2027-01-FCT-02",
@@ -15192,6 +15158,186 @@
   "titleOriginal": "Community policing in diverse societies in Europe"
  },
  {
+  "id": "eu-HORIZON-CL3-2027-01-BM-02",
+  "code": "HORIZON-CL3-2027-01-BM-02",
+  "title": "Megbízható, biztonságos és minőségi jövőbeli digitális utazási igazolványok",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Digitális átalakulás",
+  "type": "grant",
+  "amount": "€1M–€7.83M",
+  "deadline": "2027-11-04",
+  "rolling": false,
+  "windowOpen": "2027-05-05",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-BM-02",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Trusted, secure, quality future digital travel credentials"
+ },
+ {
+  "id": "eu-HORIZON-CL3-2027-01-INFRA-02",
+  "code": "HORIZON-CL3-2027-01-INFRA-02",
+  "title": "Nyílt forráskódú hírszerzés rosszindulatú használatának hatása a kritikus infrastruktúrákra",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "€1M–€7.83M",
+  "deadline": "2027-11-04",
+  "rolling": false,
+  "windowOpen": "2027-05-05",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-INFRA-02",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Impact of malicious use of Open-Source Intelligence on critical infrastructure business continuity"
+ },
+ {
+  "id": "eu-HORIZON-CL3-2027-01-FCT-04",
+  "code": "HORIZON-CL3-2027-01-FCT-04",
+  "title": "Nyílt felhívás a polgárok terrorizmus elleni biztonságának növelésére, közterületeken is",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Oktatás",
+  "type": "grant",
+  "amount": "€1M–€7.83M",
+  "deadline": "2027-11-04",
+  "rolling": false,
+  "windowOpen": "2027-05-05",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-FCT-04",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Open topic on increasing security of citizens against terrorism, including in public spaces"
+ },
+ {
+  "id": "eu-HORIZON-CL3-2027-01-FCT-01",
+  "code": "HORIZON-CL3-2027-01-FCT-01",
+  "title": "Online káros hatásokat észlelő és vizsgáló eszközök rövid fejlesztési ciklussal",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Digitális átalakulás",
+  "type": "grant",
+  "amount": "€1M–€7.83M",
+  "deadline": "2027-11-04",
+  "rolling": false,
+  "windowOpen": "2027-05-05",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-FCT-01",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Online harms detection and investigation tools using a short development cycle model"
+ },
+ {
+  "id": "eu-HORIZON-CL3-2027-01-DRS-02",
+  "code": "HORIZON-CL3-2027-01-DRS-02",
+  "title": "Társadalmi reziliencia, fiatalok bevonása és digitális innováció a katasztrófavédelemért",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Digitális átalakulás",
+  "type": "grant",
+  "amount": "€1M–€7.83M",
+  "deadline": "2027-11-04",
+  "rolling": false,
+  "windowOpen": "2027-05-05",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-DRS-02",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Societal resilience, engagement of the younger generations and digital innovation for disaster resilience"
+ },
+ {
   "id": "eu-HORIZON-CL3-2027-01-BM-03",
   "code": "HORIZON-CL3-2027-01-BM-03",
   "title": "Fenyegetések vagy illegális és csempészett áruk felderítése rakományokban",
@@ -15226,6 +15372,114 @@
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
   "titleOriginal": "Detection and characterisation of threats or illegal/ smuggled goods in cargo"
+ },
+ {
+  "id": "eu-HORIZON-CL3-2027-01-BM-01",
+  "code": "HORIZON-CL3-2027-01-BM-01",
+  "title": "Kutatás és innováció az EU külső határainak hatékony, alapvető jogokat tiszteletben tartó kezeléséért",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "€1M–€7.83M",
+  "deadline": "2027-11-04",
+  "rolling": false,
+  "windowOpen": "2027-05-05",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-BM-01",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Open topic on research and innovation for effective management of EU external borders that promotes fundamental rights and EU values"
+ },
+ {
+  "id": "eu-HORIZON-CL3-2027-01-FCT-05",
+  "code": "HORIZON-CL3-2027-01-FCT-05",
+  "title": "Szintetikus drogok terjedése elleni hatékony válaszlépések",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "€1M–€7.83M",
+  "deadline": "2027-11-04",
+  "rolling": false,
+  "windowOpen": "2027-05-05",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-FCT-05",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Effective and evidence-based responses to the increased availability and use of synthetic drugs and stimulants in Europe"
+ },
+ {
+  "id": "eu-HORIZON-CL3-2027-01-FCT-03",
+  "code": "HORIZON-CL3-2027-01-FCT-03",
+  "title": "Bűncselekmények megelőzése, felderítése és elrettentése a társadalmi problémák kezelésére",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Oktatás",
+  "type": "grant",
+  "amount": "€1M–€7.83M",
+  "deadline": "2027-11-04",
+  "rolling": false,
+  "windowOpen": "2027-05-05",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-FCT-03",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Open topic on enhanced prevention, detection and deterrence of societal issues related to various forms of crime"
  },
  {
   "id": "eu-HORIZON-MSCA-2027-DN-01-01",
@@ -15300,20 +15554,20 @@
   "titleOriginal": "EIC STEP Scale Up"
  },
  {
-  "id": "eu-HORIZON-CL5-2027-07-D3-25",
-  "code": "HORIZON-CL5-2027-07-D3-25",
-  "title": "Fejlett TSO vezérlőtermek a hálózat átláthatóságáért, stabilitásáért és rezilienciájáért",
+  "id": "eu-HORIZON-NEB-2027-01-REGEN-04",
+  "code": "HORIZON-NEB-2027-01-REGEN-04",
+  "title": "Támogató környezetek egy fenntartható és körforgásos építőiparért",
   "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Energiahatékonyság",
+  "cat": "Környezetvédelem",
   "type": "grant",
-  "amount": "€6M–€10M",
+  "amount": "€3.5M–€5.38M",
   "deadline": "2027-12-01",
   "rolling": false,
-  "windowOpen": "2027-08-04",
+  "windowOpen": "2027-05-05",
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL5-2027-07-D3-25",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-NEB-2027-01-REGEN-04",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -15333,43 +15587,7 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Advanced TSO control rooms to enhance grid observability, stability and resilience"
- },
- {
-  "id": "eu-HORIZON-CL5-2027-07-D3-11",
-  "code": "HORIZON-CL5-2027-07-D3-11",
-  "title": "Vízenergia-technológiák demonstrációja meglévő erőművek hatékony felújításához",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Energiahatékonyság",
-  "type": "grant",
-  "amount": "€6M–€10M",
-  "deadline": "2027-12-01",
-  "rolling": false,
-  "windowOpen": "2027-08-04",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL5-2027-07-D3-11",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Demonstration of hydropower technologies for efficient and forward-looking refurbishment of existing hydropower plants"
+  "titleOriginal": "Enabling environments for a sustainable and circular construction sector"
  },
  {
   "id": "eu-HORIZON-CL5-2027-07-D3-32",
@@ -15444,20 +15662,20 @@
   "titleOriginal": "Industrial processes and equipment for innovative, reliable and scalable tandem technologies (EUPI-PV Partnership)"
  },
  {
-  "id": "eu-HORIZON-NEB-2027-01-REGEN-01",
-  "code": "HORIZON-NEB-2027-01-REGEN-01",
-  "title": "Hagyományos és innovatív építőanyagok fenntartható és esztétikus épületekért",
+  "id": "eu-HORIZON-CL5-2027-07-D3-25",
+  "code": "HORIZON-CL5-2027-07-D3-25",
+  "title": "Fejlett TSO vezérlőtermek a hálózat átláthatóságáért, stabilitásáért és rezilienciájáért",
   "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Környezetvédelem",
+  "cat": "Energiahatékonyság",
   "type": "grant",
-  "amount": "€3.5M–€5.38M",
+  "amount": "€6M–€10M",
   "deadline": "2027-12-01",
   "rolling": false,
-  "windowOpen": "2027-05-05",
+  "windowOpen": "2027-08-04",
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-NEB-2027-01-REGEN-01",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL5-2027-07-D3-25",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -15477,23 +15695,23 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Combining conventional and innovative construction materials, products and techniques for sustainable and beautiful buildings"
+  "titleOriginal": "Advanced TSO control rooms to enhance grid observability, stability and resilience"
  },
  {
-  "id": "eu-HORIZON-NEB-2027-01-BUSINESS-01",
-  "code": "HORIZON-NEB-2027-01-BUSINESS-01",
-  "title": "Előre gyártott moduláris elemek tömeges testreszabása a meglévő épített környezetben",
+  "id": "eu-HORIZON-CL5-2027-07-D3-11",
+  "code": "HORIZON-CL5-2027-07-D3-11",
+  "title": "Vízenergia-technológiák demonstrációja meglévő erőművek hatékony felújításához",
   "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Környezetvédelem",
+  "cat": "Energiahatékonyság",
   "type": "grant",
-  "amount": "€3.5M–€5.38M",
+  "amount": "€6M–€10M",
   "deadline": "2027-12-01",
   "rolling": false,
-  "windowOpen": "2027-05-05",
+  "windowOpen": "2027-08-04",
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-NEB-2027-01-BUSINESS-01",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL5-2027-07-D3-11",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -15513,43 +15731,7 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Mass customisation of offsite manufactured modular construction components to transform the existing built environment"
- },
- {
-  "id": "eu-HORIZON-NEB-2027-01-BUSINESS-03",
-  "code": "HORIZON-NEB-2027-01-BUSINESS-03",
-  "title": "Szomszédságok hosszú távú jövője az Új Európai Bauhaus szellemében",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "Környezetvédelem",
-  "type": "grant",
-  "amount": "€3.5M–€5.38M",
-  "deadline": "2027-12-01",
-  "rolling": false,
-  "windowOpen": "2027-05-05",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-NEB-2027-01-BUSINESS-03",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Anticipating the long-term future of neighbourhoods in line with the New European Bauhaus"
+  "titleOriginal": "Demonstration of hydropower technologies for efficient and forward-looking refurbishment of existing hydropower plants"
  },
  {
   "id": "eu-HORIZON-NEB-2027-01-BUSINESS-02",
@@ -15622,6 +15804,42 @@
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
   "titleOriginal": "Intergenerational neighbourhoods and communities aligned with the New European Bauhaus"
+ },
+ {
+  "id": "eu-HORIZON-NEB-2027-01-REGEN-01",
+  "code": "HORIZON-NEB-2027-01-REGEN-01",
+  "title": "Hagyományos és innovatív építőanyagok fenntartható és esztétikus épületekért",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Környezetvédelem",
+  "type": "grant",
+  "amount": "€3.5M–€5.38M",
+  "deadline": "2027-12-01",
+  "rolling": false,
+  "windowOpen": "2027-05-05",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-NEB-2027-01-REGEN-01",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Combining conventional and innovative construction materials, products and techniques for sustainable and beautiful buildings"
  },
  {
   "id": "eu-HORIZON-NEB-2027-01-REGEN-02",
@@ -15732,9 +15950,9 @@
   "titleOriginal": "Novel combinations of knowledge and research methods to address social issues and advance a fair green transition of neighbourhoods"
  },
  {
-  "id": "eu-HORIZON-NEB-2027-01-REGEN-04",
-  "code": "HORIZON-NEB-2027-01-REGEN-04",
-  "title": "Támogató környezetek egy fenntartható és körforgásos építőiparért",
+  "id": "eu-HORIZON-NEB-2027-01-BUSINESS-01",
+  "code": "HORIZON-NEB-2027-01-BUSINESS-01",
+  "title": "Előre gyártott moduláris elemek tömeges testreszabása a meglévő épített környezetben",
   "issuer": "Európai Bizottság — Horizon Europe",
   "cat": "Környezetvédelem",
   "type": "grant",
@@ -15745,7 +15963,7 @@
   "regions": [],
   "sizeClasses": [],
   "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-NEB-2027-01-REGEN-04",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-NEB-2027-01-BUSINESS-01",
   "source": "ec.europa.eu",
   "scope": "eu",
   "singleApplicant": false,
@@ -15765,7 +15983,43 @@
   "requiresEvidence": {
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
-  "titleOriginal": "Enabling environments for a sustainable and circular construction sector"
+  "titleOriginal": "Mass customisation of offsite manufactured modular construction components to transform the existing built environment"
+ },
+ {
+  "id": "eu-HORIZON-NEB-2027-01-BUSINESS-03",
+  "code": "HORIZON-NEB-2027-01-BUSINESS-03",
+  "title": "Szomszédságok hosszú távú jövője az Új Európai Bauhaus szellemében",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "Környezetvédelem",
+  "type": "grant",
+  "amount": "€3.5M–€5.38M",
+  "deadline": "2027-12-01",
+  "rolling": false,
+  "windowOpen": "2027-05-05",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-NEB-2027-01-BUSINESS-03",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Anticipating the long-term future of neighbourhoods in line with the New European Bauhaus"
  },
  {
   "id": "eu-HORIZON-EIC-2027-ACCELERATOR-01",
@@ -15828,42 +16082,6 @@
   }
  },
  {
-  "id": "eu-HORIZON-CL4-2027-SPACE-07-83",
-  "code": "HORIZON-CL4-2027-SPACE-07-83",
-  "title": "Kritikus űripari EEE komponensek az EU függetlenségéért",
-  "issuer": "Európai Bizottság — Horizon Europe",
-  "cat": "KKV fejlesztés",
-  "type": "grant",
-  "amount": "€3M–€4M",
-  "deadline": "2028-01-20",
-  "rolling": false,
-  "windowOpen": "2027-10-07",
-  "regions": [],
-  "sizeClasses": [],
-  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
-  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-SPACE-07-83",
-  "source": "ec.europa.eu",
-  "scope": "eu",
-  "singleApplicant": false,
-  "auto": true,
-  "live": true,
-  "days": 0,
-  "score": 0,
-  "factors": {
-   "size": 75,
-   "industry": 85,
-   "location": 95,
-   "preference": 58
-  },
-  "requires": {
-   "consortium": true
-  },
-  "requiresEvidence": {
-   "consortium": "jellemzően nemzetközi konzorcium szükséges."
-  },
-  "titleOriginal": "Space critical EEE components for EU non-dependence"
- },
- {
   "id": "eu-HORIZON-CL4-2027-SPACE-07-84",
   "code": "HORIZON-CL4-2027-SPACE-07-84",
   "title": "Kritikus űripari berendezések az EU függetlenségéért",
@@ -15898,5 +16116,41 @@
    "consortium": "jellemzően nemzetközi konzorcium szükséges."
   },
   "titleOriginal": "Space critical equipment for EU non-dependence"
+ },
+ {
+  "id": "eu-HORIZON-CL4-2027-SPACE-07-83",
+  "code": "HORIZON-CL4-2027-SPACE-07-83",
+  "title": "Kritikus űripari EEE komponensek az EU függetlenségéért",
+  "issuer": "Európai Bizottság — Horizon Europe",
+  "cat": "KKV fejlesztés",
+  "type": "grant",
+  "amount": "€3M–€4M",
+  "deadline": "2028-01-20",
+  "rolling": false,
+  "windowOpen": "2027-10-07",
+  "regions": [],
+  "sizeClasses": [],
+  "note": "Angol nyelvű EU felhívás; jellemzően nemzetközi konzorcium szükséges.",
+  "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-SPACE-07-83",
+  "source": "ec.europa.eu",
+  "scope": "eu",
+  "singleApplicant": false,
+  "auto": true,
+  "live": true,
+  "days": 0,
+  "score": 0,
+  "factors": {
+   "size": 75,
+   "industry": 85,
+   "location": 95,
+   "preference": 58
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "jellemzően nemzetközi konzorcium szükséges."
+  },
+  "titleOriginal": "Space critical EEE components for EU non-dependence"
  }
 ]

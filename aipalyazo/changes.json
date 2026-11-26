@@ -241,6 +241,11 @@
    "date": "2026-11-25",
    "type": "removed",
    "title": "European slate development"
+  },
+  {
+   "date": "2026-11-26",
+   "type": "new",
+   "title": "European slate development"
   }
  ],
  "eu-CREA-MEDIA-2027-DEVVGIM": [
@@ -1875,6 +1880,11 @@
    "date": "2026-11-25",
    "type": "removed",
    "title": "Resource assessment for deep sedimentary and basement reservoirs"
+  },
+  {
+   "date": "2026-11-26",
+   "type": "new",
+   "title": "Resource assessment for deep sedimentary and basement reservoirs"
   }
  ],
  "eu-HORIZON-CL5-2026-11-D3-14": [
@@ -2235,6 +2245,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Integrating Remote Sensing and in-situ observations of Biodiversity, towards a fully interoperable observation and data framework"
+  },
+  {
+   "date": "2026-11-26",
+   "type": "removed",
+   "title": "Távérzékelés és helyszíni biodiverzitási megfigyelések integrálása"
   }
  ],
  "eu-HORIZON-CL6-2027-01-BIODIV-03": [
@@ -2389,6 +2404,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Improve the capacity to monitor and reduce air pollution from agriculture"
+  },
+  {
+   "date": "2026-11-26",
+   "type": "removed",
+   "title": "Mezőgazdasági légszennyezés monitoringjának és csökkentésének fejlesztése"
   }
  ],
  "eu-HORIZON-CL6-2027-02-CLIMATE-01": [
@@ -2400,6 +2420,11 @@
   {
    "date": "2026-11-25",
    "type": "removed",
+   "title": "Governance, sustainable development and international politics of a future ice-free Arctic"
+  },
+  {
+   "date": "2026-11-26",
+   "type": "new",
    "title": "Governance, sustainable development and international politics of a future ice-free Arctic"
   }
  ],
@@ -2450,6 +2475,11 @@
    "date": "2026-11-25",
    "type": "removed",
    "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
+  },
+  {
+   "date": "2026-11-26",
+   "type": "new",
+   "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
   }
  ],
  "eu-HORIZON-CL6-2027-02-CLIMATE-03": [
@@ -2492,6 +2522,11 @@
    "date": "2026-11-25",
    "type": "removed",
    "title": "Carbon farming innovation and scale-up"
+  },
+  {
+   "date": "2026-11-26",
+   "type": "new",
+   "title": "Carbon farming innovation and scale-up"
   }
  ],
  "eu-HORIZON-CL6-2027-02-CLIMATE-04": [
@@ -2503,6 +2538,11 @@
   {
    "date": "2026-11-25",
    "type": "removed",
+   "title": "Unlocking a safe operating space for Antarctica and the Southern Ocean"
+  },
+  {
+   "date": "2026-11-26",
+   "type": "new",
    "title": "Unlocking a safe operating space for Antarctica and the Southern Ocean"
   }
  ],
@@ -2569,6 +2609,11 @@
   {
    "date": "2026-11-25",
    "type": "removed",
+   "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
+  },
+  {
+   "date": "2026-11-26",
+   "type": "new",
    "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
   }
  ],
@@ -2643,6 +2688,11 @@
    "date": "2026-11-25",
    "type": "removed",
    "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
+  },
+  {
+   "date": "2026-11-26",
+   "type": "new",
+   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
   }
  ],
  "eu-HORIZON-CL6-2027-02-FARM2FORK-05": [
@@ -2715,6 +2765,11 @@
   {
    "date": "2026-11-25",
    "type": "removed",
+   "title": "AI-powered foodome characterization"
+  },
+  {
+   "date": "2026-11-26",
+   "type": "new",
    "title": "AI-powered foodome characterization"
   }
  ],
@@ -4872,6 +4927,10 @@
   {
    "date": "2026-11-25",
    "type": "page"
+  },
+  {
+   "date": "2026-11-26",
+   "type": "page"
   }
  ],
  "v-eitrm-kava14-ris": [
@@ -6188,6 +6247,10 @@
   {
    "date": "2026-11-25",
    "type": "page"
+  },
+  {
+   "date": "2026-11-26",
+   "type": "page"
   }
  ],
  "v-mfb-agrar-forgoeszkoz-hitelprogram-2025": [
@@ -6314,6 +6377,10 @@
   {
    "date": "2026-11-25",
    "type": "page"
+  },
+  {
+   "date": "2026-11-26",
+   "type": "page"
   }
  ],
  "v-ngi-restack": [
@@ -6367,6 +6434,10 @@
   },
   {
    "date": "2026-11-25",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-26",
    "type": "page"
   }
  ],

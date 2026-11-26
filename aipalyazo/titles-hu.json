@@ -623,14 +623,6 @@
   "en": "Circularity of seafood supply chain",
   "hu": "A tengeri élelmiszerek ellátási láncának körkörössége"
  },
- "eu-HORIZON-CL6-2027-01-BIODIV-01": {
-  "en": "Integrating Remote Sensing and in-situ observations of Biodiversity, towards a fully interoperable observation and data framework",
-  "hu": "Távérzékelés és helyszíni biodiverzitási megfigyelések integrálása"
- },
- "eu-HORIZON-CL6-2027-01-ZEROPOLLUTION-03": {
-  "en": "Improve the capacity to monitor and reduce air pollution from agriculture",
-  "hu": "Mezőgazdasági légszennyezés monitoringjának és csökkentésének fejlesztése"
- },
  "eu-HORIZON-CL6-2027-01-ZEROPOLLUTION-01": {
   "en": "Replacing hazardous substances in biocidal products",
   "hu": "Veszélyes anyagok kiváltása a biocid termékekben"
@@ -914,5 +906,41 @@
  "eu-HORIZON-CL4-2027-SPACE-07-84": {
   "en": "Space critical equipment for EU non-dependence",
   "hu": "Kritikus űripari berendezések az EU függetlenségéért"
+ },
+ "eu-CREA-MEDIA-2027-DEVSLATE": {
+  "en": "European slate development",
+  "hu": "Európai csomagfejlesztés"
+ },
+ "eu-HORIZON-CL5-2026-11-D3-06": {
+  "en": "Resource assessment for deep sedimentary and basement reservoirs",
+  "hu": "Mély üledékes és aljzatrészek erőforrás-felmérése"
+ },
+ "eu-HORIZON-CL6-2027-02-CLIMATE-04": {
+  "en": "Unlocking a safe operating space for Antarctica and the Southern Ocean",
+  "hu": "Az Antarktisz és a Déli-óceán biztonságos működési tere"
+ },
+ "eu-HORIZON-CL6-2027-02-FARM2FORK-01": {
+  "en": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations",
+  "hu": "Mezőgazdasági reziliencia növelése vízhiányos területeken digitális innovációval"
+ },
+ "eu-HORIZON-CL6-2027-02-CLIMATE-03": {
+  "en": "Carbon farming innovation and scale-up",
+  "hu": "Szén-dioxid-gazdálkodási innováció és bővítés"
+ },
+ "eu-HORIZON-CL6-2027-02-CLIMATE-02": {
+  "en": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks",
+  "hu": "Bizonyítékokon alapuló politikák az európai agrárium válságállóságáért"
+ },
+ "eu-HORIZON-CL6-2027-02-CLIMATE-01": {
+  "en": "Governance, sustainable development and international politics of a future ice-free Arctic",
+  "hu": "A jövőbeli jégmentes Arktisz kormányzása és fenntarthatósága"
+ },
+ "eu-HORIZON-CL6-2027-02-FARM2FORK-03": {
+  "en": "Microbiome for terrestrial livestock sustainability and health within a One Health approach",
+  "hu": "Mikrobiom a szárazföldi állattenyésztés fenntarthatóságáért"
+ },
+ "eu-HORIZON-CL6-2027-02-FARM2FORK-08": {
+  "en": "AI-powered foodome characterization",
+  "hu": "AI-alapú foodome jellemzés"
  }
 }
