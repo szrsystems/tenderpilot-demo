@@ -5,6 +5,9 @@ export const SITE_ORIGINS = [
   'https://www.aipalyazo.hu',
   'https://palyazati-ertesito.hu',
   'https://www.palyazati-ertesito.hu',
+  // test copy of the new domain (Cloudflare Pages)
+  'https://teszt.palyazati-ertesito.hu',
+  'https://palyazati-ertesito.pages.dev',
 ];
 
 export type Env = (key: string) => string | undefined;
