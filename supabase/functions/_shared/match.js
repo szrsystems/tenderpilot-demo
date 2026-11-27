@@ -33,6 +33,9 @@
     Education: /oktatás|oktatási|képzés|képzési|(?:^|[^a-zà-ű])tanulók|\beducation|\btraining|\bskills?\b/i,
     General: /./,
   };
+  // EU titles say "digital" / "data" about almost anything: for an EU call an
+  // IT topic match needs a specific word.
+  var EU_STRICT = { IT: /szoftver|kiberbiztons|mesterséges intelligencia|\bAI\b|\bsoftware|\bcyber|\bcloud\b|\bquantum|kvantum|\bIKT\b|\bICT\b|deep-?tech|mélytech/i };
   // Forestry words count as a topic match only for a forestry / agricultural
   // main activity (TEÁOR 01–02), not for every food processor.
   var FOREST_RE = /erdő|erdész|fásít|\bforest/i;
@@ -42,15 +45,19 @@
   var SECTOR_ONLY = [
     { re: /halász|akvakult|halfeldolg|halgazd|\bfish|aquacult/i, need: ['Agriculture'], divs: [3, 10], label: 'halászat / akvakultúra' },
     { re: FOREST_RE, need: ['Agriculture'], divs: FOREST_DIVS, label: 'erdőgazdálkodás' },
-    { re: /ültetvény|gazdaságátad|termelői csoport|őstermel|agrár.*kártya|agrár.*hitel|mezőgazdasági termel/i, need: ['Agriculture'], label: 'mezőgazdasági termelés' },
-    { re: /élelmiszeripar|élelmiszer-feldolg|\bTÉSZ\b|food process/i, need: ['Agriculture', 'Food'], divs: [1, 2, 3, 10, 11, 12], soft: ['Manufacturing', 'Retail'], label: 'élelmiszeripar' },
+    // orchards / vineyards (perennial crops, TEÁOR 0121–0129)
+    { re: /ültetvény|gyümölcsös|szőlőültet|\borchard/i, need: ['Agriculture'], codes: ['012', '015'], label: 'ültetvény (gyümölcs, szőlő)' },
+    { re: /gazdaságátad|termelői csoport|őstermel|agrár.*kártya|agrár.*hitel|mezőgazdasági termel/i, need: ['Agriculture'], label: 'mezőgazdasági termelés' },
+    { re: /élelmiszeripar|élelmiszer-feldolg|\bTÉSZ\b|food process/i, need: ['Agriculture', 'Food'], divs: [10, 11, 12], soft: ['Manufacturing', 'Retail'], label: 'élelmiszeripar (feldolgozás)' },
+    // condominium developers only
+    { re: /társasház/i, need: ['Construction'], label: 'lakóingatlan-fejlesztés (társasház)' },
     { re: /geoterm|földhő/i, need: ['HVAC'], soft: ['Manufacturing', 'Construction'], label: 'geotermikus energia' },
     { re: /turisztikai kártya|szálláshely|vendéglát/i, need: ['Tourism', 'Restaurant'], label: 'turizmus / vendéglátás' },
     { re: /előadó-művész|performing arts|kulturális örökség|cultural heritage/i, need: ['Education', 'General'], label: 'kultúra' },
     // livestock farming (dairy, cattle, pig, poultry, sheep, animal welfare)
-    { re: /tejtermel|szarvasmarh|állatjólét|állattart|sertéstart|baromfitart|juhtart|kecsketart|livestock|animal welfare/i, need: ['Agriculture'], divs: [1], label: 'állattartás' },
+    { re: /tejtermel|szarvasmarh|állatjólét|állattart|sertéstart|baromfitart|juhtart|kecsketart|\blivestock|animal welfare/i, need: ['Agriculture'], codes: ['014', '015'], label: 'állattartás' },
     // Common Agricultural Policy (KAP) money: mostly farmers, sometimes rural firms
-    { re: /KAP|KAP Stratégiai Terv|KAP ST|agrár-erdészeti|vidékfejleszt/i, need: ['Agriculture'], soft: ['Food', 'Manufacturing', 'Tourism', 'Restaurant', 'Retail', 'General', 'Construction', 'HVAC', 'IT', 'Healthcare', 'Education'], label: 'agrár / vidékfejlesztés (KAP)' },
+    { re: /\bKAP\b|KAP Stratégiai Terv|KAP ST\b|agrár-erdészeti|vidékfejleszt/i, need: ['Agriculture'], soft: ['Food', 'Manufacturing', 'Tourism', 'Restaurant', 'Retail', 'General', 'Construction', 'HVAC', 'IT', 'Healthcare', 'Education'], label: 'agrár / vidékfejlesztés (KAP)' },
   ];
 
   // Employee-count options of the profile form. '100+' is the old top option
@@ -260,9 +267,19 @@
     }
     var desc = regs.length === 7 && regs.indexOf('Budapest') < 0 ? 'Budapesten kívül' : regs.join(', ');
     if (!site || site === 'Több') return { key: 'region', label: 'Helyszín', status: 'unknown', reason: 'Csak itt: ' + desc + '. Adja meg a beruházás helyét a profilban.' };
-    return regs.indexOf(site) >= 0
-      ? { key: 'region', label: 'Helyszín', status: 'ok', reason: site + ' jogosult (' + desc + ').' }
-      : { key: 'region', label: 'Helyszín', status: 'fail', reason: site + ' nem jogosult — csak: ' + desc + '.' };
+    if (regs.indexOf(site) < 0) return { key: 'region', label: 'Helyszín', status: 'fail', reason: site + ' nem jogosult — csak: ' + desc + '.' };
+    // Some calls are limited to counties inside a region (e.g. the JTF counties).
+    var cs = Array.isArray(g.counties) ? g.counties : [];
+    if (cs.length) {
+      var G = root.AIPGeo, loc = (p && (p._projectLocation || p.location)) || '';
+      var m = String(loc).match(/\b(\d{4})\b/), county = G && m ? G.countyOf(m[1]) : null;
+      var list = cs.join(', ');
+      if (!county) return { key: 'region', label: 'Helyszín', status: 'unknown', reason: 'Csak ' + list + ' vármegyében. Adja meg a megvalósítás helyének irányítószámát.' };
+      return cs.indexOf(county) >= 0
+        ? { key: 'region', label: 'Helyszín', status: 'ok', reason: county + ' vármegye jogosult (' + list + ').' }
+        : { key: 'region', label: 'Helyszín', status: 'fail', reason: county + ' vármegye nem jogosult — csak: ' + list + '.' };
+    }
+    return { key: 'region', label: 'Helyszín', status: 'ok', reason: site + ' jogosult (' + desc + ').' };
   }
 
   function checkSector(g, p) {
@@ -278,6 +295,12 @@
         // without one the sector requirement cannot be confirmed.
         if (hit && s.divs && div === null) return { key: 'sector', label: 'Tevékenység', status: 'unknown', reason: 'Ágazati felhívás (' + s.label + ') — adja meg a TEÁOR főtevékenységet a profilban.', hard: true };
         if (hit && s.divs) hit = s.divs.indexOf(div) >= 0;
+        // Livestock vs. crops vs. orchards are all division 01: decide on the 4-digit code.
+        if (hit && s.codes) {
+          var c4 = digits(p && p.teaor);
+          if (c4.length < 3) return { key: 'sector', label: 'Tevékenység', status: 'unknown', reason: 'Ágazati felhívás (' + s.label + ') — adja meg a 4 jegyű TEÁOR főtevékenységet a profilban.', hard: true, specific: true };
+          if (!s.codes.some(function (pre) { return c4.indexOf(pre) === 0; })) return { key: 'sector', label: 'Tevékenység', status: 'fail', reason: 'Csak ' + s.label + ' területen működőknek.', specific: true };
+        }
         // 'General' (other services) fits a cultural call, but is too broad to count as a strong match.
         if (hit) return { key: 'sector', label: 'Tevékenység', status: 'ok', reason: 'Ágazati felhívás (' + s.label + '), illik a tevékenységéhez.', bonus: inds.some(function (x) { return x !== 'General' && s.need.indexOf(x) >= 0; }) ? 22 : 8 };
         if (s.soft && inds.some(function (x) { return s.soft.indexOf(x) >= 0; })) return { key: 'sector', label: 'Tevékenység', status: 'warn', reason: 'Csak ' + s.label + ' területen — ha Ön ilyen tevékenységet folytat, jogosult.' };
@@ -285,7 +308,7 @@
       }
     }
     if (!inds.length) return { key: 'sector', label: 'Tevékenység', status: 'unknown', reason: 'Adja meg a tevékenységi kört a profilban.' };
-    var match = inds.some(function (x) { return x !== 'General' && INDUSTRY_RE[x] && INDUSTRY_RE[x].test(text); })
+    var match = inds.some(function (x) { var re = g.scope === 'eu' && EU_STRICT[x] ? EU_STRICT[x] : INDUSTRY_RE[x]; return x !== 'General' && re && re.test(text); })
       || (inds.indexOf('Agriculture') >= 0 && (div === null || FOREST_DIVS.indexOf(div) >= 0) && FOREST_RE.test(text));
     var interest = p && Array.isArray(p.categories) && p.categories.indexOf(g.cat) >= 0;
     // Loans, guarantees and equity are general-purpose money: a keyword in their
@@ -572,6 +595,8 @@
   }
 
   function checkApplicant(g) {
+    if (/projekttársaság/i.test(g.note || '')) return { key: 'applicant', label: 'Pályázói kör', status: 'warn', cap: true, reason: 'Csak erre a célra létrehozott projekttársaság igényelheti.' };
+    if (/támogatói okirattal rendelkez|okirattal rendelkező kedvezményezett|már támogatásban részesült/i.test(g.note || '')) return { key: 'applicant', label: 'Pályázói kör', status: 'warn', cap: true, reason: 'Csak annak, akinek már van erre vonatkozó támogatói döntése (okirata).' };
     if (/LEADER együttműköd|helyi akciócsoport|\bHACS\b/i.test([g.title, g.note].join(' '))) return { key: 'applicant', label: 'Pályázói kör', status: 'warn', cap: true, reason: 'Elsősorban helyi akciócsoportok (HACS) és partnereik pályázhatnak.' };
     if (/csak minősített|kizárólag|csak .*szervezet|szűk kör|engedély szükséges|koncesszió|MGFÜ-regisztráció/i.test(g.note || '')) return { key: 'applicant', label: 'Pályázói kör', status: 'warn', reason: g.note };
     if (/nagyvállalat|1 Mrd Ft-os minimum|minimum miatt/i.test(g.note || '')) return { key: 'applicant', label: 'Pályázói kör', status: 'warn', reason: 'A gyakorlatban nagy projektekhez / nagyobb cégeknek.' };
@@ -604,7 +629,7 @@
     var sector = checkSector(g, p);
     // A tag-based target-group check replaces the keyword sector guess when it
     // decides the same question (and is more reliable).
-    if (covered.sector && sector && (sector.status === 'fail' || sector.status === 'unknown' || sector.status === 'warn')) sector = null;
+    if (covered.sector && sector && !sector.specific && (sector.status === 'fail' || sector.status === 'unknown' || sector.status === 'warn')) sector = null;
     var checks = [checkSize(g, p), checkRegion(g, p), sector, checkTeaor(g, p), (g.requires && typeof g.requires.min_closed_years === 'number') ? null : checkYears(g, p), checkBasics(g, p)].concat(checkDetail(g, p), req, [checkApplicant(g), checkMoney(g, p), checkTiming(g, today)])
       .filter(Boolean);
     var fails = checks.filter(function (c) { return c.status === 'fail'; }).length;
@@ -640,7 +665,8 @@
       var tierNow = p._tier || sizeTier(p.employees);
       var sizeB = tierNow && (g.sizeClasses || []).some(function (c) { return String(c).toLowerCase().indexOf({ micro: 'mikro', small: 'kisvállalkoz', mid: 'középvállalkoz', large: 'nagyvállalkoz' }[tierNow]) >= 0; }) && (g.sizeClasses || []).length < 4 ? 2 : 0;
       score = 56 + bonus + typeB + (g.scope !== 'eu' ? 4 : -4) + timeB + moneyB + sizeB - warns * 10 - unknown * 6;
-      if (fails) score = Math.min(30, 30 - (fails - 1) * 8);
+      // ineligible: 30 at most, but keep a little of the fit so the order means something
+      if (fails) score = Math.min(30, 24 - (fails - 1) * 8 + Math.round(Math.max(0, Math.min(90, score)) / 15));
     }
     score = Math.max(5, Math.min(99, Math.round(score)));
     var verdict = !p ? 'REVIEW' : fails ? 'SKIP' : score >= 75 ? 'APPLY' : score >= 55 ? 'REVIEW' : 'SKIP';
@@ -657,14 +683,15 @@
     // Medium and large companies run EU projects routinely, so the cap is for
     // micro and small firms only (decided Oct 2026: big firms are key leads).
     var euNoRnd = g.scope === 'eu' && !(p && p.rnd === 'igen') && tier !== 'large' && tier !== 'mid';
-    var capped = checks.some(function (c) { return c.cap; });
+    // EU cascade (FSTP) calls with no stated money are never a top recommendation.
+    var capped = checks.some(function (c) { return c.cap; }) || (g.scope === 'eu' && !g.amount && !(g.keret > 0) && /kaszkád|FSTP|cascade/i.test(g.title || ''));
     if (verdict === 'APPLY' && (capped || consortiumCap || euNoRnd || !topical || hardUnknown || noMoney || ((rq.rnd_project || rq.deeptech) && !(p && p.rnd === 'igen')))) {
       verdict = 'REVIEW';
       score = Math.min(score, 74);
     }
     // EU programme / consortium calls a micro or small firm would rarely win
     // must not outrank realistic domestic options.
-    if (p && !fails && (consortiumCap || euNoRnd)) score = Math.min(score, 64);
+    if (p && !fails && (consortiumCap || euNoRnd) && score > 64) score = 60 + Math.min(4, Math.round((score - 64) / 6));
     return { score: score, verdict: verdict, eligible: !fails, personal: !!p, checks: checks, group: group };
   }
 

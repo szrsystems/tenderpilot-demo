@@ -81,6 +81,8 @@
       var f = EL.SECTIONS.reduce(function (a, s) { return a.concat(s.fields); }, []).filter(function (x) { return x.id === k; })[0];
       if (E[k].length && f && f.none) { E[f.none] = false; var n = document.querySelector('[data-none="' + f.none + '"]'); if (n) n.checked = false; }
     } else if (t.dataset.none) {
+      if (t.checked && t.dataset.none === 'links_none' && (E.links || []).some(function (l) { return l && (l.name || l.pct); }) &&
+          !window.confirm('A már beírt vállalkozások törlődnek. Folytatja?')) { t.checked = false; return; }
       E[t.dataset.none] = t.checked;
       if (t.checked && t.dataset.none === 'proceedings_none') { E.proceedings = []; document.querySelectorAll('[data-multi="proceedings"]').forEach(function (x) { x.checked = false; }); }
       if (t.checked && t.dataset.none === 'links_none') { E.links = []; $('links').innerHTML = ''; }

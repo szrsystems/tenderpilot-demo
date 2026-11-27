@@ -35,7 +35,8 @@ const NAV = {
   taxNumber: Deno.env.get('NAV_TAX_NUMBER') ?? '',
   softwareId: Deno.env.get('NAV_SOFTWARE_ID') ?? '',
 };
-const DAILY_LIMIT = 150; // shared per-user daily AI/lookup counter
+const DAILY_LIMIT = 150; // shared per-user daily AI/lookup counter (overall abuse ceiling)
+const LOOKUP_LIMIT = 10;  // different tax numbers per user per 24 h (audit 2026-11-27)
 const CACHE_DAYS = 30;
 
 const ALLOWED_ORIGINS = ['https://aipalyazo.hu', 'https://www.aipalyazo.hu', 'https://palyazati-ertesito.hu', 'https://www.palyazati-ertesito.hu'];
@@ -72,9 +73,19 @@ Deno.serve(async (req) => {
   const target = normalizeTaxNumber(body?.taxNumber);
   if (!target) return json(origin, { error: 'invalid_tax_number' }, 400);
 
+  // Per-user lookup limit + log: a free account must not become a people
+  // search (sole traders are natural persons). Repeating one's own lookup is free.
+  const since = new Date(Date.now() - 864e5).toISOString();
+  const { data: recent, error: logErr } = await admin.from('company_lookup_log').select('tax8').eq('user_id', user.id).gte('at', since).limit(200);
+  if (logErr) return json(origin, { error: 'rate_limited' }, 429); // fail closed
+  const seen = new Set((recent || []).map((r: any) => r.tax8));
+  if (!seen.has(target) && seen.size >= LOOKUP_LIMIT) return json(origin, { error: 'rate_limited' }, 429);
+  await admin.from('company_lookup_log').insert({ user_id: user.id, tax8: target }).then(() => {}, () => {});
+
   const shape = (res: any, cached: boolean) => ({
     found: true, name: res.shortName || res.name, fullName: res.name, legalForm: legalFormOf(res.name, res.incorporation, res.shortName), // recomputed: cached rows keep up with fixes
-    postalCode: res.postalCode, city: res.city, street: res.street,
+    // A sole trader's street address is usually a home address: never returned.
+    postalCode: res.postalCode, city: res.city, street: res.incorporation === 'SELF_EMPLOYED' ? null : res.street,
     county: AIPGeo.countyOf(res.postalCode), region: AIPGeo.regionOf(res.postalCode),
     sites: (res.sites || []).map((x: any) => ({ ...x, region: AIPGeo.regionOf(x.postalCode) })),
     source: 'NAV', cached,

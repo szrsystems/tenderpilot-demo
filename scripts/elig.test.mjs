@@ -3,6 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
+import { readFileSync } from 'node:fs';
 import { checkRequires, cleanRequires } from './requires.mjs';
 const require = createRequire(import.meta.url);
 require('../aipalyazo/lib/hu-geo.js');
@@ -138,4 +139,26 @@ test('ranking: farm-only calls fail for a metal workshop; EU calls stay below do
   assert.equal(st(M.match(g({ title: 'LEADER együttműködések támogatása', cat: 'Mezőgazdaság' }), { ...metal, industries: ['Agriculture'], teaor: '0111' }, TODAY), 'applicant'), 'warn');
   const eu = M.match(g({ scope: 'eu', singleApplicant: true, title: 'Industrial robotics for manufacturing SMEs' }), metal, TODAY);
   assert.ok(eu.score <= 64);
+});
+
+test('audit 2026-11-27: farm sub-sectors by 4-digit TEÁOR, county-limited calls, EU keyword noise, project companies', () => {
+  const crop = { ...base, legal_form: 'EV', industries: ['Agriculture'], teaor: '0111', rnd: 'nem' };
+  assert.ok(fails(M.match(g({ title: 'Állatjóléti támogatás a tejtermelő szarvasmarha ágazatban', cat: 'Mezőgazdaság' }), crop, TODAY)).includes('sector'));
+  assert.ok(fails(M.match(g({ title: 'Fagykárt szenvedett ültetvények cseréjének támogatása', cat: 'Mezőgazdaság' }), crop, TODAY)).includes('sector'));
+  assert.equal(M.match(g({ title: 'Fagykárt szenvedett ültetvények cseréjének támogatása', cat: 'Mezőgazdaság' }), { ...crop, teaor: '0124' }, TODAY).eligible, true);
+  assert.ok(fails(M.match(g({ title: 'MFB Élelmiszeripari Forgóeszköz Hitelprogram', type: 'loan' }), crop, TODAY)).includes('sector'));
+  const jtf = g({ type: 'loan+grant', regions: ['Észak-Magyarország', 'Dél-Dunántúl'], counties: ['Baranya', 'Borsod-Abaúj-Zemplén', 'Heves'] });
+  assert.equal(M.match(jtf, { ...base, location: '3600 Ózd' }, TODAY).eligible, true);
+  assert.deepEqual(fails(M.match(jtf, { ...base, location: '3100 Salgótarján' }, TODAY)), ['region']); // Nógrád: same region, wrong county
+  const it = { ...base, industries: ['IT'], teaor: '6201', employees: '1-5', site_region: 'Budapest', rnd: 'igen' };
+  const generic = M.match(g({ scope: 'eu', singleApplicant: true, title: 'EU Co-funded Partnership on raw materials for the green and digital transition — kaszkád (FSTP) nyílt felhívás' }), it, TODAY);
+  assert.notEqual(generic.verdict, 'APPLY');
+  assert.notEqual(M.match(g({ type: 'loan', title: 'MFB Társasház Plusz Hitelprogram', note: 'Olyan projekttársaságok igényelhetik, amelyek értékesítési céllal társasházat építenek.' }), { ...base, industries: ['Construction'], teaor: '4120' }, TODAY).verdict, 'APPLY');
+});
+
+test('audit 2026-11-27: the homepage quick check (4 answers + stated assumptions) finds something to show', () => {
+  const feed = JSON.parse(readFileSync(new URL('../aipalyazo/grants_live.json', import.meta.url), 'utf8'));
+  const q = { company: 'q', industries: ['Manufacturing'], employees: '6-10', years_operating: '3-5', site_region: 'Észak-Alföld', public_debt_free: 'igen', in_difficulty: 'nem', insolvency: 'nem' };
+  const shown = feed.map((x) => M.match(x, q, TODAY)).filter((m) => m.eligible && m.group !== 'consortium' && (m.verdict === 'APPLY' || m.verdict === 'REVIEW'));
+  assert.ok(shown.length >= 5, `only ${shown.length}`);
 });

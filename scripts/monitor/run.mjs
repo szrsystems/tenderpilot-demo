@@ -273,7 +273,7 @@ async function main() {
     benchmarks: cfg.benchmarks || [],
     // codes that are deliberately NOT listed (excluded) or come from the API
     knownCodes: [...Object.keys(readJson(join(REPO, 'scripts/api-verified.json'), {})), ...readJson(join(REPO, 'aipalyazo/grants_live.json'), []).map((g) => g.code)],
-    llm, today, prevAuto, maxLlmCalls: +(process.env.MAX_LLM_CALLS || 60), maxRetagCalls: +(process.env.MAX_RETAG_CALLS || 15),
+    llm, today, prevAuto, maxLlmCalls: +(process.env.MAX_LLM_CALLS || 60), maxRetagCalls: +(process.env.MAX_RETAG_CALLS || 60),
     prevFlags: readJson(P('flags.json'), {}),
   });
   // Official call summaries for everything currently listed.

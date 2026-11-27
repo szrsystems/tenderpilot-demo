@@ -562,5 +562,42 @@
    "https://www.mfb.hu/vallalkozasok/mikro/hitel/kehop-plusz--425-25-foldho-hasznositasi-kedvezmenyes-hitelkonstrukcio-t276-p276"
   ],
   "confidence": "high"
+ },
+ "KEHOP_PLUSZ-5.1.0-26": {
+  "type": "loan+grant",
+  "cat": "Energiahatékonyság",
+  "rate": "0% kamat, max. 50% vissza nem térítendő",
+  "regions": [
+   "Észak-Magyarország",
+   "Dél-Dunántúl"
+  ],
+  "counties": [
+   "Baranya",
+   "Borsod-Abaúj-Zemplén",
+   "Heves"
+  ],
+  "regionNote": "Csak Baranya, Borsod-Abaúj-Zemplén és Heves vármegyében megvalósuló beruházás.",
+  "amount": "5–500 M Ft (max. 50% vissza nem térítendő)",
+  "windowOpen": "2027-02-01",
+  "deadline": "2027-10-31",
+  "note": "Energiahatékonysági (min. 30% primerenergia-megtakarítás) vagy zöld / körforgásos diverzifikációs beruházás; min. 1 lezárt üzleti év és 10% önerő; MFB Pont Pluszban igényelhető.",
+  "verifiedAt": "2026-11-27",
+  "sources": [
+   "https://www.palyazat.gov.hu/programok/szechenyi-terv-plusz/kehop-plusz/kehop_plusz-5.1.0-26",
+   "https://www.menerko.hu/kehop-plusz-5-1-0-26-igazsagos-atmenet-alap-jtf-kkv-hitelprogram/"
+  ],
+  "confidence": "high",
+  "requires": {
+   "bank_loan": true,
+   "min_closed_years": 1,
+   "not_started": true,
+   "loan_max_ebit_x": 15
+  },
+  "requiresEvidence": {
+   "bank_loan": "Benyújtás személyesen, egy MFB Pont Plusz fiókban.",
+   "min_closed_years": "legalább egy teljes lezárt üzleti év",
+   "not_started": "a kérelmet a munkák megkezdése előtt kell beadni",
+   "loan_max_ebit_x": "legfeljebb az előző lezárt év üzemi eredményének tizenötszöröse"
+  }
  }
 }

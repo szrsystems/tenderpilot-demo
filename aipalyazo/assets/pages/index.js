@@ -17,7 +17,7 @@
   }
 
   Promise.all([
-    fetch('grants_live.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : []; }),
+    fetch('grants_live.json').then(function (r) { return r.ok ? r.json() : []; }),
     fetch('grants-meta.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; }),
     fetch('palyazat/pages.json').then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; })
   ]).then(function (res) {
@@ -42,7 +42,9 @@
   // ---- quick check ----
   $('#quick').addEventListener('submit', function (e) {
     e.preventDefault();
-    var p = { company: 'gyors-ellenorzes', industries: [$('#q-sector').value], employees: $('#q-emp').value, years_operating: $('#q-years').value, site_region: $('#q-region').value };
+    // The 4-question check cannot ask about tax debt or financial difficulty:
+    // it assumes the usual answer (and says so), otherwise nothing could be recommended.
+    var p = { company: 'gyors-ellenorzes', industries: [$('#q-sector').value], employees: $('#q-emp').value, years_operating: $('#q-years').value, site_region: $('#q-region').value, public_debt_free: 'igen', in_difficulty: 'nem', insolvency: 'nem' };
     var err = $('#q-err');
     if (!p.industries[0] || !p.employees || !p.years_operating || !p.site_region) { err.hidden = false; return; }
     err.hidden = true;
@@ -52,11 +54,16 @@
     var rank = function (x) { return (x.m.verdict === 'APPLY' ? 1000 : 0) + (x.m.group === 'hazai' ? 3 : 0) + x.m.score; };
     var single = rows.filter(function (x) { return x.m.group !== 'consortium'; }).sort(function (a, b) { return rank(b) - rank(a); });
     var good = single.filter(function (x) { return x.m.verdict === 'APPLY'; });
+    var maybe = single.filter(function (x) { return x.m.verdict === 'REVIEW'; });
     var grants = good.filter(function (x) { return /grant|wage/.test(x.g.type) && x.g.type !== 'grant+equity' || x.g.type === 'loan+grant'; });
     var consortium = rows.length - single.length;
     try { localStorage.setItem('aip:quick', JSON.stringify(Object.assign({}, p, { company: '' }))); } catch (e2) {}
     if (window.aipTrack) aipTrack('quick-check');
-    var html = '<p class="result-sum"><b>' + good.length + '</b> felhívás illik jól a cégéhez' + (grants.length ? ', ebből <b>' + grants.length + '</b> vissza nem térítendő vagy kombinált' : '') + '.' + (consortium ? ' <span class="muted">További ' + consortium + ' nemzetközi konzorciumi felhívás külön listában.</span>' : '') + '</p>';
+    var html = '<p class="result-sum">' + (good.length
+        ? '<b>' + good.length + '</b> felhívás illik jól a cégéhez' + (grants.length ? ', ebből <b>' + grants.length + '</b> vissza nem térítendő vagy kombinált' : '') + '.'
+        : (maybe.length ? '<b>' + maybe.length + '</b> felhívás lehet releváns a cégének — a teljes profillal megmutatjuk, melyik illik biztosan.' : 'Ezekkel az adatokkal most nincs illeszkedő nyitott felhívás.'))
+      + (consortium ? ' <span class="muted">További ' + consortium + ' nemzetközi konzorciumi felhívás a <a href="palyazat/index.html">teljes listában</a>.</span>' : '') + '</p>'
+      + '<p class="tiny muted" style="margin:4px 0 0">Feltételeztük, hogy a cég köztartozásmentes, és nem áll csőd- vagy felszámolási eljárás alatt.</p>';
     // Grants first, repayable money (loan, guarantee, equity) in its own group.
     var C = window.AIPCards;
     var repay = function (x) { var k = C.finKind(x.g); return k && k !== 'mixed'; };
@@ -67,8 +74,10 @@
       }).join('');
       return card(x.g, '<div class="marks">' + marks + '</div>');
     };
-    var gr = single.filter(function (x) { return !repay(x); }), fin = single.filter(repay);
+    var combo = function (x) { return x.g.type === 'loan+grant'; };
+    var gr = single.filter(function (x) { return !repay(x) && !combo(x); }), mix = single.filter(combo), fin = single.filter(function (x) { return repay(x) && !combo(x); });
     if (gr.length) html += '<h3 class="result-group">Vissza nem térítendő támogatások</h3><div class="gcards">' + gr.slice(0, 4).map(withMarks).join('') + '</div>';
+    if (mix.length) html += '<h3 class="result-group fin">Kombinált: hitel + vissza nem térítendő rész</h3><div class="gcards">' + mix.slice(0, 2).map(withMarks).join('') + '</div>';
     if (fin.length) html += '<h3 class="result-group fin">Kedvezményes hitelek, garancia, tőke <span class="muted">· vissza kell fizetni</span></h3><div class="gcards">' + fin.slice(0, 2).map(withMarks).join('') + '</div>';
     html += '<div class="results-foot"><a class="btn btn-primary" href="signup.html?from=quick">Teljes lista, értesítések — ingyenes regisztráció</a><p class="tiny muted" style="margin:0">A „?” pontokat a teljes profilban tudja pontosítani (TEÁOR, köztartozás, önerő). Adószám alapján a cégadatokat kitöltjük.</p></div>';
     var box = $('#results'); box.innerHTML = html; box.hidden = false;
@@ -79,7 +88,8 @@
   function ruler() {
     var items = FEED.filter(function (g) { var d = days(g.deadline); return d !== null && d >= 0 && d <= 90 && !(window.AIPMatch && AIPMatch.isConsortium(g)); })
       .sort(function (a, b) { return a.deadline.localeCompare(b.deadline); });
-    var pick = items.filter(function (g) { return g.scope !== 'eu'; }).slice(0, 3).concat(items.filter(function (g) { return g.scope === 'eu'; }).slice(0, 2))
+    // Domestic calls first; an EU call only if it states an amount (cascade calls without one are not useful here).
+    var pick = items.filter(function (g) { return g.scope !== 'eu'; }).slice(0, 4).concat(items.filter(function (g) { return g.scope === 'eu' && g.amount; }).slice(0, 1))
       .sort(function (a, b) { return a.deadline.localeCompare(b.deadline); });
     $('#next-deadlines').innerHTML = pick.length ? pick.map(function (g) { return card(g); }).join('') : '<p class="muted" style="text-align:center">Nincs határidő a következő 90 napban.</p>';
   }

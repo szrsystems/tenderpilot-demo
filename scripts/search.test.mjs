@@ -68,13 +68,16 @@ test('stems are at least 5 letters, short words need a whole word', () => {
   assert.equal(S.matchText('gép', 'új gépek beszerzése'), true);
 });
 test('recall: fish, women, EV charging, typos, K+F', () => {
+  assert.ok(live('CNC').length <= 25 && live('CNC gép vásárlás').every((x) => !/Gépi Tanulás/i.test(x.g.title)), 'no machine-learning hit for a CNC machine');
   assert.ok(live('halászat').filter((x) => /MAHOP/.test(x.g.code || '')).length >= 3);
-  assert.ok(live('nők').some((x) => /Women TechEU/.test(x.g.title)));
+  // only while such a call is open (the feed is live data)
+  if (FEED.some((g) => /Women TechEU/.test(g.title))) assert.ok(live('nők').some((x) => /Women TechEU/.test(x.g.title)));
   assert.ok(live('töltőállomás').length >= 1);
-  assert.ok(live('napelm').length >= 10, 'one-letter typo is forgiven');
+  // EU calls reached only through a concept are excluded on purpose (audit 2026-11-27), so recall counts are lower
+  assert.ok(live('napelm').length >= 5, 'one-letter typo is forgiven');
   assert.deepEqual(live('napelm').slice(0, 5).map((x) => x.g.id), live('napelem').slice(0, 5).map((x) => x.g.id));
   assert.ok(live('K+F').length >= 20);
-  assert.ok(live('napelemes rendszer csarnokra').length >= 10);
+  assert.ok(live('napelemes rendszer csarnokra').length >= 5);
 });
 test('call codes keep their digits and stay inside the programme', () => {
   const d = live('DIMOP Plusz 1.2.3');

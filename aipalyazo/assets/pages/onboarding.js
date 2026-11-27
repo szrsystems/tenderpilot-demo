@@ -156,6 +156,11 @@
 
   // ---------- session ----------
   var signedInUser = null;
+  (function guestMode(on) {
+    document.querySelectorAll('label[for="f_name"] .req, label[for="f_email"] .req').forEach(function (r) { r.hidden = on; });
+    var cw = $('consent-wrap'); if (cw) cw.hidden = on;
+    window.__obGuest = guestMode;
+  })(true);
   (async function () {
     await new Promise(function (r) { if (window.gp) return r(); window.addEventListener('gp-ready', function () { r(); }, { once: true }); setTimeout(r, 2500); });
     if (!window.gp || !window.gp.client) return;
@@ -167,6 +172,7 @@
         if (del.deleted) { try { await window.gp.client.auth.signOut({ scope: 'local' }); } catch (e) {} location.replace('login.html?signed_out=1'); return; }
       }
       signedInUser = u;
+      if (window.__obGuest) window.__obGuest(false);
       $('f_email_wrap').hidden = true; $('f_email').value = u.email || '';
       $('f_phone_req').hidden = false;
       try { if (window.gp.getUserProfile) fill(await window.gp.getUserProfile()); } catch (e) {}
@@ -184,11 +190,15 @@
     if (!signedInUser) return true;
     var c = window.gp.client;
     var patch = { display_name: data.contact_name, company: data.company, industry: data.industry, industries: data.industries, employees: data.employees, revenue: data.revenue, location: data.location, site_region: data.site_region, years_operating: data.years_operating, legal_form: data.legal_form, public_debt_free: data.public_debt_free, own_funds: data.own_funds, in_difficulty: data.in_difficulty, teaor: data.teaor, categories: data.categories, phone: data.phone };
-    Object.keys(patch).forEach(function (k) { if (patch[k] === '' || patch[k] == null) delete patch[k]; });
+    // A cleared answer must be cleared on the server too (null), otherwise the
+    // old value keeps steering matching and alerts. Name, company and sector
+    // are required and never blanked.
+    var KEEP = ['display_name', 'company', 'industry', 'industries'];
+    Object.keys(patch).forEach(function (k) { if (patch[k] === '' || patch[k] == null) { if (KEEP.indexOf(k) >= 0) delete patch[k]; else patch[k] = null; } });
     var r = await c.from('profiles').update(patch).eq('id', signedInUser.id);
     if (r.error) { console.warn('[gp] profile save failed', r.error); return false; }
-    var v2 = {}; if (data.rnd) v2.rnd = data.rnd; if (data.women_led) v2.women_led = data.women_led;
-    var v3 = {}; ['tax_regime', 'group_member', 'public_owner', 'de_minimis', 'insolvency'].forEach(function (k) { if (data[k]) v3[k] = data[k]; });
+    var v2 = { rnd: data.rnd || null, women_led: data.women_led || null };
+    var v3 = {}; ['tax_regime', 'group_member', 'public_owner', 'de_minimis', 'insolvency'].forEach(function (k) { v3[k] = data[k] || null; });
     if (Object.keys(v3).length) { var r3 = await c.from('profiles').update(v3).eq('id', signedInUser.id); if (r3.error) console.info('[gp] v3 profile fields not saved (migration pending)'); }
     if (Object.keys(v2).length) { var r2 = await c.from('profiles').update(v2).eq('id', signedInUser.id); if (r2.error) console.info('[gp] v2 profile fields not saved (migration pending)'); }
     var a = window.AIPAttr && AIPAttr.get(); if (a) { try { await c.from('profiles').update({ acq_source: a.source, acq_campaign: a.campaign, acq_medium: a.medium, acq_at: a.at }).eq('id', signedInUser.id); } catch (eA) {} } // first touch only; the database keeps the first value
@@ -201,13 +211,14 @@
   $('submit-btn').addEventListener('click', async function () {
     var err = $('s3-err'); err.hidden = true;
     var need = [];
-    if (!val('f_name')) need.push('f_name');
-    if (!signedInUser && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val('f_email'))) need.push('f_email');
+    // Guests: nothing is sent anywhere, so name / e-mail are optional (kept only in this browser).
+    if (signedInUser && !val('f_name')) need.push('f_name');
+    if (!signedInUser && val('f_email') && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val('f_email'))) need.push('f_email');
     if (signedInUser && !val('f_phone')) need.push('f_phone');
     if (val('f_phone')) { var np = window.AIPPhone && AIPPhone.normalizePhone(val('f_phone')); if (!np) { $('f_phone').classList.add('invalid'); err.textContent = 'Adjon meg érvényes telefonszámot, például +36 30 123 4567 vagy 06 1 234 5678.'; err.hidden = false; $('f_phone').focus(); return; } $('f_phone').value = np; }
     need.forEach(function (id) { $(id).classList.add('invalid'); });
     if (need.length) { err.textContent = 'Töltse ki a csillaggal jelölt mezőket.'; err.hidden = false; $(need[0]).focus(); return; }
-    if (!$('f_gdpr').checked) { err.textContent = 'Fogadja el az adatkezelési tájékoztatót és az ÁSZF-et.'; err.hidden = false; return; }
+    if (signedInUser && !$('f_gdpr').checked) { err.textContent = 'Fogadja el az adatkezelési tájékoztatót és az ÁSZF-et.'; err.hidden = false; return; }
     var inds = checked('#f_industries');
     var data = Object.assign(draft(), {
       company: val('f_company'), industries: inds, industry: inds[0] || '', legal_form: val('f_legal'), location: val('f_location'),
