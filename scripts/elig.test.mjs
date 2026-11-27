@@ -130,3 +130,12 @@ test('codes tags: validated and cleaned', () => {
   assert.deepEqual(c.requires.teaor_codes, ['2562', '2511']);
   assert.equal(cleanRequires({ teaor_codes: { value: ['x'], evidence: 'e e e e' } }), null);
 });
+
+test('ranking: farm-only calls fail for a metal workshop; EU calls stay below domestic for a non-R&D micro firm', () => {
+  const metal = { ...base, rnd: 'nem' };
+  assert.ok(fails(M.match(g({ title: 'Állatjóléti támogatás a tejtermelő szarvasmarha ágazatban', cat: 'Mezőgazdaság' }), metal, TODAY)).includes('sector'));
+  assert.equal(st(M.match(g({ title: 'A KAP Stratégiai Terv felhívásai alapján támogatott beruházások', cat: 'Mezőgazdaság' }), metal, TODAY), 'sector'), 'warn');
+  assert.equal(st(M.match(g({ title: 'LEADER együttműködések támogatása', cat: 'Mezőgazdaság' }), { ...metal, industries: ['Agriculture'], teaor: '0111' }, TODAY), 'applicant'), 'warn');
+  const eu = M.match(g({ scope: 'eu', singleApplicant: true, title: 'Industrial robotics for manufacturing SMEs' }), metal, TODAY);
+  assert.ok(eu.score <= 64);
+});

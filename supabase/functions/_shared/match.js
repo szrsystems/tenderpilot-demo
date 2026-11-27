@@ -47,6 +47,10 @@
     { re: /geoterm|földhő/i, need: ['HVAC'], soft: ['Manufacturing', 'Construction'], label: 'geotermikus energia' },
     { re: /turisztikai kártya|szálláshely|vendéglát/i, need: ['Tourism', 'Restaurant'], label: 'turizmus / vendéglátás' },
     { re: /előadó-művész|performing arts|kulturális örökség|cultural heritage/i, need: ['Education', 'General'], label: 'kultúra' },
+    // livestock farming (dairy, cattle, pig, poultry, sheep, animal welfare)
+    { re: /tejtermel|szarvasmarh|állatjólét|állattart|sertéstart|baromfitart|juhtart|kecsketart|livestock|animal welfare/i, need: ['Agriculture'], divs: [1], label: 'állattartás' },
+    // Common Agricultural Policy (KAP) money: mostly farmers, sometimes rural firms
+    { re: /KAP|KAP Stratégiai Terv|KAP ST|agrár-erdészeti|vidékfejleszt/i, need: ['Agriculture'], soft: ['Food', 'Manufacturing', 'Tourism', 'Restaurant', 'Retail', 'General', 'Construction', 'HVAC', 'IT', 'Healthcare', 'Education'], label: 'agrár / vidékfejlesztés (KAP)' },
   ];
 
   // Employee-count options of the profile form. '100+' is the old top option
@@ -568,6 +572,7 @@
   }
 
   function checkApplicant(g) {
+    if (/LEADER együttműköd|helyi akciócsoport|\bHACS\b/i.test([g.title, g.note].join(' '))) return { key: 'applicant', label: 'Pályázói kör', status: 'warn', cap: true, reason: 'Elsősorban helyi akciócsoportok (HACS) és partnereik pályázhatnak.' };
     if (/csak minősített|kizárólag|csak .*szervezet|szűk kör|engedély szükséges|koncesszió|MGFÜ-regisztráció/i.test(g.note || '')) return { key: 'applicant', label: 'Pályázói kör', status: 'warn', reason: g.note };
     if (/nagyvállalat|1 Mrd Ft-os minimum|minimum miatt/i.test(g.note || '')) return { key: 'applicant', label: 'Pályázói kör', status: 'warn', reason: 'A gyakorlatban nagy projektekhez / nagyobb cégeknek.' };
     return null;
@@ -627,7 +632,14 @@
       var d = daysUntil(g.deadline, today);
       // Strict on purpose (2026-11-25): a high score means "very likely
       // eligible and a real fit", so every open question costs more.
-      score = 56 + bonus + typeB + (g.scope !== 'eu' ? 4 : -4) + (d === null || d >= 21 ? 2 : 0) - warns * 10 - unknown * 6;
+      // Small, real differences instead of ties: time to prepare, money left,
+      // and a call written for exactly this company size.
+      var timeB = d === null ? 1 : d > 45 ? 3 : d >= 21 ? 1 : 0;
+      var share = g.keret > 0 && typeof g.remaining === 'number' ? g.remaining / g.keret : null;
+      var moneyB = share === null ? 0 : share < 0.15 ? -3 : share > 0.5 ? 1 : 0;
+      var tierNow = p._tier || sizeTier(p.employees);
+      var sizeB = tierNow && (g.sizeClasses || []).some(function (c) { return String(c).toLowerCase().indexOf({ micro: 'mikro', small: 'kisvállalkoz', mid: 'középvállalkoz', large: 'nagyvállalkoz' }[tierNow]) >= 0; }) && (g.sizeClasses || []).length < 4 ? 2 : 0;
+      score = 56 + bonus + typeB + (g.scope !== 'eu' ? 4 : -4) + timeB + moneyB + sizeB - warns * 10 - unknown * 6;
       if (fails) score = Math.min(30, 30 - (fails - 1) * 8);
     }
     score = Math.max(5, Math.min(99, Math.round(score)));
@@ -650,6 +662,9 @@
       verdict = 'REVIEW';
       score = Math.min(score, 74);
     }
+    // EU programme / consortium calls a micro or small firm would rarely win
+    // must not outrank realistic domestic options.
+    if (p && !fails && (consortiumCap || euNoRnd)) score = Math.min(score, 64);
     return { score: score, verdict: verdict, eligible: !fails, personal: !!p, checks: checks, group: group };
   }
 
