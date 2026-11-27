@@ -2,7 +2,7 @@
 
 > Ingyenes, naponta frissülő pályázatfigyelő magyar vállalkozásoknak: nyitott hazai (Széchenyi Terv Plusz, KAP, MFB, NKFIH, Széchenyi Kártya) és EU-s (Horizon Europe, EIC, LIFE, Digital Europe stb.) felhívások hivatalos forrásból, a cég adataival pontról pontra összevetve.
 
-- Állapot: 2026-11-25 — 414 nyitott felhívás, amelyre vállalkozás pályázhat.
+- Állapot: 2026-11-27 — 419 nyitott felhívás, amelyre vállalkozás pályázhat.
 - Forrás: palyazat.gov.hu API, EU Funding & Tenders Portal, a kiírók hivatalos oldalai; minden felhívásnál feltüntetjük a forrást és az ellenőrzés napját.
 - Lakossági, civil, önkormányzati és magánszemélyeknek szóló felhívások nem szerepelnek.
 - Az adatok tájékoztató jellegűek; mindig a hivatalos felhívás az irányadó.
@@ -28,9 +28,9 @@
 - [KEHOP Plusz pályázatok és hitelek vállalkozásoknak](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/kehop-plusz.html): 2 nyitott felhívás
 - [MAHOP Plusz halászati és akvakultúra pályázatok](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/mahop-plusz.html): 3 nyitott felhívás
 - [KAP Stratégiai Terv pályázatok (agrár és vidékfejlesztés)](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/kap.html): 10 nyitott felhívás
-- [Horizon Europe felhívások magyar vállalkozásoknak](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/horizon-europe.html): 261 nyitott felhívás
+- [Horizon Europe felhívások magyar vállalkozásoknak](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/horizon-europe.html): 263 nyitott felhívás
 - [Európai Innovációs Tanács (EIC) felhívások](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/eic.html): 9 nyitott felhívás
-- [Erasmus+, Digital Europe, EIT és egyéb EU-s felhívások](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/eu-egyeb-programok.html): 86 nyitott felhívás
+- [Erasmus+, Digital Europe, EIT és egyéb EU-s felhívások](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/eu-egyeb-programok.html): 89 nyitott felhívás
 - [Széchenyi Kártya Program hitelei](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/szechenyi-kartya.html): 8 nyitott felhívás
 - [Pályázatok és hitelek egyéni vállalkozóknak](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/egyeni-vallalkozo.html): 8 nyitott felhívás
 - [Pályázatok és hitelek mikrovállalkozásoknak](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/mikrovallalkozas.html): 51 nyitott felhívás
@@ -38,7 +38,7 @@
 - [Pályázatok, tőke és hitel induló vállalkozásoknak és startupoknak](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/startup.html): 11 nyitott felhívás
 - [Pályázatok és hitelek mezőgazdasági termelőknek](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/mezogazdasagi-termelo.html): 13 nyitott felhívás
 - [Pályázatok és hitelek turisztikai és vendéglátó vállalkozásoknak](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/turisztikai-vallalkozas.html): 4 nyitott felhívás
-- [Vissza nem térítendő támogatások vállalkozásoknak](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/vissza-nem-teritendo.html): 376 nyitott felhívás
+- [Vissza nem térítendő támogatások vállalkozásoknak](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/vissza-nem-teritendo.html): 381 nyitott felhívás
 - [Kedvezményes hitelek és lízing vállalkozásoknak](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/hitel.html): 25 nyitott felhívás
 - [Kockázati tőke és tőkebefektetési programok](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/toke.html): 6 nyitott felhívás
 - [Hitelgarancia és kezességvállalás vállalkozásoknak](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/garancia.html): 5 nyitott felhívás

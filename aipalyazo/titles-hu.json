@@ -1,1 +1,946 @@
-{}
+{
+ "a-canada-call-for-projects-number-8": {
+  "en": "Canada call for projects number 8",
+  "hu": "8. Kanadai projekttámogatási felhívás"
+ },
+ "a-innovation-validation-call-2027": {
+  "en": "Innovation Validation Call 2027",
+  "hu": "Innováció-validációs felhívás 2027"
+ },
+ "a-globalstars-call-with-japan-2026": {
+  "en": "Globalstars call with Japan 2026",
+  "hu": "Globalstars felhívás Japánnal 2026"
+ },
+ "a-seasonal-schools-in-creative-entrepreneurship": {
+  "en": "Seasonal Schools in Creative Entrepreneurship",
+  "hu": "Szezonális iskolák a kreatív vállalkozás területén"
+ },
+ "a-resilience-roadmaps": {
+  "en": "Resilience Roadmaps",
+  "hu": "Reiliencia útitervek"
+ },
+ "a-continuous-professional-development-cpd-courses-on-creative-": {
+  "en": "Continuous Professional Development (CPD) Courses on Creative Entrepreneurship",
+  "hu": "Képzések a kreatív vállalkozásról"
+ },
+ "eu-HORIZON-EIT-2026-PRIZE-WIP-LEADERSHIP": {
+  "en": "Women Leadership Category",
+  "hu": "Női vezetői kategória"
+ },
+ "eu-HORIZON-CL5-2026-11-D3-04": {
+  "en": "De-risking renewable fuel technologies through transnational pre-commercial procurement of renewable fuel industrial value chains",
+  "hu": "Megújuló üzemanyag-technológiák kockázatcsökkentése közbeszerzéssel"
+ },
+ "eu-DIGITAL-JU-CHIPS-2026-AI-GFP": {
+  "en": "AI compute evaluation and deployment platform for EU infrastructure",
+  "hu": "AI számítási értékelési és kiépítési platform az EU infrastruktúrához"
+ },
+ "eu-DIGITAL-JU-CHIPS-2026-AI1-SG": {
+  "en": "AI chip demonstrators for EU compute infrastructure",
+  "hu": "AI chip demonstrátorok az EU számítási infrastruktúrához"
+ },
+ "eu-HORIZON-NEB-2026-01-REGEN-03": {
+  "en": "Innovative solutions for the sustainable and beautiful use of vertical space",
+  "hu": "Innovatív megoldások a függőleges terek fenntartható használatára"
+ },
+ "eu-HORIZON-NEB-2026-01-PARTICIPATION-01": {
+  "en": "Addressing homelessness through housing-led approaches aligned with the New European Bauhaus",
+  "hu": "Oltalom a hajléktalanság ellen lakásalapú megközelítéssel"
+ },
+ "eu-HORIZON-NEB-2026-01-PARTICIPATION-02": {
+  "en": "Innovative approaches for the spatial design of neighbourhoods",
+  "hu": "Innovatív megközelítések a szomszédságok térbeli tervezéséhez"
+ },
+ "eu-HORIZON-NEB-2026-01-PARTICIPATION-03": {
+  "en": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being",
+  "hu": "A lakosok szomszédsági tapasztalatainak megértése az egészségért"
+ },
+ "eu-HORIZON-NEB-2026-01-BUSINESS-02": {
+  "en": "Understanding capital market dynamics for increased investment in New European Bauhaus projects in neighbourhoods",
+  "hu": "Tőkepiaci dinamika megértése a New European Bauhaus projektekért"
+ },
+ "eu-HORIZON-NEB-2026-01-BUSINESS-01": {
+  "en": "Structurally addressing homelessness through coordinated social infrastructure and services in neighbourhoods",
+  "hu": "A hajléktalanság strukturális kezelése szociális infrastruktúrával"
+ },
+ "eu-HORIZON-NEB-2026-01-BUSINESS-03": {
+  "en": "Approaches to reuse vacant, obsolete or underutilised spaces",
+  "hu": "Üresen álló vagy alulhasznosított terek újrafelhasználása"
+ },
+ "eu-HORIZON-NEB-2026-01-REGEN-02": {
+  "en": "Advancing sustainable maintenance and repair measures for existing buildings",
+  "hu": "Fenntartható karbantartási és javítási intézkedések meglévő épületekhez"
+ },
+ "eu-HORIZON-EIC-2026-PRIZE-WIP-RisingInnovators": {
+  "en": "Rising Innovators category",
+  "hu": "Feltörekvő Innovátorok kategória"
+ },
+ "eu-DIGITAL-JU-CHIPS-2026-SG-JAPAN": {
+  "en": "International collaboration EU and Japan on semiconductors",
+  "hu": "EU és Japán nemzetközi együttműködés félvezetőkről"
+ },
+ "eu-HORIZON-MISS-2026-07-CROSS-04": {
+  "en": "Demonstrating place-based experimentation and innovation spaces as enabling environments for scaling EU Missions",
+  "hu": "Helyi kísérleti és innovációs terek az EU Küldetésekhez"
+ },
+ "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-CYBERAI": {
+  "en": "Cybersecure tools, technologies and services relying on AI",
+  "hu": "AI-alapú kiberbiztonságos eszközök, technológiák és szolgáltatások"
+ },
+ "eu-HORIZON-NATURE-2027-01-01": {
+  "en": "Understanding the nature and the extent of the effects of PFAS on biodiversity and ecosystem services",
+  "hu": "A PFAS biodiverzitásra és ökoszisztémákra gyakorolt hatásai"
+ },
+ "eu-HORIZON-NATURE-2027-01-03": {
+  "en": "Systemic approaches to accelerate transformative change for biodiversity",
+  "hu": "Rendszerszintű megközelítések a biodiverzitás átalakításához"
+ },
+ "eu-CREA-MEDIA-2027-INNOVBUSMOD": {
+  "en": "Innovative tools and business models",
+  "hu": "Innovatív eszközök és üzleti modellek"
+ },
+ "eu-HORIZON-NATURE-2027-02-05": {
+  "en": "Cost-effective biodiversity monitoring for EU policies",
+  "hu": "Költséghatékony biodiverzitás-monitorozás az EU politikákhoz"
+ },
+ "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-REGCABH": {
+  "en": "Regional Cable Hubs",
+  "hu": "Regionális Kábel Elosztók"
+ },
+ "eu-HORIZON-NATURE-2027-02-04": {
+  "en": "Innovative solutions to fight wildlife trafficking and to reduce invasion of invasive alien species",
+  "hu": "Vadvilág-kereskedelem és invazív fajok elleni innovatív megoldások"
+ },
+ "eu-HORIZON-NATURE-2027-02-02": {
+  "en": "Living labs co-creating solutions for the restoration of ecosystems addressing implementation bottlenecks and improving resilience to risks",
+  "hu": "Élő laboratóriumok ökoszisztémák helyreállításához és rezilienciához"
+ },
+ "eu-HORIZON-NATURE-2027-01-02": {
+  "en": "Better understanding, anticipating and addressing the biodiversity benefits and impacts of the clean and digital industries",
+  "hu": "A tiszta és digitális iparágak biodiverzitási hatásainak megértése"
+ },
+ "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-11-COORDPREP": {
+  "en": "Coordinated preparedness testing and other preparedness actions",
+  "hu": "Koordiniált készültségi tesztelés és egyéb intézkedések"
+ },
+ "eu-HORIZON-NATURE-2027-02-01": {
+  "en": "Assessing direct and indirect drivers of biodiversity decline of invertebrates",
+  "hu": "A gerinctelenek biodiverzitásának csökkenési okai"
+ },
+ "eu-CREA-CROSS-2027-MEDIALITERACY": {
+  "en": "NEWS - Media Literacy",
+  "hu": "HÍREK - Médiatudatosság"
+ },
+ "eu-CREA-MEDIA-2027-FILMOVE": {
+  "en": "Films on the Move",
+  "hu": "Filmek mozgásban"
+ },
+ "eu-IMCAP-2027-INFOME": {
+  "en": "Support for information measures relating to the common agricultural policy (IMCAP)",
+  "hu": "Támogatás a közös agrároldal információs intézkedéseihez"
+ },
+ "eu-CREA-CROSS-2027-MFP": {
+  "en": "NEWS - Media Freedom Rapid Response Mechanism",
+  "hu": "HÍREK - Média-szabadság Gyorsreagálású Mechanizmus"
+ },
+ "eu-CREA-CULT-2027-LIT": {
+  "en": "Circulation of European literary works",
+  "hu": "Európai irodalmi művek terjesztése"
+ },
+ "eu-HORIZON-BRIDGING-2027-02-05": {
+  "en": "Advancing promising results from Pillar II collaborative research through the innovation journey",
+  "hu": "Pillér II együttműködésen alapuló kutatási eredmények fejlesztése"
+ },
+ "eu-HORIZON-JU-EUROHPC-2026-QML-07-01": {
+  "en": "Quantum Machine Learning",
+  "hu": "Kvantum Gépi Tanulás"
+ },
+ "eu-HORIZON-RAISE-2027-01-02": {
+  "en": "Automated Scientific Discovery – Food (RAISE pilot)",
+  "hu": "Automatizált Tudományos Felfedezés – Élelmiszer (RAISE kísérlet)"
+ },
+ "eu-HORIZON-RAISE-2027-01-01": {
+  "en": "Automated Scientific Discovery - Materials Science (RAISE pilot) (RIA)",
+  "hu": "Automatizált tudományos felfedezés - Anyagtudomány (RAISE pilot)"
+ },
+ "eu-HORIZON-CL4-2027-02-DIGITAL-EMERGING-52-two-stage": {
+  "en": "New approaches for Human/AI collaboration for the workforce of the future (RIA) (Made in Europe and AI, Data and Robotics partnerships)",
+  "hu": "Új megközelítések ember és AI együttműködésére a jövő munkahelyén"
+ },
+ "eu-CREA-MEDIA-2027-DEVVGIM": {
+  "en": "European video games and immersive content",
+  "hu": "Európai videojátékok és magával ragadó tartalmak"
+ },
+ "eu-HORIZON-CL4-2027-01-MAT-PROD-06": {
+  "en": "Circular innovative advanced materials: facilitating the transition from design to markets (RIA) (Innovative Advanced Materials for the EU and Made in Europe partnerships)",
+  "hu": "Körkörös, innovatív fejlett anyagok a tervezéstől a piacra jutásig"
+ },
+ "eu-HORIZON-CL4-2027-01-MAT-PROD-42": {
+  "en": "Unlocking the potential of academic intellectual assets for industry, SMEs and startups (CSA)",
+  "hu": "Akadémiai szellemi tőke hasznosítása ipar, KKV-k és startupok számára"
+ },
+ "eu-HORIZON-CL4-2027-01-MAT-PROD-47": {
+  "en": "Pilot access schemes to Technology Infrastructures for European startups, scaleups and innovative SMEs (CSA)",
+  "hu": "Technológiai infrastruktúrák elérése startupok, scaleupok és innovatív KKV-k számára"
+ },
+ "eu-HORIZON-CL4-2027-01-MAT-PROD-03": {
+  "en": "Factory processes and automation for de- and re-manufacturing (RIA) (Made in Europe partnership)",
+  "hu": "Gyári folyamatok és automatizálás az újragyártáshoz és leszereléshez"
+ },
+ "eu-CREA-CROSS-2027-JOURPART-PLURALISM": {
+  "en": "NEWS - JOURNALISM PARTNERSHIPS - PLURALISM",
+  "hu": "HÍREK - ÚJSÁGÍRÓI PARTNERSÉGEK - PLURALIZMUS"
+ },
+ "eu-CREA-CROSS-2027-JOURPART-COLLABORATIONS": {
+  "en": "NEWS - JOURNALISM PARTNERSHIPS - COLLABORATIONS",
+  "hu": "HÍREK - ÚJSÁGÍRÓI PARTNERSÉGEK - EGYÜTTMŰKÖDÉSEK"
+ },
+ "eu-CREA-MEDIA-2027-TVONLINE-3": {
+  "en": "TV and online content Fiction projects",
+  "hu": "TV- és online tartalom Fikciós projektek"
+ },
+ "eu-CREA-MEDIA-2027-TVONLINE-2": {
+  "en": "TV and online content Documentary projects",
+  "hu": "TV- és online tartalom Dokumentumfilm-projektek"
+ },
+ "eu-CREA-MEDIA-2027-TVONLINE-1": {
+  "en": "TV and online content Animation projects",
+  "hu": "TV- és online tartalom Animációs projektek"
+ },
+ "eu-HORIZON-BRIDGING-2027-04-11": {
+  "en": "Detection, monitoring, modelling, and attribution capabilities for Solar Radiation Modification (SRM) activities and assessing their impacts on Earth's climate and ecosystems",
+  "hu": "Napfény-módosítási tevékenységek hatásainak kimutatása és értékelése"
+ },
+ "eu-HORIZON-BRIDGING-2027-01-10": {
+  "en": "Autonomous Drive Ambition Cities (IA) - Apply AI",
+  "hu": "Autonóm járművek ambíciói városokban (IA) - AI alkalmazása"
+ },
+ "eu-HORIZON-BRIDGING-2027-01-09": {
+  "en": "EU AI Media Platform – modular multilingual public-interest infrastructure for European news and audiovisual media (IA) - Apply AI",
+  "hu": "EU AI Média Platform – moduláris közérdekű infrastruktúra hírekhez"
+ },
+ "eu-HORIZON-BRIDGING-2027-01-12": {
+  "en": "Large-Scale piloting of next-generation AI-driven digital platforms for a more affordable, secure and sustainable European energy system (IA) - Apply AI",
+  "hu": "Nagyszabású AI-alapú digitális platformok az európai energrendszerért"
+ },
+ "eu-HORIZON-BRIDGING-2027-01-13": {
+  "en": "EU Frontier AI Initiative: Advanced Scaling Frameworks for High-Performance AI Models (RIA) - Apply AI",
+  "hu": "EU Frontier AI Kezdeményezés: Nagy teljesítményű AI modellek"
+ },
+ "eu-HORIZON-BRIDGING-2027-06-02": {
+  "en": "Valorising Horizon project results via innovation ecosystems",
+  "hu": "Horizon projekt eredményeinek hasznosítása innovációs ökoszisztémákon keresztül"
+ },
+ "eu-HORIZON-NATURE-2027-04-01": {
+  "en": "A stronger Global Ocean Observing System to enhance Europe’s strategic autonomy, climate resilience and biodiversity conservation",
+  "hu": "Erősebb Globális Óceánmegfigyelő Rendszer Európa stratégiai autonómiájáért"
+ },
+ "eu-HORIZON-HLTH-2027-02-DISEASE-01-two-stage": {
+  "en": "Innovative healthcare interventions for non-communicable diseases",
+  "hu": "Innovatív egészségügyi beavatkozások nem fertőző betegségekre"
+ },
+ "eu-HORIZON-HLTH-2027-01-ENVHLTH-MISSCLIMA-03": {
+  "en": "Tools and technologies to support health adaptation to climate change",
+  "hu": "Eszközök és technológiák az éghajlatváltozáshoz való egészségügyi alkalmazkodáshoz"
+ },
+ "eu-HORIZON-HLTH-2027-01-DISEASE-10": {
+  "en": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)",
+  "hu": "Krónikus nem fertőző betegségek megelőzése gyermekeknél és fiataloknál"
+ },
+ "eu-HORIZON-HLTH-2027-02-TOOL-01-two-stage": {
+  "en": "Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases",
+  "hu": "Prediktív biomarkerek fejlesztése AI módszerekkel krónikus betegségekre"
+ },
+ "eu-HORIZON-HLTH-2027-01-STAYHLTH-01": {
+  "en": "Addressing disabilities through the life course to support independent living and inclusion",
+  "hu": "Fogyatékosságok kezelése az önálló életvitel és társadalmi inklúzió érdekében"
+ },
+ "eu-HORIZON-HLTH-2027-01-ENVHLTH-02": {
+  "en": "Integrating climate-related exposures into the human exposome and characterising its changes in response to climate change",
+  "hu": "Klímával kapcsolatos expozíciók integrálása a humán exposomába"
+ },
+ "eu-HORIZON-HLTH-2027-02-DISEASE-14-two-stage": {
+  "en": "Clinical trials for advancing innovative interventions for neurodegenerative diseases",
+  "hu": "Klinikai vizsgálatok neurodegeneratív betegségek innovatív kezelésére"
+ },
+ "eu-HORIZON-HLTH-2027-01-DISEASE-07": {
+  "en": "Development of monoclonal antibodies to prevent and treat infections from Filo-, Nairo-, Phenui-, Picorna- and Toga viruses",
+  "hu": "Monoklonális antitestek fejlesztése bizonyos vírusfertőzések ellen"
+ },
+ "eu-HORIZON-HLTH-2027-01-DISEASE-06": {
+  "en": "Development of monoclonal antibodies to prevent and treat infections from Flaviviruses",
+  "hu": "Monoklonális antitestek fejlesztése Flavivírusok okozta fertőzésekre"
+ },
+ "eu-HORIZON-HLTH-2027-01-CARE-02": {
+  "en": "Personalised approaches to reduce risks from Adverse Drug Reactions due to administration of multiple medications",
+  "hu": "Személyre szabott megközelítések a gyógyszer-mellékhatások kockázatának csökkentésére"
+ },
+ "eu-HORIZON-HLTH-2027-01-DISEASE-05": {
+  "en": "Development of novel small molecule antiviral therapeutics for pathogens with epidemic potential",
+  "hu": "Új kismolekulás antivirális terápiák járványvesélyes kórokozókra"
+ },
+ "eu-EMFAF-2027-PIA-ScientificAdviceFisheries": {
+  "en": "Improving scientific knowledge to strengthen the science-basis of management decisions under the CFP",
+  "hu": "Tudományos ismeretek bővítése a halászati döntések támogatásához"
+ },
+ "eu-HORIZON-EIC-2027-PATHFINDEROPEN-two-stage": {
+  "en": "HORIZON-EIC-2027-PATHFINDEROPEN-two-stage",
+  "hu": "EIC Pathfinder Open"
+ },
+ "eu-CREA-MEDIA-2027-AUDFILMEDU": {
+  "en": "Audience Development and Film Education",
+  "hu": "Közönségfejlesztés és filmoktatás"
+ },
+ "eu-CREA-MEDIA-2027-CODEV": {
+  "en": "European co-development",
+  "hu": "Európai társfejlesztés"
+ },
+ "eu-HORIZON-BRIDGING-2027-05-01": {
+  "en": "Skills for innovative SMEs",
+  "hu": "Készségek az innovatív KKV-k számára"
+ },
+ "eu-HORIZON-CL5-2027-01-D1-12": {
+  "en": "Better understanding and attribution of land and ocean carbon sources and sinks",
+  "hu": "Földi és óceáni szén-dioxid források és elnyelők jobb megértése"
+ },
+ "eu-HORIZON-CL5-2027-01-D1-07": {
+  "en": "Advancing understanding, modelling and prediction of extreme events in a changing climate",
+  "hu": "Extrém időjárási események megértése és előrejelzése változó klímában"
+ },
+ "eu-HORIZON-CL5-2027-01-D1-09": {
+  "en": "Assessing the performance of policy instruments to inform climate change mitigation action",
+  "hu": "Szakpolitikai eszközök teljesítményének értékelése a klímavédelemért"
+ },
+ "eu-HORIZON-CL5-2027-01-D1-08": {
+  "en": "Palaeoclimate science for a better understanding of Earth system dynamics",
+  "hu": "Paleoklímakutatás a Föld rendszer dinamikájának megértéséhez"
+ },
+ "eu-HORIZON-CL5-2027-01-D1-10": {
+  "en": "Understanding and avoiding maladaptation to climate change",
+  "hu": "A klímaváltozáshoz való rossz alkalmazkodás megértése és elkerülése"
+ },
+ "eu-HORIZON-CL5-2027-01-D1-13": {
+  "en": "Next generation scenarios for informing climate and sustainability transitions",
+  "hu": "Következő generációs forgatókönyvek a klíma- és fenntarthatósági átmenethez"
+ },
+ "eu-HORIZON-WIDERA-2027-05-ERA-05": {
+  "en": "Pillar IV: Upgrading the EU’s independent knowledge on China's Science, Technology and Innovation system",
+  "hu": "Kína tudományos, technológiai és innovációs rendszerének független elemzése"
+ },
+ "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-12-NATCH": {
+  "en": "National Cyber Hubs",
+  "hu": "Nemzeti Kiberbiztonsági Központok"
+ },
+ "eu-DIGITAL-ECCC-2027-DEPLOY-CYBER-12-CBCH": {
+  "en": "Cross-border Cyber Hubs",
+  "hu": "Határokon átívelő kiberbiztonsági központok"
+ },
+ "eu-HORIZON-CL4-2027-05-DIGITAL-EMERGING-03": {
+  "en": "Advanced integrated photonic devices for extended features and ultra-low power consumption (RIA) (Photonics Partnership)",
+  "hu": "Fejlett integrált fotonikai eszközök alacsony energiafogyasztással"
+ },
+ "eu-HORIZON-CL4-2027-04-DIGITAL-EMERGING-11": {
+  "en": "EU Frontier AI Initiative: Developing frontier AI solutions that are safe and computationally efficient within Apply AI (RIA)",
+  "hu": "EU Frontier AI Kezdeményezés: Biztonságos és hatékony AI megoldások"
+ },
+ "eu-HORIZON-CL4-2027-04-DATA-03": {
+  "en": "New approaches for decentralized, federated and sustainable AI data processing (RIA)",
+  "hu": "Új megközelítések a decentralizált és fenntartható AI adatfeldolgozáshoz"
+ },
+ "eu-HORIZON-CL4-2027-04-HUMAN-01": {
+  "en": "Advanced and Innovative hardware components for Virtual Worlds (RIA) (Virtual Worlds Partnership)",
+  "hu": "Fejlett és innovatív hardverkomponensek a Virtuális Világokhoz"
+ },
+ "eu-HORIZON-CL5-2027-02-D3-10": {
+  "en": "Renewable Energy Valleys in Africa to increase energy security and energy access in Africa",
+  "hu": "Megújuló energiát hasznosító térségek Afrikában az energiabiztonságért"
+ },
+ "eu-HORIZON-CL5-2027-02-D3-09": {
+  "en": "Innovative technologies and solutions to improve wave and tidal energy systems",
+  "hu": "Innovatív technológiák a hullám- és árapály-energia rendszerek fejlesztésére"
+ },
+ "eu-HORIZON-MISS-2027-05-SOIL-03-two-stage": {
+  "en": "Agroforestry for soil health at landscape level",
+  "hu": "Fás szárú mezőgazdaság a talaj egészségéért táji szinten"
+ },
+ "eu-HORIZON-CL6-2027-01-CIRCBIO-02-two-stage": {
+  "en": "Open topic: Using the Circular Cities and Regions Initiative to strengthen urban manufacturing in support of the Clean Industrial Deal",
+  "hu": "Városi gyártás erősítése a körforgásos gazdaság jegyében"
+ },
+ "eu-HORIZON-CL6-2027-02-FARM2FORK-01-two-stage": {
+  "en": "Strengthening plant health: addressing emerging plant pest risks",
+  "hu": "Növényegészségügy erősítése: fellépés a kártevők ellen"
+ },
+ "eu-HORIZON-CL6-2027-01-CIRCBIO-01-two-stage": {
+  "en": "Deploying circular systemic solutions through living labs in cities and regions (Circular Cities and Regions Initiative topic)",
+  "hu": "Körforgásos szisztémás megoldások tesztelése városokban és régiókban"
+ },
+ "eu-HORIZON-MISS-2027-05-SOIL-06-two-stage": {
+  "en": "Long-term drivers and consequences of soil degradation: learning from the past to improve future soil health",
+  "hu": "A talajromlás hosszú távú okai és következményei"
+ },
+ "eu-HORIZON-MISS-2027-05-SOIL-02-two-stage": {
+  "en": "Living Labs for co-creating solutions to reduce eutrophication from agriculture",
+  "hu": "Élő laborok a mezőgazdasági eutrofizáció csökkentésére"
+ },
+ "eu-HORIZON-MISS-2027-05-SOIL-01-two-stage": {
+  "en": "Living labs to enhance soil health in Continental, Black Sea, Pannonian and Steppic biogeographical regions",
+  "hu": "Élő laborok a talaj egészségének javítására különböző régiókban"
+ },
+ "eu-HORIZON-MISS-2027-05-SOIL-04-two-stage": {
+  "en": "Participatory research on the health of communities in contact with polluted soils",
+  "hu": "Közösségi kutatás a szennyezett talajok közelében élők egészségéről"
+ },
+ "eu-HORIZON-CL6-2027-02-CLIMATE-01-two-stage": {
+  "en": "Open topic: Innovative solutions for the European Water Resilience Strategy",
+  "hu": "Innovatív megoldások az európai vízügyi reziliencia stratégiához"
+ },
+ "eu-HORIZON-CL6-2027-02-FARM2FORK-02-two-stage": {
+  "en": "Optimising the water-nutrient-energy nexus for sustainable and climate smart agriculture in Africa (FNSSA)",
+  "hu": "Víz-tápanyag-energia nexus optimalizálása az afrikai mezőgazdaságban"
+ },
+ "eu-CREA-MEDIA-2027-FILMDIST": {
+  "en": "European Film Distribution",
+  "hu": "Európai filmforgalmazás"
+ },
+ "eu-HORIZON-MSCA-2027-SE-01-01": {
+  "en": "MSCA Staff Exchanges 2027",
+  "hu": "MSCA Kutatócsere 2027"
+ },
+ "eu-HORIZON-CL5-2027-04-Two-Stage-D2-07": {
+  "en": "Novel approaches towards next-generation battery concepts, leveraging the enabling role of innovative advanced materials (BATT4EU and IAM4EU Partnerships)",
+  "hu": "Újszerű akkumulátor-koncepciók és fejlett anyagok alkalmazása"
+ },
+ "eu-HORIZON-CL5-2027-03-D5-20": {
+  "en": "Assessing the effect of airport operations on air quality and noise in nearby communities",
+  "hu": "Repülőtéri műveletek hatása a levegőminőségre és a zajszintre"
+ },
+ "eu-HORIZON-CL5-2027-03-D5-18": {
+  "en": "Enhanced electric operation and battery durability (ZEWT Partnership)",
+  "hu": "Fokozott elektromos működés és akkumulátor-tartósság"
+ },
+ "eu-HORIZON-CL5-2027-03-D5-17": {
+  "en": "Innovative Solutions for mitigating the environmental impact of waterborne transport in marine and aquatic Ecosystems (ZEWT Partnership)",
+  "hu": "Innovatív megoldások a vízi közlekedés környezeti terhelésének csökkentésére"
+ },
+ "eu-HORIZON-CL5-2027-03-D5-03": {
+  "en": "Data-driven circular economy for e-mobility ecosystem (2ZERO Partnership)",
+  "hu": "Adatvezérelt körforgásos gazdaság az e-mobilitáshoz"
+ },
+ "eu-HORIZON-CL5-2027-03-D5-16": {
+  "en": "Autonomous vessels in short sea shipping and inland waterways",
+  "hu": "Autonóm hajók a parti és a belföldi vízi közlekedésben"
+ },
+ "eu-HORIZON-CL5-2027-03-D5-08": {
+  "en": "Sustainable aircraft circular design and additive manufacturing, towards a climate neutral aviation",
+  "hu": "Fenntartható repülőgép-tervezés és additív gyártás a klímasemlegességért"
+ },
+ "eu-HORIZON-CL5-2027-04-Two-Stage-D5-09": {
+  "en": "Noise reduction breakthroughs for new ultraefficient aircraft",
+  "hu": "Zajcsökkentési áttörések új, ultrahatékony repülőgépekhez"
+ },
+ "eu-HORIZON-CL5-2027-03-D5-14": {
+  "en": "Onboard renewable energy solutions and energy saving measures to reduce the fuel consumption of ships by at least 55% (ZEWT Partnership)",
+  "hu": "Megújuló energia és energiatakarékosság a hajók üzemanyag-fogyasztásának csökkentésére"
+ },
+ "eu-HORIZON-CL5-2027-03-D5-06": {
+  "en": "Fire prevention and mitigation for EVs in confined areas (2ZERO Partnership)",
+  "hu": "Elektromos járművek tűzvédelme és megelőzése zárt térben"
+ },
+ "eu-CREA-CROSS-2027-INNOVLAB": {
+  "en": "Creative Innovation Lab",
+  "hu": "Kreatív Innovációs Laboratórium"
+ },
+ "eu-HORIZON-CL2-2027-02-DEMOCRACY-09-two-stage": {
+  "en": "Open topic on reinvigorating and shielding European democracy",
+  "hu": "Az európai demokrácia megújítása és védelme"
+ },
+ "eu-HORIZON-CL2-2027-02-TRANSFO-09-two-stage": {
+  "en": "Improving socio-economic outcomes for persons with dementia and informal caregivers",
+  "hu": "Demenciával élők és gondozóik társadalmi-gazdasági helyzetének javítása"
+ },
+ "eu-HORIZON-CL2-2027-02-HERITAGE-09-two-stage": {
+  "en": "Open topic: Impact-driven research on realising the full potential of cultural heritage, arts and cultural and creative industries",
+  "hu": "Kulturális örökség és kreatív iparágak potenciáljának kutatása"
+ },
+ "eu-HORIZON-CL6-2027-03-GOVERNANCE-02": {
+  "en": "Improving analytical capacity for sustainable competitiveness of the agricultural sector",
+  "hu": "A mezőgazdasági szektor fenntartható versenyképességének elemzése"
+ },
+ "eu-HORIZON-CL6-2027-03-GOVERNANCE-04": {
+  "en": "AI supporting informed advice for farmers and foresters to improve competitiveness and sustainability",
+  "hu": "AI alapú tanácsadás gazdáknak a versenyképességért"
+ },
+ "eu-HORIZON-CL6-2027-03-GOVERNANCE-01": {
+  "en": "Strengthening the resilience of European farmers through improved capacity in coping with risks and crises",
+  "hu": "Az európai gazdák válságkezelési képességének és rezilienciájának erősítése"
+ },
+ "eu-HORIZON-EIC-2027-DEFENCE-01": {
+  "en": "EIC STEP Defence",
+  "hu": "EIC STEP Védelmi program"
+ },
+ "eu-HORIZON-INFRA-2027-SERV-01-03": {
+  "en": "Connecting research infrastructures and a wider user community across the European Research Area through access to advanced research infrastructure services",
+  "hu": "Kutatási infrastruktúrák összekapcsolása az Európai Kutatási Térségben"
+ },
+ "eu-HORIZON-INFRA-2027-TECH-01-02": {
+  "en": "Pioneering Destination Earth for a Sustainable Future: Large-Scale Pilots and Demonstrators",
+  "hu": "Destination Earth pilotprojektek a fenntartható jövőért"
+ },
+ "eu-HORIZON-INFRA-2027-TECH-01-01": {
+  "en": "Testing and optimising models of co-creation of advanced research infrastructure technologies",
+  "hu": "Kutatási infrastruktúra-technológiák kooperatív modelljeinek tesztelése"
+ },
+ "eu-HORIZON-BRIDGING-2027-03-06": {
+  "en": "Access to research infrastructure services to enable R&I addressing industry needs in priority areas",
+  "hu": "Kutatási infrastruktúrák elérése az ipari igények kielégítésére"
+ },
+ "eu-HORIZON-BRIDGING-2027-03-04": {
+  "en": "Supporting the long-term resilience and European sovereignty of critical research data and knowledge repositories and scientific services for the life sciences",
+  "hu": "Kritikus kutatási adatok és tudástárak hosszú távú rezilienciája"
+ },
+ "eu-HORIZON-INFRA-2027-SERV-01-02": {
+  "en": "Access to research infrastructure services to enable R&I addressing EU priorities and emerging challenges",
+  "hu": "Kutatási infrastruktúrák elérése az EU prioritásaihoz"
+ },
+ "eu-HORIZON-INFRA-2027-SERV-01-01": {
+  "en": "Access to research infrastructures, their resources and services: large-scale pilots for more integrated scheme across (sub)domains",
+  "hu": "Kutatási infrastruktúrák és szolgáltatások nagyszabású pilot projektjei"
+ },
+ "eu-HORIZON-INFRA-2027-DEV-01-02": {
+  "en": "Consolidation of the research infrastructure landscape – development of complementarities, synergies and/or integration between a set of pan-European research infrastructures",
+  "hu": "Páneurópai kutatási infrastruktúrák szinergiáinak fejlesztése"
+ },
+ "eu-HORIZON-INFRA-2027-DEV-01-03": {
+  "en": "Consolidation of the research infrastructure landscape – individual support for evolution, long-term sustainability and emerging needs of pan-European research infrastructures",
+  "hu": "Páneurópai kutatási infrastruktúrák egyéni támogatása és fenntarthatósága"
+ },
+ "eu-CREA-MEDIA-2027-FILMSALES": {
+  "en": "European Film sales agent",
+  "hu": "Európai filmforgalmazási ügynök"
+ },
+ "eu-HORIZON-CL4-2027-SPACE-03-33": {
+  "en": "Digital enablers and building blocks for collaborative Earth Observation and Satellite telecommunications for Space solutions (Space Partnership)",
+  "hu": "Digitális alapelemek a Földmegfigyeléshez és űrtávközléshez"
+ },
+ "eu-HORIZON-CL4-2027-SPACE-03-71": {
+  "en": "Quantum Space Gravimetry topic",
+  "hu": "Kvantum űrgravimetriás téma"
+ },
+ "eu-HORIZON-CL4-2027-SPACE-03-21": {
+  "en": "ISOS4I Pilot Mission Integrated Ground Test and consolidation of space-compatible USI solutions",
+  "hu": "ISOS4I pilot misszió integrált földi tesztelése"
+ },
+ "eu-HORIZON-CL5-2027-05-D4-07": {
+  "en": "Integrating circularity in LCA-based modelling frameworks for renovation of buildings (Built4People Partnership)",
+  "hu": "Körkörösség integrálása az épületfelújítási LCA-modellekbe"
+ },
+ "eu-HORIZON-EIE-2027-01-CONNECT-02": {
+  "en": "Reinforcing synergies between experimentation spaces and innovation procurement",
+  "hu": "Szinergiák erősítése a tesztelési terek és az innovációs közbeszerzés között"
+ },
+ "eu-HORIZON-NEB-2027-02-NEB-SOIL-01": {
+  "en": "Reducing soil sealing through sustainable urban and territorial design in the New European Bauhaus",
+  "hu": "Talajbeépítés csökkentése fenntartható városi tervezéssel"
+ },
+ "eu-HORIZON-CL3-2027-02-CS-ECCC-02": {
+  "en": "Secure Computing Continuum (IoT, Edge, Cloud, Data spaces)",
+  "hu": "Biztonságos számítási kontinuum IoT, Edge és Cloud területeken"
+ },
+ "eu-HORIZON-CL3-2027-02-CS-ECCC-03": {
+  "en": "Secure PQC implementations, Cryptanalysis and Post-quantum Digital Trust",
+  "hu": "Biztonságos PQC-implementációk és posztkvantum digitális bizalom"
+ },
+ "eu-HORIZON-CL3-2027-02-CS-ECCC-01": {
+  "en": "Artificial Intelligence for Cybersecurity applications",
+  "hu": "Mesterséges intelligencia kiberbiztonsági alkalmazásokhoz"
+ },
+ "eu-HORIZON-CL3-2027-02-CS-ECCC-04": {
+  "en": "New primitives and protocols for functionalities of future hybrid classical-hybrid and quantum networks",
+  "hu": "Új protokollok hibrid klasszikus és kvantumhálózatokhoz"
+ },
+ "eu-HORIZON-CID-2027-01-02": {
+  "en": "R&I in Support of the Clean Industrial Deal: Clean Technologies for Climate Action",
+  "hu": "Tiszta technológiák a klímavédelemért a Tiszta Ipari Megállapodásban"
+ },
+ "eu-HORIZON-CID-2027-01-01": {
+  "en": "R&I in Support of the Clean Industrial Deal: Decarbonisation of energy intensive industries (IA) (Processes4Planet and Clean Steel partnerships)",
+  "hu": "Energiaigényes iparágak dekarbonizációja"
+ },
+ "eu-HORIZON-HLTH-2027-03-TOOL-02": {
+  "en": "Advancing bio-printing of living cells for regenerative medicine",
+  "hu": "Élő sejtek bioprintingjének fejlesztése a regeneratív gyógyászatban"
+ },
+ "eu-HORIZON-NATURE-2027-03-01": {
+  "en": "Advancing interdisciplinary, data-driven research at the biodiversity- health interface under a One Health approach",
+  "hu": "Adatvezérelt biodiverzitás-egészség kutatás az Egy az Egészség megközelítéssel"
+ },
+ "eu-HORIZON-MISS-2027-02-CANCER-01": {
+  "en": "Leveraging functional genomics to reveal novel targets for cancer treatment",
+  "hu": "Funkcionális genomika alkalmazása a rákkezelési célpontok feltárására"
+ },
+ "eu-HORIZON-MISS-2027-02-CANCER-04": {
+  "en": "Improving equitable health outcomes and added value for and with cancer patients through health-economics research, health systems research and outcomes research",
+  "hu": "Egészség-gazdaságtani kutatások a rákbetegek támogatásáért"
+ },
+ "eu-HORIZON-MISS-2027-02-CANCER-05": {
+  "en": "Pre-commercial procurement of affordable solutions for healthcare systems in the areas of cancer technologies, cancer medical devices, or cancer medicines",
+  "hu": "Megfizethető egészségügyi megoldások közbeszerzése a rákellenes technológiákban"
+ },
+ "eu-HORIZON-MISS-2027-02-CANCER-02": {
+  "en": "Clinical research by Comprehensive Cancer Infrastructures for the benefit of patients with common cancers",
+  "hu": "Klinikai kutatások átfogó rákászati infrastruktúrák által"
+ },
+ "eu-HORIZON-MISS-2027-02-CANCER-03": {
+  "en": "Phase 1 including first-in-human clinical trials to test biomarker-guided medicines or multi-modal treatment interventions for patients with rare or very rare cancers or cancer subtypes",
+  "hu": "Klinikai fázisú vizsgálatok ritka rákbetegségek kezelésére"
+ },
+ "eu-HORIZON-MISS-2027-06-SOIL-CANCER": {
+  "en": "Living labs to monitor and mitigate carcinogenic substances in and originating from soils: Evaluating their effects on human cancer risks",
+  "hu": "Talajban lévő rákkeltő anyagok monitoringja és kockázatértékelése"
+ },
+ "eu-HORIZON-MISS-2027-03-OCEAN-05": {
+  "en": "Large-scale demonstration of protection, restoration and management of blue forest ecosystems in European sea basins",
+  "hu": "Kék erdő ökoszisztémák helyreállítása európai tengeri medencékben"
+ },
+ "eu-HORIZON-MISS-2027-01-CLIMA-02": {
+  "en": "Researching and applying the potential of Artificial Intelligence to foster climate resilience at the regional and local levels",
+  "hu": "Mesterséges intelligencia a regionális és helyi klímarezilienciáért"
+ },
+ "eu-HORIZON-MISS-2027-01-CLIMA-01": {
+  "en": "Demonstrating transformative solutions to increase cross-border climate resilience",
+  "hu": "Transzformatív megoldások a határokon átívelő klímarezilienciáért"
+ },
+ "eu-HORIZON-MISS-2027-03-OCEAN-01": {
+  "en": "Increasing riparian and coastal areas resilience to climate change, including in waterfront cities and islands.",
+  "hu": "Part menti területek és városok klímaváltozási rezilienciájának növelése"
+ },
+ "eu-HORIZON-MISS-2027-03-OCEAN-03": {
+  "en": "Green, circular and resilient harbours",
+  "hu": "Zöld, körkörös és reziliens kikötők"
+ },
+ "eu-HORIZON-MISS-2027-03-OCEAN-02": {
+  "en": "Circularity of seafood supply chain",
+  "hu": "A tengeri élelmiszerek ellátási láncának körkörössége"
+ },
+ "eu-HORIZON-CL6-2027-01-ZEROPOLLUTION-01": {
+  "en": "Replacing hazardous substances in biocidal products",
+  "hu": "Veszélyes anyagok kiváltása a biocid termékekben"
+ },
+ "eu-HORIZON-CL6-2027-01-CIRCBIO-05": {
+  "en": "Innovative circular solutions for end-of-life footwear through collection, sorting and recycling",
+  "hu": "Innovatív körkörös megoldások elhasználódott cipők újrahasznosítására"
+ },
+ "eu-HORIZON-CL6-2027-01-CIRCBIO-06": {
+  "en": "Towards a Europe of Bioeconomy Places",
+  "hu": "Bioalapú gazdasági régiók fejlesztése Európában"
+ },
+ "eu-HORIZON-CL6-2027-01-BIODIV-08": {
+  "en": "Fostering common farmland birds and mammals for resilient food production systems",
+  "hu": "Mezei madarak és emlősök szerepe az élelmiszer-termelésben"
+ },
+ "eu-HORIZON-CL6-2027-01-BIODIV-07": {
+  "en": "Health of ecosystems and wild species, predictions and impacts on human health, in the face of existing and emerging stressors, from a One Health approach",
+  "hu": "Ökoszisztémák egészsége és hatása az emberi egészségre"
+ },
+ "eu-HORIZON-CL6-2027-01-CIRCBIO-03": {
+  "en": "Developing novel recycling technologies for complex plastic materials applying biotech solutions",
+  "hu": "Új biotechnológiai újrahasznosítási technológiák műanyagokhoz"
+ },
+ "eu-HORIZON-CL6-2027-01-ZEROPOLLUTION-02": {
+  "en": "Developing effective air quality planning strategies through innovative multi-scale modelling",
+  "hu": "Hatékony levegőminőség-tervezési stratégiák modellezéssel"
+ },
+ "eu-HORIZON-CL6-2027-01-CIRCBIO-04": {
+  "en": "Capacity building for extending product lifecycles through repair and refurbishment",
+  "hu": "Termékek élettartamának növelése javítással és felújítással"
+ },
+ "eu-HORIZON-CL6-2027-01-BIODIV-04": {
+  "en": "Living Labs for the eradication and/or management of invasive alien species",
+  "hu": "Élő laborok az invazív fajok visszaszorítására"
+ },
+ "eu-HORIZON-CL6-2027-01-BIODIV-05": {
+  "en": "Accelerating the transition to a nature positive economy: Integrating biodiversity into the private sector",
+  "hu": "Biodiverzitás integrálása a magánszektorba"
+ },
+ "eu-HORIZON-CL6-2027-01-BIODIV-06": {
+  "en": "Living labs driving transformative change via knowledge integration and inclusive governance",
+  "hu": "Átalakulást ösztönző élő laborok befogadó kormányzással"
+ },
+ "eu-HORIZON-CL6-2027-01-CIRCBIO-10": {
+  "en": "Strengthening forest research for the support of Ukraine",
+  "hu": "Erdészeti kutatások erősítése Ukrajna támogatására"
+ },
+ "eu-HORIZON-CL6-2027-01-BIODIV-09": {
+  "en": "Enhancing the competitiveness of organic crop breeding: focus on intercropping adapted varieties",
+  "hu": "Ökologikus növénynemesítés versenyképességének növelése"
+ },
+ "eu-HORIZON-MISS-2027-07-CLIMA-CIT-NEB-01": {
+  "en": "Urban nature: supporting restoration of urban ecosystems, along urban transport networks and in the built environment",
+  "hu": "Városi ökoszisztémák helyreállítása és zöld infrastruktúra"
+ },
+ "eu-HORIZON-CL2-2027-01-TRANSFO-06": {
+  "en": "Closing the learning gap: uncovering causes and effective policy interventions for declining youth skills in mathematics, reading, and science",
+  "hu": "Ifjúsági alapkészségek csökkenésének okai és kezelése"
+ },
+ "eu-HORIZON-CL2-2027-01-DEMOCRACY-02": {
+  "en": "Women’s, LGBTIQ and minority rights in a context of autocracy, conflict and geopolitical shifts",
+  "hu": "Nők és kisebbségek jogai geopolitikai változások közepette"
+ },
+ "eu-HORIZON-CL2-2027-01-TRANSFO-05": {
+  "en": "The effective use of artificial intelligence in learning environments in pre-primary and primary education",
+  "hu": "Mesterséges intelligencia az alapfokú oktatásban"
+ },
+ "eu-HORIZON-CL2-2027-01-HERITAGE-04": {
+  "en": "Culture, heritage and creative industries for health and well-being",
+  "hu": "Kultúra és kreatív iparágak a jóllétért"
+ },
+ "eu-HORIZON-CL2-2027-01-HERITAGE-03": {
+  "en": "Crafting routes to a circular economy",
+  "hu": "Körforgásos gazdaság a kulturális örökségben"
+ },
+ "eu-HORIZON-CL2-2027-01-HERITAGE-07": {
+  "en": "Societal impact of cultural heritage",
+  "hu": "A kulturális örökség társadalmi hatása"
+ },
+ "eu-HORIZON-CL2-2027-01-DEMOCRACY-04": {
+  "en": "Addressing the impact of artificial intelligence, cyberviolence, and deepfakes on equality, democracy and inclusive societies",
+  "hu": "AI és deepfake hatása a demokráciára és egyenlőségre"
+ },
+ "eu-HORIZON-CL2-2027-01-TRANSFO-02": {
+  "en": "Impact of in-kind benefits on income distribution and on vulnerable populations",
+  "hu": "Nem pénzbeli juttatások hatása a kiszolgáltatott csoportokra"
+ },
+ "eu-HORIZON-CL2-2027-01-TRANSFO-07": {
+  "en": "Persons with disabilities: opportunities for labour inclusion and social protection through the life course",
+  "hu": "Fogyatékkal élők munkaerő-piaci integrációja"
+ },
+ "eu-HORIZON-CL2-2027-01-TRANSFO-03": {
+  "en": "Rethinking sustainable competitiveness beyond traditional perspectives: role and contribution of the Social Economy",
+  "hu": "A szociális gazdaság szerepe a fenntartható versenyképességben"
+ },
+ "eu-HORIZON-CL2-2027-01-HERITAGE-08": {
+  "en": "Safeguarding & transmission of intangible cultural heritage",
+  "hu": "Szellemi kulturális örökség megőrzése és átadása"
+ },
+ "eu-HORIZON-CL2-2027-01-TRANSFO-08": {
+  "en": "Scaling and deploying innovations in migration management",
+  "hu": "Migrációkezelési innovációk bővítése és bevezetése"
+ },
+ "eu-HORIZON-CL2-2027-01-DEMOCRACY-06": {
+  "en": "Identifying user-focused solutions to support news media freedom",
+  "hu": "Felhasználóközpontú megoldások a hírportálok szabadságáért"
+ },
+ "eu-HORIZON-CL2-2027-01-TRANSFO-04": {
+  "en": "The impact of EU labour mobility on the Member States of the EU",
+  "hu": "EU-s munkaerő-mobilitás hatása a tagállamokra"
+ },
+ "eu-HORIZON-CL2-2027-01-HERITAGE-05": {
+  "en": "Re-imagining the creative economy: the interplay between the cultural and creative sectors and industries and the social economy",
+  "hu": "Kreatív gazdaság és szociális gazdaság kapcsolata"
+ },
+ "eu-HORIZON-CL2-2027-01-HERITAGE-06": {
+  "en": "Future-proofing sustainable cultural tourism",
+  "hu": "Fenntartható kulturális turizmus jövőálló tényezői"
+ },
+ "eu-HORIZON-CL6-2027-02-COMMUNITIES-01": {
+  "en": "Strengthening rural communities' resilience to shocks",
+  "hu": "Vidéki közösségek rezilienciájának erősítése"
+ },
+ "eu-HORIZON-CL2-2027-01-TRANSFO-01": {
+  "en": "Impact of access to nature-positive environments in promoting social cohesion and reducing inequalities in urban and peri-urban settings",
+  "hu": "Természetalapú környezet hatása a társadalmi kohézióra"
+ },
+ "eu-HORIZON-CL2-2027-01-DEMOCRACY-03": {
+  "en": "Student and family engagement for developing a culture of democratic/civic participation",
+  "hu": "Diákok és családok bevonása a demokratikus kultúrába"
+ },
+ "eu-HORIZON-CL2-2027-01-DEMOCRACY-08": {
+  "en": "Global Human Rights and EU values",
+  "hu": "Globális emberi jogok és uniós értékek"
+ },
+ "eu-HORIZON-CL2-2027-01-DEMOCRACY-07": {
+  "en": "The role of private companies in democracy",
+  "hu": "Magánvállalatok szerepe a demokráciában"
+ },
+ "eu-HORIZON-CL2-2027-01-DEMOCRACY-05": {
+  "en": "Development aid and democratic governance",
+  "hu": "Fejlesztési segélyek és demokratikus kormányzás"
+ },
+ "eu-HORIZON-CL5-2027-06-D6-04": {
+  "en": "Holistic solutions for CCAM integration in critical scenarios (CCAM Partnership)",
+  "hu": "Megoldások az önvezető közlekedés integrációjához"
+ },
+ "eu-HORIZON-CL5-2027-06-D6-11": {
+  "en": "Enhancing Resilience and Accuracy in Positioning, Navigation, and Timing (PNT) Systems and e-conspicuity solutions",
+  "hu": "Navigációs és helymeghatározó rendszerek pontossága"
+ },
+ "eu-HORIZON-CL5-2027-06-D6-08": {
+  "en": "Enhancing Mobility for All: affordable, reliable, and accessible multimodal transport for inclusive rural and urban connectivity – Societal Readiness pilot",
+  "hu": "Megfizethető és inkluzív közlekedési kapcsolatok vidéken"
+ },
+ "eu-HORIZON-MISS-2027-04-CIT-03": {
+  "en": "Inclusive and climate resilient multimodal passenger hubs enhancing modal shift towards sustainable transport and shared mobility",
+  "hu": "Fenntartható és inkluzív városi utasszállítási csomópontok"
+ },
+ "eu-HORIZON-MISS-2027-04-CIT-05": {
+  "en": "Boosting the transformation towards climate-neutral cities, the net-zero economy and open strategic autonomy through Pre-Commercial Procurement (PCP)",
+  "hu": "Klsemleges városok előkereskedzi beszerzések támogatásával"
+ },
+ "eu-HORIZON-CL3-2027-01-FCT-05": {
+  "en": "Effective and evidence-based responses to the increased availability and use of synthetic drugs and stimulants in Europe",
+  "hu": "Szintetikus drogok terjedése elleni hatékony válaszlépések"
+ },
+ "eu-HORIZON-CL3-2027-01-BM-01": {
+  "en": "Open topic on research and innovation for effective management of EU external borders that promotes fundamental rights and EU values",
+  "hu": "Kutatás és innováció az EU külső határainak hatékony, alapvető jogokat tiszteletben tartó kezeléséért"
+ },
+ "eu-HORIZON-CL3-2027-01-BM-02": {
+  "en": "Trusted, secure, quality future digital travel credentials",
+  "hu": "Megbízható, biztonságos és minőségi jövőbeli digitális utazási igazolványok"
+ },
+ "eu-HORIZON-CL3-2027-01-DRS-04": {
+  "en": "Enhancing preparedness for large-scale cross-border disasters",
+  "hu": "Felkészültség növelése a nagyszabású, átnyúló katasztrófákra"
+ },
+ "eu-HORIZON-CL3-2027-01-FCT-01": {
+  "en": "Online harms detection and investigation tools using a short development cycle model",
+  "hu": "Online káros hatásokat észlelő és vizsgáló eszközök rövid fejlesztési ciklussal"
+ },
+ "eu-HORIZON-CL3-2027-01-SSRI-03": {
+  "en": "Demand-led innovation in security",
+  "hu": "Keresletvezérelt innováció a biztonság területén"
+ },
+ "eu-HORIZON-CL3-2027-01-DRS-02": {
+  "en": "Societal resilience, engagement of the younger generations and digital innovation for disaster resilience",
+  "hu": "Társadalmi reziliencia, fiatalok bevonása és digitális innováció a katasztrófavédelemért"
+ },
+ "eu-HORIZON-CL3-2027-01-FCT-04": {
+  "en": "Open topic on increasing security of citizens against terrorism, including in public spaces",
+  "hu": "Nyílt felhívás a polgárok terrorizmus elleni biztonságának növelésére, közterületeken is"
+ },
+ "eu-HORIZON-CL3-2027-01-FCT-03": {
+  "en": "Open topic on enhanced prevention, detection and deterrence of societal issues related to various forms of crime",
+  "hu": "Bűncselekmények megelőzése, felderítése és elrettentése a társadalmi problémák kezelésére"
+ },
+ "eu-HORIZON-CL3-2027-01-INFRA-02": {
+  "en": "Impact of malicious use of Open-Source Intelligence on critical infrastructure business continuity",
+  "hu": "Nyílt forráskódú hírszerzés rosszindulatú használatának hatása a kritikus infrastruktúrákra"
+ },
+ "eu-HORIZON-CL3-2027-01-FCT-02": {
+  "en": "Community policing in diverse societies in Europe",
+  "hu": "Közösségi rendészet a változatos európai társadalmakban"
+ },
+ "eu-HORIZON-CL3-2027-01-BM-03": {
+  "en": "Detection and characterisation of threats or illegal/ smuggled goods in cargo",
+  "hu": "Fenyegetések vagy illegális és csempészett áruk felderítése rakományokban"
+ },
+ "eu-HORIZON-MSCA-2027-DN-01-01": {
+  "en": "MSCA Doctoral Networks 2027",
+  "hu": "MSCA Doktori Hálózatok 2027"
+ },
+ "eu-HORIZON-EIC-2027-STEP": {
+  "en": "EIC STEP Scale Up",
+  "hu": "EIC STEP léptékváltás"
+ },
+ "eu-HORIZON-CL5-2027-07-D3-25": {
+  "en": "Advanced TSO control rooms to enhance grid observability, stability and resilience",
+  "hu": "Fejlett TSO vezérlőtermek a hálózat átláthatóságáért, stabilitásáért és rezilienciájáért"
+ },
+ "eu-HORIZON-CL5-2027-07-D3-11": {
+  "en": "Demonstration of hydropower technologies for efficient and forward-looking refurbishment of existing hydropower plants",
+  "hu": "Vízenergia-technológiák demonstrációja meglévő erőművek hatékony felújításához"
+ },
+ "eu-HORIZON-CL5-2027-07-D3-32": {
+  "en": "Delivery of industrial CCUS clusters – Societal Readiness pilot",
+  "hu": "Ipari CCUS klaszterek megvalósítása – Társadalmi felkészültségi pilot"
+ },
+ "eu-HORIZON-CL5-2027-07-D3-16": {
+  "en": "Industrial processes and equipment for innovative, reliable and scalable tandem technologies (EUPI-PV Partnership)",
+  "hu": "Ipari folyamatok és berendezések innovatív és skálázható tandem technológiákhoz"
+ },
+ "eu-HORIZON-NEB-2027-01-REGEN-01": {
+  "en": "Combining conventional and innovative construction materials, products and techniques for sustainable and beautiful buildings",
+  "hu": "Hagyományos és innovatív építőanyagok fenntartható és esztétikus épületekért"
+ },
+ "eu-HORIZON-NEB-2027-01-BUSINESS-01": {
+  "en": "Mass customisation of offsite manufactured modular construction components to transform the existing built environment",
+  "hu": "Előre gyártott moduláris elemek tömeges testreszabása a meglévő épített környezetben"
+ },
+ "eu-HORIZON-NEB-2027-01-BUSINESS-03": {
+  "en": "Anticipating the long-term future of neighbourhoods in line with the New European Bauhaus",
+  "hu": "Szomszédságok hosszú távú jövője az Új Európai Bauhaus szellemében"
+ },
+ "eu-HORIZON-NEB-2027-01-BUSINESS-02": {
+  "en": "Innovative models for collective community investment and ownership",
+  "hu": "Innovatív modellek a kollektív közösségi beruházásokhoz és tulajdonláshoz"
+ },
+ "eu-HORIZON-NEB-2027-01-PARTICIPATION-02": {
+  "en": "Intergenerational neighbourhoods and communities aligned with the New European Bauhaus",
+  "hu": "Generációkon átívelő szomszédságok és közösségek az Új Európai Bauhaus jegyében"
+ },
+ "eu-HORIZON-NEB-2027-01-REGEN-02": {
+  "en": "Sustainable, beautiful and healthy construction and renovation sites",
+  "hu": "Fenntartható, esztétikus és egészséges építési és felújítási helyszínek"
+ },
+ "eu-HORIZON-NEB-2027-01-PARTICIPATION-01": {
+  "en": "The transformative potential of co-governance in the green transition of neighbourhoods",
+  "hu": "A társirányítás átalakító potenciálja a szomszédságok zöld átmenetében"
+ },
+ "eu-HORIZON-NEB-2027-01-PARTICIPATION-03": {
+  "en": "Novel combinations of knowledge and research methods to address social issues and advance a fair green transition of neighbourhoods",
+  "hu": "Tudás és kutatási módszerek új kombinációi a társadalmi kihívások kezelésére"
+ },
+ "eu-HORIZON-NEB-2027-01-REGEN-04": {
+  "en": "Enabling environments for a sustainable and circular construction sector",
+  "hu": "Támogató környezetek egy fenntartható és körforgásos építőiparért"
+ },
+ "eu-HORIZON-EIC-2027-ACCELERATOR-01": {
+  "en": "Short proposal",
+  "hu": "Rövid pályázat"
+ },
+ "eu-HORIZON-CL4-2027-SPACE-07-83": {
+  "en": "Space critical EEE components for EU non-dependence",
+  "hu": "Kritikus űripari EEE komponensek az EU függetlenségéért"
+ },
+ "eu-HORIZON-CL4-2027-SPACE-07-84": {
+  "en": "Space critical equipment for EU non-dependence",
+  "hu": "Kritikus űripari berendezések az EU függetlenségéért"
+ },
+ "eu-CREA-MEDIA-2027-DEVSLATE": {
+  "en": "European slate development",
+  "hu": "Európai csomagfejlesztés"
+ },
+ "eu-HORIZON-CL5-2026-11-D3-06": {
+  "en": "Resource assessment for deep sedimentary and basement reservoirs",
+  "hu": "Mély üledékes és aljzatrészek erőforrás-felmérése"
+ },
+ "eu-HORIZON-CL6-2027-02-CLIMATE-04": {
+  "en": "Unlocking a safe operating space for Antarctica and the Southern Ocean",
+  "hu": "Az Antarktisz és a Déli-óceán biztonságos működési tere"
+ },
+ "eu-HORIZON-CL6-2027-02-FARM2FORK-01": {
+  "en": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations",
+  "hu": "Mezőgazdasági reziliencia növelése vízhiányos területeken digitális innovációval"
+ },
+ "eu-HORIZON-CL6-2027-02-CLIMATE-03": {
+  "en": "Carbon farming innovation and scale-up",
+  "hu": "Szén-dioxid-gazdálkodási innováció és bővítés"
+ },
+ "eu-HORIZON-CL6-2027-02-CLIMATE-02": {
+  "en": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks",
+  "hu": "Bizonyítékokon alapuló politikák az európai agrárium válságállóságáért"
+ },
+ "eu-HORIZON-CL6-2027-02-CLIMATE-01": {
+  "en": "Governance, sustainable development and international politics of a future ice-free Arctic",
+  "hu": "A jövőbeli jégmentes Arktisz kormányzása és fenntarthatósága"
+ },
+ "eu-HORIZON-CL6-2027-02-FARM2FORK-03": {
+  "en": "Microbiome for terrestrial livestock sustainability and health within a One Health approach",
+  "hu": "Mikrobiom a szárazföldi állattenyésztés fenntarthatóságáért"
+ },
+ "eu-HORIZON-CL6-2027-02-FARM2FORK-08": {
+  "en": "AI-powered foodome characterization",
+  "hu": "AI-alapú foodome jellemzés"
+ }
+}

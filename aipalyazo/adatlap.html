@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=r3">
+<link rel="stylesheet" href="assets/site.css?v=r4">
 <style>
 .al{display:grid;gap:var(--s6);padding:var(--s6) 0 var(--s8)}
 @media(min-width:1000px){.al{grid-template-columns:minmax(0,1fr) 320px;gap:var(--s7)}.al-side{position:sticky;top:88px;align-self:start}}
@@ -38,7 +38,7 @@
 .link-grid .wide{grid-column:1/-1}@media(min-width:640px){.link-grid .wide{grid-column:auto}}
 .link-grid label{font-size:12.5px;color:var(--ink-3);display:block;margin-bottom:3px}
 .link-grid input,.link-grid select{width:100%;min-height:38px;padding:6px 8px;border:1px solid var(--line-strong);border-radius:var(--r);font:inherit;font-size:14.5px;background:var(--paper);color:var(--ink)}
-.link-del{margin-top:6px;font-size:13px;background:none;border:0;color:var(--danger);cursor:pointer;padding:4px 0}
+.link-del{margin-top:8px;min-height:40px;font-size:14px;background:none;border:1px solid var(--line-strong);border-radius:var(--r);color:var(--danger);cursor:pointer;padding:6px 14px}
 .calc{margin-top:var(--s3);padding:10px 12px;border-left:3px solid var(--brand);background:var(--brand-soft);font-size:14.5px;border-radius:0 var(--r) var(--r) 0}
 .side-box{border:1px solid var(--line);border-top:3px solid var(--brand);border-radius:var(--r-lg);background:var(--surface);padding:var(--s5)}
 .prog{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin:8px 0 6px}.prog i{display:block;height:100%;background:var(--brand);width:0}
@@ -80,7 +80,7 @@
   <p class="lede">A pályázatíró partnerünk, a DFT-Hungária jogosultsági modellje alapján. Minél többet tölt ki, annál pontosabban látja, mire jogosult valóban. Minden mező nem kötelező, és bármikor folytathatja.</p>
   <div class="notice" id="guest-note" hidden>Nincs bejelentkezve: az adatlapot ebben a böngészőben mentjük. <a href="signup.html?from=adatlap">Hozzon létre fiókot</a>, hogy értesítést kapjon és más eszközön is elérje.</div>
   <form id="al-form" novalidate autocomplete="off"></form>
-  <div class="savebar"><span class="status" id="save-status" aria-live="polite"></span><a class="btn btn-ghost" href="portal.html">Vissza</a><button class="btn btn-primary" type="button" id="save-btn">Mentés</button></div>
+  <div class="savebar"><span class="status" id="save-status" aria-live="polite"></span><a class="btn btn-ghost" href="portal.html" id="back-btn">Vissza</a><button class="btn btn-primary" type="button" id="save-btn">Mentés</button></div>
 </div>
 <aside class="al-side" aria-label="Kitöltöttség">
   <div class="side-box">
@@ -106,15 +106,15 @@
     <div class="legal"><span>© 2026 AIpályázó · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
   </div>
 </footer>
-<script src="lib/attribution.js?v=r3"></script>
-<script src="assets/site.js?v=r3" defer></script>
-<script src="assets/analytics.js?v=r3" defer></script>
-<script src="lib/hu-geo.js?v=r3"></script>
-<script src="lib/hu-favoured.js?v=r3"></script>
-<script src="lib/match.js?v=r3"></script>
-<script src="lib/elig-schema.js?v=r3"></script>
-<script src="lib/supabase.js?v=r3" defer></script>
-<script src="assets/config.js?v=r3"></script>
-<script src="assets/pages/adatlap.js?v=r3"></script>
+<script src="lib/attribution.js?v=r4"></script>
+<script src="assets/site.js?v=r4" defer></script>
+<script src="assets/analytics.js?v=r4" defer></script>
+<script src="lib/hu-geo.js?v=r4"></script>
+<script src="lib/hu-favoured.js?v=r4"></script>
+<script src="lib/match.js?v=r4"></script>
+<script src="lib/elig-schema.js?v=r4"></script>
+<script src="lib/supabase.js?v=r4" defer></script>
+<script src="assets/config.js?v=r4"></script>
+<script src="assets/pages/adatlap.js?v=r4"></script>
 </body>
 </html>

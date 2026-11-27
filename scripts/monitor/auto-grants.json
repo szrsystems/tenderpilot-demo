@@ -421,5 +421,140 @@
    "consortium": "Your consortium must include companies based in at least one Eureka country and Japan.",
    "rnd_project": "This call is open for all R&D projects, excluding technologies associated with nuclear power, pharmaceutical development, and regenerative medicine product dev…"
   }
+ },
+ {
+  "id": "a-seasonal-schools-in-creative-entrepreneurship",
+  "code": null,
+  "title": "Seasonal Schools in Creative Entrepreneurship",
+  "issuer": "EIT Culture & Creativity calls",
+  "cat": "Oktatás",
+  "type": "grant",
+  "amount": "up to €200 000",
+  "rate": null,
+  "deadline": "2027-01-25",
+  "rolling": false,
+  "windowOpen": null,
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "regionNote": null,
+  "note": "A jelentkezéshez legalább két-három független jogi személyből álló konzorcium szükséges, amelyben oktatási és üzleti szektor képviselője is szerepel.",
+  "url": "https://eit-culture-creativity.eu/your-opportunities/calls-funding/seasonal-schools-creative-entrepreneurship",
+  "source": "eit-culture-creativity.eu",
+  "sources": [
+   "https://eit-culture-creativity.eu/your-opportunities/calls-funding/seasonal-schools-creative-entrepreneurship"
+  ],
+  "verifiedAt": "2026-11-25",
+  "confidence": "auto",
+  "autoVerified": true,
+  "scope": "eu",
+  "singleApplicant": null,
+  "evidence": {
+   "title": "Seasonal Schools in Creative Entrepreneurship",
+   "status": "Call opening\n25 November 2026\nApplication deadline\n25 January 2027\n17:00 CET",
+   "deadline": "25 January 2027",
+   "amount": "up to €200 000\nPER PROJECT",
+   "eligibility": "This call is open to consortia composed of at least two (2) and up to three (3) independent legal entities established in eligible countries"
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "Proposals must be submitted by consortia composed of at least two (2) and up to three (3) independent legal entities established in eligible countries"
+  }
+ },
+ {
+  "id": "a-resilience-roadmaps",
+  "code": null,
+  "title": "Resilience Roadmaps",
+  "issuer": "EIT Culture & Creativity calls",
+  "cat": "Kutatás-fejlesztés",
+  "type": "grant",
+  "amount": "up to €127,500",
+  "rate": null,
+  "deadline": "2027-01-25",
+  "rolling": false,
+  "windowOpen": "2026-11-25",
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "regionNote": null,
+  "note": "A pályázat benyújtásához konzorcium szükséges, amelynek tartalmaznia kell kulturális vagy kreatív szervezetet valamint legalább egy közintézményt.",
+  "url": "https://eit-culture-creativity.eu/your-opportunities/calls-funding/resilience-roadmaps",
+  "source": "eit-culture-creativity.eu",
+  "sources": [
+   "https://eit-culture-creativity.eu/your-opportunities/calls-funding/resilience-roadmaps"
+  ],
+  "verifiedAt": "2026-11-25",
+  "confidence": "auto",
+  "autoVerified": true,
+  "scope": "eu",
+  "singleApplicant": null,
+  "evidence": {
+   "title": "Resilience Roadmaps",
+   "status": "Call opening\n25 November 2026",
+   "deadline": "Application deadline\n25 January 2027\n17:00 CET",
+   "amount": "up to €127,500\nPER PROJECT",
+   "eligibility": "Applications must be submitted by consortia of at least two and no more than four independent legal entities."
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "Applications must be submitted by consortia of at least two and no more than four independent legal entities."
+  }
+ },
+ {
+  "id": "a-continuous-professional-development-cpd-courses-on-creative-",
+  "code": null,
+  "title": "Continuous Professional Development (CPD) Courses on Creative Entrepreneurship",
+  "issuer": "EIT Culture & Creativity calls",
+  "cat": "Oktatás",
+  "type": "grant",
+  "amount": "UP TO € 275,000",
+  "rate": null,
+  "deadline": "2027-01-25",
+  "rolling": false,
+  "windowOpen": "2026-11-25",
+  "sizeClasses": [
+   "mikrovállalkozás",
+   "kisvállalkozás",
+   "középvállalkozás",
+   "nagyvállalkozás"
+  ],
+  "regions": [],
+  "regionNote": null,
+  "note": "Konzorciumban nyújtható be pályázat, amely oktatási és ipari partnereket fog össze az építészet, divat vagy audiovizuális média területén.",
+  "url": "https://eit-culture-creativity.eu/your-opportunities/calls-funding/continuous-professional-development-cpd-courses-creative-0",
+  "source": "eit-culture-creativity.eu",
+  "sources": [
+   "https://eit-culture-creativity.eu/your-opportunities/calls-funding/continuous-professional-development-cpd-courses-creative-0"
+  ],
+  "verifiedAt": "2026-11-25",
+  "confidence": "auto",
+  "autoVerified": true,
+  "scope": "eu",
+  "singleApplicant": null,
+  "evidence": {
+   "title": "Continuous Professional Development (CPD) Courses on Creative Entrepreneurship",
+   "status": "Call opening\n25 November 2026\nApplication deadline\n25 January 2027, 17:00 CET",
+   "deadline": "25 January 2027, 17:00 CET",
+   "amount": "€ UP TO 275,000\nPER PROJECT",
+   "eligibility": "This call is open to consortia composed of at least two (2) and up to four (4) independent legal entities established in at least two (2) different eligible countries"
+  },
+  "requires": {
+   "consortium": true
+  },
+  "requiresEvidence": {
+   "consortium": "Proposals may be submitted by consortia composed of at least two (2) and up to four (4) independent legal entities established in at least two (2) different el…"
+  }
  }
 ]

@@ -148,7 +148,7 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <link rel="icon" type="image/svg+xml" href="${up}favicon.svg">
 <link rel="alternate" type="application/rss+xml" title="AIpályázó – új pályázatok" href="${BASE}/hirek/rss.xml">
 <link rel="preload" href="${up}assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="${up}assets/site.css?v=r3">
+<link rel="stylesheet" href="${up}assets/site.css?v=r4">
 <style>${PAGE_CSS}</style>
 ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, '\\u003c')}</script>` : ''}
 </head>
@@ -181,9 +181,9 @@ ${body}
     <div class="legal"><span>© 2026 AIpályázó · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
   </div>
 </footer>
-<script src="${up}lib/attribution.js?v=r3"></script>
-<script src="${up}assets/site.js?v=r3" defer></script>
-<script src="${up}assets/analytics.js?v=r3" defer></script>
+<script src="${up}lib/attribution.js?v=r4"></script>
+<script src="${up}assets/site.js?v=r4" defer></script>
+<script src="${up}assets/analytics.js?v=r4" defer></script>
 </body>
 </html>
 `;
@@ -506,8 +506,8 @@ export function renderIndex(open, slugs, { updatedAt, hubs = [] } = {}) {
 <p class="empty-note" id="empty" hidden>Nincs találat. Próbáljon rövidebb keresőszót.</p>
 ${hubLinks(hubs)}
 <div class="side-box narrow"><h2>Melyikre jogosult a cége?</h2><p>Négy adat alapján azonnal megmutatjuk, regisztráció nélkül.</p><a class="btn btn-primary" href="../index.html#ellenorzes">Gyors ellenőrzés</a></div>
-<script src="../lib/search.js?v=r3"></script>
-<script src="../assets/list-filter.js?v=r3" defer></script>`;
+<script src="../lib/search.js?v=r4"></script>
+<script src="../assets/list-filter.js?v=r4" defer></script>`;
   const jsonld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Nyitott pályázatok magyar vállalkozásoknak', url: `${BASE}/palyazat/index.html` };
   return shell({ title: 'Nyitott pályázatok vállalkozásoknak (hazai és EU) — naponta frissítve | AIpályázó', description: `${open.length} nyitott hazai és EU-s pályázat, hitel és tőkeprogram magyar cégeknek, naponta frissítve hivatalos forrásokból. Ingyenes illeszkedés-vizsgálat.`, canonical: `${BASE}/palyazat/index.html`, noindex: false, body, jsonld });
 }

@@ -144,7 +144,7 @@
     $('impact').hidden = !(profile.company || profile.employees);
     $('impact-apply').textContent = after;
     $('impact-label').textContent = 'felhívás illik jól';
-    $('impact-sub').textContent = 'Az adatlap nélkül: ' + before + '.' + (excluded ? ' Az adatlap alapján ' + excluded + ' felhívás kiesett, mert nem felel meg a feltételeinek.' : '');
+    $('impact-sub').textContent = (after === 0 && before === 0 ? 'Most nincs olyan nyitott felhívás, amelyre egyértelműen jogosult és a témája is illik. A portálon az „Érdemes megnézni” jelölésűeket nézze át.' : 'Az adatlap nélkül: ' + before + '.') + (excluded ? ' Az adatlap alapján ' + excluded + ' felhívás kiesett, mert nem felel meg a feltételeinek.' : '');
   }
 
   // ---------------------------------------------------------------- save
@@ -168,6 +168,8 @@
   var form = $('al-form');
   form.addEventListener('input', onInput); form.addEventListener('change', onInput); form.addEventListener('click', onClick);
   $('save-btn').addEventListener('click', save);
+  // "Back" with unsaved changes: save first instead of a browser "leave page?" prompt
+  $('back-btn').addEventListener('click', async function (ev) { if (!dirty) return; ev.preventDefault(); await save(); location.href = 'portal.html'; });
   window.addEventListener('beforeunload', function (e) { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
 
   fetch('grants_live.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : []; }).then(function (a) {
