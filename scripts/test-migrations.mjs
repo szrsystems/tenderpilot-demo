@@ -339,3 +339,14 @@ test('detailed eligibility sheet: owner writes elig JSON, others cannot, shape e
     db.query(`select elig->>'founded_date' as d from public.user_with_tier where id = '${B}'`));
   assert.equal(r.rows[0].d, '2019-05-02');
 });
+
+test('audit limits: lookup log is service-role only; bookmarks capped at 500 per user', async () => {
+  await db.exec(sql('20261127000001_lookup_log_and_limits.sql')); // re-runnable
+  await as('authenticated', { id: B, email: 'b@example.com' }, () => rejects(db.query(`select * from public.company_lookup_log`), /permission denied/));
+  await as('anon', null, () => rejects(db.query(`select * from public.company_lookup_log`), /permission denied/));
+  await db.exec(`insert into public.company_lookup_log (user_id, tax8, at) values ('${B}', '12345678', now() - interval '100 days'), ('${B}', '12345679', now())`);
+  await db.query(`select public.purge_company_data()`);
+  assert.equal((await db.query(`select count(*)::int as n from public.company_lookup_log`)).rows[0].n, 1);
+  await db.exec(`delete from public.bookmarks where user_id = '${B}'; insert into public.bookmarks (user_id, grant_id) select '${B}', 'g' || i from generate_series(1, 500) i`);
+  await rejects(db.exec(`insert into public.bookmarks (user_id, grant_id) values ('${B}', 'g-501')`), /bookmark limit/);
+});

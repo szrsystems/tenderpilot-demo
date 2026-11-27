@@ -120,7 +120,7 @@ a:hover { color: var(--brand-strong); }
 .btn-ghost:hover { background: var(--surface); color: var(--ink); }
 .btn-quiet { background: transparent; color: var(--ink-2); padding: 0 10px; }
 .btn-quiet:hover { color: var(--ink); background: var(--surface); }
-.btn-sm { min-height: 36px; padding: 0 12px; font-size: 14px; }
+.btn-sm { min-height: 40px; padding: 0 12px; font-size: 14px; }
 .btn[disabled], .btn[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
 .btn svg { width: 18px; height: 18px; }
 .link-arrow { font-weight: 600; text-decoration: none; }
@@ -364,7 +364,7 @@ select { max-width: 100%; }
 .badge.blue { background: var(--info-tint); color: var(--info); }
 .gc-side { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
 @media (min-width: 900px) { .gc-side { grid-column: auto; display: block; text-align: right; padding-right: 52px; } }
-.gc-amt-label { font: 600 11.5px/1.2 var(--sans); text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); }
+.gc-amt-label { font: 600 12.5px/1.2 var(--sans); text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); }
 .gc-amt { font: 700 17px/1.3 var(--sans); color: var(--brand-strong); margin-top: 3px; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .gc-fit { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; font: 600 13.5px/1.2 var(--sans); color: var(--ink-2); }
 .gc-fit .sc { display: inline-flex; align-items: center; justify-content: center; min-width: 38px; height: 28px; padding: 0 8px; border-radius: 999px; background: var(--surface-2); font: 700 14px/1 var(--sans); }

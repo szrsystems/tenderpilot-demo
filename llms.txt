@@ -39,14 +39,14 @@
 - [Pályázatok és hitelek mezőgazdasági termelőknek](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/mezogazdasagi-termelo.html): 13 nyitott felhívás
 - [Pályázatok és hitelek turisztikai és vendéglátó vállalkozásoknak](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/turisztikai-vallalkozas.html): 4 nyitott felhívás
 - [Vissza nem térítendő támogatások vállalkozásoknak](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/vissza-nem-teritendo.html): 381 nyitott felhívás
-- [Kedvezményes hitelek és lízing vállalkozásoknak](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/hitel.html): 25 nyitott felhívás
+- [Kedvezményes hitelek és lízing vállalkozásoknak](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/hitel.html): 26 nyitott felhívás
 - [Kockázati tőke és tőkebefektetési programok](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/toke.html): 6 nyitott felhívás
 - [Hitelgarancia és kezességvállalás vállalkozásoknak](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/garancia.html): 5 nyitott felhívás
 - [Régiós pályázatok és hitelek: Pest](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/regio-pest.html): 5 nyitott felhívás
 - [Régiós pályázatok és hitelek: Közép-Dunántúl](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/regio-kozep-dunantul.html): 6 nyitott felhívás
 - [Régiós pályázatok és hitelek: Nyugat-Dunántúl](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/regio-nyugat-dunantul.html): 6 nyitott felhívás
-- [Régiós pályázatok és hitelek: Dél-Dunántúl](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/regio-del-dunantul.html): 6 nyitott felhívás
-- [Régiós pályázatok és hitelek: Észak-Magyarország](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/regio-eszak-magyarorszag.html): 6 nyitott felhívás
+- [Régiós pályázatok és hitelek: Dél-Dunántúl](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/regio-del-dunantul.html): 7 nyitott felhívás
+- [Régiós pályázatok és hitelek: Észak-Magyarország](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/regio-eszak-magyarorszag.html): 7 nyitott felhívás
 - [Régiós pályázatok és hitelek: Észak-Alföld](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/regio-eszak-alfold.html): 6 nyitott felhívás
 - [Régiós pályázatok és hitelek: Dél-Alföld](https://palyazati-ertesito.hu/aipalyazo/palyazat/tema/regio-del-alfold.html): 6 nyitott felhívás
 

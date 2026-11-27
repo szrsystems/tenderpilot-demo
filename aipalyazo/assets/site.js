@@ -9,6 +9,10 @@
       var open = nav.classList.toggle('open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+    // Esc closes the open menu and returns focus to the toggle
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && nav.classList.contains('open')) { nav.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.focus(); }
+    });
   }
   // Signed-in users: header shows "Portál" instead of sign-up (session kept by supabase-js in localStorage)
   try {

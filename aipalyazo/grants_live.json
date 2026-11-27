@@ -162,8 +162,8 @@
   "title": "Igazságos Átmenet Alap (JTF) KKV Hitelprogram",
   "issuer": "Széchenyi Terv Plusz / palyazat.gov.hu",
   "cat": "Energiahatékonyság",
-  "type": "grant",
-  "amount": "5 M Ft – 500 M Ft",
+  "type": "loan+grant",
+  "amount": "5–500 M Ft (max. 50% vissza nem térítendő)",
   "keret": 25500000000,
   "deadline": "2027-10-31",
   "days": 0,
@@ -173,23 +173,50 @@
   "status": "Aktív",
   "requested": 0,
   "remaining": 25500000000,
-  "regions": [],
+  "regions": [
+   "Észak-Magyarország",
+   "Dél-Dunántúl"
+  ],
   "sizeClasses": [
    "középvállalkozás",
    "Mikrovállalkozás",
    "kisvállalkozás"
   ],
-  "rate": "90% támogatási intenzitás",
+  "rate": "0% kamat, max. 50% vissza nem térítendő",
   "modified": "2026-11-26T16:15:48.883Z",
   "live": true,
   "scope": "hazai",
-  "needsReview": true,
-  "regionNote": "Régiós és jogosultsági feltételek: lásd a hivatalos felhívást.",
+  "regionNote": "Csak Baranya, Borsod-Abaúj-Zemplén és Heves vármegyében megvalósuló beruházás.",
   "factors": {
    "size": 92,
    "industry": 85,
    "location": 95,
    "preference": 85
+  },
+  "counties": [
+   "Baranya",
+   "Borsod-Abaúj-Zemplén",
+   "Heves"
+  ],
+  "windowOpen": "2027-02-01",
+  "note": "Energiahatékonysági (min. 30% primerenergia-megtakarítás) vagy zöld / körforgásos diverzifikációs beruházás; min. 1 lezárt üzleti év és 10% önerő; MFB Pont Pluszban igényelhető.",
+  "verifiedAt": "2026-11-27",
+  "sources": [
+   "https://www.palyazat.gov.hu/programok/szechenyi-terv-plusz/kehop-plusz/kehop_plusz-5.1.0-26",
+   "https://www.menerko.hu/kehop-plusz-5-1-0-26-igazsagos-atmenet-alap-jtf-kkv-hitelprogram/"
+  ],
+  "confidence": "high",
+  "requires": {
+   "bank_loan": true,
+   "min_closed_years": 1,
+   "not_started": true,
+   "loan_max_ebit_x": 15
+  },
+  "requiresEvidence": {
+   "bank_loan": "Benyújtás személyesen, egy MFB Pont Plusz fiókban.",
+   "min_closed_years": "legalább egy teljes lezárt üzleti év",
+   "not_started": "a kérelmet a munkák megkezdése előtt kell beadni",
+   "loan_max_ebit_x": "legfeljebb az előző lezárt év üzemi eredményének tizenötszöröse"
   }
  },
  {

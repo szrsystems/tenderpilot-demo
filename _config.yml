@@ -1,0 +1,12 @@
+# GitHub Pages (Jekyll) publishes this repository as the website. Only the
+# public site may be served: backend code, database migrations, build scripts
+# and internal notes stay in the repo but are NOT published (audit 2026-11-27).
+exclude:
+  - supabase
+  - scripts
+  - render.yaml
+  - README.md
+  - aipalyazo/SECURITY-HEADERS.md
+  - aipalyazo/grants-status.json
+  - aipalyazo/titles-hu.json
+  - _config.yml

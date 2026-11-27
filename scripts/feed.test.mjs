@@ -329,3 +329,10 @@ test('EU titles: wiki-style links and bare URLs are removed', () => {
   assert.ok(!/https?:|\[\[/.test(g.title), g.title);
   assert.match(g.title, /^Industrial leadership in AI \(IA\) see/);
 });
+
+test('data lint: a call named "…hitel…" is never labelled a non-repayable grant', async () => {
+  const { readFileSync } = await import('node:fs');
+  const feed = JSON.parse(readFileSync(new URL('../aipalyazo/grants_live.json', import.meta.url), 'utf8'));
+  const bad = feed.filter((g) => /hitel/i.test(g.title) && g.type === 'grant').map((g) => g.id);
+  assert.deepEqual(bad, []);
+});

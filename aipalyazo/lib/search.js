@@ -75,8 +75,8 @@
   // ---------- word matching
   // stem: at least 5 letters, otherwise the whole word (+ a short Hungarian ending)
   function stem(t) { return t.length <= 5 ? t : t.slice(0, Math.max(5, t.length - 2)); }
-  // a short word may only carry a Hungarian ending: "gép" → "gépek", "gépre"; "nő" ≠ "noise", "pv" ≠ "pvrk"
-  var ENDING = /^(|k|t|i|a|e|s|ek|ok|ak|at|et|ot|re|ra|ba|be|ban|ben|bol|rol|tol|nak|nek|nal|nel|val|vel|hoz|hez|ert|ig|ja|je|ai|ei|ul|kat|ket|ket|es|as|os|on|en|ek|knek|kat|eket|okat|akat|ekre|okra)$/;
+  // a short word may only carry a Hungarian ending: "gép" → "gépek", "gépre"; "nő" ≠ "noise", "pv" ≠ "pvrk"; "gép" ≠ "gépi" (tanulás)
+  var ENDING = /^(|k|t|a|e|s|ek|ok|ak|at|et|ot|re|ra|ba|be|ban|ben|bol|rol|tol|nak|nek|nal|nel|val|vel|hoz|hez|ert|ig|ja|je|ai|ei|ul|kat|ket|ket|es|as|os|on|en|ek|knek|kat|eket|okat|akat|ekre|okra)$/;
   var ENDING2 = /^(|k|i|t|ik|ket|knek|nek|re|ra)$/; // two-letter words: "nő" → "nők", not "novel"
   function shortHit(w, t) { return w.indexOf(t) === 0 && (t.length <= 2 ? ENDING2 : ENDING).test(w.slice(t.length)); }
   // quality of the best match of token t in a word list: 1 full, .7 stem, .4 inside a compound, 0 none
@@ -193,12 +193,17 @@
     var N = pool.length || 1;
     // typo fix: a 5+ letter word that matches nothing at all is replaced by its closest feed word
     toks = toks.map(function (t) {
+      // a misspelt everyday word ("napelm") becomes the word itself, so it matches directly
+      if (t.length >= 5 && !expand0(t).length) { for (var j = 0; j < KNOWN.length; j++) { var kw = KNOWN[j]; if (kw !== t && (within1(t, kw) || within1(t, kw.slice(0, t.length))) && expand0(kw).length) return kw; } }
       if (t.length < 5 || expand(t).length) return t;
       var ex = [];
       for (var i = 0; i < docs.length; i++) if (tokMatch(t, docs[i], ex).d) return t;
       return correct(t, docs) || t;
     });
     var exs = toks.map(expand);
+    // research words (K+F, innováció…) legitimately reach EU programmes through
+    // their concept; everyday words ("CNC", "weboldal") must not.
+    var research = exs.some(function (ex) { return ex.some(function (x) { return /kutat|innov|research|k\+f/.test(x[0]); }); });
     var M = docs.map(function (d) { return toks.map(function (t, i) { return tokMatch(t, d, exs[i]); }); });
     // rarity: tokens found in few calls weigh more
     var idf = toks.map(function (t, i) {
@@ -211,6 +216,9 @@
       var total = 0, matched = 0, direct = 0;
       M[k].forEach(function (m, i) { var s = m.d || m.e; if (s) { matched++; total += s * idf[i]; if (m.d) direct++; } });
       if (!matched || matched * 2 < n) return;
+      // An EU call found only through a concept expansion ("CNC" → "technológia",
+      // "eszköz") is noise: the translated EU titles use those words for everything.
+      if (!direct && g.scope === 'eu' && !research) return;
       var s = total + (matched === n ? 2 : 0) + (g.scope === 'eu' ? 0 : 1.5);
       if (p.code) s += 1000;
       out.push({ g: g, s: Math.round(s * 100) / 100, direct: direct === n });

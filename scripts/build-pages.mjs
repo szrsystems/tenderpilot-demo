@@ -148,7 +148,7 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <link rel="icon" type="image/svg+xml" href="${up}favicon.svg">
 <link rel="alternate" type="application/rss+xml" title="Pályázati Értesítő – új pályázatok" href="${BASE}/hirek/rss.xml">
 <link rel="preload" href="${up}assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="${up}assets/site.css?v=r5">
+<link rel="stylesheet" href="${up}assets/site.css?v=r6">
 <style>${PAGE_CSS}</style>
 ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, '\\u003c')}</script>` : ''}
 </head>
@@ -181,9 +181,9 @@ ${body}
     <div class="legal"><span>© 2026 Pályázati Értesítő · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
   </div>
 </footer>
-<script src="${up}lib/attribution.js?v=r5"></script>
-<script src="${up}assets/site.js?v=r5" defer></script>
-<script src="${up}assets/analytics.js?v=r5" defer></script>
+<script src="${up}lib/attribution.js?v=r6"></script>
+<script src="${up}assets/site.js?v=r6" defer></script>
+<script src="${up}assets/analytics.js?v=r6" defer></script>
 </body>
 </html>
 `;
@@ -334,7 +334,7 @@ export function renderPage(g, slug, summary, { updatedAt, changes, related } = {
 <h1>${esc(g.title)}</h1>
 ${g.titleOriginal ? `<p class="small muted" lang="en">Eredeti cím: ${esc(g.titleOriginal)}</p>` : ''}
 <div class="tags">${tags}</div>
-<span class="stamp">Forrás: <b>${esc(g.source || 'hivatalos oldal')}</b> · ellenőrizve: ${esc(checked)}</span>
+<span class="stamp">Forrás: <b>${esc(g.source || 'hivatalos oldal')}</b> · ${g.lastChecked || g.verifiedAt ? 'feltételek ellenőrizve: ' + esc(checked) : 'a lista naponta frissül, a feltételeket a hivatalos felhívásban ellenőrizze'}</span>
 </header>
 <div class="call-grid">
 <div class="call-main">
@@ -506,8 +506,8 @@ export function renderIndex(open, slugs, { updatedAt, hubs = [] } = {}) {
 <p class="empty-note" id="empty" hidden>Nincs találat. Próbáljon rövidebb keresőszót.</p>
 ${hubLinks(hubs)}
 <div class="side-box narrow"><h2>Melyikre jogosult a cége?</h2><p>Négy adat alapján azonnal megmutatjuk, regisztráció nélkül.</p><a class="btn btn-primary" href="../index.html#ellenorzes">Gyors ellenőrzés</a></div>
-<script src="../lib/search.js?v=r5"></script>
-<script src="../assets/list-filter.js?v=r5" defer></script>`;
+<script src="../lib/search.js?v=r6"></script>
+<script src="../assets/list-filter.js?v=r6" defer></script>`;
   const jsonld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Nyitott pályázatok magyar vállalkozásoknak', url: `${BASE}/palyazat/index.html` };
   return shell({ title: 'Nyitott pályázatok vállalkozásoknak (hazai és EU) — naponta frissítve | Pályázati Értesítő', description: `${open.length} nyitott hazai és EU-s pályázat, hitel és tőkeprogram magyar cégeknek, naponta frissítve hivatalos forrásokból. Ingyenes illeszkedés-vizsgálat.`, canonical: `${BASE}/palyazat/index.html`, noindex: false, body, jsonld });
 }
@@ -766,7 +766,7 @@ export function prerenderHome(html, { open, slugs, today, updatedAt }) {
   let out = html;
   for (const [k, v] of Object.entries(fig)) out = out.replace(new RegExp(`(data-fig="${k}">)[^<]*(</div>)`), `$1${esc(v)}$2`);
   const items = feed.filter((g) => { const d = dleft(g.deadline); return d !== null && d <= 90 && !isConsortium(g); }).sort((a, b) => a.deadline.localeCompare(b.deadline));
-  const pick = [...items.filter((g) => g.scope !== 'eu').slice(0, 3), ...items.filter((g) => g.scope === 'eu').slice(0, 2)].sort((a, b) => a.deadline.localeCompare(b.deadline));
+  const pick = [...items.filter((g) => g.scope !== 'eu').slice(0, 4), ...items.filter((g) => g.scope === 'eu' && g.amount).slice(0, 1)].sort((a, b) => a.deadline.localeCompare(b.deadline));
   const cards = pick.map((g) => regRow(g, slugs.get(g.id) ? `palyazat/${slugs.get(g.id)}.html` : `portal.html?grant=${encodeURIComponent(g.id)}`, false)).join('');
   out = out.replace(/(<div class="gcards" id="next-deadlines"[^>]*>)[\s\S]*?(<\/div>\s*<p style="text-align:center;margin-top:var\(--s5\)">)/, `$1${cards}$2`);
   out = out.replace(/(<p class="asof" data-asof>)[^<]*(<\/p>)/, `$1Frissítve: ${esc(longDate(today))} · Forrás: palyazat.gov.hu, EU Funding &amp; Tenders, kiírói oldalak$2`);

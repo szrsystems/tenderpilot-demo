@@ -152,7 +152,7 @@ function factorsFor(g) {
 
 // Hand-checked facts from api-verified.json on top of an API item (also
 // used by the offline rebuild, which re-applies them to yesterday's items).
-const OVERLAY_KEYS = ['type', 'cat', 'regions', 'regionNote', 'amount', 'deadline', 'windowOpen', 'note', 'url', 'rate', 'verifiedAt', 'confidence', 'requires', 'requiresEvidence'];
+const OVERLAY_KEYS = ['type', 'cat', 'regions', 'counties', 'regionNote', 'amount', 'deadline', 'windowOpen', 'note', 'url', 'rate', 'verifiedAt', 'confidence', 'requires', 'requiresEvidence'];
 export function applyOverlay(g, overlay) {
   if (overlay) {
     for (const k of OVERLAY_KEYS) {
@@ -176,7 +176,8 @@ function mapTender(t, overlay) {
     title: String(t.name || '').replace(/[<>"]/g, '').trim(),
     issuer: 'Széchenyi Terv Plusz / palyazat.gov.hu',
     cat,
-    type: 'grant',
+    // the API has no type field: a "…hitel…" call is not non-repayable money
+    type: /hitel/i.test(String(t.name || '')) ? 'loan' : 'grant',
     amount: fmtAmount(t),
     keret: t.sumAvailableSupportAmount || 0,
     deadline: budapestDate(t.endTime),

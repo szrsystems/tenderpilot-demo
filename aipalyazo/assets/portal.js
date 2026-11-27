@@ -57,7 +57,7 @@
       - (m.group === 'consortium' && tier !== 'large' && tier !== 'mid' ? 10 : 0) + m.score;
   }
   // Profile employee-count option → label ('100+' is the old top option: ask to refine it).
-  var EMP_LABEL = { '1': '1 fő (egyéni vállalkozó)', '1-5': '2–5 fő', '6-10': '6–10 fő', '11-25': '11–25 fő', '26-50': '26–50 fő', '51-100': '51–100 fő', '101-249': '101–249 fő', '250+': '250 fő felett', '100+': '100 fő felett — kérjük, pontosítsa' };
+  var EMP_LABEL = { '1': '1 fő (csak a tulajdonos)', '1-5': '2–5 fő', '6-10': '6–10 fő', '11-25': '11–25 fő', '26-50': '26–50 fő', '51-100': '51–100 fő', '101-249': '101–249 fő', '250+': '250 fő felett', '100+': '100 fő felett — kérjük, pontosítsa' };
   function empLabel(v) { return v ? (EMP_LABEL[v] || v) : ''; }
   function byId(id) { for (var i = 0; i < S.feed.length; i++) if (S.feed[i].id === id) return S.feed[i]; return null; }
   function publicUrl(g) { return S.slugs[g.id] ? 'palyazat/' + encodeURIComponent(S.slugs[g.id]) + '.html' : ''; }
@@ -281,7 +281,7 @@
     var miss = window.AIPMatch ? AIPMatch.missingFields(S.profile) : [];
     if (miss.length) return '<div class="callout warn"><p><b>' + miss.length + ' adat hiányzik a pontos ellenőrzéshez:</b> ' + esc(miss.map(function (f) { return f.label; }).join(', ')) + '. Ezek nélkül a feltételeket „?” jellel jelöljük.</p><a class="btn btn-ghost" href="onboarding.html">Profil kiegészítése</a></div>';
     var c = window.AIPElig ? AIPElig.completeness(S.profile.elig || {}) : null;
-    if (c && c.pct < 60) return '<div class="callout"><p><b>Részletes adatlap: ' + c.pct + '% kitöltve.</b> A pályázatíró partnerünk jogosultsági modellje alapján: tulajdonosi kapcsolatok, beszámoló adatai, telephely, megfelelőségi nyilatkozatok. Ezekkel csak az marad a jól illeszkedők között, amire tényleg jogosult.</p><a class="btn btn-ghost" href="adatlap.html">Adatlap kitöltése</a></div>';
+    if (c && c.pct < 60) return '<div class="callout"><p><b>Részletes adatlap: ' + c.pct + '% kitöltve.</b> A pályázatíró partnerünk jogosultsági modellje alapján: tulajdonosi kapcsolatok, beszámoló adatai, telephely, megfelelőségi nyilatkozatok. Ezekkel a felhívások feltételeit pontosabban össze tudjuk vetni a cégével; az új feltételeket a hivatalos felhívásokból folyamatosan dolgozzuk fel.</p><a class="btn btn-ghost" href="adatlap.html">Adatlap kitöltése</a></div>';
     return '';
   }
   function eligibleSorted(filterFn) {
@@ -306,7 +306,14 @@
     var h = head(esc(S.profile && S.profile.company ? S.profile.company : 'Pályázati Értesítő portál'), greet, stampLine()) + freshness() + profileCallout();
     h += '<div class="figures" style="margin-bottom:var(--s5)">' +
       '<div class="figure"><div class="v num">' + S.feed.length + '</div><div class="k">nyitott felhívás</div></div>' +
-      '<div class="figure"><div class="v num">' + (personal ? good.length : '—') + '</div><div class="k">' + (personal ? 'illik jól a cégéhez' : 'illik — profil kell') + '</div></div>' +
+      // 0 "fits well" is a dead end: show the "worth a look" count instead, and say which it is.
+      (function () {
+        if (!personal) return '<div class="figure"><div class="v num">—</div><div class="k">illik — profil kell</div></div>';
+        var review = fitting.filter(function (g) { return matchOf(g).verdict === 'REVIEW'; }).length;
+        return good.length || !review
+          ? '<div class="figure"><div class="v num">' + good.length + '</div><div class="k">illik jól a cégéhez</div></div>'
+          : '<div class="figure"><div class="v num">' + review + '</div><div class="k">érdemes megnézni (biztos találat most nincs)</div></div>';
+      })() +
       '<div class="figure"><div class="v num">' + soon.length + '</div><div class="k">határidő 30 napon belül' + (personal ? ' (Önnek)' : '') + '</div></div>' +
       '<div class="figure"><div class="v num">' + (budget ? ft(budget) : '—') + '</div><div class="k">szabad hazai keret</div></div></div>';
     var top = (personal ? fitting : S.feed.slice().sort(function (a, b) { return (a.scope === 'eu') - (b.scope === 'eu') || (a.deadline || '9').localeCompare(b.deadline || '9'); })).slice(0, 6);
@@ -564,7 +571,7 @@
     $('#drawer-eyebrow').textContent = g.code || g.issuer || '';
     var tags = '<div class="tags"><span class="tag brand">' + (g.scope === 'eu' ? 'EU / nemzetközi' : 'Hazai') + '</span><span class="tag">' + esc(TYPE_HU[g.type] || g.type || '') + '</span>' + (d !== null ? '<span class="tag' + (d <= 14 ? ' signal' : '') + '">Határidő: ' + esc(huDate(g.deadline)) + ' · ' + d + ' nap</span>' : '<span class="tag">Folyamatos beadás</span>') + '</div>';
     var h = tags + '<h2 class="title" id="drawer-title">' + esc(g.title) + '</h2>' + (g.titleOriginal ? '<p class="small muted" lang="en" style="margin:-4px 0 8px">Eredeti cím: ' + esc(g.titleOriginal) + '</p>' : '') +
-      '<span class="stamp">Forrás: <b>' + esc(g.source || 'hivatalos oldal') + '</b> · ellenőrizve: ' + esc(g.lastChecked || g.verifiedAt || (S.meta.updatedAt || '').slice(0, 10)) + '</span>';
+      '<span class="stamp">Forrás: <b>' + esc(g.source || 'hivatalos oldal') + '</b> · ' + (g.lastChecked || g.verifiedAt ? 'feltételek ellenőrizve: ' + esc(g.lastChecked || g.verifiedAt) : 'a lista naponta frissül, a feltételeket a hivatalos felhívásban ellenőrizze') + '</span>';
     // verdict
     if (m && m.personal) {
       var v = VERDICT[m.verdict];

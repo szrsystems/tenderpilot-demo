@@ -30,7 +30,7 @@ import { bearer, corsHeaders, emailHash, jsonResponse, makeEnv } from '../_share
 
 export const DELETED_NAME = 'Törölt felhasználó';
 export const DELETED_EMAIL = 'torolt@deleted.invalid';
-export const USER_TABLES = ['bookmarks', 'drafts', 'notif_prefs', 'alert_log', 'ai_usage'];
+export const USER_TABLES = ['bookmarks', 'drafts', 'notif_prefs', 'alert_log', 'ai_usage', 'company_lookup_log'];
 
 export type Ops = {
   blockEmail(hash: string): Promise<void>;
