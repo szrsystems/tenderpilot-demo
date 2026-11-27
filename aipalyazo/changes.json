@@ -2144,6 +2144,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Demonstration of hydropower technologies for efficient and forward-looking refurbishment of existing hydropower plants"
+  },
+  {
+   "date": "2026-11-27",
+   "type": "removed",
+   "title": "Vízenergia-technológiák demonstrációja meglévő erőművek hatékony felújításához"
   }
  ],
  "eu-HORIZON-CL5-2027-07-D3-16": [
@@ -2165,6 +2170,11 @@
    "date": "2026-10-08",
    "type": "new",
    "title": "Advanced TSO control rooms to enhance grid observability, stability and resilience"
+  },
+  {
+   "date": "2026-11-27",
+   "type": "removed",
+   "title": "Fejlett TSO vezérlőtermek a hálózat átláthatóságáért, stabilitásáért és rezilienciájáért"
   }
  ],
  "eu-HORIZON-CL5-2027-07-D3-26": [
@@ -4653,6 +4663,10 @@
   {
    "date": "2026-11-20",
    "type": "page"
+  },
+  {
+   "date": "2026-11-27",
+   "type": "page"
   }
  ],
  "v-battleverse-oc1": [
@@ -4930,6 +4944,10 @@
   },
   {
    "date": "2026-11-26",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-27",
    "type": "page"
   }
  ],
@@ -6059,6 +6077,10 @@
   {
    "date": "2026-11-18",
    "type": "page"
+  },
+  {
+   "date": "2026-11-27",
+   "type": "page"
   }
  ],
  "v-kap-rd01a-rd01c-rd01d-rd01e-rd02-rd04a-rd04b-rd12-1-25": [
@@ -6250,6 +6272,10 @@
   },
   {
    "date": "2026-11-26",
+   "type": "page"
+  },
+  {
+   "date": "2026-11-27",
    "type": "page"
   }
  ],

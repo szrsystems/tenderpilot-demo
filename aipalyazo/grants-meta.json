@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-26T16:17:22.548Z",
+ "updatedAt": "2026-11-27T16:04:43.943Z",
  "sourcesOk": true,
  "apiFailed": false,
  "euApiFailed": false,
@@ -7,28 +7,24 @@
   "palyazatApi": {
    "ok": true,
    "items": 17,
-   "lastOk": "2026-11-26T16:17:22.548Z"
+   "lastOk": "2026-11-27T16:04:43.943Z"
   },
   "euApi": {
    "ok": true,
-   "items": 274,
-   "lastOk": "2026-11-26T16:17:22.548Z"
+   "items": 272,
+   "lastOk": "2026-11-27T16:04:43.943Z"
   }
  },
  "counts": {
-  "total": 419,
+  "total": 417,
   "api": 17,
   "verified": 128,
-  "euAuto": 274,
+  "euAuto": 272,
   "hazai": 58,
-  "eu": 361,
+  "eu": 359,
   "excluded": 20
  },
  "needsReview": [
-  {
-   "code": "KEHOP_PLUSZ-5.1.0-26",
-   "title": "Igazságos Átmenet Alap (JTF) KKV Hitelprogram"
-  },
   {
    "code": "GINOP_PLUSZ-2.1.3-24",
    "title": "KKV-k innovációs képességének támogatása"
@@ -42,10 +38,12 @@
   "v-mfb-zold-lendulet-hitelprogram",
   "v-mfb-agrar-forgoeszkoz-hitelprogram-2025",
   "v-mfb-elelmiszeripari-forgoeszkoz-hitelprogram-2025",
+  "v-2025-1-1-1-iparjog",
   "v-ginop-plusz-4-1-1-23",
   "v-ginop-plusz-3-1-1-23",
   "v-vallalkozova-valast-elosegito-tamogatas",
   "v-eurostars-3-call-12",
+  "v-euipo-sme-fund-2026",
   "v-eureka-xecs-call6",
   "v-eif-investeu-unicredit-hu",
   "v-eif-sustainability-kh-hu",
@@ -53,6 +51,8 @@
   "v-garantiqa-kezesseg",
   "v-avhga-kezesseg",
   "v-eib-raiffeisen-lizing",
+  "v-2025-1-2-2-eureka",
+  "v-2024-1-2-1-he-partnerseg",
   "v-mfb-pvrk-forgoeszkoz-hitelprogram",
   "v-top-plusz-3-1-1-21",
   "v-innowwide-call5-2026"
@@ -160,10 +160,6 @@
   },
   {
    "id": "v-eureka-itea-2026",
-   "why": "lejárt"
-  },
-  {
-   "id": "v-ivf-visegrad-grants-2026-10",
    "why": "lejárt"
   },
   {
@@ -275,8 +271,12 @@
    "why": "monitor: closed: EU portál: nincs jövőbeli határidő"
   },
   {
+   "id": "v-ivf-visegrad-grants-2026-10",
+   "why": "monitor: closed: az oldal szerint: „Currently closed”"
+  },
+  {
    "id": "v-marc-impact-hu-2026",
-   "why": "monitor: closed: az oldal szerint: „Jelentkezési határidő (23:59)”"
+   "why": "monitor: closed: az oldal szerint: „2026. szeptember 28.\nJelentkezési határidő (23:59)”"
   }
  ],
  "excluded": [
@@ -289,64 +289,64 @@
    "why": "Pénzügyi eszköz keret alapkezelőnek."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
-   "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
-  },
-  {
-   "code": "IKOP_PLUSZ-2.1.0-23",
-   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
+   "code": "IKOP_PLUSZ-2.2.0-23",
+   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
   },
   {
    "code": "IKOP_PLUSZ-1.1.0-23",
    "why": "Közösségi közlekedés, kijelölt kedvezményezett (BKK)."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
+   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
   },
   {
    "code": "DIMOP_PLUSZ-1.2.3/A1-24",
    "why": "Alapkezelői technikai felhívás."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/B2-24",
-   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret), vállalkozás nem pályázhat."
+   "code": "IKOP_PLUSZ-2.1.0-23",
+   "why": "Vasúti beruházás kijelölt állami kedvezményezettnek (MÁV)."
   },
   {
    "code": "IKOP_PLUSZ-1.2.0-23",
    "why": "Közlekedési beruházás kijelölt állami kedvezményezettnek."
   },
   {
-   "code": "IKOP_PLUSZ-2.2.0-23",
-   "why": "Vasúti/közlekedési beruházás kijelölt állami kedvezményezettnek."
+   "code": "DIMOP_PLUSZ-1.2.3/A2-24",
+   "why": "Alapkezelői technikai felhívás (pénzügyi eszköz keret)."
   },
   {
-   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
-   "why": "Alapkezelői/bank költségtérítés."
+   "code": "DIMOP_PLUSZ-1.2.3/B1-24",
+   "why": "Alapkezelői technikai felhívás (fejlettebb régió keret)."
   },
   {
    "code": "GINOP_PLUSZ-2.5.4-25",
    "why": "Alapkezelői költségtérítés."
   },
   {
+   "code": "DIMOP_PLUSZ-1.2.3/AB-1-24",
+   "why": "Alapkezelői/bank költségtérítés."
+  },
+  {
    "code": "DIMOP_PLUSZ-5.1.4-2-26",
    "why": "Alapkezelői kezelési költségtérítés."
   },
   {
-   "code": "GINOP_PLUSZ-1.4.7-24",
-   "why": "Alapkezelői/közvetítői költségtérítés."
-  },
-  {
-   "code": "GINOP_PLUSZ-1.4.6-24",
-   "why": "Hitelkeret alapkezelőnek (Budapest)."
+   "code": "KEHOP_PLUSZ-3.1.12-25",
+   "why": "Közszféra kármentesítési felhívás."
   },
   {
    "code": "KEHOP_PLUSZ-3.1.11-25",
    "why": "Kármentesítés, nagy közszféra-projektek; keret lekötve."
   },
   {
-   "code": "KEHOP_PLUSZ-3.1.12-25",
-   "why": "Közszféra kármentesítési felhívás."
+   "code": "GINOP_PLUSZ-1.4.6-24",
+   "why": "Hitelkeret alapkezelőnek (Budapest)."
+  },
+  {
+   "code": "GINOP_PLUSZ-1.4.7-24",
+   "why": "Alapkezelői/közvetítői költségtérítés."
   },
   {
    "code": "GINOP_PLUSZ-1.1.5-24",
@@ -363,59 +363,14 @@
  ],
  "changes": [
   {
-   "id": "eu-CREA-MEDIA-2027-DEVSLATE",
-   "type": "new",
-   "title": "European slate development"
-  },
-  {
-   "id": "eu-HORIZON-CL5-2026-11-D3-06",
-   "type": "new",
-   "title": "Resource assessment for deep sedimentary and basement reservoirs"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-04",
-   "type": "new",
-   "title": "Unlocking a safe operating space for Antarctica and the Southern Ocean"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-01",
-   "type": "new",
-   "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-03",
-   "type": "new",
-   "title": "Carbon farming innovation and scale-up"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-02",
-   "type": "new",
-   "title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-02-CLIMATE-01",
-   "type": "new",
-   "title": "Governance, sustainable development and international politics of a future ice-free Arctic"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-03",
-   "type": "new",
-   "title": "Microbiome for terrestrial livestock sustainability and health within a One Health approach"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-02-FARM2FORK-08",
-   "type": "new",
-   "title": "AI-powered foodome characterization"
-  },
-  {
-   "id": "eu-HORIZON-CL6-2027-01-BIODIV-01",
+   "id": "eu-HORIZON-CL5-2027-07-D3-25",
    "type": "removed",
-   "title": "Távérzékelés és helyszíni biodiverzitási megfigyelések integrálása"
+   "title": "Fejlett TSO vezérlőtermek a hálózat átláthatóságáért, stabilitásáért és rezilienciájáért"
   },
   {
-   "id": "eu-HORIZON-CL6-2027-01-ZEROPOLLUTION-03",
+   "id": "eu-HORIZON-CL5-2027-07-D3-11",
    "type": "removed",
-   "title": "Mezőgazdasági légszennyezés monitoringjának és csökkentésének fejlesztése"
+   "title": "Vízenergia-technológiák demonstrációja meglévő erőművek hatékony felújításához"
   }
  ]
 }
