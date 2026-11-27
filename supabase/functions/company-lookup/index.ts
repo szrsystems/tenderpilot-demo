@@ -39,7 +39,7 @@ const DAILY_LIMIT = 150; // shared per-user daily AI/lookup counter (overall abu
 const LOOKUP_LIMIT = 10;  // different tax numbers per user per 24 h (audit 2026-11-27)
 const CACHE_DAYS = 30;
 
-const ALLOWED_ORIGINS = ['https://palyazati-ertesito.hu', 'https://www.palyazati-ertesito.hu', 'https://aipalyazo.hu', 'https://www.aipalyazo.hu'];
+const ALLOWED_ORIGINS = ['https://palyazati-ertesito.hu', 'https://www.palyazati-ertesito.hu', 'https://aipalyazo.hu', 'https://www.aipalyazo.hu', 'https://teszt.palyazati-ertesito.hu', 'https://palyazati-ertesito.pages.dev'];
 function cors(origin: string | null) {
   return {
     'Access-Control-Allow-Origin': origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0],

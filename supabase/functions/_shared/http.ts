@@ -6,6 +6,9 @@ export const SITE_ORIGINS = [
   // old domain: kept while it 301-redirects, so open tabs and cached pages keep working
   'https://aipalyazo.hu',
   'https://www.aipalyazo.hu',
+  // test copy of the new domain (Cloudflare Pages)
+  'https://teszt.palyazati-ertesito.hu',
+  'https://palyazati-ertesito.pages.dev',
 ];
 
 export type Env = (key: string) => string | undefined;
