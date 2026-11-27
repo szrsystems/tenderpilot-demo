@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — calendar Edge Function (personal iCal feed)
+// Pályázati Értesítő — calendar Edge Function (personal iCal feed)
 // =========================================================================
 // Subscribable calendar of the user's SAVED calls' deadlines:
 //   GET /functions/v1/calendar?t=<notif_prefs.calendar_token>
@@ -31,7 +31,7 @@ export type Deps = {
 };
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-const CAL_NAME = 'AIpályázó — mentett pályázatok';
+const CAL_NAME = 'Pályázati Értesítő — mentett pályázatok';
 
 export function supabaseCalendarStore(admin: any): CalendarStore {
   return {

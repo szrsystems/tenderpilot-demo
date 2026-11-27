@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — lead-submit Edge Function
+// Pályázati Értesítő — lead-submit Edge Function
 // =========================================================================
 // The only way a consultation request ("lead") enters the database. Replaces
 // the browser's direct INSERT into public.leads + the lead-notify call.
@@ -228,7 +228,7 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
         try {
           await alertMailer({
             to: parseRecipients(env('LEAD_NOTIFY_TO') || 'info@aipalyazo.hu'),
-            subject: `[AIpályázó] Konzultációs kérések korlátja elérve (${capHit === 'hourly' ? 'óránkénti ' + hourCap : 'napi ' + dayCap})`,
+            subject: `[Pályázati Értesítő] Konzultációs kérések korlátja elérve (${capHit === 'hourly' ? 'óránkénti ' + hourCap : 'napi ' + dayCap})`,
             html: `<p>A konzultációs űrlap ${capHit === 'hourly' ? 'óránkénti' : 'napi'} összesített korlátja (${capHit === 'hourly' ? hourCap : dayCap}) betelt, az új kéréseket a rendszer átmenetileg elutasítja.</p><p>Ha ez valós forgalom (pl. kampány), emelje a korlátot a <code>${capHit === 'hourly' ? 'LEAD_GLOBAL_HOURLY_CAP' : 'LEAD_GLOBAL_DAILY_CAP'}</code> Supabase secrettel. Ha támadás, nem kell tennie semmit: a korlát véd.</p>`,
             idempotencyKey: `lead-cap-${capHit}-${stamp}`,
           });

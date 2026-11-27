@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó monitor — grounded extraction ("fact check") of one page
+// Pályázati Értesítő monitor — grounded extraction ("fact check") of one page
 // =========================================================================
 // An LLM reads the official page text and returns the call's facts, each
 // with a VERBATIM quote from the page. Nothing is trusted on the model's

@@ -6,19 +6,19 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://challenges.cloudflare.com https://gc.zgo.at; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://kacnvchwfwvpkkyhyupb.supabase.co wss://kacnvchwfwvpkkyhyupb.supabase.co https://*.goatcounter.com; frame-src https://challenges.cloudflare.com; base-uri 'self'; object-src 'none'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="robots" content="noindex, follow">
-<title>Portál — AIpályázó</title>
+<title>Portál — Pályázati Értesítő</title>
 <meta name="description" content="Az Ön cégére szabott, pontról pontra ellenőrzött pályázati lista.">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=r4">
-<link rel="stylesheet" href="assets/portal.css?v=r4">
+<link rel="stylesheet" href="assets/site.css?v=r5">
+<link rel="stylesheet" href="assets/portal.css?v=r5">
 </head>
 <body class="app-body">
 <a class="skip" href="#view">Ugrás a tartalomra</a>
 <div class="app">
   <aside class="rail" id="rail" aria-label="Navigáció">
-    <a class="brand" href="index.html" aria-label="AIpályázó főoldal"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#12844a"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a>
+    <a class="brand" href="index.html" aria-label="Pályázati Értesítő főoldal"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#12844a"/><path d="M16 7.2c-3.4 0-6 2.7-6 6.1v3.9l-1.9 3.4h15.8L22 17.2v-3.9c0-3.4-2.6-6.1-6-6.1z" fill="#fff"/><path d="M13.6 23.4a2.5 2.5 0 0 0 4.8 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="23.3" cy="8.7" r="3.1" fill="#f4b740" stroke="#12844a" stroke-width="1.4"/></svg><span>Pályázati <b>Értesítő</b></span></a>
     <nav aria-label="Portál">
       <a class="nav" href="#/attekintes" data-view="attekintes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Áttekintés</a>
       <a class="nav" href="#/palyazatok" data-view="palyazatok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14M5 9h14M5 14h9M5 19h6"/></svg>Pályázatok<span class="count" id="count-all"></span></a>
@@ -39,7 +39,7 @@
   <div class="main">
     <header class="topbar">
       <button class="btn btn-ghost btn-sm" type="button" id="rail-toggle" aria-controls="rail" aria-expanded="false" aria-label="Menü"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
-      <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#12844a"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>AI</b>pályázó</span></a>
+      <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#12844a"/><path d="M16 7.2c-3.4 0-6 2.7-6 6.1v3.9l-1.9 3.4h15.8L22 17.2v-3.9c0-3.4-2.6-6.1-6-6.1z" fill="#fff"/><path d="M13.6 23.4a2.5 2.5 0 0 0 4.8 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="23.3" cy="8.7" r="3.1" fill="#f4b740" stroke="#12844a" stroke-width="1.4"/></svg><span>Pályázati <b>Értesítő</b></span></a>
     </header>
     <main class="view" id="view" tabindex="-1" aria-live="polite"><p class="muted">Betöltés…</p></main>
   </div>
@@ -54,18 +54,18 @@
   <div class="drawer-body" id="drawer-body"></div>
 </aside>
 
-<script src="assets/config.js?v=r4"></script>
-<script src="lib/attribution.js?v=r4"></script>
-<script src="lib/phone.js?v=r4"></script>
-<script src="lib/hu-geo.js?v=r4"></script>
-<script src="lib/hu-favoured.js?v=r4"></script>
-<script src="lib/elig-schema.js?v=r4"></script>
-<script src="lib/match.js?v=r4"></script>
-<script src="lib/cards.js?v=r4"></script>
-<script src="lib/search.js?v=r4"></script>
-<script src="assets/helpers.js?v=r4"></script>
-<script src="lib/supabase.js?v=r4" defer></script>
-<script src="assets/analytics.js?v=r4" defer></script>
-<script src="assets/portal.js?v=r4" defer></script>
+<script src="assets/config.js?v=r5"></script>
+<script src="lib/attribution.js?v=r5"></script>
+<script src="lib/phone.js?v=r5"></script>
+<script src="lib/hu-geo.js?v=r5"></script>
+<script src="lib/hu-favoured.js?v=r5"></script>
+<script src="lib/elig-schema.js?v=r5"></script>
+<script src="lib/match.js?v=r5"></script>
+<script src="lib/cards.js?v=r5"></script>
+<script src="lib/search.js?v=r5"></script>
+<script src="assets/helpers.js?v=r5"></script>
+<script src="lib/supabase.js?v=r5" defer></script>
+<script src="assets/analytics.js?v=r5" defer></script>
+<script src="assets/portal.js?v=r5" defer></script>
 </body>
 </html>

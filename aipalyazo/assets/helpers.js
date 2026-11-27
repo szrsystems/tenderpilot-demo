@@ -1,4 +1,4 @@
-/* AIpályázó portal — small shared helpers (industry labels, amount parsing). */
+/* Pályázati Értesítő portal — small shared helpers (industry labels, amount parsing). */
 var INDUSTRY_OPTS = [['IT','Informatika, szoftver'],['Manufacturing','Gyártás, ipar'],['Construction','Építőipar'],['HVAC','Épületgépészet, energetika'],['Retail','Kereskedelem'],['Tourism','Szálláshely, turizmus'],['Restaurant','Vendéglátás'],['Agriculture','Mezőgazdaság, élelmiszer'],['Healthcare','Egészségügy'],['Education','Oktatás, képzés'],['General','Egyéb szolgáltatás']];
 function industryLabel(code) { var o = INDUSTRY_OPTS.filter(function (x) { return x[0] === code; })[0]; return o ? o[1] : code; }
 function parseAmount(s) {

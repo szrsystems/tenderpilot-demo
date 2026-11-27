@@ -1,5 +1,5 @@
 /* =========================================================================
- * AIpályázó — Hungarian postcode → county → NUTS-2 region (2021–27)
+ * Pályázati Értesítő — Hungarian postcode → county → NUTS-2 region (2021–27)
  * Used to pre-fill the region from the company seat after a tax-number
  * lookup. Postcode areas don't follow county borders exactly, so the result
  * is shown as an editable suggestion ("irányítószám alapján — ellenőrizze").

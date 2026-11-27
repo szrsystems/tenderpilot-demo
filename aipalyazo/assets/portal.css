@@ -1,4 +1,4 @@
-/* AIpályázó portal — builds on assets/site.css */
+/* Pályázati Értesítő portal — builds on assets/site.css */
 body.app-body { background: var(--paper); }
 .app { display: grid; min-height: 100dvh; grid-template-columns: 1fr; }
 @media (min-width: 1024px) { .app { grid-template-columns: 248px minmax(0, 1fr); } }

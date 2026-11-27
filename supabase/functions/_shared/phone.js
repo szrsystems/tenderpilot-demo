@@ -1,4 +1,4 @@
-/* AIpályázó — phone number check and normalisation (browser + Node + Deno).
+/* Pályázati Értesítő — phone number check and normalisation (browser + Node + Deno).
    Accepts real Hungarian numbers in any common spelling (+36 30 123 4567,
    06-30/123-4567, 06 1 234 5678, +36 22 123 456) and foreign numbers in
    international form (+49 …, 8–15 digits). Returns the number in one tidy

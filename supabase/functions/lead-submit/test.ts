@@ -46,7 +46,7 @@ Deno.test('stores the lead, notifies partner + requester, returns ref', async ()
   const [partner, confirm] = mailer.sent;
   assertEquals(partner.to, ['op@aipalyazo.hu', 'dft@example.hu']);
   assertEquals(partner.replyTo, 'anna@example.com');
-  assertEquals(partner.subject, `[AIpályázó lead ${j.ref}] ${GRANT.title}`);
+  assertEquals(partner.subject, `[Pályázati Értesítő lead ${j.ref}] ${GRANT.title}`);
   assertStringIncludes(partner.html, '&lt;script&gt;');
   assert(!partner.html.includes('<script>'), 'escaped');
   assertStringIncludes(partner.html, 'Hivatalos cím &lt;b&gt;');

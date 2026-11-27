@@ -1,5 +1,5 @@
 /* =========================================================================
- * AIpályázó — detailed eligibility sheet ("Részletes adatlap")
+ * Pályázati Értesítő — detailed eligibility sheet ("Részletes adatlap")
  * The fields follow DFT-Hungária's eligibility data model v2 (Kocsis Péter,
  * 2026-11), sections 1–10 plus de minimis, transparency and the planned
  * project. Field ids are the model's own ids, so DFT can read the answers

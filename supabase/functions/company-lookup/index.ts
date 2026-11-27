@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — company-lookup Edge Function (tax number → company data)
+// Pályázati Értesítő — company-lookup Edge Function (tax number → company data)
 // =========================================================================
 // POST { taxNumber: "12345678" | "12345678-1-41" }  (signed-in users only)
 // → { found, name, legalForm, postalCode, city, street, county, region, sites[], cached }

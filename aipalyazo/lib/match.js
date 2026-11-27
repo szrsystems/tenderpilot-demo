@@ -1,5 +1,5 @@
 /* =========================================================================
- * AIpályázó — grant ↔ company matching (shared by the portal and the
+ * Pályázati Értesítő — grant ↔ company matching (shared by the portal and the
  * weekly-digest e-mail; the copy in supabase/functions/_shared/match.js must
  * stay byte-identical — a test enforces it).
  *

@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — evergreen guides (aipalyazo/utmutato/*.html)
+// Pályázati Értesítő — evergreen guides (aipalyazo/utmutato/*.html)
 // =========================================================================
 // Short, sourced explainers for the questions companies (and AI assistants)
 // ask about grants. Each guide answers first, links its official sources and
@@ -122,7 +122,7 @@ export const GUIDES = [
 <li><b>Hiánypótlás, döntés.</b> A hatóság hiánypótlást vagy tisztázó kérdést küldhet rövid határidővel; a döntésről elektronikus értesítés jön.</li>
 <li><b>Támogatói okirat, megvalósítás, elszámolás.</b> A projektet a vállalt ütemezés szerint kell megvalósítani, majd elszámolni és a fenntartási időszakban fenntartani.</li></ol>` },
       { h: 'Gyakori hibák', html: `<ul><li>Rossz méretkategória (kapcsolt cégek kihagyása).</li><li>Nem elszámolható költség a költségvetésben.</li><li>Lejárt vagy hiányzó nyilatkozat, aláírás.</li><li>Az utolsó napra hagyott beadás, amikor a keret már kimerülhet.</li></ul>
-<p>Sok cég pályázatíró szakemberrel dolgozik; az AIpályázó-n minden felhívásnál kérhet díjmentes konzultációt.</p>` },
+<p>Sok cég pályázatíró szakemberrel dolgozik; a Pályázati Értesítőn minden felhívásnál kérhet díjmentes konzultációt.</p>` },
     ],
     live: (open) => {
       const soon = open.filter((g) => isDate(g.deadline)).sort((a, b) => a.deadline.localeCompare(b.deadline)).slice(0, 1)[0];

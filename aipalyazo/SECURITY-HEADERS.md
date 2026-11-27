@@ -1,4 +1,4 @@
-# Security headers — AIpályázó
+# Security headers — Pályázati Értesítő
 
 GitHub Pages cannot send custom HTTP headers. Today every page carries a CSP and
 a Referrer-Policy as `<meta>` tags. The rest (clickjacking protection, nosniff,

@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — official call summaries ("A felhívás röviden")
+// Pályázati Értesítő — official call summaries ("A felhívás röviden")
 // =========================================================================
 // For every listed call the AI reads the OFFICIAL source text (the issuer's
 // page, or for EU topics the portal's own topicDetails JSON) and writes a

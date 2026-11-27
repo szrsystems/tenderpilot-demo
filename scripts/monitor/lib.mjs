@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó monitor — shared helpers (no dependencies)
+// Pályázati Értesítő monitor — shared helpers (no dependencies)
 // =========================================================================
 import { createHash } from 'node:crypto';
 

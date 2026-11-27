@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — lead-notify (RETIRED 2026-09-28)
+// Pályázati Értesítő — lead-notify (RETIRED 2026-09-28)
 // =========================================================================
 // Replaced by `lead-submit`, which stores the lead AND sends both e-mails
 // server-side. This stub stays deployed only so that old cached portal pages

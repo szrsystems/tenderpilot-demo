@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // =========================================================================
-// AIpályázó — IndexNow ping (Bing, Yandex, Seznam, Naver …)
+// Pályázati Értesítő — IndexNow ping (Bing, Yandex, Seznam, Naver …)
 // =========================================================================
 // Tells search engines which pages changed today, so new and updated calls
 // are re-crawled within hours instead of weeks. Bing's index also feeds

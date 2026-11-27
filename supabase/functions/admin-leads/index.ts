@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — admin-leads Edge Function
+// Pályázati Értesítő — admin-leads Edge Function
 // =========================================================================
 // Lead list + status updates for the operator. The caller must be signed in
 // (Supabase Auth), have a CONFIRMED e-mail, and that e-mail must be in the

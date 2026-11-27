@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // =========================================================================
-// AIpályázó — live grant feed builder (daily cron)
+// Pályázati Értesítő — live grant feed builder (daily cron)
 // =========================================================================
 // Primary source: the official palyazat.gov.hu backend API (ginapp-api.
 // fair.gov.hu) — the same API the government site's own frontend calls.

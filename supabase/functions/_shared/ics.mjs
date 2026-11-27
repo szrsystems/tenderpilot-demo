@@ -53,7 +53,7 @@ export function icsUid(id) {
 export function buildICS(list, opts = {}) {
   const stamp = icsStamp(opts.now ?? new Date());
   const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//AIpalyazo//Hataridok//HU', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
-    'X-WR-CALNAME:' + icsEscape(opts.calName ?? 'AIpályázó határidők'), 'X-WR-TIMEZONE:Europe/Budapest'];
+    'X-WR-CALNAME:' + icsEscape(opts.calName ?? 'Pályázati Értesítő határidők'), 'X-WR-TIMEZONE:Europe/Budapest'];
   if (opts.refresh) lines.push('REFRESH-INTERVAL;VALUE=DURATION:' + opts.refresh, 'X-PUBLISHED-TTL:' + opts.refresh);
   let n = 0;
   for (const g of list || []) {
@@ -67,7 +67,7 @@ export function buildICS(list, opts = {}) {
     lines.push('BEGIN:VEVENT', 'UID:' + icsUid(g.id), 'DTSTAMP:' + stamp,
       'DTSTART;VALUE=DATE:' + d, 'DTEND;VALUE=DATE:' + d2,
       'SUMMARY:' + icsEscape('Pályázati határidő: ' + g.title),
-      'DESCRIPTION:' + icsEscape((g.amount ? 'Összeg: ' + g.amount + '\n' : '') + 'Hivatalos oldal: ' + (g.url || '—') + '\nAIpályázó: ' + link + '\nA határidőt mindig ellenőrizze a hivatalos kiírásban.'),
+      'DESCRIPTION:' + icsEscape((g.amount ? 'Összeg: ' + g.amount + '\n' : '') + 'Hivatalos oldal: ' + (g.url || '—') + '\nPályázati Értesítő: ' + link + '\nA határidőt mindig ellenőrizze a hivatalos kiírásban.'),
       'URL:' + link,
       'TRANSP:TRANSPARENT',
       'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + icsEscape('2 hét múlva lejár: ' + g.title), 'TRIGGER:-P14D', 'END:VALARM',

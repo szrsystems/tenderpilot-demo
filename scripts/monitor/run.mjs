@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // =========================================================================
-// AIpályázó daily monitor — discover new calls + fact-check listed ones
+// Pályázati Értesítő daily monitor — discover new calls + fact-check listed ones
 // =========================================================================
 // 1. RE-CHECK every hand-verified / auto-verified item on its official page:
 //    - EU topics: the portal's own topicDetails JSON (exact deadline/status)
@@ -288,7 +288,7 @@ async function main() {
   writeFileSync(P('flags.json'), JSON.stringify({ updatedAt: today, ...out.flags }, null, 1));
   writeFileSync(P('auto-grants.json'), JSON.stringify(out.auto, null, 1));
   writeFileSync(P('review-queue.json'), JSON.stringify({ updatedAt: today, items: out.review }, null, 1));
-  const md = [`## AIpályázó napi ellenőrzés — ${today}`, '', ...out.log.map((l) => `- ${l}`), '',
+  const md = [`## Pályázati Értesítő napi ellenőrzés — ${today}`, '', ...out.log.map((l) => `- ${l}`), '',
     out.review.length ? '### Kézi ellenőrzésre vár\n\n' + out.review.slice(0, 80).map((r) => `- [${r.kind}] ${r.title || r.id || ''} — ${r.detail || ''} — ${r.url}`).join('\n') : 'Nincs kézi teendő.',
     Object.keys(out.flags.hide).length ? '\n### Elrejtve (2 egymást követő sikertelen ellenőrzés)\n\n' + Object.entries(out.flags.hide).map(([k, v]) => `- ${k}: ${v}`).join('\n') : ''].join('\n');
   writeFileSync(P('report.md'), md);

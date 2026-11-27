@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — instant-alerts Edge Function (opt-in, daily)
+// Pályázati Értesítő — instant-alerts Edge Function (opt-in, daily)
 // =========================================================================
 // Called by the daily GitHub job right after the feed is rebuilt, with the
 // new feed and its change list in the body (no race with site deploys):
@@ -27,7 +27,7 @@ const CRON_SECRET = Deno.env.get('CRON_SECRET') ?? '';
 const PORTAL = 'https://palyazati-ertesito.hu/aipalyazo/portal.html';
 const UNSUB_PAGE = 'https://palyazati-ertesito.hu/aipalyazo/leiratkozas.html';
 const UNSUB_API = `${SUPABASE_URL}/functions/v1/unsubscribe`;
-const FROM = 'AIpályázó <noreply@aipalyazo.hu>';
+const FROM = 'Pályázati Értesítő <noreply@aipalyazo.hu>';
 const MIN_SCORE = 75; // = the portal's "Érdemes pályázni" verdict — instant mails must be strong fits only
 
 const esc = (s: unknown) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c] as string));

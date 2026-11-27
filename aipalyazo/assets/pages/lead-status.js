@@ -34,7 +34,7 @@
         el.textContent = LABELS[status];
         if (status === 'lost' || status === 'spam') el.classList.add('bad');
     });
-    document.title = 'Igény ' + ref + ' — ' + LABELS[status] + ' — AIpályázó';
+    document.title = 'Igény ' + ref + ' — ' + LABELS[status] + ' — Pályázati Értesítő';
     show('step-confirm');
     // Keep the token out of the address bar / history once read.
     try { history.replaceState(null, '', location.pathname); } catch (e) {}

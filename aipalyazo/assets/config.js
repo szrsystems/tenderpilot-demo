@@ -1,4 +1,4 @@
-/* AIpályázó — public site settings (safe to publish). */
+/* Pályázati Értesítő — public site settings (safe to publish). */
 window.AIP_CONFIG = {
   // Cloudflare Turnstile SITE key for the consultation form (public). Empty =
   // no captcha widget; the server then skips verification unless

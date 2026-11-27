@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — AI generation proxy (Supabase Edge Function)
+// Pályázati Értesítő — AI generation proxy (Supabase Edge Function)
 // =========================================================================
 // Tasks:
 //   task:"draft"   → removed (returns unknown_task).

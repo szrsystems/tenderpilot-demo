@@ -118,7 +118,7 @@ jobs:
         run: |
           N=$(node -e "console.log(require('./scripts/monitor/review-queue.json').items.length)")
           if [ "$N" = "0" ]; then echo "Nothing to review."; exit 0; fi
-          gh label create napi-ellenorzes --color FBCA04 --description "AIpályázó daily review" --force
+          gh label create napi-ellenorzes --color FBCA04 --description "Pályázati Értesítő daily review" --force
           ISSUE=$(gh issue list --label napi-ellenorzes --state open --json number -q '.[0].number')
           if [ -n "$ISSUE" ]; then gh issue comment "$ISSUE" --body-file scripts/monitor/report.md
           else gh issue create --title "Pályázatok — kézi ellenőrzésre vár" --label napi-ellenorzes --body-file scripts/monitor/report.md; fi

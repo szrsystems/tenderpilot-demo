@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — EU calls from the official EU Funding & Tenders Portal
+// Pályázati Értesítő — EU calls from the official EU Funding & Tenders Portal
 // =========================================================================
 // Source: the portal's own public search API (SEDIA). One POST per page,
 // multipart/form-data, every part must carry Content-Type: application/json

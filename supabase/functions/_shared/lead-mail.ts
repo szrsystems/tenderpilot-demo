@@ -11,7 +11,7 @@ function sourceLabel(lead: { utm_source?: string | null; utm_campaign?: string |
   return [lead.utm_source, lead.utm_campaign, lead.utm_medium].filter(Boolean).join(' / ');
 }
 
-export const FROM = 'AIpályázó <noreply@aipalyazo.hu>';
+export const FROM = 'Pályázati Értesítő <noreply@aipalyazo.hu>';
 export const PARTNER_NAME_DEFAULT = 'DFT-Hungária';
 export const PRIVACY_URL = 'https://palyazati-ertesito.hu/aipalyazo/adatvedelem.html';
 export const MAX_NOTIFY_ATTEMPTS = 5;
@@ -100,7 +100,7 @@ export async function operatorEmail(lead: LeadRow, opts: { statusSecret?: string
   const url = safeUrl(g.url);
   const created = budapestDateTime(new Date(lead.created_at));
   const links = await statusLinks(lead.lead_ref, opts.statusSecret, opts.statusPage);
-  const subject = `[AIpályázó lead ${lead.lead_ref}] ${oneLine(title, 150)}`;
+  const subject = `[Pályázati Értesítő lead ${lead.lead_ref}] ${oneLine(title, 150)}`;
 
   const contact = [
     row('Cég', esc(lead.company || snap.profile?.company || '—')),
@@ -179,7 +179,7 @@ export function requesterEmail(lead: Pick<LeadRow, 'lead_ref' | 'grant_title' | 
   const p = esc(partnerName);
   const a = article(partnerName);
   const A = a.charAt(0).toUpperCase() + a.slice(1);
-  const subject = `Konzultációs igényét rögzítettük (${lead.lead_ref}) — AIpályázó`;
+  const subject = `Konzultációs igényét rögzítettük (${lead.lead_ref}) — Pályázati Értesítő`;
   const html = `<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f0fdf4;padding:32px 16px;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;"><tr><td align="center">
 <table width="520" cellpadding="0" cellspacing="0" border="0" style="max-width:520px;width:100%;background:#fff;border-radius:14px;border:1px solid #dcfce7;">
 <tr><td style="background:#15803d;padding:20px 30px;"><span style="font-size:20px;font-weight:800;color:#fff;">AI<span style="color:#bbf7d0;">pályázó</span></span></td></tr>
@@ -192,7 +192,7 @@ ${titleHtml}
 <p style="margin:0 0 16px;font-size:13px;line-height:1.6;color:#6b7280;">Adatainak kezelése: a megadott nevet, e-mail-címet, telefonszámot, üzenetet és a felhíváshoz tartozó cégprofil-adatokat kizárólag a konzultáció megszervezéséhez használjuk, és ehhez továbbítjuk ${a} ${p} részére. Részletek: <a href="${PRIVACY_URL}" style="color:#15803d;">Adatkezelési tájékoztató</a>.</p>
 <p style="margin:0;font-size:13px;line-height:1.6;color:#6b7280;">Ha nem Ön küldte ezt az igényt, kérjük, jelezze az <a href="mailto:info@aipalyazo.hu" style="color:#15803d;">info@aipalyazo.hu</a> címen, és töröljük az adatokat.</p>
 </td></tr>
-<tr><td style="padding:16px 30px;background:#f9fafb;border-top:1px solid #f3f4f6;font-size:12px;line-height:1.6;color:#9ca3af;">AIpályázó — pályázatfigyelés magyar vállalkozásoknak · <a href="${PRIVACY_URL}" style="color:#15803d;">Adatkezelés</a></td></tr>
+<tr><td style="padding:16px 30px;background:#f9fafb;border-top:1px solid #f3f4f6;font-size:12px;line-height:1.6;color:#9ca3af;">Pályázati Értesítő — pályázatfigyelés magyar vállalkozásoknak · <a href="${PRIVACY_URL}" style="color:#15803d;">Adatkezelés</a></td></tr>
 </table></td></tr></table>`;
   const text = [
     'Tisztelt Érdeklődő!', '',

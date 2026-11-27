@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // =========================================================================
-// AIpályázó — offline feed rebuild (no network)
+// Pályázati Értesítő — offline feed rebuild (no network)
 // =========================================================================
 // Re-applies the hand-verified layer to the CURRENT aipalyazo/grants_live.json
 // without calling the palyazat.gov.hu or EU APIs:

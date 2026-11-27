@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — Supabase client (browser, public)
+// Pályázati Értesítő — Supabase client (browser, public)
 // =========================================================================
 // The anon key embedded here is SAFE to publish. RLS policies on the
 // database enforce per-row access. NEVER paste the service_role key here.
@@ -9,7 +9,7 @@ const SUPABASE_URL = 'https://kacnvchwfwvpkkyhyupb.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImthY252Y2h3Znd2cGtreWh5dXBiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzQwNDEsImV4cCI6MjA5NjE1MDA0MX0.ajkwWvyPP-ENAnOXmokvBQ-1PP0So-qoZg4DJmsPob0';
 
 // Load the supabase-js client from CDN — single global `supabase` object.
-// We attach our configured client as `window.gp` (AIpályázó namespace).
+// We attach our configured client as `window.gp` (Pályázati Értesítő namespace).
 async function ensureSupabase() {
     if (window.supabase) return window.supabase;
     return new Promise((resolve, reject) => {
@@ -81,7 +81,7 @@ if (_signedOutFlag) {
     }
 
     // Helper: get tier of current user. Returns 'anonymous' | 'pro'.
-    // AIpályázó is fully free: every signed-in user has full ('pro') access.
+    // Pályázati Értesítő is fully free: every signed-in user has full ('pro') access.
     // (The old paid 'basic' vs 'pro' split + Paddle billing was removed.)
     async function getTier() {
         const { data: { user } } = await client.auth.getUser();

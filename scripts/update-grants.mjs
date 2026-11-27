@@ -1,4 +1,4 @@
-// AIpályázó — daily monitor.
+// Pályázati Értesítő — daily monitor.
 //
 // Today this verifies reachability of every known grant-source domain,
 // records timestamps + HTTP status, and emits aipalyazo/grants-status.json.

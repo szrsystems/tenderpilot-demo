@@ -135,7 +135,7 @@ test('IndexNow: today\'s pages + daily pages; llms.txt lists hubs', () => {
   assert.deepEqual(changedUrls(xml, '2026-10-13'), ['https://a/x.html', 'https://a/h.html']);
   assert.equal(changedUrls(xml, '2026-10-13', true).length, 3);
   const t = buildLlmsTxt({ open: 5, hubs: [{ slug: 'kkv', h1: 'KKV', items: [1, 2] }], today: '2026-10-13' });
-  assert.match(t, /^# AIpályázó/);
+  assert.match(t, /^# Pályázati Értesítő/);
   assert.match(t, /tema\/kkv\.html\): 2 nyitott/);
 });
 

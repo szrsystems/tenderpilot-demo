@@ -1,5 +1,5 @@
 /* =========================================================================
- * AIpályázó — favoured districts ("kedvezményezett járások")
+ * Pályázati Értesítő — favoured districts ("kedvezményezett járások")
  * Source: 290/2014. (XI. 26.) Korm. rendelet 3. melléklet (kedvezményezett,
  * fejlesztendő and komplex programmal fejlesztendő járások, 109) and
  * 4. melléklet (átmenetileg kedvezményezett települések, 116), as in force

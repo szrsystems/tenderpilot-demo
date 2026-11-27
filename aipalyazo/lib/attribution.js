@@ -1,4 +1,4 @@
-/* AIpályázó — campaign attribution (first touch, 90 days).
+/* Pályázati Értesítő — campaign attribution (first touch, 90 days).
    A partner link like ?utm_source=dft&utm_campaign=okt-2026 is remembered in
    this browser, then sent with the sign-up profile and every consultation
    request, so each lead can be traced to the campaign it came from.

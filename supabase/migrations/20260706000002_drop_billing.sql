@@ -1,7 +1,7 @@
 -- =========================================================================
 -- Drop dead billing machinery + recreate user_with_tier (2026-07-06)
 -- =========================================================================
--- AIpályázó is fully free: Paddle is gone, every signed-in user has full
+-- Pályázati Értesítő is fully free: Paddle is gone, every signed-in user has full
 -- access (getTier() never reads the DB). The subscriptions table and
 -- profiles.tier column are dead weight — and the tier-gated RLS policies
 -- they feed are silently vacuous. This migration:

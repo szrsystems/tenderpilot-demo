@@ -41,7 +41,7 @@
         document.querySelector('[data-t="h"]').textContent = 'Azonnali értesítések kikapcsolása';
         document.querySelector('[data-t="p"]').textContent = 'A megerősítés után nem küldünk több azonnali értesítést új felhívásokról és fogyó keretekről. A heti összefoglaló (ha be van kapcsolva) és a fiókja megmarad.';
         document.querySelector('[data-t="done"]').textContent = 'Az azonnali értesítéseket kikapcsoltuk. A portál Beállítások menüjében bármikor újra bekapcsolhatja.';
-        document.title = 'Azonnali értesítések kikapcsolása — AIpályázó';
+        document.title = 'Azonnali értesítések kikapcsolása — Pályázati Értesítő';
     }
     // Keep the token out of the address bar / history once read.
     try { history.replaceState(null, '', location.pathname); } catch (e) {}

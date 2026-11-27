@@ -1,4 +1,4 @@
-# AIpályázó
+# Pályázati Értesítő
 
 > Ingyenes, naponta frissülő pályázatfigyelő magyar vállalkozásoknak: nyitott hazai (Széchenyi Terv Plusz, KAP, MFB, NKFIH, Széchenyi Kártya) és EU-s (Horizon Europe, EIC, LIFE, Digital Europe stb.) felhívások hivatalos forrásból, a cég adataival pontról pontra összevetve.
 

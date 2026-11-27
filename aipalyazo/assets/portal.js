@@ -1,5 +1,5 @@
 /* =========================================================================
-   AIpályázó portal (2026-10 rewrite)
+   Pályázati Értesítő portal (2026-10 rewrite)
    One file, no framework. Rules that keep it safe:
    - every value that comes from the feed, the profile or the URL goes
      through esc() before it touches innerHTML; links go through safeUrl();
@@ -303,7 +303,7 @@
     var saved = S.feed.filter(function (g) { return S.bookmarks.has(g.id); }).sort(function (a, b) { return (a.deadline || '9').localeCompare(b.deadline || '9'); });
     var recentChanges = [];
     saved.forEach(function (g) { (S.changes[g.id] || []).forEach(function (c) { if (c.type !== 'new' && days(c.date) !== null && days(c.date) >= -30) recentChanges.push({ g: g, c: c }); }); });
-    var h = head(esc(S.profile && S.profile.company ? S.profile.company : 'AIpályázó portál'), greet, stampLine()) + freshness() + profileCallout();
+    var h = head(esc(S.profile && S.profile.company ? S.profile.company : 'Pályázati Értesítő portál'), greet, stampLine()) + freshness() + profileCallout();
     h += '<div class="figures" style="margin-bottom:var(--s5)">' +
       '<div class="figure"><div class="v num">' + S.feed.length + '</div><div class="k">nyitott felhívás</div></div>' +
       '<div class="figure"><div class="v num">' + (personal ? good.length : '—') + '</div><div class="k">' + (personal ? 'illik jól a cégéhez' : 'illik — profil kell') + '</div></div>' +
@@ -623,7 +623,7 @@
       '<div class="row2"><div class="field"><label for="ld-email">E-mail <span style="color:var(--danger)">*</span></label><input id="ld-email" type="email" autocomplete="email" value="' + esc((S.user && S.user.email) || p.email || '') + '"></div>' +
       '<div class="field"><label for="ld-phone">Telefon <span style="color:var(--danger)">*</span></label><input id="ld-phone" type="tel" inputmode="tel" placeholder="+36 30 123 4567" autocomplete="tel" value="' + esc(p.phone || '') + '"></div></div>' +
       '<div class="field"><label for="ld-msg">Röviden a tervezett projektről <span class="muted">(nem kötelező)</span></label><textarea id="ld-msg" maxlength="2000" placeholder="Pl. új gyártósor, kb. 40 M Ft, jövő tavasszal indulna.">' + esc(p.notes || '') + '</textarea></div>' +
-      '<label class="check" style="margin-bottom:var(--s4)"><input type="checkbox" id="ld-consent"><span>Hozzájárulok, hogy az AIpályázó a fenti adataimat és a jogosultsági ellenőrzés eredményét továbbítsa a pályázatíró partnernek a kapcsolatfelvétel céljából. <a href="adatvedelem.html" target="_blank" rel="noopener">Részletek</a></span></label>' +
+      '<label class="check" style="margin-bottom:var(--s4)"><input type="checkbox" id="ld-consent"><span>Hozzájárulok, hogy a Pályázati Értesítő a fenti adataimat és a jogosultsági ellenőrzés eredményét továbbítsa a pályázatíró partnernek a kapcsolatfelvétel céljából. <a href="adatvedelem.html" target="_blank" rel="noopener">Részletek</a></span></label>' +
       '<div id="ts-box" style="margin-bottom:var(--s3)"></div>' +
       '<p class="form-error" id="ld-err" role="alert" hidden></p>' +
       '<button class="btn btn-primary" type="submit" id="ld-btn">Konzultációt kérek</button></form></section>';
@@ -686,13 +686,13 @@
   function icsFold(line) { var out = []; while (line.length > 73) { out.push(line.slice(0, 73)); line = ' ' + line.slice(73); } out.push(line); return out.join('\r\n'); }
   function downloadICS(list, filename) {
     var stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
-    var L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//AIpalyazo//Hataridok//HU', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:AIpályázó határidők'], n = 0;
+    var L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//AIpalyazo//Hataridok//HU', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:Pályázati Értesítő határidők'], n = 0;
     list.forEach(function (g) {
       if (!isDate(g.deadline)) return;
       var next = new Date(g.deadline + 'T12:00:00Z'); next.setUTCDate(next.getUTCDate() + 1);
       var link = 'https://palyazati-ertesito.hu/aipalyazo/portal.html?grant=' + encodeURIComponent(g.id);
       L.push('BEGIN:VEVENT', 'UID:' + String(g.id).replace(/[^A-Za-z0-9._-]/g, '_') + '@aipalyazo.hu', 'DTSTAMP:' + stamp, 'DTSTART;VALUE=DATE:' + g.deadline.replace(/-/g, ''), 'DTEND;VALUE=DATE:' + next.toISOString().slice(0, 10).replace(/-/g, ''),
-        'SUMMARY:' + icsEscape('Pályázati határidő: ' + g.title), 'DESCRIPTION:' + icsEscape((g.amount ? 'Összeg: ' + g.amount + '\n' : '') + 'Hivatalos oldal: ' + (safeUrl(g.url) || '—') + '\nAIpályázó: ' + link + '\nA határidőt mindig ellenőrizze a hivatalos kiírásban.'), 'URL:' + link,
+        'SUMMARY:' + icsEscape('Pályázati határidő: ' + g.title), 'DESCRIPTION:' + icsEscape((g.amount ? 'Összeg: ' + g.amount + '\n' : '') + 'Hivatalos oldal: ' + (safeUrl(g.url) || '—') + '\nPályázati Értesítő: ' + link + '\nA határidőt mindig ellenőrizze a hivatalos kiírásban.'), 'URL:' + link,
         'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + icsEscape('2 hét múlva lejár: ' + g.title), 'TRIGGER:-P14D', 'END:VALARM', 'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + icsEscape('3 nap múlva lejár: ' + g.title), 'TRIGGER:-P3D', 'END:VALARM', 'END:VEVENT');
       n++;
     });

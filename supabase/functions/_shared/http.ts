@@ -1,4 +1,4 @@
-// Small HTTP helpers shared by the AIpályázó edge functions.
+// Small HTTP helpers shared by the Pályázati Értesítő edge functions.
 
 export const SITE_ORIGINS = [
   'https://palyazati-ertesito.hu',

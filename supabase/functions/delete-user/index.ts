@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — delete-user Edge Function
+// Pályázati Értesítő — delete-user Edge Function
 // =========================================================================
 // GDPR Art. 17 — erases the calling user's account. Every step is checked;
 // the answer says exactly how far it got:

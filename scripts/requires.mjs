@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — eligibility tags ("requires") vocabulary
+// Pályázati Értesítő — eligibility tags ("requires") vocabulary
 // =========================================================================
 // Every listed call may carry
 //   requires:         { <key>: true | number }   — hard eligibility conditions

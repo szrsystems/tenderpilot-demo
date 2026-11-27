@@ -1,4 +1,4 @@
-/* AIpályázó — grant search (browser + Node).
+/* Pályázati Értesítő — grant search (browser + Node).
    - accent-insensitive: "gep" finds "gép", "palyazat" finds "pályázat"
    - word-start matching that tolerates Hungarian endings: "gépek", "gépre" → "gép…";
      short words (< 5 letters) only match a whole word plus a short ending ("autó" ≠ "automation")

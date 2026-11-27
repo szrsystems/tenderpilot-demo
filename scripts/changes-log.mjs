@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — per-call change log (aipalyazo/changes.json)
+// Pályázati Értesítő — per-call change log (aipalyazo/changes.json)
 // =========================================================================
 // { "<grantId>": [ { date: "YYYY-MM-DD", type, from?, to? }, … ] }
 // Types: new, deadline, keret, szabad-keret, removed (feed builder),

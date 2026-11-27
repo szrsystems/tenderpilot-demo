@@ -1,4 +1,4 @@
-/* AIpályázó — shared pieces of a grant card (browser + Node).
+/* Pályázati Értesítő — shared pieces of a grant card (browser + Node).
    Issuer tag, status badges, and the two bars: free budget and time left.
    Returns HTML strings; every value from the feed is escaped here. */
 (function (root) {

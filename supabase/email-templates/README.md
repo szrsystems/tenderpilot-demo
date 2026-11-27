@@ -5,12 +5,12 @@ the HTML files.
 
 | Supabase template | File                    | Subject                                       |
 |-------------------|-------------------------|-----------------------------------------------|
-| Confirm signup    | `confirm-signup.html`   | Erősítse meg az e-mail-címét – AIpályázó      |
-| Reset password    | `reset-password.html`   | Jelszó visszaállítása – AIpályázó             |
-| Change email      | `change-email.html`     | Erősítse meg az új e-mail-címét – AIpályázó   |
-| Magic link        | `magic-link.html`       | Belépési link – AIpályázó                     |
-| Reauthentication  | `reauthentication.html` | Megerősítő kód – AIpályázó                    |
-| Invite user       | `invite.html`           | Meghívás az AIpályázó-ba                      |
+| Confirm signup    | `confirm-signup.html`   | Erősítse meg az e-mail-címét – Pályázati Értesítő      |
+| Reset password    | `reset-password.html`   | Jelszó visszaállítása – Pályázati Értesítő             |
+| Change email      | `change-email.html`     | Erősítse meg az új e-mail-címét – Pályázati Értesítő   |
+| Magic link        | `magic-link.html`       | Belépési link – Pályázati Értesítő                     |
+| Reauthentication  | `reauthentication.html` | Megerősítő kód – Pályázati Értesítő                    |
+| Invite user       | `invite.html`           | Meghívás a Pályázati Értesítőbe                      |
 
 ## Apply all at once (Management API)
 

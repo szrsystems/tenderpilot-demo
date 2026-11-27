@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // =========================================================================
-// AIpályázó — one public, indexable page per call (SEO)
+// Pályázati Értesítő — one public, indexable page per call (SEO)
 // =========================================================================
 // Runs in the daily job right after fetch-live-grants.mjs. Writes:
 //   aipalyazo/palyazat/<slug>.html   one page per listed call
@@ -67,7 +67,7 @@ function deadlineHu(g) {
 }
 const ft = (n) => (n >= 1e9 ? `${(n / 1e9).toFixed(1).replace('.', ',')} Mrd Ft` : `${Math.round(n / 1e6)} M Ft`);
 
-const MARK = '<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#12844a"/><path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M18.5 20.5l3 3 5.5-7.5" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const MARK = '<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#12844a"/><path d="M16 7.2c-3.4 0-6 2.7-6 6.1v3.9l-1.9 3.4h15.8L22 17.2v-3.9c0-3.4-2.6-6.1-6-6.1z" fill="#fff"/><path d="M13.6 23.4a2.5 2.5 0 0 0 4.8 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="23.3" cy="8.7" r="3.1" fill="#f4b740" stroke="#12844a" stroke-width="1.4"/></svg>';
 
 // Page-specific styles on top of assets/site.css (the shared design system).
 const PAGE_CSS = `
@@ -139,16 +139,16 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(canonical)}">
 <meta property="og:locale" content="hu_HU">
-<meta property="og:site_name" content="AIpályázó">
+<meta property="og:site_name" content="Pályázati Értesítő">
 <meta property="og:image" content="${BASE}/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/svg+xml" href="${up}favicon.svg">
-<link rel="alternate" type="application/rss+xml" title="AIpályázó – új pályázatok" href="${BASE}/hirek/rss.xml">
+<link rel="alternate" type="application/rss+xml" title="Pályázati Értesítő – új pályázatok" href="${BASE}/hirek/rss.xml">
 <link rel="preload" href="${up}assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="${up}assets/site.css?v=r4">
+<link rel="stylesheet" href="${up}assets/site.css?v=r5">
 <style>${PAGE_CSS}</style>
 ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, '\\u003c')}</script>` : ''}
 </head>
@@ -156,7 +156,7 @@ ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(
 <a class="skip" href="#main">Ugrás a tartalomra</a>
 <header class="site-head">
   <div class="wrap">
-    <a class="brand" href="${up}index.html" aria-label="AIpályázó főoldal">${MARK}<span><b>AI</b>pályázó</span></a>
+    <a class="brand" href="${up}index.html" aria-label="Pályázati Értesítő főoldal">${MARK}<span>Pályázati <b>Értesítő</b></span></a>
     <nav class="site-nav" aria-label="Fő navigáció"><a href="${up}palyazat/index.html"${current === 'palyazat' ? ' aria-current="page"' : ''}>Nyitott pályázatok</a><a href="${up}utmutato/index.html"${current === 'utmutato' ? ' aria-current="page"' : ''}>Útmutatók</a><a href="${up}index.html#hogyan">Hogyan működik</a></nav>
     <div class="head-actions">
       <a class="btn btn-quiet btn-sm hide-sm" href="${up}login.html" data-guest>Belépés</a>
@@ -173,17 +173,17 @@ ${body}
 <footer class="site-foot">
   <div class="wrap">
     <div class="cols">
-      <div><a class="brand" href="${up}index.html">${MARK}<span><b>AI</b>pályázó</span></a><p class="brand-p">Ingyenes pályázatfigyelő magyar vállalkozásoknak. Tájékoztató szolgáltatás: beadás előtt mindig a hivatalos felhívás az irányadó.</p></div>
+      <div><a class="brand" href="${up}index.html">${MARK}<span>Pályázati <b>Értesítő</b></span></a><p class="brand-p">Ingyenes pályázatfigyelő magyar vállalkozásoknak. Tájékoztató szolgáltatás: beadás előtt mindig a hivatalos felhívás az irányadó.</p></div>
       <div><h4>Pályázatok</h4><ul><li><a href="${up}palyazat/index.html">Nyitott felhívások</a></li><li><a href="${up}palyazat/index.html#temak">Témák és programok</a></li><li><a href="${up}utmutato/index.html">Útmutatók</a></li><li><a href="${up}hirek/index.html">Heti hírek</a></li><li><a href="${up}portal.html">Portál</a></li></ul></div>
       <div><h4>Rólunk</h4><ul><li><a href="mailto:info@aipalyazo.hu">info@aipalyazo.hu</a></li></ul></div>
       <div><h4>Jogi</h4><ul><li><a href="${up}impresszum.html">Impresszum</a></li><li><a href="${up}adatvedelem.html">Adatkezelés</a></li><li><a href="${up}aszf.html">ÁSZF</a></li></ul></div>
     </div>
-    <div class="legal"><span>© 2026 AIpályázó · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
+    <div class="legal"><span>© 2026 Pályázati Értesítő · Széphelyi Olivér Soma egyéni vállalkozó</span><span>Nem használunk követő sütiket.</span></div>
   </div>
 </footer>
-<script src="${up}lib/attribution.js?v=r4"></script>
-<script src="${up}assets/site.js?v=r4" defer></script>
-<script src="${up}assets/analytics.js?v=r4" defer></script>
+<script src="${up}lib/attribution.js?v=r5"></script>
+<script src="${up}assets/site.js?v=r5" defer></script>
+<script src="${up}assets/analytics.js?v=r5" defer></script>
 </body>
 </html>
 `;
@@ -274,7 +274,7 @@ function clip(t, n) {
 }
 // <title>: what people search for first; long official titles are shortened (the H1 keeps the full title)
 export function pageTitle(g) {
-  const tail = ' | AIpályázó';
+  const tail = ' | Pályázati Értesítő';
   const dl = isDate(g.deadline) ? ` – határidő ${huDate(g.deadline)}` : '';
   if ((g.title + ' – pályázat' + dl + tail).length <= 70) return `${g.title} – pályázat${dl}${tail}`;
   if ((g.title + dl + tail).length <= 75) return `${g.title}${dl}${tail}`;
@@ -322,13 +322,13 @@ export function renderPage(g, slug, summary, { updatedAt, changes, related } = {
     ...(faqItems(g).length ? [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqItems(g).map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })) }] : []),
     {
       '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'AIpályázó', item: `${BASE}/index.html` },
+        { '@type': 'ListItem', position: 1, name: 'Pályázati Értesítő', item: `${BASE}/index.html` },
         { '@type': 'ListItem', position: 2, name: 'Pályázatok', item: `${BASE}/palyazat/index.html` },
         { '@type': 'ListItem', position: 3, name: g.title, item: canonical },
       ],
     },
   ];
-  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">AIpályázó</a> / <a href="index.html">Pályázatok</a></nav>
+  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">Pályázati Értesítő</a> / <a href="index.html">Pályázatok</a></nav>
 <header class="call-head">
 <p class="eyebrow">${esc(g.code || g.issuer || '')}</p>
 <h1>${esc(g.title)}</h1>
@@ -363,12 +363,12 @@ ${factsRows(g)}
 
 export function renderClosed(m, slug) {
   const canonical = `${BASE}/palyazat/${slug}.html`;
-  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">AIpályázó</a> / <a href="index.html">Pályázatok</a></nav>
+  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">Pályázati Értesítő</a> / <a href="index.html">Pályázatok</a></nav>
 <header class="call-head"><p class="eyebrow">Archív</p><h1>${esc(m.title)}</h1><div class="tags"><span class="tag danger">Lezárult vagy már nem elérhető</span></div></header>
 <p class="page-intro">Ez a felhívás ${esc(m.closedAt || '')} óta nem szerepel a hivatalos forrásokban (lejárt, felfüggesztették vagy kimerült a kerete).</p>
 <div class="side-box narrow"><h2>Nézze meg, mire pályázhat most</h2><p>Naponta frissülő listánkban a nyitott felhívásokat mutatjuk, a cége adataival pontonként összevetve.</p>
 <a class="btn btn-primary" href="index.html">Nyitott pályázatok</a><a class="btn btn-ghost" href="../index.html#ellenorzes">Gyors ellenőrzés</a></div>`;
-  return shell({ title: `${clip(m.title, 55)} – lezárult | AIpályázó`, description: `${m.title}: ez a felhívás lezárult. Nézze meg a nyitott pályázatokat.`, canonical, noindex: true, body });
+  return shell({ title: `${clip(m.title, 55)} – lezárult | Pályázati Értesítő`, description: `${m.title}: ez a felhívás lezárult. Nézze meg a nyitott pályázatokat.`, canonical, noindex: true, body });
 }
 
 
@@ -448,19 +448,19 @@ export function renderHub(hub, slugs, { updatedAt } = {}) {
   const asOf = updatedAt ? asOfDate(String(updatedAt).slice(0, 10)) : '';
   const stats = `${asOf ? asOf + ' állapot szerint ' : 'Jelenleg '}${items.length} nyitott felhívás tartozik ide${nGrant || nLoan ? ` (${[nGrant && nGrant + ' vissza nem térítendő támogatás', nLoan && nLoan + ' hitel vagy garancia'].filter(Boolean).join(', ')})` : ''}${nextDl ? `; a legközelebbi határidő ${longDate(nextDl)}` : '.'}`;
   const intro = `${stats} ${hub.intro} A lista naponta frissül hivatalos forrásokból.`;
-  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../../index.html">AIpályázó</a> / <a href="../index.html">Pályázatok</a> / ${esc(hub.group)}</nav>
+  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../../index.html">Pályázati Értesítő</a> / <a href="../index.html">Pályázatok</a> / ${esc(hub.group)}</nav>
 <header class="call-head"><p class="eyebrow">${esc(hub.group)}</p><h1>${esc(hub.h1)}</h1><p class="page-intro intro">${esc(intro)}</p></header>
 <div class="gcards hub-list">${items.map((g) => regRow(g, '../' + slugs.get(g.id) + '.html')).join('')}</div>
 <p class="back-link"><a href="../index.html">← Összes nyitott pályázat</a></p>
 <div class="notice warn end-note">Tájékoztató lista. Mindig a hivatalos felhívás és annak módosításai az irányadók.</div>`;
   const jsonld = {
     '@context': 'https://schema.org', '@type': 'CollectionPage', name: hub.h1, url: canonical, description: hub.intro, inLanguage: 'hu',
-    isPartOf: { '@type': 'WebSite', name: 'AIpályázó', url: `${BASE}/index.html` },
+    isPartOf: { '@type': 'WebSite', name: 'Pályázati Értesítő', url: `${BASE}/index.html` },
     mainEntity: { '@type': 'ItemList', numberOfItems: items.length, itemListElement: items.map((g, i) => ({ '@type': 'ListItem', position: i + 1, url: `${BASE}/palyazat/${slugs.get(g.id)}.html`, name: g.title })) },
   };
   const description = clip(`${stats} ${hub.intro}`, 160);
   const year = String(updatedAt || new Date().toISOString()).slice(0, 4);
-  const title = hub.h1.length <= 50 ? `${hub.h1} – ${items.length} nyitott | AIpályázó` : (/(nak|nek)$/.test(hub.name) ? `Pályázatok ${/^[A-ZÁÉÍÓÖŐÚÜŰ]{2}/.test(hub.name) ? hub.name : hub.name.charAt(0).toLowerCase() + hub.name.slice(1)} ${year}` : `${hub.name} pályázatok ${year}`) + ` – ${items.length} nyitott | AIpályázó`;
+  const title = hub.h1.length <= 50 ? `${hub.h1} – ${items.length} nyitott | Pályázati Értesítő` : (/(nak|nek)$/.test(hub.name) ? `Pályázatok ${/^[A-ZÁÉÍÓÖŐÚÜŰ]{2}/.test(hub.name) ? hub.name : hub.name.charAt(0).toLowerCase() + hub.name.slice(1)} ${year}` : `${hub.name} pályázatok ${year}`) + ` – ${items.length} nyitott | Pályázati Értesítő`;
   return shell({ title, description, canonical, noindex: false, body, jsonld, depth: 2 });
 }
 
@@ -474,7 +474,7 @@ export function renderIndex(open, slugs, { updatedAt, hubs = [] } = {}) {
   const sorted = [...open].sort(byDeadline);
   const hu = sorted.filter((g) => g.scope !== 'eu'), eu = sorted.filter((g) => g.scope === 'eu');
   const row = (g) => regRow(g, slugs.get(g.id) + '.html', true);
-  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">AIpályázó</a> / Pályázatok</nav>
+  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">Pályázati Értesítő</a> / Pályázatok</nav>
 <header class="call-head"><p class="eyebrow">Naponta frissítve${updatedAt ? ' · ' + esc(String(updatedAt).slice(0, 10)) : ''}</p>
 <h1>Nyitott pályázatok magyar vállalkozásoknak</h1>
 <p class="page-intro">${open.length} nyitott felhívás — ${hu.length} hazai és ${eu.length} EU-s / nemzetközi. Csak olyan kiírások, amelyekre vállalkozás pályázhat, és amelyek határideje még nem járt le. Mi változott a héten? <a href="../hirek/index.html">Heti összefoglaló</a>.</p></header>
@@ -506,10 +506,10 @@ export function renderIndex(open, slugs, { updatedAt, hubs = [] } = {}) {
 <p class="empty-note" id="empty" hidden>Nincs találat. Próbáljon rövidebb keresőszót.</p>
 ${hubLinks(hubs)}
 <div class="side-box narrow"><h2>Melyikre jogosult a cége?</h2><p>Négy adat alapján azonnal megmutatjuk, regisztráció nélkül.</p><a class="btn btn-primary" href="../index.html#ellenorzes">Gyors ellenőrzés</a></div>
-<script src="../lib/search.js?v=r4"></script>
-<script src="../assets/list-filter.js?v=r4" defer></script>`;
+<script src="../lib/search.js?v=r5"></script>
+<script src="../assets/list-filter.js?v=r5" defer></script>`;
   const jsonld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Nyitott pályázatok magyar vállalkozásoknak', url: `${BASE}/palyazat/index.html` };
-  return shell({ title: 'Nyitott pályázatok vállalkozásoknak (hazai és EU) — naponta frissítve | AIpályázó', description: `${open.length} nyitott hazai és EU-s pályázat, hitel és tőkeprogram magyar cégeknek, naponta frissítve hivatalos forrásokból. Ingyenes illeszkedés-vizsgálat.`, canonical: `${BASE}/palyazat/index.html`, noindex: false, body, jsonld });
+  return shell({ title: 'Nyitott pályázatok vállalkozásoknak (hazai és EU) — naponta frissítve | Pályázati Értesítő', description: `${open.length} nyitott hazai és EU-s pályázat, hitel és tőkeprogram magyar cégeknek, naponta frissítve hivatalos forrásokból. Ingyenes illeszkedés-vizsgálat.`, canonical: `${BASE}/palyazat/index.html`, noindex: false, body, jsonld });
 }
 
 // ---- evergreen guides (utmutato/) -----------------------------------------
@@ -542,20 +542,20 @@ export function renderGuide(guide, { open = [], hubs = [], today } = {}) {
       '@context': 'https://schema.org', '@type': 'Article', headline: guide.title, description: guide.description,
       url: canonical, mainEntityOfPage: canonical, inLanguage: 'hu', datePublished: guide.updated, dateModified: guide.updated,
       image: `${BASE}/assets/og.png`,
-      author: { '@type': 'Organization', name: 'AIpályázó', url: `${BASE}/index.html` },
-      publisher: { '@type': 'Organization', name: 'AIpályázó', url: `${BASE}/index.html`, logo: { '@type': 'ImageObject', url: `${BASE}/assets/og.png` } },
+      author: { '@type': 'Organization', name: 'Pályázati Értesítő', url: `${BASE}/index.html` },
+      publisher: { '@type': 'Organization', name: 'Pályázati Értesítő', url: `${BASE}/index.html`, logo: { '@type': 'ImageObject', url: `${BASE}/assets/og.png` } },
       citation: guide.sources.map(([name, url]) => ({ '@type': 'CreativeWork', name, url })),
     },
     { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: guide.faq.map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })) },
     {
       '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'AIpályázó', item: `${BASE}/index.html` },
+        { '@type': 'ListItem', position: 1, name: 'Pályázati Értesítő', item: `${BASE}/index.html` },
         { '@type': 'ListItem', position: 2, name: 'Útmutatók', item: `${BASE}/utmutato/index.html` },
         { '@type': 'ListItem', position: 3, name: guide.title, item: canonical },
       ],
     },
   ];
-  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">AIpályázó</a> / <a href="index.html">Útmutatók</a></nav>
+  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">Pályázati Értesítő</a> / <a href="index.html">Útmutatók</a></nav>
 <article class="guide">
 <header class="call-head"><p class="eyebrow">Útmutató · Frissítve: <time datetime="${esc(guide.updated)}">${esc(longDate(guide.updated))}</time></p>
 <h1>${esc(guide.title)}</h1>
@@ -568,12 +568,12 @@ ${faqHtml(guide.faq)}
 ${guideLinksHtml(others).replace('Hasznos útmutatók', 'További útmutatók')}
 <p class="notice warn disclaimer">Általános tájékoztatás, nem jogi vagy pénzügyi tanácsadás. Egy adott pályázatnál mindig a hivatalos felhívás és a hatályos jogszabályok az irányadók.</p>
 </article>`;
-  return shell({ title: `${guide.seoTitle || clip(guide.title, 58)} | AIpályázó`, description: clip(guide.description, 160), canonical, noindex: false, body, jsonld, current: 'utmutato', ogType: 'article' });
+  return shell({ title: `${guide.seoTitle || clip(guide.title, 58)} | Pályázati Értesítő`, description: clip(guide.description, 160), canonical, noindex: false, body, jsonld, current: 'utmutato', ogType: 'article' });
 }
 
 export function renderGuidesIndex() {
   const canonical = `${BASE}/utmutato/index.html`;
-  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">AIpályázó</a> / Útmutatók</nav>
+  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">Pályázati Értesítő</a> / Útmutatók</nav>
 <header class="call-head"><p class="eyebrow">Útmutatók</p><h1>Pályázati útmutatók vállalkozásoknak</h1>
 <p class="page-intro">Rövid, forrásokkal ellátott válaszok a leggyakoribb kérdésekre: cégméret, de minimis, támogatás vagy hitel, a beadás lépései és az EU-s pályázatok.</p></header>
 <ul class="guide-list">${GUIDES.map((x) => `<li><a href="${esc(x.slug)}.html">${esc(x.title)}</a><p>${esc(x.description)}</p></li>`).join('')}</ul>
@@ -582,11 +582,11 @@ export function renderGuidesIndex() {
     { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Pályázati útmutatók vállalkozásoknak', url: canonical, inLanguage: 'hu',
       hasPart: GUIDES.map((x) => ({ '@type': 'Article', headline: x.title, url: `${BASE}/utmutato/${x.slug}.html` })) },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'AIpályázó', item: `${BASE}/index.html` },
+      { '@type': 'ListItem', position: 1, name: 'Pályázati Értesítő', item: `${BASE}/index.html` },
       { '@type': 'ListItem', position: 2, name: 'Útmutatók', item: canonical },
     ] },
   ];
-  return shell({ title: 'Pályázati útmutatók: KKV, de minimis, hitel, beadás, EU | AIpályázó', description: 'Rövid, forrásokkal ellátott útmutatók magyar vállalkozásoknak: KKV-minősítés, de minimis keret, támogatás vagy hitel, a pályázás lépései, EU-s pályázatok.', canonical, noindex: false, body, jsonld, current: 'utmutato' });
+  return shell({ title: 'Pályázati útmutatók: KKV, de minimis, hitel, beadás, EU | Pályázati Értesítő', description: 'Rövid, forrásokkal ellátott útmutatók magyar vállalkozásoknak: KKV-minősítés, de minimis keret, támogatás vagy hitel, a pályázás lépései, EU-s pályázatok.', canonical, noindex: false, body, jsonld, current: 'utmutato' });
 }
 
 // ---- weekly news (hirek/) ---------------------------------------------------
@@ -650,7 +650,7 @@ function weekStats(entries, byId) {
   const eu = fresh.filter((e) => (byId.get(e.id) || {}).scope === 'eu').length;
   return { fresh, hu: fresh.length - eu, eu, deadlines: entries.filter((e) => /deadline/.test(e.type)).length, keret: entries.filter((e) => /keret/.test(e.type)).length };
 }
-const prefBtn = (prefix) => `<div class="side-box narrow"><h2>Kövesse a változásokat</h2><p>Minden héten összefoglaljuk, mely felhívások kerültek fel, és mi módosult. Ha a Google-ben előnyben részesített forrásként jelöli meg az AIpályázó-t, a keresőben gyakrabban látja a híreinket.</p><a class="btn btn-primary" href="${PREFERRED_SOURCE_URL}" target="_blank" rel="noopener">Hozzáadás a Google-ben ↗</a> <a class="btn btn-ghost" href="${prefix}hirek/rss.xml">RSS-hírcsatorna</a></div>`;
+const prefBtn = (prefix) => `<div class="side-box narrow"><h2>Kövesse a változásokat</h2><p>Minden héten összefoglaljuk, mely felhívások kerültek fel, és mi módosult. Ha a Google-ben előnyben részesített forrásként jelöli meg a Pályázati Értesítőt, a keresőben gyakrabban látja a híreinket.</p><a class="btn btn-primary" href="${PREFERRED_SOURCE_URL}" target="_blank" rel="noopener">Hozzáadás a Google-ben ↗</a> <a class="btn btn-ghost" href="${prefix}hirek/rss.xml">RSS-hírcsatorna</a></div>`;
 
 export function renderWeek(mon, { changes, byId, idToSlug, openIds, open = [], today }) {
   const sun = addDays(mon, 6), current = today >= mon && today <= sun;
@@ -668,7 +668,7 @@ export function renderWeek(mon, { changes, byId, idToSlug, openIds, open = [], t
   const euNew = st.fresh.filter((e) => (byId.get(e.id) || {}).scope === 'eu');
   const soon = current ? open.filter((g) => isDate(g.deadline) && g.deadline >= today && g.deadline <= addDays(today, 14)).sort(byDeadline) : [];
   const soonHtml = soon.length ? `<h2>Hamarosan lejár (14 napon belül) <span class="count">${soon.length}</span></h2><ul class="news-list">${soon.map((g) => `<li><a href="../palyazat/${esc(idToSlug.get(g.id))}.html">${esc(g.title)}</a><br><span class="muted">${esc([g.issuer, 'határidő: ' + longDate(g.deadline)].filter(Boolean).join(' · '))}</span></li>`).join('')}</ul>` : '';
-  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">AIpályázó</a> / <a href="index.html">Heti hírek</a></nav>
+  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">Pályázati Értesítő</a> / <a href="index.html">Heti hírek</a></nav>
 <article class="guide news">
 <header class="call-head"><p class="eyebrow">Heti összefoglaló${current ? ' · folyamatosan frissül' : ''}</p>
 <h1>Új pályázatok és változások: ${esc(range)}</h1>
@@ -688,16 +688,16 @@ ${prefBtn('../')}
       '@context': 'https://schema.org', '@type': 'NewsArticle', headline: `Új pályázatok és változások: ${range}`, description: clip(lead, 300),
       url: canonical, mainEntityOfPage: canonical, inLanguage: 'hu', datePublished: `${mon}T08:00:00+01:00`, dateModified: `${modified}T08:00:00+01:00`,
       image: [`${BASE}/assets/og.png`],
-      author: { '@type': 'Organization', name: 'AIpályázó', url: `${BASE}/index.html` },
-      publisher: { '@type': 'Organization', name: 'AIpályázó', url: `${BASE}/index.html`, logo: { '@type': 'ImageObject', url: `${BASE}/assets/og.png` } },
+      author: { '@type': 'Organization', name: 'Pályázati Értesítő', url: `${BASE}/index.html` },
+      publisher: { '@type': 'Organization', name: 'Pályázati Értesítő', url: `${BASE}/index.html`, logo: { '@type': 'ImageObject', url: `${BASE}/assets/og.png` } },
     },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'AIpályázó', item: `${BASE}/index.html` },
+      { '@type': 'ListItem', position: 1, name: 'Pályázati Értesítő', item: `${BASE}/index.html` },
       { '@type': 'ListItem', position: 2, name: 'Heti hírek', item: `${BASE}/hirek/index.html` },
       { '@type': 'ListItem', position: 3, name: range, item: canonical },
     ] },
   ];
-  const title = `Új pályázatok ${range} – ${st.fresh.length} új felhívás | AIpályázó`;
+  const title = `Új pályázatok ${range} – ${st.fresh.length} új felhívás | Pályázati Értesítő`;
   return { html: shell({ title, description: clip(lead, 160), canonical, noindex: false, body, jsonld, current: 'hirek', ogType: 'article' }), stats: st, modified };
 }
 
@@ -705,7 +705,7 @@ export function renderNewsIndex(weeks, statsByWeek, today) {
   const canonical = `${BASE}/hirek/index.html`;
   const latest = weeks[0];
   const s0 = latest && statsByWeek.get(latest);
-  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">AIpályázó</a> / Heti hírek</nav>
+  const body = `<nav class="crumbs" aria-label="Morzsamenü"><a href="../index.html">Pályázati Értesítő</a> / Heti hírek</nav>
 <header class="call-head"><p class="eyebrow">Heti hírek · naponta frissül</p><h1>Pályázati hírek: új felhívások és változások hétről hétre</h1>
 <p class="page-intro">Minden héten összefoglaljuk, mely pályázatok, hitelek és EU-s felhívások kerültek fel a listánkra, melyiknek módosult a határideje vagy a kerete, és mi jár le hamarosan.${s0 ? ` Ezen a héten eddig ${s0.fresh.length} új felhívás került fel.` : ''}</p></header>
 <ul class="guide-list">${weeks.map((m) => { const st = statsByWeek.get(m); return `<li><a href="het-${m}.html">${esc(weekRange(m))}</a><p>${st.fresh.length} új felhívás${st.fresh.length ? ` (${[st.hu && `${st.hu} hazai`, st.eu && `${st.eu} EU-s`].filter(Boolean).join(', ')})` : ''}${st.deadlines ? ` · ${st.deadlines} határidő-módosítás` : ''}${st.keret ? ` · ${st.keret} keretváltozás` : ''}</p></li>`; }).join('')}</ul>
@@ -714,11 +714,11 @@ ${prefBtn('../')}`;
     { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Pályázati hírek hétről hétre', url: canonical, inLanguage: 'hu', dateModified: today,
       hasPart: weeks.map((m) => ({ '@type': 'NewsArticle', headline: `Új pályázatok és változások: ${weekRange(m)}`, url: `${BASE}/hirek/het-${m}.html` })) },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'AIpályázó', item: `${BASE}/index.html` },
+      { '@type': 'ListItem', position: 1, name: 'Pályázati Értesítő', item: `${BASE}/index.html` },
       { '@type': 'ListItem', position: 2, name: 'Heti hírek', item: canonical },
     ] },
   ];
-  return shell({ title: 'Pályázati hírek hétről hétre: új felhívások, határidők | AIpályázó', description: 'Heti összefoglaló: új hazai és EU-s pályázatok, hitelek, határidő- és keretváltozások magyar vállalkozásoknak, naponta frissítve hivatalos forrásokból.', canonical, noindex: false, body, jsonld, current: 'hirek' });
+  return shell({ title: 'Pályázati hírek hétről hétre: új felhívások, határidők | Pályázati Értesítő', description: 'Heti összefoglaló: új hazai és EU-s pályázatok, hitelek, határidő- és keretváltozások magyar vállalkozásoknak, naponta frissítve hivatalos forrásokból.', canonical, noindex: false, body, jsonld, current: 'hirek' });
 }
 
 const xmlEsc = (s) => esc(s).replace(/&#39;/g, '&apos;');
@@ -738,7 +738,7 @@ export function buildRss({ changes, byId, idToSlug, openIds, today }) {
   }).join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
-<title>AIpályázó – új pályázatok magyar vállalkozásoknak</title>
+<title>Pályázati Értesítő – új pályázatok magyar vállalkozásoknak</title>
 <link>${BASE}/hirek/index.html</link>
 <atom:link href="${BASE}/hirek/rss.xml" rel="self" type="application/rss+xml"/>
 <description>Újonnan listázott hazai és EU-s pályázatok, hitelek és tőkeprogramok, naponta frissítve hivatalos forrásokból.</description>
@@ -797,7 +797,7 @@ export function buildSitemap(open, slugs, today, hubs = [], news = []) {
 // llms.txt (llmstxt.org): a short, plain map of the site for AI assistants and answer engines.
 export function buildLlmsTxt({ open, hubs = [], today }) {
   const hub = (h) => `- [${h.h1}](${BASE}/palyazat/tema/${h.slug}.html): ${h.items.length} nyitott felhívás`;
-  return `# AIpályázó
+  return `# Pályázati Értesítő
 
 > Ingyenes, naponta frissülő pályázatfigyelő magyar vállalkozásoknak: nyitott hazai (Széchenyi Terv Plusz, KAP, MFB, NKFIH, Széchenyi Kártya) és EU-s (Horizon Europe, EIC, LIFE, Digital Europe stb.) felhívások hivatalos forrásból, a cég adataival pontról pontra összevetve.
 

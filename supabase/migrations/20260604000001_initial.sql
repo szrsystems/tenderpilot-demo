@@ -1,5 +1,5 @@
 -- =========================================================================
--- AIpályázó — initial schema
+-- Pályázati Értesítő — initial schema
 -- =========================================================================
 -- Tier model:
 --   anonymous → not logged in (no row anywhere)

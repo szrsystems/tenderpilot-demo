@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — lead-status Edge Function
+// Pályázati Értesítő — lead-status Edge Function
 // =========================================================================
 // The grant-writer partner reports what happened with a lead by clicking a
 // signed link in the lead e-mail → aipalyazo/lead-status.html → confirm

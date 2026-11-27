@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — weekly-digest Edge Function
+// Pályázati Értesítő — weekly-digest Edge Function
 // =========================================================================
 // For every user who has the weekly e-mail report enabled AND a filled-in
 // cégprofil, this matches the live grant list to their profile and sends a
@@ -33,7 +33,7 @@ const GRANTS_URL = 'https://palyazati-ertesito.hu/aipalyazo/grants_live.json';
 const UNSUB_PAGE = 'https://palyazati-ertesito.hu/aipalyazo/leiratkozas.html';
 const UNSUB_API = `${SUPABASE_URL}/functions/v1/unsubscribe`;
 const PORTAL_URL = 'https://palyazati-ertesito.hu/aipalyazo/portal.html';
-const FROM = 'AIpályázó <noreply@aipalyazo.hu>';
+const FROM = 'Pályázati Értesítő <noreply@aipalyazo.hu>';
 
 function esc(s: unknown) {
   return String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c] as string));
@@ -99,7 +99,7 @@ function emailHtml(name: string, top: any[], urgent: any[], token: string) {
       </td></tr>
       <tr><td style="padding:18px 32px;background-color:#f9fafb;border-top:1px solid #f3f4f6;">
         <p style="margin:0;font-size:12px;line-height:1.6;color:#9ca3af;">
-          Ezt az összefoglalót azért kapja, mert feliratkozott az AIpályázó heti e-mail jelentésére. ·
+          Ezt az összefoglalót azért kapja, mert feliratkozott a Pályázati Értesítő heti e-mail jelentésére. ·
           <a href="${unsubUrl}" style="color:#16a34a;">Leiratkozás egy kattintással</a> ·
           <a href="https://palyazati-ertesito.hu/aipalyazo/adatvedelem.html" style="color:#16a34a;">Adatkezelés</a>
         </p>
@@ -204,7 +204,7 @@ export async function handler(req: Request, deps: { admin?: any; sendBatch?: (m:
     // No separate "urgent deadlines" section any more (2026-11-25): the
     // digest lists only the best fits; deadlines show on each row.
     const urgent: any[] = [];
-    mails.push({ to, subject: 'Heti pályázati összefoglaló — AIpályázó', html: emailHtml(p.display_name, top, urgent, token), token });
+    mails.push({ to, subject: 'Heti pályázati összefoglaló — Pályázati Értesítő', html: emailHtml(p.display_name, top, urgent, token), token });
     sentIds.push(row.user_id);
   }
 

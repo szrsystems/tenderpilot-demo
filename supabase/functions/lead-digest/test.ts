@@ -77,7 +77,7 @@ Deno.test('Monday weekly summary: recent leads + flagged overdue with status lin
   assertEquals(j.weekly, { sent: true, recent: 3, overdue: 1, undelivered: 1 });
   const m = mailer.sent.at(-1)!;
   assertEquals(m.to, ['op@aipalyazo.hu', 'dft@example.hu']);
-  assertEquals(m.subject, '[AIpályázó] Heti lead-összesítő — 3 új, 1 visszajelzésre vár');
+  assertEquals(m.subject, '[Pályázati Értesítő] Heti lead-összesítő — 3 új, 1 visszajelzésre vár');
   assertStringIncludes(m.html, 'Régi &lt;nyitott&gt;');
   assertStringIncludes(m.html, `lead-status.html?ref=${store.rows[0].lead_ref}&amp;s=contacted`);
   assert(!m.html.includes(`ref=${store.rows[1].lead_ref}&amp;`), 'fresh lead is not flagged');

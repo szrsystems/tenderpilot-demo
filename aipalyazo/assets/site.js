@@ -1,4 +1,4 @@
-/* AIpályázó — tiny shared behaviour for the public pages (no dependencies). */
+/* Pályázati Értesítő — tiny shared behaviour for the public pages (no dependencies). */
 (function () {
   'use strict';
   // Mobile menu

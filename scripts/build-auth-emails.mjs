@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // =========================================================================
-// AIpályázó — branded Hungarian Supabase Auth e-mails
+// Pályázati Értesítő — branded Hungarian Supabase Auth e-mails
 // =========================================================================
 // Writes supabase/email-templates/*.html (one per auth e-mail) and
 // supabase/email-templates/auth-config.json (subjects + bodies in the shape
@@ -46,7 +46,7 @@ function shell({ preheader, title, body }) {
 ${body}
 </td></tr>
 <tr><td style="padding:18px 32px;background-color:#f9fafb;border-top:1px solid #f0f0f0;border-radius:0 0 12px 12px;">
-<p style="margin:0;font-family:${FONT};font-size:12px;line-height:1.6;color:#9ca3af;">AIpályázó — pályázatfigyelés magyar vállalkozásoknak · <a href="${SITE}/index.html" style="color:${BRAND};">palyazati-ertesito.hu</a> · <a href="${SITE}/adatvedelem.html" style="color:${BRAND};">Adatkezelés</a> · <a href="mailto:info@aipalyazo.hu" style="color:${BRAND};">info@aipalyazo.hu</a><br>Ezt az automatikus levelet a(z) {{ .Email }} címre küldtük. Kérjük, ne válaszoljon rá.</p>
+<p style="margin:0;font-family:${FONT};font-size:12px;line-height:1.6;color:#9ca3af;">Pályázati Értesítő — pályázatfigyelés magyar vállalkozásoknak · <a href="${SITE}/index.html" style="color:${BRAND};">palyazati-ertesito.hu</a> · <a href="${SITE}/adatvedelem.html" style="color:${BRAND};">Adatkezelés</a> · <a href="mailto:info@aipalyazo.hu" style="color:${BRAND};">info@aipalyazo.hu</a><br>Ezt az automatikus levelet a(z) {{ .Email }} címre küldtük. Kérjük, ne válaszoljon rá.</p>
 </td></tr>
 </table>
 </td></tr>
@@ -60,43 +60,43 @@ const URL_ = '{{ .ConfirmationURL }}';
 export const TEMPLATES = [
   {
     key: 'confirmation', file: 'confirm-signup.html',
-    subject: 'Erősítse meg az e-mail-címét – AIpályázó',
+    subject: 'Erősítse meg az e-mail-címét – Pályázati Értesítő',
     html: shell({
       preheader: 'Egy kattintás, és kész a fiókja.',
       title: 'Erősítse meg az e-mail-címét',
-      body: p('Köszönjük, hogy regisztrált az AIpályázó-n. A fiókja aktiválásához erősítse meg az e-mail-címét az alábbi gombbal.') +
+      body: p('Köszönjük, hogy regisztrált a Pályázati Értesítőn. A fiókja aktiválásához erősítse meg az e-mail-címét az alábbi gombbal.') +
         button(URL_, 'E-mail-cím megerősítése') + fallbackLink(URL_) +
         small('Ha nem Ön regisztrált, hagyja figyelmen kívül ezt a levelet: megerősítés nélkül a fiók nem jön létre.'),
     }),
   },
   {
     key: 'recovery', file: 'reset-password.html',
-    subject: 'Jelszó visszaállítása – AIpályázó',
+    subject: 'Jelszó visszaállítása – Pályázati Értesítő',
     html: shell({
-      preheader: 'Új jelszót állíthat be az AIpályázó-fiókjához.',
+      preheader: 'Új jelszót állíthat be a Pályázati Értesítő-fiókjához.',
       title: 'Jelszó visszaállítása',
-      body: p('Jelszó-visszaállítást kértek az AIpályázó-fiókjához. Az alábbi gombbal új jelszót állíthat be. A link 1 óráig érvényes, és csak egyszer használható.') +
+      body: p('Jelszó-visszaállítást kértek a Pályázati Értesítő-fiókjához. Az alábbi gombbal új jelszót állíthat be. A link 1 óráig érvényes, és csak egyszer használható.') +
         button(URL_, 'Új jelszó beállítása') + fallbackLink(URL_) +
         small('Ha nem Ön kérte, hagyja figyelmen kívül ezt a levelet: a jelszava nem változik. Ha többször kap ilyen levelet kérés nélkül, írjon nekünk az info@aipalyazo.hu címre.'),
     }),
   },
   {
     key: 'email_change', file: 'change-email.html',
-    subject: 'Erősítse meg az új e-mail-címét – AIpályázó',
+    subject: 'Erősítse meg az új e-mail-címét – Pályázati Értesítő',
     html: shell({
       preheader: 'Az e-mail-cím módosítását meg kell erősíteni.',
       title: 'E-mail-cím módosítása',
-      body: p('Az AIpályázó-fiókjához tartozó e-mail-címet a(z) <b>{{ .Email }}</b> címről a(z) <b>{{ .NewEmail }}</b> címre kérték módosítani. A módosítás az alábbi gombbal erősíthető meg.') +
+      body: p('A Pályázati Értesítő-fiókjához tartozó e-mail-címet a(z) <b>{{ .Email }}</b> címről a(z) <b>{{ .NewEmail }}</b> címre kérték módosítani. A módosítás az alábbi gombbal erősíthető meg.') +
         button(URL_, 'Módosítás megerősítése') + fallbackLink(URL_) +
         small('Ha nem Ön kérte, ne kattintson a linkre, és írjon nekünk az info@aipalyazo.hu címre.'),
     }),
   },
   {
     key: 'magic_link', file: 'magic-link.html',
-    subject: 'Belépési link – AIpályázó',
+    subject: 'Belépési link – Pályázati Értesítő',
     html: shell({
-      preheader: 'Egy kattintással beléphet az AIpályázó-ba.',
-      title: 'Belépés az AIpályázó-ba',
+      preheader: 'Egy kattintással beléphet a Pályázati Értesítőbe.',
+      title: 'Belépés a Pályázati Értesítőbe',
       body: p('Az alábbi gombbal jelszó nélkül beléphet a fiókjába. A link 1 óráig érvényes, és csak egyszer használható.') +
         button(URL_, 'Belépés') + fallbackLink(URL_) +
         small('Ha nem Ön kérte, hagyja figyelmen kívül ezt a levelet.'),
@@ -104,7 +104,7 @@ export const TEMPLATES = [
   },
   {
     key: 'reauthentication', file: 'reauthentication.html',
-    subject: 'Megerősítő kód – AIpályázó',
+    subject: 'Megerősítő kód – Pályázati Értesítő',
     html: shell({
       preheader: 'A biztonsági művelethez szükséges kód.',
       title: 'Megerősítő kód',
@@ -115,11 +115,11 @@ export const TEMPLATES = [
   },
   {
     key: 'invite', file: 'invite.html',
-    subject: 'Meghívás az AIpályázó-ba',
+    subject: 'Meghívás a Pályázati Értesítőbe',
     html: shell({
-      preheader: 'Meghívták az AIpályázó-ba.',
+      preheader: 'Meghívták a Pályázati Értesítőbe.',
       title: 'Meghívást kapott',
-      body: p('Meghívták az AIpályázó-ba, a magyar vállalkozásoknak szóló pályázatfigyelőbe. A fiókja létrehozásához kattintson az alábbi gombra.') +
+      body: p('Meghívták a Pályázati Értesítőbe, a magyar vállalkozásoknak szóló pályázatfigyelőbe. A fiókja létrehozásához kattintson az alábbi gombra.') +
         button(URL_, 'Meghívás elfogadása') + fallbackLink(URL_) +
         small('Ha nem számított erre a meghívásra, hagyja figyelmen kívül ezt a levelet.'),
     }),

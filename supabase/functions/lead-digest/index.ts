@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — lead-digest Edge Function (daily cron)
+// Pályázati Értesítő — lead-digest Edge Function (daily cron)
 // =========================================================================
 // Called daily 07:10 UTC by .github/workflows/lead-digest.yml with
 // header x-cron-secret: <CRON_SECRET>.
@@ -136,7 +136,7 @@ export async function handler(req: Request, deps: Deps = {}): Promise<Response> 
       try {
         await mailer({
           to: recipients,
-          subject: `[AIpályázó] Heti lead-összesítő — ${recent.length} új, ${overdue.length} visszajelzésre vár`,
+          subject: `[Pályázati Értesítő] Heti lead-összesítő — ${recent.length} új, ${overdue.length} visszajelzésre vár`,
           html,
           idempotencyKey: `lead-weekly-${budapestDate(now)}`,
         });

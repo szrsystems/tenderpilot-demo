@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — Hungarian titles for English-language (EU) calls
+// Pályázati Értesítő — Hungarian titles for English-language (EU) calls
 // =========================================================================
 // The site is Hungarian; most EU calls only have an English name. Every
 // English title gets a short Hungarian title (shown everywhere as `title`),

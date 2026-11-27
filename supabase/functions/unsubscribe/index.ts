@@ -1,5 +1,5 @@
 // =========================================================================
-// AIpályázó — unsubscribe Edge Function
+// Pályázati Értesítő — unsubscribe Edge Function
 // =========================================================================
 // Turns the weekly e-mail off for the notif_prefs row that owns a given
 // unsubscribe_token. No login needed: the token itself (a random UUID that
